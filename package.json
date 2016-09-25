@@ -1,12 +1,13 @@
 {
   "name": "graphenejs-lib",
-  "version": "0.4.10",
+  "version": "0.4.10-peerplays.1",
   "description": "Pure JavaScript Bitshares/Graphene library for node.js and browsers.",
   "browser": {
     "ws": false,
     "crypto": false
   },
   "scripts": {
+    "preinstall": "npm link graphenejs-ws",
     "test": "mocha --compilers js:babel-core/register --recursive",
     "test:chain": "mocha --compilers js:babel-core/register ./test/chain --recursive",
     "test:ecc": "mocha --compilers js:babel-core/register ./test/ecc --recursive",
@@ -50,7 +51,7 @@
     "deep-equal": "^1.0.1",
     "ecurve": "^1.0.2",
     "event-emitter": "^0.3.4",
-    "graphenejs-ws": "^0.1.5",
+    "graphenejs-ws": "^0.1.5-peerplays.1",
     "immutable": "^3.7.6",
     "secure-random": "^1.1.1"
   },
