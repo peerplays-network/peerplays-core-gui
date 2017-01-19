@@ -1,5 +1,5 @@
-var {Apis} = require("peerplaysjs-ws");
-var {ChainStore, FetchChain, PrivateKey, TransactionHelper, Aes, TransactionBuilder} = require("../lib");
+import {Apis} from "bitsharesjs-ws";
+import {ChainStore, FetchChain, PrivateKey, TransactionHelper, Aes, TransactionBuilder} from "../lib";
 
 var privKey = "5KBuq5WmHvgePmB7w3onYsqLM8ESomM2Ae7SigYuuwg8MDHW7NN";
 let pKey = PrivateKey.fromWif(privKey);
@@ -10,7 +10,7 @@ Apis.instance("wss://testnet.bitshares.eu/ws", true)
 
     ChainStore.init().then(() => {
 
-        let fromAccount = "graphenejs-lib";
+        let fromAccount = "peerplaysjs";
         let memoSender = fromAccount;
         let memo = "Testing transfer from node.js";
 

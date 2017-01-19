@@ -1,2 +1,4 @@
 lib
-.idea
+build
+test
+tools
