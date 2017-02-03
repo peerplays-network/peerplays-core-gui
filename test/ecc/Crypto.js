@@ -25,17 +25,16 @@ describe("ECC", function() {
             var aes = Aes.fromSeed("Password01")
             var d = aes.decryptHex(encrypted_key)
             assert.equal(decrypted_key, d, "decrypted key does not match")
-        })
+        });
         it("Encrypt", function() {
             var aes = Aes.fromSeed("Password01")
             var d = aes.encryptHex(decrypted_key)
             assert.equal(encrypted_key, d, "encrypted key does not match")
-        })
-            console.log public_key.toHex());*/
+        });
         it("generate private key from seed", function() {
             var private_key = PrivateKey.fromSeed("1");
             assert.equal(private_key.toPublicKey().toString(), "GPH8m5UgaFAAYQRuaNejYdS8FVLVp9Ss3K1qAVk5de6F8s3HnVbvA", "private key does not match");
-        })
+        });
         it("sign", function() {
             this.timeout(10000);
             var private_key = PrivateKey.fromSeed("1");
