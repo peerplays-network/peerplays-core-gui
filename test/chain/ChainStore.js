@@ -1,5 +1,5 @@
 var assert = require("assert");
-var {Apis, ChainConfig} = require("graphenejs-ws");
+var {Apis, ChainConfig} = require("peerplaysjs-ws");
 var { FetchChain, ChainStore } = require("../../lib/chain");
 
 var coreAsset;

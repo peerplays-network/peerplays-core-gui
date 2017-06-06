@@ -1,13 +1,12 @@
 {
-  "name": "graphenejs-lib",
-  "version": "0.4.10-peerplays.1",
-  "description": "Pure JavaScript Bitshares/Graphene library for node.js and browsers.",
+  "name": "peerplaysjs-lib",
+  "version": "0.4.10",
+  "description": "Pure JavaScript Peerplays/Graphene library for node.js and browsers.",
   "browser": {
     "ws": false,
     "crypto": false
   },
   "scripts": {
-    "preinstall": "npm link graphenejs-ws",
     "test": "mocha --compilers js:babel-core/register --recursive",
     "test:chain": "mocha --compilers js:babel-core/register ./test/chain --recursive",
     "test:ecc": "mocha --compilers js:babel-core/register ./test/ecc --recursive",
@@ -18,14 +17,14 @@
     "build": "babel lib --presets babel-preset-es2015 --out-dir dist",
     "build:watch": "babel lib --presets babel-preset-es2015 --out-dir dist --watch",
     "prebrowserify": "rm -rf ./build/*",
-    "browserify": "browserify --full-paths dist/browser.js --standalone steemJS -o build/graphenejs-lib.js -d",
-    "postbrowserify": "uglifyjs --compress --mangle --sequences --drop_console --output build/graphenejs-lib.min.js -- build/graphenejs-lib.js",
+    "browserify": "browserify --full-paths dist/browser.js --standalone steemJS -o build/peerplaysjs-lib.js -d",
+    "postbrowserify": "uglifyjs --compress --mangle --sequences --drop_console --output build/peerplaysjs-lib.min.js -- build/peerplaysjs-lib.js",
     "prepublish": "npm run build",
     "doc": "esdoc -c esdoc.json"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/svk31/graphenejs-lib.git"
+    "url": "git+https://github.com/PBSA/peerplaysjs-lib.git"
   },
   "author": "Sigve Kvalsvik <bitsharesblocks@gmail.com> (https://github.com/svk31)",
   "contributors": [
@@ -35,7 +34,7 @@
   ],
   "license": "BSD-2-Clause-FreeBSD",
   "bugs": {
-    "url": "https://github.com/svk31/graphenejs-lib/issues"
+    "url": "https://github.com/PBSA/peerplaysjs-lib/issues"
   },
   "engines": {
     "node": ">= 6.0.0"
@@ -51,7 +50,7 @@
     "deep-equal": "^1.0.1",
     "ecurve": "^1.0.2",
     "event-emitter": "^0.3.4",
-    "graphenejs-ws": "^0.1.5-peerplays.1",
+    "peerplaysjs-ws": "git+https://github.com/PBSA/peerplaysjs-ws.git",
     "immutable": "^3.7.6",
     "secure-random": "^1.1.1"
   },

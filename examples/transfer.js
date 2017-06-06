@@ -1,4 +1,4 @@
-var {Apis} = require("graphenejs-ws");
+var {Apis} = require("peerplaysjs-ws");
 var {ChainStore, FetchChain, PrivateKey, TransactionHelper, Aes, TransactionBuilder} = require("../lib");
 
 var privKey = "5KBuq5WmHvgePmB7w3onYsqLM8ESomM2Ae7SigYuuwg8MDHW7NN";

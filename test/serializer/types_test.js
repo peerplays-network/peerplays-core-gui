@@ -8,7 +8,7 @@ var th = require('./test_helper');
 
 var { is } = require("immutable");
 var { PublicKey, PrivateKey } = require("../../lib/ecc");
-var { ChainConfig } = require("graphenejs-ws");
+var { ChainConfig } = require("peerplaysjs-ws");
 
 describe("types", function() {
 
