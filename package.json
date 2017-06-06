@@ -1,6 +1,6 @@
 {
 		"name": "peerplaysjs-lib",
-		"version": "0.4.14",
+		"version": "0.4.15",
 		"description": "Pure JavaScript Peerplays/Graphene library for node.js and browsers.",
 		"browser": {
 				"ws": false,
@@ -14,7 +14,7 @@
 				"test:watch": "npm test -- --watch",
 				"clean": "rm -rf ./dist/* & rm -rf ./build/*",
 				"prebuild": "npm run clean",
-				"build": "babel lib --presets es2015-generators-async --out-dir dist",
+				"build": "babel lib --presets es2015-generators-async --plugins transform-async-to-generator --out-dir dist",
 				"build:watch": "babel lib --presets es2015-generators-async --out-dir dist --watch",
 				"prebrowserify": "rm -rf ./build/*",
 				"browserify": "browserify --full-paths dist/browser.js --standalone steemJS -o build/peerplaysjs-lib.js -d",
@@ -60,6 +60,7 @@
 				"babel-cli": "^6.9.0",
 				"babel-core": "^6.10.4",
 				"babel-eslint": "^6.0.4",
+				"babel-plugin-transform-async-to-generator": "^6.24.1",
 				"babel-preset-es2015": "^6.24.1",
 				"babel-preset-es2015-generators-async": "^6.3.13",
 				"browserify": "^13.1.0",
