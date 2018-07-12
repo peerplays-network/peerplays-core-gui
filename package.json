@@ -52,7 +52,7 @@
 				"ecurve": "^1.0.2",
 				"event-emitter": "^0.3.4",
 				"immutable": "^3.7.6",
-				"peerplaysjs-ws": "^0.1.8",
+				"peerplaysjs-ws": "^0.1.11",
 				"secure-random": "^1.1.1"
 		},
 		"devDependencies": {
