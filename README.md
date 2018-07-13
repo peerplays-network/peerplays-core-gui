@@ -1,18 +1,14 @@
-# GrapheneJS (graphenejs-lib)
+# PeerplaysJS (peerplaysjs-lib)
 
 Pure JavaScript Bitshares/Graphene library for node.js and browsers. Can be used to construct, sign and broadcast transactions in JavaScript, and to easily obtain data from the blockchain via public apis.
 
 Most of this code was written by [jcalfeee](https://github.com/jcalfee), my work was mostly just repackaging to a discrete npm package.
 
-[![npm version](https://img.shields.io/npm/v/graphenejs-lib.svg?style=flat-square)](https://www.npmjs.com/package/graphenejs-lib)
-[![npm downloads](https://img.shields.io/npm/dm/graphenejs-lib.svg?style=flat-square)](https://www.npmjs.com/package/graphenejs-lib)
-
-
 ## Setup
 
 This library can be obtained through npm:
 ```
-npm install graphenejs-lib
+npm install peerplaysjs-lib
 ```
 
 ## Usage
@@ -55,8 +51,8 @@ The Chain library contains a complete state container called the ChainStore. The
 The ChainStore has several useful methods to retrieve, among other things, objects, assets and accounts using either object ids or asset/account names. These methods are synchronous and will return `undefined` to indicate fetching in progress, and `null` to indicate that the object does not exist.
 
 ```
-var {Apis} = require("graphenejs-ws");
-var {ChainStore} = require("graphenejs-lib");
+var {Apis} = require("peerplaysjs-ws");
+var {ChainStore} = require("peerplaysjs-lib");
 
 Apis.instance("wss://bitshares.openledger.info/ws", true).init_promise.then((res) => {
     console.log("connected to:", res[0].network);
@@ -80,7 +76,7 @@ The ECC library contains all the crypto functions for private and public keys as
 As a quick example, here's how to generate a new private key from a seed (a brainkey for example):
 
 ```
-var {PrivateKey, key} = require("graphenejs-lib");
+var {PrivateKey, key} = require("peerplaysjs-lib");
 
 let seed = "THIS IS A TERRIBLE BRAINKEY SEED WORD SEQUENCE";
 let pkey = PrivateKey.fromSeed( key.normalize_brainKey(seed) );
