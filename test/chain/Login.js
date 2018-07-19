@@ -1,77 +1,72 @@
-import assert from "assert";
-import {Login as login} from "../../lib";
-import {Login as login2} from "../../lib";
+import assert from 'assert';
+import {Login as login, Login as login2} from '../../lib';
 
-var auths = {
-    active: [
-        ["GPH5Abm5dCdy3hJ1C5ckXkqUH2Me7dXqi9Y7yjn9ACaiSJ9h8r8mL", 1]
-    ]
-}
+let auths = {
+  active: [['GPH5Abm5dCdy3hJ1C5ckXkqUH2Me7dXqi9Y7yjn9ACaiSJ9h8r8mL', 1]]
+};
 
-describe("AccountLogin", () => {
+describe('AccountLogin', () => {
+  afterEach(() => {
+    login.setRoles(['active', 'owner', 'memo']);
+  });
 
-    afterEach(function() {
-        login.setRoles(["active", "owner", "memo"]);
+  describe('Instance', () => {
+    it('Instantiates with default roles', () => {
+      let roles = login.get('roles');
+
+      assert(roles.length);
+      assert(roles[0] === 'active');
+      assert(roles[1] === 'owner');
+      assert(roles[2] === 'memo');
     });
 
-    describe("Instance", function() {
-        it ("Instantiates with default roles", function() {
-            let roles = login.get("roles");
+    it('Is singleton', () => {
+      login.setRoles(['singleton']);
 
-            assert(roles.length );
-            assert(roles[0] === "active");
-            assert(roles[1] === "owner");
-            assert(roles[2] === "memo");
-        });
+      let roles = login2.get('roles');
+      assert(roles.length === 1);
+      assert(roles[0] === 'singleton');
+    });
+  });
 
-        it ("Is singleton", function() {
-            login.setRoles(["singleton"]);
+  describe('Methods', () => {
+    it('Set roles', () => {
+      login.setRoles(['active']);
+      let roles = login.get('roles');
 
-            let roles = login2.get("roles");
-            assert(roles.length === 1  );
-            assert(roles[0] === "singleton");
-        });
+      assert(roles.length === 1);
+      assert(roles[0] === 'active');
     });
 
-    describe("Methods", function() {
+    it('Requires 12 char password', () => {
+      assert.throws(login.generateKeys, Error);
+    });
 
-        it ("Set roles", function() {
-            login.setRoles(["active"]);
-            let roles = login.get("roles");
+    it('Generate keys with no role input', () => {
+      let {privKeys, pubKeys} = login.generateKeys('someaccountname', 'somereallylongpassword');
 
-            assert(roles.length === 1 );
-            assert(roles[0] === "active" );
-        });
+      assert(Object.keys(privKeys).length === 3);
+      assert(Object.keys(pubKeys).length === 3);
+    });
 
-        it ("Requires 12 char password", function() {
-            assert.throws(login.generateKeys, Error);
-        });
+    it('Generate keys with role input', () => {
+      let {privKeys, pubKeys} = login.generateKeys('someaccountname', 'somereallylongpassword', [
+        'active'
+      ]);
 
-        it ("Generate keys with no role input", function() {
-            let {privKeys, pubKeys} = login.generateKeys("someaccountname", "somereallylongpassword");
+      assert(privKeys.active);
+      assert(Object.keys(privKeys).length === 1);
+      assert(Object.keys(pubKeys).length === 1);
+    });
 
-            assert(Object.keys(privKeys).length === 3);
-            assert(Object.keys(pubKeys).length === 3);
-        });
+    it('Check keys', () => {
+      let success = login.checkKeys({
+        accountName: 'someaccountname',
+        password: 'somereallylongpassword',
+        auths
+      });
 
-        it ("Generate keys with role input", function() {
-            let {privKeys, pubKeys} = login.generateKeys("someaccountname", "somereallylongpassword", ["active"]);
-
-            assert(privKeys.active);
-            assert(Object.keys(privKeys).length === 1);
-            assert(Object.keys(pubKeys).length === 1);
-        });
-
-        it ("Check keys", function() {
-            let success = login.checkKeys({
-                accountName: "someaccountname",
-                password: "somereallylongpassword",
-                auths: auths
-            });
-
-            assert(true, success);
-
-        });
-    })
-
+      assert(true, success);
+    });
+  });
 });
