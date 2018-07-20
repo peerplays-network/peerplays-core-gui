@@ -6,32 +6,38 @@ let coreAsset;
 
 describe('ChainStore', () => {
   // // Connect once for all tests
-  // before(() => {
-  //   let promise = Apis.instance('wss://pta.blockveritas.co:8089', true).init_promise.then(() => {
-  //     coreAsset = '1.3.0';
-  //     ChainStore.init();
-  //   });
+  before(() => {
+    let promise = Apis.instance('wss://pta.blockveritas.co:8089', true).init_promise.then(() => {
+      coreAsset = '1.3.0';
+      ChainStore.init();
+    });
 
-  //   return promise;
-  // });
+    return promise;
+  });
 
-  // // Unsubscribe everything after each test
-  // afterEach(() => {
-  //   ChainStore.subscribers = new Set();
-  //   ChainStore.clearCache();
-  // });
+  // Unsubscribe everything after each test
+  afterEach(() => {
+    ChainStore.subscribers = new Set();
+    ChainStore.clearCache();
+  });
 
-  // after(() => {
-  //   ChainConfig.reset();
-  // });
+  after(() => {
+    ChainConfig.reset();
+  });
 
-  xdescribe('Subscriptions', () => {
+  describe('Subscriptions', () => {
     it('Asset not found', () => new Promise((resolve) => {
-      ChainStore.subscribe(() => {
-        assert(ChainStore.getAsset('NOTFOUND') === null);
-        resolve();
+
+      ChainStore.init().then(() => {
+
+        ChainStore.subscribe(() => {
+          assert(ChainStore.getAsset('NOTFOUND') === null);
+          resolve();
+        });
+
+        assert(ChainStore.getAsset('NOTFOUND') === undefined);
+
       });
-      assert(ChainStore.getAsset('NOTFOUND') === undefined);
     }));
 
     it('Asset by name', () => new Promise((resolve) => {
