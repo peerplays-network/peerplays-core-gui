@@ -1,81 +1,74 @@
-var assert = require("assert");
-var {Apis, ChainConfig} = require("peerplaysjs-ws");
-var { FetchChain, ChainStore } = require("../../lib/chain");
+import assert from 'assert';
+import {Apis, ChainConfig} from 'peerplaysjs-ws';
+import {ChainStore} from '../../lib';
 
-var coreAsset;
+let coreAsset;
 
-describe("ChainStore", () => {
+describe('ChainStore', () => {
+  // // Connect once for all tests
+  before(() => {
+    let promise = Apis.instance('wss://pta.blockveritas.co:8089', true).init_promise.then(() => {
+      coreAsset = '1.3.0';
+      ChainStore.init();
+    });
 
-    // Connect once for all tests
-    before(function() {
-        return Apis.instance("wss://bitshares.openledger.info/ws", true).init_promise.then(function (result) {
-            coreAsset = result[0].network.core_asset;
-            ChainStore.init();
+    return promise;
+  });
+
+  // Unsubscribe everything after each test
+  afterEach(() => {
+    ChainStore.subscribers = new Set();
+    ChainStore.clearCache();
+  });
+
+  after(() => {
+    ChainConfig.reset();
+  });
+
+  describe('Subscriptions', () => {
+    it('Asset not found', () => new Promise((resolve) => {
+
+      ChainStore.init().then(() => {
+
+        ChainStore.subscribe(() => {
+          assert(ChainStore.getAsset('NOTFOUND') === null);
+          resolve();
         });
-    });
 
-    // Unsubscribe everything after each test
-    afterEach(function() {
-        ChainStore.subscribers = new Set();
-        ChainStore.clearCache();
-    });
+        assert(ChainStore.getAsset('NOTFOUND') === undefined);
 
-    after(function() {
-        ChainConfig.reset();
-    });
+      });
+    }));
 
-    describe("Subscriptions", function() {
+    it('Asset by name', () => new Promise((resolve) => {
+      ChainStore.subscribe(() => {
+        assert(ChainStore.getAsset(coreAsset) != null);
+        resolve();
+      });
+      assert(ChainStore.getAsset(coreAsset) === undefined);
+    }));
 
-        it("Asset not found", function() {
-            return new Promise( function(resolve) {
-                ChainStore.subscribe(function() {
-                    console.log("chainstore sub");
-                    assert(ChainStore.getAsset("NOTFOUND") === null)
-                    resolve()
-                })
-                assert(ChainStore.getAsset("NOTFOUND") === undefined)
-            })
-        })
+    it('Asset by id', () => new Promise((resolve) => {
+      ChainStore.subscribe(() => {
+        assert(ChainStore.getAsset('1.3.0') != null);
+        resolve();
+      });
+      assert(ChainStore.getAsset('1.3.0') === undefined);
+    }));
 
-        it("Asset by name", function() {
-            return new Promise( function(resolve) {
-                ChainStore.subscribe(function() {
-                    assert(ChainStore.getAsset(coreAsset) != null)
-                    resolve()
-                })
-                assert(ChainStore.getAsset(coreAsset) === undefined)
-            })
-        })
-
-        it("Asset by id", function() {
-            return new Promise( function(resolve) {
-                ChainStore.subscribe(function() {
-                    assert(ChainStore.getAsset("1.3.0") != null)
-                    resolve()
-                })
-                assert(ChainStore.getAsset("1.3.0") === undefined)
-            })
-        })
-
-        it("Object by id", function() {
-            return new Promise( function(resolve) {
-                ChainStore.subscribe(function() {
-                    assert(ChainStore.getAsset("2.0.0") != null)
-                    resolve()
-                })
-                assert(ChainStore.getAsset("2.0.0") === undefined)
-            })
-        })
-
-
-    })
-        //     ChainStore.getAccount("not found")
-        //
-        //     ChainStore.unsubscribe(cb)
-        //     // return FetchChain("getAccount", "notfound")
-        //     let cb = res => console.log('res',res)
-        //     // })
-        // })
-
-
-})
+    it('Object by id', () => new Promise((resolve) => {
+      ChainStore.subscribe(() => {
+        assert(ChainStore.getAsset('2.0.0') != null);
+        resolve();
+      });
+      assert(ChainStore.getAsset('2.0.0') === undefined);
+    }));
+  });
+  //     ChainStore.getAccount("not found")
+  //
+  //     ChainStore.unsubscribe(cb)
+  //     // return FetchChain("getAccount", "notfound")
+  //     let cb = res => console.log('res',res)
+  //     // })
+  // })
+});
