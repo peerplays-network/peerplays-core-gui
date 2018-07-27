@@ -58,7 +58,7 @@
     "ecurve": "^1.0.2",
     "event-emitter": "^0.3.4",
     "immutable": "^3.7.6",
-    "peerplaysjs-ws": "^0.1.8",
+    "peerplaysjs-ws": "git+ssh://git@bitbucket.org/peerplaysblockchain/peerplays-graphenejs-ws.git#5bbb7d0705f5559abde49f0f8bc88b09b5ca3b2a",
     "secure-random": "^1.1.1"
   },
   "devDependencies": {
