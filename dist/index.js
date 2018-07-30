@@ -1,7 +1,6 @@
 'use strict';
 
 exports.__esModule = true;
-exports.Login = exports.FetchChain = exports.ChainValidation = exports.TransactionHelper = exports.NumberUtils = exports.ObjectId = exports.EmitterInstance = exports.ChainTypes = exports.FetchChainObjects = exports.TransactionBuilder = exports.ChainStore = exports.key = exports.hash = exports.brainKey = exports.Signature = exports.PublicKey = exports.PrivateKey = exports.Aes = exports.Address = exports.SerializerValidation = exports.template = exports.ops = exports.types = exports.fp = exports.Serializer = undefined;
 
 var _serializer = require('./serializer/src/serializer');
 
@@ -108,28 +107,31 @@ var FetchChainObjects = _ChainStore2.default.FetchChainObjects,
 /* ECC */
 /* Serializer */
 
-exports.Serializer = _serializer2.default;
-exports.fp = _FastParser2.default;
-exports.types = _types2.default;
-exports.ops = ops;
-exports.template = _template2.default;
-exports.SerializerValidation = _SerializerValidation2.default;
-exports.Address = _address2.default;
-exports.Aes = _aes2.default;
-exports.PrivateKey = _PrivateKey2.default;
-exports.PublicKey = _PublicKey2.default;
-exports.Signature = _signature2.default;
-exports.brainKey = _BrainKey2.default;
-exports.hash = hash;
-exports.key = _KeyUtils2.default;
-exports.ChainStore = _ChainStore2.default;
-exports.TransactionBuilder = _TransactionBuilder2.default;
-exports.FetchChainObjects = FetchChainObjects;
-exports.ChainTypes = _ChainTypes2.default;
-exports.EmitterInstance = _EmitterInstance2.default;
-exports.ObjectId = _ObjectId2.default;
-exports.NumberUtils = _NumberUtils2.default;
-exports.TransactionHelper = _TransactionHelper2.default;
-exports.ChainValidation = _ChainValidation2.default;
-exports.FetchChain = FetchChain;
-exports.Login = _AccountLogin2.default;
+exports.default = {
+  Serializer: _serializer2.default,
+  fp: _FastParser2.default,
+  types: _types2.default,
+  ops: ops,
+  template: _template2.default,
+  SerializerValidation: _SerializerValidation2.default,
+  Address: _address2.default,
+  Aes: _aes2.default,
+  PrivateKey: _PrivateKey2.default,
+  PublicKey: _PublicKey2.default,
+  Signature: _signature2.default,
+  brainKey: _BrainKey2.default,
+  hash: hash,
+  key: _KeyUtils2.default,
+  ChainStore: _ChainStore2.default,
+  TransactionBuilder: _TransactionBuilder2.default,
+  FetchChainObjects: FetchChainObjects,
+  ChainTypes: _ChainTypes2.default,
+  EmitterInstance: _EmitterInstance2.default,
+  ObjectId: _ObjectId2.default,
+  NumberUtils: _NumberUtils2.default,
+  TransactionHelper: _TransactionHelper2.default,
+  ChainValidation: _ChainValidation2.default,
+  FetchChain: FetchChain,
+  Login: _AccountLogin2.default
+};
+module.exports = exports['default'];
