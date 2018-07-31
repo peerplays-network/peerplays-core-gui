@@ -36,7 +36,7 @@
             { "blankLine": "always", "prev": "*", "next": "block-like" },
             { "blankLine": "always", "prev": "block-like", "next": "*" }
         ],
-        "arrow-body-style": ["error", "as-needed"],
+        "arrow-parens": ["error", "always"],
         "max-len": ["error", {"code": 100}],
         "implicit-arrow-linebreak": ["error", "beside"]
     }
