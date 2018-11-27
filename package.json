@@ -1,71 +1,84 @@
 {
-		"name": "peerplaysjs-lib",
-		"version": "0.4.21",
-		"description": "Pure JavaScript Peerplays/Graphene library for node.js and browsers.",
-		"browser": {
-				"ws": false,
-				"crypto": false
-		},
-		"scripts": {
-				"test": "mocha --compilers js:babel-core/register --recursive",
-				"test:chain": "mocha --compilers js:babel-core/register ./test/chain --recursive",
-				"test:ecc": "mocha --compilers js:babel-core/register ./test/ecc --recursive",
-				"test:serializer": "mocha --compilers js:babel-core/register ./test/serializer --recursive",
-				"test:watch": "npm test -- --watch",
-				"clean": "rm -rf ./dist/* & rm -rf ./build/*",
-				"prebuild": "npm run clean",
-				"build": "babel lib --presets es2015-generators-async --plugins transform-async-to-generator --out-dir dist",
-				"build:watch": "babel lib --presets es2015-generators-async --out-dir dist --watch",
-				"prebrowserify": "rm -rf ./build/*",
-				"browserify": "browserify --full-paths dist/browser.js --standalone steemJS -o build/peerplaysjs-lib.js -d",
-				"postbrowserify": "uglifyjs --compress --mangle --sequences --drop_console --output build/peerplaysjs-lib.min.js -- build/peerplaysjs-lib.js",
-				"prepublish": "npm run build",
-				"doc": "esdoc -c esdoc.json"
-		},
-		"repository": {
-				"type": "git",
-				"url": "git+https://github.com/PBSA/peerplaysjs-lib.git"
-		},
-		"author": "Sigve Kvalsvik <bitsharesblocks@gmail.com> (https://github.com/svk31)",
-		"contributors": [
-				"James Calfee <james@jcalfee.info> (https://github.com/jcalfee/)",
-				"Daniel Larimer <dan@cryptonomex.com> (https://github.com/bytemaster/)",
-				"Valentine Zavgorodnev <valentine.zavgorodnev@gmail.com> (https://github.com/valzav/)"
-		],
-		"license": "BSD-2-Clause-FreeBSD",
-		"bugs": {
-				"url": "https://github.com/PBSA/peerplaysjs-lib/issues"
-		},
-		"engines": {
-				"node": ">= 6.0.0"
-		},
-		"main": "./dist/index.js",
-		"dependencies": {
-				"bigi": "^1.4.1",
-				"bluebird": "^3.5.0",
-				"bs58": "^3.0.0",
-				"bytebuffer": "^5.0.0",
-				"create-hash": "^1.1.2",
-				"create-hmac": "^1.1.4",
-				"crypto-js": "^3.1.5",
-				"deep-equal": "^1.0.1",
-				"ecurve": "^1.0.2",
-				"event-emitter": "^0.3.4",
-				"immutable": "^3.7.6",
-				"peerplaysjs-ws": "^0.1.11",
-				"secure-random": "^1.1.1"
-		},
-		"devDependencies": {
-				"assert": "^1.3.0",
-				"babel-cli": "^6.9.0",
-				"babel-core": "^6.10.4",
-				"babel-eslint": "^6.0.4",
-				"babel-plugin-transform-async-to-generator": "^6.24.1",
-				"babel-preset-es2015": "^6.24.1",
-				"babel-preset-es2015-generators-async": "^6.3.13",
-				"browserify": "^13.1.0",
-				"esdoc": "^1.1.0",
-				"mocha": "^2.5.3",
-				"uglifyjs": "^2.4.10"
-		}
+  "name": "peerplaysjs-lib",
+  "version": "0.4.24",
+  "description": "Pure JavaScript Peerplaysjs library for node.js and browsers.",
+  "browser": {
+    "ws": false,
+    "crypto": false
+  },
+  "scripts": {
+    "test": "BABEL_ENV=test mocha --compilers js:babel-register --recursive",
+    "test:chain": "BABEL_ENV=test mocha --compilers js:babel-register ./test/chain --recursive",
+    "test:ecc": "BABEL_ENV=test mocha --compilers js:babel-register ./test/ecc --recursive",
+    "test:serializer": "BABEL_ENV=test mocha --compilers js:babel-register ./test/serializer --recursive",
+    "test:watch": "npm test -- --watch",
+    "clean": "rm -rf ./dist/* & rm -rf ./build/*",
+    "prebuild": "npm run clean",
+    "build": "babel lib -d dist",
+    "postbuild": "npm run browserify",
+    "build:watch": "babel lib -d dist --watch",
+    "prebrowserify": "rm -rf ./build/*",
+    "browserify": "browserify -t [browserify-package-json --global=true] -p [bundle-collapser/plugin] dist/browser.js --full-path=false --standalone peerplays_js -o build/peerplaysjs-lib.js -d",
+    "postbrowserify": "uglifyjs --compress --mangle --sequences --drop_console --output build/peerplaysjs-lib.min.js -- build/peerplaysjs-lib.js",
+    "doc": "esdoc -c esdoc.json",
+    "example:transfer": "babel-node examples/transfer",
+    "example:chainStore": "babel-node examples/chainStore",
+    "example:privKey": "babel-node examples/privKey"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PBSA/peerplaysjs-lib"
+  },
+  "author": "Sigve Kvalsvik <bitsharesblocks@gmail.com> (https://github.com/svk31)",
+  "contributors": [
+    "James Calfee <james@jcalfee.info> (https://github.com/jcalfee/)",
+    "Daniel Larimer <dan@cryptonomex.com> (https://github.com/bytemaster/)",
+    "Valentine Zavgorodnev <valentine.zavgorodnev@gmail.com> (https://github.com/valzav/)"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PBSA/peerplaysjs-lib/issues"
+  },
+  "engines": {
+    "node": ">= 6.0.0"
+  },
+  "main": "dist/index.js",
+  "jsnext:main": "lib/index.js",
+  "dependencies": {
+    "assert": "^1.3.0",
+    "bigi": "^1.4.1",
+    "bs58": "^3.0.0",
+    "buffer": "^5.1.0",
+    "bytebuffer": "^5.0.0",
+    "create-hash": "^1.1.2",
+    "create-hmac": "^1.1.4",
+    "crypto-js": "^3.1.9-1",
+    "deep-equal": "^1.0.1",
+    "ecurve": "^1.0.2",
+    "event-emitter": "^0.3.4",
+    "immutable": "^3.7.6",
+    "peerplaysjs-ws": "git+ssh://git@bitbucket.org/peerplaysblockchain/peerplays-graphenejs-ws.git",
+    "secure-random": "^1.1.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.21.0",
+    "babel-eslint": "^7.1.1",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-1": "^6.16.0",
+    "browserify": "^13.1.0",
+    "browserify-package-json": "^1.0.1",
+    "bundle-collapser": "^1.3.0",
+    "esdoc": "^1.1.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-react": "^7.10.0",
+    "mocha": "^5.2.0",
+    "prettier": "^1.13.7",
+    "uglifyjs": "^2.4.10"
+  }
 }
