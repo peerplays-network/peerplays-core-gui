@@ -1,2 +1,9 @@
-lib
-.idea
+test
+tools
+examples
+esdoc.json
+.babelrc
+.prettierrc
+.gitignore
+.eslintrc
+.editorconfig
