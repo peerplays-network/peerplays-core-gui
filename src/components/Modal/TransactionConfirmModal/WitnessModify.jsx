@@ -2,12 +2,14 @@ import React from 'react';
 import Translate from 'react-translate-component';
 import {connect} from 'react-redux';
 
-class WitnessUpdate extends React.Component {
+
+
+class WitnessModify extends React.Component {
   render() {
     return (
       <div className='mConf__content'>
         <div className='mConf__title'>
-          <Translate content='transaction.trxTypes.witness_update' />
+          <Translate content={ 'transaction.trxTypes.witness_' + this.props.witnessModification } />
         </div>
         <div className='mConf__table'>
           <div className='mConf__tableRow'>
@@ -30,4 +32,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(WitnessUpdate);
+export default connect(mapStateToProps)(WitnessModify);
