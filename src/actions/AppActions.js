@@ -11,6 +11,7 @@ import Repository from 'repositories/chain/repository';
 import CONFIG from '../config/main';
 import SendPageActions from './SendPageActions';
 import DashboardPageActions from './DashboardPageActions';
+import Config from '../../config/Config';
 
 class AppPrivateActions {
   /**

@@ -1,6 +1,7 @@
 /* Libs */
 import React from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 /* Components */
 import {IntlProvider} from 'react-intl';
@@ -14,9 +15,10 @@ import HelpModal from '../components/Help/HelpModal';
 import intlData from 'components/Utility/intlData';
 import CommonMessage from 'components/CommonMessage';
 
-
 /* Other */
 import {routerShape} from 'react-router/lib/PropTypes';
+import AppActions from '../actions/AppActions';
+import Config from '../../config/Config';
 
 class App extends React.Component {
   static contextTypes = {
@@ -84,7 +86,35 @@ class App extends React.Component {
   }
 }
 
+function idleCheck(logout) {
+  console.log('idle logout timer started.');
+  let t;
+  window.onclick = resetTimer;
+  window.onkeypress = resetTimer;
+  window.onload = resetTimer;
+  window.onmousemove = resetTimer;
+  window.onmousedown = resetTimer;
+  window.ontouchstart = resetTimer;
+  window.addEventListener('scroll', resetTimer, true);
+
+  function isIdle() {
+    console.log('Logging out user due to inactivity.');
+    logout();
+  }
+
+  function resetTimer() {
+    console.log('idle logout timer reset.');
+    clearTimeout(t);
+    t = setTimeout(isIdle, Config.IDLE_TIMEOUT);
+  }
+}
+
 class AppContainer extends React.Component {
+  componentDidMount() {
+    // Start lidle checker to autologout idle users.
+    idleCheck(this.props.logout);
+  }
+
   render() {
     return (
       <IntlProvider
@@ -110,4 +140,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(AppContainer);
+const mapDispatchToProps = (dispatch) => bindActionCreators(
+  {
+    logout: AppActions.logout
+  },
+  dispatch
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
