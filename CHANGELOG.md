@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.4.1] - 03-12-19
+
+### Changed
+
+- Removed "Common Options" row from "Confirm Transaction" modals.
+- Fixed a bug related to multiple messages being cleared at once in the Common Message module.
+
+### Added
+
+- Link back to the login page when the user has found their way into the balance claim page.
+
 ## [0.4.0] - 02-15-19
 
 ### Changed
