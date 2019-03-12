@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PBSA/peerplaysjs-lib"
+    "url": "git+https://github.com/peerplays-network/peerplaysjs-lib"
   },
   "author": "Sigve Kvalsvik <bitsharesblocks@gmail.com> (https://github.com/svk31)",
   "contributors": [
@@ -37,7 +37,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/PBSA/peerplaysjs-lib/issues"
+    "url": "https://github.com/peerplays-network/peerplaysjs-lib/issues"
   },
   "engines": {
     "node": ">= 6.0.0"
@@ -57,7 +57,7 @@
     "ecurve": "^1.0.2",
     "event-emitter": "^0.3.4",
     "immutable": "^3.7.6",
-    "peerplaysjs-ws": "git+ssh://git@github.com:PBSA/peerplaysjs-ws.git",
+    "peerplaysjs-ws": "peerplays-network/peerplaysjs-ws",
     "secure-random": "^1.1.1"
   },
   "devDependencies": {
