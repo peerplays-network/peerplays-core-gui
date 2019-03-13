@@ -121,6 +121,7 @@ var ChainStore = function () {
     this.betting_markets_list_by_sport_id = _immutable2.default.Map();
     this.account_history_requests = new Map(); // /< tracks pending history requests
     this.witness_by_account_id = new Map();
+    this.witnesses = _immutable2.default.Set();
     this.account_by_witness_id = new Map();
     this.committee_by_account_id = new Map();
     this.objects_by_vote_id = new Map();
@@ -984,23 +985,52 @@ var ChainStore = function () {
 
   /**
    *
+   * @returns promise with a list of all witness ids, active or not.
+   * @memberof ChainStore
+   */
+
+
+  ChainStore.prototype.fetchWitnessAccounts = function fetchWitnessAccounts() {
+    var _this12 = this;
+
+    return new Promise(function (resolve, reject) {
+      _peerplaysjsWs.Apis.instance().db_api().exec('lookup_witness_accounts', [0, 1000]).then(function (w) {
+        if (w) {
+          var witnessArr = [];
+
+          for (var i = 0, length = w.length; i < length; i++) {
+            witnessArr.push(w[i][1]); // ids only
+          }
+
+          _this12.witnesses = _this12.witnesses.merge(witnessArr);
+          _this12._updateObject(witnessArr, true);
+          resolve(_this12.witnesses);
+        } else {
+          resolve(null);
+        }
+      });
+    });
+  };
+
+  /**
+   *
    * @return a promise with the witness object
    */
 
 
   ChainStore.prototype.fetchWitnessByAccount = function fetchWitnessByAccount(account_id) {
-    var _this12 = this;
+    var _this13 = this;
 
     return new Promise(function (resolve, reject) {
       _peerplaysjsWs.Apis.instance().db_api().exec('get_witness_by_account', [account_id]).then(function (optional_witness_object) {
         if (optional_witness_object) {
-          _this12._subTo('witnesses', optional_witness_object.id);
-          _this12.witness_by_account_id = _this12.witness_by_account_id.set(optional_witness_object.witness_account, optional_witness_object.id);
-          var witness_object = _this12._updateObject(optional_witness_object, true);
+          _this13._subTo('witnesses', optional_witness_object.id);
+          _this13.witness_by_account_id = _this13.witness_by_account_id.set(optional_witness_object.witness_account, optional_witness_object.id);
+          var witness_object = _this13._updateObject(optional_witness_object, true);
           resolve(witness_object);
         } else {
-          _this12.witness_by_account_id = _this12.witness_by_account_id.set(account_id, null);
-          _this12.notifySubscribers();
+          _this13.witness_by_account_id = _this13.witness_by_account_id.set(account_id, null);
+          _this13.notifySubscribers();
           resolve(null);
         }
       }, reject);
@@ -1014,18 +1044,18 @@ var ChainStore = function () {
 
 
   ChainStore.prototype.fetchCommitteeMemberByAccount = function fetchCommitteeMemberByAccount(account_id) {
-    var _this13 = this;
+    var _this14 = this;
 
     return new Promise(function (resolve, reject) {
       _peerplaysjsWs.Apis.instance().db_api().exec('get_committee_member_by_account', [account_id]).then(function (optional_committee_object) {
         if (optional_committee_object) {
-          _this13._subTo('committee', optional_committee_object.id);
-          _this13.committee_by_account_id = _this13.committee_by_account_id.set(optional_committee_object.committee_member_account, optional_committee_object.id);
-          var committee_object = _this13._updateObject(optional_committee_object, true);
+          _this14._subTo('committee', optional_committee_object.id);
+          _this14.committee_by_account_id = _this14.committee_by_account_id.set(optional_committee_object.committee_member_account, optional_committee_object.id);
+          var committee_object = _this14._updateObject(optional_committee_object, true);
           resolve(committee_object);
         } else {
-          _this13.committee_by_account_id = _this13.committee_by_account_id.set(account_id, null);
-          _this13.notifySubscribers();
+          _this14.committee_by_account_id = _this14.committee_by_account_id.set(account_id, null);
+          _this14.notifySubscribers();
           resolve(null);
         }
       }, reject);
@@ -1044,7 +1074,7 @@ var ChainStore = function () {
 
 
   ChainStore.prototype.fetchFullAccount = function fetchFullAccount(name_or_id) {
-    var _this14 = this;
+    var _this15 = this;
 
     if (DEBUG) {
       console.log('Fetch full account: ', name_or_id);
@@ -1078,8 +1108,8 @@ var ChainStore = function () {
       _peerplaysjsWs.Apis.instance().db_api().exec('get_full_accounts', [[name_or_id], true]).then(function (results) {
         if (results.length === 0) {
           if (_ChainValidation2.default.is_object_id(name_or_id)) {
-            _this14.objects_by_id = _this14.objects_by_id.set(name_or_id, null);
-            _this14.notifySubscribers();
+            _this15.objects_by_id = _this15.objects_by_id.set(name_or_id, null);
+            _this15.notifySubscribers();
           }
 
           return;
@@ -1091,7 +1121,7 @@ var ChainStore = function () {
           console.log('full_account: ', full_account);
         }
 
-        _this14._subTo('accounts', full_account.account.id);
+        _this15._subTo('accounts', full_account.account.id);
 
         var account = full_account.account,
             vesting_balances = full_account.vesting_balances,
@@ -1106,7 +1136,7 @@ var ChainStore = function () {
             proposals = full_account.proposals;
 
 
-        _this14.accounts_by_name = _this14.accounts_by_name.set(account.name, account.id);
+        _this15.accounts_by_name = _this15.accounts_by_name.set(account.name, account.id);
         account.referrer_name = referrer_name;
         account.lifetime_referrer_name = lifetime_referrer_name;
         account.registrar_name = registrar_name;
@@ -1119,7 +1149,7 @@ var ChainStore = function () {
         account.proposals = new _immutable2.default.Set();
         account.vesting_balances = account.vesting_balances.withMutations(function (set) {
           vesting_balances.forEach(function (vb) {
-            _this14._updateObject(vb);
+            _this15._updateObject(vb);
             set.add(vb.id);
           });
         });
@@ -1127,12 +1157,12 @@ var ChainStore = function () {
         var sub_to_objects = [];
 
         votes.forEach(function (v) {
-          return _this14._updateObject(v);
+          return _this15._updateObject(v);
         });
 
         account.balances = account.balances.withMutations(function (map) {
           full_account.balances.forEach(function (b) {
-            _this14._updateObject(b);
+            _this15._updateObject(b);
             map.set(b.asset_type, b.id);
             sub_to_objects.push(b.id);
           });
@@ -1140,7 +1170,7 @@ var ChainStore = function () {
 
         account.orders = account.orders.withMutations(function (set) {
           limit_orders.forEach(function (order) {
-            _this14._updateObject(order);
+            _this15._updateObject(order);
             set.add(order.id);
             sub_to_objects.push(order.id);
           });
@@ -1148,7 +1178,7 @@ var ChainStore = function () {
 
         account.pending_dividend_payments = account.pending_dividend_payments.withMutations(function (set) {
           pending_dividend_payments.forEach(function (payments) {
-            _this14._updateObject(payments);
+            _this15._updateObject(payments);
             set.add(payments);
             sub_to_objects.push(payments.id);
           });
@@ -1156,7 +1186,7 @@ var ChainStore = function () {
 
         account.call_orders = account.call_orders.withMutations(function (set) {
           call_orders.forEach(function (co) {
-            _this14._updateObject(co);
+            _this15._updateObject(co);
             set.add(co.id);
             sub_to_objects.push(co.id);
           });
@@ -1164,7 +1194,7 @@ var ChainStore = function () {
 
         account.proposals = account.proposals.withMutations(function (set) {
           proposals.forEach(function (p) {
-            _this14._updateObject(p);
+            _this15._updateObject(p);
             set.add(p.id);
             sub_to_objects.push(p.id);
           });
@@ -1174,17 +1204,17 @@ var ChainStore = function () {
           _peerplaysjsWs.Apis.instance().db_api().exec('get_objects', [sub_to_objects]);
         }
 
-        _this14._updateObject(statistics);
-        var updated_account = _this14._updateObject(account);
-        _this14.fetchRecentHistory(updated_account);
-        _this14.notifySubscribers();
+        _this15._updateObject(statistics);
+        var updated_account = _this15._updateObject(account);
+        _this15.fetchRecentHistory(updated_account);
+        _this15.notifySubscribers();
       }, function (error) {
         console.log('Error: ', error);
 
         if (_ChainValidation2.default.is_object_id(name_or_id)) {
-          _this14.objects_by_id = _this14.objects_by_id.delete(name_or_id);
+          _this15.objects_by_id = _this15.objects_by_id.delete(name_or_id);
         } else {
-          _this14.accounts_by_name = _this14.accounts_by_name.delete(name_or_id);
+          _this15.accounts_by_name = _this15.accounts_by_name.delete(name_or_id);
         }
       });
     }
@@ -1247,7 +1277,7 @@ var ChainStore = function () {
 
 
   ChainStore.prototype.fetchRecentHistory = function fetchRecentHistory(account) {
-    var _this15 = this;
+    var _this16 = this;
 
     var limit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 100;
 
@@ -1289,7 +1319,7 @@ var ChainStore = function () {
 
     pending_request.promise = new Promise(function (resolve, reject) {
       _peerplaysjsWs.Apis.instance().history_api().exec('get_account_history', [account_id, most_recent, limit, start]).then(function (operations) {
-        var current_account = _this15.objects_by_id.get(account_id);
+        var current_account = _this16.objects_by_id.get(account_id);
         var current_history = current_account.get('history');
 
         if (!current_history) {
@@ -1303,16 +1333,16 @@ var ChainStore = function () {
           }
         });
         var updated_account = current_account.set('history', updated_history);
-        _this15.objects_by_id = _this15.objects_by_id.set(account_id, updated_account);
+        _this16.objects_by_id = _this16.objects_by_id.set(account_id, updated_account);
 
-        var request = _this15.account_history_requests.get(account_id);
-        _this15.account_history_requests.delete(account_id);
+        var request = _this16.account_history_requests.get(account_id);
+        _this16.account_history_requests.delete(account_id);
 
         if (request.requests > 0) {
           // it looks like some more history may have come in while we were
           // waiting on the result, lets fetch anything new before we resolve
           // this query.
-          _this15.fetchRecentHistory(updated_account, limit).then(resolve, reject);
+          _this16.fetchRecentHistory(updated_account, limit).then(resolve, reject);
         } else {
           resolve(updated_account);
         }
@@ -1344,7 +1374,7 @@ var ChainStore = function () {
    */
 
   ChainStore.prototype.getEventGroupsList = function getEventGroupsList(sportId) {
-    var _this16 = this;
+    var _this17 = this;
 
     var eventGroupsList = this.event_groups_list_by_sport_id.get(sportId);
 
@@ -1358,10 +1388,10 @@ var ChainStore = function () {
           set.add(eventGroups[i]);
         }
 
-        _this16.event_groups_list_by_sport_id = _this16.event_groups_list_by_sport_id.set(sportId, _immutable2.default.Set(set));
-        _this16.notifySubscribers();
+        _this17.event_groups_list_by_sport_id = _this17.event_groups_list_by_sport_id.set(sportId, _immutable2.default.Set(set));
+        _this17.notifySubscribers();
       }, function () {
-        _this16.event_groups_list_by_sport_id = _this16.event_groups_list_by_sport_id.delete(sportId);
+        _this17.event_groups_list_by_sport_id = _this17.event_groups_list_by_sport_id.delete(sportId);
       });
     }
 
@@ -1373,7 +1403,7 @@ var ChainStore = function () {
    */
 
   ChainStore.prototype.getBettingMarketGroupsList = function getBettingMarketGroupsList(eventId) {
-    var _this17 = this;
+    var _this18 = this;
 
     var bettingMarketGroupsList = this.betting_market_groups_list_by_sport_id.get(eventId);
 
@@ -1387,11 +1417,11 @@ var ChainStore = function () {
           set.add(bettingMarketGroups[i]);
         }
 
-        _this17.betting_market_groups_list_by_sport_id = _this17.betting_market_groups_list_by_sport_id.set( // eslint-disable-line
+        _this18.betting_market_groups_list_by_sport_id = _this18.betting_market_groups_list_by_sport_id.set( // eslint-disable-line
         eventId, _immutable2.default.Set(set));
-        _this17.notifySubscribers();
+        _this18.notifySubscribers();
       }, function () {
-        _this17.betting_market_groups_list_by_sport_id = _this17.betting_market_groups_list_by_sport_id.delete( // eslint-disable-line
+        _this18.betting_market_groups_list_by_sport_id = _this18.betting_market_groups_list_by_sport_id.delete( // eslint-disable-line
         eventId);
       });
     }
@@ -1404,7 +1434,7 @@ var ChainStore = function () {
    */
 
   ChainStore.prototype.getBettingMarketsList = function getBettingMarketsList(bettingMarketGroupId) {
-    var _this18 = this;
+    var _this19 = this;
 
     var bettingMarketsList = this.betting_markets_list_by_sport_id.get(bettingMarketGroupId);
 
@@ -1418,10 +1448,10 @@ var ChainStore = function () {
           set.add(bettingMarkets[i]);
         }
 
-        _this18.betting_markets_list_by_sport_id = _this18.betting_markets_list_by_sport_id.set(bettingMarketGroupId, _immutable2.default.Set(set));
-        _this18.notifySubscribers();
+        _this19.betting_markets_list_by_sport_id = _this19.betting_markets_list_by_sport_id.set(bettingMarketGroupId, _immutable2.default.Set(set));
+        _this19.notifySubscribers();
       }, function () {
-        _this18.betting_markets_list_by_sport_id = _this18.betting_markets_list_by_sport_id.delete(bettingMarketGroupId);
+        _this19.betting_markets_list_by_sport_id = _this19.betting_markets_list_by_sport_id.delete(bettingMarketGroupId);
       });
     }
 
@@ -1889,7 +1919,7 @@ var ChainStore = function () {
   };
 
   ChainStore.prototype.getTournaments = function getTournaments(last_tournament_id) {
-    var _this19 = this;
+    var _this20 = this;
 
     var limit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 5;
     var start_tournament_id = arguments[2];
@@ -1897,16 +1927,16 @@ var ChainStore = function () {
     return _peerplaysjsWs.Apis.instance().db_api().exec('get_tournaments', [last_tournament_id, limit, start_tournament_id]).then(function (tournaments) {
       var list = _immutable2.default.List();
 
-      _this19.setLastTournamentId(null);
+      _this20.setLastTournamentId(null);
 
       if (tournaments && tournaments.length) {
         list = list.withMutations(function (l) {
           tournaments.forEach(function (tournament) {
-            if (!_this19.objects_by_id.has(tournament.id)) {
-              _this19._updateObject(tournament);
+            if (!_this20.objects_by_id.has(tournament.id)) {
+              _this20._updateObject(tournament);
             }
 
-            l.unshift(_this19.objects_by_id.get(tournament.id));
+            l.unshift(_this20.objects_by_id.get(tournament.id));
           });
         });
       }
@@ -1916,29 +1946,29 @@ var ChainStore = function () {
   };
 
   ChainStore.prototype.getLastTournamentId = function getLastTournamentId() {
-    var _this20 = this;
+    var _this21 = this;
 
     return new Promise(function (resolve) {
-      if (_this20.last_tournament_id === undefined) {
+      if (_this21.last_tournament_id === undefined) {
         _peerplaysjsWs.Apis.instance().db_api().exec('get_tournaments', [tournament_prefix + '0', 1, tournament_prefix + '0']).then(function (tournaments) {
-          _this20.setLastTournamentId(null);
+          _this21.setLastTournamentId(null);
 
           if (tournaments && tournaments.length) {
             tournaments.forEach(function (tournament) {
-              _this20._updateObject(tournament);
+              _this21._updateObject(tournament);
             });
           }
 
-          resolve(_this20.last_tournament_id);
+          resolve(_this21.last_tournament_id);
         });
       } else {
-        resolve(_this20.last_tournament_id);
+        resolve(_this21.last_tournament_id);
       }
     });
   };
 
   ChainStore.prototype.getObjectsByVoteIds = function getObjectsByVoteIds(vote_ids) {
-    var _this21 = this;
+    var _this22 = this;
 
     var result = [];
     var missing = [];
@@ -1962,7 +1992,7 @@ var ChainStore = function () {
 
         for (var _i2 = 0; _i2 < vote_obj_array.length; ++_i2) {
           if (vote_obj_array[_i2]) {
-            _this21._updateObject(vote_obj_array[_i2]);
+            _this22._updateObject(vote_obj_array[_i2]);
           }
         }
       }, function (error) {
@@ -2000,10 +2030,10 @@ var ChainStore = function () {
   };
 
   ChainStore.prototype.addProposalData = function addProposalData(approvals, objectId) {
-    var _this22 = this;
+    var _this23 = this;
 
     approvals.forEach(function (id) {
-      var impactedAccount = _this22.objects_by_id.get(id);
+      var impactedAccount = _this23.objects_by_id.get(id);
 
       if (impactedAccount) {
         var proposals = impactedAccount.get('proposals');
@@ -2011,7 +2041,7 @@ var ChainStore = function () {
         if (!proposals.includes(objectId)) {
           proposals = proposals.add(objectId);
           impactedAccount = impactedAccount.set('proposals', proposals);
-          _this22._updateObject(impactedAccount.toJS());
+          _this23._updateObject(impactedAccount.toJS());
         }
       }
     });
@@ -2032,22 +2062,22 @@ var ChainStore = function () {
   };
 
   ChainStore.prototype.__getBlocksForScan = function __getBlocksForScan(lastBlock) {
-    var _this23 = this;
+    var _this24 = this;
 
     var db_api = _peerplaysjsWs.Apis.instance().db_api();
     return new Promise(function (success) {
-      var scanToBlock = _this23.last_processed_block;
+      var scanToBlock = _this24.last_processed_block;
 
       if (lastBlock) {
         return success({ lastBlock: lastBlock, scanToBlock: scanToBlock });
       }
 
       db_api.exec('get_dynamic_global_properties', []).then(function (globalProperties) {
-        _this23.last_processed_block = globalProperties.head_block_number;
+        _this24.last_processed_block = globalProperties.head_block_number;
         scanToBlock = globalProperties.head_block_number - 2000;
         scanToBlock = scanToBlock < 0 ? 1 : scanToBlock;
         return success({
-          lastBlock: _this23.last_processed_block,
+          lastBlock: _this24.last_processed_block,
           scanToBlock: scanToBlock
         });
       });
@@ -2055,7 +2085,7 @@ var ChainStore = function () {
   };
 
   ChainStore.prototype.__bindBlock = function __bindBlock(lastBlock, scanToBlock, isInit) {
-    var _this24 = this;
+    var _this25 = this;
 
     var db_api = _peerplaysjsWs.Apis.instance().db_api();
     return new Promise(function (success) {
@@ -2067,24 +2097,24 @@ var ChainStore = function () {
         }
 
         block.timestamp = new Date(block.timestamp);
-        _this24.getWitnessAccount(block.witness).then(function (witness) {
+        _this25.getWitnessAccount(block.witness).then(function (witness) {
           block.witness_account_name = witness.name;
 
-          if (!_this24.recent_blocks_by_id.get(lastBlock)) {
-            _this24.recent_blocks_by_id = _this24.recent_blocks_by_id.set(lastBlock, block);
+          if (!_this25.recent_blocks_by_id.get(lastBlock)) {
+            _this25.recent_blocks_by_id = _this25.recent_blocks_by_id.set(lastBlock, block);
 
-            if (_this24.last_processed_block < lastBlock) {
-              _this24.last_processed_block = lastBlock;
+            if (_this25.last_processed_block < lastBlock) {
+              _this25.last_processed_block = lastBlock;
             }
 
             if (!isInit) {
-              _this24.recent_blocks = _this24.recent_blocks.unshift(block);
+              _this25.recent_blocks = _this25.recent_blocks.unshift(block);
 
-              if (_this24.recent_blocks.size > block_stack_size) {
-                _this24.recent_blocks = _this24.recent_blocks.pop();
+              if (_this25.recent_blocks.size > block_stack_size) {
+                _this25.recent_blocks = _this25.recent_blocks.pop();
               }
-            } else if (_this24.recent_blocks.size < block_stack_size) {
-              _this24.recent_blocks = _this24.recent_blocks.push(block);
+            } else if (_this25.recent_blocks.size < block_stack_size) {
+              _this25.recent_blocks = _this25.recent_blocks.push(block);
             }
 
             block.transactions.forEach(function (tx) {
@@ -2093,19 +2123,19 @@ var ChainStore = function () {
                 op[1].created_at = block.timestamp;
 
                 if (!isInit) {
-                  _this24.recent_operations = _this24.recent_operations.unshift(op);
+                  _this25.recent_operations = _this25.recent_operations.unshift(op);
                 } else {
-                  if (_this24.recent_operations.size < operations_stack_size) {
-                    _this24.recent_operations = _this24.recent_operations.push(op);
+                  if (_this25.recent_operations.size < operations_stack_size) {
+                    _this25.recent_operations = _this25.recent_operations.push(op);
                   }
 
-                  if (_this24.recent_operations.size >= operations_stack_size && _this24.recent_blocks.size >= block_stack_size) {
+                  if (_this25.recent_operations.size >= operations_stack_size && _this25.recent_blocks.size >= block_stack_size) {
                     scanToBlock = lastBlock;
                   }
                 }
 
-                if (_this24.recent_operations.size > operations_stack_size) {
-                  _this24.recent_operations = _this24.recent_operations.pop();
+                if (_this25.recent_operations.size > operations_stack_size) {
+                  _this25.recent_operations = _this25.recent_operations.pop();
                 }
               });
             });
@@ -2117,7 +2147,7 @@ var ChainStore = function () {
             return success();
           }
 
-          _this24.__bindBlock(lastBlock, scanToBlock, isInit).then(function () {
+          _this25.__bindBlock(lastBlock, scanToBlock, isInit).then(function () {
             return success();
           });
         });
@@ -2126,7 +2156,7 @@ var ChainStore = function () {
   };
 
   ChainStore.prototype.fetchRecentOperations = function fetchRecentOperations() {
-    var _this25 = this;
+    var _this26 = this;
 
     var lastBlock = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
@@ -2140,9 +2170,9 @@ var ChainStore = function () {
       var last = _ref.lastBlock,
           scanToBlock = _ref.scanToBlock;
 
-      _this25.__bindBlock(last, scanToBlock, isInit).then(function () {
+      _this26.__bindBlock(last, scanToBlock, isInit).then(function () {
         if (isInit) {
-          _this25.store_initialized = true;
+          _this26.store_initialized = true;
         }
       });
     });
