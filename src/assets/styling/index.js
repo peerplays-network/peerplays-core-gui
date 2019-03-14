@@ -1,6 +1,7 @@
 module.exports = {
   plugins: ['stylelint-order'],
   rules: Object.assign({}, ...[
+    './rules/order',
     './rules/at-rule',
     './rules/block',
     './rules/color',
@@ -9,7 +10,6 @@ module.exports = {
     './rules/function',
     './rules/general',
     './rules/media',
-    './rules/order',
     './rules/selector'
   ].map(require))
 };

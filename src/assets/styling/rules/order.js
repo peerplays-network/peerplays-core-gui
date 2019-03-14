@@ -1,5 +1,5 @@
 module.exports = {
-  'order/order': [{
+  'order/order' : ['dollar-variables', {
     type: 'at-rule',
     name: 'extend'
   },
@@ -245,5 +245,5 @@ module.exports = {
     {
       unspecified: 'bottom'
     }
-  ]
+  ],
 };
