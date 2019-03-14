@@ -1,8 +1,9 @@
 import {ApisInstance} from 'peerplaysjs-ws';
 import {Apis} from 'peerplaysjs-ws';
 import CONFIG from '../config/main';
-import {Manager} from '../../../peerplaysjs-ws/';
+
 let instances = {};
+
 class ConnectManager {
   constructor() {
     this.blockchainUrlIndex = 0;
@@ -30,20 +31,17 @@ class ConnectManager {
     this.callback = callback;
     this.callback(store);
 
-    let manager = new Manager({
-      urls: this.blockchainUrls
-    });
+    const connectionString = this.blockchainUrls[this.blockchainUrlIndex];
 
-    return manager.sortNodesByLatency().then((list) => {
-      return list;
-    }).then((list) => {
-      // Display the blockchain api node that we are conencting to.
-      const connectionString = list[this.blockchainUrlIndex];
+    // Display the blockchain api node that we are conencting to.
+    console.log(`%cAttempting connection to: ${connectionString}.`,
+      'background: #222; color: magenta; font-size: large');
+
+    return Apis.instance(connectionString, true).init_promise.then((res) => {
       console.log(`%cConnected to: ${connectionString}.`,
         'background: #222 color: green; font-size: large');
-      return Apis.instance(connectionString, true).init_promise;
-    }).catch(() => {
-      console.error('%cNo Available Nodes.',
+    }).catch((err) => {
+      console.error(`%cConnection to: ${connectionString} failed.`,
         'background: #222; color: red; font-size: large');
 
       return Promise.reject();
