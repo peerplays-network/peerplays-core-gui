@@ -21,7 +21,6 @@ RUN npm install
 
 ######## WORKING DIRECTORY ########
 # set working directory
-RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
 
 # copy the application files
