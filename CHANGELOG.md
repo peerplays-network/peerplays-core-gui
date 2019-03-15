@@ -4,7 +4,6 @@
 
 ### Changed
 
-- Removed "Common Options" row from "Confirm Transaction" modals.
 - Fixed a bug related to multiple messages being cleared at once in the Common Message module.
 
 ### Added
