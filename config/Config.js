@@ -2,7 +2,7 @@ const _ = require('lodash');
 const {version} = require('../package.json');
 const getClientEnvironment = require('./env');
 const env = getClientEnvironment();
-const {Manager, ChainWebSocket} = require('../../peerplaysjs-ws/');
+const {Manager, ChainWebSocket} = require('peerplaysjs-ws/');
 // Get the endpoints available.
 const blockchainUrls = env.raw.apiEndpoints;
 // Get the faucet endpoints available.
