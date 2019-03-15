@@ -10,16 +10,17 @@ const faucetUrls = env.raw.faucetUrls;
 
 // Shuffle the available enpoints.
 const shuffledFaucetUrls = _.shuffle(faucetUrls);
-
+let chainUrls = ['wss://api.ppy.us.altcap.io'];
 let x = new Manager({
-  url: 'wss://api.ppytest.blckchnd.com',
-  urls: blockchainUrls
+  urls: chainUrls
 });
 
 let conn = new ChainWebSocket(x.url, () => {});
 
 x.ping(conn).then((response) => {
   console.log('ping success: ', true);
+}).catch((err) => {
+  console.log('config ping error: ', err);
 });
 
 const Config = {
