@@ -30,19 +30,6 @@ RUN cp -a /root-npm/node_modules /usr/src/app/ \
   && cp -a /electron-npm/node_modules /usr/src/app/electron/ \
   && cp -a /electron-build-npm/node_modules /usr/src/app/electron/build/
 
-
-# add `/usr/src/app/node_modules/.bin` to $PATH
-# ENV PATH /usr/src/app/node_modules/.bin:$PATH
-
-# # install and cache app dependencies
-# COPY package.json /usr/src/app/package.json
-# COPY electron/package.json /usr/src/app/electron/package.json
-# COPY electron/build/package.json /usr/src/app/electron/build/package.json
-
-# RUN npm install
-# RUN cd electron && npm install
-# RUN cd electron/build && npm install
-
 # build
 RUN npm run release-lin
 
