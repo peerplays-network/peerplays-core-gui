@@ -291,6 +291,7 @@ a {
 }
 
 .main {
+  margin-top: 35px;
   .header~& {
     margin-top: $headerHeight;
   }
