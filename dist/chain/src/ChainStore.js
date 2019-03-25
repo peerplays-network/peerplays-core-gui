@@ -997,13 +997,23 @@ var ChainStore = function () {
       _peerplaysjsWs.Apis.instance().db_api().exec('lookup_witness_accounts', [0, 1000]).then(function (w) {
         if (w) {
           var witnessArr = [];
+          var tmpObj = {};
 
           for (var i = 0, length = w.length; i < length; i++) {
             witnessArr.push(w[i][1]); // ids only
+            _this12.witness_by_account_id = _this12.witness_by_account_id.set(w[i][0], w[i][1]); // name,id
+
+            if (tmpObj[w[i][0]] !== undefined) {
+              tmpObj[w[i][0]].name = w[i][0];
+              tmpObj[w[i][0]].id = w[i][1];
+            } else {
+              tmpObj.name = w[i][0];
+              tmpObj.id = w[i][1];
+            }
           }
 
           _this12.witnesses = _this12.witnesses.merge(witnessArr);
-          _this12._updateObject(witnessArr, true);
+          _this12._updateObject(tmpObj, true);
           resolve(_this12.witnesses);
         } else {
           resolve(null);
