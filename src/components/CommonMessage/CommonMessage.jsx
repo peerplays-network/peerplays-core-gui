@@ -21,6 +21,7 @@ const compileMessage = (props) => {
   // Filter the message list to only show the number of messages configured.
   messageList = messageList.slice(0, props.numOfCommonMessageToDisplay);
 
+
   const messages = messageList.map((pair, key) => {
     let messageType = pair.get('messageType');
     let id = pair.get('id');
@@ -83,7 +84,7 @@ class CommonMessage extends PureComponent {
       this.checkToAssignTimer(propsMerged);
     }
   }
-  
+
   render() {
     return (
       <div>
@@ -108,32 +109,18 @@ const mapStateToProps = (state) => {
 
   // Determine the number of messages for calculating the heigh offset needed.
   let numOfheaderMessages = headerMessages.size;
-  let numOfsideBarMessages = sideBarMessages.size;
 
   if (numOfheaderMessages > numOfCommonMessageToDisplay) {
     numOfheaderMessages = numOfCommonMessageToDisplay;
   }
 
-  if (numOfsideBarMessages > numOfCommonMessageToDisplay) {
-    numOfsideBarMessages = numOfCommonMessageToDisplay;
-  }
+  //Calculate the heights of the header child div and the betslip child div.
+  const messagingHeight = 35 * numOfheaderMessages;
+  const domLoaded = document.getElementsByClassName('main').length > 0;
 
-  //Calculate the heights of the exchange child div and the betslip child div.
-  const exchangeMessagingHeight = 36 * numOfheaderMessages;
-
-
-  // Dynamically apply a style to the split panes.
-  const messagingDivExist = document.getElementsByClassName('messaging').length > 0;
-
-  if (messagingDivExist) {
-    const messagingExchange = document.getElementsByClassName('messaging')[0]
-      .children[1].children[0];
-    
-    const messagingBetslip = document.getElementsByClassName('messaging')[0]
-      .children[1].children[2];
-
-    messagingExchange.style.height = 'calc(100% - ' + exchangeMessagingHeight + 'px)';
-    messagingBetslip.style.height = 'calc(100% - ' + exchangeMessagingHeight + 'px)';
+  if (domLoaded) {
+    // Add padding to the main.
+    document.getElementsByClassName('main')[0].style.paddingTop = messagingHeight + 'px';
   }
 
   return {
