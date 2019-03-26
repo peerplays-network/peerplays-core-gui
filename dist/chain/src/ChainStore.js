@@ -1001,7 +1001,6 @@ var ChainStore = function () {
 
           for (var i = 0, length = w.length; i < length; i++) {
             witnessArr.push(w[i][1]); // ids only
-            _this12.witness_by_account_id = _this12.witness_by_account_id.set(w[i][0], w[i][1]); // name,id
 
             if (tmpObj[w[i][0]] !== undefined) {
               tmpObj[w[i][0]].name = w[i][0];
