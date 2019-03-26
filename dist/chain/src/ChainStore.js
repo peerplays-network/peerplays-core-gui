@@ -2002,6 +2002,7 @@ var ChainStore = function () {
         for (var _i2 = 0; _i2 < vote_obj_array.length; ++_i2) {
           if (vote_obj_array[_i2]) {
             _this22._updateObject(vote_obj_array[_i2]);
+            result.push(vote_obj_array[_i2]);
           }
         }
       }, function (error) {
