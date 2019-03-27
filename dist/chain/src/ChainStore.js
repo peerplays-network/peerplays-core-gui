@@ -997,13 +997,22 @@ var ChainStore = function () {
       _peerplaysjsWs.Apis.instance().db_api().exec('lookup_witness_accounts', [0, 1000]).then(function (w) {
         if (w) {
           var witnessArr = [];
+          var tmpObj = {};
 
           for (var i = 0, length = w.length; i < length; i++) {
             witnessArr.push(w[i][1]); // ids only
+
+            if (tmpObj[w[i][0]] !== undefined) {
+              tmpObj[w[i][0]].name = w[i][0];
+              tmpObj[w[i][0]].id = w[i][1];
+            } else {
+              tmpObj.name = w[i][0];
+              tmpObj.id = w[i][1];
+            }
           }
 
           _this12.witnesses = _this12.witnesses.merge(witnessArr);
-          _this12._updateObject(witnessArr, true);
+          _this12._updateObject(tmpObj, true);
           resolve(_this12.witnesses);
         } else {
           resolve(null);
@@ -1979,7 +1988,6 @@ var ChainStore = function () {
       if (obj) {
         result.push(this.getObject(obj));
       } else {
-        result.push(null);
         missing.push(vote_ids[i]);
       }
     }
@@ -1987,12 +1995,11 @@ var ChainStore = function () {
     if (missing.length) {
       // we may need to fetch some objects
       _peerplaysjsWs.Apis.instance().db_api().exec('lookup_vote_ids', [missing]).then(function (vote_obj_array) {
-        console.log('missing ===========> ', missing);
-        console.log('vote objects ===========> ', vote_obj_array);
-
         for (var _i2 = 0; _i2 < vote_obj_array.length; ++_i2) {
           if (vote_obj_array[_i2]) {
             _this22._updateObject(vote_obj_array[_i2]);
+            var immutableMapConvert = _immutable2.default.fromJS(vote_obj_array[_i2]);
+            result.push(immutableMapConvert);
           }
         }
       }, function (error) {
