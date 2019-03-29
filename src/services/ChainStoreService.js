@@ -118,7 +118,7 @@ export function listenChainStore(chainStore, reduxStore) {
   ChainStore = chainStore;
   ReduxStore = reduxStore;
 
-  if(chainStore.subscribers.has(!updateChainStore)) {
+  if(chainStore.subscribers.has(updateChainStore) === false) {
     ChainStore.subscribe(updateChainStore);
   }
 }
