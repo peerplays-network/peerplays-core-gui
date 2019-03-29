@@ -3,7 +3,7 @@
   "productName": "Peerplays Core",
   "identifier": "org.peerplays.peerplays",
   "description": "Peerplays Core Graphical Interface",
-  "version": "0.4.1",
+  "version": "0.4.1-WAL-183-172-regression",
   "author": "community@peerplays.org",
   "main": "electron.js",
   "config": {
