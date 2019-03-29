@@ -51,11 +51,12 @@ class AppService {
       });
     };
 
-    let beater = new ChainStoreHeartbeater();
+    // let beater = new ChainStoreHeartbeater();
 
-    beater.setHeartBeatChainStore(() => {
-      store.dispatch(AppActions.setShowCantConnectStatus(true));
-    });
+    // beater.setHeartBeatChainStore(() => {
+    //   console.log('setting modal to true');
+    //   store.dispatch(AppActions.setShowCantConnectStatus(true));
+    // });
 
     ChainStore.setDispatchFrequency(0);
     store.dispatch(initSettings());
