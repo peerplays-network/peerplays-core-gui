@@ -27,7 +27,9 @@ let defaultState = {
   // global app status "reconnect"|null
   status: null,
   // Show cant connect modal window or no
-  showCantConnectModal: false
+  showCantConnectModal: false,
+  // If true show timeout modal
+  showTimeoutModal: false
 };
 
 export default function (state = defaultState, action) {
@@ -36,6 +38,12 @@ export default function (state = defaultState, action) {
     case ActionTypes.APP_SET_SHOW_CANT_CONNECT_MODAL:
       return Object.assign({}, state, {
         showCantConnectModal: action.payload.showCantConnectModal
+      });
+    // If true show timeout modal
+    case ActionTypes.APP_SET_SHOW_TIMEOUT_MODAL:
+      console.log('setting in reducer', action.payload.showTimeoutModal);
+      return Object.assign({}, state, {
+        showTimeoutModal: action.payload.showTimeoutModal
       });
       // global app status "reconnect"|null
     case ActionTypes.APP_SET_STATUS:

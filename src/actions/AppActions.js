@@ -149,6 +149,23 @@ class AppPrivateActions {
       }
     };
   }
+
+  /**
+ * Private Redux Action Creator (APP_SET_SHOW_CANT_CONNECT_MODAL)
+ * Show cant connect modal window or no
+ *
+ * @param {boolean} show
+ * @returns {{type: APP_SET_SHOW_CANT_CONNECT_MODAL, payload: {showTimeoutModal: *}}}
+ */
+  static setShowTimeoutModalAction(show) {
+    console.log('private actions');
+    return {
+      type: ActionTypes.APP_SET_SHOW_TIMEOUT_MODAL,
+      payload: {
+        showTimeoutModal: show
+      }
+    };
+  }
 }
 class AppActions {
   /**
@@ -159,6 +176,17 @@ class AppActions {
  */
   static setShowCantConnectStatus(show) {
     return AppPrivateActions.setShowCantConnectStatusAction(show);
+  }
+
+  /**
+ * Show cant connect modal window or no
+ *
+ * @param {boolean} show
+ * @returns {{type, payload: {showCantConnectModal: *}}}
+ */
+  static setShowTimeoutModal(show) {
+    console.log('hitting timeout actions');
+    return AppPrivateActions.setShowTimeoutModalAction(show);
   }
 
   /**

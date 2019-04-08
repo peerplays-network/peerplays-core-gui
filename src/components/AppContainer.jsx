@@ -19,6 +19,7 @@ import CommonMessage from 'components/CommonMessage';
 import {routerShape} from 'react-router/lib/PropTypes';
 import AppActions from '../actions/AppActions';
 import Config from '../../config/Config';
+import TimeoutModal from './Modal/TimeoutModal';
 
 class App extends React.Component {
   static contextTypes = {
@@ -79,6 +80,7 @@ class App extends React.Component {
         <TransactionConfirmModal/>
         <WalletUnlockModal/>
         <CantConnectModal/>
+        <TimeoutModal/>
         <ViewMemoModal/>
         <HelpModal/>
       </div>
@@ -86,8 +88,8 @@ class App extends React.Component {
   }
 }
 
-function idleCheck(logout) {
-  console.log('idle logout timer started.');
+function idleCheck(props) {
+  console.log('idle logout timer started.', props);
   let t;
   window.onclick = resetTimer;
   window.onkeypress = resetTimer;
@@ -99,7 +101,8 @@ function idleCheck(logout) {
 
   function isIdle() {
     console.log('Logging out user due to inactivity.');
-    logout();
+    props.setShowTimeoutModal(true);
+    //props.logout();
   }
 
   function resetTimer() {
@@ -112,7 +115,7 @@ function idleCheck(logout) {
 class AppContainer extends React.Component {
   componentDidMount() {
     // Start lidle checker to autologout idle users.
-    idleCheck(this.props.logout);
+    idleCheck(this.props);
   }
 
   render() {
@@ -142,7 +145,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
-    logout: AppActions.logout
+    logout: AppActions.logout,
+    setShowTimeoutModal: AppActions.setShowTimeoutModal
   },
   dispatch
 );

@@ -733,6 +733,11 @@
     "title": "Can’t Connect to Blockchain",
     "try_again": "Try again"
   },
+  "timeout_modal": {
+    "password": "Password",
+    "title": "Your session has expired",
+    "try_again": "If you want to continue as 'username', you need to sign back in"
+  },
   "help": {
     "title": "Help",
     "title_welcome": "Welcome to Peerplays Core",
