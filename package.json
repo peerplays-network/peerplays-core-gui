@@ -65,7 +65,8 @@
     "event-emitter": "^0.3.4",
     "immutable": "^3.7.6",
     "peerplaysjs-ws": "peerplays-network/peerplaysjs-ws",
-    "secure-random": "^1.1.1"
+    "secure-random": "^1.1.1",
+    "uglify-js": "^3.5.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.5.2",
