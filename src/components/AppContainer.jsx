@@ -19,6 +19,7 @@ import CommonMessage from 'components/CommonMessage';
 import {routerShape} from 'react-router/lib/PropTypes';
 import AppActions from '../actions/AppActions';
 import Config from '../../config/Config';
+import {NavigateActions} from '../actions';
 
 class App extends React.Component {
   static contextTypes = {
@@ -86,7 +87,7 @@ class App extends React.Component {
   }
 }
 
-function idleCheck(logout) {
+function idleCheck(props) {
   console.log('idle logout timer started.');
   let t;
   window.onclick = resetTimer;
@@ -99,7 +100,9 @@ function idleCheck(logout) {
 
   function isIdle() {
     console.log('Logging out user due to inactivity.');
-    logout();
+    props.timeout();
+    props.setCurrentLocation('TIMEOUT');
+    props.navigateToTimeout();
   }
 
   function resetTimer() {
@@ -112,7 +115,7 @@ function idleCheck(logout) {
 class AppContainer extends React.Component {
   componentDidMount() {
     // Start lidle checker to autologout idle users.
-    idleCheck(this.props.logout);
+    idleCheck(this.props);
   }
 
   render() {
@@ -142,7 +145,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
-    logout: AppActions.logout
+    timeout: AppActions.timeout,
+    navigateToTimeout: NavigateActions.navigateToTimeout,
+    setCurrentLocation: AppActions.setCurrentLocation
   },
   dispatch
 );

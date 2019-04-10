@@ -111,6 +111,7 @@ class AppPrivateActions {
    * @returns {{type: (APP_CURRENT_LOCATION), currentLocation: string}}
    */
   static setCurrentLocationAction(location) {
+    console.log('new location: ', location);
     return {
       type: ActionTypes.APP_CURRENT_LOCATION,
       payload: {
@@ -250,6 +251,32 @@ class AppActions {
       dispatch(AppPrivateActions.setCurrentLocationAction(location));
     };
   }
+
+  /**
+ *  Reducer: APP Logout action
+ *
+ * @returns {Function}
+ */
+  static timeout() {
+    return (dispatch) => {
+      Repository.resetCache();
+
+      if (CONFIG.__ELECTRON__) {
+        CryptoElectronService.removeElectronAes();
+      }
+
+      dispatch(PrivateKeyActions.setKeys());
+      dispatch(SendPageActions.resetSendPage());
+      dispatch(DashboardPageActions.resetDasbhoard());
+
+      return WalletService.resetDBTables().then(() => {
+        dispatch(AppPrivateActions.logoutAction());
+        dispatch(RWalletActions.resetWallet());
+        dispatch(RWalletDataActions.resetWalletData());
+      });
+    };
+  }
+
 
   /**
  *  Reducer: APP Logout action
