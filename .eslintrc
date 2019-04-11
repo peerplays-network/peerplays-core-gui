@@ -50,10 +50,10 @@
     "no-restricted-properties": "off",
     "consistent-return": "off",
     "guard-for-in": "off",
-    "no-loop-func": "off",
+    "no-loop-func": "error",
     "curly": ["error", "all"],
     "brace-style": ["error", "1tbs"],
-    "default-case": "off",
+    "default-case": "error",
     "prefer-destructuring": "off",
     "padding-line-between-statements": [
       "error",
