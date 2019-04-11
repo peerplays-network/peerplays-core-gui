@@ -11,6 +11,7 @@ import TransactionConfirmModal from '../Modal/TransactionConfirmModal/Transactio
 import WalletUnlockModal from '../Modal/WalletUnlockModal';
 import ViewMemoModal from '../Modal/ViewMemoModal';
 import {routerShape} from 'react-router/lib/PropTypes';
+import SplashScreen from './SplashScreen/SplashScreen';
 
 class App extends PureComponent {
   _notificationSystem = null;
@@ -51,7 +52,9 @@ class App extends PureComponent {
         <div className='wrapper wrapper-with-footer'></div>
       );
     } else if (!this.props.dbIsInit || !this.props.dbDataIsLoad || !this.props.chainIsInit) {
-      content = (<div></div>);
+      content = (
+        <SplashScreen />
+      );
     } else if (urlsWithYellowBackground.indexOf(this.props.location.pathname) >= 0) {
       document.getElementsByTagName('body')[0].className = 'loginBg';
       content = (
