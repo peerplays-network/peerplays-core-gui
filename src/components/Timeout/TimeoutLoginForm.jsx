@@ -1,10 +1,8 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
-import {ChainValidation} from 'peerplaysjs-lib';
 import Translate from 'react-translate-component';
-import AccountRepository from 'repositories/AccountRepository';
+import AccountRepository from '../../repositories/AccountRepository';
 import {LoginActions} from '../../actions';
-import Normalize from '../Utility/Normalizer';
 
 const renderField = ({
   tabIndex,
