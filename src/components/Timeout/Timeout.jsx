@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import counterpart from 'counterpart';
 import {LoginActions, AppActions} from '../../actions';
 import Translate from 'react-translate-component';
 import {bindActionCreators} from 'redux';
+import TimeoutLoginForm from './TimeoutLoginForm';
 
-class Login extends React.Component {
+class Timeout extends React.Component {
   constructor(props) {
     super(props);
 
@@ -15,17 +15,11 @@ class Login extends React.Component {
     };
   }
 
-  login() {
-    this.props.login();
-    console.log('reconnect');
-  }
-
   onPasswordChange(e) {
     this.setState({password_input: e.target.value});
   }
 
   onExit() {
-    console.log('props: ', this.props);
     this.props.logout();
     console.log('exiting');
   }
@@ -40,20 +34,17 @@ class Login extends React.Component {
     this.props.setLoginStatus('loading');
 
     setTimeout(() => {
-      this.props.login(values.accountName, values.password, values.remember_me, next);
+      this.props.login(this.props.account, values.password, true, next);
     }, 0);
   }
 
   render() {
-    console.log('account: ', this.props.account);
-    let {password_input, password_error} = this.state;
-
     return (
       <div className='main'>
         <div className='yHelper active'></div>
         <section className='content'>
           <div className='box box-inPadding'>
-            <div className='dialog dialog-login'>
+            <div className='dialog dialog-login padding-bottom-30'>
               <Translate
                 component='h1'
                 className='h1'
@@ -61,33 +52,15 @@ class Login extends React.Component {
               />
               <div className='section__text text_c'>
                 <span>
-                  <Translate component='p' className='' content='timeout.body_part_1'/>
+                  <Translate className='' content='timeout.body_part_1'/>
                   {this.props.account}
-                  <Translate component='p' className='' content='timeout.body_part_2'/>
+                  <Translate className='' content='timeout.body_part_2'/>
                 </span>
               </div>
 
-              <div className='login__footer'>
-                <input
-                  type='password'
-                  className={ `field field-type2 ${password_error ? 'error' : null}` }
-                  placeholder={ counterpart.translate('modal.unlock.password_placeholder') }
-                  onChange={ this.onPasswordChange.bind(this) }
-                  value={ password_input }
-                  autoFocus={ true }
-                />
-                <button
-                  className='btn btn-sign btn-fsz-18'
-                  onClick={ this.onExit.bind(this) }
-                >
-                  <Translate className='btnText' content='timeout.exit' />
-                </button>
-                <button
-                  className='btn btn-sign btn-fsz-18'
-                  onClick={ this.handleSubmit.bind(this) }
-                >
-                  <Translate className='btnText' content='timeout.sign_in' />
-                </button>
+              <div className='login__footer small'>
+                <TimeoutLoginForm errors={ this.props.errors } btnStatus={ this.props.status }
+                  account={ this.props.account } onSubmit={ this.handleSubmit.bind(this) } onExit={ this.onExit.bind(this) } />
               </div>
             </div>
           </div>
@@ -114,4 +87,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(
   dispatch
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Timeout);

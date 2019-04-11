@@ -31,6 +31,15 @@ class AppPrivateActions {
     };
   }
 
+  static timeoutAction() {
+    return {
+      type: ActionTypes.APP_TIMEOUT,
+      payload: {
+        isLogin: false
+      }
+    };
+  }
+
   /**
    * Private Redux Action Creator (APP_LOGIN)
    * Account Login in app
@@ -262,12 +271,14 @@ class AppActions {
   }
 
   /**
- *  Reducer: APP Logout action
+ *  Reducer: APP timeout action
  *
  * @returns {Function}
  */
   static timeout() {
     return (dispatch) => {
+      StorageService.remove('currentAccount');
+      RememberMeService.resetRememberMe();
       Repository.resetCache();
 
       if (CONFIG.__ELECTRON__) {
@@ -279,9 +290,10 @@ class AppActions {
       dispatch(DashboardPageActions.resetDasbhoard());
 
       return WalletService.resetDBTables().then(() => {
-        dispatch(AppPrivateActions.logoutAction());
+        dispatch(AppPrivateActions.timeoutAction());
         dispatch(RWalletActions.resetWallet());
         dispatch(RWalletDataActions.resetWalletData());
+        dispatch(NavigateActions.navigateToTimeout());
       });
     };
   }

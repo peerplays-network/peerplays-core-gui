@@ -99,7 +99,6 @@ function idleCheck(props) {
     console.log('Logging out user due to inactivity.');
     props.timeout();
     props.setCurrentLocation('TIMEOUT');
-    props.navigateToTimeout();
   }
 
   function resetTimer() {
