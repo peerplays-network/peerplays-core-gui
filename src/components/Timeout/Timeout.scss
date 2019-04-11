@@ -1,0 +1,16 @@
+@import '../../assets/stylesheets/mixins';
+
+.main-timeout {
+  .dialog-login {
+    padding: 75px;
+
+    h1, .small {
+      padding: 0;
+    }
+
+    .section__text {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+}

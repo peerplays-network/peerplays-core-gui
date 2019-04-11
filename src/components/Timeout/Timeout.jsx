@@ -5,6 +5,7 @@ import Translate from 'react-translate-component';
 import {bindActionCreators} from 'redux';
 import TimeoutLoginForm from './TimeoutLoginForm';
 import AppUtils from '../../utility/AppUtils';
+import './Timeout.scss';
 
 class Timeout extends React.Component {
   constructor(props) {
@@ -53,7 +54,7 @@ class Timeout extends React.Component {
 
   render() {
     return (
-      <div className='main'>
+      <div className='main main-timeout'>
         <div className='yHelper active'></div>
         <section className='content'>
           <div className='box box-inPadding'>
@@ -72,8 +73,13 @@ class Timeout extends React.Component {
               </div>
 
               <div className='login__footer small'>
-                <TimeoutLoginForm errors={ this.props.errors } btnStatus={ this.props.status }
-                  account={ this.props.account } onSubmit={ this.handleSubmit.bind(this) } onExit={ this.onExit.bind(this) } />
+                <TimeoutLoginForm
+                  errors={ this.props.errors }
+                  btnStatus={ this.props.status }
+                  account={ this.props.account }
+                  onSubmit={ this.handleSubmit.bind(this) }
+                  onExit={ this.onExit.bind(this) }
+                />
               </div>
             </div>
           </div>
