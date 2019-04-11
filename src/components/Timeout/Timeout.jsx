@@ -4,6 +4,7 @@ import {LoginActions, AppActions} from '../../actions';
 import Translate from 'react-translate-component';
 import {bindActionCreators} from 'redux';
 import TimeoutLoginForm from './TimeoutLoginForm';
+import AppUtils from '../../utility/AppUtils';
 
 class Timeout extends React.Component {
   constructor(props) {
@@ -20,7 +21,19 @@ class Timeout extends React.Component {
   }
 
   onExit() {
-    this.props.logout();
+    const isRunningInsideElectron = AppUtils.isRunningInsideElectron();
+    let electron;
+
+    if (isRunningInsideElectron) {
+      electron = window.require('electron');
+    }
+
+
+    if (electron) {
+      const window = electron.remote.getCurrentWindow();
+      window.close();
+    }
+
     console.log('exiting');
   }
 

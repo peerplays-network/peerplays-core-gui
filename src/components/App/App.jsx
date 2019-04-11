@@ -53,8 +53,6 @@ class App extends PureComponent {
     }
   }
 
-  component
-
   render() {
     let content = null;
     let urlsWithYellowBackground = [
