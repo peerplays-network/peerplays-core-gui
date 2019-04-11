@@ -11,7 +11,7 @@ import TransactionConfirmModal from '../Modal/TransactionConfirmModal/Transactio
 import WalletUnlockModal from '../Modal/WalletUnlockModal';
 import ViewMemoModal from '../Modal/ViewMemoModal';
 import {routerShape} from 'react-router/lib/PropTypes';
-import SplashScreen from './SplashScreen/SplashScreen';
+import SplashScreen from '../SplashScreen/SplashScreen';
 
 class App extends PureComponent {
   _notificationSystem = null;
