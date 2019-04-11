@@ -1,13 +1,11 @@
-import {ApisInstance} from 'peerplaysjs-ws';
-import {Apis} from 'peerplaysjs-ws';
+import {ApisInstance, Apis, ConnectionManager} from 'peerplaysjs-ws';
 import CONFIG from '../config/main';
-
 let instances = {};
-
 class ConnectManager {
   constructor() {
     this.blockchainUrlIndex = 0;
     this.blockchainUrls = CONFIG.BLOCKCHAIN_URL;
+    this.sortedUrls = [];
   }
 
   /**
@@ -16,10 +14,8 @@ class ConnectManager {
    * @memberof ConnectionService
    */
   closeConnectionToBlockchain() {
+    console.log('close connection');
     Apis.close();
-
-    // Increment the index for the next connection attempt
-    this.blockchainUrlIndex++;
 
     // Reset the index if we've gone past the end.
     if (this.blockchainUrlIndex >= this.blockchainUrls.length) {
@@ -27,25 +23,57 @@ class ConnectManager {
     }
   }
 
-  connectToBlockchain(callback, store) {
-    this.callback = callback;
-    this.callback(store);
+  /**
+   * reconnect to blockchain in case of disconnect
+   *
+   * @memberof ConnectionService
+   */
+  reconnectToBlockchain() {
+    // Increment the index for the next connection attempt
+    this.blockchainUrlIndex++;
+    const connectionString = this.sortedUrls[this.blockchainUrlIndex];
 
-    const connectionString = this.blockchainUrls[this.blockchainUrlIndex];
-
-    // Display the blockchain api node that we are conencting to.
-    console.log(`%cAttempting connection to: ${connectionString}.`,
-      'background: #222; color: magenta; font-size: large');
-
-    return Apis.instance(connectionString, true).init_promise.then((res) => {
+    return Apis.instance(connectionString, true).init_promise.then(() => {
       console.log(`%cConnected to: ${connectionString}.`,
         'background: #222 color: green; font-size: large');
-    }).catch((err) => {
+    }).catch(() => {
       console.error(`%cConnection to: ${connectionString} failed.`,
         'background: #222; color: red; font-size: large');
 
       return Promise.reject();
     });
+  }
+
+  connectToBlockchain(callback, store) {
+
+    let wsConnectionManager = new ConnectionManager({
+      urls: this.blockchainUrls
+    });
+
+    if (this.sortedUrls.length > 1) {
+      return this.reconnectToBlockchain();
+    } else {
+      this.callback = callback;
+      this.callback(store);
+
+      return wsConnectionManager.sortNodesByLatency().then((list) => {
+        return list;
+      }).then((list) => {
+        this.sortedUrls = list;
+        console.log('sorted list: ', this.sortedUrls);
+        const connectionString = list[this.blockchainUrlIndex];
+
+        // Display the blockchain api node that we are conencting to.
+        console.log(`%cConnected to: ${connectionString}.`,
+          'background: #222 color: green; font-size: large');
+        return Apis.instance(connectionString, true).init_promise;
+      }).catch((err) => {
+        console.error('%cNo Available Nodes.',
+          'background: #222; color: red; font-size: large: ', err);
+
+        return Promise.reject();
+      });
+    }
   }
 
   /**
