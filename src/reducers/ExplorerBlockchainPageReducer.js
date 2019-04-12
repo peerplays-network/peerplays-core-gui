@@ -25,8 +25,6 @@ import ActionTypes from '../constants/ActionTypes';
  * operations - Recent transaction-operations
  * coreAsset - asset
  * dataIsFetched - At least once the data were collected
- *
- * @type {{head_block_number: number, last_irreversible_block_num: number, recently_missed_count: number, time: null, active_witnesses: Array, active_committee_members: Array, block_interval: number, current_supply: number, confidential_supply: number, graphBlockTimes: Array, graphBlockTransactions: Array, trxPerSec: number, trxPerBlock: number, avgTime: number, updatedAt: number, latestBlocks: (*), latestTransactions: (*), operations: (*), coreAsset: {}, dataIsFetched: boolean}}
  */
 let defaultState = {
   head_block_number: 0,

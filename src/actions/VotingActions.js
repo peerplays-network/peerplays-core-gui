@@ -451,6 +451,7 @@ class VotingActions {
           new Date(w.get('work_end_date')) > now && new Date(w.get('work_begin_date')) <= now
         );
       }).map((w) => w.toJS()).sort((a, b) => {
+        /* eslint-disable-next-line */
         return getTotalVotes(b) - getTotalVotes(a); // TODO: find/make/ref these functions
       });
 

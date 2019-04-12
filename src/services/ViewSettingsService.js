@@ -1,5 +1,6 @@
 import ls from '../common/localStorage';
 import Immutable from 'immutable';
+import Config from '../../config/Config';
 
 const STORAGE_KEY = '__peerplays__';
 const VIEW_SETTINGS_KEY = 'viewSettings_v3';
@@ -11,7 +12,7 @@ initViewSettings();
 function initViewSettings() {
   let defaultViewSettings = {
     activeSetting: 'general',
-    connection: [BLOCKCHAIN_URL]
+    connection: [Config.BLOCKCHAIN_URLS[0]]
   };
   let reset = false;
 
