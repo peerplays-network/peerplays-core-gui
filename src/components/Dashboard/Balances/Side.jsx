@@ -25,7 +25,7 @@ class Side extends React.Component {
 
   render() {
     let {
-      availableBalances,
+      availableBalances
     } = this.props;
 
     let availableKeys = Object.keys(availableBalances);
@@ -112,7 +112,7 @@ const mapStateToProps = (state) => {
   return {
     account: state.app.account,
     availableBalances: state.dashboardPage.availableBalances,
-    headerMessages: state.commonMessage.get('headerMessages'),
+    headerMessages: state.commonMessage.get('headerMessages')
   };
 };
 

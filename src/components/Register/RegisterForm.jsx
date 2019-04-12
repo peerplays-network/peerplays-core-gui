@@ -60,7 +60,7 @@ const renderPasswordField = ({
   type,
   meta: {
     touched,
-    error,
+    error
   }
 }) => {
   return (
@@ -97,7 +97,7 @@ const renderRetypePasswordField = ({
   type,
   meta: {
     touched,
-    error,
+    error
   }
 }) => {
   return (
@@ -128,7 +128,7 @@ const renderCheckboxField = ({
   type,
   meta: {
     touched,
-    error,
+    error
   }
 }) => {
   return (
@@ -240,6 +240,8 @@ class RegisterForm extends React.Component {
           </button>
         );
         break;
+
+      // no default
     }
 
     return (

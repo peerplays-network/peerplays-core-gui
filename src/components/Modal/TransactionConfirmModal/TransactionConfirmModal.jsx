@@ -125,6 +125,8 @@ class TransactionConfirmModal extends React.Component {
         transaction = <VestingBalanceWithdraw />;
         title=<Translate content='transaction.trxTypes.vesting_balance_withdraw' />;
         break;
+
+      // no default
     }
 
     let buttons;
@@ -183,6 +185,8 @@ class TransactionConfirmModal extends React.Component {
           </div>
         );
         break;
+
+      // no default
     }
 
     let disabledProposeCheckbox = true;/*this.props.broadcasting || this.props.broadcastError
