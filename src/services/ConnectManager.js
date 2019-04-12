@@ -1,10 +1,10 @@
 import {ApisInstance, Apis, ConnectionManager} from 'peerplaysjs-ws';
-import CONFIG from '../config/main';
+import Config from '../../config/Config';
 let instances = {};
 class ConnectManager {
   constructor() {
     this.blockchainUrlIndex = 0;
-    this.blockchainUrls = CONFIG.BLOCKCHAIN_URL;
+    this.blockchainUrls = Config.BLOCKCHAIN_URLS;
     this.sortedUrls = [];
   }
 
@@ -108,7 +108,6 @@ class ConnectManager {
    */
   getConnection(cs) {
     if (!instances[cs]) {
-      console.log('instance', instance);
       let instance = new ApisInstance();
       instance.connect(cs);
       ConnectManager.setConnection(cs, instance);

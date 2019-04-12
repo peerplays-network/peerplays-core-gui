@@ -98,7 +98,7 @@ function updateChainStore() {
                   : null,
                 quoteAssetBalance: (quoteAsset && data.dataBalances.hasOwnProperty(quoteAsset))
                   ? data.dataBalances[quoteAsset]
-                  : null,
+                  : null
               }));
             }
           });
@@ -110,6 +110,10 @@ function updateChainStore() {
         if (currentState.app.account) {
           ReduxStore.dispatch(VotingActions.fetchData());
         }
+
+        break;
+
+      // no default
     }
   }
 }

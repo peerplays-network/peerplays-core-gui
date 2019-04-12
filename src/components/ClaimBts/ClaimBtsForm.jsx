@@ -79,6 +79,8 @@ class ClaimBtsForm extends React.Component {
           </button>
         );
         break;
+
+      // no default
     }
 
     return (

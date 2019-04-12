@@ -59,12 +59,19 @@ var plugins = [
 
 
 module.exports = {
-  entry: [
-    require.resolve('react-dev-utils/webpackHotDevClient'),
-    require.resolve('./polyfills'),
-    // Finally, this is your app's code:
-    paths.appIndexJs
-  ],
+  // entry: [
+  //   require.resolve('react-dev-utils/webpackHotDevClient'),
+  //   require.resolve('./polyfills'),
+  //   // Finally, this is your app's code:
+  //   paths.appIndexJs
+  // ],
+  entry: {
+    app: [
+      'webpack-dev-server/client?http://localhost:8082',
+      'webpack/hot/only-dev-server',
+      paths.appIndexJs
+    ]
+  },
   output: {
     // Next line is not used in dev but WebpackDevServer crashes without it:
     path: paths.appBuild,

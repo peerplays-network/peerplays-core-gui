@@ -7,6 +7,7 @@ import {
   Apis
 } from 'peerplaysjs-ws';
 import WalletApi from '../rpc_api/WalletApi';
+import WalletDb from '../stores/WalletDb';
 
 class AccountRepository {
   static fetchFullAccount(accountIdOrName) {
@@ -220,7 +221,7 @@ class AccountRepository {
       FetchChain('getAccount', to_account),
       FetchChain('getAccount', memo_sender),
       FetchChain('getAccount', propose_account),
-      FetchChain('getAsset', asset),
+      FetchChain('getAsset', asset)
       //  FetchChain("getAsset", fee_asset_id)
     ]).then((res) => {
       let [
@@ -249,7 +250,7 @@ class AccountRepository {
       let memo_from_privkey;
 
       if (encrypt_memo && memo) {
-        memo_from_privkey = activePrivateKey; // TODO: define
+        memo_from_privkey = WalletDb.getPrivateKey(memo_from_public);
 
         if (!memo_from_privkey) {
           throw new Error('Missing private memo key for sender: ' + memo_sender);

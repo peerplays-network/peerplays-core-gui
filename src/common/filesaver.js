@@ -1,3 +1,4 @@
+/* eslint-disable */
 /* FileSaver.js
  * A saveAs() FileSaver implementation.
  * 1.1.20160328

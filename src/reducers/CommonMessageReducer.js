@@ -4,7 +4,7 @@ import ActionTypes from '../constants/ActionTypes';
 let initialState = Immutable.fromJS({
   messageCount: 0,
   headerMessages: [],
-  activeMessage: false,
+  activeMessage: false
 });
 
 export default function(state = initialState, action) {

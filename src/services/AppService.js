@@ -32,6 +32,8 @@ class AppService {
             break;
           case 'open':
             store.dispatch(AppActions.setStatus(null));
+
+          // no default
         }
       });
     };
@@ -50,7 +52,7 @@ class AppService {
 
       try {
         db = iDB.init_instance(window.openDatabase
-          ? (shimIndexedDB || indexedDB)
+          ? (indexedDB)
           : indexedDB).init_promise;
         db.then(() => {
           store.dispatch(AppActions.setAppLocalDbInit(true));

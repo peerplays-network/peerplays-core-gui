@@ -202,7 +202,7 @@ class CommitteeMembers extends React.Component {
     if (JSON.stringify(nextProps.approvedCMIds) !== JSON.stringify(this.props.approvedCMIds)) {
       this.setState({
         committeeMembers: nextProps.approvedCMIds,
-        prev_committeeMembers: nextProps.approvedCMIds,
+        prev_committeeMembers: nextProps.approvedCMIds
       });
     }
   }

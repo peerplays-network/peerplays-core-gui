@@ -9,7 +9,14 @@ import merge from 'lodash/object/merge';
  * search - search data
  * currentAccount - current account TODO::rm legacy
  *
- * @type {{search: {searchTerm: string, searchAccounts: Array, coreAsset: {}}, accounts: (Immutable.Set<T>|*|Immutable.Set<any>), subbed: boolean, currentAccount: null, linkedAccounts: (Immutable.Set<T>|*|Immutable.Set<any>), ignoredAccounts: (Immutable.Set<T>|*|Immutable.Set<any>), unFollowedAccounts: (Immutable.Set<T>|*|Immutable.Set<any>)}}
+ * @type {{search: {searchTerm: string, searchAccounts: Array, coreAsset: {}},
+ *  accounts: (Immutable.Set<T>|*|Immutable.Set<any>),
+ *  subbed: boolean,
+ *  currentAccount: null,
+ *  linkedAccounts: (Immutable.Set<T>|*|Immutable.Set<any>),
+ *  ignoredAccounts: (Immutable.Set<T>|*|Immutable.Set<any>),
+ *  unFollowedAccounts: (Immutable.Set<T>|*|Immutable.Set<any>)
+ * }}
  */
 const initialState = {
   search: {
@@ -17,7 +24,7 @@ const initialState = {
     searchAccounts: [],
     coreAsset: {}
   },
-  currentAccount: null,
+  currentAccount: null
 };
 
 class AccountReducerWrapper {

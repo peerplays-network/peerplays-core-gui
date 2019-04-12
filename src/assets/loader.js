@@ -1,3 +1,6 @@
+
+/* eslint-disable */
+
 require('./stylesheets/app.scss');
 require('file?name=index.html!../../public/index.html');
 require('file?name=favicon.ico!./favicon.ico');
