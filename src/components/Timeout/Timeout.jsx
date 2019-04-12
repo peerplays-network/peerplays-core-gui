@@ -54,7 +54,7 @@ class Timeout extends React.Component {
 
   render() {
     return (
-      <div className='main main-timeout'>
+      <div className='timeout'>
         <div className='yHelper active'></div>
         <section className='content'>
           <div className='box box-inPadding'>
