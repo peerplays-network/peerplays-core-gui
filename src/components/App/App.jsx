@@ -18,11 +18,20 @@ import SplashScreen from '../SplashScreen/SplashScreen';
 
 class App extends PureComponent {
   _notificationSystem = null;
+  constructor(props) {
+    super(props);
 
+    this.idleCheck = this.idleCheck.bind(this);
+  }
   componentDidMount() {
     this._notificationSystem = this.refs.notificationSystem;
+  }
+
+  componentDidUpdate(prevProps) {
     // Start lidle checker to autologout idle users.
-    this.idleCheck(this.props);
+    if(prevProps !== this.props) {
+      this.idleCheck(this.props);
+    }
   }
 
   static contextTypes = {
@@ -30,7 +39,6 @@ class App extends PureComponent {
   };
 
   idleCheck(props) {
-    console.log('idle logout timer started.');
     let t;
     window.onclick = resetTimer;
     window.onkeypress = resetTimer;
@@ -41,15 +49,17 @@ class App extends PureComponent {
     window.addEventListener('scroll', resetTimer, true);
 
     function isIdle() {
-      console.log('Logging out user due to inactivity.');
+      console.warn('Logging out user due to inactivity.');
       props.timeout();
       props.setCurrentLocation('TIMEOUT');
     }
 
     function resetTimer() {
-      console.log('idle logout timer reset.');
       clearTimeout(t);
-      t = setTimeout(isIdle, Config.IDLE_TIMEOUT);
+
+      if(props.isLogin !== false) {
+        t = setTimeout(isIdle, Config.IDLE_TIMEOUT);
+      }
     }
   }
 
@@ -132,6 +142,7 @@ const mapStateToProps = (state) => {
     syncIsFail: state.app.syncIsFail,
     showHelpPopup: state.helpReducer.showHelpModal,
     locale: state.settings.locale,
+    isLogin: state.app.isLogin,
     activeNotification: state.commonMessage.get('activeMessage'),
     headerMessages: state.commonMessage.get('headerMessages')
   };
