@@ -35,7 +35,7 @@ var define = {
   CORE_ASSET: JSON.stringify(Config.CORE_ASSET),
   BLOCKCHAIN_URL: JSON.stringify(Config.BLOCKCHAIN_URLS),
   FAUCET_URL: JSON.stringify(Config.FAUCET_URLS),
-  BITSHARES_WS: JSON.stringify(Config.BITSHARES_WS),
+  BITSHARES_WS: JSON.stringify(Config.BITSHARES_WS)
 };
 
 // COMMON PLUGINS
@@ -43,7 +43,7 @@ var plugins = [
   // Generates an `index.html` file with the <script> injected.
   new HtmlWebpackPlugin({
     inject: true,
-    template: paths.appHtml,
+    template: paths.appHtml
   }),
   new webpack.optimize.DedupePlugin(),
   new webpack.optimize.OccurrenceOrderPlugin(),
@@ -54,7 +54,7 @@ var plugins = [
     }
   }),
   new webpack.HotModuleReplacementPlugin(),
-  new Clean(cleanDirectories),
+  new Clean(cleanDirectories)
 ];
 
 
@@ -93,7 +93,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         loader: 'eslint',
-        include: paths.appSrc,
+        include: paths.appSrc
       }
     ],
     noParse: /node_modules\/build/,
@@ -174,7 +174,7 @@ module.exports = {
     {
       test: /\.md/,
       loader: 'html?removeAttributeQuotes=false!remarkable'
-    },
+    }
     ],
     postcss: function() {
       return [
@@ -183,11 +183,11 @@ module.exports = {
             '>1%',
             'last 4 versions',
             'Firefox ESR',
-            'not ie < 9', // React doesn't support IE8 anyway
+            'not ie < 9' // React doesn't support IE8 anyway
           ]
-        }),
+        })
       ];
-    },
+    }
   },
   resolve: {
     extensions: ['', '.js', '.jsx', '.coffee', '.json'],
