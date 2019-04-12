@@ -16,7 +16,7 @@ function createWindow() {
   mainWindow = new BrowserWindow({width: 1280, height: 768, minWidth: 1024, minHeight: 768, frame: true});
 
   mainWindow.loadURL(isDev
-    ? 'http://localhost:3000'
+    ? 'http://localhost:8082'
     : `file://${path.join(__dirname, '/index.html')}`);
 
   mainWindow.on('closed', () => {
