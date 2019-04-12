@@ -60,7 +60,6 @@ class ConnectManager {
         return list;
       }).then((list) => {
         this.sortedUrls = list;
-        console.log('sorted list: ', this.sortedUrls);
         const connectionString = list[this.blockchainUrlIndex];
 
         // Display the blockchain api node that we are conencting to.
