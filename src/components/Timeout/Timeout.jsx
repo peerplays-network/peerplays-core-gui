@@ -93,7 +93,7 @@ const mapStateToProps = (state) => {
   return {
     status: state.loginPage.status,
     errors: state.loginPage.errors,
-    account: state.app.account,
+    account: state.app.account
   };
 };
 

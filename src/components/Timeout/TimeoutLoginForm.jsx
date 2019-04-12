@@ -87,6 +87,15 @@ class TimeoutLoginForm extends React.Component {
           </button>
         );
         break;
+      default:
+        RestoreBtn = (
+          <button
+            className='btn btn-sbm btn-fsz-18'
+            type='submit'
+            disabled={ invalid || submitting || asyncValidating }>
+            <Translate className='btnText' content='login.login_btn' />
+          </button>
+        );
     }
 
     return (

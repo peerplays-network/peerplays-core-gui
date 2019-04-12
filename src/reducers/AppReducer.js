@@ -75,7 +75,7 @@ export default function (state = defaultState, action) {
     // timeout from app
     case ActionTypes.APP_TIMEOUT:
       return Object.assign({}, state, {
-        isLogin: action.payload.isLogin,
+        isLogin: action.payload.isLogin
       });
       // SET CURRENT LOCATION FROM PageConstants.js file
     case ActionTypes.APP_CURRENT_LOCATION:
