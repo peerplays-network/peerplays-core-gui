@@ -15,7 +15,7 @@ export default class WalletActions {
       if (!getState().wallet.locked) {
         dispatch({
           type: ActionTypes.SET_LOCK_STATUS,
-          payload: true,
+          payload: true
         });
       }
     };
@@ -37,7 +37,7 @@ export default class WalletActions {
       if (getState().wallet.locked) {
         dispatch({
           type: ActionTypes.SET_LOCK_STATUS,
-          payload: false,
+          payload: false
         });
       }
     };
@@ -50,7 +50,7 @@ export default class WalletActions {
   static resetWallet() {
     return {
       type: ActionTypes.WALLET_RESET,
-      payload: null,
+      payload: null
     };
   }
 }

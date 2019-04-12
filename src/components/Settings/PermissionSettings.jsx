@@ -247,7 +247,7 @@ class PermissionSettings extends React.Component {
 const mapStateToProps = (state) => {
   return {
     currentAccount: state.account.currentAccount,
-    ownerKeyPermissions: state.settings.ownerKeyPermissions,
+    ownerKeyPermissions: state.settings.ownerKeyPermissions
   };
 };
 

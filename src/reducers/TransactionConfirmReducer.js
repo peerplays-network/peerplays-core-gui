@@ -15,8 +15,6 @@ import ActionTypes from '../constants/ActionTypes';
  * broadcastSuccess - The transaction was successful
  * broadcastError - The transaction was not successful
  * btnStatus - type of button
- *
- * @type {{isOpen: boolean, isConfirm: boolean, transactionType: null, transaction: {}, propose: null, broadcasting: boolean, broadcastSuccess: boolean, broadcastError: null, btnStatus: string}}
  */
 const initialState = {
   isOpen: false,

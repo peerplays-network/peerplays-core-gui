@@ -30,7 +30,7 @@ class Repository {
   }
 
   static getWitnesses() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => { /* eslint-disable-line */
       let witnesses = ChainStore.fetchWitnessAccounts();
 
       return resolve(witnesses);

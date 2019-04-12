@@ -217,8 +217,7 @@ class Send extends React.Component {
                 recipientName: '',
                 memo: '',
                 invalidName: null,
-                invalidAmount: null,
-
+                invalidAmount: null
               });
             },
             transactionObject: tr,

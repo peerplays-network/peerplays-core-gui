@@ -5,6 +5,7 @@ import {formatOperation} from './FormatOperation';
 import utils from '../common/utils';
 import market_utils from '../common/market_utils';
 import asset_utils from '../common/asset_utils';
+import Config from '../../config/Config';
 
 let dataIsFetched = false;
 let marketStatsByName = {},
@@ -31,7 +32,7 @@ class DashboardBalancesService {
    * @param {string} unit
    * @param {array} settingsAssets
    */
-  static fetchCurrentBalance(accountId, unit = CORE_ASSET, settingsAssets = []) { // TODO: import
+  static fetchCurrentBalance(accountId, unit = Config.CORE_ASSET, settingsAssets = []) {
     let openOrders = {};
     let collateral = {};
     let debt = {};
@@ -209,7 +210,7 @@ class DashboardBalancesService {
 
       return Promise.all(
         [Promise.all(vestingPromises),
-          Repository.getAsset(CORE_ASSET)]) // TODO: declare via import form above
+          Repository.getAsset(Config.CORE_ASSET)]) // TODO: declare via import form above
         .then(([balances, asset]) => {
           if (balances && balances.length) {
             balances.forEach((balance) => {
@@ -693,14 +694,12 @@ class DashboardBalancesService {
 
   /**
    * get Recent Activity And OpenOrders data
-   *
-   * @returns {{recentActivity: Array, openOrders: Array, blockInterval: null, headBlockNumber: null}}
    */
   static getRecentActivityAndOpenOrdersData() {
     let {
       history,
       obj200,
-      obj210,
+      obj210
     } = cacheData;
 
     let blockInterval = obj200 ? obj200.get('parameters').get('block_interval') : null;

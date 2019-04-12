@@ -32,7 +32,7 @@
       "vars": "all",
       "args": "after-used"
     }],
-    "comma-dangle": "off",
+    "comma-dangle": "error",
     "indent": ["error", 2, {
       "SwitchCase": 1
     }],
@@ -50,7 +50,7 @@
     "no-restricted-properties": "off",
     "consistent-return": "off",
     "guard-for-in": "off",
-    "no-loop-func": "error",
+    "no-loop-func": "off",
     "curly": ["error", "all"],
     "brace-style": ["error", "1tbs"],
     "default-case": "error",

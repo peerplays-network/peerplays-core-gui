@@ -65,7 +65,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
-    setShowCantConnectStatus: AppActions.setShowCantConnectStatus,
+    setShowCantConnectStatus: AppActions.setShowCantConnectStatus
   },
   dispatch
 );

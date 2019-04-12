@@ -1,16 +1,15 @@
 import ActionTypes from '../constants/ActionTypes';
 import {getViewSettings} from '../services/ViewSettingsService';
 import Immutable from 'immutable';
+import Config from '../../config/Config';
 
 let activeSetting = getViewSettings('activeSetting') ? getViewSettings('activeSetting') : 'general';
-let connection = getViewSettings('connection') ? getViewSettings('connection') : [BLOCKCHAIN_URL];
+let connection = getViewSettings('connection')
+  ? getViewSettings('connection')
+  : [Config.BLOCKCHAIN_URLS];
 
 /**
- *  Page Settings Reducer is used to controlling Settings page tabs
- *
- * Initial State
- *
- * @type {{activeSetting: string, connection: [*], menuEntries: [*], settingEntries: {general: [*], access: [*]}, defaults: {showSettles: [*], disableChat: [*], connection: *, faucetAddress: *}, claim_error: null, claim_privateKey: null, claim_balances: (*)}}
+ * Page Settings Reducer is used to controlling Settings page tabs
  */
 const initialState = {
 
@@ -45,8 +44,8 @@ const initialState = {
       translate: 'no'
     }
     ],
-    connection: BLOCKCHAIN_URL, // eslint-disable-line
-    faucetAddress: FAUCET_URL, // eslint-disable-line
+    connection: Config.BLOCKCHAIN_URLS[0],
+    faucetAddress: Config.FAUCET_URLS[0]
   },
   // Claim page(sharedrop page)
   claim_error: null,

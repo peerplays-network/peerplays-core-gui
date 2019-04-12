@@ -102,7 +102,7 @@ class SendPageActions {
    */
   static resetSendPage() {
     return {
-      type: ActionTypes.SEND_PAGE_RESET,
+      type: ActionTypes.SEND_PAGE_RESET
     };
   }
 
