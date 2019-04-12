@@ -1,6 +1,9 @@
 @import '../../assets/stylesheets/mixins';
+@import '../../assets/stylesheets/layout';
 
-.main-timeout {
+.timeout {
+  @extend .main;
+
   .dialog-login {
     padding: 75px;
 
@@ -9,8 +12,7 @@
     }
 
     .section__text {
-      padding-right: 0;
-      padding-left: 0;
+      padding:0 0 30px;
     }
   }
 }
