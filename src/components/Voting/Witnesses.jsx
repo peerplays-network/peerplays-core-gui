@@ -248,7 +248,7 @@ class Witnesses extends React.Component {
           </div>
           <div className='tableCell'><LinkToAccountById account={ a.id }/></div>
           <div className='tableCell'>
-            <a href={ link } target='_blank'>{url.length < 45
+            <a href={ link } target='_blank' rel='noopener noreferrer'>{url.length < 45
               ? url
               : url.substr(0, 45) + '...'}</a>
           </div>
@@ -292,7 +292,7 @@ class Witnesses extends React.Component {
           </div>
           <div className='tableCell'><LinkToAccountById account={ a.id }/></div>
           <div className='tableCell'>
-            <a href={ link } target='_blank'>{url.length < 45
+            <a href={ link } target='_blank' rel='noopener noreferrer'>{url.length < 45
               ? url
               : url.substr(0, 45) + '...'}</a>
           </div>

@@ -16,7 +16,6 @@ import {
  * witnesses - Voting/Witnesses page data
  * committeeMembers - Voting/Committee Members page(Advisors) data
  * proposals - Voting/Proposal page data
- * @type {{proxy: {knownProxies: Array}, witnesses: {sortBy: string, inverseSort: boolean}, committeeMembers: {}, proposals: {}}}
  */
 const initialState = {
   proxy: {

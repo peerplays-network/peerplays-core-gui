@@ -35,7 +35,7 @@ var define = {
   CORE_ASSET: JSON.stringify(Config.CORE_ASSET),
   BLOCKCHAIN_URL: JSON.stringify(Config.BLOCKCHAIN_URLS),
   FAUCET_URL: JSON.stringify(Config.FAUCET_URLS),
-  BITSHARES_WS: JSON.stringify(Config.BITSHARES_WS),
+  BITSHARES_WS: JSON.stringify(Config.BITSHARES_WS)
 };
 
 // COMMON PLUGINS
@@ -74,7 +74,7 @@ var plugins = [
       warnings: false
     },
     mangle: {
-      screw_ie8: true,
+      screw_ie8: true
     },
     output: {
       comments: false,
@@ -108,6 +108,15 @@ module.exports = {
   },
   debug: false,
   module: {
+    // First, run the linter.
+    // It's important to do this before Babel processes the JS.
+    preLoaders: [
+      {
+        test: /\.(js|jsx)$/,
+        loader: 'eslint',
+        include: paths.appSrc
+      }
+    ],
     noParse: /node_modules\/build/,
     loaders: [{
       test: /\.jsx$/,
@@ -197,7 +206,7 @@ module.exports = {
     {
       test: /\.md/,
       loader: 'html?removeAttributeQuotes=false!remarkable'
-    },
+    }
     ],
     postcss: function() {
       return [
@@ -206,11 +215,11 @@ module.exports = {
             '>1%',
             'last 4 versions',
             'Firefox ESR',
-            'not ie < 9', // React doesn't support IE8 anyway
+            'not ie < 9' // React doesn't support IE8 anyway
           ]
-        }),
+        })
       ];
-    },
+    }
   },
   resolve: {
     extensions: ['', '.js', '.jsx', '.coffee', '.json'],

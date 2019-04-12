@@ -1,3 +1,4 @@
+/* eslint-disable */
 /**
  * Store global settings (CONFIG)
  */

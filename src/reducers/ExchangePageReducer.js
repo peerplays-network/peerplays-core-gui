@@ -3,9 +3,6 @@ import ActionTypes from '../constants/ActionTypes';
 
 /**
  * Reducer is used to controlling exchange page
- * Initial page
- *
- * @type {{baseAssetId: null, quoteAssetId: null, coreAsset: null, baseAsset: null, quoteAsset: null, coreAssetBalance: null, baseAssetBalance: null, quoteAssetBalance: null, coreAssetSymbol: null, baseAssetSymbol: null, quoteAssetSymbol: null, quoteAssetPrecision: number, baseAssetPrecision: number, baseAssetName: null, quoteAssetName: null, latestPrice: number, latestPriceText: number, latestPriceChangeType: string, lowBase: number, highBase: number, change: number, volumeBase: number, volumeQuote: number, currentTab: number, tabs: Array, marketRowsData: Array, marketHistory: (Immutable.OrderedSet<T>|Immutable.OrderedSet<any>|*), marketRowsDataSortBy: string, marketRowsDataSortInvert: boolean, marketRowsDataLoaderIsShow: boolean, highPriceList: Array, priceData: Array, priceChartCurrentPeriod: null, currentBucket: number, buckets: [*], priceChartStatusLoader: string, bids: Array, asks: Array, settlementPrice: number, power: number, totalAsks: number, totalBids: number, openOrders: Array, bidsOrders: Array, asksOrders: Array}}
  */
 let defaultState = {
 

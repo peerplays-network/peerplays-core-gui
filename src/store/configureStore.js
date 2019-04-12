@@ -28,7 +28,7 @@ function configureStore(preloadedState) {
       dispatch: true
     },
     // Option for immutable
-    actionsWhitelist: actionsWhitelist,
+    actionsWhitelist: actionsWhitelist
   });
 
   // Construct enhancer
