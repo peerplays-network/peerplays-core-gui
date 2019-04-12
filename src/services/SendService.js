@@ -1,4 +1,5 @@
 import Repository from '../repositories/chain/repository';
+import Config from '../../config/Config';
 
 /**
  * Is used in ChainStoreService
@@ -6,7 +7,7 @@ import Repository from '../repositories/chain/repository';
 class SendService {
 
   constructor() {
-    this.assetSymbol = CORE_ASSET; // TODO: import
+    this.assetSymbol = Config.CORE_ASSET;
   }
 
   /**

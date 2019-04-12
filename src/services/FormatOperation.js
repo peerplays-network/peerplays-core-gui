@@ -56,7 +56,7 @@ export function formatOperation(obj) {
             to: receiver.get('name'),
             amount
           }) : '',
-        memo,
+        memo
       };
 
     case 1:

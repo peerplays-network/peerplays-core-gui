@@ -72,7 +72,6 @@ class LoginForm extends React.Component {
         );
         break;
       case 'loading':
-
         RestoreBtn = (
           <button
             className='btn btn-sbm btn-fsz-18 pull-right btn-loader'
@@ -91,6 +90,8 @@ class LoginForm extends React.Component {
           </button>
         );
         break;
+
+        // no default
     }
 
     return (

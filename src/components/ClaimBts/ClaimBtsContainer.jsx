@@ -139,7 +139,7 @@ class ClaimBtsContainer extends React.Component {
 const mapStateToProps = (state) => {
   return {
     status: state.claimBtsReducer.status,
-    errors: state.claimBtsReducer.errors,
+    errors: state.claimBtsReducer.errors
   };
 };
 
@@ -148,7 +148,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(
     navigateToSignUp: NavigateActions.navigateToSignUp,
     navigateToSignIn : NavigateActions.navigateToSignIn,
     setStatus: ClaimBtsActions.setStatus,
-    loginAccountFromBts: ClaimBtsActions.loginAccountFromBts,
+    loginAccountFromBts: ClaimBtsActions.loginAccountFromBts
   },
   dispatch
 );

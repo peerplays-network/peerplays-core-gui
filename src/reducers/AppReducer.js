@@ -2,10 +2,6 @@ import ActionTypes from '../constants/ActionTypes';
 
 /**
  * AppReducer is used to controling an application state
- *
- * Initial state
- *
- * @type {{dbIsInit: boolean, dbDataIsLoad: boolean, chainIsInit: boolean, syncIsFail: boolean, isLogin: boolean, account: null, accountId: null, currentLocation: null, status: null, showCantConnectModal: boolean}}
  */
 let defaultState = {
   // iDB.init_instance() is init
