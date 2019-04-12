@@ -2,7 +2,6 @@ var autoprefixer = require('autoprefixer');
 var path = require('path');
 var paths = require('./paths');
 var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var Clean = require('clean-webpack-plugin');
 
@@ -40,11 +39,6 @@ var define = {
 
 // COMMON PLUGINS
 var plugins = [
-  // Generates an `index.html` file with the <script> injected.
-  new HtmlWebpackPlugin({
-    inject: true,
-    template: paths.appHtml
-  }),
   new webpack.optimize.DedupePlugin(),
   new webpack.optimize.OccurrenceOrderPlugin(),
   new webpack.DefinePlugin(define),
@@ -59,19 +53,12 @@ var plugins = [
 
 
 module.exports = {
-  // entry: [
-  //   require.resolve('react-dev-utils/webpackHotDevClient'),
-  //   require.resolve('./polyfills'),
-  //   // Finally, this is your app's code:
-  //   paths.appIndexJs
-  // ],
-  entry: {
-    app: [
-      'webpack-dev-server/client?http://localhost:8082',
-      'webpack/hot/only-dev-server',
-      paths.appIndexJs
-    ]
-  },
+  entry: [
+    require.resolve('react-dev-utils/webpackHotDevClient'),
+    require.resolve('./polyfills'),
+    // Finally, this is your app's code:
+    paths.appIndexJs
+  ],
   output: {
     // Next line is not used in dev but WebpackDevServer crashes without it:
     path: paths.appBuild,
