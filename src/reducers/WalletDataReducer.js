@@ -14,7 +14,7 @@ import ActionTypes from '../constants/ActionTypes';
  */
 const initialState = {
   wallet: null,
-  aesPrivate: null,
+  aesPrivate: null
 };
 
 export default (state = initialState, action) => {
