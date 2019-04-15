@@ -1,7 +1,7 @@
 'use strict';
 
 exports.__esModule = true;
-exports.ChainConfig = exports.Manager = exports.Apis = exports.Login = exports.FetchChain = exports.ChainValidation = exports.TransactionHelper = exports.NumberUtils = exports.ObjectId = exports.EmitterInstance = exports.ChainTypes = exports.FetchChainObjects = exports.TransactionBuilder = exports.ChainStore = exports.key = exports.hash = exports.brainKey = exports.Signature = exports.PublicKey = exports.PrivateKey = exports.Aes = exports.Address = exports.SerializerValidation = exports.template = exports.ops = exports.types = exports.fp = exports.Serializer = undefined;
+exports.ChainConfig = exports.ConnectionManager = exports.Apis = exports.Login = exports.FetchChain = exports.ChainValidation = exports.TransactionHelper = exports.NumberUtils = exports.ObjectId = exports.EmitterInstance = exports.ChainTypes = exports.FetchChainObjects = exports.TransactionBuilder = exports.ChainStore = exports.key = exports.hash = exports.brainKey = exports.Signature = exports.PublicKey = exports.PrivateKey = exports.Aes = exports.Address = exports.SerializerValidation = exports.template = exports.ops = exports.types = exports.fp = exports.Serializer = undefined;
 
 var _serializer = require('./serializer/src/serializer');
 
@@ -147,5 +147,5 @@ exports.ChainValidation = _ChainValidation2.default;
 exports.FetchChain = FetchChain;
 exports.Login = _AccountLogin2.default;
 exports.Apis = _ApiInstances2.default;
-exports.Manager = _ConnectionManager2.default;
+exports.ConnectionManager = _ConnectionManager2.default;
 exports.ChainConfig = _ChainConfig2.default;
