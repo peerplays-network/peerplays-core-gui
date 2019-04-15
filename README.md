@@ -65,26 +65,51 @@ The following tools are used:
    - [config-conventional](https://www.npmjs.com/package/@commitlint/config-conventional)
      - rule preset in use
 
-## Releases
-
-This repository uses a [standard version](https://www.npmjs.com/package/standard-version) to aid in version control and release management.
-
-When using standard version to cut a release, there is automated changelog modifitions made based on commit messages.
-
-```csharp
-// If you typically use npm version to cut a new release, do this instead:
-npm run release
-// To cut a release and bump the version by major, minor, or patch, use the following respectively:
-npm run release-major // major bump
-npm run release-minor // minor bump
-npm run release-patch // patch bump
-// To cut a pre-release:
-npm run pre-release // v0.2.1 to v0.2.2-rc.0
-```
-
 ## Usage
 
-Three sub-libraries are included: `ECC`, `Chain` and `Serializer`. Generally only the `ECC` and `Chain` libraries need to be used directly.
+Four sub-libraries are included: `ECC`, `Chain`, `WS` and `Serializer`. Generally only the `ECC` and `Chain` libraries need to be used directly. The `WS` library handles all the websocket connections.
+
+### WS
+
+<details>
+
+<summary>removing peerplaysjs-ws</summary>
+
+Peerplaysjs-lib includes the now deprecated peerplaysjs-ws library within itself. Updating your code to reflect this is simple, here is an example:
+
+```javascript
+// current code
+import {Apis} from 'peerplaysjs-ws';
+
+// refactored
+import {Apis} from 'peerplaysjs-lib';
+```
+
+Once you have all of your peerplaysjs-ws imports updated, you can uninstall the peerplaysjs-ws package.
+</details>
+
+
+```html
+<script type="text/javascript" src="https://cdn.rawgit.com/pbsa/peerplaysjs-ws/build/peerplaysjs-ws.js" />
+```
+
+A variable peerplays_ws will be available in window.
+
+For use in a webpack/browserify context, see the example below for how to open a websocket connection to the Openledger API and subscribe to any object updates:
+
+```javascript
+var {Apis} = require("peerplaysjs-lib");
+Apis.instance("wss://bitshares.openledger.info/ws").init_promise.then((res) => {
+    console.log("connected to:", res[0].network);
+    Apis.instance().db_api().exec( "set_subscribe_callback", [ updateListener, true ] )
+});
+
+function updateListener(object) {
+    console.log("set_subscribe_callback:\n", object);
+}
+```
+
+The `set_subscribe_callback` callback (updateListener) will be called whenever an object on the blockchain changes or is removed. This is very powerful and can be used to listen to updates for specific accounts, assets or most anything else, as all state changes happen through object updates. Be aware though that you will receive quite a lot of data this way.
 
 ### Chain
 
@@ -171,4 +196,21 @@ TODO transaction signing example
 npm i -g esdoc esdoc-es7-plugin
 esdoc -c ./esdoc.json
 open out/esdoc/index.html
+```
+
+## Releases
+
+This repository uses a [standard version](https://www.npmjs.com/package/standard-version) to aid in version control and release management.
+
+When using standard version to cut a release, there is automated changelog modifitions made based on commit messages.
+
+```csharp
+// If you typically use npm version to cut a new release, do this instead:
+npm run release
+// To cut a release and bump the version by major, minor, or patch, use the following respectively:
+npm run release-major // major bump
+npm run release-minor // minor bump
+npm run release-patch // patch bump
+// To cut a pre-release:
+npm run pre-release // v0.2.1 to v0.2.2-rc.0
 ```
