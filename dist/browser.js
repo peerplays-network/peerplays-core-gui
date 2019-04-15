@@ -2,10 +2,6 @@
 
 exports.__esModule = true;
 
-var _peerplaysjsWs = require('peerplaysjs-ws');
-
-var _peerplaysjsWs2 = _interopRequireDefault(_peerplaysjsWs);
-
 var _PrivateKey = require('./ecc/src/PrivateKey');
 
 var _PrivateKey2 = _interopRequireDefault(_PrivateKey);
@@ -38,7 +34,6 @@ exports.default = {
   Signature: _signature2.default,
   key: _KeyUtils2.default,
   TransactionBuilder: _TransactionBuilder2.default,
-  Login: _AccountLogin2.default,
-  peerplaysjs_ws: _peerplaysjsWs2.default
+  Login: _AccountLogin2.default
 };
 module.exports = exports['default'];

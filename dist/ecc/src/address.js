@@ -6,13 +6,13 @@ var _assert = require('assert');
 
 var _assert2 = _interopRequireDefault(_assert);
 
-var _peerplaysjsWs = require('peerplaysjs-ws');
-
 var _bs = require('bs58');
 
 var _deepEqual = require('deep-equal');
 
 var _deepEqual2 = _interopRequireDefault(_deepEqual);
+
+var _ws = require('../../ws');
 
 var _hash2 = require('./hash');
 
@@ -37,7 +37,7 @@ var Address = function () {
   };
 
   Address.fromString = function fromString(string) {
-    var address_prefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _peerplaysjsWs.ChainConfig.address_prefix;
+    var address_prefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _ws.ChainConfig.address_prefix;
 
     var prefix = string.slice(0, address_prefix.length);
     _assert2.default.equal(address_prefix, prefix, 'Expecting key to begin with ' + address_prefix + ', instead got ' + prefix);
@@ -79,7 +79,7 @@ var Address = function () {
   };
 
   Address.prototype.toString = function toString() {
-    var address_prefix = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _peerplaysjsWs.ChainConfig.address_prefix;
+    var address_prefix = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _ws.ChainConfig.address_prefix;
 
     var checksum = (0, _hash2.ripemd160)(this.addy);
     var addy = Buffer.concat([this.addy, checksum.slice(0, 4)]);

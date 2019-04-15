@@ -6,7 +6,7 @@ var _assert = require('assert');
 
 var _assert2 = _interopRequireDefault(_assert);
 
-var _peerplaysjsWs = require('peerplaysjs-ws');
+var _ws = require('../../ws');
 
 var _ecc = require('../../ecc');
 
@@ -68,9 +68,9 @@ var TransactionBuilder = function () {
     var wallet_object = cwallet.wallet.wallet_object;
 
 
-    if (_peerplaysjsWs.Apis.instance().chain_id !== wallet_object.get('chain_id')) {
+    if (_ws.Apis.instance().chain_id !== wallet_object.get('chain_id')) {
       var wallet_chain_id = wallet_object.get('chain_id');
-      var api_chain_id = _peerplaysjsWs.Apis.instance().chain_id;
+      var api_chain_id = _ws.Apis.instance().chain_id;
 
       var error = new Error('Mismatched chain_id; expecting ' + wallet_chain_id + ', but got ' + api_chain_id);
 
@@ -143,11 +143,11 @@ var TransactionBuilder = function () {
         throw new Error('already finalized');
       }
 
-      resolve(_peerplaysjsWs.Apis.instance().db_api().exec('get_objects', [['2.1.0']]).then(function (r) {
+      resolve(_ws.Apis.instance().db_api().exec('get_objects', [['2.1.0']]).then(function (r) {
         _this2.head_block_time_string = r[0].time;
 
         if (_this2.expiration === 0) {
-          _this2.expiration = _this2.base_expiration_sec() + _peerplaysjsWs.ChainConfig.expire_in_secs;
+          _this2.expiration = _this2.base_expiration_sec() + _ws.ChainConfig.expire_in_secs;
         }
 
         _this2.ref_block_num = r[0].head_block_number & 0xffff; // eslint-disable-line
@@ -291,12 +291,12 @@ var TransactionBuilder = function () {
 
       if (!operation.expiration_time) {
         var experationTime = this.base_expiration_sec();
-        operation.expiration_time = experationTime + _peerplaysjsWs.ChainConfig.expire_in_secs_proposal;
+        operation.expiration_time = experationTime + _ws.ChainConfig.expire_in_secs_proposal;
       }
 
       if (requiresReview) {
         var one_day = 24 * 60 * 60; // One day in seconds
-        var max = Math.max(this.commitee_min_review, one_day, _peerplaysjsWs.ChainConfig.review_in_secs_committee);
+        var max = Math.max(this.commitee_min_review, one_day, _ws.ChainConfig.review_in_secs_committee);
 
         operation.review_period_seconds = extraReview + max;
         /*
@@ -316,7 +316,7 @@ var TransactionBuilder = function () {
   TransactionBuilder.prototype.update_head_block = function update_head_block() {
     var _this3 = this;
 
-    return _peerplaysjsWs.Apis.instance().db_api().exec('get_objects', [['2.0.0', '2.1.0']]).then(function (res) {
+    return _ws.Apis.instance().db_api().exec('get_objects', [['2.0.0', '2.1.0']]).then(function (res) {
       var g = res[0],
           r = res[1];
 
@@ -411,12 +411,12 @@ var TransactionBuilder = function () {
       }
     }
 
-    var promises = [_peerplaysjsWs.Apis.instance().db_api().exec('get_required_fees', [operations, asset_id])];
+    var promises = [_ws.Apis.instance().db_api().exec('get_required_fees', [operations, asset_id])];
 
     if (asset_id !== '1.3.0') {
       // This handles the fallback to paying fees in BTS if the fee pool is empty.
-      promises.push(_peerplaysjsWs.Apis.instance().db_api().exec('get_required_fees', [operations, '1.3.0']));
-      promises.push(_peerplaysjsWs.Apis.instance().db_api().exec('get_objects', [[asset_id]]));
+      promises.push(_ws.Apis.instance().db_api().exec('get_required_fees', [operations, '1.3.0']));
+      promises.push(_ws.Apis.instance().db_api().exec('get_objects', [[asset_id]]));
     }
 
     return Promise.all(promises).then(function (results) {
@@ -426,7 +426,7 @@ var TransactionBuilder = function () {
 
       asset = asset ? asset[0] : null;
 
-      var dynamicPromise = asset_id !== '1.3.0' && asset ? _peerplaysjsWs.Apis.instance().db_api().exec('get_objects', [[asset.dynamic_asset_data_id]]) : new Promise(function (resolve) {
+      var dynamicPromise = asset_id !== '1.3.0' && asset ? _ws.Apis.instance().db_api().exec('get_objects', [[asset.dynamic_asset_data_id]]) : new Promise(function (resolve) {
         resolve();
       });
 
@@ -496,7 +496,7 @@ var TransactionBuilder = function () {
 
   TransactionBuilder.prototype.get_potential_signatures = function get_potential_signatures() {
     var tr_object = _serializer.ops.signed_transaction.toObject(this);
-    return Promise.all([_peerplaysjsWs.Apis.instance().db_api().exec('get_potential_signatures', [tr_object]), _peerplaysjsWs.Apis.instance().db_api().exec('get_potential_address_signatures', [tr_object])]).then(function (results) {
+    return Promise.all([_ws.Apis.instance().db_api().exec('get_potential_signatures', [tr_object]), _ws.Apis.instance().db_api().exec('get_potential_address_signatures', [tr_object])]).then(function (results) {
       return { pubkeys: results[0], addys: results[1] };
     });
   };
@@ -508,7 +508,7 @@ var TransactionBuilder = function () {
 
     var tr_object = _serializer.ops.signed_transaction.toObject(this);
     // DEBUG console.log('... tr_object',tr_object)
-    return _peerplaysjsWs.Apis.instance().db_api().exec('get_required_signatures', [tr_object, available_keys]).then(function (required_public_keys) {
+    return _ws.Apis.instance().db_api().exec('get_required_signatures', [tr_object, available_keys]).then(function (required_public_keys) {
       return required_public_keys;
     });
   };
@@ -543,7 +543,7 @@ var TransactionBuilder = function () {
   };
 
   TransactionBuilder.prototype.sign = function sign() {
-    var chain_id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _peerplaysjsWs.Apis.instance().chain_id;
+    var chain_id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _ws.Apis.instance().chain_id;
 
     if (!this.tr_buffer) {
       throw new Error('not finalized');
@@ -614,7 +614,7 @@ var TransactionBuilder = function () {
 
       var tr_object = _serializer.ops.signed_transaction.toObject(_this6);
       // console.log('... broadcast_transaction_with_callback !!!')
-      _peerplaysjsWs.Apis.instance().network_api().exec('broadcast_transaction_with_callback', [function (res) {
+      _ws.Apis.instance().network_api().exec('broadcast_transaction_with_callback', [function (res) {
         return resolve(res);
       }, tr_object]).then(function () {
         // console.log('... broadcast success, waiting for callback')
