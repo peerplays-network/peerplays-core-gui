@@ -11,12 +11,6 @@ All notable changes to this project will be documented in this file. See [standa
 * **peerplaysjs-ws:** peerplaysjs-ws merge into peerplaysjs-lib ([9f6c247](https://github.com/peerplays-network/peerplaysjs-lib/commit/9f6c247))
 
 
-### BREAKING CHANGES
-
-* **peerplaysjs-ws:** peerplaysjs-ws is now a part of peerplaysjs-lib
-
-
-
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/peerplays-network/peerplaysjs-lib/compare/v0.4.25...v0.5.0) (2019-04-05)
 
