@@ -2,6 +2,7 @@ var autoprefixer = require('autoprefixer');
 var path = require('path');
 var paths = require('./paths');
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var Clean = require('clean-webpack-plugin');
 
@@ -46,6 +47,11 @@ var plugins = [
     'process.env': {
       NODE_ENV: JSON.stringify('development')
     }
+  }),
+  // Generates an `index.html` file with the <script> injected.
+  new HtmlWebpackPlugin({
+    inject: true,
+    template: paths.appHtml
   }),
   new webpack.HotModuleReplacementPlugin(),
   new Clean(cleanDirectories)
@@ -184,5 +190,6 @@ module.exports = {
   remarkable: {
     preset: 'full',
     typographer: true
-  }
+  },
+  devServer: {hot: true}
 };
