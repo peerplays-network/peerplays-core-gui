@@ -11,8 +11,7 @@ import notify from '../../../actions/NotificationsActions';
 import {saveAs} from '../../../common/filesaver.js';
 import cname from 'classnames';
 import Translate from 'react-translate-component';
-import {ChainConfig} from 'peerplaysjs-ws';
-import {PrivateKey} from 'peerplaysjs-lib';
+import {ChainConfig, PrivateKey} from 'peerplaysjs-lib';
 
 class BackupBaseComponent extends Component {
   static getStores() {

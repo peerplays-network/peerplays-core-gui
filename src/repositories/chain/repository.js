@@ -1,5 +1,4 @@
-import {ChainStore} from 'peerplaysjs-lib';
-import {Apis} from 'peerplaysjs-ws';
+import {ChainStore, Apis} from 'peerplaysjs-lib';
 
 const MAX_RECURSION_ATTEMPTS = 10;
 

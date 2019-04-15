@@ -1,4 +1,4 @@
-import {Apis} from 'peerplaysjs-ws';
+import {Apis} from 'peerplaysjs-lib';
 import idb_helper from './idb-helper';
 import iDBRoot from './idb-root';
 
