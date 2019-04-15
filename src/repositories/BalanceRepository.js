@@ -1,4 +1,4 @@
-import {Apis} from 'peerplaysjs-ws';
+import {Apis} from 'peerplaysjs-lib';
 
 class BalanceRepository {
   static getAccountBalances(accountId, asset_types = ['1.3.0']) {

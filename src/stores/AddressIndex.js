@@ -1,7 +1,6 @@
 import alt from '../alt-instance';
 import iDB from '../idb-instance';
-import {key} from 'peerplaysjs-lib';
-import {ChainConfig} from 'peerplaysjs-ws';
+import {key, ChainConfig} from 'peerplaysjs-lib';
 import Immutable from 'immutable';
 import BaseStore from '../stores/BaseStore';
 

@@ -6,7 +6,7 @@ import {saveAs} from 'common/filesaver.js';
 import {connect} from 'react-redux';
 import {backup, processIncomingBuffer} from 'actions/RBackupActions';
 import {setBackupDate} from 'actions/RWalletDataActions';
-import {ChainConfig} from 'peerplaysjs-ws';
+import {ChainConfig} from 'peerplaysjs-lib';
 
 const mapStateToProps = (state) => {
   return {
