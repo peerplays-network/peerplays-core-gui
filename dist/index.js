@@ -1,6 +1,7 @@
 'use strict';
 
 exports.__esModule = true;
+exports.ChainConfig = exports.ConnectionManager = exports.Apis = exports.Login = exports.FetchChain = exports.ChainValidation = exports.TransactionHelper = exports.NumberUtils = exports.ObjectId = exports.EmitterInstance = exports.ChainTypes = exports.FetchChainObjects = exports.TransactionBuilder = exports.ChainStore = exports.key = exports.hash = exports.brainKey = exports.Signature = exports.PublicKey = exports.PrivateKey = exports.Aes = exports.Address = exports.SerializerValidation = exports.template = exports.ops = exports.types = exports.fp = exports.Serializer = undefined;
 
 var _serializer = require('./serializer/src/serializer');
 
@@ -94,44 +95,57 @@ var _AccountLogin = require('./chain/src/AccountLogin');
 
 var _AccountLogin2 = _interopRequireDefault(_AccountLogin);
 
+var _ApiInstances = require('./ws/ApiInstances');
+
+var _ApiInstances2 = _interopRequireDefault(_ApiInstances);
+
+var _ConnectionManager = require('./ws/ConnectionManager');
+
+var _ConnectionManager2 = _interopRequireDefault(_ConnectionManager);
+
+var _ChainConfig = require('./ws/ChainConfig');
+
+var _ChainConfig2 = _interopRequireDefault(_ChainConfig);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var FetchChainObjects = _ChainStore2.default.FetchChainObjects,
-    FetchChain = _ChainStore2.default.FetchChain;
 
 /* Chain */
 
 
 /* ECC */
 /* Serializer */
+var FetchChainObjects = _ChainStore2.default.FetchChainObjects,
+    FetchChain = _ChainStore2.default.FetchChain;
 
-exports.default = {
-  Serializer: _serializer2.default,
-  fp: _FastParser2.default,
-  types: _types2.default,
-  ops: ops,
-  template: _template2.default,
-  SerializerValidation: _SerializerValidation2.default,
-  Address: _address2.default,
-  Aes: _aes2.default,
-  PrivateKey: _PrivateKey2.default,
-  PublicKey: _PublicKey2.default,
-  Signature: _signature2.default,
-  brainKey: _BrainKey2.default,
-  hash: hash,
-  key: _KeyUtils2.default,
-  ChainStore: _ChainStore2.default,
-  TransactionBuilder: _TransactionBuilder2.default,
-  FetchChainObjects: FetchChainObjects,
-  ChainTypes: _ChainTypes2.default,
-  EmitterInstance: _EmitterInstance2.default,
-  ObjectId: _ObjectId2.default,
-  NumberUtils: _NumberUtils2.default,
-  TransactionHelper: _TransactionHelper2.default,
-  ChainValidation: _ChainValidation2.default,
-  FetchChain: FetchChain,
-  Login: _AccountLogin2.default
-};
-module.exports = exports['default'];
+/* Websocket Lib */
+
+exports.Serializer = _serializer2.default;
+exports.fp = _FastParser2.default;
+exports.types = _types2.default;
+exports.ops = ops;
+exports.template = _template2.default;
+exports.SerializerValidation = _SerializerValidation2.default;
+exports.Address = _address2.default;
+exports.Aes = _aes2.default;
+exports.PrivateKey = _PrivateKey2.default;
+exports.PublicKey = _PublicKey2.default;
+exports.Signature = _signature2.default;
+exports.brainKey = _BrainKey2.default;
+exports.hash = hash;
+exports.key = _KeyUtils2.default;
+exports.ChainStore = _ChainStore2.default;
+exports.TransactionBuilder = _TransactionBuilder2.default;
+exports.FetchChainObjects = FetchChainObjects;
+exports.ChainTypes = _ChainTypes2.default;
+exports.EmitterInstance = _EmitterInstance2.default;
+exports.ObjectId = _ObjectId2.default;
+exports.NumberUtils = _NumberUtils2.default;
+exports.TransactionHelper = _TransactionHelper2.default;
+exports.ChainValidation = _ChainValidation2.default;
+exports.FetchChain = FetchChain;
+exports.Login = _AccountLogin2.default;
+exports.Apis = _ApiInstances2.default;
+exports.ConnectionManager = _ConnectionManager2.default;
+exports.ChainConfig = _ChainConfig2.default;

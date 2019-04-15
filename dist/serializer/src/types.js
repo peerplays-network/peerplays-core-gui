@@ -4,7 +4,7 @@ exports.__esModule = true;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; // Low-level types that make up operations
 
-var _peerplaysjsWs = require('peerplaysjs-ws');
+var _ws = require('../../ws');
 
 var _SerializerValidation = require('./SerializerValidation');
 
@@ -1028,7 +1028,7 @@ Types.public_key = {
     var debug = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     if (debug.use_default && object === undefined) {
-      return _peerplaysjsWs.ChainConfig.address_prefix + '859gxfnXyUriMgUeThh1fWv3oqcpLFyHa3TfFYC4PK2HqhToVM';
+      return _ws.ChainConfig.address_prefix + '859gxfnXyUriMgUeThh1fWv3oqcpLFyHa3TfFYC4PK2HqhToVM';
     }
 
     _SerializerValidation2.default.required(object);
@@ -1062,7 +1062,7 @@ Types.address = {
     var debug = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     if (debug.use_default && object === undefined) {
-      return _peerplaysjsWs.ChainConfig.address_prefix + '664KmHxSuQyDsfwo4WEJvWpzg1QKdg67S';
+      return _ws.ChainConfig.address_prefix + '664KmHxSuQyDsfwo4WEJvWpzg1QKdg67S';
     }
 
     return Types.address._to_address(object).toString();
