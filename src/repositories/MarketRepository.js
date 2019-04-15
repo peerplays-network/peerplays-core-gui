@@ -1,5 +1,4 @@
-import {Apis} from 'peerplaysjs-ws';
-import {FetchChain} from 'peerplaysjs-lib';
+import {FetchChain, Apis} from 'peerplaysjs-lib';
 import WalletApi from '../rpc_api/WalletApi';
 import accountUtils from '../common/account_utils';
 
