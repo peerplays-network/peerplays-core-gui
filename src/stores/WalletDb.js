@@ -8,8 +8,7 @@ import {WalletTcomb} from './tcomb_structs';
 import TransactionConfirmActions from '../actions/TransactionConfirmActions';
 import WalletUnlockActions from '../actions/WalletUnlockActions';
 import PrivateKeyActions from '../actions/PrivateKeyActions';
-import {ChainStore,PrivateKey,key,Aes} from 'peerplaysjs-lib';
-import {Apis,ChainConfig} from 'peerplaysjs-ws';
+import {ChainStore,PrivateKey,key,Aes, Apis,ChainConfig} from 'peerplaysjs-lib';
 import AddressIndex from '../stores/AddressIndex';
 
 ChainConfig.setPrefix('PPY');

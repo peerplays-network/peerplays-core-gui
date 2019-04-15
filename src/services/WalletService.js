@@ -1,8 +1,7 @@
 import KeyGeneratorService from '../services/KeyGeneratorService';
-import {Apis} from 'peerplaysjs-ws';
 import idb_helper from '../idb-helper';
 import iDB from '../idb-instance';
-import {PrivateKey, key, Aes} from 'peerplaysjs-lib';
+import {PrivateKey, key, Aes, Apis} from 'peerplaysjs-lib';
 
 /**
  * Service for work with a wallet
