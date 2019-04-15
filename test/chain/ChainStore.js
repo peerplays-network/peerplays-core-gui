@@ -1,5 +1,5 @@
 import assert from 'assert';
-import {Apis, ChainConfig} from 'peerplaysjs-ws';
+import {Apis, ChainConfig} from '../../lib/ws';
 import {ChainStore} from '../../lib';
 
 let coreAsset;
@@ -27,16 +27,13 @@ describe('ChainStore', () => {
 
   describe('Subscriptions', () => {
     it('Asset not found', () => new Promise((resolve) => {
-
       ChainStore.init().then(() => {
-
         ChainStore.subscribe(() => {
           assert(ChainStore.getAsset('NOTFOUND') === null);
           resolve();
         });
 
         assert(ChainStore.getAsset('NOTFOUND') === undefined);
-
       });
     }));
 

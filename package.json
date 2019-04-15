@@ -1,6 +1,6 @@
 {
   "name": "peerplaysjs-lib",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Pure JavaScript Peerplaysjs library for node.js and browsers.",
   "browser": {
     "ws": false,
@@ -64,9 +64,9 @@
     "ecurve": "^1.0.2",
     "event-emitter": "^0.3.4",
     "immutable": "^3.7.6",
-    "peerplaysjs-ws": "peerplays-network/peerplaysjs-ws",
     "secure-random": "^1.1.1",
-    "uglify-js": "^3.5.2"
+    "uglify-js": "^3.5.2",
+    "ws": "2.3.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.5.2",

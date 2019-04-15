@@ -8,7 +8,7 @@ var _secureRandom2 = _interopRequireDefault(_secureRandom);
 
 var _bytebuffer = require('bytebuffer');
 
-var _peerplaysjsWs = require('peerplaysjs-ws');
+var _ws = require('../../ws');
 
 var _ecc = require('../../ecc');
 
@@ -43,7 +43,7 @@ var helper = {
     var tr_object = _serializer.ops.signed_transaction.toObject(tr);
 
     if (broadcast) {
-      var net = _peerplaysjsWs.Apis.instance().network_api();
+      var net = _ws.Apis.instance().network_api();
       console.log('... tr_object', JSON.stringify(tr_object));
       return net.exec('broadcast_transaction', [tr_object]);
     }

@@ -8,8 +8,6 @@ var _immutable = require('immutable');
 
 var _immutable2 = _interopRequireDefault(_immutable);
 
-var _peerplaysjsWs = require('peerplaysjs-ws');
-
 var _bigi = require('bigi');
 
 var _bigi2 = _interopRequireDefault(_bigi);
@@ -25,6 +23,8 @@ var _ChainValidation2 = _interopRequireDefault(_ChainValidation);
 var _EmitterInstance = require('./EmitterInstance');
 
 var _EmitterInstance2 = _interopRequireDefault(_EmitterInstance);
+
+var _ws = require('../../ws');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -178,7 +178,7 @@ var ChainStore = function () {
         return resolve();
       }
 
-      var db_api = _peerplaysjsWs.Apis.instance().db_api();
+      var db_api = _ws.Apis.instance().db_api();
 
       if (!db_api) {
         return reject(new Error('Api not found, please initialize the api instance before calling the ChainStore'));
@@ -201,7 +201,7 @@ var ChainStore = function () {
             _this.progress = progress_delta / (now - start);
 
             if (delta < 60) {
-              _peerplaysjsWs.Apis.instance().db_api().exec('set_subscribe_callback', [_this.onUpdate.bind(_this), true]).then(function () {
+              _ws.Apis.instance().db_api().exec('set_subscribe_callback', [_this.onUpdate.bind(_this), true]).then(function () {
                 console.log('synced and subscribed, chainstore ready');
                 _this.subscribed = true;
                 _this.fetchRecentOperations();
@@ -237,7 +237,7 @@ var ChainStore = function () {
       });
     };
 
-    return _peerplaysjsWs.Apis.instance().init_promise.then(function () {
+    return _ws.Apis.instance().init_promise.then(function () {
       return new Promise(_init);
     });
   };
@@ -443,7 +443,7 @@ var ChainStore = function () {
         return success(result);
       }
 
-      _peerplaysjsWs.Apis.instance().db_api().exec('get_objects', [[id]]).then(function (objects) {
+      _ws.Apis.instance().db_api().exec('get_objects', [[id]]).then(function (objects) {
         var object = objects[0];
 
         if (!object) {
@@ -502,7 +502,7 @@ var ChainStore = function () {
       return undefined;
     }
 
-    _peerplaysjsWs.Apis.instance().db_api().exec('lookup_asset_symbols', [[id_or_symbol]]).then(function (asset_objects) {
+    _ws.Apis.instance().db_api().exec('lookup_asset_symbols', [[id_or_symbol]]).then(function (asset_objects) {
       if (asset_objects.length && asset_objects[0]) {
         _this4._updateObject(asset_objects[0], true);
       } else {
@@ -538,7 +538,7 @@ var ChainStore = function () {
     }
 
     this.get_account_refs_of_keys_calls = this.get_account_refs_of_keys_calls.add(key);
-    _peerplaysjsWs.Apis.instance().db_api().exec('get_key_references', [[key]]).then(function (vec_account_id) {
+    _ws.Apis.instance().db_api().exec('get_key_references', [[key]]).then(function (vec_account_id) {
       var refs = _immutable2.default.Set();
       vec_account_id = vec_account_id[0];
       refs = refs.withMutations(function (r) {
@@ -576,7 +576,7 @@ var ChainStore = function () {
        * them or index them in updateObject.
        */
       this.balance_objects_by_address = this.balance_objects_by_address.set(address, _immutable2.default.Set());
-      _peerplaysjsWs.Apis.instance().db_api().exec('get_balance_objects', [[address]]).then(function (balance_objects) {
+      _ws.Apis.instance().db_api().exec('get_balance_objects', [[address]]).then(function (balance_objects) {
         var set = new Set();
 
         for (var i = 0; i < balance_objects.length; ++i) {
@@ -627,7 +627,7 @@ var ChainStore = function () {
       this.tournament_ids_by_state = this.tournament_ids_by_state.set(accountId, tournamentIdsForThisAccount);
     }
 
-    _peerplaysjsWs.Apis.instance().db_api().exec('get_tournaments_in_state', [stateString, 100]).then(function (tournaments) {
+    _ws.Apis.instance().db_api().exec('get_tournaments_in_state', [stateString, 100]).then(function (tournaments) {
       var originalTournamentIdsInState = _this7.tournament_ids_by_state.getIn([accountId, stateString]);
       // call updateObject on each tournament, which will classify it
       tournaments.forEach(function (tournament) {
@@ -662,7 +662,7 @@ var ChainStore = function () {
     tournamentIds = new _immutable2.default.Set();
     this.registered_tournament_ids_by_player = this.registered_tournament_ids_by_player.set(accountId, tournamentIds);
 
-    _peerplaysjsWs.Apis.instance().db_api().exec('get_registered_tournaments', [accountId, 100]).then(function (registered_tournaments) {
+    _ws.Apis.instance().db_api().exec('get_registered_tournaments', [accountId, 100]).then(function (registered_tournaments) {
       var originalTournamentIds = _this8.registered_tournament_ids_by_player.get(accountId);
       var newTournamentIds = new _immutable2.default.Set(registered_tournaments);
 
@@ -737,7 +737,7 @@ var ChainStore = function () {
       }
 
       this.objects_by_id = this.objects_by_id.set(id, true);
-      _peerplaysjsWs.Apis.instance().db_api().exec('get_objects', [[id]]).then(function (optional_objects) {
+      _ws.Apis.instance().db_api().exec('get_objects', [[id]]).then(function (optional_objects) {
         for (var _i = 0; _i < optional_objects.length; _i++) {
           var optional_object = optional_objects[_i];
 
@@ -994,7 +994,7 @@ var ChainStore = function () {
     var _this12 = this;
 
     return new Promise(function (resolve, reject) {
-      _peerplaysjsWs.Apis.instance().db_api().exec('lookup_witness_accounts', [0, 1000]).then(function (w) {
+      _ws.Apis.instance().db_api().exec('lookup_witness_accounts', [0, 1000]).then(function (w) {
         if (w) {
           var witnessArr = [];
           var tmpObj = {};
@@ -1031,7 +1031,7 @@ var ChainStore = function () {
     var _this13 = this;
 
     return new Promise(function (resolve, reject) {
-      _peerplaysjsWs.Apis.instance().db_api().exec('get_witness_by_account', [account_id]).then(function (optional_witness_object) {
+      _ws.Apis.instance().db_api().exec('get_witness_by_account', [account_id]).then(function (optional_witness_object) {
         if (optional_witness_object) {
           _this13._subTo('witnesses', optional_witness_object.id);
           _this13.witness_by_account_id = _this13.witness_by_account_id.set(optional_witness_object.witness_account, optional_witness_object.id);
@@ -1056,7 +1056,7 @@ var ChainStore = function () {
     var _this14 = this;
 
     return new Promise(function (resolve, reject) {
-      _peerplaysjsWs.Apis.instance().db_api().exec('get_committee_member_by_account', [account_id]).then(function (optional_committee_object) {
+      _ws.Apis.instance().db_api().exec('get_committee_member_by_account', [account_id]).then(function (optional_committee_object) {
         if (optional_committee_object) {
           _this14._subTo('committee', optional_committee_object.id);
           _this14.committee_by_account_id = _this14.committee_by_account_id.set(optional_committee_object.committee_member_account, optional_committee_object.id);
@@ -1114,7 +1114,7 @@ var ChainStore = function () {
     if (!this.fetching_get_full_accounts.has(name_or_id) || Date.now() - this.fetching_get_full_accounts.get(name_or_id) > 5000) {
       this.fetching_get_full_accounts.set(name_or_id, Date.now());
       // console.log( "FETCHING FULL ACCOUNT: ", name_or_id )
-      _peerplaysjsWs.Apis.instance().db_api().exec('get_full_accounts', [[name_or_id], true]).then(function (results) {
+      _ws.Apis.instance().db_api().exec('get_full_accounts', [[name_or_id], true]).then(function (results) {
         if (results.length === 0) {
           if (_ChainValidation2.default.is_object_id(name_or_id)) {
             _this15.objects_by_id = _this15.objects_by_id.set(name_or_id, null);
@@ -1210,7 +1210,7 @@ var ChainStore = function () {
         });
 
         if (sub_to_objects.length) {
-          _peerplaysjsWs.Apis.instance().db_api().exec('get_objects', [sub_to_objects]);
+          _ws.Apis.instance().db_api().exec('get_objects', [sub_to_objects]);
         }
 
         _this15._updateObject(statistics);
@@ -1327,7 +1327,7 @@ var ChainStore = function () {
     var start = '1.' + op_history + '.0';
 
     pending_request.promise = new Promise(function (resolve, reject) {
-      _peerplaysjsWs.Apis.instance().history_api().exec('get_account_history', [account_id, most_recent, limit, start]).then(function (operations) {
+      _ws.Apis.instance().history_api().exec('get_account_history', [account_id, most_recent, limit, start]).then(function (operations) {
         var current_account = _this16.objects_by_id.get(account_id);
         var current_history = current_account.get('history');
 
@@ -1368,7 +1368,7 @@ var ChainStore = function () {
 
   ChainStore.getSportsList = function getSportsList() {
     return new Promise(function (resolve, reject) {
-      _peerplaysjsWs.Apis.instance().db_api().exec('list_sports', []).then(function (sportsList) {
+      _ws.Apis.instance().db_api().exec('list_sports', []).then(function (sportsList) {
         if (sportsList) {
           resolve(sportsList);
         } else {
@@ -1390,7 +1390,7 @@ var ChainStore = function () {
     if (eventGroupsList === undefined) {
       this.event_groups_list_by_sport_id = this.event_groups_list_by_sport_id.set(sportId, _immutable2.default.Set());
 
-      _peerplaysjsWs.Apis.instance().db_api().exec('list_event_groups', [sportId]).then(function (eventGroups) {
+      _ws.Apis.instance().db_api().exec('list_event_groups', [sportId]).then(function (eventGroups) {
         var set = new Set();
 
         for (var i = 0, len = eventGroups.length; i < len; ++i) {
@@ -1419,7 +1419,7 @@ var ChainStore = function () {
     if (bettingMarketGroupsList === undefined) {
       this.betting_market_groups_list_by_sport_id = this.betting_market_groups_list_by_sport_id.set(eventId, _immutable2.default.Set());
 
-      _peerplaysjsWs.Apis.instance().db_api().exec('list_betting_market_groups', [eventId]).then(function (bettingMarketGroups) {
+      _ws.Apis.instance().db_api().exec('list_betting_market_groups', [eventId]).then(function (bettingMarketGroups) {
         var set = new Set();
 
         for (var i = 0, len = bettingMarketGroups.length; i < len; ++i) {
@@ -1450,7 +1450,7 @@ var ChainStore = function () {
     if (bettingMarketsList === undefined) {
       this.betting_markets_list_by_sport_id = this.betting_markets_list_by_sport_id.set(bettingMarketGroupId, _immutable2.default.Set());
 
-      _peerplaysjsWs.Apis.instance().db_api().exec('list_betting_markets', [bettingMarketGroupId]).then(function (bettingMarkets) {
+      _ws.Apis.instance().db_api().exec('list_betting_markets', [bettingMarketGroupId]).then(function (bettingMarkets) {
         var set = new Set();
 
         for (var i = 0, len = bettingMarkets.length; i < len; ++i) {
@@ -1473,7 +1473,7 @@ var ChainStore = function () {
 
   ChainStore.getGlobalBettingStatistics = function getGlobalBettingStatistics() {
     return new Promise(function (resolve, reject) {
-      _peerplaysjsWs.Apis.instance().db_api().exec('get_global_betting_statistics', []).then(function (getGlobalBettingStatistics) {
+      _ws.Apis.instance().db_api().exec('get_global_betting_statistics', []).then(function (getGlobalBettingStatistics) {
         if (getGlobalBettingStatistics) {
           resolve(getGlobalBettingStatistics);
         } else {
@@ -1485,7 +1485,7 @@ var ChainStore = function () {
 
   ChainStore.getBinnedOrderBook = function getBinnedOrderBook(betting_market_id, precision) {
     return new Promise(function (resolve, reject) {
-      _peerplaysjsWs.Apis.instance().bookie_api().exec('get_binned_order_book', [betting_market_id, precision]).then(function (order_book_object) {
+      _ws.Apis.instance().bookie_api().exec('get_binned_order_book', [betting_market_id, precision]).then(function (order_book_object) {
         if (order_book_object) {
           resolve(order_book_object);
         } else {
@@ -1497,7 +1497,7 @@ var ChainStore = function () {
 
   ChainStore.getTotalMatchedBetAmountForBettingMarketGroup = function getTotalMatchedBetAmountForBettingMarketGroup(group_id) {
     return new Promise(function (resolve, reject) {
-      _peerplaysjsWs.Apis.instance().bookie_api().exec('get_total_matched_bet_amount_for_betting_market_group', [group_id]).then(function (total_matched_bet_amount) {
+      _ws.Apis.instance().bookie_api().exec('get_total_matched_bet_amount_for_betting_market_group', [group_id]).then(function (total_matched_bet_amount) {
         if (total_matched_bet_amount) {
           resolve(total_matched_bet_amount);
         } else {
@@ -1509,7 +1509,7 @@ var ChainStore = function () {
 
   ChainStore.getEventsContainingSubString = function getEventsContainingSubString(sub_string, language) {
     return new Promise(function (resolve, reject) {
-      _peerplaysjsWs.Apis.instance().bookie_api().exec('get_events_containing_sub_string', [sub_string, language]).then(function (events_containing_sub_string) {
+      _ws.Apis.instance().bookie_api().exec('get_events_containing_sub_string', [sub_string, language]).then(function (events_containing_sub_string) {
         if (events_containing_sub_string) {
           resolve(events_containing_sub_string);
         } else {
@@ -1521,7 +1521,7 @@ var ChainStore = function () {
 
   ChainStore.getUnmatchedBetsForBettor = function getUnmatchedBetsForBettor(betting_market_id_type, account_id_type) {
     return new Promise(function (resolve, reject) {
-      _peerplaysjsWs.Apis.instance().db_api().exec('get_unmatched_bets_for_bettor', [betting_market_id_type, account_id_type]).then(function (unmatched_bets_for_bettor) {
+      _ws.Apis.instance().db_api().exec('get_unmatched_bets_for_bettor', [betting_market_id_type, account_id_type]).then(function (unmatched_bets_for_bettor) {
         if (unmatched_bets_for_bettor) {
           resolve(unmatched_bets_for_bettor);
         } else {
@@ -1533,7 +1533,7 @@ var ChainStore = function () {
 
   ChainStore.listEventsInGroup = function listEventsInGroup(event_group_id) {
     return new Promise(function (resolve, reject) {
-      _peerplaysjsWs.Apis.instance().db_api().exec('list_events_in_group', [event_group_id]).then(function (events_in_group) {
+      _ws.Apis.instance().db_api().exec('list_events_in_group', [event_group_id]).then(function (events_in_group) {
         if (events_in_group) {
           resolve(events_in_group);
         } else {
@@ -1545,7 +1545,7 @@ var ChainStore = function () {
 
   ChainStore.getAllUnmatchedBetsForBettor = function getAllUnmatchedBetsForBettor(account_id_type) {
     return new Promise(function (resolve, reject) {
-      _peerplaysjsWs.Apis.instance().db_api().exec('get_all_unmatched_bets_for_bettor', [account_id_type]).then(function (all_unmatched_bets_for_bettor) {
+      _ws.Apis.instance().db_api().exec('get_all_unmatched_bets_for_bettor', [account_id_type]).then(function (all_unmatched_bets_for_bettor) {
         if (all_unmatched_bets_for_bettor) {
           resolve(all_unmatched_bets_for_bettor);
         } else {
@@ -1557,7 +1557,7 @@ var ChainStore = function () {
 
   ChainStore.getMatchedBetsForBettor = function getMatchedBetsForBettor(bettor_id) {
     return new Promise(function (resolve, reject) {
-      _peerplaysjsWs.Apis.instance().bookie_api().exec('get_matched_bets_for_bettor', [bettor_id]).then(function (matched_bets_for_bettor) {
+      _ws.Apis.instance().bookie_api().exec('get_matched_bets_for_bettor', [bettor_id]).then(function (matched_bets_for_bettor) {
         if (matched_bets_for_bettor) {
           resolve(matched_bets_for_bettor);
         } else {
@@ -1571,7 +1571,7 @@ var ChainStore = function () {
     var limit = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000;
 
     return new Promise(function (resolve, reject) {
-      _peerplaysjsWs.Apis.instance().bookie_api().exec('get_all_matched_bets_for_bettor', [bettor_id, start, limit]).then(function (all_matched_bets_for_bettor) {
+      _ws.Apis.instance().bookie_api().exec('get_all_matched_bets_for_bettor', [bettor_id, start, limit]).then(function (all_matched_bets_for_bettor) {
         if (all_matched_bets_for_bettor) {
           resolve(all_matched_bets_for_bettor);
         } else {
@@ -1836,7 +1836,7 @@ var ChainStore = function () {
           account = account.set('call_orders', call_orders.add(object.id));
           this.objects_by_id = this.objects_by_id.set(account.get('id'), account);
           // Force subscription to the object in the witness node by calling get_objects
-          _peerplaysjsWs.Apis.instance().db_api().exec('get_objects', [[object.id]]);
+          _ws.Apis.instance().db_api().exec('get_objects', [[object.id]]);
         }
       }
     } else if (objectSpace === order_prefix) {
@@ -1850,7 +1850,7 @@ var ChainStore = function () {
           _account2 = _account2.set('orders', limit_orders.add(object.id));
           this.objects_by_id = this.objects_by_id.set(_account2.get('id'), _account2);
           // Force subscription to the object in the witness node by calling get_objects
-          _peerplaysjsWs.Apis.instance().db_api().exec('get_objects', [[object.id]]);
+          _ws.Apis.instance().db_api().exec('get_objects', [[object.id]]);
         }
       }
     } else if (objectSpace === proposal_prefix) {
@@ -1933,7 +1933,7 @@ var ChainStore = function () {
     var limit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 5;
     var start_tournament_id = arguments[2];
 
-    return _peerplaysjsWs.Apis.instance().db_api().exec('get_tournaments', [last_tournament_id, limit, start_tournament_id]).then(function (tournaments) {
+    return _ws.Apis.instance().db_api().exec('get_tournaments', [last_tournament_id, limit, start_tournament_id]).then(function (tournaments) {
       var list = _immutable2.default.List();
 
       _this20.setLastTournamentId(null);
@@ -1959,7 +1959,7 @@ var ChainStore = function () {
 
     return new Promise(function (resolve) {
       if (_this21.last_tournament_id === undefined) {
-        _peerplaysjsWs.Apis.instance().db_api().exec('get_tournaments', [tournament_prefix + '0', 1, tournament_prefix + '0']).then(function (tournaments) {
+        _ws.Apis.instance().db_api().exec('get_tournaments', [tournament_prefix + '0', 1, tournament_prefix + '0']).then(function (tournaments) {
           _this21.setLastTournamentId(null);
 
           if (tournaments && tournaments.length) {
@@ -1994,7 +1994,7 @@ var ChainStore = function () {
 
     if (missing.length) {
       // we may need to fetch some objects
-      _peerplaysjsWs.Apis.instance().db_api().exec('lookup_vote_ids', [missing]).then(function (vote_obj_array) {
+      _ws.Apis.instance().db_api().exec('lookup_vote_ids', [missing]).then(function (vote_obj_array) {
         for (var _i2 = 0; _i2 < vote_obj_array.length; ++_i2) {
           if (vote_obj_array[_i2]) {
             _this22._updateObject(vote_obj_array[_i2]);
@@ -2071,7 +2071,7 @@ var ChainStore = function () {
   ChainStore.prototype.__getBlocksForScan = function __getBlocksForScan(lastBlock) {
     var _this24 = this;
 
-    var db_api = _peerplaysjsWs.Apis.instance().db_api();
+    var db_api = _ws.Apis.instance().db_api();
     return new Promise(function (success) {
       var scanToBlock = _this24.last_processed_block;
 
@@ -2094,7 +2094,7 @@ var ChainStore = function () {
   ChainStore.prototype.__bindBlock = function __bindBlock(lastBlock, scanToBlock, isInit) {
     var _this25 = this;
 
-    var db_api = _peerplaysjsWs.Apis.instance().db_api();
+    var db_api = _ws.Apis.instance().db_api();
     return new Promise(function (success) {
       db_api.exec('get_block', [lastBlock]).then(function (block) {
         block.id = lastBlock;

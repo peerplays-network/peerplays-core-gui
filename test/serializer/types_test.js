@@ -1,6 +1,6 @@
 import {Long} from 'bytebuffer';
 import assert from 'assert';
-import {ChainConfig} from 'peerplaysjs-ws';
+import {ChainConfig} from '../../lib/ws';
 import Convert from '../../lib/serializer/src/convert';
 
 import p from '../../lib/serializer/src/precision';
