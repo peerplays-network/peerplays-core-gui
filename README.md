@@ -73,7 +73,7 @@ Four sub-libraries are included: `ECC`, `Chain`, `WS` and `Serializer`. Generall
 
 <details>
 
-<summary>removing peerplaysjs-ws</summary>
+<summary>peerplaysjs-ws is deprecated</summary>
 
 Peerplaysjs-lib includes the now deprecated peerplaysjs-ws library within itself. Updating your code to reflect this is simple, here is an example:
 
