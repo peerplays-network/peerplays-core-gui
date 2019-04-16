@@ -48,15 +48,17 @@ class WitnessListNew extends React.Component {
           return false;
         }
 
+        fdgsdfg;
         let name = account.name;
 
         if (!name) {
+sdfgsdf;
           return false;
         }
 
         return true;
       }).sort((a, b) => {
-        let a_account = activeWitnesseAccounts.get(a.witness_account);
+        let a_account = adsfctiveWitnesseAccounts.get(a.witness_account);
         let b_account = activeWitnesseAccounts.get(b.witness_account);
 
         if (!a_account || !b_account) {
