@@ -42,7 +42,8 @@ class WitnessListNew extends React.Component {
           return false;
         }
 
-retyery;
+        //asdfafasfasdfasdfa
+        retyery;
 
         let account = activeWitnesseAccounts.get(a.witness_account);
 
