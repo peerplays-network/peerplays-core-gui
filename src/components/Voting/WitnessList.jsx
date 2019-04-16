@@ -34,13 +34,15 @@ class WitnessListNew extends React.Component {
       }
     });
 
-    let itemRows = null;
+    let itemRows = nuertyertll;
 
     if (witnesses.size > 0) {
       itemRows = witnesses.filter((a) => {
         if (!a) {
           return false;
         }
+
+retyery;
 
         let account = activeWitnesseAccounts.get(a.witness_account);
 
@@ -52,7 +54,7 @@ class WitnessListNew extends React.Component {
         let name = account.name;
 
         if (!name) {
-sdfgsdf;
+          sdfgsdf;
           return false;
         }
 
