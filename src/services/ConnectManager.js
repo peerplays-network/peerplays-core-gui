@@ -1,4 +1,4 @@
-import {ApisInstance, Apis, ConnectionManager} from 'peerplaysjs-ws';
+import {ApisInstance, Apis, ConnectionManager} from 'peerplaysjs-lib';
 import Config from '../../config/Config';
 let instances = {};
 class ConnectManager {

@@ -1,11 +1,4 @@
-import {
-  Aes,
-  TransactionHelper,
-  FetchChain
-} from 'peerplaysjs-lib';
-import {
-  Apis
-} from 'peerplaysjs-ws';
+import {Aes, TransactionHelper, FetchChain, Apis} from 'peerplaysjs-lib';
 import WalletApi from '../rpc_api/WalletApi';
 import WalletDb from '../stores/WalletDb';
 
