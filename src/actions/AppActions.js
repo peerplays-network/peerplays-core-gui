@@ -119,7 +119,6 @@ class AppPrivateActions {
    * @returns {{type: (APP_CURRENT_LOCATION), currentLocation: string}}
    */
   static setCurrentLocationAction(location) {
-    console.log('new location: ', location);
     return {
       type: ActionTypes.APP_CURRENT_LOCATION,
       payload: {

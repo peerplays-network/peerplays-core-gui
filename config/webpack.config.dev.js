@@ -3,8 +3,10 @@ var path = require('path');
 var paths = require('./paths');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var Clean = require('clean-webpack-plugin');
+var getClientEnvironment = require('./env');
 
 // BASE APP DIR
 var root_dir = path.resolve(__dirname, '..');
@@ -15,7 +17,16 @@ function extractForProduction(loaders) {
   return ExtractTextPlugin.extract('style', loaders.substr(loaders.indexOf('!')));
 }
 
+// Webpack uses `publicPath` to determine where the app is being served from.
+// In development, we always serve from the root. This makes config easier.
 var publicPath = '/';
+// `publicUrl` is just like `publicPath`, but we will provide it to our app
+// as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
+// Omit trailing slash as %PUBLIC_PATH%/xyz looks better than %PUBLIC_PATH%xyz.
+var publicUrl = '';
+// Get environment variables to inject into our app.
+var env = getClientEnvironment(publicUrl);
+
 
 // STYLE LOADERS
 var cssLoaders = 'style-loader!css-loader!postcss-loader',
@@ -40,6 +51,11 @@ var define = {
 
 // COMMON PLUGINS
 var plugins = [
+  // Makes some environment variables available in index.html.
+  // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
+  // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+  // In development, this will be an empty string.
+  new InterpolateHtmlPlugin(env.raw),
   new webpack.optimize.DedupePlugin(),
   new webpack.optimize.OccurrenceOrderPlugin(),
   new webpack.DefinePlugin(define),
