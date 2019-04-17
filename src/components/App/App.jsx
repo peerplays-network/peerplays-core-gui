@@ -2,8 +2,11 @@ import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import intlData from '../Utility/intlData';
 import {IntlProvider} from 'react-intl';
+import {bindActionCreators} from 'redux';
+import {AppActions, NavigateActions} from '../../actions';
 import CantConnectModal from '../Modal/CantConnectModal/CantConnectModal';
 import CommonMessage from '../CommonMessage';
+import Config from '../../../config/Config';
 import Header from '../Header/Header';
 import HelpModal from '../Help/HelpModal';
 import NotificationSystem from 'react-notification-system';
@@ -15,14 +18,50 @@ import SplashScreen from '../SplashScreen/SplashScreen';
 
 class App extends PureComponent {
   _notificationSystem = null;
+  constructor(props) {
+    super(props);
 
+    this.idleCheck = this.idleCheck.bind(this);
+  }
   componentDidMount() {
     this._notificationSystem = this.refs.notificationSystem;
+  }
+
+  componentDidUpdate(prevProps) {
+    // Start lidle checker to autologout idle users.
+    if(prevProps !== this.props) {
+      this.idleCheck(this.props);
+    }
   }
 
   static contextTypes = {
     router: routerShape
   };
+
+  idleCheck(props) {
+    let t;
+    window.onclick = resetTimer;
+    window.onkeypress = resetTimer;
+    window.onload = resetTimer;
+    window.onmousemove = resetTimer;
+    window.onmousedown = resetTimer;
+    window.ontouchstart = resetTimer;
+    window.addEventListener('scroll', resetTimer, true);
+
+    function isIdle() {
+      console.warn('Logging out user due to inactivity.');
+      props.timeout();
+      props.setCurrentLocation('TIMEOUT');
+    }
+
+    function resetTimer() {
+      clearTimeout(t);
+
+      if(props.isLogin !== false) {
+        t = setTimeout(isIdle, Config.IDLE_TIMEOUT);
+      }
+    }
+  }
 
   render() {
     let content = null;
@@ -103,9 +142,19 @@ const mapStateToProps = (state) => {
     syncIsFail: state.app.syncIsFail,
     showHelpPopup: state.helpReducer.showHelpModal,
     locale: state.settings.locale,
+    isLogin: state.app.isLogin,
     activeNotification: state.commonMessage.get('activeMessage'),
     headerMessages: state.commonMessage.get('headerMessages')
   };
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => bindActionCreators(
+  {
+    timeout: AppActions.timeout,
+    navigateToTimeout: NavigateActions.navigateToTimeout,
+    setCurrentLocation: AppActions.setCurrentLocation
+  },
+  dispatch
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

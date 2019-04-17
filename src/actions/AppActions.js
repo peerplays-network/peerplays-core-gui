@@ -30,6 +30,15 @@ class AppPrivateActions {
     };
   }
 
+  static timeoutAction() {
+    return {
+      type: ActionTypes.APP_TIMEOUT,
+      payload: {
+        isLogin: false
+      }
+    };
+  }
+
   /**
    * Private Redux Action Creator (APP_LOGIN)
    * Account Login in app
@@ -258,6 +267,35 @@ class AppActions {
   static resetCache() {
     return Repository.resetCache();
   }
+
+  /**
+ *  Reducer: APP timeout action
+ *
+ * @returns {Function}
+ */
+  static timeout() {
+    return (dispatch) => {
+      StorageService.remove('currentAccount');
+      RememberMeService.resetRememberMe();
+      Repository.resetCache();
+
+      if (CONFIG.__ELECTRON__) {
+        CryptoElectronService.removeElectronAes();
+      }
+
+      dispatch(PrivateKeyActions.setKeys());
+      dispatch(SendPageActions.resetSendPage());
+      dispatch(DashboardPageActions.resetDasbhoard());
+
+      return WalletService.resetDBTables().then(() => {
+        dispatch(AppPrivateActions.timeoutAction());
+        dispatch(RWalletActions.resetWallet());
+        dispatch(RWalletDataActions.resetWalletData());
+        dispatch(NavigateActions.navigateToTimeout());
+      });
+    };
+  }
+
 
   /**
  *  Reducer: APP Logout action

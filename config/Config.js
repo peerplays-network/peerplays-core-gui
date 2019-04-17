@@ -16,6 +16,7 @@ const Config = {
   BLOCKCHAIN_URLS: blockchainUrls,
   FAUCET_URLS: shuffledFaucetUrls,
 
+  IDLE_TIMEOUT: 600000, // Time is in milliseconds.
   CORE_ASSET: 'PPY',
   FAUCET_URL: 'faucetUrls',
   BITSHARES_WS: 'wss://bitshares.openledger.info/ws',

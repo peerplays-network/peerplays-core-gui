@@ -618,6 +618,14 @@
       "title": "Memo"
     }
   },
+  "timeout": {
+    "password": "Password",
+    "title": "Your session has expired",
+    "body_part_1": "If you want to continue as ",
+    "body_part_2": " you need to sign back in",
+    "exit": "EXIT APP",
+    "sign_in": "SIGN IN"
+  },
   "deposit_with_draw": {
     "deposit": "Deposit",
     "withdraw": "Withdraw",
@@ -644,6 +652,14 @@
   "cant_connect_modal_blockchain": {
     "title": "Can’t Connect to Blockchain",
     "try_again": "Try again"
+  },
+  "timeout_modal": {
+    "password": "Password",
+    "title": "Your session has expired",
+    "body_part_1": "If you want to continue as ",
+    "body_part_2": " you need to sign back in",
+    "exit": "EXIT APP",
+    "sign_in": "SIGN IN"
   },
   "help": {
     "title": "Help",
