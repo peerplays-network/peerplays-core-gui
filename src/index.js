@@ -33,6 +33,7 @@ import Empty from './components/Empty';
 import ClaimBtsContainer from './components/ClaimBts/ClaimBtsContainer';
 import AboutContainer from './components/About/AboutContainer';
 import ClaimSettings from './components/Settings/ClaimSettings';
+import Timeout from './components/Timeout/Timeout';
 require('./components/Utility/Prototypes'); /*eslint-disable-line */
 
 // Init App
@@ -54,6 +55,13 @@ const routes = (
       onEnter={ () => {
         window.scrollTo(0, 0);
         store.dispatch(AppActions.setCurrentLocation(LocationConstants.DASHBOARD_BALANCES));
+      } }
+    />
+    <Route path='/timeout'
+      component={ Timeout }
+      onEnter={ () => {
+        store.dispatch(AppActions
+          .setCurrentLocation(LocationConstants.TIMEOUT));
       } }
     />
     {/*

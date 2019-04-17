@@ -89,6 +89,12 @@ class NavigateActions {
     };
   }
 
+  static navigateToTimeout() {
+    return (dispatch) => {
+      dispatch(push('/timeout'));
+    };
+  }
+
   static navigateToClaim(climType) {
     return (dispatch) => {
       dispatch(push(`/claims/${climType}`));
