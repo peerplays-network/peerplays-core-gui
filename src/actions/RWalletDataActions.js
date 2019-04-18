@@ -9,7 +9,7 @@ export default class WalletDataActions {
   static resetWalletData() {
     return {
       type: ActionTypes.WD_RESET,
-      payload: null,
+      payload: null
     };
   }
 

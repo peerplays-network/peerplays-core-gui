@@ -1,4 +1,5 @@
 #!/bin/bash
+# Thanks to @adhasmana for this idea
 
 # any future command that fails will exit the script
 set -e

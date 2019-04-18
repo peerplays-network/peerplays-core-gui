@@ -207,7 +207,7 @@ class DashboardPageActions {
   */
   static resetDasbhoard() {
     return {
-      type: ActionTypes.DASHBOARD_RESET,
+      type: ActionTypes.DASHBOARD_RESET
     };
   }
 

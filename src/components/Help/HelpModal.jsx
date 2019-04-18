@@ -39,7 +39,12 @@ class HelpModal extends React.Component {
         onRequestHide={ this.hideModal.bind(this) }>
         <div className='modal-dialogContent w-900'>
           <ModalHeader closeButton>
-            <ModalTitle><Translate component='div' className='modalTitle help' content='help.title'/><a href='' onClick={ this.onClickClose.bind(this) } className='modalClose icon-close'></a> {/*eslint-disable-line*/}</ModalTitle>
+            <ModalTitle>
+              <Translate component='div' className='modalTitle help' content='help.title'/>
+              <a
+                href='/' onClick={ this.onClickClose.bind(this) } className='modalClose icon-close'>
+              </a>
+            </ModalTitle>
           </ModalHeader>
           <div ref='modal' style={ {maxHeight: 'calc(100vh - 210px)', overflowY: 'auto'} }>
             <div className='modalBody'>
@@ -130,9 +135,12 @@ class HelpModal extends React.Component {
                         className='text'
                         content='help.my_funds.balances.text_1'/>
                       <ul className='help__list'>
-                        <Translate component='li' className='' content='help.my_funds.balances.text_2'/>
-                        <Translate component='li' className='' content='help.my_funds.balances.text_3'/>
-                        <Translate component='li' className='' content='help.my_funds.balances.text_4'/>
+                        <Translate
+                          component='li' className='' content='help.my_funds.balances.text_2'/>
+                        <Translate
+                          component='li' className='' content='help.my_funds.balances.text_3'/>
+                        <Translate
+                          component='li' className='' content='help.my_funds.balances.text_4'/>
                       </ul>
                     </div>
 
@@ -208,7 +216,8 @@ class HelpModal extends React.Component {
                       content='help.vote.witness.header'/>
 
                     <div className='help__sectionSub'>
-                      <Translate component='div' className='text' content='help.vote.witness.text_1'/>
+                      <Translate
+                        component='div' className='text' content='help.vote.witness.text_1'/>
 
                       <ul className='help__list'>
                         <Translate
@@ -229,7 +238,8 @@ class HelpModal extends React.Component {
                       className='help__h4'
                       content='help.vote.advisors.header'/>
                     <div className='help__sectionSub'>
-                      <Translate component='p' className='text' content='help.vote.advisors.text_1'/>
+                      <Translate
+                        component='p' className='text' content='help.vote.advisors.text_1'/>
                       <ul className='help__list'>
                         <Translate
                           component='li'
@@ -296,7 +306,8 @@ class HelpModal extends React.Component {
                       className='help__h4'
                       content='help.settings.api_access.header'/>
                     <div className='help__sectionSub'>
-                      <Translate component='p' className='' content='help.settings.api_access.note'/>
+                      <Translate
+                        component='p' className='' content='help.settings.api_access.note'/>
                     </div>
 
                     <Translate
@@ -307,7 +318,6 @@ class HelpModal extends React.Component {
                       <Translate
                         component='p'
                         className=''
-                        // link={< Translate component = "span" content = "help.settings.claim.link" />}
                         content='help.settings.claim.note'/>
                     </div>
                     <a

@@ -3,11 +3,11 @@ import NavigateActions from './NavigateActions';
 import RWalletActions from './RWalletActions';
 import RWalletDataActions from './RWalletDataActions';
 import PrivateKeyActions from './RPrivateKeyActions';
-import StorageService from 'services/StorageService';
-import WalletService from 'services/WalletService';
-import RememberMeService from 'services/RememberMeService';
+import StorageService from '../services/StorageService';
+import WalletService from '../services/WalletService';
+import RememberMeService from '../services/RememberMeService';
 import CryptoElectronService from '../services/CryptoElectronService';
-import Repository from 'repositories/chain/repository';
+import Repository from '../repositories/chain/repository';
 import CONFIG from '../config/main';
 import SendPageActions from './SendPageActions';
 import DashboardPageActions from './DashboardPageActions';
@@ -26,6 +26,15 @@ class AppPrivateActions {
         isLogin: false,
         account: null,
         accountId: null
+      }
+    };
+  }
+
+  static timeoutAction() {
+    return {
+      type: ActionTypes.APP_TIMEOUT,
+      payload: {
+        isLogin: false
       }
     };
   }
@@ -249,6 +258,44 @@ class AppActions {
       dispatch(AppPrivateActions.setCurrentLocationAction(location));
     };
   }
+
+  /**
+ *  Reducer: App reset cache action called when reconnecting to blockchain
+ *
+ * @returns {Function}
+ */
+  static resetCache() {
+    return Repository.resetCache();
+  }
+
+  /**
+ *  Reducer: APP timeout action
+ *
+ * @returns {Function}
+ */
+  static timeout() {
+    return (dispatch) => {
+      StorageService.remove('currentAccount');
+      RememberMeService.resetRememberMe();
+      Repository.resetCache();
+
+      if (CONFIG.__ELECTRON__) {
+        CryptoElectronService.removeElectronAes();
+      }
+
+      dispatch(PrivateKeyActions.setKeys());
+      dispatch(SendPageActions.resetSendPage());
+      dispatch(DashboardPageActions.resetDasbhoard());
+
+      return WalletService.resetDBTables().then(() => {
+        dispatch(AppPrivateActions.timeoutAction());
+        dispatch(RWalletActions.resetWallet());
+        dispatch(RWalletDataActions.resetWalletData());
+        dispatch(NavigateActions.navigateToTimeout());
+      });
+    };
+  }
+
 
   /**
  *  Reducer: APP Logout action

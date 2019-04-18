@@ -1,13 +1,12 @@
-import WalletDb from 'stores/WalletDb';
-import WalletManagerStore from 'stores/WalletManagerStore';
-import AccountStore from 'stores/AccountStore';
-import PrivateKeyStore from 'stores/PrivateKeyStore';
-import {ChainStore, PrivateKey, PublicKey, Aes, key} from 'peerplaysjs-lib';
-import {Apis, ChainConfig} from 'peerplaysjs-ws';
-import BackupActions from 'actions/BackupActions';
-import WalletActions from 'actions/WalletActions';
-import alt from 'alt-instance';
-import iDB from 'idb-instance';
+import WalletDb from './stores/WalletDb';
+import WalletManagerStore from './stores/WalletManagerStore';
+import AccountStore from './stores/AccountStore';
+import PrivateKeyStore from './stores/PrivateKeyStore';
+import {ChainStore, PrivateKey, PublicKey, Aes, key. Apis, ChainConfig} from 'peerplaysjs-lib';
+import BackupActions from './actions/BackupActions';
+import WalletActions from './actions/WalletActions';
+import alt from './alt-instance';
+import iDB from './idb-instance';
 
 module.exports = {
   PrivateKey, PublicKey, Aes, key,
