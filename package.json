@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node scripts/start.js"
+    "start": "node scripts/start.js",
+    "sonar": "node scripts/sonar.js"
   },
   "author": "",
   "license": "ISC",
