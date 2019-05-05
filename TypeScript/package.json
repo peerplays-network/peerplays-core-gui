@@ -1,11 +1,11 @@
 {
-  "name": "react-redux-linter-boilerplater.git",
+  "name": "react-redux-linter-boilerplate",
   "version": "1.0.0",
   "description": "",
   "homepage": "./",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --watch-all",
     "start": "node scripts/start.js",
     "sonar": "node scripts/sonar.js"
   },
@@ -14,10 +14,14 @@
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
+    "@babel/preset-es2015": "^7.0.0-beta.53",
     "@babel/preset-react": "^7.0.0",
     "@commitlint/cli": "^7.5.2",
     "@commitlint/config-conventional": "^7.5.0",
+    "@types/enzyme": "^3.9.1",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/history": "^4.7.2",
+    "@types/jest": "^24.0.12",
     "@types/react": "^16.8.16",
     "@types/react-dom": "^16.8.4",
     "@types/react-redux": "^7.0.8",
@@ -29,6 +33,7 @@
     "@typescript-eslint/parser": "^1.7.0",
     "autoprefixer": "^9.5.1",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.7.1",
     "babel-loader": "^8.0.5",
     "chalk": "^2.4.2",
     "clean-webpack-plugin": "^2.0.1",
@@ -36,6 +41,9 @@
     "css-loader": "^2.1.1",
     "cz-conventional-changelog": "^2.1.0",
     "detect-port": "^1.3.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
+    "enzyme-to-json": "^3.3.5",
     "eslint": "^5.16.0",
     "eslint-loader": "^2.1.2",
     "eslint-plugin-flowtype": "^3.7.0",
@@ -45,26 +53,32 @@
     "eslint-plugin-react-hooks": "^1.6.0",
     "html-webpack-plugin": "^4.0.0-beta.5",
     "husky": "^2.1.0",
+    "jest": "^24.7.1",
     "lint-staged": "^8.1.6",
     "node-sass": "^4.12.0",
     "opn": "^6.0.0",
     "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
     "prettier": "^1.17.0",
+    "raf": "^3.4.1",
     "react-dev-utils": "^9.0.0",
     "react-router": "^5.0.0",
+    "react-test-renderer": "^16.8.6",
     "redux-devtools-extension": "^2.13.8",
+    "redux-mock-store": "^1.5.3",
     "sass-loader": "^7.1.0",
     "standard-version": "^5.0.2",
     "style-loader": "^0.23.1",
     "stylelint": "^10.0.1",
     "stylelint-order": "^3.0.0",
+    "ts-jest": "^24.0.2",
     "ts-loader": "^5.4.5",
     "typescript": "^3.4.5",
     "webpack": "^4.30.0",
     "webpack-dev-server": "^3.3.1"
   },
   "dependencies": {
+    "@types/mocha": "^5.2.6",
     "connected-react-router": "^6.4.0",
     "history": "^4.7.2",
     "immutable": "^4.0.0-rc.12",
@@ -75,12 +89,6 @@
     "redux": "^4.0.1",
     "redux-immutable": "^4.0.0",
     "redux-thunk": "^2.3.0"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ]
   },
   "config": {
     "commitizen": {
@@ -106,6 +114,33 @@
     },
     "ignore": [
       "**/dist/*.min.js"
+    ]
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "setupFiles": [
+      "raf/polyfill"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>config/tests/setupEnzyme.ts"
     ]
   }
 }

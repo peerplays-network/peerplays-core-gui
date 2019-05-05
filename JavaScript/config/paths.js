@@ -78,6 +78,7 @@ module.exports = {
   rps: resolveApp('src/assets/images/games/rps'),
   yarnLockFile: resolveApp('yarn.lock'),
   testsSetup: resolveApp('src/setupTests.js'),
+  tests: resolveApp('src/__tests__'),
   appNodeModules: resolveApp('node_modules'),
   ownNodeModules: resolveApp('node_modules'),
   nodePaths: nodePaths,
