@@ -61,10 +61,8 @@ module.exports = {
     'indent': 'off',
     // TypeScript specific rules
     '@typescript-eslint/indent': ['error', 2, {'SwitchCase': 1}],
-    "@typescript-eslint/explicit-function-return-type": ["error", {
-      "allowTypedFunctionExpressions": true,
-      "allowExpressions": true
-    }]
+    "@typescript-eslint/explicit-function-return-type": 'off',
+    '@typescript-eslint/explicit-member-accessibility': 'off'
   },
   settings: {
     react: {

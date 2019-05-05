@@ -1,13 +1,12 @@
-import React, {Component} from 'react';
+import React from 'react';
+import Clock from '../Clock';
 
-class Home extends Component{
-  render(){
-    return(
-      <p className='code-me'>
-        CODE ME!
-      </p>
+export default class Home extends React.Component<{}, {}> {
+  render() {
+    return (
+      <>
+        <Clock/>
+      </>
     );
   }
 }
-
-export default Home;

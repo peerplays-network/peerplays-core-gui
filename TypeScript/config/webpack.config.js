@@ -80,7 +80,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js)$/,
         include: paths.appSrc,
         exclude: /(node_modules|bower_components)/,
         use: {
@@ -105,7 +105,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx', '.ts', '.tsx']
+    extensions: ['*', '.js', '.ts', '.tsx']
   },
   output: {
     // Next line is not used in dev but WebpackDevServer crashes without it:
