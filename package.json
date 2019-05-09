@@ -17,6 +17,7 @@
     "url": "git://github.com/peerplays-network/peerplays-core-gui"
   },
   "scripts": {
+    "test": "jest",
     "init": "npm install commitizen -g && npm i",
     "commit": "git-cz",
     "pre-release": "npm run release -- --prerelease rc",
@@ -26,7 +27,6 @@
     "release-patch": "npm run release -- --release-as patch",
     "stylelint": "stylelint '**/*.scss'",
     "test-old": "./node_modules/.bin/mocha --compilers coffee:coffee-script,js:babel/register --require coffee-script/register",
-    "test": "jest",
     "debug": "node --inspect server.js",
     "start": "node scripts/start.js",
     "start-prod": "PROD=true node server.js",
@@ -52,6 +52,9 @@
     "copy-to-clipboard": "^3.0.5",
     "counterpart": "^0.17.1",
     "electron-is-dev": "0.3.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
+    "enzyme-to-json": "^3.3.5",
     "event-emitter": "^0.3.4",
     "foundation-apps": "git+https://github.com/zurb/foundation-apps.git",
     "git-rev-sync": "^1.4.0",
@@ -62,6 +65,7 @@
     "indexeddbshim": "^2.0.4",
     "intl": "^1.1.0",
     "jdenticon": "git+https://github.com/cryptonomex/jdenticon.git",
+    "jest": "^24.8.0",
     "jest-cli": "^23.4.0",
     "js-sha256": "^0.2.3",
     "jsdom": "^11.11.0",
@@ -117,13 +121,16 @@
     "whatwg-fetch": "^0.11.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-es2015": "^7.0.0-beta.53",
+    "@babel/preset-react": "^7.0.0",
     "@commitlint/cli": "^7.5.2",
     "@commitlint/config-conventional": "^7.5.0",
     "autoprefixer": "6.7.2",
     "babel": "^5.8.29",
     "babel-core": "^5.8.33",
     "babel-eslint": "^10.0.1",
-    "babel-jest": "^5.3.0",
+    "babel-jest": "^24.7.1",
     "babel-loader": "^5.3.3",
     "babel-plugin-react-transform": "^1.1.1",
     "babel-runtime": "^5.8.38",
@@ -193,14 +200,8 @@
     "worker-loader": "^0.6.0"
   },
   "jest": {
-    "scriptPreprocessor": "<rootDir>/__tests__/jest-preprocessor.js",
-    "testPathDirs": [
-      "<rootDir>/__tests__"
-    ],
-    "unmockedModulePathPatterns": [
-      "<rootDir>/node_modules/react",
-      "<rootDir>/node_modules/tcomb",
-      "<rootDir>/node_modules/immutable"
+    "roots": [
+      "<rootDir>/src/__tests__"
     ],
     "moduleFileExtensions": [
       "js",
@@ -208,15 +209,18 @@
       "json",
       "coffee"
     ],
-    "testFileExtensions": [
-      "js",
-      "jsx"
-    ],
     "testPathIgnorePatterns": [
       "/jest-preprocessor.js",
       "/node_modules/",
       "/utils/"
-    ]
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>__tests__/setupEnzyme.js"
+    ],
+    "verbose" : true
   },
   "config": {
     "commitizen": {
