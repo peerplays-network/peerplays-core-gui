@@ -1,9 +1,26 @@
 # Peerplays-Core-GUI
 
 Graphical User Interface allowing users to manage their funds on the Peerplays blockchain.
+<hr>
+
+<center>
+
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=peerplays-network_peerplays-core-gui)
+
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=peerplays-network_peerplays-core-gui&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=peerplays-network_peerplays-core-gui) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=peerplays-network_peerplays-core-gui&metric=alert_status)](https://sonarcloud.io/dashboard?id=peerplays-network_peerplays-core-gui) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=peerplays-network_peerplays-core-gui&metric=security_rating)](https://sonarcloud.io/dashboard?id=peerplays-network_peerplays-core-gui)
+
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=peerplays-network_peerplays-core-gui&metric=bugs)](https://sonarcloud.io/dashboard?id=peerplays-network_peerplays-core-gui) [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=peerplays-network_peerplays-core-gui&metric=ncloc)](https://sonarcloud.io/dashboard?id=peerplays-network_peerplays-core-gui)
+
+</center>
+
+<hr>
+
+<center>
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) 
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+
+</center>
 
 ## Technology Stack
 
