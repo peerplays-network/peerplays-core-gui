@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">lib/serializer/src/types.js | peerplaysjs-lib</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Pure JavaScript Peerplaysjs library for node.js and browsers."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="peerplaysjs-lib"><meta property="twitter:description" content="Pure JavaScript Peerplaysjs library for node.js and browsers."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/peerplays-network/peerplaysjs-lib"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#chain-src">chain/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/chain/src/AccountLogin.js~AccountLogin.html">AccountLogin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/chain/src/ChainStore.js~ChainStore.html">ChainStore</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/chain/src/GameMoves.js~GameMoves.html">GameMoves</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/chain/src/ObjectId.js~ObjectId.html">ObjectId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/chain/src/TransactionBuilder.js~TransactionBuilder.html">TransactionBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get">get</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-set">set</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-accountLogin">accountLogin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-chain_store">chain_store</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ChainTypes">ChainTypes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ChainValidation">ChainValidation</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NumberUtils">NumberUtils</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-helper">helper</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#ecc-src">ecc/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/ecc/src/PrivateKey.js~PrivateKey.html">PrivateKey</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/ecc/src/PublicKey.js~PublicKey.html">PublicKey</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/ecc/src/address.js~Address.html">Address</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/ecc/src/aes.js~Aes.html">Aes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/ecc/src/signature.js~Signature.html">Signature</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-normalize">normalize</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-calcPubKeyRecoveryParam">calcPubKeyRecoveryParam</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-deterministicGenerateK">deterministicGenerateK</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-recoverPubKey">recoverPubKey</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sign">sign</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-verify">verify</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-verifyRaw">verifyRaw</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ECSignature">ECSignature</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-enforce">enforce</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-HmacSHA256">HmacSHA256</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ripemd160">ripemd160</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sha1">sha1</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sha256">sha256</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sha512">sha512</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-key">key</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#serializer-src">serializer/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/serializer/src/FastParser.js~FastParser.html">FastParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/serializer/src/error_with_cause.js~ErrorWithCause.html">ErrorWithCause</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/serializer/src/serializer.js~Serializer.html">Serializer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-template">template</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-_my">_my</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-account_create">account_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-account_create_operation_fee_parameters">account_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-account_name_eq_lit_predicate">account_name_eq_lit_predicate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-account_options">account_options</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-account_transfer">account_transfer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-account_transfer_operation_fee_parameters">account_transfer_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-account_update">account_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-account_update_operation_fee_parameters">account_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-account_upgrade">account_upgrade</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-account_upgrade_operation_fee_parameters">account_upgrade_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-account_whitelist">account_whitelist</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-account_whitelist_operation_fee_parameters">account_whitelist_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-assert">assert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-assert_operation_fee_parameters">assert_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset">asset</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_claim_fees">asset_claim_fees</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_claim_fees_operation_fee_parameters">asset_claim_fees_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_create">asset_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_create_operation_fee_parameters">asset_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_dividend_distribution">asset_dividend_distribution</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_dividend_distribution_operation_fee_parameters">asset_dividend_distribution_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_fund_fee_pool">asset_fund_fee_pool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_fund_fee_pool_operation_fee_parameters">asset_fund_fee_pool_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_global_settle">asset_global_settle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_global_settle_operation_fee_parameters">asset_global_settle_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_issue">asset_issue</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_issue_operation_fee_parameters">asset_issue_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_options">asset_options</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_publish_feed">asset_publish_feed</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_publish_feed_operation_fee_parameters">asset_publish_feed_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_reserve">asset_reserve</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_reserve_operation_fee_parameters">asset_reserve_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_settle">asset_settle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_settle_cancel">asset_settle_cancel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_settle_cancel_operation_fee_parameters">asset_settle_cancel_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_settle_operation_fee_parameters">asset_settle_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_symbol_eq_lit_predicate">asset_symbol_eq_lit_predicate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_update">asset_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_update_bitasset">asset_update_bitasset</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_update_bitasset_operation_fee_parameters">asset_update_bitasset_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_update_dividend">asset_update_dividend</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_update_dividend_operation_fee_parameters">asset_update_dividend_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_update_feed_producers">asset_update_feed_producers</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_update_feed_producers_operation_fee_parameters">asset_update_feed_producers_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_update_operation_fee_parameters">asset_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-authority">authority</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-balance_claim">balance_claim</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-balance_claim_operation_fee_parameters">balance_claim_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bet">bet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bet_adjusted">bet_adjusted</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bet_adjusted_operation_fee_parameters">bet_adjusted_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bet_cancel">bet_cancel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bet_cancel_operation_fee_parameters">bet_cancel_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bet_canceled">bet_canceled</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bet_canceled_operation_fee_parameters">bet_canceled_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bet_matched">bet_matched</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bet_matched_operation_fee_parameters">bet_matched_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bet_place">bet_place</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bet_place_operation_fee_parameters">bet_place_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bet_type">bet_type</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market">betting_market</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_create">betting_market_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_create_operation_fee_parameters">betting_market_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_group">betting_market_group</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_group_cancel_unmatched_bets">betting_market_group_cancel_unmatched_bets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_group_cancel_unmatched_bets_operation_fee_parameters">betting_market_group_cancel_unmatched_bets_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_group_create">betting_market_group_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_group_create_operation_fee_parameters">betting_market_group_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_group_resolve">betting_market_group_resolve</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_group_resolve_operation_fee_parameters">betting_market_group_resolve_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_group_resolved">betting_market_group_resolved</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_group_resolved_operation_fee_parameters">betting_market_group_resolved_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_group_update">betting_market_group_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_group_update_operation_fee_parameters">betting_market_group_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_position">betting_market_position</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_resolution_type">betting_market_resolution_type</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_rules">betting_market_rules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_rules_create">betting_market_rules_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_rules_create_operation_fee_parameters">betting_market_rules_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_rules_update">betting_market_rules_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_rules_update_operation_fee_parameters">betting_market_rules_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_update">betting_market_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_update_operation_fee_parameters">betting_market_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bitasset_options">bitasset_options</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-blind_input">blind_input</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-blind_output">blind_output</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-blind_transfer">blind_transfer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-blind_transfer_operation_fee_parameters">blind_transfer_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-block_header">block_header</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-block_id_predicate">block_id_predicate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-burn_worker_initializer">burn_worker_initializer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-call_order_update">call_order_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-call_order_update_operation_fee_parameters">call_order_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cdd_vesting_policy_initializer">cdd_vesting_policy_initializer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-chain_parameters">chain_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-committee_member_create">committee_member_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-committee_member_create_operation_fee_parameters">committee_member_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-committee_member_update">committee_member_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-committee_member_update_global_parameters">committee_member_update_global_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-committee_member_update_global_parameters_operation_fee_parameters">committee_member_update_global_parameters_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-committee_member_update_operation_fee_parameters">committee_member_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-custom">custom</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-custom_operation_fee_parameters">custom_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-dividend_asset_options">dividend_asset_options</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-event">event</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-event_create">event_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-event_create_operation_fee_parameters">event_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-event_group">event_group</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-event_group_create">event_group_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-event_group_create_operation_fee_parameters">event_group_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-event_group_update">event_group_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-event_group_update_operation_fee_parameters">event_group_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-event_update">event_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-event_update_operation_fee_parameters">event_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-fba_distribute">fba_distribute</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-fba_distribute_operation_fee_parameters">fba_distribute_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-fee_schedule">fee_schedule</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-fill_order">fill_order</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-fill_order_operation_fee_parameters">fill_order_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-game_move">game_move</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-game_move_operation_fee_parameters">game_move_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-global_betting_statistics">global_betting_statistics</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-limit_order_cancel">limit_order_cancel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-limit_order_cancel_operation_fee_parameters">limit_order_cancel_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-limit_order_create">limit_order_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-limit_order_create_operation_fee_parameters">limit_order_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-linear_vesting_policy_initializer">linear_vesting_policy_initializer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-memo_data">memo_data</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-op_wrapper">op_wrapper</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-operation">operation</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-override_transfer">override_transfer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-override_transfer_operation_fee_parameters">override_transfer_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-payout_type">payout_type</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-price">price</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-price_feed">price_feed</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-processed_transaction">processed_transaction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-proposal_create">proposal_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-proposal_create_operation_fee_parameters">proposal_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-proposal_delete">proposal_delete</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-proposal_delete_operation_fee_parameters">proposal_delete_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-proposal_update">proposal_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-proposal_update_operation_fee_parameters">proposal_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-refund_worker_initializer">refund_worker_initializer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-rock_paper_scissors_game_options">rock_paper_scissors_game_options</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-rock_paper_scissors_gesture">rock_paper_scissors_gesture</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-rock_paper_scissors_throw_commit">rock_paper_scissors_throw_commit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-rock_paper_scissors_throw_reveal">rock_paper_scissors_throw_reveal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-signed_block">signed_block</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-signed_block_header">signed_block_header</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-signed_transaction">signed_transaction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-sport">sport</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-sport_create">sport_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-sport_create_operation_fee_parameters">sport_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-sport_update">sport_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-sport_update_operation_fee_parameters">sport_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-stealth_confirmation">stealth_confirmation</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-stealth_memo_data">stealth_memo_data</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-tournament_create">tournament_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-tournament_create_operation_fee_parameters">tournament_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-tournament_join">tournament_join</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-tournament_join_operation_fee_parameters">tournament_join_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-tournament_leave">tournament_leave</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-tournament_leave_operation_fee_parameters">tournament_leave_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-tournament_options">tournament_options</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-tournament_payout">tournament_payout</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-tournament_payout_operation_fee_parameters">tournament_payout_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-transaction">transaction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-transfer">transfer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-transfer_from_blind">transfer_from_blind</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-transfer_from_blind_operation_fee_parameters">transfer_from_blind_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-transfer_operation_fee_parameters">transfer_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-transfer_to_blind">transfer_to_blind</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-transfer_to_blind_operation_fee_parameters">transfer_to_blind_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-vesting_balance_create">vesting_balance_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-vesting_balance_create_operation_fee_parameters">vesting_balance_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-vesting_balance_withdraw">vesting_balance_withdraw</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-vesting_balance_withdraw_operation_fee_parameters">vesting_balance_withdraw_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-vesting_balance_worker_initializer">vesting_balance_worker_initializer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-void_result">void_result</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-withdraw_permission_claim">withdraw_permission_claim</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-withdraw_permission_claim_operation_fee_parameters">withdraw_permission_claim_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-withdraw_permission_create">withdraw_permission_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-withdraw_permission_create_operation_fee_parameters">withdraw_permission_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-withdraw_permission_delete">withdraw_permission_delete</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-withdraw_permission_delete_operation_fee_parameters">withdraw_permission_delete_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-withdraw_permission_update">withdraw_permission_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-withdraw_permission_update_operation_fee_parameters">withdraw_permission_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-witness_create">witness_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-witness_create_operation_fee_parameters">witness_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-witness_update">witness_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-witness_update_operation_fee_parameters">witness_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-worker_create">worker_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-worker_create_operation_fee_parameters">worker_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-_my">_my</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Types">Types</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#ws">ws</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/ws/ChainConfig.js~ChainConfig.html">ChainConfig</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/ws/ChainWebSocket.js~ChainWebSocket.html">ChainWebSocket</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/ws/ConnectionManager.js~ConnectionManager.html">ConnectionManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/ws/GrapheneApi.js~GrapheneApi.html">GrapheneApi</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-chainConfig">chainConfig</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">lib/serializer/src/types.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// Low-level types that make up operations
+
+import {ChainConfig} from &apos;../../ws&apos;;
+import v from &apos;./SerializerValidation&apos;;
+import fp from &apos;./FastParser&apos;;
+
+import ChainTypes from &apos;../../chain/src/ChainTypes&apos;;
+import ObjectId from &apos;../../chain/src/ObjectId&apos;;
+
+import {PublicKey, Address} from &apos;../../ecc&apos;;
+
+let MIN_SIGNED_32 = -1 * Math.pow(2, 31);
+let MAX_SIGNED_32 = Math.pow(2, 31) - 1;
+
+const HEX_DUMP = process.env.npm_config__graphene_serializer_hex_dump;
+
+let strCmp = (a, b) =&gt; {
+  let result = 0;
+
+  if (a &gt; b) {
+    result = 1;
+  }
+
+  if (a &lt; b) {
+    result = -1;
+  }
+
+  return result;
+};
+
+let firstEl = (el) =&gt; (Array.isArray(el) ? el[0] : el);
+
+let sortOperation = (array, st_operation) =&gt; {
+  if (!st_operation.nosort) {
+    // If the operation has its own compare function.
+    if (st_operation.compare) {
+      return array.sort((a, b) =&gt; st_operation.compare(firstEl(a), firstEl(b)));
+    }
+
+    return array.sort((a, b) =&gt; {
+      let aFirst = firstEl(a);
+      let bFirst = firstEl(b);
+
+      // If both of the first elements are numbers.
+      if (typeof aFirst === &apos;number&apos; &amp;&amp; typeof bFirst === &apos;number&apos;) {
+        return aFirst - bFirst;
+      }
+
+      // If they are both buffers.
+      if (Buffer.isBuffer(aFirst) &amp;&amp; Buffer.isBuffer(bFirst)) {
+        return strCmp(aFirst.toString(&apos;hex&apos;), bFirst.toString(&apos;hex&apos;));
+      }
+
+      // Otherwise
+      return strCmp(aFirst.toString(), bFirst.toString());
+    });
+  }
+
+  return array;
+};
+
+const Types = {};
+
+Types.uint8 = {
+  fromByteBuffer(b) {
+    return b.readUint8();
+  },
+  appendByteBuffer(b, object) {
+    v.require_range(0, 0xff, object, `uint8 ${object}`);
+    b.writeUint8(object);
+  },
+  fromObject(object) {
+    v.require_range(0, 0xff, object, `uint8 ${object}`);
+    return object;
+  },
+  toObject(object, debug = {}) {
+    if (debug.use_default &amp;&amp; object === undefined) {
+      return 0;
+    }
+
+    v.require_range(0, 0xff, object, `uint8 ${object}`);
+    return parseInt(object, 10);
+  }
+};
+
+Types.uint16 = {
+  fromByteBuffer(b) {
+    return b.readUint16();
+  },
+  appendByteBuffer(b, object) {
+    v.require_range(0, 0xffff, object, `uint16 ${object}`);
+    b.writeUint16(object);
+  },
+  fromObject(object) {
+    v.require_range(0, 0xffff, object, `uint16 ${object}`);
+    return object;
+  },
+  toObject(object, debug = {}) {
+    if (debug.use_default &amp;&amp; object === undefined) {
+      return 0;
+    }
+
+    v.require_range(0, 0xffff, object, `uint16 ${object}`);
+    return parseInt(object, 10);
+  }
+};
+
+Types.uint32 = {
+  fromByteBuffer(b) {
+    return b.readUint32();
+  },
+  appendByteBuffer(b, object) {
+    v.require_range(0, 0xffffffff, object, `uint32 ${object}`);
+    b.writeUint32(object);
+  },
+  fromObject(object) {
+    v.require_range(0, 0xffffffff, object, `uint32 ${object}`);
+    return object;
+  },
+  toObject(object, debug = {}) {
+    if (debug.use_default &amp;&amp; object === undefined) {
+      return 0;
+    }
+
+    v.require_range(0, 0xffffffff, object, `uint32 ${object}`);
+    return parseInt(object, 10);
+  }
+};
+
+Types.varint32 = {
+  fromByteBuffer(b) {
+    return b.readVarint32();
+  },
+  appendByteBuffer(b, object) {
+    v.require_range(MIN_SIGNED_32, MAX_SIGNED_32, object, `uint32 ${object}`);
+    b.writeVarint32(object);
+  },
+  fromObject(object) {
+    v.require_range(MIN_SIGNED_32, MAX_SIGNED_32, object, `uint32 ${object}`);
+    return object;
+  },
+  toObject(object, debug = {}) {
+    if (debug.use_default &amp;&amp; object === undefined) {
+      return 0;
+    }
+
+    v.require_range(MIN_SIGNED_32, MAX_SIGNED_32, object, `uint32 ${object}`);
+    return parseInt(object, 10);
+  }
+};
+
+Types.int64 = {
+  fromByteBuffer(b) {
+    return b.readInt64();
+  },
+  appendByteBuffer(b, object) {
+    v.required(object);
+    b.writeInt64(v.to_long(object));
+  },
+  fromObject(object) {
+    v.required(object);
+    return v.to_long(object);
+  },
+  toObject(object, debug = {}) {
+    if (debug.use_default &amp;&amp; object === undefined) {
+      return &apos;0&apos;;
+    }
+
+    v.required(object);
+    return v.to_long(object).toString();
+  }
+};
+
+Types.uint64 = {
+  fromByteBuffer(b) {
+    return b.readUint64();
+  },
+  appendByteBuffer(b, object) {
+    b.writeUint64(v.to_ulong(v.unsigned(object)));
+  },
+  fromObject(object) {
+    return v.to_ulong(v.unsigned(object));
+  },
+  toObject(object, debug = {}) {
+    if (debug.use_default &amp;&amp; object === undefined) {
+      return &apos;0&apos;;
+    }
+
+    return v.to_ulong(object).toString();
+  }
+};
+
+Types.string = {
+  fromByteBuffer(b) {
+    let b_copy;
+    let len = b.readVarint32();
+    b_copy = b.copy(b.offset, b.offset + len);
+    b.skip(len);
+    return Buffer.from(b_copy.toBinary(), &apos;binary&apos;);
+  },
+  appendByteBuffer(b, object) {
+    v.required(object);
+    b.writeVarint32(object.length);
+    b.append(object.toString(&apos;binary&apos;), &apos;binary&apos;);
+  },
+  fromObject(object) {
+    v.required(object);
+    return Buffer.from(object);
+  },
+  toObject(object, debug = {}) {
+    if (debug.use_default &amp;&amp; object === undefined) {
+      return &apos;&apos;;
+    }
+
+    return object.toString();
+  }
+};
+
+Types.bytes = (size) =&gt; {
+  let bytes = {
+    fromByteBuffer(b) {
+      if (size === undefined) {
+        let b_copy;
+        let len = b.readVarint32();
+        b_copy = b.copy(b.offset, b.offset + len);
+        b.skip(len);
+        return Buffer.from(b_copy.toBinary(), &apos;binary&apos;);
+      }
+
+      let b_copy = b.copy(b.offset, b.offset + size);
+      b.skip(size);
+      return Buffer.from(b_copy.toBinary(), &apos;binary&apos;);
+    },
+    appendByteBuffer(b, object) {
+      v.required(object);
+
+      if (typeof object === &apos;string&apos;) {
+        object = Buffer.from(object, &apos;hex&apos;);
+      }
+
+      if (size === undefined) {
+        b.writeVarint32(object.length);
+      }
+
+      b.append(object.toString(&apos;binary&apos;), &apos;binary&apos;);
+    },
+    fromObject(object) {
+      v.required(object);
+
+      if (Buffer.isBuffer(object)) {
+        return object;
+      }
+
+      return Buffer.from(object, &apos;hex&apos;);
+    },
+    toObject(object, debug = {}) {
+      if (debug.use_default &amp;&amp; object === undefined) {
+        return new Array(size).join(&apos;00&apos;);
+      }
+
+      v.required(object);
+      return object.toString(&apos;hex&apos;);
+    }
+  };
+
+  return bytes;
+};
+
+Types.bool = {
+  fromByteBuffer(b) {
+    return b.readUint8() === 1;
+  },
+  appendByteBuffer(b, object) {
+    // supports boolean or integer
+    b.writeUint8(JSON.parse(object) ? 1 : 0);
+  },
+  fromObject(object) {
+    return !!JSON.parse(object);
+  },
+  toObject(object, debug = {}) {
+    if (debug.use_default &amp;&amp; object === undefined) {
+      return false;
+    }
+
+    return !!JSON.parse(object);
+  }
+};
+
+Types.void = {
+  fromByteBuffer() {
+    throw new Error(&apos;(void) undefined type&apos;);
+  },
+  appendByteBuffer() {
+    throw new Error(&apos;(void) undefined type&apos;);
+  },
+  fromObject() {
+    throw new Error(&apos;(void) undefined type&apos;);
+  },
+  toObject(object, debug = {}) {
+    if (debug.use_default &amp;&amp; object === undefined) {
+      return undefined;
+    }
+
+    throw new Error(&apos;(void) undefined type&apos;);
+  }
+};
+
+Types.array = (st_operation) =&gt; {
+  let array = {
+    fromByteBuffer(b) {
+      let size = b.readVarint32();
+
+      if (HEX_DUMP) {
+        console.log(`varint32 size = ${size.toString(16)}`);
+      }
+
+      let result = [];
+
+      for (let i = 0; size &gt; 0 ? i &lt; size : i &gt; size; size &gt; 0 ? i++ : i++) {
+        result.push(st_operation.fromByteBuffer(b));
+      }
+
+      return sortOperation(result, st_operation);
+    },
+    appendByteBuffer(b, object) {
+      v.required(object);
+      object = sortOperation(object, st_operation);
+      b.writeVarint32(object.length);
+
+      for (let i = 0, len = object.length; i &lt; len; i++) {
+        let o = object[i];
+        st_operation.appendByteBuffer(b, o);
+      }
+    },
+    fromObject(object) {
+      v.required(object);
+      object = sortOperation(object, st_operation);
+      let result = [];
+
+      for (let i = 0, len = object.length; i &lt; len; i++) {
+        let o = object[i];
+        result.push(st_operation.fromObject(o));
+      }
+
+      return result;
+    },
+    toObject(object, debug = {}) {
+      if (debug.use_default &amp;&amp; object === undefined) {
+        return [st_operation.toObject(object, debug)];
+      }
+
+      v.required(object);
+      object = sortOperation(object, st_operation);
+
+      let result = [];
+
+      for (let i = 0, len = object.length; i &lt; len; i++) {
+        let o = object[i];
+        result.push(st_operation.toObject(o, debug));
+      }
+
+      return result;
+    }
+  };
+
+  return array;
+};
+
+Types.time_point_sec = {
+  fromByteBuffer(b) {
+    return b.readUint32();
+  },
+  appendByteBuffer(b, object) {
+    if (typeof object !== &apos;number&apos;) {
+      object = Types.time_point_sec.fromObject(object);
+    }
+
+    b.writeUint32(object);
+  },
+  fromObject(object) {
+    v.required(object);
+
+    if (typeof object === &apos;number&apos;) {
+      return object;
+    }
+
+    if (object.getTime) {
+      return Math.floor(object.getTime() / 1000);
+    }
+
+    if (typeof object !== &apos;string&apos;) {
+      throw new Error(`Unknown date type: ${object}`);
+    }
+
+    // if(typeof object === &quot;string&quot; &amp;&amp; !/Z$/.test(object))
+    //     object = object + &quot;Z&quot;
+
+    return Math.floor(new Date(object).getTime() / 1000);
+  },
+  toObject(object, debug = {}) {
+    if (debug.use_default &amp;&amp; object === undefined) {
+      return new Date(0).toISOString().split(&apos;.&apos;)[0];
+    }
+
+    v.required(object);
+
+    if (typeof object === &apos;string&apos;) {
+      return object;
+    }
+
+    if (object.getTime) {
+      return object.toISOString().split(&apos;.&apos;)[0];
+    }
+
+    let int = parseInt(object, 10);
+    v.require_range(0, 0xffffffff, int, `uint32 ${object}`);
+    return new Date(int * 1000).toISOString().split(&apos;.&apos;)[0];
+  }
+};
+
+Types.set = (st_operation) =&gt; {
+  let set_object = {
+    validate(array) {
+      let dup_map = {};
+
+      for (let i = 0, len = array.length; i &lt; len; i++) {
+        let o = array[i];
+        let ref = typeof o;
+
+        if ([&apos;string&apos;, &apos;number&apos;].indexOf(ref) &gt;= 0) {
+          if (dup_map[o] !== undefined) {
+            throw new Error(&apos;duplicate (set)&apos;);
+          }
+
+          dup_map[o] = true;
+        }
+      }
+
+      return sortOperation(array, st_operation);
+    },
+    fromByteBuffer(b) {
+      let size = b.readVarint32();
+
+      if (HEX_DUMP) {
+        console.log(`varint32 size = ${size.toString(16)}`);
+      }
+
+      return this.validate(
+        (() =&gt; {
+          let result = [];
+
+          for (let i = 0; size &gt; 0 ? i &lt; size : i &gt; size; size &gt; 0 ? i++ : i++) {
+            result.push(st_operation.fromByteBuffer(b));
+          }
+
+          return result;
+        })()
+      );
+    },
+    appendByteBuffer(b, object) {
+      if (!object) {
+        object = [];
+      }
+
+      b.writeVarint32(object.length);
+      let iterable = this.validate(object);
+
+      for (let i = 0, len = iterable.length; i &lt; len; i++) {
+        let o = iterable[i];
+        st_operation.appendByteBuffer(b, o);
+      }
+    },
+    fromObject(object) {
+      if (!object) {
+        object = [];
+      }
+
+      return this.validate(
+        (() =&gt; {
+          let result = [];
+
+          for (let i = 0, len = object.length; i &lt; len; i++) {
+            let o = object[i];
+            result.push(st_operation.fromObject(o));
+          }
+
+          return result;
+        })()
+      );
+    },
+    toObject(object, debug = {}) {
+      if (debug.use_default &amp;&amp; object === undefined) {
+        return [st_operation.toObject(object, debug)];
+      }
+
+      if (!object) {
+        object = [];
+      }
+
+      let result = [];
+
+      for (let i = 0, len = object.length; i &lt; len; i++) {
+        let o = object[i];
+        result.push(st_operation.toObject(o, debug));
+      }
+
+      return this.validate(result);
+    }
+  };
+
+  return set_object;
+};
+
+Types.fixed_array = (count, st_operation) =&gt; {
+  let fixed_array = {
+    fromByteBuffer(b) {
+      let results = [];
+
+      for (let i = 0, ref = count; i &lt; ref; i++) {
+        results.push(st_operation.fromByteBuffer(b));
+      }
+
+      return sortOperation(results, st_operation);
+    },
+    appendByteBuffer(b, object) {
+      if (count !== 0) {
+        v.required(object);
+        object = sortOperation(object, st_operation);
+      }
+
+      for (let i = 0, ref = count; i &lt; ref; i++) {
+        st_operation.appendByteBuffer(b, object[i]);
+      }
+    },
+    fromObject(object) {
+      if (count !== 0) {
+        v.required(object);
+      }
+
+      let results = [];
+
+      for (let i = 0, ref = count; i &lt; ref; i++) {
+        results.push(st_operation.fromObject(object[i]));
+      }
+
+      return results;
+    },
+    toObject(object, debug) {
+      if (debug == null) {
+        debug = {};
+      }
+
+      let results;
+
+      if (debug.use_default &amp;&amp; object === undefined) {
+        results = [];
+
+        for (let i = 0, ref = count; i &lt; ref; i++) {
+          results.push(st_operation.toObject(undefined, debug));
+        }
+
+        return results;
+      }
+
+      if (count !== 0) {
+        v.required(object);
+      }
+
+      results = [];
+
+      for (let i = 0, ref = count; i &lt; ref; i++) {
+        results.push(st_operation.toObject(object[i], debug));
+      }
+
+      return results;
+    }
+  };
+
+  return fixed_array;
+};
+
+/* Supports instance numbers (11) or object types (1.2.11).  Object type
+Validation is enforced when an object type is used. */
+Types.id_type = (reserved_spaces, object_type) =&gt; {
+  v.required(reserved_spaces, &apos;reserved_spaces&apos;);
+  v.required(object_type, &apos;object_type&apos;);
+
+  let id_type_object = {
+    fromByteBuffer(b) {
+      return b.readVarint32();
+    },
+    appendByteBuffer(b, object) {
+      v.required(object);
+
+      if (object.resolve !== undefined) {
+        object = object.resolve;
+      }
+
+      // convert 1.2.n into just n
+      if (/^[0-9]+\.[0-9]+\.[0-9]+$/.test(object)) {
+        object = v.get_instance(reserved_spaces, object_type, object);
+      }
+
+      b.writeVarint32(v.to_number(object));
+    },
+    fromObject(object) {
+      v.required(object);
+
+      if (object.resolve !== undefined) {
+        object = object.resolve;
+      }
+
+      if (v.is_digits(object)) {
+        return v.to_number(object);
+      }
+
+      return v.get_instance(reserved_spaces, object_type, object);
+    },
+    toObject(object, debug = {}) {
+      let object_type_id = ChainTypes.object_type[object_type];
+
+      if (debug.use_default &amp;&amp; object === undefined) {
+        return `${reserved_spaces}.${object_type_id}.0`;
+      }
+
+      v.required(object);
+
+      if (object.resolve !== undefined) {
+        object = object.resolve;
+      }
+
+      if (/^[0-9]+\.[0-9]+\.[0-9]+$/.test(object)) {
+        object = v.get_instance(reserved_spaces, object_type, object);
+      }
+
+      return `${reserved_spaces}.${object_type_id}.${object}`;
+    }
+  };
+
+  return id_type_object;
+};
+
+Types.protocol_id_type = (name) =&gt; {
+  v.required(name, &apos;name&apos;);
+  return Types.id_type(ChainTypes.reserved_spaces.protocol_ids, name);
+};
+
+Types.implementation_id_type = (name) =&gt; {
+  let result = Types.id_type(ChainTypes.reserved_spaces.implementation_ids, name);
+  return result;
+};
+
+Types.object_id_type = {
+  fromByteBuffer(b) {
+    return ObjectId.fromByteBuffer(b);
+  },
+  appendByteBuffer(b, object) {
+    v.required(object);
+
+    if (object.resolve !== undefined) {
+      object = object.resolve;
+    }
+
+    object = ObjectId.fromString(object);
+    object.appendByteBuffer(b);
+  },
+  fromObject(object) {
+    v.required(object);
+
+    if (object.resolve !== undefined) {
+      object = object.resolve;
+    }
+
+    return ObjectId.fromString(object);
+  },
+  toObject(object, debug = {}) {
+    if (debug.use_default &amp;&amp; object === undefined) {
+      return &apos;0.0.0&apos;;
+    }
+
+    v.required(object);
+
+    if (object.resolve !== undefined) {
+      object = object.resolve;
+    }
+
+    object = ObjectId.fromString(object);
+    return object.toString();
+  }
+};
+
+Types.vote_id = {
+  TYPE: 0x000000ff,
+  ID: 0xffffff00,
+  fromByteBuffer(b) {
+    let value = b.readUint32();
+    return {
+      type: value &amp; this.TYPE, // eslint-disable-line
+      id: value &amp; this.ID // eslint-disable-line
+    };
+  },
+  appendByteBuffer(b, object) {
+    v.required(object);
+
+    if (object === &apos;string&apos;) {
+      object = Types.vote_id.fromObject(object);
+    }
+
+    let value = (object.id &lt;&lt; 8) | object.type; // eslint-disable-line
+    b.writeUint32(value);
+  },
+  fromObject(object) {
+    v.required(object, &apos;(type vote_id)&apos;);
+
+    if (typeof object === &apos;object&apos;) {
+      v.required(object.type, &apos;type&apos;);
+      v.required(object.id, &apos;id&apos;);
+      return object;
+    }
+
+    v.require_test(/^[0-9]+:[0-9]+$/, object, `vote_id format ${object}`);
+    let [type, id] = object.split(&apos;:&apos;);
+    v.require_range(0, 0xff, type, `vote type ${object}`);
+    v.require_range(0, 0xffffff, id, `vote id ${object}`);
+    return {type, id};
+  },
+  toObject(object, debug = {}) {
+    if (debug.use_default &amp;&amp; object === undefined) {
+      return &apos;0:0&apos;;
+    }
+
+    v.required(object);
+
+    if (typeof object === &apos;string&apos;) {
+      object = Types.vote_id.fromObject(object);
+    }
+
+    return `${object.type}:${object.id}`;
+  },
+  compare(a, b) {
+    if (typeof a !== &apos;object&apos;) {
+      a = Types.vote_id.fromObject(a);
+    }
+
+    if (typeof b !== &apos;object&apos;) {
+      b = Types.vote_id.fromObject(b);
+    }
+
+    return parseInt(a.id, 10) - parseInt(b.id, 10);
+  }
+};
+
+Types.optional = (st_operation) =&gt; {
+  v.required(st_operation, &apos;st_operation&apos;);
+  return {
+    fromByteBuffer(b) {
+      if (!(b.readUint8() === 1)) {
+        return undefined;
+      }
+
+      return st_operation.fromByteBuffer(b);
+    },
+    appendByteBuffer(b, object) {
+      if (object !== null &amp;&amp; object !== undefined) {
+        b.writeUint8(1);
+        st_operation.appendByteBuffer(b, object);
+      } else {
+        b.writeUint8(0);
+      }
+    },
+    fromObject(object) {
+      if (object === undefined) {
+        return undefined;
+      }
+
+      return st_operation.fromObject(object);
+    },
+    toObject(object, debug = {}) {
+      // toObject is only null save if use_default is true
+      let result_object = (() =&gt; {
+        if (!debug.use_default &amp;&amp; object === undefined) {
+          return undefined;
+        }
+
+        return st_operation.toObject(object, debug);
+      })();
+
+      if (debug.annotate) {
+        if (typeof result_object === &apos;object&apos;) {
+          result_object.__optional = &apos;parent is optional&apos;;
+        } else {
+          result_object = {__optional: result_object};
+        }
+      }
+
+      return result_object;
+    }
+  };
+};
+
+Types.static_variant = (_st_operations) =&gt; {
+  let static_variant = {
+    nosort: true,
+    st_operations: _st_operations,
+    fromByteBuffer(b) {
+      let type_id = b.readVarint32();
+      let st_operation = this.st_operations[type_id];
+
+      if (HEX_DUMP) {
+        console.error(`static_variant id 0x${type_id.toString(16)} (${type_id})`);
+      }
+
+      v.required(st_operation, `operation ${type_id}`);
+      return [type_id, st_operation.fromByteBuffer(b)];
+    },
+    appendByteBuffer(b, object) {
+      v.required(object);
+      let type_id = object[0];
+      let st_operation = this.st_operations[type_id];
+      v.required(st_operation, `operation ${type_id}`);
+      b.writeVarint32(type_id);
+      st_operation.appendByteBuffer(b, object[1]);
+    },
+    fromObject(object) {
+      v.required(object);
+      let type_id = object[0];
+      let st_operation = this.st_operations[type_id];
+
+      v.required(st_operation, `operation ${type_id}`);
+      return [type_id, st_operation.fromObject(object[1])];
+    },
+    toObject(object, debug = {}) {
+      if (debug.use_default &amp;&amp; object === undefined) {
+        return [0, this.st_operations[0].toObject(undefined, debug)];
+      }
+
+      v.required(object);
+      let type_id = object[0];
+      let st_operation = this.st_operations[type_id];
+      v.required(st_operation, `operation ${type_id}`);
+      return [type_id, st_operation.toObject(object[1], debug)];
+    }
+  };
+
+  return static_variant;
+};
+
+Types.map = (key_st_operation, value_st_operation) =&gt; {
+  let map_object = {
+    validate(array) {
+      if (!Array.isArray(array)) {
+        throw new Error(&apos;expecting array&apos;);
+      }
+
+      let dup_map = {};
+
+      for (let i = 0, len = array.length; i &lt; len; i++) {
+        let o = array[i];
+        let ref;
+
+        if (!(o.length === 2)) {
+          throw new Error(&apos;expecting two elements&apos;);
+        }
+
+        ref = typeof o[0];
+
+        if (ref &amp;&amp; [&apos;number&apos;, &apos;string&apos;].indexOf(ref) &gt;= 0) {
+          if (dup_map[o[0]] !== undefined) {
+            throw new Error(&apos;duplicate (map)&apos;);
+          }
+
+          dup_map[o[0]] = true;
+        }
+      }
+
+      return sortOperation(array, key_st_operation);
+    },
+
+    fromByteBuffer(b) {
+      let result = [];
+      let end = b.readVarint32();
+
+      for (let i = 0; end &gt; 0 ? i &lt; end : i &gt; end; end &gt; 0 ? i++ : i++) {
+        result.push([key_st_operation.fromByteBuffer(b), value_st_operation.fromByteBuffer(b)]);
+      }
+
+      return this.validate(result);
+    },
+
+    appendByteBuffer(b, object) {
+      this.validate(object);
+      b.writeVarint32(object.length);
+
+      for (let i = 0, len = object.length; i &lt; len; i++) {
+        let o = object[i];
+        key_st_operation.appendByteBuffer(b, o[0]);
+        value_st_operation.appendByteBuffer(b, o[1]);
+      }
+    },
+    fromObject(object) {
+      v.required(object);
+      let result = [];
+
+      for (let i = 0, len = object.length; i &lt; len; i++) {
+        let o = object[i];
+        result.push([key_st_operation.fromObject(o[0]), value_st_operation.fromObject(o[1])]);
+      }
+
+      return this.validate(result);
+    },
+    toObject(object, debug = {}) {
+      if (debug.use_default &amp;&amp; object === undefined) {
+        return [
+          [
+            key_st_operation.toObject(undefined, debug),
+            value_st_operation.toObject(undefined, debug)
+          ]
+        ];
+      }
+
+      v.required(object);
+      object = this.validate(object);
+      let result = [];
+
+      for (let i = 0, len = object.length; i &lt; len; i++) {
+        let o = object[i];
+        result.push([
+          key_st_operation.toObject(o[0], debug),
+          value_st_operation.toObject(o[1], debug)
+        ]);
+      }
+
+      return result;
+    }
+  };
+
+  return map_object;
+};
+
+Types.public_key = {
+  toPublic(object) {
+    if (object.resolve !== undefined) {
+      object = object.resolve;
+    }
+
+    if (object instanceof PublicKey) {
+      return object;
+    }
+
+    let result = object;
+
+    if (!object) {
+      return null;
+    }
+
+    if (!object.Q) {
+      result = PublicKey.fromStringOrThrow(object);
+    }
+
+    return result;
+  },
+  fromByteBuffer(b) {
+    return fp.public_key(b);
+  },
+  appendByteBuffer(b, object) {
+    v.required(object);
+    fp.public_key(b, Types.public_key.toPublic(object));
+  },
+  fromObject(object) {
+    v.required(object);
+
+    if (object.Q) {
+      return object;
+    }
+
+    return Types.public_key.toPublic(object);
+  },
+  toObject(object, debug = {}) {
+    if (debug.use_default &amp;&amp; object === undefined) {
+      return `${ChainConfig.address_prefix}859gxfnXyUriMgUeThh1fWv3oqcpLFyHa3TfFYC4PK2HqhToVM`;
+    }
+
+    v.required(object);
+    return object.toString();
+  },
+  compare(a, b) {
+    return strCmp(a.toAddressString(), b.toAddressString());
+  }
+};
+
+Types.address = {
+  _to_address(object) {
+    v.required(object);
+
+    if (object.addy) {
+      return object;
+    }
+
+    return Address.fromString(object);
+  },
+  fromByteBuffer(b) {
+    return new Address(fp.ripemd160(b));
+  },
+  appendByteBuffer(b, object) {
+    fp.ripemd160(b, Types.address._to_address(object).toBuffer());
+  },
+  fromObject(object) {
+    return Types.address._to_address(object);
+  },
+  toObject(object, debug = {}) {
+    if (debug.use_default &amp;&amp; object === undefined) {
+      return `${ChainConfig.address_prefix}664KmHxSuQyDsfwo4WEJvWpzg1QKdg67S`;
+    }
+
+    return Types.address._to_address(object).toString();
+  },
+  compare(a, b) {
+    return strCmp(a.toString(), b.toString());
+  }
+};
+
+Types.variant = {
+  fromByteBuffer(b) {
+    let type = b.readUint8();
+
+    switch (type) {
+      case 0:
+        return null;
+      case 1:
+        return Types.int64.fromByteBuffer(b);
+      case 2:
+        return Types.uint64.fromByteBuffer(b);
+      case 3:
+        return b.readDouble();
+      case 4:
+        return Types.bool.fromByteBuffer(b);
+      case 5:
+        return Types.string.fromByteBuffer(b);
+      case 6:
+        return Types.array(Types.variant).fromByteBuffer(b);
+      case 7:
+      default:
+        return Types.variant_object.fromByteBuffer(b);
+    }
+  },
+
+  appendByteBuffer(b, object) {
+    if (typeof object === &apos;number&apos;) {
+      if (Number.isInteger(object)) {
+        if (object &gt;= 0) {
+          b.writeUint8(2);
+          Types.uint64.appendByteBuffer(b, object);
+        } else {
+          b.writeUint8(1);
+          Types.int64.appendByteBuffer(b, object);
+        }
+      } else {
+        b.writeUint8(3);
+        b.writeDouble(Number.parseFloat(object));
+      }
+    } else if (typeof object === &apos;boolean&apos;) {
+      b.writeUint8(4);
+      Types.bool.appendByteBuffer(b, object);
+    } else if (typeof object === &apos;string&apos;) {
+      b.writeUint8(5);
+      Types.string.appendByteBuffer(b, object);
+    } else if (Array.isArray(object)) {
+      b.writeUint8(6);
+      Types.array(Types.variant).appendByteBuffer(b, object);
+    } else {
+      b.writeUint8(7);
+      Types.variant_object.appendByteBuffer(b, object);
+    }
+  },
+
+  fromObject(object) {
+    return JSON.parse(object);
+  },
+
+  toObject(object) {
+    return JSON.parse(object);
+  }
+};
+
+Types.variant_object = {
+  fromByteBuffer(b) {
+    let count = b.readVarint32();
+    let result = {};
+
+    for (let i = 0; i &lt; count; ++i) {
+      let key = Types.string.fromByteBuffer(b);
+      result[key] = Types.variant.fromByteBuffer(b);
+    }
+
+    return result;
+  },
+
+  appendByteBuffer(b, object) {
+    let keys = Object.keys(object);
+
+    b.writeVarint32(keys.length); // number of key/value pairs
+
+    for (let i = 0, len = keys.length; i &lt; len; i++) {
+      let key = keys[i];
+      Types.string.appendByteBuffer(b, key);
+      Types.variant.appendByteBuffer(b, object[key]);
+    }
+  },
+  fromObject(object) {
+    let newObject = {};
+
+    let keys = Object.keys(object);
+
+    for (let i = 0, len = keys.length; i &lt; len; i++) {
+      let key = keys[i];
+      newObject[key] = object[key];
+    }
+
+    return newObject;
+  },
+  toObject(object) {
+    let newObject = {};
+
+    let keys = Object.keys(object);
+
+    for (let i = 0, len = keys.length; i &lt; len; i++) {
+      let key = keys[i];
+      newObject[key] = object[key];
+    }
+
+    return newObject;
+  }
+};
+
+Types.enumeration = (values) =&gt; {
+  let enumeration = {
+    fromByteBuffer(b) {
+      return values[b.readVarint32ZigZag()];
+    },
+    appendByteBuffer(b, object) {
+      b.writeVarint32ZigZag(values.indexOf(object));
+    },
+    fromObject(object) {
+      return object;
+    },
+    toObject(object) {
+      return object;
+    }
+  };
+
+  return enumeration;
+};
+
+Types.sha256 = Types.bytes(32);
+
+export default Types;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href>
+  <title data-ice="title">Source | peerplaysjs-lib</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Pure JavaScript Peerplaysjs library for node.js and browsers."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="peerplaysjs-lib"><meta property="twitter:description" content="Pure JavaScript Peerplaysjs library for node.js and browsers."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/peerplays-network/peerplaysjs-lib"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#chain-src">chain/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/chain/src/AccountLogin.js~AccountLogin.html">AccountLogin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/chain/src/ChainStore.js~ChainStore.html">ChainStore</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/chain/src/GameMoves.js~GameMoves.html">GameMoves</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/chain/src/ObjectId.js~ObjectId.html">ObjectId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/chain/src/TransactionBuilder.js~TransactionBuilder.html">TransactionBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get">get</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-set">set</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-accountLogin">accountLogin</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-chain_store">chain_store</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ChainTypes">ChainTypes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ChainValidation">ChainValidation</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NumberUtils">NumberUtils</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-helper">helper</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#ecc-src">ecc/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/ecc/src/PrivateKey.js~PrivateKey.html">PrivateKey</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/ecc/src/PublicKey.js~PublicKey.html">PublicKey</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/ecc/src/address.js~Address.html">Address</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/ecc/src/aes.js~Aes.html">Aes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/ecc/src/signature.js~Signature.html">Signature</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-normalize">normalize</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-calcPubKeyRecoveryParam">calcPubKeyRecoveryParam</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-deterministicGenerateK">deterministicGenerateK</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-recoverPubKey">recoverPubKey</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sign">sign</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-verify">verify</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-verifyRaw">verifyRaw</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ECSignature">ECSignature</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-enforce">enforce</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-HmacSHA256">HmacSHA256</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ripemd160">ripemd160</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sha1">sha1</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sha256">sha256</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sha512">sha512</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-key">key</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#serializer-src">serializer/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/serializer/src/FastParser.js~FastParser.html">FastParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/serializer/src/error_with_cause.js~ErrorWithCause.html">ErrorWithCause</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/serializer/src/serializer.js~Serializer.html">Serializer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-template">template</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-_my">_my</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-account_create">account_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-account_create_operation_fee_parameters">account_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-account_name_eq_lit_predicate">account_name_eq_lit_predicate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-account_options">account_options</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-account_transfer">account_transfer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-account_transfer_operation_fee_parameters">account_transfer_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-account_update">account_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-account_update_operation_fee_parameters">account_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-account_upgrade">account_upgrade</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-account_upgrade_operation_fee_parameters">account_upgrade_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-account_whitelist">account_whitelist</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-account_whitelist_operation_fee_parameters">account_whitelist_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-assert">assert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-assert_operation_fee_parameters">assert_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset">asset</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_claim_fees">asset_claim_fees</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_claim_fees_operation_fee_parameters">asset_claim_fees_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_create">asset_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_create_operation_fee_parameters">asset_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_dividend_distribution">asset_dividend_distribution</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_dividend_distribution_operation_fee_parameters">asset_dividend_distribution_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_fund_fee_pool">asset_fund_fee_pool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_fund_fee_pool_operation_fee_parameters">asset_fund_fee_pool_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_global_settle">asset_global_settle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_global_settle_operation_fee_parameters">asset_global_settle_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_issue">asset_issue</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_issue_operation_fee_parameters">asset_issue_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_options">asset_options</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_publish_feed">asset_publish_feed</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_publish_feed_operation_fee_parameters">asset_publish_feed_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_reserve">asset_reserve</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_reserve_operation_fee_parameters">asset_reserve_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_settle">asset_settle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_settle_cancel">asset_settle_cancel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_settle_cancel_operation_fee_parameters">asset_settle_cancel_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_settle_operation_fee_parameters">asset_settle_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_symbol_eq_lit_predicate">asset_symbol_eq_lit_predicate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_update">asset_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_update_bitasset">asset_update_bitasset</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_update_bitasset_operation_fee_parameters">asset_update_bitasset_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_update_dividend">asset_update_dividend</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_update_dividend_operation_fee_parameters">asset_update_dividend_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_update_feed_producers">asset_update_feed_producers</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_update_feed_producers_operation_fee_parameters">asset_update_feed_producers_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-asset_update_operation_fee_parameters">asset_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-authority">authority</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-balance_claim">balance_claim</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-balance_claim_operation_fee_parameters">balance_claim_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bet">bet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bet_adjusted">bet_adjusted</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bet_adjusted_operation_fee_parameters">bet_adjusted_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bet_cancel">bet_cancel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bet_cancel_operation_fee_parameters">bet_cancel_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bet_canceled">bet_canceled</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bet_canceled_operation_fee_parameters">bet_canceled_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bet_matched">bet_matched</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bet_matched_operation_fee_parameters">bet_matched_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bet_place">bet_place</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bet_place_operation_fee_parameters">bet_place_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bet_type">bet_type</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market">betting_market</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_create">betting_market_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_create_operation_fee_parameters">betting_market_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_group">betting_market_group</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_group_cancel_unmatched_bets">betting_market_group_cancel_unmatched_bets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_group_cancel_unmatched_bets_operation_fee_parameters">betting_market_group_cancel_unmatched_bets_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_group_create">betting_market_group_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_group_create_operation_fee_parameters">betting_market_group_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_group_resolve">betting_market_group_resolve</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_group_resolve_operation_fee_parameters">betting_market_group_resolve_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_group_resolved">betting_market_group_resolved</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_group_resolved_operation_fee_parameters">betting_market_group_resolved_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_group_update">betting_market_group_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_group_update_operation_fee_parameters">betting_market_group_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_position">betting_market_position</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_resolution_type">betting_market_resolution_type</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_rules">betting_market_rules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_rules_create">betting_market_rules_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_rules_create_operation_fee_parameters">betting_market_rules_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_rules_update">betting_market_rules_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_rules_update_operation_fee_parameters">betting_market_rules_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_update">betting_market_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-betting_market_update_operation_fee_parameters">betting_market_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bitasset_options">bitasset_options</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-blind_input">blind_input</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-blind_output">blind_output</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-blind_transfer">blind_transfer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-blind_transfer_operation_fee_parameters">blind_transfer_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-block_header">block_header</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-block_id_predicate">block_id_predicate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-burn_worker_initializer">burn_worker_initializer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-call_order_update">call_order_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-call_order_update_operation_fee_parameters">call_order_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cdd_vesting_policy_initializer">cdd_vesting_policy_initializer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-chain_parameters">chain_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-committee_member_create">committee_member_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-committee_member_create_operation_fee_parameters">committee_member_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-committee_member_update">committee_member_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-committee_member_update_global_parameters">committee_member_update_global_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-committee_member_update_global_parameters_operation_fee_parameters">committee_member_update_global_parameters_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-committee_member_update_operation_fee_parameters">committee_member_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-custom">custom</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-custom_operation_fee_parameters">custom_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-dividend_asset_options">dividend_asset_options</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-event">event</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-event_create">event_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-event_create_operation_fee_parameters">event_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-event_group">event_group</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-event_group_create">event_group_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-event_group_create_operation_fee_parameters">event_group_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-event_group_update">event_group_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-event_group_update_operation_fee_parameters">event_group_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-event_update">event_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-event_update_operation_fee_parameters">event_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-fba_distribute">fba_distribute</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-fba_distribute_operation_fee_parameters">fba_distribute_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-fee_schedule">fee_schedule</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-fill_order">fill_order</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-fill_order_operation_fee_parameters">fill_order_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-game_move">game_move</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-game_move_operation_fee_parameters">game_move_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-global_betting_statistics">global_betting_statistics</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-limit_order_cancel">limit_order_cancel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-limit_order_cancel_operation_fee_parameters">limit_order_cancel_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-limit_order_create">limit_order_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-limit_order_create_operation_fee_parameters">limit_order_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-linear_vesting_policy_initializer">linear_vesting_policy_initializer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-memo_data">memo_data</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-op_wrapper">op_wrapper</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-operation">operation</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-override_transfer">override_transfer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-override_transfer_operation_fee_parameters">override_transfer_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-payout_type">payout_type</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-price">price</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-price_feed">price_feed</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-processed_transaction">processed_transaction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-proposal_create">proposal_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-proposal_create_operation_fee_parameters">proposal_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-proposal_delete">proposal_delete</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-proposal_delete_operation_fee_parameters">proposal_delete_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-proposal_update">proposal_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-proposal_update_operation_fee_parameters">proposal_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-refund_worker_initializer">refund_worker_initializer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-rock_paper_scissors_game_options">rock_paper_scissors_game_options</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-rock_paper_scissors_gesture">rock_paper_scissors_gesture</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-rock_paper_scissors_throw_commit">rock_paper_scissors_throw_commit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-rock_paper_scissors_throw_reveal">rock_paper_scissors_throw_reveal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-signed_block">signed_block</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-signed_block_header">signed_block_header</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-signed_transaction">signed_transaction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-sport">sport</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-sport_create">sport_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-sport_create_operation_fee_parameters">sport_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-sport_update">sport_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-sport_update_operation_fee_parameters">sport_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-stealth_confirmation">stealth_confirmation</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-stealth_memo_data">stealth_memo_data</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-tournament_create">tournament_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-tournament_create_operation_fee_parameters">tournament_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-tournament_join">tournament_join</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-tournament_join_operation_fee_parameters">tournament_join_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-tournament_leave">tournament_leave</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-tournament_leave_operation_fee_parameters">tournament_leave_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-tournament_options">tournament_options</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-tournament_payout">tournament_payout</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-tournament_payout_operation_fee_parameters">tournament_payout_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-transaction">transaction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-transfer">transfer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-transfer_from_blind">transfer_from_blind</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-transfer_from_blind_operation_fee_parameters">transfer_from_blind_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-transfer_operation_fee_parameters">transfer_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-transfer_to_blind">transfer_to_blind</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-transfer_to_blind_operation_fee_parameters">transfer_to_blind_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-vesting_balance_create">vesting_balance_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-vesting_balance_create_operation_fee_parameters">vesting_balance_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-vesting_balance_withdraw">vesting_balance_withdraw</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-vesting_balance_withdraw_operation_fee_parameters">vesting_balance_withdraw_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-vesting_balance_worker_initializer">vesting_balance_worker_initializer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-void_result">void_result</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-withdraw_permission_claim">withdraw_permission_claim</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-withdraw_permission_claim_operation_fee_parameters">withdraw_permission_claim_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-withdraw_permission_create">withdraw_permission_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-withdraw_permission_create_operation_fee_parameters">withdraw_permission_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-withdraw_permission_delete">withdraw_permission_delete</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-withdraw_permission_delete_operation_fee_parameters">withdraw_permission_delete_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-withdraw_permission_update">withdraw_permission_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-withdraw_permission_update_operation_fee_parameters">withdraw_permission_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-witness_create">witness_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-witness_create_operation_fee_parameters">witness_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-witness_update">witness_update</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-witness_update_operation_fee_parameters">witness_update_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-worker_create">worker_create</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-worker_create_operation_fee_parameters">worker_create_operation_fee_parameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-_my">_my</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Types">Types</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#ws">ws</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/ws/ChainConfig.js~ChainConfig.html">ChainConfig</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/ws/ChainWebSocket.js~ChainWebSocket.html">ChainWebSocket</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/ws/ConnectionManager.js~ConnectionManager.html">ConnectionManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/ws/GrapheneApi.js~GrapheneApi.html">GrapheneApi</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-chainConfig">chainConfig</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1>Source <img data-ice="coverageBadge" src="./badge.svg"><span data-ice="totalCoverageCount" class="total-coverage-count">99/682</span></h1>
+
+<table class="files-summary" data-ice="files" data-use-coverage="true">
+  <thead>
+    <tr>
+      <td>File</td>
+      <td>Identifier</td>
+      <td class="coverage">Document</td>
+      <td style="display: none;">Size</td>
+      <td style="display: none;">Lines</td>
+      <td style="display: none;">Updated</td>
+    </tr>
+  </thead>
+  <tbody>
+    
+  <tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/browser.js.html">lib/browser.js</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">-</span></td>
+      <td style="display: none;" data-ice="size">384 byte</td>
+      <td style="display: none;" data-ice="lines">15</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/chain/index.js.html#errorLines=11">lib/chain/index.js</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/1</span></td>
+      <td style="display: none;" data-ice="size">663 byte</td>
+      <td style="display: none;" data-ice="lines">27</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/chain/src/AccountLogin.js.html#errorLines=10,101,12,13,15,18,22,26,54,6,7,82,9">lib/chain/src/AccountLogin.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/lib/chain/src/AccountLogin.js~AccountLogin.html">AccountLogin</a></span>
+<span><a href="variable/index.html#static-variable-accountLogin">accountLogin</a></span></td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/13</span></td>
+      <td style="display: none;" data-ice="size">2408 byte</td>
+      <td style="display: none;" data-ice="lines">101</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 01:00:17 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/chain/src/ChainStore.js.html#errorLines=100,101,102,103,104,11,114,119,12,121,1228,123,1251,126,128,13,130,14,140,144,15,1515,1530,1545,1560,1575,1590,16,1605,1620,17,18,19,1977,1998,20,2023,2046,2082,2092,2096,21,2110,2126,2140,2161,2229,2245,2249,2260,229,23,2302,2322,237,24,243,249,25,26,27,28,29,30,333,336,337,34,35,36,37,38,39,40,400,41,42,43,46,48,50,60,63,646,68,69,70,73,75,76,8,84,85,86,87,88,89,9,90,91,914,92,93,94,95,96,97,98,99">lib/chain/src/ChainStore.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/lib/chain/src/ChainStore.js~ChainStore.html">ChainStore</a></span>
+<span><a href="variable/index.html#static-variable-chain_store">chain_store</a></span></td>
+      <td class="coverage"><span data-ice="coverage">20 %</span><span data-ice="coverageCount" class="coverage-count">28/137</span></td>
+      <td style="display: none;" data-ice="size">73205 byte</td>
+      <td style="display: none;" data-ice="lines">2322</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/chain/src/ChainTypes.js.html#errorLines=1,144,37,62,68,7">lib/chain/src/ChainTypes.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="variable/index.html#static-variable-ChainTypes">ChainTypes</a></span></td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/6</span></td>
+      <td style="display: none;" data-ice="size">3301 byte</td>
+      <td style="display: none;" data-ice="lines">152</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/chain/src/ChainValidation.js.html#errorLines=9">lib/chain/src/ChainValidation.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="variable/index.html#static-variable-ChainValidation">ChainValidation</a></span></td>
+      <td class="coverage"><span data-ice="coverage">50 %</span><span data-ice="coverageCount" class="coverage-count">1/2</span></td>
+      <td style="display: none;" data-ice="size">3572 byte</td>
+      <td style="display: none;" data-ice="lines">168</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/chain/src/EmitterInstance.js.html">lib/chain/src/EmitterInstance.js</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">-</span></td>
+      <td style="display: none;" data-ice="size">160 byte</td>
+      <td style="display: none;" data-ice="lines">13</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/chain/src/GameMoves.js.html#errorLines=13,15,21,26,31,32,4,5,7">lib/chain/src/GameMoves.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/lib/chain/src/GameMoves.js~GameMoves.html">GameMoves</a></span></td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/9</span></td>
+      <td style="display: none;" data-ice="size">1828 byte</td>
+      <td style="display: none;" data-ice="lines">65</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/chain/src/NumberUtils.js.html">lib/chain/src/NumberUtils.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="variable/index.html#static-variable-NumberUtils">NumberUtils</a></span></td>
+      <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">1/1</span></td>
+      <td style="display: none;" data-ice="size">1240 byte</td>
+      <td style="display: none;" data-ice="lines">47</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/chain/src/ObjectId.js.html#errorLines=10,11,20,37,44,48,5,58,62,7,8,9">lib/chain/src/ObjectId.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/lib/chain/src/ObjectId.js~ObjectId.html">ObjectId</a></span></td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/12</span></td>
+      <td style="display: none;" data-ice="size">1624 byte</td>
+      <td style="display: none;" data-ice="lines">67</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/chain/src/TransactionBuilder.js.html#errorLines=10,11,12,13,14,15,153,17,18,189,295,318,343,484,496,509,536,562,565,569,573,581,634,648,652,8,9">lib/chain/src/TransactionBuilder.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/lib/chain/src/TransactionBuilder.js~TransactionBuilder.html">TransactionBuilder</a></span></td>
+      <td class="coverage"><span data-ice="coverage">20 %</span><span data-ice="coverageCount" class="coverage-count">7/34</span></td>
+      <td style="display: none;" data-ice="size">18957 byte</td>
+      <td style="display: none;" data-ice="lines">667</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/chain/src/TransactionHelper.js.html#errorLines=9">lib/chain/src/TransactionHelper.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="variable/index.html#static-variable-helper">helper</a></span></td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/1</span></td>
+      <td style="display: none;" data-ice="size">2734 byte</td>
+      <td style="display: none;" data-ice="lines">99</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/chain/src/state.js.html#errorLines=1,5">lib/chain/src/state.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-get">get</a></span>
+<span><a href="function/index.html#static-function-set">set</a></span></td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/2</span></td>
+      <td style="display: none;" data-ice="size">176 byte</td>
+      <td style="display: none;" data-ice="lines">12</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/ecc/index.js.html">lib/ecc/index.js</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">-</span></td>
+      <td style="display: none;" data-ice="size">383 byte</td>
+      <td style="display: none;" data-ice="lines">12</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/ecc/src/BrainKey.js.html#errorLines=1">lib/ecc/src/BrainKey.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-normalize">normalize</a></span></td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/1</span></td>
+      <td style="display: none;" data-ice="size">227 byte</td>
+      <td style="display: none;" data-ice="lines">8</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/ecc/src/KeyUtils.js.html#errorLines=12,14">lib/ecc/src/KeyUtils.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="variable/index.html#static-variable-key">key</a></span></td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/2</span></td>
+      <td style="display: none;" data-ice="size">6519 byte</td>
+      <td style="display: none;" data-ice="lines">200</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/ecc/src/PrivateKey.js.html#errorLines=10,101,106,11,111,13,172,178,182,21,27,30,82">lib/ecc/src/PrivateKey.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/lib/ecc/src/PrivateKey.js~PrivateKey.html">PrivateKey</a></span></td>
+      <td class="coverage"><span data-ice="coverage">31 %</span><span data-ice="coverageCount" class="coverage-count">6/19</span></td>
+      <td style="display: none;" data-ice="size">5086 byte</td>
+      <td style="display: none;" data-ice="lines">189</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/ecc/src/PublicKey.js.html#errorLines=10,12,126,135,14,148,17,173,179,183,187,20,24,35,46,50">lib/ecc/src/PublicKey.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/lib/ecc/src/PublicKey.js~PublicKey.html">PublicKey</a></span></td>
+      <td class="coverage"><span data-ice="coverage">27 %</span><span data-ice="coverageCount" class="coverage-count">6/22</span></td>
+      <td style="display: none;" data-ice="size">5369 byte</td>
+      <td style="display: none;" data-ice="lines">194</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/ecc/src/address.js.html#errorLines=11,12,15,21,56,60">lib/ecc/src/address.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/lib/ecc/src/address.js~Address.html">Address</a></span></td>
+      <td class="coverage"><span data-ice="coverage">25 %</span><span data-ice="coverageCount" class="coverage-count">2/8</span></td>
+      <td style="display: none;" data-ice="size">2039 byte</td>
+      <td style="display: none;" data-ice="lines">67</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/ecc/src/aes.js.html#errorLines=12,13,50">lib/ecc/src/aes.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/lib/ecc/src/aes.js~Aes.html">Aes</a></span></td>
+      <td class="coverage"><span data-ice="coverage">84 %</span><span data-ice="coverageCount" class="coverage-count">16/19</span></td>
+      <td style="display: none;" data-ice="size">9054 byte</td>
+      <td style="display: none;" data-ice="lines">277</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/ecc/src/ecdsa.js.html#errorLines=10,114,156,64">lib/ecc/src/ecdsa.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-calcPubKeyRecoveryParam">calcPubKeyRecoveryParam</a></span>
+<span><a href="function/index.html#static-function-deterministicGenerateK">deterministicGenerateK</a></span>
+<span><a href="function/index.html#static-function-recoverPubKey">recoverPubKey</a></span>
+<span><a href="function/index.html#static-function-sign">sign</a></span>
+<span><a href="function/index.html#static-function-verify">verify</a></span>
+<span><a href="function/index.html#static-function-verifyRaw">verifyRaw</a></span></td>
+      <td class="coverage"><span data-ice="coverage">33 %</span><span data-ice="coverageCount" class="coverage-count">2/6</span></td>
+      <td style="display: none;" data-ice="size">5538 byte</td>
+      <td style="display: none;" data-ice="lines">237</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/ecc/src/ecsignature.js.html#errorLines=104,124,7,88">lib/ecc/src/ecsignature.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-ECSignature">ECSignature</a></span></td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/4</span></td>
+      <td style="display: none;" data-ice="size">3308 byte</td>
+      <td style="display: none;" data-ice="lines">131</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/ecc/src/enforce_types.js.html#errorLines=2,8">lib/ecc/src/enforce_types.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-enforce">enforce</a></span></td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/2</span></td>
+      <td style="display: none;" data-ice="size">1031 byte</td>
+      <td style="display: none;" data-ice="lines">59</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/ecc/src/hash.js.html#errorLines=34,40">lib/ecc/src/hash.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-HmacSHA256">HmacSHA256</a></span>
+<span><a href="function/index.html#static-function-ripemd160">ripemd160</a></span>
+<span><a href="function/index.html#static-function-sha1">sha1</a></span>
+<span><a href="function/index.html#static-function-sha256">sha256</a></span>
+<span><a href="function/index.html#static-function-sha512">sha512</a></span></td>
+      <td class="coverage"><span data-ice="coverage">60 %</span><span data-ice="coverageCount" class="coverage-count">3/5</span></td>
+      <td style="display: none;" data-ice="size">1426 byte</td>
+      <td style="display: none;" data-ice="lines">61</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/ecc/src/signature.js.html#errorLines=11,118,13,132,14,147,15,154,158,16,162,168,17,23,35,44">lib/ecc/src/signature.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/lib/ecc/src/signature.js~Signature.html">Signature</a></span></td>
+      <td class="coverage"><span data-ice="coverage">20 %</span><span data-ice="coverageCount" class="coverage-count">4/20</span></td>
+      <td style="display: none;" data-ice="size">4256 byte</td>
+      <td style="display: none;" data-ice="lines">175</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/index.js.html#errorLines=35">lib/index.js</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/1</span></td>
+      <td style="display: none;" data-ice="size">1784 byte</td>
+      <td style="display: none;" data-ice="lines">66</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/serializer/index.js.html">lib/serializer/index.js</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">-</span></td>
+      <td style="display: none;" data-ice="size">328 byte</td>
+      <td style="display: none;" data-ice="lines">10</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/serializer/src/FastParser.js.html#errorLines=21,3,35,4,46,57">lib/serializer/src/FastParser.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/lib/serializer/src/FastParser.js~FastParser.html">FastParser</a></span></td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/6</span></td>
+      <td style="display: none;" data-ice="size">1437 byte</td>
+      <td style="display: none;" data-ice="lines">68</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/serializer/src/SerializerValidation.js.html#errorLines=4,5">lib/serializer/src/SerializerValidation.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="variable/index.html#static-variable-_my">_my</a></span></td>
+      <td class="coverage"><span data-ice="coverage">33 %</span><span data-ice="coverageCount" class="coverage-count">1/3</span></td>
+      <td style="display: none;" data-ice="size">8582 byte</td>
+      <td style="display: none;" data-ice="lines">383</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/serializer/src/convert.js.html#errorLines=3,9">lib/serializer/src/convert.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-convert">convert</a></span></td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/2</span></td>
+      <td style="display: none;" data-ice="size">980 byte</td>
+      <td style="display: none;" data-ice="lines">39</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/serializer/src/error_with_cause.js.html#errorLines=16,19,3,4">lib/serializer/src/error_with_cause.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/lib/serializer/src/error_with_cause.js~ErrorWithCause.html">ErrorWithCause</a></span></td>
+      <td class="coverage"><span data-ice="coverage">20 %</span><span data-ice="coverageCount" class="coverage-count">1/5</span></td>
+      <td style="display: none;" data-ice="size">899 byte</td>
+      <td style="display: none;" data-ice="lines">34</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/serializer/src/operations.js.html#errorLines=1000,1006,1013,103,1064,1072,1081,1086,1091,1099,1106,1108,111,1115,1117,1123,1134,1142,1147,1152,1156,1162,1170,1178,118,1188,1194,1201,1209,1214,1220,1228,1236,1243,1250,1257,1259,126,1273,1280,1289,1297,1302,1307,1312,1320,1328,133,1336,1344,1350,1357,1364,1372,1381,1392,1399,1407,1416,1424,1426,143,1436,1443,1450,1459,1468,1478,1485,1492,1494,1503,151,1511,1521,1530,158,1611,1619,1633,1638,1644,165,1654,1662,1673,1684,1690,1702,1710,1719,173,1730,1740,180,187,194,201,208,215,222,230,238,245,252,259,267,274,281,288,295,302,309,316,32,321,325,329,337,345,353,360,364,371,376,383,391,398,4,405,412,419,426,433,440,447,454,46,461,468,475,479,486,490,497,501,508,515,522,526,533,54,540,547,551,61,627,632,634,639,641,651,663,673,684,69,691,700,710,717,725,733,740,749,76,761,770,778,785,792,797,812,822,83,833,842,850,858,867,874,882,889,897,90,904,912,920,929,933,94,942,955,963,973,984,993">lib/serializer/src/operations.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="variable/index.html#static-variable-account_create">account_create</a></span>
+<span><a href="variable/index.html#static-variable-account_create_operation_fee_parameters">account_create_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-account_name_eq_lit_predicate">account_name_eq_lit_predicate</a></span>
+<span><a href="variable/index.html#static-variable-account_options">account_options</a></span>
+<span><a href="variable/index.html#static-variable-account_transfer">account_transfer</a></span>
+<span><a href="variable/index.html#static-variable-account_transfer_operation_fee_parameters">account_transfer_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-account_update">account_update</a></span>
+<span><a href="variable/index.html#static-variable-account_update_operation_fee_parameters">account_update_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-account_upgrade">account_upgrade</a></span>
+<span><a href="variable/index.html#static-variable-account_upgrade_operation_fee_parameters">account_upgrade_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-account_whitelist">account_whitelist</a></span>
+<span><a href="variable/index.html#static-variable-account_whitelist_operation_fee_parameters">account_whitelist_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-assert">assert</a></span>
+<span><a href="variable/index.html#static-variable-assert_operation_fee_parameters">assert_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-asset">asset</a></span>
+<span><a href="variable/index.html#static-variable-asset_claim_fees">asset_claim_fees</a></span>
+<span><a href="variable/index.html#static-variable-asset_claim_fees_operation_fee_parameters">asset_claim_fees_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-asset_create">asset_create</a></span>
+<span><a href="variable/index.html#static-variable-asset_create_operation_fee_parameters">asset_create_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-asset_dividend_distribution">asset_dividend_distribution</a></span>
+<span><a href="variable/index.html#static-variable-asset_dividend_distribution_operation_fee_parameters">asset_dividend_distribution_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-asset_fund_fee_pool">asset_fund_fee_pool</a></span>
+<span><a href="variable/index.html#static-variable-asset_fund_fee_pool_operation_fee_parameters">asset_fund_fee_pool_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-asset_global_settle">asset_global_settle</a></span>
+<span><a href="variable/index.html#static-variable-asset_global_settle_operation_fee_parameters">asset_global_settle_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-asset_issue">asset_issue</a></span>
+<span><a href="variable/index.html#static-variable-asset_issue_operation_fee_parameters">asset_issue_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-asset_options">asset_options</a></span>
+<span><a href="variable/index.html#static-variable-asset_publish_feed">asset_publish_feed</a></span>
+<span><a href="variable/index.html#static-variable-asset_publish_feed_operation_fee_parameters">asset_publish_feed_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-asset_reserve">asset_reserve</a></span>
+<span><a href="variable/index.html#static-variable-asset_reserve_operation_fee_parameters">asset_reserve_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-asset_settle">asset_settle</a></span>
+<span><a href="variable/index.html#static-variable-asset_settle_cancel">asset_settle_cancel</a></span>
+<span><a href="variable/index.html#static-variable-asset_settle_cancel_operation_fee_parameters">asset_settle_cancel_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-asset_settle_operation_fee_parameters">asset_settle_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-asset_symbol_eq_lit_predicate">asset_symbol_eq_lit_predicate</a></span>
+<span><a href="variable/index.html#static-variable-asset_update">asset_update</a></span>
+<span><a href="variable/index.html#static-variable-asset_update_bitasset">asset_update_bitasset</a></span>
+<span><a href="variable/index.html#static-variable-asset_update_bitasset_operation_fee_parameters">asset_update_bitasset_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-asset_update_dividend">asset_update_dividend</a></span>
+<span><a href="variable/index.html#static-variable-asset_update_dividend_operation_fee_parameters">asset_update_dividend_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-asset_update_feed_producers">asset_update_feed_producers</a></span>
+<span><a href="variable/index.html#static-variable-asset_update_feed_producers_operation_fee_parameters">asset_update_feed_producers_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-asset_update_operation_fee_parameters">asset_update_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-authority">authority</a></span>
+<span><a href="variable/index.html#static-variable-balance_claim">balance_claim</a></span>
+<span><a href="variable/index.html#static-variable-balance_claim_operation_fee_parameters">balance_claim_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-bet">bet</a></span>
+<span><a href="variable/index.html#static-variable-bet_adjusted">bet_adjusted</a></span>
+<span><a href="variable/index.html#static-variable-bet_adjusted_operation_fee_parameters">bet_adjusted_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-bet_cancel">bet_cancel</a></span>
+<span><a href="variable/index.html#static-variable-bet_cancel_operation_fee_parameters">bet_cancel_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-bet_canceled">bet_canceled</a></span>
+<span><a href="variable/index.html#static-variable-bet_canceled_operation_fee_parameters">bet_canceled_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-bet_matched">bet_matched</a></span>
+<span><a href="variable/index.html#static-variable-bet_matched_operation_fee_parameters">bet_matched_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-bet_place">bet_place</a></span>
+<span><a href="variable/index.html#static-variable-bet_place_operation_fee_parameters">bet_place_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-bet_type">bet_type</a></span>
+<span><a href="variable/index.html#static-variable-betting_market">betting_market</a></span>
+<span><a href="variable/index.html#static-variable-betting_market_create">betting_market_create</a></span>
+<span><a href="variable/index.html#static-variable-betting_market_create_operation_fee_parameters">betting_market_create_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-betting_market_group">betting_market_group</a></span>
+<span><a href="variable/index.html#static-variable-betting_market_group_cancel_unmatched_bets">betting_market_group_cancel_unmatched_bets</a></span>
+<span><a href="variable/index.html#static-variable-betting_market_group_cancel_unmatched_bets_operation_fee_parameters">betting_market_group_cancel_unmatched_bets_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-betting_market_group_create">betting_market_group_create</a></span>
+<span><a href="variable/index.html#static-variable-betting_market_group_create_operation_fee_parameters">betting_market_group_create_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-betting_market_group_resolve">betting_market_group_resolve</a></span>
+<span><a href="variable/index.html#static-variable-betting_market_group_resolve_operation_fee_parameters">betting_market_group_resolve_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-betting_market_group_resolved">betting_market_group_resolved</a></span>
+<span><a href="variable/index.html#static-variable-betting_market_group_resolved_operation_fee_parameters">betting_market_group_resolved_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-betting_market_group_update">betting_market_group_update</a></span>
+<span><a href="variable/index.html#static-variable-betting_market_group_update_operation_fee_parameters">betting_market_group_update_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-betting_market_position">betting_market_position</a></span>
+<span><a href="variable/index.html#static-variable-betting_market_resolution_type">betting_market_resolution_type</a></span>
+<span><a href="variable/index.html#static-variable-betting_market_rules">betting_market_rules</a></span>
+<span><a href="variable/index.html#static-variable-betting_market_rules_create">betting_market_rules_create</a></span>
+<span><a href="variable/index.html#static-variable-betting_market_rules_create_operation_fee_parameters">betting_market_rules_create_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-betting_market_rules_update">betting_market_rules_update</a></span>
+<span><a href="variable/index.html#static-variable-betting_market_rules_update_operation_fee_parameters">betting_market_rules_update_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-betting_market_update">betting_market_update</a></span>
+<span><a href="variable/index.html#static-variable-betting_market_update_operation_fee_parameters">betting_market_update_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-bitasset_options">bitasset_options</a></span>
+<span><a href="variable/index.html#static-variable-blind_input">blind_input</a></span>
+<span><a href="variable/index.html#static-variable-blind_output">blind_output</a></span>
+<span><a href="variable/index.html#static-variable-blind_transfer">blind_transfer</a></span>
+<span><a href="variable/index.html#static-variable-blind_transfer_operation_fee_parameters">blind_transfer_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-block_header">block_header</a></span>
+<span><a href="variable/index.html#static-variable-block_id_predicate">block_id_predicate</a></span>
+<span><a href="variable/index.html#static-variable-burn_worker_initializer">burn_worker_initializer</a></span>
+<span><a href="variable/index.html#static-variable-call_order_update">call_order_update</a></span>
+<span><a href="variable/index.html#static-variable-call_order_update_operation_fee_parameters">call_order_update_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-cdd_vesting_policy_initializer">cdd_vesting_policy_initializer</a></span>
+<span><a href="variable/index.html#static-variable-chain_parameters">chain_parameters</a></span>
+<span><a href="variable/index.html#static-variable-committee_member_create">committee_member_create</a></span>
+<span><a href="variable/index.html#static-variable-committee_member_create_operation_fee_parameters">committee_member_create_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-committee_member_update">committee_member_update</a></span>
+<span><a href="variable/index.html#static-variable-committee_member_update_global_parameters">committee_member_update_global_parameters</a></span>
+<span><a href="variable/index.html#static-variable-committee_member_update_global_parameters_operation_fee_parameters">committee_member_update_global_parameters_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-committee_member_update_operation_fee_parameters">committee_member_update_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-custom">custom</a></span>
+<span><a href="variable/index.html#static-variable-custom_operation_fee_parameters">custom_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-dividend_asset_options">dividend_asset_options</a></span>
+<span><a href="variable/index.html#static-variable-event">event</a></span>
+<span><a href="variable/index.html#static-variable-event_create">event_create</a></span>
+<span><a href="variable/index.html#static-variable-event_create_operation_fee_parameters">event_create_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-event_group">event_group</a></span>
+<span><a href="variable/index.html#static-variable-event_group_create">event_group_create</a></span>
+<span><a href="variable/index.html#static-variable-event_group_create_operation_fee_parameters">event_group_create_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-event_group_update">event_group_update</a></span>
+<span><a href="variable/index.html#static-variable-event_group_update_operation_fee_parameters">event_group_update_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-event_update">event_update</a></span>
+<span><a href="variable/index.html#static-variable-event_update_operation_fee_parameters">event_update_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-fba_distribute">fba_distribute</a></span>
+<span><a href="variable/index.html#static-variable-fba_distribute_operation_fee_parameters">fba_distribute_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-fee_schedule">fee_schedule</a></span>
+<span><a href="variable/index.html#static-variable-fill_order">fill_order</a></span>
+<span><a href="variable/index.html#static-variable-fill_order_operation_fee_parameters">fill_order_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-game_move">game_move</a></span>
+<span><a href="variable/index.html#static-variable-game_move_operation_fee_parameters">game_move_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-global_betting_statistics">global_betting_statistics</a></span>
+<span><a href="variable/index.html#static-variable-limit_order_cancel">limit_order_cancel</a></span>
+<span><a href="variable/index.html#static-variable-limit_order_cancel_operation_fee_parameters">limit_order_cancel_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-limit_order_create">limit_order_create</a></span>
+<span><a href="variable/index.html#static-variable-limit_order_create_operation_fee_parameters">limit_order_create_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-linear_vesting_policy_initializer">linear_vesting_policy_initializer</a></span>
+<span><a href="variable/index.html#static-variable-memo_data">memo_data</a></span>
+<span><a href="variable/index.html#static-variable-op_wrapper">op_wrapper</a></span>
+<span><a href="variable/index.html#static-variable-operation">operation</a></span>
+<span><a href="variable/index.html#static-variable-override_transfer">override_transfer</a></span>
+<span><a href="variable/index.html#static-variable-override_transfer_operation_fee_parameters">override_transfer_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-payout_type">payout_type</a></span>
+<span><a href="variable/index.html#static-variable-price">price</a></span>
+<span><a href="variable/index.html#static-variable-price_feed">price_feed</a></span>
+<span><a href="variable/index.html#static-variable-processed_transaction">processed_transaction</a></span>
+<span><a href="variable/index.html#static-variable-proposal_create">proposal_create</a></span>
+<span><a href="variable/index.html#static-variable-proposal_create_operation_fee_parameters">proposal_create_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-proposal_delete">proposal_delete</a></span>
+<span><a href="variable/index.html#static-variable-proposal_delete_operation_fee_parameters">proposal_delete_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-proposal_update">proposal_update</a></span>
+<span><a href="variable/index.html#static-variable-proposal_update_operation_fee_parameters">proposal_update_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-refund_worker_initializer">refund_worker_initializer</a></span>
+<span><a href="variable/index.html#static-variable-rock_paper_scissors_game_options">rock_paper_scissors_game_options</a></span>
+<span><a href="variable/index.html#static-variable-rock_paper_scissors_gesture">rock_paper_scissors_gesture</a></span>
+<span><a href="variable/index.html#static-variable-rock_paper_scissors_throw_commit">rock_paper_scissors_throw_commit</a></span>
+<span><a href="variable/index.html#static-variable-rock_paper_scissors_throw_reveal">rock_paper_scissors_throw_reveal</a></span>
+<span><a href="variable/index.html#static-variable-signed_block">signed_block</a></span>
+<span><a href="variable/index.html#static-variable-signed_block_header">signed_block_header</a></span>
+<span><a href="variable/index.html#static-variable-signed_transaction">signed_transaction</a></span>
+<span><a href="variable/index.html#static-variable-sport">sport</a></span>
+<span><a href="variable/index.html#static-variable-sport_create">sport_create</a></span>
+<span><a href="variable/index.html#static-variable-sport_create_operation_fee_parameters">sport_create_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-sport_update">sport_update</a></span>
+<span><a href="variable/index.html#static-variable-sport_update_operation_fee_parameters">sport_update_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-stealth_confirmation">stealth_confirmation</a></span>
+<span><a href="variable/index.html#static-variable-stealth_memo_data">stealth_memo_data</a></span>
+<span><a href="variable/index.html#static-variable-tournament_create">tournament_create</a></span>
+<span><a href="variable/index.html#static-variable-tournament_create_operation_fee_parameters">tournament_create_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-tournament_join">tournament_join</a></span>
+<span><a href="variable/index.html#static-variable-tournament_join_operation_fee_parameters">tournament_join_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-tournament_leave">tournament_leave</a></span>
+<span><a href="variable/index.html#static-variable-tournament_leave_operation_fee_parameters">tournament_leave_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-tournament_options">tournament_options</a></span>
+<span><a href="variable/index.html#static-variable-tournament_payout">tournament_payout</a></span>
+<span><a href="variable/index.html#static-variable-tournament_payout_operation_fee_parameters">tournament_payout_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-transaction">transaction</a></span>
+<span><a href="variable/index.html#static-variable-transfer">transfer</a></span>
+<span><a href="variable/index.html#static-variable-transfer_from_blind">transfer_from_blind</a></span>
+<span><a href="variable/index.html#static-variable-transfer_from_blind_operation_fee_parameters">transfer_from_blind_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-transfer_operation_fee_parameters">transfer_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-transfer_to_blind">transfer_to_blind</a></span>
+<span><a href="variable/index.html#static-variable-transfer_to_blind_operation_fee_parameters">transfer_to_blind_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-vesting_balance_create">vesting_balance_create</a></span>
+<span><a href="variable/index.html#static-variable-vesting_balance_create_operation_fee_parameters">vesting_balance_create_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-vesting_balance_withdraw">vesting_balance_withdraw</a></span>
+<span><a href="variable/index.html#static-variable-vesting_balance_withdraw_operation_fee_parameters">vesting_balance_withdraw_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-vesting_balance_worker_initializer">vesting_balance_worker_initializer</a></span>
+<span><a href="variable/index.html#static-variable-void_result">void_result</a></span>
+<span><a href="variable/index.html#static-variable-withdraw_permission_claim">withdraw_permission_claim</a></span>
+<span><a href="variable/index.html#static-variable-withdraw_permission_claim_operation_fee_parameters">withdraw_permission_claim_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-withdraw_permission_create">withdraw_permission_create</a></span>
+<span><a href="variable/index.html#static-variable-withdraw_permission_create_operation_fee_parameters">withdraw_permission_create_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-withdraw_permission_delete">withdraw_permission_delete</a></span>
+<span><a href="variable/index.html#static-variable-withdraw_permission_delete_operation_fee_parameters">withdraw_permission_delete_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-withdraw_permission_update">withdraw_permission_update</a></span>
+<span><a href="variable/index.html#static-variable-withdraw_permission_update_operation_fee_parameters">withdraw_permission_update_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-witness_create">witness_create</a></span>
+<span><a href="variable/index.html#static-variable-witness_create_operation_fee_parameters">witness_create_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-witness_update">witness_update</a></span>
+<span><a href="variable/index.html#static-variable-witness_update_operation_fee_parameters">witness_update_operation_fee_parameters</a></span>
+<span><a href="variable/index.html#static-variable-worker_create">worker_create</a></span>
+<span><a href="variable/index.html#static-variable-worker_create_operation_fee_parameters">worker_create_operation_fee_parameters</a></span></td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/206</span></td>
+      <td style="display: none;" data-ice="size">53411 byte</td>
+      <td style="display: none;" data-ice="lines">1948</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/serializer/src/precision.js.html#errorLines=5,67">lib/serializer/src/precision.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="variable/index.html#static-variable-_my">_my</a></span></td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/2</span></td>
+      <td style="display: none;" data-ice="size">2854 byte</td>
+      <td style="display: none;" data-ice="lines">93</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/serializer/src/serializer.js.html#errorLines=12,18,192,197,202,208,214,4,6,61,7,8,82,9">lib/serializer/src/serializer.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/lib/serializer/src/serializer.js~Serializer.html">Serializer</a></span></td>
+      <td class="coverage"><span data-ice="coverage">12 %</span><span data-ice="coverageCount" class="coverage-count">2/16</span></td>
+      <td style="display: none;" data-ice="size">5523 byte</td>
+      <td style="display: none;" data-ice="lines">219</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/serializer/src/template.js.html">lib/serializer/src/template.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-template">template</a></span></td>
+      <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">1/1</span></td>
+      <td style="display: none;" data-ice="size">442 byte</td>
+      <td style="display: none;" data-ice="lines">14</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/serializer/src/types.js.html#errorLines=12,13,15,17,31,33,62">lib/serializer/src/types.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="variable/index.html#static-variable-Types">Types</a></span></td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/7</span></td>
+      <td style="display: none;" data-ice="size">26884 byte</td>
+      <td style="display: none;" data-ice="lines">1156</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/ws/ApiInstances.js.html#errorLines=22,24,26,27,28,29,30,33,62,7,70,74,78,82,86,90,91">lib/ws/ApiInstances.js</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">5 %</span><span data-ice="coverageCount" class="coverage-count">1/18</span></td>
+      <td style="display: none;" data-ice="size">4326 byte</td>
+      <td style="display: none;" data-ice="lines">166</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/ws/ApisInstance.js.html#errorLines=1,2,23,25,27,28,29,30,31,34,4,5,6,68,73,77,81,85,89,93,94">lib/ws/ApisInstance.js</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">4 %</span><span data-ice="coverageCount" class="coverage-count">1/22</span></td>
+      <td style="display: none;" data-ice="size">2446 byte</td>
+      <td style="display: none;" data-ice="lines">98</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/ws/ChainConfig.js.html#errorLines=1,26,27,31,35,43,46,61,65,9">lib/ws/ChainConfig.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/lib/ws/ChainConfig.js~ChainConfig.html">ChainConfig</a></span>
+<span><a href="variable/index.html#static-variable-chainConfig">chainConfig</a></span></td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/10</span></td>
+      <td style="display: none;" data-ice="size">1365 byte</td>
+      <td style="display: none;" data-ice="lines">65</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/ws/ChainWebSocket.js.html#errorLines=1,10,103,17,19,2,21,30,31,32,35,36,39,420,43,47,48,49,52,53,56,59,89,94">lib/ws/ChainWebSocket.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/lib/ws/ChainWebSocket.js~ChainWebSocket.html">ChainWebSocket</a></span></td>
+      <td class="coverage"><span data-ice="coverage">38 %</span><span data-ice="coverageCount" class="coverage-count">15/39</span></td>
+      <td style="display: none;" data-ice="size">12096 byte</td>
+      <td style="display: none;" data-ice="lines">435</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/ws/ConnectionManager.js.html#errorLines=10,123,14,21,32,4,5,6,65,7">lib/ws/ConnectionManager.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/lib/ws/ConnectionManager.js~ConnectionManager.html">ConnectionManager</a></span></td>
+      <td class="coverage"><span data-ice="coverage">9 %</span><span data-ice="coverageCount" class="coverage-count">1/11</span></td>
+      <td style="display: none;" data-ice="size">4182 byte</td>
+      <td style="display: none;" data-ice="lines">160</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/ws/GrapheneApi.js.html#errorLines=1,14,2,3,4,7,9">lib/ws/GrapheneApi.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/lib/ws/GrapheneApi.js~GrapheneApi.html">GrapheneApi</a></span></td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/7</span></td>
+      <td style="display: none;" data-ice="size">518 byte</td>
+      <td style="display: none;" data-ice="lines">22</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/lib/ws/index.js.html">lib/ws/index.js</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">-</span></td>
+      <td style="display: none;" data-ice="size">205 byte</td>
+      <td style="display: none;" data-ice="lines">10</td>
+      <td style="display: none;" data-ice="updated">2019-05-06 00:58:32 (UTC)</td>
+    </tr>
+</tbody>
+</table>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
