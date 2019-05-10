@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.5.2"></a>
+## [0.5.2](https://github.com/peerplays-network/peerplays-core-gui/compare/v0.5.1...v0.5.2) (2019-05-09)
+
+
+### Bug Fixes
+
+* fix distributable crashing ([bb07077](https://github.com/peerplays-network/peerplays-core-gui/commit/bb07077))
+
+
+### Code Refactoring
+
+* **ws:** removed peerplaysjs-ws ([89aa3f3](https://github.com/peerplays-network/peerplays-core-gui/commit/89aa3f3))
+
+
+### BREAKING CHANGES
+
+* **ws:** removal of peerplaysjs-ws and refactoring of its imports
+
+
+
 <a name="0.5.1"></a>
 ## [0.5.1](https://github.com/peerplays-network/peerplays-core-gui/compare/v0.5.0...v0.5.1) (2019-04-10)
 
