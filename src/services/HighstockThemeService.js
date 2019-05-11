@@ -26,7 +26,7 @@ class HighstockThemeService {
             color: '#8e92b1',
             fontSize: '14px',
             fontWeight: '500'
-          },
+          }
           //y: 50
         },
         lineColor: '#265085',

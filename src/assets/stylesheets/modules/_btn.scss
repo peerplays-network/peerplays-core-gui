@@ -1,25 +1,26 @@
 .field {
-  border: 1px solid $field-bd-color;
-  font-size: 18px;
-  font-weight: $fw;
-  color: $field-color;
-  height: $field-height;
-  background: $clear-color2;
-  width: 100%;
-  padding-left: 15px;
   vertical-align: top;
+  width: 100%;
+  height: $field-height;
+  padding-left: 15px;
+  border: 1px solid $field-bd-color;
+  font-weight: $fw;
+  font-size: 18px;
+  color: $field-color;
   text-decoration: none;
+  background: $clear-color2;
   outline: none;
+
   @include border-radius(5px);
   @include plhl-color(#babdbf);
   @include transition(all .15s ease);
 
   &[disabled] {
-    cursor: not-allowed !important;
-    background: #9a9eab;
     color: rgba($field-color, .5);
+    background: #9a9eab;
+    cursor: not-allowed !important;
 
-    &~.btn .calendarIcon {
+    & ~ .btn .calendarIcon {
       color: rgba($field-color, .5);
     }
   }
@@ -31,7 +32,7 @@
   &:focus {
     border-color: $mark-color !important;
 
-    &~.fieldPic .fieldIcon {
+    & ~ .fieldPic .fieldIcon {
       color: $mark-color;
     }
   }
@@ -49,9 +50,10 @@
   }
 
   &-type2 {
-    font-size: 16px;
     font-weight: 500;
+    font-size: 16px;
     border-color: $field2-bd-color;
+
     @include box-shadow(inset 0 2px 2px rgba(0, 0, 0, 0.04));
     @include plhl-color(#b2b4b7);
 
@@ -66,29 +68,31 @@
   }
 
   &-type3 {
-    height: 50px;
-    background: $clear-color2;
-    font-size: 18px;
-    font-weight: 500;
-    @include border-radius(3px);
     width: 100%;
-    color: $text-color;
-    border: none;
+    height: 50px;
     padding: 0 18px;
+    border: none;
+    font-weight: 500;
+    font-size: 18px;
+    color: $text-color;
+    background: $clear-color2;
+
+    @include border-radius(3px);
     @include transition(all .15s ease);
     @include box-shadow(0 5px 20px rgba(0, 0, 0, 0.05));
   }
 
   &-type4 {
-    height: 26px;
-    background: $clear-color2;
-    font-size: 14px;
-    font-weight: 500;
-    @include border-radius(3px);
     width: 100%;
-    color: $text-color;
-    border: 1px solid #d6d6d6;
+    height: 26px;
     padding: 0 18px;
+    border: 1px solid #d6d6d6;
+    font-weight: 500;
+    font-size: 14px;
+    color: $text-color;
+    background: $clear-color2;
+
+    @include border-radius(3px);
     @include transition(all .15s ease);
     @include box-shadow(0 5px 20px rgba(0, 0, 0, 0.05));
 
@@ -123,9 +127,9 @@
 }
 
 .textarea {
+  height: 100px;
   padding: 15px 0 15px 15px;
   line-height: 1.25;
-  height: 100px;
 
   &-pic {
     padding-left: 58px;
@@ -137,20 +141,21 @@
 }
 
 .btn {
-  height: $btn-height;
+  vertical-align: top;
   width: auto;
   min-width: 176px;
-  padding: 0 25px;
+  height: $btn-height;
   margin: auto;
-  text-align: center;
-  background: #e1e1e1;
+  padding: 0 25px;
   border: 2px solid transparent;
-  vertical-align: top;
-  color: $clear-color2;
-  font-size: 16px;
   font-weight: 600;
+  font-size: 16px;
+  color: $clear-color2;
+  text-align: center;
   text-transform: uppercase;
+  background: #e1e1e1;
   white-space: nowrap;
+
   @include border-radius(5px);
   @include transition(background .2s ease);
 
@@ -173,7 +178,7 @@
     }
   }
 
-  &+& {
+  & + & {
     margin-left: 15px;
   }
 
@@ -192,14 +197,13 @@
     &:active {
       background: $color-second-active;
       border-color: $color-second-bd-color;
-
     }
   }
 
   &-gold,
   &-color2 {
-    background: $color-add2;
     color: $color-add2-text;
+    background: $color-add2;
 
     &[disabled] {
       background: $color-add2 !important;
@@ -213,13 +217,12 @@
     &:active {
       background: $color-add2-hover;
       border-color: $color-add2-bd-color;
-
     }
   }
 
   &-color3 {
-    background: $color-add3;
     color: $color-add3-text;
+    background: $color-add3;
 
     &:hover {
       background: darken($color-add3, 5%);
@@ -241,7 +244,6 @@
 
     &:active {
       background: lighten($green2, 5%);
-
     }
   }
 
@@ -260,7 +262,6 @@
 
     &:active {
       background: lighten($red, 5%);
-
     }
   }
 
@@ -280,7 +281,6 @@
     &:active {
       background: darken($new-blue15, 10%);
       border-color: darken($new-blue15, 10%);
-
     }
   }
 
@@ -300,7 +300,6 @@
     &:active {
       background: darken($new-blue16, 10%);
       border-color: darken($new-blue16, 10%);
-
     }
   }
 
@@ -320,14 +319,13 @@
     &:active {
       background: darken($gray5, 10%);
       border-color: darken($gray5, 10%);
-
     }
   }
 
   &-transp1 {
-    border-width: 1px;
-    background: transparent;
     color: $btn-transp1-color;
+    background: transparent;
+    border-width: 1px;
     border-color: $btn-transp1-color;
   }
 
@@ -344,19 +342,21 @@
   }
 
   &-sm {
+    min-width: 120px;
     height: 30px;
     font-size: 13px;
-    min-width: 120px;
   }
 
   &-mark {
     @extend .btn-transp1;
+
     display: inline-block;
-    height: 38px;
-    line-height: 36px;
     min-width: 0;
+    height: 38px;
     padding: 0 18px;
+    line-height: 36px;
     font-weight: 500;
+
     @include border-radius(20px);
 
     &.pulledLeftMinus20 {
@@ -367,27 +367,28 @@
   }
 
   &-mark2 {
-    border: 2px solid;
-    height: 24px;
-    line-height: 20px;
-    min-width: 0;
-    padding: 0;
-    text-align: center;
     width: 100px;
+    min-width: 0;
     max-width: 100%;
+    height: 24px;
+    padding: 0;
+    border: 2px solid;
+    line-height: 20px;
     font-weight: 600;
     font-size: 12px;
+    text-align: center;
     background: transparent;
+
     @include border-radius(20px);
 
     &.buy {
-      border-color: $green3;
       color: $green3;
+      border-color: $green3;
     }
 
     &.sell {
-      border-color: $red2;
       color: $red2;
+      border-color: $red2;
     }
   }
 
@@ -398,13 +399,15 @@
 
   &-copy {
     @extend .btn-color9;
+
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
-    height: $field-height;
     min-width: 80px !important;
+    height: $field-height;
     padding: 0;
+
     @include border-radius(0 5px 5px 0);
   }
 
@@ -415,6 +418,7 @@
     bottom: 0;
     height: $field-height;
     padding: 0;
+
     @include border-radius(0 5px 5px 0);
   }
 
@@ -424,12 +428,14 @@
 
   &-add {
     @extend .btn-color1;
+
     min-width: 140px;
     height: 52px;
   }
 
   &-remove {
     @extend .btn-color1;
+
     min-width: 120px;
     height: 44px;
   }
@@ -448,13 +454,15 @@
 
   &-advOptAside {
     @extend .btn-color1;
-    font-size: 14px;
+
     height: 42px;
     padding: 0 20px;
+    font-size: 14px;
   }
 
   &-sbm {
     @extend .btn-color7;
+
     min-width: 210px;
     padding: 0;
 
@@ -465,35 +473,39 @@
 
   &-sign {
     @extend .btn-color8;
+
     min-width: 210px;
     padding: 0;
   }
 
   &-transfer {
-    height: 42px;
-    line-height: 38px;
-    min-width: 120px;
-    padding: 0;
     width: 120px;
+    min-width: 120px;
+    height: 42px;
     margin: 0;
+    padding: 0;
+    line-height: 38px;
   }
 
   &-voteHead {
     @extend .btn-color1;
+
     min-width: 150px;
-    padding: 0;
     height: 52px;
     margin-left: 30px;
+    padding: 0;
   }
 
   &-set {
     @extend .btn-color1;
+
     min-width: 120px;
     height: 40px;
   }
 
   &-proposal {
     @extend .btn-color1;
+
     min-width: 100px;
     height: 44px;
     padding: 0;
@@ -501,11 +513,13 @@
 
   &-seeMore {
     @extend .btn-color3;
+
     min-width: 225px;
   }
 
   &-explore {
     @extend .btn-color1;
+
     min-width: 100px;
     height: 42px;
     padding: 0;
@@ -518,6 +532,7 @@
 
   &-loginBack {
     @extend .btn-color9;
+
     width: 100%;
     min-width: 100px;
     padding: 0;
@@ -525,6 +540,7 @@
 
   &-loginPrint {
     @extend .btn-color1;
+
     width: 100%;
     min-width: 100px;
     padding: 0;
@@ -532,6 +548,7 @@
 
   &-loginOk {
     @extend .btn-color7;
+
     width: 100%;
     min-width: 100px;
     padding: 0;
@@ -542,59 +559,64 @@
   }
 
   &-buy {
-    background: $green3;
-    border: none;
+    width: 125px;
     min-width: 0;
     padding: 0;
-    width: 125px;
+    border: none;
+    background: $green3;
   }
 
   &-sell {
-    background: $red2;
-    border: none;
+    width: 125px;
     min-width: 0;
     padding: 0;
-    width: 125px;
+    border: none;
+    background: $red2;
   }
 
   &-join {
     @extend .btn-color1;
-    min-width: 100px;
+
     width: 100px;
-    padding: 0;
+    min-width: 100px;
     height: 40px;
+    padding: 0;
   }
 
   &-details {
     @extend .btn-color1;
-    min-width: 100px;
+
     width: 100px;
-    padding: 0;
+    min-width: 100px;
     height: 40px;
+    padding: 0;
   }
 
   &-register {
     @extend .btn-color5;
-    min-width: 100px;
+
     width: 100px;
-    padding: 0;
+    min-width: 100px;
     height: 40px;
+    padding: 0;
   }
 
   &-play {
     @extend .btn-color5;
-    min-width: 100px;
+
     width: 100px;
-    padding: 0;
+    min-width: 100px;
     height: 40px;
+    padding: 0;
   }
 
   &-cancel {
     @extend .btn-color6;
-    min-width: 100px;
+
     width: 100px;
-    padding: 0;
+    min-width: 100px;
     height: 40px;
+    padding: 0;
   }
 
   //new db
@@ -602,18 +624,18 @@
     @extend .btn-color1;
 
     span {
-      padding: 0 2px;
       vertical-align: middle;
+      padding: 0 2px;
     }
   }
 
   //game play. create
   &-calendar {
-    background: transparent;
     width: 70px;
     min-width: 0;
-    text-align: center;
     height: auto;
+    text-align: center;
+    background: transparent;
 
     &:hover {
       .calendarIcon {
@@ -624,18 +646,21 @@
 
   &-whiteListAdd {
     @extend .btn-color1;
-    min-width: 0;
+
     width: 100px;
+    min-width: 0;
   }
 
   &-claim {
     @extend .btn-color1;
+
     width: 120px;
     min-width: 0;
   }
 
   &-reset {
     @extend .btn-color9;
+
     min-width: 100px;
   }
 }
@@ -644,10 +669,11 @@
   width: 44px;
   height: 38px;
   line-height: 38px;
-  text-align: center;
-  color: $clear-color2;
-  font-size: 16px;
   font-weight: 500;
+  font-size: 16px;
+  color: $clear-color2;
+  text-align: center;
+
   @include border-radius(4px);
 
   &.pos {
@@ -661,29 +687,30 @@
 
 .attach {
   &Input {
-    opacity: 0;
     position: absolute;
     top: -18px;
-    left: 0;
     right: 0;
     bottom: 0;
+    left: 0;
     z-index: 1;
+    opacity: 0;
     cursor: pointer;
   }
 
   &Btn {
-    display: block;
-    overflow: hidden;
     @extend .btn-color9;
+
+    display: block;
     min-width: 120px;
     height: 100%;
-    line-height: 46px;
     padding: 0;
+    line-height: 46px;
+    overflow: hidden;
   }
 
   &Next {
-    overflow: hidden;
     margin-left: 120px;
+    overflow: hidden;
   }
 }
 
@@ -691,7 +718,7 @@
   min-width: 100px;
 }
 
-.btn+.btn.ml-2 {
+.btn + .btn.ml-2 {
   margin-left: 2px;
 }
 
@@ -701,13 +728,15 @@
   .attachBtn {
     position: absolute;
     top: 0;
-    left: 0;
     bottom: 0;
+    left: 0;
+
     @include border-radius(5px 0 0 5px);
   }
 
   .field {
     border-left: none;
+
     @include border-radius(0 5px 5px 0);
   }
 }

@@ -1,15 +1,14 @@
 .pagination {
   display: inline-block;
-  padding: 1rem;
   margin: 20px 0;
-
+  padding: 1rem;
 }
 
 
-.pagination>li {
-  padding: 1rem;
+.pagination > li {
   display: inline;
-  border: 0px solid #ddd;
+  padding: 1rem;
+  border: 0 solid #dddddd;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -32,10 +31,10 @@
     cursor: pointer;
   }
 
-  >input {
+  > input {
     display: inline;
     width: 4rem;
-    margin: 0 0rem 0 0rem;
+    margin: 0;
     border: none;
   }
 }

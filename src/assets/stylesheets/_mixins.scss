@@ -62,13 +62,13 @@
 }
 
 @mixin clearfix() {
-  &:before,
-  &:after {
-    content: " ";
+  &::before,
+  &::after {
+    content: ' ';
     display: table;
   }
 
-  &:after {
+  &::after {
     clear: both;
   }
 }
@@ -76,14 +76,14 @@
 @mixin table_clearfix() {
   display: table;
 
-  &:after {
+  &::after {
     content: '. @include ';
     display: block;
-    word-spacing: 99in;
     height: 0;
-    overflow: hidden;
-    font-size: 0.13em;
     line-height: 0;
+    font-size: 0.13em;
+    overflow: hidden;
+    word-spacing: 99in;
   }
 }
 
@@ -92,21 +92,21 @@
   line-height: 0;
   font-size: 0;
 
-  &:after {
-    position: relative;
-    content: "";
-    height: 100%;
-    width: 0;
+  &::after {
+    content: '';
     display: inline-block;
+    position: relative;
     vertical-align: middle;
+    width: 0;
+    height: 100%;
   }
 }
 
 @mixin va_middle_in() {
   display: inline-block;
   vertical-align: middle;
-  max-width: 100%;
   width: 100%;
+  max-width: 100%;
   text-decoration: none;
 }
 
@@ -116,13 +116,13 @@
   text-align: justify;
   text-align-last: justify;
 
-  &:after {
+  &::after {
+    content: '';
+    display: inline-block;
     width: 100%;
     height: 0;
     visibility: hidden;
     overflow: hidden;
-    content: '';
-    display: inline-block;
   }
 }
 
@@ -174,15 +174,10 @@
 }
 
 @mixin img-retina($file-1x, $file-2x, $width-1x, $height-1x) {
-  background-image: url("#{$file-1x}");
+  background-image: url('#{$file-1x}');
 
-  @media only screen and (-webkit-min-device-pixel-ratio: 2),
-    only screen and (min--moz-device-pixel-ratio: 2),
-    only screen and (-o-min-device-pixel-ratio: 2/1),
-    only screen and (min-device-pixel-ratio: 2),
-    only screen and (min-resolution: 192dpi),
-    only screen and (min-resolution: 2dppx) {
-    background-image: url("#{$file-2x}");
+  @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+    background-image: url('#{$file-2x}');
     background-size: $width-1x $height-1x;
   }
 }
@@ -212,9 +207,9 @@
   }
 
   @mixin directional($start-color: #555, $end-color: #333, $deg: 45deg) {
-    background-repeat: repeat-x;
     background-image: -webkit-linear-gradient($deg, $start-color, $end-color); // Safari 5.1-6, Chrome 10+
     background-image: linear-gradient($deg, $start-color, $end-color); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+    background-repeat: repeat-x;
   }
 
   @mixin horizontal-three-colors($start-color: #00b3ee, $mid-color: #7a43b6, $color-stop: 50%, $end-color: #c3325f) {

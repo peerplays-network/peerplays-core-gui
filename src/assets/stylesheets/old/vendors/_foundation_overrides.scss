@@ -26,36 +26,36 @@
     }
   }
 
-  .no-first-element-top-border> :first-child>a {
+  .no-first-element-top-border > :first-child > a {
     border-top: none;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
   }
 
-  ul> :last-child>a {
+  ul > :last-child > a {
     border-bottom: none;
-    border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
   }
 }
 
 .has-error,
-div.has-error>label,
-div.has-error>input,
-div.has-error>input:hover,
-div.has-error>input:focus {
-  border-color: #a94442;
+div.has-error > label,
+div.has-error > input,
+div.has-error > input:hover,
+div.has-error > input:focus {
   color: #a94442;
+  border-color: #a94442;
 }
 
-.menu-bar.primary>li>a.active {
+.menu-bar.primary > li > a.active {
+  color: #ffffff;
   background: #414141;
-  color: #fff;
 }
 
-.menu-bar.secondary>li>a.active {
+.menu-bar.secondary > li > a.active {
+  color: #000000;
   background: #ededed;
-  color: #000;
 }
 
 .inline {
@@ -63,25 +63,25 @@ div.has-error>input:focus {
 }
 
 a {
+  color: #008cba;
   cursor: pointer;
-  color: #008CBA;
 }
 
 
 .tabs {
-  border-bottom: 1px solid #444;
   margin-bottom: 1rem;
+  border-bottom: 1px solid #444444;
 
-  >.tab-item {
-    background: none;
-    text-transform: uppercase;
-    transition: all 0.3s ease 0s;
-    border-bottom: 2px solid transparent;
+  > .tab-item {
     padding-bottom: 0.8rem;
+    border-bottom: 2px solid transparent;
+    text-transform: uppercase;
+    background: none;
+    transition: all 0.3s ease 0s;
 
     &.is-active {
+      border-bottom: 2px solid #ff0000;
       background: none;
-      border-bottom: 2px solid #f00;
 
       &:hover,
       &:focus,
@@ -104,25 +104,25 @@ a {
 .label.info,
 .label.cancel,
 .label.alert {
-  background-color: transparent;
-  border: 1px solid #444;
-  border-radius: 1rem;
-  text-transform: uppercase;
   padding: 0.3rem 0.4rem;
+  border: 1px solid #444444;
+  border-radius: 1rem;
   font-size: 0.74rem;
+  text-transform: uppercase;
+  background-color: transparent;
 }
 
 .notification {
   // Extend the base selector to get core styles
   @extend %notification;
   // Use the layout mixin to position and structure the notification
-  @include notification-layout($x: right, // Can be left, middle, or right
-    $y: bottom // Can be top or bottom
+  @include notification-layout($x: right, 
+  $y: bottom 
     );
 }
 
 .modal {
-  padding: 1rem 1rem 1rem 1rem;
+  padding: 1rem;
 
   h3 {
     margin-bottom: 1rem;
@@ -141,14 +141,14 @@ a {
   margin-right: 0;
   margin-bottom: 0;
 
-  li>a {
+  li > a {
     padding: 0.6rem;
   }
 
   li {
     border-top: none !important;
 
-    &.with-dropdown>select {
+    &.with-dropdown > select {
       -webkit-appearance: menulist;
       -moz-appearance: menulist;
       appearance: menulist;
@@ -159,7 +159,7 @@ a {
 
 
 code {
+  border: none;
   color: inherit;
   background-color: inherit;
-  border: none;
 }

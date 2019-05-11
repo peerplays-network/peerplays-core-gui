@@ -1,96 +1,97 @@
 .loader {
   position: absolute;
   top: 0;
+  right: 0;
   bottom: 0;
   left: 0;
-  right: 0;
-  margin: auto;
   z-index: 9;
-  overflow: hidden;
   width: 100%;
+  margin: auto;
   text-align: center;
+  overflow: hidden;
 
-  &:after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
+  &::after {
     content: '';
     display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     width: 49px;
     height: 49px;
-    @include border-radius(50%);
+    margin: auto;
     border: 3px solid $color-add;
     border-left-color: transparent;
     border-right-color: transparent;
+
+    @include border-radius(50%);
     @include animation(cssload-spin 1000ms infinite linear);
   }
 
-  &-color-brand:after {
+  &-color-brand::after {
     border-color: $color-add transparent $color-add transparent;
   }
 
-  &-white:after {
+  &-white::after {
     border-color: $clear-color2 transparent $clear-color2 transparent;
   }
 
-  &-black:after {
+  &-black::after {
     border-color: $clear-color transparent $clear-color transparent;
   }
 
-  &-l:after {
+  &-l::after {
     width: 59px;
     height: 59px;
   }
 
-  &-m:after {
+  &-m::after {
     width: 49px;
     height: 49px;
   }
 
-  &-s:after {
+  &-s::after {
     width: 39px;
     height: 39px;
   }
 
-  &-xs:after {
+  &-xs::after {
     width: 29px;
     height: 29px;
   }
 
-  &-xxs:after {
+  &-xxs::after {
     width: 19px;
     height: 19px;
   }
 
-  &-xxxs:after {
+  &-xxxs::after {
     width: 15px;
     height: 15px;
   }
 
   &-bg {
     &-white {
-      &:before {
-        position: absolute;
+      &::before {
         content: '';
+        position: absolute;
         top: 0;
-        left: 0;
         right: 0;
         bottom: 0;
+        left: 0;
         background: rgba(255, 255, 255, .3);
       }
     }
 
     &-gray {
-      &:before {
-        position: absolute;
+      &::before {
         content: '';
+        position: absolute;
         top: 0;
-        left: 0;
         right: 0;
         bottom: 0;
+        left: 0;
         background: rgba(0, 0, 0, .6);
       }
     }
@@ -98,27 +99,25 @@
 
   &-relative {
     position: relative;
-    margin: 5px 18px;
     z-index: 0;
+    margin: 5px 18px;
   }
 
   &Icon {
-    font-size: 20px;
-    color: $clear-color2;
     vertical-align: middle;
     padding-right: 6px;
+    font-size: 20px;
+    color: $clear-color2;
 
-    &+.btnText {
+    & + .btnText {
       padding-right: 28px;
     }
   }
-
 }
 
 .btn-loader {
   position: relative;
   color: transparent !important;
-
 }
 
 @keyframes cssload-spin {

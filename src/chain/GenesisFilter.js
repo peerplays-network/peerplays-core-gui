@@ -172,7 +172,7 @@ export default class GenesisFilter {
         }
 
         status({
-          success: true,
+          success: true
         });
       } finally {
         if (initalizing) {

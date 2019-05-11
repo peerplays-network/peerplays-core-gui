@@ -39,105 +39,105 @@ require('./components/Utility/Prototypes'); /*eslint-disable-line */
 const routes = (
   <Fragment>
     <Switch>
-      <Route path='/' component={App}>
+      <Route path='/' component={ App }>
         <IndexRedirect to='/dashboard'/>
-        <Route path='/login' component={Login}/>
-        <Route path='/sign-up' component={Register}/>
+        <Route path='/login' component={ Login }/>
+        <Route path='/sign-up' component={ Register }/>
         <Route
           path='/account/vesting'
-          component={requireAuthentication(VestingAccountContainer)}/>
-        <Route path='/referrals' component={requireAuthentication(Referrals)}/>
+          component={ requireAuthentication(VestingAccountContainer) }/>
+        <Route path='/referrals' component={ requireAuthentication(Referrals) }/>
         <Route
           path='/dashboard'
-          component={requireAuthentication(BalancesDashboard)}
-          onEnter={() => {
-          window.scrollTo(0, 0);
-          store.dispatch(AppActions.setCurrentLocation(LocationConstants.DASHBOARD_BALANCES));
-        }}/>
+          component={ requireAuthentication(BalancesDashboard) }
+          onEnter={ () => {
+            window.scrollTo(0, 0);
+            store.dispatch(AppActions.setCurrentLocation(LocationConstants.DASHBOARD_BALANCES));
+          } }/>
         <Route
           path='/timeout'
-          component={Timeout}
-          onEnter={() => {
-          store.dispatch(AppActions.setCurrentLocation(LocationConstants.TIMEOUT));
-        }}/>
+          component={ Timeout }
+          onEnter={ () => {
+            store.dispatch(AppActions.setCurrentLocation(LocationConstants.TIMEOUT));
+          } }/>
         <Route
           path='/games/rock-paper-scissors'
-          onEnter={() => {
-          store.dispatch(AppActions.setCurrentLocation(LocationConstants.GAMES_ROCK_PAPER_SCISSOR_TOURNAMENTS));
-        }}
-          onLeave={() => {
-          store.dispatch(AppActions.setCurrentLocation(null));
-        }}>
+          onEnter={ () => {
+            store.dispatch(AppActions.setCurrentLocation(LocationConstants.GAMES_ROCK_PAPER_SCISSOR_TOURNAMENTS));
+          } }
+          onLeave={ () => {
+            store.dispatch(AppActions.setCurrentLocation(null));
+          } }>
 
           <IndexRoute
-            params={{
-            tab: 'dashboard'
-          }}
+            params={ {
+              tab: 'dashboard'
+            } }
             title='Dashboard'/>
           <Route
             path='explore/all'
-            params={{
-            tab: 'explore',
-            tournamentsFilter: 'all'
-          }}
+            params={ {
+              tab: 'explore',
+              tournamentsFilter: 'all'
+            } }
             title='Explore All'/>
           <Route
             path='explore/find'
-            params={{
-            tab: 'find',
-            tournamentsFilter: 'find'
-          }}
+            params={ {
+              tab: 'find',
+              tournamentsFilter: 'find'
+            } }
             title='Find'/>
           <Route
             path='create'
-            params={{
-            tab: 'create'
-          }}
+            params={ {
+              tab: 'create'
+            } }
             title='Create'/>
           <Route
             path='dashboard'
-            params={{
-            tab: 'dashboard'
-          }}
+            params={ {
+              tab: 'dashboard'
+            } }
             title='Dashboard Open'/>
           <Route path='game/:id' title='Game'/>
         </Route>
         <Route path='explore'>
-          <IndexRoute component={requireAuthentication(AdvancedOptionsDashboard)}/>
+          <IndexRoute component={ requireAuthentication(AdvancedOptionsDashboard) }/>
           <Route
             path='voting'
-            onEnter={() => {
-            store.dispatch(AppActions.setCurrentLocation(LocationConstants.VOTING));
-          }}
-            onLeave={() => {
-            store.dispatch(AppActions.setCurrentLocation(null));
-          }}>
+            onEnter={ () => {
+              store.dispatch(AppActions.setCurrentLocation(LocationConstants.VOTING));
+            } }
+            onLeave={ () => {
+              store.dispatch(AppActions.setCurrentLocation(null));
+            } }>
             <IndexRoute
-              params={{
-              tab: 'proxy'
-            }}
-              component={requireAuthentication(Voting)}/>
+              params={ {
+                tab: 'proxy'
+              } }
+              component={ requireAuthentication(Voting) }/>
             <Route
-              params={{
-              tab: 'proxy'
-            }}
+              params={ {
+                tab: 'proxy'
+              } }
               path='proxy'
               title='Proxy'
-              component={requireAuthentication(Voting)}/>
+              component={ requireAuthentication(Voting) }/>
             <Route
-              params={{
-              tab: 'witness'
-            }}
+              params={ {
+                tab: 'witness'
+              } }
               path='witness'
               title='Witness'
-              component={requireAuthentication(Voting)}/>
+              component={ requireAuthentication(Voting) }/>
             <Route
-              params={{
-              tab: 'committee'
-            }}
+              params={ {
+                tab: 'committee'
+              } }
               path='committee'
               title='Committee'
-              component={requireAuthentication(Voting)}/> {/*
+              component={ requireAuthentication(Voting) }/> {/*
             <Route
               params={{tab: 'proposals'}}
               path="proposals"
@@ -147,84 +147,84 @@ const routes = (
           */}
 
           </Route>
-          <Route path='blockchain' component={requireAuthentication(ExploreContainer)}>
+          <Route path='blockchain' component={ requireAuthentication(ExploreContainer) }>
             <IndexRoute
-              params={{
-              tab: 'blockchain'
-            }}
-              component={requireAuthentication(ExplorerBlockChain)}
-              onEnter={() => {
-              store.dispatch(AppActions.setCurrentLocation(LocationConstants.EXPLORER_BLOCK_CHAIN));
-            }}
-              onLeave={() => {
-              store.dispatch(AppActions.setCurrentLocation(null));
-            }}/>
+              params={ {
+                tab: 'blockchain'
+              } }
+              component={ requireAuthentication(ExplorerBlockChain) }
+              onEnter={ () => {
+                store.dispatch(AppActions.setCurrentLocation(LocationConstants.EXPLORER_BLOCK_CHAIN));
+              } }
+              onLeave={ () => {
+                store.dispatch(AppActions.setCurrentLocation(null));
+              } }/>
             <Route
               path='accounts'
-              params={{
-              tab: 'accounts'
-            }}
-              compoment={requireAuthentication(ExploreAccounts)}
-              onEnter={() => {
-              store.dispatch(AppActions.setCurrentLocation(LocationConstants.EXPLORER_ACCOUNTS));
-            }}
-              onLeave={() => {
-              store.dispatch(AppActions.setCurrentLocation(null));
-            }}/>
+              params={ {
+                tab: 'accounts'
+              } }
+              compoment={ requireAuthentication(ExploreAccounts) }
+              onEnter={ () => {
+                store.dispatch(AppActions.setCurrentLocation(LocationConstants.EXPLORER_ACCOUNTS));
+              } }
+              onLeave={ () => {
+                store.dispatch(AppActions.setCurrentLocation(null));
+              } }/>
             <Route
               path='assets'
-              params={{
-              tab: 'assets'
-            }}
-              compoment={requireAuthentication(ExploreBasicAssets)}/>
+              params={ {
+                tab: 'assets'
+              } }
+              compoment={ requireAuthentication(ExploreBasicAssets) }/>
             <Route
               path='smartcoins'
-              params={{
-              tab: 'smartcoins'
-            }}
-              compoment={requireAuthentication(ExploreSmartCoins)}/>
+              params={ {
+                tab: 'smartcoins'
+              } }
+              compoment={ requireAuthentication(ExploreSmartCoins) }/>
             <Route
               path='fee'
-              params={{
-              tab: 'fee'
-            }}
-              compoment={requireAuthentication(ExploreFeeSchedule)}
-              onEnter={() => {
-              store.dispatch(AppActions.setCurrentLocation(LocationConstants.EXPLORER_FEE_SCHEDULE));
-            }}
-              onLeave={() => {
-              store.dispatch(AppActions.setCurrentLocation(null));
-            }}/>
+              params={ {
+                tab: 'fee'
+              } }
+              compoment={ requireAuthentication(ExploreFeeSchedule) }
+              onEnter={ () => {
+                store.dispatch(AppActions.setCurrentLocation(LocationConstants.EXPLORER_FEE_SCHEDULE));
+              } }
+              onLeave={ () => {
+                store.dispatch(AppActions.setCurrentLocation(null));
+              } }/>
           </Route>
         </Route>
 
-        <Route path='send' component={requireAuthentication(Send)}/>
+        <Route path='send' component={ requireAuthentication(Send) }/>
 
-        <Route path='settings' component={requireAuthentication(Settings)}>
+        <Route path='settings' component={ requireAuthentication(Settings) }>
           <IndexRoute
-            params={{
-            tab: 'access'
-          }}
-            component={ClaimSettings}/>
+            params={ {
+              tab: 'access'
+            } }
+            component={ ClaimSettings }/>
           <Route
-            params={{
-            tab: 'password'
-          }}
+            params={ {
+              tab: 'password'
+            } }
             path='password'
-            component={PasswordSettings}/>
+            component={ PasswordSettings }/>
           <Route
-            params={{
-            tab: 'permissions'
-          }}
+            params={ {
+              tab: 'permissions'
+            } }
             path='permissions'
-            component={PermissionSettings}/>
-          <Route params={{
+            component={ PermissionSettings }/>
+          <Route params={ {
             tab: 'claim'
-          }} path='claim'/>
+          } } path='claim'/>
         </Route>
-        <Route path='/claims/bts' component={ClaimBtsContainer}/>
-        <Route path='/about' component={AboutContainer}/>
-        <Route path='/init-error' component={Empty}/> {/*
+        <Route path='/claims/bts' component={ ClaimBtsContainer }/>
+        <Route path='/about' component={ AboutContainer }/>
+        <Route path='/init-error' component={ Empty }/> {/*
       <Route
         path="/deposit-withdraw"
         component={requireAuthentication(DepositWithdrawContainer)}
@@ -234,10 +234,10 @@ const routes = (
         onLeave={() => {store.dispatch(AppActions.setCurrentLocation(null))}}
       />
     */}
-        <Route path='/help' component={Help}>
-          <Route path=':path1' component={Help}>
-            <Route path=':path2' component={Help}>
-              <Route path=':path3' component={Help}/>
+        <Route path='/help' component={ Help }>
+          <Route path=':path1' component={ Help }>
+            <Route path=':path2' component={ Help }>
+              <Route path=':path3' component={ Help }/>
             </Route>
           </Route>
         </Route>

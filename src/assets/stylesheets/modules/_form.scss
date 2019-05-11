@@ -4,8 +4,8 @@
 }
 
 .row {
-  position: relative;
   display: block;
+  position: relative;
   margin-bottom: $row-margin;
 
   &:first-of-type:last-of-type {
@@ -18,8 +18,8 @@
 }
 
 .row2 {
-  position: relative;
   display: block;
+  position: relative;
   margin-bottom: 35px;
 
   &:first-of-type:last-of-type {
@@ -99,12 +99,12 @@
   &Pic {
     position: absolute;
     top: 1px;
-    left: 1px;
     bottom: 1px;
-    margin: auto;
+    left: 1px;
     width: 55px;
-    text-align: center;
+    margin: auto;
     line-height: 52px;
+    text-align: center;
   }
 
   &Pic2 {
@@ -115,9 +115,9 @@
   }
 
   &Icon {
-    color: $field-icon-color;
-    font-size: 26px;
     vertical-align: middle;
+    font-size: 26px;
+    color: $field-icon-color;
   }
 
   &Search {
@@ -143,7 +143,6 @@
           padding-left: 70px;
           border-color: $color-second;
         }
-
       }
     }
 
@@ -151,30 +150,30 @@
       position: absolute;
       top: 50%;
       right: 20px;
+      margin-top: -13px;
       font-size: 27px;
       color: $color-second;
-      margin-top: -13px;
     }
 
     &__sbm {
       position: absolute;
       top: 0;
+      right: 0;
+      z-index: 1;
       width: 50px;
       height: 100%;
-      right: 0;
       font-size: 27px;
       color: $text-color2;
       opacity: 0;
-      z-index: 1;
     }
 
     &__clear {
       display: none;
       position: absolute;
+      top: 0;
+      right: 0;
       width: 50px;
       line-height: 50px;
-      right: 0;
-      top: 0;
       text-align: center;
       opacity: .2;
 
@@ -191,18 +190,18 @@
 
   &HelpIcon {
     position: absolute;
+    top: 0;
     left: 15px;
+    line-height: 52px;
     font-size: 25px;
     color: $faded-color;
-    top: 0;
-    line-height: 52px;
   }
 
   &Note {
-    color: $text-color2;
-    font-size: 13px;
-    text-align: right;
     padding: 5px 20px;
+    font-size: 13px;
+    color: $text-color2;
+    text-align: right;
 
     &.stack {
       margin-bottom: -26px;
@@ -212,18 +211,18 @@
 
 .label {
   display: block;
-  color: $label-color;
-  font-size: 13px;
-  font-weight: 500;
   padding-bottom: 4px;
+  font-weight: 500;
+  font-size: 13px;
+  color: $label-color;
 
   &-fsz-lg {
     font-size: 16px;
   }
 
   &-fsz-sm {
-    font-size: 12px;
     padding-bottom: 2px;
+    font-size: 12px;
   }
 
   &-c-gray {
@@ -231,10 +230,10 @@
   }
 
   &__passRec {
-    text-align: center;
+    margin: 50px -40px 0;
     font-size: 16px;
     color: $faded-color;
-    margin: 50px -40px 0;
+    text-align: center;
   }
 
   &__passRec02 {

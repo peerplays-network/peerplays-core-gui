@@ -4,7 +4,7 @@ import alt from '../../alt-instance';
 import AccountActions from '../actions/AccountActions';
 import iDB from '../../idb-instance';
 import PrivateKeyStore from '../PrivateKeyStore';
-import { ChainStore, ChainValidation, FetchChain, Apis} from 'peerplaysjs-lib';
+import {ChainStore, ChainValidation, FetchChain, Apis} from 'peerplaysjs-lib';
 import AccountRefsStore from './AccountRefsStore';
 import AddressIndex from '../AddressIndex';
 import SettingsStore from '../SettingsStore';
@@ -27,7 +27,7 @@ class AccountStore extends BaseStore {
       onCreateAccount: AccountActions.createAccount,
       onLinkAccount: AccountActions.linkAccount,
       onUnlinkAccount: AccountActions.unlinkAccount,
-      onAccountSearch: AccountActions.accountSearch,
+      onAccountSearch: AccountActions.accountSearch
       // onNewPrivateKeys: [ PrivateKeyActions.loadDbData, PrivateKeyActions.addKey ]
     });
     this._export(

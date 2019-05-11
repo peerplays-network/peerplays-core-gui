@@ -7,6 +7,7 @@
 
   &__TabList {
     @include clearfix;
+
     overflow: hidden;
 
     &.pt40 {
@@ -21,27 +22,28 @@
   }
 
   &__Tab {
-    &:first-letter {
+    &::first-letter {
       text-transform: uppercase;
     }
 
     &[role=tab] {
-      border: none;
-      min-width: 13%;
+      display: block;
+      bottom: 0;
       float: left;
-      margin-right: 17px;
+      min-width: 13%;
       //width: 250px;
       height: 52px;
-      display: block;
+      margin-right: 17px;
       padding: 0 10px;
-      bottom: 0;
-      background: $tab-bg;
-      color: $tab-color;
-      font-size: 18px;
-      text-align: center;
-      font-weight: 500;
-      line-height: 52px;
+      border: none;
       border-radius: 5px 5px 0 0;
+      line-height: 52px;
+      font-weight: 500;
+      font-size: 18px;
+      color: $tab-color;
+      text-align: center;
+      background: $tab-bg;
+
       @include transition();
 
       &:hover {
@@ -49,11 +51,11 @@
       }
 
       &[aria-selected=true] {
+        color: $tab-color-active;
+        background: $tab-bg-active;
+        box-shadow: $table-shadow;
         opacity: 1;
         cursor: default;
-        background: $tab-bg-active;
-        color: $tab-color-active;
-        box-shadow: $table-shadow;
       }
     }
 

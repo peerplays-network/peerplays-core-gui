@@ -1,17 +1,18 @@
 .aside {
-  clear: both;
-  z-index: 101;
-  right: 0;
-  top: $headerHeight;
-  bottom: 0;
   position: fixed;
+  top: $headerHeight;
+  right: 0;
+  bottom: 0;
+  z-index: 101;
   float: right;
-  max-width: 450px;
-  min-width: 250px;
+  clear: both;
   width: 25%;
+  min-width: 250px;
+  max-width: 450px;
+  padding-bottom: 50px;
   background: $aside-bg;
   overflow: auto;
-  padding-bottom: 50px;
+
   @include box-shadow(-2px 0 7px rgba(0, 0, 0, 0.08));
 
   //&__balance{
@@ -107,8 +108,8 @@
 
 
   &__item {
-    padding: 29px 25px 50px;
     margin-bottom: 10px;
+    padding: 29px 25px 50px;
 
     &.bb {
       border-bottom: 1px solid $border-color2;
@@ -117,56 +118,58 @@
 
   &__title {
     height: 30px;
+    margin-bottom: 13px;
     font-size: 1rem;
     color: $text-color-bg;
-    margin-bottom: 13px;
   }
 
   &__row {
     margin-bottom: 18px;
 
     &Label2 {
+      margin: 17px 0 0;
       font-size: 0.8125rem;
       color: rgba(255, 255, 255, .3);
-      margin: 17px 0 0;
     }
 
     &Label {
-      font-size: 1.125rem;
-      font-weight: 600;
-      color: $text-color-bg;
-      margin-bottom: 0;
-      margin-top: 30px;
       height: 22px;
+      margin-top: 30px;
+      margin-bottom: 0;
+      font-weight: 600;
+      font-size: 1.125rem;
+      color: $text-color-bg;
     }
   }
 
   &__unit {
     float: right;
-    font-size: 1.25rem;
     line-height: 1.6;
+    font-size: 1.25rem;
     color: $text-color-bg;
     //font-weight: 600;
   }
 
   &__num {
     display: block;
-    overflow: hidden;
+    max-width: 100%;
+    padding-right: 10px;
     font-weight: 700;
     font-size: 1.5rem;
-    padding-right: 10px;
     color: $aside-val-sum-color;
+    overflow: hidden;
+
     @include ellipsis;
-    max-width: 100%;
   }
 
   &__btn {
     @extend .btn-color1;
+
     padding: 0 15px;
 
     &Wrap {
-      text-align: center;
       margin-top: 33px;
+      text-align: center;
     }
 
     &Icon {
@@ -174,18 +177,19 @@
     }
 
     span {
-      padding: 0 2px;
       vertical-align: middle;
+      padding: 0 2px;
     }
   }
 }
 
 .logout {
   display: block;
-  color: $text-color-bg;
-  font-size: 1.25rem;
   padding: 10px;
   font-weight: 400;
+  font-size: 1.25rem;
+  color: $text-color-bg;
+
   @include transition();
 
   &:hover {
@@ -207,32 +211,34 @@
     float: right;
     width: 40px;
     height: 40px;
+    margin-left: 15px;
     text-align: center;
     overflow: hidden;
-    margin-left: 15px;
 
     span {
-      font-size: 12px;
       line-height: 60px;
+      font-size: 12px;
     }
 
     img {
       position: absolute;
-      min-width: 100%;
-      min-height: 100%;
-      @include transform(translate(-50%, -50%));
       top: 50%;
       left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+
+      @include transform(translate(-50%, -50%));
     }
   }
 
   &Name {
     display: block;
-    overflow: hidden;
-    font-size: 1.25rem;
     line-height: 40px;
     font-weight: 500;
+    font-size: 1.25rem;
     color: $text-color-bg;
+    overflow: hidden;
+
     @include ellipsis;
   }
 
@@ -241,20 +247,20 @@
       padding: 12px 25px !important;
       overflow: hidden;
 
-      &:after {
+      &::after {
         display: none !important;
       }
     }
 
     &Menu {
       &.ddMenu {
-        background: #2c3370;
-        margin-top: 1px;
-        @include border-radius(0);
         right: 0;
+        margin-top: 1px;
         padding: 10px 25px;
+        background: #2c3370;
+
+        @include border-radius(0);
       }
     }
   }
-
 }

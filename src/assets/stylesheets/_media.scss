@@ -1,29 +1,18 @@
 /*pixel-ratio: 2*/
-@media only screen and (-webkit-min-device-pixel-ratio: 2),
-only screen and (min--moz-device-pixel-ratio: 2),
-only screen and (-o-min-device-pixel-ratio: 2/1),
-only screen and (min-device-pixel-ratio: 2),
-only screen and (min-resolution: 192dpi),
-only screen and (min-resolution: 2dppx) {
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   /*.illustration_box span[class^="icon-"]{display: inline;}*/
 }
 
 /*pixel-ratio: 3*/
-@media only screen and (-webkit-min-device-pixel-ratio: 3),
-only screen and (min--moz-device-pixel-ratio: 3),
-only screen and (-o-min-device-pixel-ratio: 3/1),
-only screen and (min-device-pixel-ratio: 3),
-only screen and (min-resolution: 288dpi),
-only screen and (min-resolution: 3dppx) {}
+@media only screen and (-webkit-min-device-pixel-ratio: 3), only screen and (min--moz-device-pixel-ratio: 3), only screen and (-o-min-device-pixel-ratio: 3/1), only screen and (min-device-pixel-ratio: 3), only screen and (min-resolution: 288dpi), only screen and (min-resolution: 3dppx) {}
 
-@media (min-width:1900px) {
+@media (min-width: 1900px) {
   .content-aside {
     margin-right: 450px;
   }
-
 }
 
-@media (max-width:1500px) {
+@media (max-width: 1500px) {
   html {
     font-size: 90%;
   }
@@ -37,8 +26,8 @@ only screen and (min-resolution: 3dppx) {}
   }
 
   .nav__link-set {
-    padding-left: 10px;
     padding-right: 5px;
+    padding-left: 10px;
   }
 
   .nav__link-help {
@@ -47,8 +36,8 @@ only screen and (min-resolution: 3dppx) {}
   }
 
   .nav__user {
-    padding-left: 1%;
     min-width: 200px;
+    padding-left: 1%;
   }
 
   .nav__linkIcon,
@@ -57,13 +46,13 @@ only screen and (min-resolution: 3dppx) {}
   }
 }
 
-@media (max-width:1300px) {
+@media (max-width: 1300px) {
   html {
     font-size: 85%;
   }
 }
 
-@media (max-width:1350px) {
+@media (max-width: 1350px) {
   .nav__link {
     //margin-right: 0;
     //margin-right: 10px;
@@ -74,8 +63,7 @@ only screen and (min-resolution: 3dppx) {}
   }
 }
 
-@media (max-width:1230px) {
-
+@media (max-width: 1230px) {
   .nav-bdl,
   .nav__right .nav__link {
     padding: 0 5px;
@@ -86,7 +74,7 @@ only screen and (min-resolution: 3dppx) {}
   }
 }
 
-@media (max-width:1150px) {
+@media (max-width: 1150px) {
   .content__head {
     min-height: 0;
 
@@ -108,9 +96,9 @@ only screen and (min-resolution: 3dppx) {}
   .table__wrap,
   .table__body {
     .btn {
-      font-size: 12px;
-      height: 30px;
       min-width: 120px;
+      height: 30px;
+      font-size: 12px;
     }
 
     .btn-mark {
@@ -153,8 +141,8 @@ only screen and (min-resolution: 3dppx) {}
 
   .aside {
     .nav__userName {
-      font-size: 12px;
       line-height: 21px;
+      font-size: 12px;
     }
 
     .nav__userDDTrigger {
@@ -167,22 +155,22 @@ only screen and (min-resolution: 3dppx) {}
     }
 
     &__item {
-      padding: 10px 15px 10px;
+      padding: 10px 15px;
     }
 
     &__title {
       height: auto;
-      font-size: 13px;
       margin-bottom: 10px;
+      font-size: 13px;
     }
 
     &__row {
       margin-bottom: 8px;
 
       &Label2 {
-        font-size: 11px;
         margin-top: 10px;
         margin-bottom: 5px;
+        font-size: 11px;
       }
 
       &Label {
@@ -199,9 +187,9 @@ only screen and (min-resolution: 3dppx) {}
     }
 
     .btn {
-      font-size: 12px;
-      height: 30px;
       min-width: 120px;
+      height: 30px;
+      font-size: 12px;
     }
 
     &__btn {
@@ -216,8 +204,8 @@ only screen and (min-resolution: 3dppx) {}
   }
 
   .logout {
-    font-size: 12px;
     padding: 10px;
+    font-size: 12px;
   }
 
   .nav__userDDMenu.ddMenu {
@@ -229,28 +217,27 @@ only screen and (min-resolution: 3dppx) {}
   }
 }
 
-@media (max-width:1024px) {
+@media (max-width: 1024px) {
   .content-aside {
     margin-right: 250px;
   }
 }
 
-@media (max-width:920px) {
+@media (max-width: 920px) {
   .nav {
     display: none;
   }
-
 }
 
 
 
 /*------------------------------------------------------------------------1280 ... ---------------*/
-@media (min-width:1280px) {
+@media (min-width: 1280px) {
   /*body                                        {background: orange;}*/
 }
 
 /*------------------------------------------------------------------------1024 to 1280 -----------*/
-@media (min-width:1024px) and (max-width: 1280px) {
+@media (min-width: 1024px) and (max-width: 1280px) {
   //html                                        {font-size: 95%;}
   /*body                                        {background: beige;}*/
 }
@@ -285,11 +272,9 @@ only screen and (min-resolution: 3dppx) {}
 /*------------------------------------------------------------------------320_to_479--------------*/
 @media (min-width: 320px) and (max-width: 479px) {
   /*body                                        {background: blue;}*/
-
 }
 
 /*------------------------------------------------------------------------..-320------------------*/
 @media (max-width: 320px) {
   /*body                                         {background: red;}*/
-
 }

@@ -1,17 +1,17 @@
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  word-wrap: break-word;
-  word-break: break-word;
   font-family: $ff-main;
+  word-break: break-word;
+  word-wrap: break-word;
 }
 
 a img {
-  border: none;
   vertical-align: middle;
+  border: none;
 }
 
 input,
@@ -86,10 +86,10 @@ textarea {
 
 sup,
 sub {
-  vertical-align: baseline;
   position: relative;
-  font-size: .4em;
+  vertical-align: baseline;
   line-height: 1;
+  font-size: .4em;
 }
 
 sup {
@@ -132,9 +132,9 @@ sub {
   height: 1px;
   margin: -1px;
   padding: 0;
+  border: 0;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
-  border: 0;
 }
 
 .col {
@@ -351,13 +351,13 @@ sub {
 }
 
 .clearfix {
-  &:before,
-  &:after {
-    content: " ";
+  &::before,
+  &::after {
+    content: ' ';
     display: table;
   }
 
-  &:after {
+  &::after {
     clear: both;
   }
 }
@@ -365,14 +365,14 @@ sub {
 .table_clearfix {
   display: table;
 
-  &:after {
+  &::after {
     content: '. .';
     display: block;
-    word-spacing: 99in;
     height: 0;
-    overflow: hidden;
-    font-size: 0.13em;
     line-height: 0;
+    font-size: 0.13em;
+    overflow: hidden;
+    word-spacing: 99in;
   }
 }
 
@@ -381,21 +381,21 @@ sub {
   line-height: 0;
   font-size: 0;
 
-  &:after {
-    position: relative;
-    content: "";
-    height: 100%;
-    width: 0;
+  &::after {
+    content: '';
     display: inline-block;
+    position: relative;
     vertical-align: middle;
+    width: 0;
+    height: 100%;
   }
 }
 
 .va_middle_in {
   display: inline-block;
   vertical-align: middle;
-  max-width: 100%;
   width: 100%;
+  max-width: 100%;
   text-decoration: none;
 }
 
@@ -405,13 +405,13 @@ sub {
   text-align: justify;
   text-align-last: justify;
 
-  &:after {
+  &::after {
+    content: '';
+    display: inline-block;
     width: 100%;
     height: 0;
     visibility: hidden;
     overflow: hidden;
-    content: '';
-    display: inline-block;
   }
 }
 
@@ -427,6 +427,6 @@ sub {
 
 .ios input,
 .ios textarea {
-  -webkit-appearance: none;
   border-radius: 0;
+  -webkit-appearance: none;
 }

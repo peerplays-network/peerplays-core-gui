@@ -1,4 +1,4 @@
-@import "theme-template";
+@import 'theme-template';
 
 // variables
 
@@ -8,32 +8,32 @@ $secondary-text-color: lighten($primary-text-color, 22%);
 $light-text-color: #3d3d3d;
 $dark-text-color: lighten($light-text-color, 12%);
 $link-text-color: #337ab7;
-$error-text-color: #E3745B;
+$error-text-color: #e3745b;
 
-$bg-color: #FFF;
+$bg-color: #ffffff;
 $panel-bg-color: #e5e6e4;
-$light-panel-bg-color: #FFF;
+$light-panel-bg-color: #ffffff;
 $super-light-panel-bg-color: darken($light-panel-bg-color, 1%);
-$button-bg-color: #2196F3;
+$button-bg-color: #2196f3;
 $secondary-button-bg-color: #999999;
 
 $alert-color: $error-text-color;
-$info-color: #CE7925;
-$success-color: #21D19F;
+$info-color: #ce7925;
+$success-color: #21d19f;
 $warning-color: #f35b92;
 $fee-color: #7f055e;
 
 // Exchange colors
-$bid-color: #258A14;
-$ask-color: #E3745B;
-$call-color: #BBBF2B;
-$positive-color: #6EC105;
-$negative-color: #E1424A;
-$row-accent-color: #FFFFFF;
-$header-color: #DCDCDC;
+$bid-color: #258a14;
+$ask-color: #e3745b;
+$call-color: #bbbf2b;
+$positive-color: #6ec105;
+$negative-color: #e1424a;
+$row-accent-color: #ffffff;
+$header-color: #dcdcdc;
 
 // Chat colors
-$chat-text-color: #191A1F;
+$chat-text-color: #191a1f;
 
 .lightTheme {
   @include theme($primary-text-color,
@@ -63,16 +63,15 @@ $chat-text-color: #191A1F;
 
   .blocktrades-bridge input,
   .blocktrades-bridge select {
+    border: 1px solid $secondary-text-color;
     color: $secondary-text-color;
     background-color: $bg-color !important;
-    border: 1px solid $secondary-text-color;
 
     &:hover,
     &:focus {
-      color: $primary-text-color;
       //box-shadow: 1px 2px 3px #000;
-      border: 2px solid #000;
+      border: 2px solid #000000;
+      color: $primary-text-color;
     }
   }
-
 }
