@@ -1,8 +1,7 @@
 {
-  "stage": 0,
   "env": {
     "development": {
-      "plugins": ["react-transform"],
+      "plugins": ["transform-es2015-modules-commonjs"],
       "extra": {
         "react-transform": {
           "transforms": [{
@@ -12,6 +11,10 @@
           }]
         }
       }
+    },
+    "test": {
+      "presets": ["babel-preset-react", "stage-0"],
+      "plugins": ["transform-es2015-modules-commonjs"]
     }
   }
 }

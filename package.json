@@ -27,6 +27,8 @@
     "stylelint": "stylelint '**/*.scss'",
     "test-old": "./node_modules/.bin/mocha --compilers coffee:coffee-script,js:babel/register --require coffee-script/register",
     "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage --colors",
     "debug": "node --inspect server.js",
     "start": "node scripts/start.js",
     "start-prod": "PROD=true node server.js",
@@ -43,6 +45,11 @@
     "ReconnectingWebSocket": "git+https://github.com/svk31/reconnecting-websocket.git",
     "alt": "^0.17.8",
     "alt-container": "^1.0.0",
+    "babel-plugin-syntax-class-properties": "^6.13.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "bigi": "1.1.0",
     "bignumber.js": "^2.1.0",
     "bs58": "2.0.0",
@@ -51,6 +58,7 @@
     "cookies-js": "^1.2.1",
     "copy-to-clipboard": "^3.0.5",
     "counterpart": "^0.17.1",
+    "create-react-class": "^15.6.3",
     "electron-is-dev": "0.3.0",
     "event-emitter": "^0.3.4",
     "foundation-apps": "git+https://github.com/zurb/foundation-apps.git",
@@ -77,11 +85,11 @@
     "perfect-scrollbar": "^0.6.11",
     "qr-image": "3.1.0",
     "randomstring": "^1.1.5",
-    "react": "^15.2.0",
+    "react": "^16.8.0",
     "react-addons-css-transition-group": "^15.1.0",
     "react-custom-scroll": "^1.8.0",
     "react-date-picker": "^5.3.28",
-    "react-dom": "^15.2.0",
+    "react-dom": "^16.8.0",
     "react-foundation-apps": "git+https://github.com/valzav/react-foundation-apps.git",
     "react-highcharts": "^8.4.2",
     "react-interpolate-component": "^0.9.0",
@@ -119,11 +127,18 @@
   "devDependencies": {
     "@commitlint/cli": "^7.5.2",
     "@commitlint/config-conventional": "^7.5.0",
+    "@babel/core": "^7.0.0",
+    "@babel/polyfill": "^7.0.0-beta.51",
+    "@babel/preset-env": "^7.0.0-beta.51",
+    "@babel/preset-react": "^7.0.0-beta.51",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.4.2",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest": "^23.4.2",
     "autoprefixer": "6.7.2",
     "babel": "^5.8.29",
-    "babel-core": "^5.8.33",
     "babel-eslint": "^10.0.1",
-    "babel-jest": "^5.3.0",
     "babel-loader": "^5.3.3",
     "babel-plugin-react-transform": "^1.1.1",
     "babel-runtime": "^5.8.38",
@@ -193,30 +208,10 @@
     "worker-loader": "^0.6.0"
   },
   "jest": {
-    "scriptPreprocessor": "<rootDir>/__tests__/jest-preprocessor.js",
-    "testPathDirs": [
-      "<rootDir>/__tests__"
-    ],
-    "unmockedModulePathPatterns": [
-      "<rootDir>/node_modules/react",
-      "<rootDir>/node_modules/tcomb",
-      "<rootDir>/node_modules/immutable"
-    ],
-    "moduleFileExtensions": [
-      "js",
-      "jsx",
-      "json",
-      "coffee"
-    ],
-    "testFileExtensions": [
-      "js",
-      "jsx"
-    ],
-    "testPathIgnorePatterns": [
-      "/jest-preprocessor.js",
-      "/node_modules/",
-      "/utils/"
-    ]
+    "transform": {
+      "^.+\\.jsx$": "babel-jest",
+      "^.+\\.js$": "babel-jest"
+    }
   },
   "config": {
     "commitizen": {
