@@ -469,7 +469,7 @@ class WalletDb extends BaseStore {
         private_plainhex_array.push(private_key_obj.private_plainhex);
       }
 
-      var AesWorker = require('worker!../workers/AesWorker'); /* eslint-disable-line */
+      var AesWorker = require('../workers/AesWorker'); /* eslint-disable-line */
       var worker = new AesWorker();
       worker.postMessage({
         private_plainhex_array,

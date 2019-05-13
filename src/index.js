@@ -1,3 +1,4 @@
+import AppActions from './actions/AppActions';
 import {Provider} from 'react-redux';
 import configureStore, {history} from './store/configureStore';
 import React from 'react';
@@ -11,7 +12,7 @@ const store = configureStore();
 const render = () => {
   ReactDOM.render(
     <Provider store={ store }>
-      <App history={ history } />
+      <App history={ history } store={ store }/>
     </Provider>,
     document.getElementById('content')
   );

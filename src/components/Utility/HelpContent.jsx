@@ -2,7 +2,9 @@ import React from 'react';
 import {reduce, zipObject} from 'lodash';
 import counterpart from 'counterpart';
 import utils from '../../common/utils';
-import {routerShape} from 'react-router/lib/PropTypes';
+import PropTypes from 'prop-types';
+import {withRouter} from 'react-router-dom';
+// import {routerShape} from 'react-router/lib/PropTypes';
 
 let req = require.context('../../../help', true, /\.md/);
 let HelpData = {};
@@ -54,13 +56,13 @@ function adjust_links(str) {
 
 class HelpContent extends React.Component {
     static propTypes = {
-      path: React.PropTypes.string.isRequired,
-      section: React.PropTypes.string
+      path: PropTypes.string.isRequired,
+      section: PropTypes.string
     };
 
-    static contextTypes = {
-      router: routerShape
-    };
+    // static contextTypes = {
+    //   router: routerShape
+    // };
 
     constructor(props) {
       super(props);
@@ -89,7 +91,6 @@ class HelpContent extends React.Component {
 
     onClickLink(e) {
       e.preventDefault();
-      console.dir(e.target);
       let path = e.target.hash.split('/').filter((p) => p && p !== '#');
 
       if (path.length === 0) {
@@ -97,7 +98,8 @@ class HelpContent extends React.Component {
       }
 
       let route = '/' + path.join('/');
-      this.context.router.push(route);
+      // this.context.router.push(route);
+      this.props.history.push(route);
       return false;
     }
 
@@ -171,4 +173,4 @@ class HelpContent extends React.Component {
     }
 }
 
-export default HelpContent;
+export default withRouter(HelpContent);

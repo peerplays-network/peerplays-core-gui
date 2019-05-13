@@ -23,3 +23,6 @@ bundle
 stats-dev.json
 stats-prod.json
 *.json.gzip
+.sonnarlint/
+.scannerwork/
+sonar-scanner/**

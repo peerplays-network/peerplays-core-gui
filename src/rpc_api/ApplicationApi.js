@@ -1,5 +1,5 @@
 import WalletUnlockActions from '../actions/WalletUnlockActions';
-import WalletDb from '../../src__/stores/WalletDb';
+import WalletDb from '../../src/stores/WalletDb';
 import {
   Aes,
   ChainValidation,

@@ -3,7 +3,7 @@ import Translate from 'react-translate-component';
 import {connect} from 'react-redux';
 import {Modal, ModalBody} from 'react-modal-bootstrap';
 import AppService from '../../../services/AppService';
-import store from '../../../../src__/store/configureStore';
+import store from '../../../../src/store/configureStore';
 import AppActions from '../../../actions/AppActions';
 import {bindActionCreators} from 'redux';
 

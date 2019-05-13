@@ -4,7 +4,6 @@ import asset_utils from '../../common/asset_utils';
 import ChainTypes from './ChainTypes';
 import BindToChainState from './BindToChainState';
 
-@BindToChainState()
 class AssetName extends React.Component {
   static propTypes = {
     asset: ChainTypes.ChainAsset.isRequired,
@@ -52,6 +51,7 @@ class AssetName extends React.Component {
   }
 }
 
+AssetName = BindToChainState(AssetName);
 export default class AssetNameWrapper extends React.Component {
   render() {
     return (

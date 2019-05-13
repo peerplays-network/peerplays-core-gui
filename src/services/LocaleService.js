@@ -9,7 +9,7 @@ import de from 'react-intl/locale-data/de';
 import tr from 'react-intl/locale-data/tr';
 
 var counterpart = require('../counterpart-instance');
-var locale_en = require('json!../assets/locales/locale-en'); // eslint-disable-line
+var locale_en = require('../assets/locales/locale-en.json'); // eslint-disable-line
 // var ls = require('common/localStorage');
 // let ss = new ls('__peerplays__');
 

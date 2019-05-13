@@ -1,6 +1,6 @@
 import KeyGeneratorService from './KeyGeneratorService';
-import idb_helper from '../../src__/idb-helper';
-import iDB from '../../src__/idb-instance';
+import idb_helper from '../../src/idb-helper';
+import iDB from '../../src/idb-instance';
 import {PrivateKey, key, Aes, Apis} from 'peerplaysjs-lib';
 
 /**

@@ -7,34 +7,34 @@ import App from '../components/Home';
 
 //======= Components =======//
 // import IntlStore from './stores/IntlStore' // eslint-disable-line
-import store from './store/configureStore';
-import LocationConstants from './constants/LocationConstants';
-import AppActions from './actions/AppActions';
-import {requireAuthentication} from './components/Auth/AuthenticatedComponent';
-import BalancesDashboard from './components/Dashboard/Balances/BalancesContainer';
-import AdvancedOptionsDashboard from './components/Dashboard/AdvancedOptions/AdvancedOptions';
-import ExplorerBlockChain from './components/Explorer/BlockChain/BlockChainContainer';
-import ExploreContainer from './components/Explorer/ExploreContainer';
-import ExploreAccounts from './components/Explorer/Accounts/Accounts';
-import ExploreBasicAssets from './components/Explorer/BasicAssets';
-import ExploreSmartCoins from './components/Explorer/SmartCoins';
-import ExploreFeeSchedule from './components/Explorer/FeeSchedule/FeeSchedule';
-import Settings from './components/Settings/SettingsContainer';
-import PasswordSettings from './components/Settings/PasswordSettings';
-import PermissionSettings from './components/Settings/PermissionSettings';
-import Register from './components/Register/Register';
-import VestingAccountContainer from './components/Account/Vesting/VestingAccountContainer';
-import Login from './components/Login/Login';
-import Help from './components/Help';
-import Voting from './components/Voting/VotingContainer';
-import Send from './components/Send/Send';
-import Referrals from './components/Referrals/Referrals';
-import Empty from './components/Empty';
-import ClaimBtsContainer from './components/ClaimBts/ClaimBtsContainer';
-import AboutContainer from './components/About/AboutContainer';
-import ClaimSettings from './components/Settings/ClaimSettings';
-import Timeout from './components/Timeout/Timeout';
-require('./components/Utility/Prototypes'); /*eslint-disable-line */
+import store from '../store/configureStore';
+import LocationConstants from '../constants/LocationConstants';
+import AppActions from '../actions/AppActions';
+import {requireAuthentication} from '../components/Auth/AuthenticatedComponent';
+import BalancesDashboard from '../components/Dashboard/Balances/BalancesContainer';
+import AdvancedOptionsDashboard from '../components/Dashboard/AdvancedOptions/AdvancedOptions';
+import ExplorerBlockChain from '../components/Explorer/BlockChain/BlockChainContainer';
+import ExploreContainer from '../components/Explorer/ExploreContainer';
+import ExploreAccounts from '../components/Explorer/Accounts/Accounts';
+import ExploreBasicAssets from '../components/Explorer/BasicAssets';
+import ExploreSmartCoins from '../components/Explorer/SmartCoins';
+import ExploreFeeSchedule from '../components/Explorer/FeeSchedule/FeeSchedule';
+import Settings from '../components/Settings/SettingsContainer';
+import PasswordSettings from '../components/Settings/PasswordSettings';
+import PermissionSettings from '../components/Settings/PermissionSettings';
+import Register from '../components/Register/Register';
+import VestingAccountContainer from '../components/Account/Vesting/VestingAccountContainer';
+import Login from '../components/Login/Login';
+import Help from '../components/Help';
+import Voting from '../components/Voting/VotingContainer';
+import Send from '../components/Send/Send';
+import Referrals from '../components/Referrals/Referrals';
+import Empty from '../components/Empty';
+import ClaimBtsContainer from '../components/ClaimBts/ClaimBtsContainer';
+import AboutContainer from '../components/About/AboutContainer';
+import ClaimSettings from '../components/Settings/ClaimSettings';
+import Timeout from '../components/Timeout/Timeout';
+require('../components/Utility/Prototypes'); /*eslint-disable-line */
 //==========================//
 const routes = (
   <Fragment>

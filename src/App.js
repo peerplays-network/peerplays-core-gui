@@ -4,10 +4,10 @@ import {ConnectedRouter} from 'connected-react-router/immutable';
 import {syncHistoryWithStore} from 'react-router-redux';
 import routes from './routes';
 
-const App = ({history}) => {
+const App = ({history, store}) => {
   return (
     // <ConnectedRouter history={ history }>
-    <ConnectedRouter history={ syncHistoryWithStore(hashHistory, store) }>
+    <ConnectedRouter history={ syncHistoryWithStore(history, store) }>
       {routes}
     </ConnectedRouter>
   );

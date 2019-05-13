@@ -3,7 +3,7 @@ import {
   TransactionBuilder,
   TransactionHelper
 } from 'peerplaysjs-lib';
-import WalletDb from '../../src__/stores/WalletDb';
+import WalletDb from '../../src/stores/WalletDb';
 import ApplicationApi from './ApplicationApi';
 
 class WalletApi {

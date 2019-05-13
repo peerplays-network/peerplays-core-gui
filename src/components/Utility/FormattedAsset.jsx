@@ -19,7 +19,6 @@ import {ChainStore} from 'peerplaysjs-lib';
  *
  */
 
-@BindToChainState()
 class FormattedAsset extends React.Component {
     static propTypes = {
       amount: PropTypes.any.isRequired,
@@ -145,4 +144,4 @@ class FormattedAsset extends React.Component {
     }
 }
 
-export default FormattedAsset;
+export default BindToChainState(FormattedAsset);
