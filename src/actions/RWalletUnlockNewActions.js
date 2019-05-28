@@ -40,6 +40,10 @@ class RWalletUnlockNewActions {
  */
   static getKeyFromState(role) {
     return (dispatch, getState) => {
+      if (role === 'memo' && getState().walletData.wallet.is_legacy) {
+        role = 'active';
+      }
+
       return KeysService.getActiveKeyFromState(getState(), dispatch, role);
     };
   }
