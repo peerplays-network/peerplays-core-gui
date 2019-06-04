@@ -2,27 +2,24 @@ const endpoints = {
   environments: {
     alice: {
       apiEndpoints: [
-        'wss://alex-pu.info/ws', // alex-pu ✅
-        'wss://api1.peerplays.download/ws', //api1 ✅
-        'wss://node.peerblock.trade:8090', // bitcoinsig ❌
-        'wss://api.ppy.blckchnd.com', // blckchnd ✅
-        'wss://api.eifos.org', // eifos-witness ✅
-        'wss://node.firecrab-witness.com:8090', // firecrab-witness ❌
-        'wss://peerplaysblockchain.net/mainnet/api', // houdini-witness ✅
-        'wss://louie.peerplays.download', // louie ❌
-        'wss://ip254.ip-91-121-48.eu', // melea-trust ✅
-        'wss://api.ppy.nuevax.com', // nuevax ✅
-        'ws://35.159.10.69:8090', // phi-guy ✅ (only works sometimes)
-        'wss://ppyws.roelandp.nl/ws', // roelandp ✅
-        'wss://api2.ppy.blckchnd.com', // royal-flush ✅
-        'wss://ppyseed.spacemx.tech', // spacecrypt-witness ❌
-        'wss://pma.blockveritas.co:8089/', // taconator-witness-wallet ✅
-        'wss://api.ppy.us.altcap.io', // winner.winner.chicken.dinner ✅
-        'wss://api.ppy.steemul.ru:8080', // xtar-testz ❌
+        'wss://api.eifos.org', // eifos-witness
+        'wss://api.ppy.us.altcap.io', // winner.winner.chicken.dinner
+        'wss://api.ppy.nuevax.com', // nuevax
+        'ws://18.184.122.253:8090', // phi-guy
+        'wss://peerplaysblockchain.net/mainnet/api', // houdini-witness
+        'wss://ppyseed.spacemx.tech', // spacecrypt-witness
+        'wss://api.ppy.alex-pu.info', // alex-pu
+        'wss://ip254.ip-91-121-48.eu', // melea-trust
+        'wss://ppyws.roelandp.nl/ws', // roelandp
+        'wss://api.ppy.blckchnd.com', // blckchnd
+        'wss://pma.blockveritas.co/ws', // taconator-witness-wallet
+        'wss://node.peerblock.trade:8090', // bitcoinsig
+        'wss://api2.ppy.blckchnd.com/ws' // royal-flush
       ],
       faucetUrls: [
         'https://faucet.peerplays.download/faucet'
-      ]
+      ],
+      prefix: 'PPY'
     }
   }
 };
