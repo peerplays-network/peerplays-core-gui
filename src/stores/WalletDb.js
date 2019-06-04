@@ -11,7 +11,7 @@ import PrivateKeyActions from '../actions/PrivateKeyActions';
 import {ChainStore,PrivateKey,key,Aes, Apis,ChainConfig} from 'peerplaysjs-lib';
 import AddressIndex from '../stores/AddressIndex';
 
-ChainConfig.setPrefix('PPY');
+ChainConfig.setPrefix(process.env.prefix);
 
 var aes_private;
 var TRACE = false;

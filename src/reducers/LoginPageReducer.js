@@ -14,6 +14,7 @@ let defaultState = {
   accountForLogin: null
 };
 
+// TODO: proper state merge
 export default function (state = defaultState, action) {
   switch (action.type) {
     // Login form: Setting button state
