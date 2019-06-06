@@ -2,6 +2,7 @@ import alt from '../alt-instance';
 import BaseStore from '../stores/BaseStore';
 import iDB from '../idb-instance';
 import idb_helper from '../idb-helper';
+import Config from '../../config/Config';
 import {cloneDeep} from 'lodash';
 import PrivateKeyStore from '../stores/PrivateKeyStore';
 import {WalletTcomb} from './tcomb_structs';
@@ -11,7 +12,7 @@ import PrivateKeyActions from '../actions/PrivateKeyActions';
 import {ChainStore,PrivateKey,key,Aes, Apis,ChainConfig} from 'peerplaysjs-lib';
 import AddressIndex from '../stores/AddressIndex';
 
-ChainConfig.setPrefix(process.env.prefix);
+ChainConfig.setPrefix(Config.CORE_ASSET);
 
 var aes_private;
 var TRACE = false;
