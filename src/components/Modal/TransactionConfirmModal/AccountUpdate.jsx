@@ -1,13 +1,12 @@
 import React from 'react';
 import Translate from 'react-translate-component';
 import {connect} from 'react-redux';
-import Inspector from 'react-json-inspector';
 import {FormattedNumber} from 'react-intl';
-import assetUtils from 'common/asset_utils';
+import assetUtils from '../../../common/asset_utils';
 
 class AccountUpdate extends React.Component {
   render() {
-    const options = this.props.transactionObject.operations[0][1];
+    // const options = this.props.transactionObject.operations[0][1];
     let feeValue = this.props.fee
       ? this.props.fee.amount / Math.pow(10, this.props.fee.asset.precision)
       : 0;

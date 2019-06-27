@@ -4,14 +4,7 @@ import alt from '../../alt-instance';
 import AccountActions from '../actions/AccountActions';
 import iDB from '../../idb-instance';
 import PrivateKeyStore from '../PrivateKeyStore';
-import {
-  ChainStore,
-  ChainValidation,
-  FetchChain
-} from 'peerplaysjs-lib';
-import {
-  Apis
-} from 'peerplaysjs-ws';
+import { ChainStore, ChainValidation, FetchChain, Apis} from 'peerplaysjs-lib';
 import AccountRefsStore from './AccountRefsStore';
 import AddressIndex from '../AddressIndex';
 import SettingsStore from '../SettingsStore';

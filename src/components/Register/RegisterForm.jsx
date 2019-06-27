@@ -2,9 +2,9 @@ import React from 'react';
 import {Field, Fields, reduxForm} from 'redux-form';
 import Translate from 'react-translate-component';
 import {ChainValidation} from 'peerplaysjs-lib';
-import AccountRepository from 'repositories/AccountRepository';
+import AccountRepository from '../../repositories/AccountRepository';
 import classNames from 'classnames';
-import {saveAs} from 'common/filesaver.js';
+import {saveAs} from '../../common/filesaver.js';
 import copy from 'copy-to-clipboard';
 import RandomString from 'randomstring';
 import Normalizer from '../Utility/Normalizer';
@@ -60,7 +60,7 @@ const renderPasswordField = ({
   type,
   meta: {
     touched,
-    error,
+    error
   }
 }) => {
   return (
@@ -97,7 +97,7 @@ const renderRetypePasswordField = ({
   type,
   meta: {
     touched,
-    error,
+    error
   }
 }) => {
   return (
@@ -128,7 +128,7 @@ const renderCheckboxField = ({
   type,
   meta: {
     touched,
-    error,
+    error
   }
 }) => {
   return (
@@ -240,6 +240,8 @@ class RegisterForm extends React.Component {
           </button>
         );
         break;
+
+      // no default
     }
 
     return (

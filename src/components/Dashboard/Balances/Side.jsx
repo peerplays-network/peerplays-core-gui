@@ -4,8 +4,8 @@ import Translate from 'react-translate-component';
 import {FormattedNumber} from 'react-intl';
 import AccountImage from '../../Account/AccountImage';
 import {DashboardPageActions, NavigateActions} from '../../../actions';
-import asset_utils from 'common/asset_utils';
-import AppActions from 'actions/AppActions';
+import asset_utils from '../../../common/asset_utils';
+import AppActions from '../../../actions/AppActions';
 import SideVesting from './SideVesting';
 import {bindActionCreators} from 'redux';
 class Side extends React.Component {
@@ -25,7 +25,7 @@ class Side extends React.Component {
 
   render() {
     let {
-      availableBalances,
+      availableBalances
     } = this.props;
 
     let availableKeys = Object.keys(availableBalances);
@@ -112,7 +112,7 @@ const mapStateToProps = (state) => {
   return {
     account: state.app.account,
     availableBalances: state.dashboardPage.availableBalances,
-    headerMessages: state.commonMessage.get('headerMessages'),
+    headerMessages: state.commonMessage.get('headerMessages')
   };
 };
 

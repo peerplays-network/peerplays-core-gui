@@ -1,8 +1,8 @@
 import counterpart from 'counterpart';
 import {ChainStore,ChainTypes} from 'peerplaysjs-lib';
-import market_utils from 'common/market_utils';
-import asset_utils from 'common/asset_utils';
-import utils from 'common/utils';
+import market_utils from '../common/market_utils';
+import asset_utils from '../common/asset_utils';
+import utils from '../common/utils';
 
 let {operations} = ChainTypes;
 let ops = Object.keys(operations);
@@ -56,7 +56,7 @@ export function formatOperation(obj) {
             to: receiver.get('name'),
             amount
           }) : '',
-        memo,
+        memo
       };
 
     case 1:

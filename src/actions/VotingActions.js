@@ -1,17 +1,17 @@
 import Repository from '../repositories/chain/repository';
 import Immutable from 'immutable';
 import counterpart from 'counterpart';
-import asset_utils from 'common/asset_utils';
+import asset_utils from '../common/asset_utils';
 import {ChainStore, PrivateKey, ChainTypes} from 'peerplaysjs-lib';
 import AccountRepository from '../repositories/AccountRepository';
-import accountUtils from 'common/account_utils';
-import WalletApi from 'rpc_api/WalletApi';
+import accountUtils from '../common/account_utils';
+import WalletApi from '../rpc_api/WalletApi';
 import {
   VOTING_SET_DATA,
   VOTING_CHANGE_PROXY,
   VOTING_SET_NEW_WITNESSES,
   VOTING_UPDATE_WITNESS_TAB
-} from 'constants/ActionTypes';
+} from '../constants/ActionTypes';
 import Config from '../../config/Config';
 
 let witness_object_type  = parseInt(ChainTypes.object_type.witness, 10);
@@ -451,6 +451,7 @@ class VotingActions {
           new Date(w.get('work_end_date')) > now && new Date(w.get('work_begin_date')) <= now
         );
       }).map((w) => w.toJS()).sort((a, b) => {
+        /* eslint-disable-next-line */
         return getTotalVotes(b) - getTotalVotes(a); // TODO: find/make/ref these functions
       });
 

@@ -4,6 +4,10 @@
 	//min-height: 780px;
 	margin: 30px auto;
 
+	&.padding-bottom-30{
+		padding-bottom: 30px;
+	}
+
 	.h1{
 		font-weight: 900;
 		font-size: 36px;
@@ -101,6 +105,9 @@
 		font-weight: 500;
 		color: $text-color;
 		padding: 11px 15px 11px 0;
+	}
+	&.small {
+		padding: 10px 75px 30px;
 	}
 }
 
