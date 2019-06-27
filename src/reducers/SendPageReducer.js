@@ -1,14 +1,11 @@
 import ActionTypes from '../constants/ActionTypes';
 import Immutable from 'immutable';
+import Config from '../../config/Config';
 
 /**
  * This reducer is used to controlling a Send page
- *
- * Initial State
- *
- * @type {{head_block_number: number, block_interval: number, last_irreversible_block_num: number, recently_missed_count: number, time: null, coreAsset: {}, balance: (Immutable.Map<K, V>|*|Immutable.Map<string, V>), symbols: Array, assets: Array, accountId: null, history: Array, historyAssets: (Immutable.Set<T>|Immutable.Set<any>|*), selectedSymbol}}
  */
-let initialState = {
+const initialState = {
   head_block_number: 0,
   block_interval: 0,
   last_irreversible_block_num: 0,
@@ -21,7 +18,7 @@ let initialState = {
   accountId: null,
   history: [],
   historyAssets: Immutable.Set(),
-  selectedSymbol: CORE_ASSET
+  selectedSymbol: Config.CORE_ASSET
 };
 
 export default function (state = initialState, action) {

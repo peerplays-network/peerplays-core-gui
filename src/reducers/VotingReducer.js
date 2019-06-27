@@ -3,7 +3,7 @@ import {
   VOTING_CHANGE_PROXY,
   VOTING_SET_NEW_WITNESSES,
   VOTING_UPDATE_WITNESS_TAB
-} from 'constants/ActionTypes';
+} from '../constants/ActionTypes';
 
 
 /**
@@ -16,7 +16,6 @@ import {
  * witnesses - Voting/Witnesses page data
  * committeeMembers - Voting/Committee Members page(Advisors) data
  * proposals - Voting/Proposal page data
- * @type {{proxy: {knownProxies: Array}, witnesses: {sortBy: string, inverseSort: boolean}, committeeMembers: {}, proposals: {}}}
  */
 const initialState = {
   proxy: {

@@ -1,4 +1,4 @@
-import LocationConstants from 'constants/LocationConstants';
+import LocationConstants from '../constants/LocationConstants';
 import DashboardBalancesService from './DashboardBalancesService';
 import DashboardPageActions from '../actions/DashboardPageActions';
 import ExplorerBlockChainActions from '../actions/ExplorerBlockChainActions';
@@ -98,7 +98,7 @@ function updateChainStore() {
                   : null,
                 quoteAssetBalance: (quoteAsset && data.dataBalances.hasOwnProperty(quoteAsset))
                   ? data.dataBalances[quoteAsset]
-                  : null,
+                  : null
               }));
             }
           });
@@ -110,6 +110,10 @@ function updateChainStore() {
         if (currentState.app.account) {
           ReduxStore.dispatch(VotingActions.fetchData());
         }
+
+        break;
+
+      // no default
     }
   }
 }
@@ -117,7 +121,13 @@ function updateChainStore() {
 export function listenChainStore(chainStore, reduxStore) {
   ChainStore = chainStore;
   ReduxStore = reduxStore;
-  ChainStore.subscribe(updateChainStore);
+
+  if(chainStore.subscribers.has(updateChainStore) === false) {
+    ChainStore.subscribe(updateChainStore);
+  } else {
+    ChainStore.unsubscribe(updateChainStore);
+    ChainStore.subscribe(updateChainStore);
+  }
 }
 
 export function subscribe() {}

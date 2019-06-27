@@ -1,5 +1,4 @@
-import {ChainStore} from 'peerplaysjs-lib';
-import {Apis} from 'peerplaysjs-ws';
+import {ChainStore, Apis} from 'peerplaysjs-lib';
 
 const MAX_RECURSION_ATTEMPTS = 10;
 
@@ -30,7 +29,7 @@ class Repository {
   }
 
   static getWitnesses() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => { /* eslint-disable-line */
       let witnesses = ChainStore.fetchWitnessAccounts();
 
       return resolve(witnesses);

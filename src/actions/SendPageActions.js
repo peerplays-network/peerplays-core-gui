@@ -1,6 +1,6 @@
 import ActionTypes from '../constants/ActionTypes';
 import {PrivateKey, Aes, TransactionHelper, FetchChain} from 'peerplaysjs-lib';
-import WalletApi from 'rpc_api/WalletApi';
+import WalletApi from '../rpc_api/WalletApi';
 import Immutable from 'immutable';
 import Repository from '../repositories/chain/repository';
 import AccountRepository from '../repositories/AccountRepository';
@@ -102,7 +102,7 @@ class SendPageActions {
    */
   static resetSendPage() {
     return {
-      type: ActionTypes.SEND_PAGE_RESET,
+      type: ActionTypes.SEND_PAGE_RESET
     };
   }
 

@@ -2,10 +2,6 @@ import ActionTypes from '../constants/ActionTypes';
 
 /**
  * AppReducer is used to controling an application state
- *
- * Initial state
- *
- * @type {{dbIsInit: boolean, dbDataIsLoad: boolean, chainIsInit: boolean, syncIsFail: boolean, isLogin: boolean, account: null, accountId: null, currentLocation: null, status: null, showCantConnectModal: boolean}}
  */
 let defaultState = {
   // iDB.init_instance() is init
@@ -75,6 +71,11 @@ export default function (state = defaultState, action) {
         isLogin: action.payload.isLogin,
         account: action.payload.account,
         accountId: action.payload.accountId
+      });
+    // timeout from app
+    case ActionTypes.APP_TIMEOUT:
+      return Object.assign({}, state, {
+        isLogin: action.payload.isLogin
       });
       // SET CURRENT LOCATION FROM PageConstants.js file
     case ActionTypes.APP_CURRENT_LOCATION:

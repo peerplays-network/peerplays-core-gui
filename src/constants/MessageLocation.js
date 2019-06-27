@@ -1,5 +1,5 @@
 const MessageLocation = {
-  HEADER: 'header',
+  HEADER: 'header'
 };
 
 export default MessageLocation;

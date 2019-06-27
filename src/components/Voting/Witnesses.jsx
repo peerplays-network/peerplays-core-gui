@@ -8,8 +8,8 @@ import WitnessList from './WitnessList';
 import FormattedAsset from '../Utility/FormattedAsset';
 import Tooltip from './Tooltip';
 import {VotingActions, RWalletUnlockActions, RTransactionConfirmActions} from '../../actions';
-import AccountRepository from 'repositories/AccountRepository';
-import Repository from 'repositories/chain/repository';
+import AccountRepository from '../../repositories/AccountRepository';
+import Repository from '../../repositories/chain/repository';
 import moment from 'moment-timezone';
 import {FormattedRelative} from 'react-intl';
 import _ from 'lodash';
@@ -248,7 +248,7 @@ class Witnesses extends React.Component {
           </div>
           <div className='tableCell'><LinkToAccountById account={ a.id }/></div>
           <div className='tableCell'>
-            <a href={ link } target='_blank'>{url.length < 45
+            <a href={ link } target='_blank' rel='noopener noreferrer'>{url.length < 45
               ? url
               : url.substr(0, 45) + '...'}</a>
           </div>
@@ -292,7 +292,7 @@ class Witnesses extends React.Component {
           </div>
           <div className='tableCell'><LinkToAccountById account={ a.id }/></div>
           <div className='tableCell'>
-            <a href={ link } target='_blank'>{url.length < 45
+            <a href={ link } target='_blank' rel='noopener noreferrer'>{url.length < 45
               ? url
               : url.substr(0, 45) + '...'}</a>
           </div>
@@ -317,10 +317,7 @@ class Witnesses extends React.Component {
     return (
       <div
         id='witnesses'
-        className='tab__deploy'
-        style={ {
-          display: 'block'
-        } }>
+        className='tab__deploy block'>
         <div className='tab__deployHead'>
           <div className='title'>
             <Translate content='votes.add_witness_label'/>

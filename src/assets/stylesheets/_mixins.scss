@@ -13,27 +13,10 @@
   opacity: $opacity;
 }
 
-//
-//@mixin box-shadow($insert, $x: 0, $y: 0, $blur: 10px, $color: #666) when ($insert = false){
-//  -webkit-box-shadow: inset $x $y $blur $color;
-//  box-shadow: inset $x $y $blur $color;
-//}
-//
-//@mixin box-shadow($insert, $x: 0, $y: 0, $blur: 10px, $color: #666) when ($insert = true){
-//  -webkit-box-shadow: $x $y $blur $color;
-//  box-shadow: $x $y $blur $color;
-//}
-
 @mixin box-shadow($arguments: 0 1px 5px rgba(0, 0, 0, .3)) {
   -webkit-box-shadow: $arguments;
   box-shadow: $arguments;
 }
-
-//@mixin text-shadow($x: 1px, $y: 1px, $radius: 2px, $color: #000){
-//  -webkit-text-shadow: $arguments;
-//  -moz-text-shadow: $arguments;
-//  text-shadow: $arguments;
-//}
 
 @mixin box-sizing($type: border-box) {
   -webkit-box-sizing: $type;
@@ -79,7 +62,6 @@
 }
 
 @mixin clearfix() {
-
   &:before,
   &:after {
     content: " ";
@@ -156,10 +138,20 @@
   white-space: nowrap;
 }
 
+/*
+  @include padding(1px 0 3px)
+*/
+@mixin padding($values...) {
+  @each $var in $values {
+    padding: #{$var};
+  }
+}
+
 @mixin pos-center() {
   position: absolute;
   top: 50%;
   left: 50%;
+
   @include translate(-50% 50%);
 }
 
