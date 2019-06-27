@@ -1,21 +1,10 @@
 import {ChainStore} from 'peerplaysjs-lib';
 import iDB from '../idb-instance';
-import {
-  listenChainStore
-} from './ChainStoreService';
-import AccountLoginService from './AccountLoginService';
-import LoginService from './LoginService';
-import WalletService from './WalletService';
-import RememberMeService from './RememberMeService';
+import {listenChainStore} from './ChainStoreService';
 import ConnectManager from './ConnectManager';
 import AppActions from '../actions/AppActions';
 import ChainStoreHeartbeater from '../app/ChainStoreHeartbeater';
-import WalletDataActions from '../actions/RWalletDataActions';
-import PrivateKeyActions from '../actions/RPrivateKeyActions';
-import CONFIG from '../config/main';
-import {
-  initSettings
-} from '../actions/RSettingsActions';
+import {initSettings} from '../actions/RSettingsActions';
 
 class AppService {
   /**
@@ -63,60 +52,17 @@ class AppService {
             ChainStore.init().then(() => {
               listenChainStore(ChainStore, store);
 
-              if (
-                RememberMeService.checkRememberMeIsEnable() &&
-                RememberMeService.checkNeedResetWallet()
-              ) {
+              if (!store.getState().walletData.wallet &&
+                (!/\/login/.test(window.location.hash) &&
+                  !/\/claims\/bts/.test(window.location.hash) &&
+                  !/\/sign-up/.test(window.location.hash) &&
+                  !/\/about/.test(window.location.hash) &&
+                  !/\/explorer/.test(window.location.hash) &&
+                  !/\/exchange/.test(window.location.hash))) {
                 store.dispatch(AppActions.logout());
-                store.dispatch(AppActions.setAppChainIsInit(true));
-              } else {
-                AccountLoginService.checkLoginAccount().then((account) => {
-
-                  if (account) {
-                    WalletService.checkEnableWallet().then((isEnable) => {
-
-                      if (isEnable) {
-                        Promise.all([
-                          WalletService.getDBKeys(),
-                          WalletService.getDBWallet()
-                        ]).then(([keys, wallet]) => {
-
-                          if (wallet && keys) {
-                            store.dispatch(PrivateKeyActions.setKeys(keys));
-                            store.dispatch(WalletDataActions.updateWalletData(wallet));
-                            store.dispatch(AppActions.login(account));
-                            store.dispatch(AppActions.setAppChainIsInit(true));
-
-                            if (CONFIG.__ELECTRON__) {
-                              LoginService.electronLoginByEncryptedKey(store.dispatch);
-                            }
-                          } else {
-                            store.dispatch(AppActions.logout());
-                            store.dispatch(AppActions.setAppChainIsInit(true));
-                          }
-                        });
-                      } else {
-                        store.dispatch(AppActions.logout());
-                        store.dispatch(AppActions.setAppChainIsInit(true));
-                      }
-                    });
-                  } else {
-                    console.warn('[APP] ACCOUNT NOT LOGIN', account);
-
-                    if (!store.getState().walletData.wallet &&
-                      (!/\/login/.test(window.location.hash) &&
-                        !/\/claims\/bts/.test(window.location.hash) &&
-                        !/\/sign-up/.test(window.location.hash) &&
-                        !/\/about/.test(window.location.hash) &&
-                        !/\/explorer/.test(window.location.hash) &&
-                        !/\/exchange/.test(window.location.hash))) {
-                      store.dispatch(AppActions.logout());
-                    }
-
-                    store.dispatch(AppActions.setAppChainIsInit(true));
-                  }
-                });
               }
+
+              store.dispatch(AppActions.setAppChainIsInit(true));
             }).catch((error) => {
               console.error('----- ChainStore INIT ERROR ----->', error, (new Error()).stack);
               store.dispatch(AppActions.setAppSyncFail(true));

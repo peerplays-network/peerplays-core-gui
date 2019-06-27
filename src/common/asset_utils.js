@@ -86,7 +86,8 @@ class AssetUtils {
     let symbolsMap = {
       'BITCOIN': 'BTC',
       'PEERPLAYS': 'PPY',
-      'BITFUN': 'BTF'
+      'BITFUN': 'BTF',
+      'TEST': 'TEST' // Testnet UIA
     };
 
     return typeof symbolsMap[symbol] === 'undefined' ? symbol : symbolsMap[symbol];
@@ -96,7 +97,8 @@ class AssetUtils {
     let shortNamesMap = {
       'BTC': 'Bitcoin',
       'PPY': 'Peerplays',
-      'BTF': 'BitFun'
+      'BTF': 'BitFun',
+      'TEST': 'TEST' // Testnet UIA
     };
 
     return typeof shortNamesMap[AssetUtils.getSymbol(symbol)] === 'undefined'
