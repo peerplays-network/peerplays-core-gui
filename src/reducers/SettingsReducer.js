@@ -1,14 +1,9 @@
 import Immutable from 'immutable';
 import ActionTypes from '../constants/ActionTypes';
-import CONFIG from '../config/main';
+import Config from '../../config/Config';
 
-const CORE_ASSET = CONFIG.CORE_ASSET;
 /**
  * Settings reducer is used to controlling Site settings
- *
- * Initial State
- *
- * @type {{locale: string, showSettles: boolean, disableChat: boolean, ownerKeyPermissions: null, connection: *, faucetAddress: *, unit: *, defaults: {locale: [*], unit: [*], preferredBases: [*], topMarkets: [*]}, hiddenAssets: (*)}}
  */
 
 const initialState = {
@@ -19,13 +14,13 @@ const initialState = {
   /*permissions*/
   ownerKeyPermissions: null,
   /*API access*/
-  connection: BLOCKCHAIN_URL[0], // eslint-disable-line
-  faucetAddress: FAUCET_URL[0], // eslint-disable-line
-  unit: CORE_ASSET,
+  connection: Config.BLOCKCHAIN_URLS[0],
+  faucetAddress: Config.BLOCKCHAIN_URLS[0],
+  unit: Config.CORE_ASSET,
   defaults: {
     locale: [
       'en',
-      'cn',
+      'cn'
       // "fr",
       // "ko",
       // "de",
@@ -33,14 +28,14 @@ const initialState = {
       // "tr"
     ],
     unit: [
-      CORE_ASSET,
+      Config.CORE_ASSET
       //"SMARTSMART"
       // "CNY",
       //  "PIXEL.BITCOIN"
       // "EUR",
       // "GBP"
     ],
-    preferredBases: [CORE_ASSET, 'PIXEL.BITCOIN', 'PIXEL.STEEM'],
+    preferredBases: [Config.CORE_ASSET, 'PIXEL.BITCOIN', 'PIXEL.STEEM'],
     topMarkets: [
       'PIXEL.BITCOIN', 'PIXEL.STEEM', 'BTS', 'OPEN.ETH', 'ICOO', 'BTC', 'OPEN.LISK',
       'OPEN.STEEM', 'OPEN.DAO', 'PEERPLAYS', 'USD', 'CNY', 'BTSR', 'OBITS',

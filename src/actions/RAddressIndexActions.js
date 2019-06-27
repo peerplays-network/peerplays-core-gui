@@ -33,7 +33,7 @@ class AddressIndexActions {
 
         dispatch({
           type: ActionTypes.SET_ADDRESS_INDEXES_PUBKEYS,
-          payload : pubKeys,
+          payload : pubKeys
         });
 
         if (saving){
@@ -42,7 +42,7 @@ class AddressIndexActions {
 
         dispatch({
           type: ActionTypes.SET_ADDRESS_INDEXES_SAVING_STATUS,
-          payload: true,
+          payload: true
         });
 
         // Gather all 5 legacy address formats (see key.addresses)
@@ -56,7 +56,7 @@ class AddressIndexActions {
         if (dirty) {
           dispatch({
             type: ActionTypes.SET_ADDRESS_INDEXES,
-            payload : addresses,
+            payload : addresses
           });
 
           clearTimeout(timeout);
@@ -64,7 +64,7 @@ class AddressIndexActions {
           timeout = setTimeout(()=> {
             dispatch({
               type: ActionTypes.SET_ADDRESS_INDEXES_SAVING_STATUS,
-              payload: false,
+              payload: false
             });
 
             return iDB.root.setProperty('AddressIndex', addresses.toObject());
@@ -72,7 +72,7 @@ class AddressIndexActions {
         } else {
           dispatch({
             type: ActionTypes.SET_ADDRESS_INDEXES_SAVING_STATUS,
-            payload: false,
+            payload: false
           });
         }
       }).catch((e) => {

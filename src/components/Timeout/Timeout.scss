@@ -1,0 +1,18 @@
+@import '../../assets/stylesheets/mixins';
+@import '../../assets/stylesheets/layout';
+
+.timeout {
+  @extend .main;
+
+  .dialog-login {
+    padding: 75px;
+
+    h1, .small {
+      padding: 0;
+    }
+
+    .section__text {
+      padding:0 0 30px;
+    }
+  }
+}

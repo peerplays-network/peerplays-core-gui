@@ -1,21 +1,18 @@
 import Immutable from 'immutable';
 import ActionTypes from '../constants/ActionTypes';
+import Config from '../../config/Config';
 
 
 /**
  * Dashboard Reducer is used to controlling dashboard page
- *
- * Initial state
- *
- * @type {{precision: number, decimals: number, coreSymbol, assetSymbol, coreToken: (*), fiat: (*), cryptoTokens: (*), smartCoins: (*), otherAssets: (*), showHiddenAssets: boolean, recentActivity: Array, openOrders: Array, headBlockNumber: null, blockInterval: null, availableBalances: {}, vestingBalancesIds: Array, vestingBalances: (*), vestingAsset: null, memberAccount: null}}
  */
 let defaultState = {
 
   // Dashboard Data
   precision: 4,
   decimals: 4,
-  coreSymbol: CORE_ASSET,
-  assetSymbol: CORE_ASSET,
+  coreSymbol: Config.CORE_ASSET,
+  assetSymbol: Config.CORE_ASSET,
   coreToken: Immutable.List(),
   fiat: Immutable.List(),
   cryptoTokens: Immutable.List(),

@@ -1,5 +1,5 @@
 import ActionTypes from '../constants/ActionTypes';
-import KeysService from 'services/KeysService';
+import KeysService from '../services/KeysService';
 
 class RWalletUnlockNewActions {
   /**
@@ -40,6 +40,10 @@ class RWalletUnlockNewActions {
  */
   static getKeyFromState(role) {
     return (dispatch, getState) => {
+      if (role === 'memo' && getState().walletData.wallet.is_legacy) {
+        role = 'active';
+      }
+
       return KeysService.getActiveKeyFromState(getState(), dispatch, role);
     };
   }
