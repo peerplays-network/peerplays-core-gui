@@ -42,7 +42,7 @@ class ExploreFeeScheduleActions {
  */
   static load() {
     return (dispatch, getState) => {
-      console.log(getState().dashboardPage.assetSymbol);
+      // console.log(getState().dashboardPage.assetSymbol);
       Promise.all([
         Repository.fetchObject('2.0.0'),
         Repository.fetchObject('1.3.0'),
