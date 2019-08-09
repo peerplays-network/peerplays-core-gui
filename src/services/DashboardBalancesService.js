@@ -148,25 +148,9 @@ class DashboardBalancesService {
               }
             });
 
-            // let endDate = new Date();
-            // let startDateShort = new Date();
-            //
-            // let baseAsset = assets.find((asset) => {
-            // 	return asset.id === '1.3.0';
-            // });
-            //
-            // endDate.setDate(endDate.getDate() + 1);
-            // startDateShort = new Date(startDateShort.getTime() - 3600 * 50 * 1000);
-
-            // let promisesStats = [];
-
-            // assets.forEach((asset) => {
-            // 	promisesStats.push(
-            // self.calcStats(asset, baseAsset, startDateShort.toISOString().slice(0, -5),
-            // endDate.toISOString().slice(0, -5)));
-            // });
-            //
-            // return Promise.all(promisesStats).then(() => {
+            // Request the details of the GPOS balance object and
+            // reward percentage (vesting_factor).
+            // let gposPromises = account.vesting_balances_ids
 
             cacheData.assets = assets;
             cacheData.amounts = amounts;
@@ -183,11 +167,8 @@ class DashboardBalancesService {
             dataIsFetched = true;
 
             return true;
-
-            // });
           });
         });
-
       });
     });
   }
@@ -195,9 +176,10 @@ class DashboardBalancesService {
   /**
    *
    * @param {string} accountId
-   * @param {Immutable.Map} vestingBalances
+   * @param {Immutable.Map} vestingBalances,
+   * @param {string} type - regular or GPOS. Default to witness vest type.
    */
-  static calculateVesting(accountId, vestingBalances) {
+  static calculateVesting(accountId, vestingBalances, gposBalances) {
     return Repository.fetchFullAccount(accountId).then((account) => {
       if (!account) {
         return null;
@@ -214,18 +196,25 @@ class DashboardBalancesService {
         .then(([balances, asset]) => {
           if (balances && balances.length) {
             balances.forEach((balance) => {
-
-              if (balance) {
+              // Only work with non-gpos vested balances.
+              if (balance && balance.get('balance_type').toLowerCase() !== 'gpos') {
                 let currBalance = vestingBalances.get(balance.get('id'));
 
                 if (!currBalance || currBalance !== balance) {
                   vestingBalances = vestingBalances.set(balance.get('id'), balance);
+                }
+              } else {
+                let currGposBalance = gposBalances.get(balance.get('id'));
+
+                if (!currGposBalance || currGposBalance !== balance) {
+                  gposBalances = gposBalances.set(balance.get('id'), balance);
                 }
               }
             });
           }
 
           return {
+            gposBalances,
             vestingBalancesIds: vesting_balances_ids ? vesting_balances_ids : [],
             vestingBalances: vestingBalances,
             vestingAsset: asset
@@ -272,6 +261,7 @@ class DashboardBalancesService {
       openOrders,
       lastBlock
     } = cacheData;
+
     let baseAsset = assets.find((asset) => {
       return asset.id === '1.3.0';
     });

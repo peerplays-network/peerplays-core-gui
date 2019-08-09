@@ -30,6 +30,9 @@ let defaultState = {
   vestingBalances: Immutable.Map(),
   vestingAsset: null,
 
+  // GPOS balance side
+  gposBalances: Immutable.Map(),
+
   // Member account
   memberAccount: null
 };
@@ -43,6 +46,12 @@ export default function (state = defaultState, action) {
         vestingBalancesIds: action.payload.vestingBalancesIds,
         vestingBalances: action.payload.vestingBalances,
         vestingAsset: action.payload.vestingAsset
+      };
+    // Dashboard Sie: set GPOS balances.
+    case ActionTypes.DASHBOARD_SET_GPOS_BALANCES:
+      return {
+        ...state,
+        gposBalances: action.payload.gposBalances
       };
       /**
        * Dashboard Side: set controlled member account
