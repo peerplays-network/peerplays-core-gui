@@ -48,6 +48,9 @@ class AccountVestingPageActions {
           BalanceRepository.getVestingBalances(accountId).then((balances) => {
             let assetsHashIds = Object.create(null),
               assetsPromises = [];
+            balances = balances.filter((bal) => {
+              return bal.balance_type !== 'gpos';
+            });
             balances.forEach((vb) => {
               if (!assetsHashIds[vb.balance.asset_id]) {
                 assetsPromises.push(Repository.getAsset(vb.balance.asset_id));
