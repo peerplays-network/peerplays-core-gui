@@ -92,6 +92,19 @@ class DashboardPagePrivateActions {
   }
 
   /**
+   * Private Redux Action Creator
+   * GPOS Balances
+   * @param {data} data
+   * @returns {{type, payload: Immutable.Map()}}
+   */
+  static setGposBalancesAction(data) {
+    return {
+      type: ActionTypes.DASHBOARD_SET_GPOS_BALANCES,
+      payload: data
+    };
+  }
+
+  /**
    * Private Redux Action Creator (DASHBOARD_SET_SIDE_MEMBER)
    *
    * @param data
@@ -180,9 +193,12 @@ class DashboardPageActions {
       let vestingBalances = currentState.dashboardPage.vestingBalances,
         vestingAsset = currentState.dashboardPage.vestingAsset,
         vestingBalancesIds = currentState.dashboardPage.vestingBalancesIds;
+      // GPOS
+      let gposBalances = currentState.dashboardPage.gposBalances;
 
+      // Get regular vesting balances
       DashboardBalancesService
-        .calculateVesting(currentState.app.account, vestingBalances).then((data) => {
+        .calculateVesting(currentState.app.account, vestingBalances, gposBalances).then((data) => {
           if (!data) {
             return null;
           }
@@ -196,6 +212,12 @@ class DashboardPageActions {
               vestingBalancesIds: data.vestingBalancesIds,
               vestingBalances: data.vestingBalances,
               vestingAsset: data.vestingAsset
+            }));
+          }
+
+          if (gposBalances !== data.gposBalances) {
+            dispatch(DashboardPagePrivateActions.setGposBalancesAction({
+              gposBalances: data.gposBalances
             }));
           }
         });
