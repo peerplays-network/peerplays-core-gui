@@ -19,81 +19,86 @@ class SideVesting extends React.Component {
       symbol = asset_utils.getSymbol(asset.get('symbol'));
     }
 
-    return (
-      <div className='aside__item bb'>
-        <Translate
-          component='div'
-          className='aside__title'
-          content='dashboard.side.vesting_balances'
-        />
-        <div className='aside__row'>
+    // Only display vested balances if they exist.
+    if (totalAmount <= 0) {
+      return null;
+    } else {
+      return (
+        <div className='aside__item bb'>
           <Translate
             component='div'
-            className='aside__rowLabel2'
-            content='dashboard.side.total'
+            className='aside__title'
+            content='dashboard.side.vesting_balances'
           />
-
-          <div className='aside__unit'>
-            {symbol}
-          </div>
-
-          <div className='aside__num'>
-            {totalAmount && asset
-              ? <FormattedNumber
-                value={
-                  totalAmount
-                    ? totalAmount / Math.pow(10, asset.get('precision'))
-                    : totalAmount
-                }
-                minimumFractionDigits={ 0 }
-                maximumFractionDigits={ asset.get('precision') }
-              />
-              : 0
-            }
-          </div>
-        </div>
-        <div className='aside__row'>
-          <Translate
-            component='div'
-            className='aside__rowLabel2'
-            content='dashboard.side.claimable'
-          />
-
-          <div className='aside__unit'>
-            {symbol}
-          </div>
-
-          <div className='aside__num'>
-            {totalClaimable && asset
-              ? <FormattedNumber
-                value={
-                  totalClaimable
-                    ? totalClaimable / Math.pow(10, asset.get('precision'))
-                    : totalClaimable
-                }
-                minimumFractionDigits={ 0 }
-                maximumFractionDigits={ asset.get('precision') }
-              />
-              : 0
-            }
-          </div>
-        </div>
-
-        <div className='aside__btnWrap'>
-          <button
-            className='btn aside__btn'
-            type='button'
-            onClick={ this.navigateToVestingBalances.bind(this) }>
-            <span className='aside__btnIcon icon-claim'></span>
+          <div className='aside__row'>
             <Translate
-              component='span'
-              className=''
-              content='dashboard.side.claim_balances'
+              component='div'
+              className='aside__rowLabel2'
+              content='dashboard.side.total'
             />
-          </button>
+
+            <div className='aside__unit'>
+              {symbol}
+            </div>
+
+            <div className='aside__num'>
+              {totalAmount && asset
+                ? <FormattedNumber
+                  value={
+                    totalAmount
+                      ? totalAmount / Math.pow(10, asset.get('precision'))
+                      : totalAmount
+                  }
+                  minimumFractionDigits={ 0 }
+                  maximumFractionDigits={ asset.get('precision') }
+                />
+                : 0
+              }
+            </div>
+          </div>
+          <div className='aside__row'>
+            <Translate
+              component='div'
+              className='aside__rowLabel2'
+              content='dashboard.side.claimable'
+            />
+
+            <div className='aside__unit'>
+              {symbol}
+            </div>
+
+            <div className='aside__num'>
+              {totalClaimable && asset
+                ? <FormattedNumber
+                  value={
+                    totalClaimable
+                      ? totalClaimable / Math.pow(10, asset.get('precision'))
+                      : totalClaimable
+                  }
+                  minimumFractionDigits={ 0 }
+                  maximumFractionDigits={ asset.get('precision') }
+                />
+                : 0
+              }
+            </div>
+          </div>
+
+          <div className='aside__btnWrap'>
+            <button
+              className='btn aside__btn'
+              type='button'
+              onClick={ this.navigateToVestingBalances.bind(this) }>
+              <span className='aside__btnIcon icon-claim'></span>
+              <Translate
+                component='span'
+                className=''
+                content='dashboard.side.claim_balances'
+              />
+            </button>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 
