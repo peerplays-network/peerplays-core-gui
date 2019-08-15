@@ -38,7 +38,7 @@
     },
     "side": {
       "available_balances": "Available Balances:",
-      "vesting_balances": "Vesting Balances (Witness Pay)",
+      "vesting_balances": "Pending Balances",
       "claim_balances": "Claim Balances",
       "total": "Total:",
       "claimable": "Claimable:",
