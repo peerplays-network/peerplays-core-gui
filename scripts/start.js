@@ -3,6 +3,7 @@ process.env.NODE_ENV = 'development';
 var webpack = require('webpack');
 var ProgressPlugin = require('webpack/lib/ProgressPlugin');
 var WebpackDevServer = require('webpack-dev-server');
+var paths = require('../config/paths');
 var config = require('../config/webpack.config.dev');
 var chalk = require('chalk');
 var opn = require('opn');
@@ -27,6 +28,7 @@ function runDevServer(host, port, protocol) {
     compress: true,
     publicPath: config.output.publicPath,
     hot: true,
+    contentBase: paths.appBuild,
     historyApiFallback: true,
     // Switch assets, children, chunks to see verbose information in console.
     stats: {
