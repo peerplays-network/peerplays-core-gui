@@ -1,8 +1,6 @@
 .nav {
-  //display: flex;
-  //justify-content: space-around;
-  height: 100%;
   min-width: 450px;
+  height: 100%;
   overflow: hidden;
 
   &__right {
@@ -17,8 +15,8 @@
 
     .nav__link {
       margin-right: 0;
-      padding: 0 20px;
       margin-left: 5px;
+      padding: 0 20px;
     }
 
     &>.nav__link {
