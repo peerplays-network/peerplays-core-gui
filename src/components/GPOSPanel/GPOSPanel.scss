@@ -1,0 +1,20 @@
+.gpos-panel {
+  display: flex;
+  flex-direction: column;
+
+  &__desc {
+    margin-bottom: 47px;
+
+    &-txt {
+      display: initial;
+    }
+
+    &-link {
+      color: #5EB5F2;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
