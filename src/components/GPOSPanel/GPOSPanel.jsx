@@ -16,7 +16,7 @@ class GPOSPanel extends Component {
       <div className='gpos-panel'>
         <Translate
           component='div'
-          className='aside__title'
+          className='aside__title gpos-panel__title'
           content='gpos.side.title'
         />
         <div className='gpos-panel__desc'>
