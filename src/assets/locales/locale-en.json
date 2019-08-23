@@ -488,6 +488,17 @@
     "remaining": "Days Remaining in Period",
     "claim": "Claim"
   },
+  "gpos": {
+    "side": {
+      "title": "GPOS Panel",
+      "desc": "Gamified Proof of Stake (GPOS) enables you to earn rewards of multiple cryptocurrencies supported in Peerplays by helping secure the network. %(learn)s",
+      "learn": "Learn More",
+      "start": "GET STARTED"
+    },
+    "faq": {
+      "title": "GAMIFIED PROOF OF STAKE"
+    }
+  },
   "about": {
     "title": "Peerplays TEST Network",
     "note1": "This public TEST network is for demonstrations purposes only. It will be modified and changed often as additional features are added and tested.",
