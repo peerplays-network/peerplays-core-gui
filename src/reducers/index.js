@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
 import {routerReducer} from 'react-router-redux';
 import AccountReducer from './AccountReducer';
+import GPOSReducer from './GPOSReducer';
 import SettingsReducer from './SettingsReducer';
 import PageSettingsReducer from './PageSettingsReducer';
 import WalletReducer from './WalletReducer';
@@ -46,6 +47,7 @@ const rootReducer = combineReducers({
   form: formReducer,
   helpReducer: HelpReducer,
   loginPage: LoginPageReducer,
+  gposReducer: GPOSReducer,
   memoModal: MemoReducer,
   notificationsReducer: NotificationsReducer,
   pageSettings: PageSettingsReducer,
