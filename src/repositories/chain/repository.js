@@ -208,6 +208,11 @@ class Repository {
     });
   }
 
+  // gpos
+  static getGposInfo(accountId) {
+    return Apis.instance().db_api().exec('get_gpos_info', [accountId]);
+  }
+
   // block
   static fetchBlockById(id) {
     return Apis.instance().db_api().exec('get_block', [id]).then(function (block) {
@@ -305,6 +310,7 @@ class Repository {
   static getLastTournamentId() {
     return ChainStore.getLastTournamentId();
   }
+
   static getTournaments(last_tournament_id, limit, start_tournament_id) {
     return ChainStore.getTournaments(last_tournament_id, limit, start_tournament_id);
   }
