@@ -11,7 +11,7 @@ import {bindActionCreators} from 'redux';
 import GPOSPanel from '../../GPOSPanel';
 class Side extends React.Component {
 
-  componentWillMount() {
+  componentWillMount() { // TODO: unsafe, fix.
     this.props.fetchCurrentBalance();
   }
 
