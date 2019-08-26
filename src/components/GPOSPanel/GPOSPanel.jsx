@@ -83,7 +83,6 @@ class GPOSPanel extends Component {
     let stats = totalGpos && totalGpos > 0 ?
       this.renderGposStats() : null;
     let btnModifier = totalGpos && totalGpos > 0 ? '' : '--no-stats';
-    debugger;
 
     return (
       <div className='gpos-panel'>
