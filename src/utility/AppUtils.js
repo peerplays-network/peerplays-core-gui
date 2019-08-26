@@ -23,6 +23,21 @@ const AppUtils = {
    */
   scrollToRef(targetRef, parentElement) {
     parentElement.scrollTop = targetRef.offsetTop - parentElement.offsetTop;
+  },
+
+  /**
+   * For situations where the ref required is not available, scroll to a `ref` within a HTML element with the element id.
+   * Deprecate this if upgrading to React 16, or higher, in favor of the new ref features.
+   *
+   * @param {*} targetRefId - HTML id of element to scroll to ie: "FAQ_GPOS"
+   * @param {*} parentElementId - provides context for targetRefId
+   */
+  scrollToOtherRef(targetRefId, parentElementId) {
+    const getById = (id) => {
+      return document.getElementById(id);
+    };
+
+    this.scrollToRef(getById(targetRefId), getById(parentElementId));
   }
 };
 
