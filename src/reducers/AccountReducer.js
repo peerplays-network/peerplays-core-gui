@@ -1,5 +1,5 @@
 import ActionTypes from '../constants/ActionTypes';
-import merge from 'lodash/object/merge';
+import {merge} from 'lodash';
 
 /**
  * Account Reducer is used to searching accounts

@@ -30,6 +30,10 @@ let defaultState = {
   vestingBalances: Immutable.Map(),
   vestingAsset: null,
 
+  // GPOS balance side
+  gposBalances: Immutable.Map(),
+  gposInfo: Immutable.Map(),
+
   // Member account
   memberAccount: null
 };
@@ -44,11 +48,23 @@ export default function (state = defaultState, action) {
         vestingBalances: action.payload.vestingBalances,
         vestingAsset: action.payload.vestingAsset
       };
-      /**
-       * Dashboard Side: set controlled member account
-       *
-       * For this account we control the change of type
-       */
+    // Dashboard Side: set GPOS balances.
+    case ActionTypes.DASHBOARD_SET_GPOS_BALANCES:
+      return {
+        ...state,
+        gposBalances: action.payload.gposBalances
+      };
+    // Dashboard Side: set GPOS info for account.
+    case ActionTypes.DAHSBOARD_SET_GPOS_INFO:
+      return {
+        ...state,
+        gposInfo: action.payload.gposInfo
+      };
+    /**
+     * Dashboard Side: set controlled member account
+     *
+     * For this account we control the change of type
+     */
     case ActionTypes.DASHBOARD_SET_SIDE_MEMBER:
       return {
         ...state,

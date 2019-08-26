@@ -1,9 +1,13 @@
 import {createSelector} from 'reselect';
 
 const getBalancesIds = (state) => state.dashboardPage.vestingBalancesIds;
-const getBalances = (state) => state.dashboardPage.vestingBalances;
+const getBalances = (state) => state.dashboardPage.gposBalances;
 
-export const getTotalVestingBalances = createSelector(
+/**
+ * Custom selector from multiple data sets from state.
+ * Gathers all gpos balance transaction items for the user and totals them.
+ */
+export const getTotalGposBalance = createSelector(
   [ getBalancesIds, getBalances ],
   (balanceIds, balances) => {
     let totalAmount = 0,
@@ -12,13 +16,8 @@ export const getTotalVestingBalances = createSelector(
     balanceIds.forEach((balanceId) => {
       if (balances.size > 0) {
         let balance = balances.get(balanceId),
-          balanceAmount = balance.getIn(['balance', 'amount']),
-          vestingPeriod = balance.getIn(['policy', 1, 'vesting_seconds']),
-          earned = balance.getIn(['policy', 1, 'coin_seconds_earned']),
-          availablePercent = earned / (vestingPeriod * balanceAmount),
-          claim = balanceAmount * availablePercent;
+          balanceAmount = balance.getIn(['balance', 'amount']);
         totalAmount += balanceAmount;
-        totalClaimable += claim;
       }
     });
 

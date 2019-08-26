@@ -27,10 +27,10 @@ module.exports = {
     'background': ['px', 'x', '%'],
     'background-image': ['px', 'x', '%'],
     'border': ['px'],
-    'font-size': ['px'],
+    'font-size': ['px', 'rem'],
     'font': ['px'],
     'height': ['px', '%', 'vw', 'vh'],
-    'line-height': [],
+    'line-height': ['px'],
     'margin': ['px'],
     'margin-top': ['px'],
     'margin-right': ['px'],
@@ -41,6 +41,6 @@ module.exports = {
     'padding-right': ['px'],
     'padding-bottom': ['px'],
     'padding-left': ['px'],
-    'width': ['px', '%', 'vw', 'vh'],
+    'width': ['px', '%', 'vw', 'vh']
   }
 };

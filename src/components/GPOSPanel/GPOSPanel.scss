@@ -1,0 +1,45 @@
+.gpos-panel {
+  display: flex;
+  flex-direction: column;
+
+  &__btn {
+    margin-bottom: 45px;
+
+    &--no-stats {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__title {
+    font-weight: 600;
+  }
+
+  &__desc {
+    margin-bottom: 47px;
+
+    &-txt {
+      display: initial;
+    }
+
+    &-link {
+      color: #5eb5f2;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__stats {
+    &-balance, &-perf, &-percent, &-potential {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    &--right {
+      right: 0;
+      color: #13d4b7;
+    }
+  }
+}
