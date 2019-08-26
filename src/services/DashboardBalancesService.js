@@ -148,10 +148,6 @@ class DashboardBalancesService {
               }
             });
 
-            // Request the details of the GPOS balance object and
-            // reward percentage (vesting_factor).
-            // let gposPromises = account.vesting_balances_ids
-
             cacheData.assets = assets;
             cacheData.amounts = amounts;
             cacheData.marketStatsByName = marketStatsByName;
@@ -494,22 +490,6 @@ class DashboardBalancesService {
       latestPrice
     };
   }
-
-  // static calcStats(asset, baseAsset, start, end) {
-  // 	return Promise.all([
-  // 		HistoryRepository.fetchMarketHistory(baseAsset.id, asset.id, 3600, start, end),
-  // 		HistoryRepository.fetchFillOrderHistory(baseAsset.id, asset.id, 1)
-  // 	]).then(result => {
-  //
-  // 		let history = result[0],
-  // 			last = result[1],
-  // 			stats = this._calcMarketStats(history, baseAsset, asset, last),
-  // 			marketName = asset.symbol + "_" + baseAsset.symbol;
-  //
-  // 		marketStatsByName[marketName] = stats;
-  //
-  // 	});
-  // }
 
   /**
    *
