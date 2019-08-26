@@ -7,6 +7,7 @@ import {AppActions, NavigateActions} from '../../actions';
 import CantConnectModal from '../Modal/CantConnectModal/CantConnectModal';
 import CommonMessage from '../CommonMessage';
 import Config from '../../../config/Config';
+import GPOSWizard from '../Modal/GPOSWizard/GPOSWizardWrapper';
 import Header from '../Header/Header';
 import HelpModal from '../Help/HelpModal';
 import NotificationSystem from 'react-notification-system';
@@ -127,6 +128,7 @@ class App extends PureComponent {
           <CantConnectModal/>
           <ViewMemoModal/>
           <HelpModal/>
+          <GPOSWizard/>
         </div>
       </IntlProvider>
     );

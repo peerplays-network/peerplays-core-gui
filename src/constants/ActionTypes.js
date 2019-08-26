@@ -302,6 +302,13 @@ export default {
      */
     TOGGLE_HELP_POPUP : 'TOGGLE_HELP_POPUP',
 
+    /**
+     * GPOS Wizard Modal
+     * 
+     * const TOGGLE_GPOS_WIZARD - Show|hide GPOS Wizard modal.
+     */
+    TOGGLE_GPOS_WIZARD: "TOGGLE_GPOS_WIZARD",
+
     /*
     * Memo Modal
     *

@@ -4,18 +4,19 @@ import counterpart from 'counterpart';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
 import Notices from './Notices';
-import {AppActions, HelpActions} from '../../actions';
+import {AppActions, HelpActions, GPOSActions} from '../../actions';
 import Translate from 'react-translate-component';
 import {bindActionCreators} from 'redux';
 
 class Header extends React.Component {
-  onLogoutClick(e) {
+  onClickHelpLink = (e) => {
+    this.props.toggleHelpModal(true);
     e.preventDefault();
-    this.props.logout();
   }
 
-  onClickHelpLink(e) {
-    this.props.toggleHelpModal(true);
+  // TEMP
+  onClickGPOS = (e) => {
+    this.props.toggleGPOSWizardModal(true);
     e.preventDefault();
   }
 
@@ -41,13 +42,24 @@ class Header extends React.Component {
               </span>
             </Link>
             <a
-              onClick={ this.onClickHelpLink.bind(this) }
+              onClick={ this.onClickHelpLink }
               href='/help'
               className='nav__link bb nav__link-help'>
               <span className='nav__linkAlign'>
                 <span className='nav__linkIcon nav__linkIcon-blank icon-help'></span>
                 <span className='nav__linkIcon nav__linkIcon-filled icon-help-filled'></span>
                 <span className='nav__linkText'>{help}</span>
+              </span>
+            </a>
+            {/* TEMPORARY TO OPEN THE WIZARD */}
+            <a
+              onClick={ this.onClickGPOS }
+              href='/help'
+              className='nav__link bb nav__link-help'>
+              <span className='nav__linkAlign'>
+                <span className='nav__linkIcon nav__linkIcon-blank icon-help'></span>
+                <span className='nav__linkIcon nav__linkIcon-filled icon-help-filled'></span>
+                <span className='nav__linkText'>OPEN GPOS WIZARD</span>
               </span>
             </a>
             <Notices/>
@@ -107,7 +119,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
     logout: AppActions.logout,
-    toggleHelpModal: HelpActions.toggleHelpModal
+    toggleHelpModal: HelpActions.toggleHelpModal,
+    // TEMP
+    toggleGposWizard: GPOSActions.toggleGPOSWizardModal
   },
   dispatch
 );
