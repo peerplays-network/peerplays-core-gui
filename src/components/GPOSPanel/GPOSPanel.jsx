@@ -6,11 +6,11 @@ import asset_utils from '../../common/asset_utils';
 import {HelpActions, DashboardPageActions} from '../../actions';
 import {getTotalGposBalance} from '../../selectors/GPOSSelector';
 import {FormattedNumber} from 'react-intl';
+import {anchors} from '../Help/HelpModal';
 
 class GPOSPanel extends Component {
   onClickHelpLearn = (e) => {
-    // TODO: auto scroll to gpos section
-    this.props.toggleHelpModal(true);
+    this.props.toggleHelpModal(true, anchors.GPOS);
     e.preventDefault();
   }
 
@@ -134,7 +134,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
-    toggleHelpModal: HelpActions.toggleHelpModal,
+    toggleHelpModal: HelpActions.toggleHelpAndScroll,
     fetchGposInfo: DashboardPageActions.getGposInfo
   },
   dispatch

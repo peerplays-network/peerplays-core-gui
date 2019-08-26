@@ -7,6 +7,19 @@ import {HelpActions, NavigateActions} from '../../actions';
 import {bindActionCreators} from 'redux';
 import AppUtils from '../../utility/AppUtils';
 
+export const anchors = {
+  MODAL: 'FAQ_MODAL',
+  FUNDS: 'FAQ_FUNDS',
+  PLAY: 'FAQ_PLAY',
+  GPOS: 'FAQ_GPOS',
+  VOTE: 'FAQ_VOTE',
+  NETWORK: 'FAQ_NETWORK',
+  SETTINGS: 'FAQ_SETTINGS',
+  HELP: 'FAQ_HELP',
+  NOTIFICATIONS: 'FAQ_NOTIFICATION'
+};
+
+
 class HelpModal extends React.Component {
   onClickClose(e) {
     this.hideModal();
@@ -43,6 +56,7 @@ class HelpModal extends React.Component {
           <div
             ref={ (modal) => this.modal = modal }
             style={ {maxHeight: 'calc(100vh - 210px)', overflowY: 'auto'} }
+            id={ anchors.MODAL }
           >
             <div className='modalBody'>
               <div className='modalBody-text-body'>
@@ -123,7 +137,7 @@ class HelpModal extends React.Component {
                   </li>
                 </ul>
 
-                <div ref={ (fundsAnchor) => this.fundsAnchor = fundsAnchor }>
+                <div ref={ (fundsAnchor) => this.fundsAnchor = fundsAnchor } id={ anchors.FUNDS }>
                   <Translate component='div' className='help__h3' content='help.my_funds.title'/>
                   <div className='help__section'>
                     <Translate
@@ -195,14 +209,14 @@ class HelpModal extends React.Component {
                   </div>
                 </div>
 
-                <div ref={ (playAnchor) => this.playAnchor = playAnchor }>
+                <div ref={ (playAnchor) => this.playAnchor = playAnchor } id={ anchors.PLAY }>
                   <Translate component='div' className='help__h3' content='help.play.title'/>
                   <div className='help__section'>
                     <Translate component='div' className='help__text' content='help.play.text_1'/>
                   </div>
                 </div>
 
-                <div ref={ (gposAnchor) => this.gposAnchor = gposAnchor }>
+                <div ref={ (gposAnchor) => this.gposAnchor = gposAnchor } id={ anchors.GPOS }>
                   <Translate component='div' className='help__h3' content='help.gpos.title'/>
                   <div className='help__section'>
                     <Translate component='div' className='help__text' content='help.gpos.text_1'/>
@@ -211,7 +225,7 @@ class HelpModal extends React.Component {
                   </div>
                 </div>
 
-                <div ref={ (voteAnchor) => this.voteAnchor = voteAnchor }>
+                <div ref={ (voteAnchor) => this.voteAnchor = voteAnchor } id={ anchors.VOTE }>
                   <Translate component='div' className='help__h3' content='help.vote.title'/>
                   <div className='help__section'>
                     <Translate component='div' className='help__text' content='help.vote.note_1'/>
@@ -272,7 +286,7 @@ class HelpModal extends React.Component {
                   </div>
                 </div>
 
-                <div ref={ (networkAnchor) => this.networkAnchor = networkAnchor }>
+                <div ref={ (networkAnchor) => this.networkAnchor = networkAnchor } id={ anchors.NETWORK }>
                   <Translate component='div' className='help__h3' content='help.network.title'/>
                   <div className='help__section'>
                     <Translate
@@ -310,7 +324,7 @@ class HelpModal extends React.Component {
                   </div>
                 </div>
 
-                <div ref={ (settingsAnchor) => this.settingsAnchor = settingsAnchor }>
+                <div ref={ (settingsAnchor) => this.settingsAnchor = settingsAnchor } id={ anchors.SETTINGS }>
                   <Translate component='div' className='help__h3' content='help.settings.title'/>
                   <div className='help__section'>
                     <Translate
@@ -351,7 +365,7 @@ class HelpModal extends React.Component {
                   </div>
                 </div>
 
-                <div ref={ (helpAnchor) => this.helpAnchor = helpAnchor }>
+                <div ref={ (helpAnchor) => this.helpAnchor = helpAnchor } id={ anchors.HELP }>
                   <Translate component='div' className='help__h3' content='help.help.title'/>
                   <div className='help__section'>
                     <Translate component='div' className='help__text' content='help.help.note'/>
@@ -359,7 +373,7 @@ class HelpModal extends React.Component {
                 </div>
 
                 <div
-                  ref={ (notificationsAnchor) => this.notificationsAnchor = notificationsAnchor }
+                  ref={ (notificationsAnchor) => this.notificationsAnchor = notificationsAnchor } id={ anchors.NOTIFICATIONS }
                 >
                   <Translate
                     component='div'

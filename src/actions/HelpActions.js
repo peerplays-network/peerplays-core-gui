@@ -1,4 +1,6 @@
 import ActionTypes from '../constants/ActionTypes';
+import AppUtils from '../utility/AppUtils';
+import {anchors} from '../components/Help/HelpModal';
 
 class HelpPrivateActions {
   /**
@@ -27,6 +29,22 @@ class HelpActions {
   static toggleHelpModal(showHelpModal) {
     return (dispatch) => {
       dispatch(HelpPrivateActions.toggleModalAction(showHelpModal));
+    };
+  }
+
+  /**
+   * Open the FAQ Help modal and scroll to the header target.
+   *
+   * @static
+   * @param {boolean} showHelpModal
+   * @param {string} target - ie: "FAQ_GPOS"
+   * @returns
+   * @memberof HelpActions
+   */
+  static toggleHelpAndScroll(showHelpModal, target) {
+    return (dispatch) => {
+      dispatch(HelpPrivateActions.toggleModalAction(showHelpModal));
+      AppUtils.scrollToOtherRef(target, anchors.MODAL);
     };
   }
 }
