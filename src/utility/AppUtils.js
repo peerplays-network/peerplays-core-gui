@@ -14,6 +14,15 @@ const AppUtils = {
   // Check if the app is running inside electron
   isRunningInsideElectron() {
     return window && window.process && window.process.type === 'renderer';
+  },
+  /**
+   * Scroll to a `ref` within a HTML element.
+   *
+   * @param {HTMLElement} targetRef - the ref in the parent element to scroll to.
+   * @param {HTMLElement} parentElement - provides context to targetRef
+   */
+  scrollToRef(targetRef, parentElement) {
+    parentElement.scrollTop = targetRef.offsetTop - parentElement.offsetTop;
   }
 };
 
