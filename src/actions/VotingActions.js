@@ -6,13 +6,20 @@ import {ChainStore, PrivateKey, ChainTypes} from 'peerplaysjs-lib';
 import AccountRepository from '../repositories/AccountRepository';
 import accountUtils from '../common/account_utils';
 import WalletApi from '../rpc_api/WalletApi';
-import {
+import ActionTypes from '../constants/ActionTypes';
+import Config from '../../config/Config';
+
+const [
   VOTING_SET_DATA,
   VOTING_CHANGE_PROXY,
   VOTING_SET_NEW_WITNESSES,
   VOTING_UPDATE_WITNESS_TAB
-} from '../constants/ActionTypes';
-import Config from '../../config/Config';
+] = [
+  ActionTypes.VOTING_SET_DATA,
+  ActionTypes.VOTING_CHANGE_PROXY,
+  ActionTypes.VOTING_SET_NEW_WITNESSES,
+  ActionTypes.VOTING_UPDATE_WITNESS_TAB
+];
 
 let witness_object_type  = parseInt(ChainTypes.object_type.witness, 10);
 let witness_prefix = '1.' + witness_object_type + '.';

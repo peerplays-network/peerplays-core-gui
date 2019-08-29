@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
-import {curry, flow, reject, clone, pairs, omit, get, pick} from 'lodash';
+import {curry, flow, reject, clone, toPairs, omit, get, pick} from 'lodash';
 import {ChainStore} from 'peerplaysjs-lib';
 import ChainTypes from './ChainTypes';
 import utils from '../../common/utils';
@@ -62,7 +63,7 @@ function BindToChainState(options) {
     return class Wrapper extends React.Component {
       constructor(props) {
         super(props);
-        let prop_types_array = pairs(Component.propTypes); // TODO: deprecate
+        let prop_types_array = toPairs(Component.propTypes); // TODO: deprecate
 
         if (options && options.all_props) {
           this.chain_objects = reject(

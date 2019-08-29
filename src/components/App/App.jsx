@@ -1,43 +1,45 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
-import intlData from '../Utility/intlData';
+import NotificationSystem from 'react-notification-system';
 import {IntlProvider} from 'react-intl';
 import {bindActionCreators} from 'redux';
+import {routerShape} from 'react-router/lib/PropTypes';
+import intlData from '../Utility/intlData';
+import Config from '../../../config/Config';
 import {AppActions, NavigateActions} from '../../actions';
 import CantConnectModal from '../Modal/CantConnectModal/CantConnectModal';
 import CommonMessage from '../CommonMessage';
-import Config from '../../../config/Config';
-import GPOSWizard from '../Modal/GPOSWizard/GPOSWizardWrapper';
-import Header from '../Header/Header';
+// import GPOSWizard from '../Modal/GPOSWizard/GPOSWizardWrapper';
 import HelpModal from '../Help/HelpModal';
-import NotificationSystem from 'react-notification-system';
 import TransactionConfirmModal from '../Modal/TransactionConfirmModal/TransactionConfirmModal';
 import WalletUnlockModal from '../Modal/WalletUnlockModal';
 import ViewMemoModal from '../Modal/ViewMemoModal';
-import {routerShape} from 'react-router/lib/PropTypes';
+import Header from '../Header/Header';
 import SplashScreen from '../SplashScreen/SplashScreen';
 
 class App extends PureComponent {
   _notificationSystem = null;
+
   constructor(props) {
     super(props);
 
     this.idleCheck = this.idleCheck.bind(this);
   }
+
+  static contextTypes = {
+    router: routerShape
+  };
+
   componentDidMount() {
     this._notificationSystem = this.refs.notificationSystem;
   }
 
   componentDidUpdate(prevProps) {
     // Start lidle checker to autologout idle users.
-    if(prevProps !== this.props) {
+    if (prevProps !== this.props) {
       this.idleCheck(this.props);
     }
   }
-
-  static contextTypes = {
-    router: routerShape
-  };
 
   idleCheck(props) {
     let t;
@@ -58,7 +60,7 @@ class App extends PureComponent {
     function resetTimer() {
       clearTimeout(t);
 
-      if(props.isLogin !== false) {
+      if (props.isLogin !== false) {
         t = setTimeout(isIdle, Config.IDLE_TIMEOUT);
       }
     }
@@ -88,24 +90,18 @@ class App extends PureComponent {
       pathname = loc.pathname;
 
     if (this.props.syncIsFail) {
-      content = (
-        <div className='wrapper wrapper-with-footer'></div>
-      );
+      content = <div className='wrapper wrapper-with-footer'></div>;
     } else if (!this.props.dbIsInit || !this.props.dbDataIsLoad || !this.props.chainIsInit) {
-      content = (
-        <SplashScreen />
-      );
+      content = <SplashScreen />;
     } else if (urlsWithYellowBackground.indexOf(this.props.location.pathname) >= 0) {
       document.getElementsByTagName('body')[0].className = 'loginBg';
-      content = (
-        <div className='wrapper wrapper-with-footer'>{this.props.children}</div>
-      );
+      content = <div className='wrapper wrapper-with-footer'>{this.props.children}</div>;
     } else {
       content = (
         <div className='wrapper wrapper-with-footer'>
-          <Header pathname={ pathname }/>
+          <Header pathname={ pathname } />
           <div>
-            <CommonMessage location='header'/>
+            <CommonMessage location='header' />
             <div>{this.props.children}</div>
           </div>
         </div>
@@ -116,19 +112,17 @@ class App extends PureComponent {
       <IntlProvider
         locale={ this.props.locale.replace(/cn/, 'zh') }
         formats={ intlData.formats }
-        initialNow={ Date.now() }>
+        initialNow={ Date.now() }
+      >
         <div className='out'>
           {content}
-          <NotificationSystem
-            ref= 'notificationSystem'
-            allowHTML={ true }
-          />
-          <TransactionConfirmModal/>
-          <WalletUnlockModal/>
-          <CantConnectModal/>
-          <ViewMemoModal/>
-          <HelpModal/>
-          <GPOSWizard/>
+          <NotificationSystem ref='notificationSystem' allowHTML={ true } />
+          <TransactionConfirmModal />
+          <WalletUnlockModal />
+          <CantConnectModal />
+          <ViewMemoModal />
+          <HelpModal />
+          {/* <GPOSWizard /> */}
         </div>
       </IntlProvider>
     );
@@ -159,4 +153,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(
   dispatch
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

@@ -23,7 +23,8 @@ module.exports = {
   ],
   'declaration-no-important': true,
   'declaration-property-unit-whitelist': {
-    '/^animation/': ['s'],
+    '/^animation/': ['s', 'ms'],
+    'animation': ['ms'],
     'background': ['px', 'x', '%'],
     'background-image': ['px', 'x', '%'],
     'border': ['px'],

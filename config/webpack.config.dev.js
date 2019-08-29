@@ -1,21 +1,15 @@
-var autoprefixer = require('autoprefixer');
-var path = require('path');
-var paths = require('./paths');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var Clean = require('clean-webpack-plugin');
-var getClientEnvironment = require('./env');
+const chalk = require('chalk');
+const path = require('path');
+const paths = require('./paths');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const getClientEnvironment = require('./env');
 
 // BASE APP DIR
-var root_dir = path.resolve(__dirname, '..');
-var Config = require('./Config');
-
-// FUNCTION TO EXTRACT CSS FOR PRODUCTION
-function extractForProduction(loaders) {
-  return ExtractTextPlugin.extract('style', loaders.substr(loaders.indexOf('!')));
-}
+const root_dir = path.resolve(__dirname, '..');
+const Config = require('./Config');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -26,11 +20,6 @@ var publicPath = '/';
 var publicUrl = '';
 // Get environment variables to inject into our app.
 var env = getClientEnvironment(publicUrl);
-
-
-// STYLE LOADERS
-var cssLoaders = 'style-loader!css-loader!postcss-loader',
-  scssLoaders = 'style!css!postcss-loader!sass?outputStyle=expanded';
 
 // DIRECTORY CLEANER
 var cleanDirectories = ['build'];
@@ -51,12 +40,6 @@ var define = {
 
 // COMMON PLUGINS
 var plugins = [
-  // Makes some environment variables available in index.html.
-  // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
-  // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-  // In development, this will be an empty string.
-  new InterpolateHtmlPlugin(env.raw),
-  new webpack.optimize.DedupePlugin(),
   new webpack.optimize.OccurrenceOrderPlugin(),
   new webpack.DefinePlugin(define),
   new webpack.DefinePlugin({
@@ -69,18 +52,136 @@ var plugins = [
     inject: true,
     template: paths.appHtml
   }),
+  // Makes some environment variables available in index.html.
+  // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
+  // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+  // In development, this will be an empty string.
+  new InterpolateHtmlPlugin(HtmlWebpackPlugin, env.raw),
   new webpack.HotModuleReplacementPlugin(),
-  new Clean(cleanDirectories)
+  new CleanWebpackPlugin(),
+  new webpack.ProgressPlugin((percentage, msg) => {
+    process.stdout.write(chalk.green(
+      (percentage * 100).toFixed(2) + '% ' + msg + '                 \033[0G'
+    ));
+  })
 ];
-
 
 module.exports = {
   entry: [
     require.resolve('react-dev-utils/webpackHotDevClient'),
     require.resolve('./polyfills'),
-    // Finally, this is your app's code:
     paths.appIndexJs
   ],
+  mode: 'development',
+  devtool: 'source-map',
+  module: {
+    rules: [
+      // {
+      //   test: /\.(js|jsx)$/,
+      //   enforce: 'pre',
+      //   loader: 'eslint-loader',
+      //   include: paths.appSrc,
+      //   exclude: /node_modules/,
+      //   options: {
+      //     emitError: true,
+      //   },
+      // },
+      {
+        test: /\.jsx$/,
+        include: [
+          paths.appSrc,
+          path.join(root_dir, 'node_modules/react-foundation-apps')
+        ],
+        loaders: ['babel-loader']
+      },
+      {
+        test: /\.js$/,
+        exclude: [/node_modules/, paths.appNodeModules],
+        loader: 'babel-loader',
+        query: {
+          compact: false,
+          cacheDirectory: true
+        }
+      },
+      {
+        type: 'javascript/auto',
+        test: /\.json/,
+        loader: 'json-loader',
+        exclude: [
+          paths.locales
+        ]
+      },
+      {
+        test: /\.coffee$/,
+        loader: 'coffee-loader'
+      },
+      {
+        test: /\.(coffee\.md|litcoffee)$/,
+        loader: 'coffee-loader?literate'
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          // Creates `style` nodes from JS strings
+          'style-loader',
+          // Translates CSS into CommonJS
+          'css-loader',
+          {
+            // Transpile CSS
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: [
+                // Transform @imports
+                require('postcss-import')(),
+                // Polyfills to support multiple browsers based on hbrowserslist in package.json
+                require('postcss-preset-env')()
+              ]
+            }
+          },
+          // Compiles Sass to CSS
+          'sass-loader'
+        ]
+      },
+      {
+        test: /(\.png$)/,
+        loader: 'url-loader?limit=100000',
+        exclude: [paths.assetSymbols, paths.assetImages]
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loaders: [
+          'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+          `image-webpack?${JSON.stringify({
+            bypassOnDebug: true,
+            optipng: {
+              optimizationLevel: true
+            },
+            gifsicle: {
+              interlaced: true
+            }
+          })}`
+        ],
+        exclude: [
+          path.join(root_dir, 'src/assets/images')
+        ]
+      },
+      {
+        test: /\.woff$/,
+        loader: 'url-loader?limit=100000&mimetype=application/font-woff'
+      },
+      {
+        test: /.*\.svg$/,
+        loaders: ['svg-inline-loader', 'svgo-loader'],
+        exclude: [paths.rps]
+      },
+      {
+        test: /\.md/,
+        loader: 'html-loader?removeAttributeQuotes=false'
+      }
+    ],
+    noParse: /node_modules\/build/
+  },
   output: {
     // Next line is not used in dev but WebpackDevServer crashes without it:
     path: paths.appBuild,
@@ -93,119 +194,8 @@ module.exports = {
     // This is the URL that app is served from. We use "/" in development.
     publicPath: publicPath
   },
-  devtool: 'source-map',
-  debug: true,
-  module: {
-    // First, run the linter.
-    // It's important to do this before Babel processes the JS.
-    preLoaders: [
-      {
-        test: /\.(js|jsx)$/,
-        loader: 'eslint',
-        include: paths.appSrc
-      }
-    ],
-    noParse: /node_modules\/build/,
-    loaders: [{
-      test: /\.jsx$/,
-      include: [
-        paths.appSrc,
-        path.join(root_dir, 'node_modules/react-foundation-apps'),
-        '/home/sigve/Dev/graphene/react-foundation-apps'
-      ],
-      loaders: ['babel-loader']
-    },
-    {
-      test: /\.js$/,
-      exclude: [/node_modules/, paths.appNodeModules],
-      loader: 'babel-loader',
-      query: {
-        compact: false,
-        cacheDirectory: true
-      }
-    },
-    {
-      test: /\.json/,
-      loader: 'json',
-      exclude: [
-        // path.resolve(root_dir, '../common'),
-        paths.locales
-      ]
-    },
-    {
-      test: /\.coffee$/,
-      loader: 'coffee-loader'
-    },
-    {
-      test: /\.(coffee\.md|litcoffee)$/,
-      loader: 'coffee-loader?literate'
-    },
-    {
-      test: /\.css$/,
-      loader: cssLoaders
-    },
-    {
-      test: /\.scss$/,
-      loader: scssLoaders
-    },
-    {
-      test: /(\.png$)/,
-      loader: 'url-loader?limit=100000',
-      exclude: [paths.assetSymbols, paths.assetImages]
-    },
-    {
-      test: /\.(jpe?g|png|gif|svg)$/i,
-      loaders: [
-        'file?hash=sha512&digest=hex&name=[hash].[ext]',
-        `image-webpack?${JSON.stringify({
-          bypassOnDebug: true,
-          optipng: {
-            optimizationLevel: true
-          },
-          gifsicle: {
-            interlaced: true
-          }
-        })}`
-      ],
-      exclude: [
-        path.join(root_dir, 'src/assets/images')
-      ]
-    },
-    {
-      test: /\.woff$/,
-      loader: 'url-loader?limit=100000&mimetype=application/font-woff'
-    },
-    {
-      test: /.*\.svg$/,
-      loaders: ['svg-inline-loader', 'svgo-loader'],
-      exclude: [paths.rps]
-    },
-    {
-      test: /\.md/,
-      loader: 'html?removeAttributeQuotes=false!remarkable'
-    }
-    ],
-    postcss: function() {
-      return [
-        autoprefixer({
-          browsers: [
-            '>1%',
-            'last 4 versions',
-            'Firefox ESR',
-            'not ie < 9' // React doesn't support IE8 anyway
-          ]
-        })
-      ];
-    }
-  },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.coffee', '.json'],
-    fallback: paths.nodePaths
+    extensions: ['.js', '.jsx', '.coffee', '.json']
   },
-  plugins: plugins,
-  remarkable: {
-    preset: 'full',
-    typographer: true
-  },
-  devServer: {hot: true}
+  plugins: plugins
 };
