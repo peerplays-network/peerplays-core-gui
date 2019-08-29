@@ -1,18 +1,20 @@
 process.env.NODE_ENV = 'development';
 
 var webpack = require('webpack');
-var ProgressPlugin = require('webpack/lib/ProgressPlugin');
 var WebpackDevServer = require('webpack-dev-server');
-var paths = require('../config/paths');
+var ProgressPlugin = require('webpack/lib/ProgressPlugin');
 var config = require('../config/webpack.config.dev');
 var chalk = require('chalk');
-var opn = require('opn');
+var paths = require('../config/paths');
 var detect = require('detect-port');
 var clearConsole = require('react-dev-utils/clearConsole');
 var prompt = require('react-dev-utils/prompt');
+
 var getProcessForPort = require('react-dev-utils/getProcessForPort');
-var compiler = webpack(config);
 var isInteractive = process.stdout.isTTY;
+var compiler = webpack(config);
+
+var opn = require('opn');
 var DEFAULT_PORT = process.env.PORT || 8082;
 
 function setupCompiler(host, port, protocol) {

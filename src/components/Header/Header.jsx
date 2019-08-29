@@ -9,13 +9,18 @@ import Translate from 'react-translate-component';
 import {bindActionCreators} from 'redux';
 
 class Header extends React.Component {
-  onClickHelpLink = (e) => {
+  onLogoutClick(e) {
+    e.preventDefault();
+    this.props.logout();
+  }
+
+  onClickHelpLink(e) {
     this.props.toggleHelpModal(true);
     e.preventDefault();
   }
 
   // TEMP
-  onClickGPOS = (e) => {
+  onClickGPOS(e) {
     this.props.toggleGPOSWizardModal(true);
     e.preventDefault();
   }
@@ -42,24 +47,13 @@ class Header extends React.Component {
               </span>
             </Link>
             <a
-              onClick={ this.onClickHelpLink }
+              onClick={ this.onClickHelpLink.bind(this) }
               href='/help'
               className='nav__link bb nav__link-help'>
               <span className='nav__linkAlign'>
                 <span className='nav__linkIcon nav__linkIcon-blank icon-help'></span>
                 <span className='nav__linkIcon nav__linkIcon-filled icon-help-filled'></span>
                 <span className='nav__linkText'>{help}</span>
-              </span>
-            </a>
-            {/* TEMPORARY TO OPEN THE WIZARD */}
-            <a
-              onClick={ this.onClickGPOS }
-              href='/help'
-              className='nav__link bb nav__link-help'>
-              <span className='nav__linkAlign'>
-                <span className='nav__linkIcon nav__linkIcon-blank icon-help'></span>
-                <span className='nav__linkIcon nav__linkIcon-filled icon-help-filled'></span>
-                <span className='nav__linkText'>OPEN GPOS WIZARD</span>
               </span>
             </a>
             <Notices/>

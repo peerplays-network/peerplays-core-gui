@@ -20,10 +20,26 @@ const endpoints = {
         'https://faucet.peerplays.download/faucet'
       ],
       prefix: 'PPY'
+    },
+    fred: {
+      assetId: '1.3.2',
+      apiEndpoints: ['ws://ec2-35-182-173-190.ca-central-1.compute.amazonaws.com:8090'],
+      faucetUrls: ['http://fred-faucet.peerplays.download/api/v1/accounts'],
+      prefix: 'TEST',
+      accounts: {
+        broadcasts: {
+          name: 'pbsa-broadcasts',
+          key: 'PPYTEST8H4L2UeaXRRAt5nVR4GSGFdt232711wyzTQnFRJeoJeLXXZT23'
+        },
+        updates: {
+          name: 'bookie-updates',
+          key: '5Kjqz8HwRBCW7ZtvhmM2NhAqaPpLQvBShKjVNcKdbm8gdXi5V3J'
+        }
+      }
     }
   }
 };
-let current = 'alice'; // Set the current default environment.
+let current = 'fred'; // Set the current default environment.
 
 // Check to make sure a valid target is specified.
 if (process.env && process.env.TARGET && endpoints.environments[process.env.TARGET]) {

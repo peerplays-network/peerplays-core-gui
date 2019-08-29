@@ -1,9 +1,15 @@
-import {
+import ActionTypes from '../constants/ActionTypes';
+const [
   VOTING_SET_DATA,
   VOTING_CHANGE_PROXY,
   VOTING_SET_NEW_WITNESSES,
   VOTING_UPDATE_WITNESS_TAB
-} from '../constants/ActionTypes';
+] = [
+  ActionTypes.VOTING_SET_DATA,
+  ActionTypes.VOTING_CHANGE_PROXY,
+  ActionTypes.VOTING_SET_NEW_WITNESSES,
+  ActionTypes.VOTING_UPDATE_WITNESS_TAB
+];
 
 
 /**

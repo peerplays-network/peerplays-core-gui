@@ -1,28 +1,19 @@
-var autoprefixer = require('autoprefixer');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ManifestPlugin = require('webpack-manifest-plugin');
-var path = require('path');
-var paths = require('./paths');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var Clean = require('clean-webpack-plugin');
-var Config = require('./Config');
+const chalk = require('chalk');
+const path = require('path');
+const paths = require('./paths');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+
+const Config = require('./Config');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
 var publicPath = paths.servedPath;
 
-// FUNCTION TO EXTRACT CSS FOR PRODUCTION
-function extractForProduction(loaders) {
-  return ExtractTextPlugin.extract('style', loaders.substr(loaders.indexOf('!')));
-}
-
-// STYLE LOADERS
-var cssLoaders = 'style-loader!css-loader!postcss-loader',
-  scssLoaders = 'style!css!postcss-loader!sass?outputStyle=expanded';
-
-// DIRECTORY CLEANER
-var cleanDirectories = ['build', 'dist'];
+// // DIRECTORY CLEANER
+// var cleanDirectories = ['build', 'dist'];
 
 // GLOBAL VAR DEFINE
 var define = {
@@ -56,45 +47,162 @@ var plugins = [
       minifyURLs: true
     }
   }),
-  new webpack.optimize.DedupePlugin(),
   new webpack.optimize.OccurrenceOrderPlugin(),
   new webpack.DefinePlugin(define),
-  new Clean(cleanDirectories),
+  new CleanWebpackPlugin(),
   new webpack.DefinePlugin({
     'process.env': {
       NODE_ENV: JSON.stringify('production')
     }
   }),
-  new ExtractTextPlugin('app.css'),
-  new webpack.optimize.UglifyJsPlugin({
-    minimize: true,
-    sourceMap: true,
-    compress: {
-      screw_ie8: true, // React doesn't support IE8
-      warnings: false
-    },
-    mangle: {
-      screw_ie8: true
-    },
-    output: {
-      comments: false,
-      screw_ie8: true
-    }
-  }),
-  new ManifestPlugin({fileName: 'asset-manifest.json'})
+  // new ExtractTextPlugin('app.css'),
+  // webpack.optimize.UglifyJsPlugin has been removed
+  // new webpack.optimize.UglifyJsPlugin({
+  //   minimize: true,
+  //   sourceMap: true,
+  //   compress: {
+  //     screw_ie8: true, // React doesn't support IE8
+  //     warnings: false
+  //   },
+  //   mangle: {
+  //     screw_ie8: true
+  //   },
+  //   output: {
+  //     comments: false,
+  //     screw_ie8: true
+  //   }
+  // }),
+  new ManifestPlugin({fileName: 'asset-manifest.json'}),
+  new webpack.ProgressPlugin((percentage, msg) => {
+    process.stdout.write(chalk.green(
+      (percentage * 100).toFixed(2) + '% ' + msg + '                 \033[0G'
+    ));
+  })
 ];
 
-// WRAP INTO CSS FILE
-cssLoaders = extractForProduction(cssLoaders);
-scssLoaders = extractForProduction(scssLoaders);
-
 module.exports = {
-  bail: true,
-  devtool: 'source-map',
   entry: [
     require.resolve('./polyfills'),
     paths.appIndexJs
   ],
+  bail: true,
+  mode: 'production',
+  devtool: 'source-map',
+  module: {
+    rules: [
+      // {
+      //   test: /\.(js|jsx)$/,
+      //   enforce: 'pre',
+      //   loader: 'eslint-loader',
+      //   include: paths.appSrc
+      // },
+      {
+        test: /\.jsx$/,
+        include: [
+          paths.appSrc,
+          path.join(paths.appNodeModules, '/react-foundation-apps')
+        ],
+        loaders: ['babel-loader']
+      },
+      {
+        test: /\.js$/,
+        exclude: [/node_modules/, paths.appNodeModules],
+        loader: 'babel-loader',
+        query: {
+          compact: false,
+          cacheDirectory: true
+        }
+      },
+      {
+        type: 'javascript/auto',
+        test: /\.json/,
+        loader: 'json-loader',
+        exclude: [
+          paths.locales
+        ]
+      },
+      {
+        test: /\.coffee$/,
+        loader: 'coffee-loader'
+      },
+      {
+        test: /\.(coffee\.md|litcoffee)$/,
+        loader: 'coffee-loader?literate'
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          // Creates `style` nodes from JS strings
+          'style-loader',
+          // Translates CSS into CommonJS
+          'css-loader',
+          {
+            // Transpile CSS
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: [
+                // Transform @imports
+                require('postcss-import')(),
+                // Polyfills to support multiple browsers based on hbrowserslist in package.json
+                require('postcss-preset-env')()
+              ]
+            }
+          },
+          // Compiles Sass to CSS
+          'sass-loader'
+        ]
+      },
+      {
+        test: /(\.png$)/,
+        loader: 'url-loader?limit=100000',
+        query: {
+          name: 'static/media/[name].[hash:8].[ext]'
+        },
+        exclude: [paths.assetSymbols, paths.assetImages]
+      },
+      {
+        test: /\.(jpe?g|png|gif)$/i,
+        loaders: [
+          'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+          {
+            loader: 'image-webpack',
+            options: {
+              bypassOnDebug: true,
+              optipng: {
+                optimizationLevel: true
+              },
+              gifsicle: {
+                interlaced: true
+              }
+            }
+          }
+        ],
+        exclude: [paths.assetImages]
+      },
+      {
+        test: /\.woff$/,
+        loader: 'url-loader?limit=100000&mimetype=application/font-woff'
+      },
+      // {
+      //   test: /\.svg$/,
+      //   loader: 'file',
+      //   query: {
+      //     name: 'static/media/[name].[hash:8].[ext]'
+      //   }
+      // },
+      {
+        test: /.*\.svg$/,
+        loaders: ['svg-inline-loader', 'svgo-loader'],
+        exclude: [paths.rps]
+      },
+      {
+        test: /\.md/,
+        loader: 'html-loader?removeAttributeQuotes=false'
+      }
+    ],
+    noParse: /node_modules\/build/
+  },
   output: {
     // The build folder
     path: paths.appBuild,
@@ -106,128 +214,8 @@ module.exports = {
     // We inferred the "public path" (such as / or /my-project) from homepage.
     publicPath: publicPath
   },
-  debug: false,
-  module: {
-    // First, run the linter.
-    // It's important to do this before Babel processes the JS.
-    preLoaders: [
-      {
-        test: /\.(js|jsx)$/,
-        loader: 'eslint',
-        include: paths.appSrc
-      }
-    ],
-    noParse: /node_modules\/build/,
-    loaders: [{
-      test: /\.jsx$/,
-      include: [
-        paths.appSrc,
-        path.join(paths.appNodeModules, '/react-foundation-apps'),
-        '/home/sigve/Dev/graphene/react-foundation-apps'
-      ],
-      loaders: ['babel-loader']
-    },
-    {
-      test: /\.js$/,
-      exclude: [/node_modules/, paths.appNodeModules],
-      loader: 'babel-loader',
-      query: {
-        compact: false,
-        cacheDirectory: true
-      }
-    },
-    {
-      test: /\.json/,
-      loader: 'json',
-      exclude: [
-        // path.resolve(root_dir, '../common'),
-        paths.locales
-      ]
-    },
-    {
-      test: /\.coffee$/,
-      loader: 'coffee-loader'
-    },
-    {
-      test: /\.(coffee\.md|litcoffee)$/,
-      loader: 'coffee-loader?literate'
-    },
-    {
-      test: /\.css$/,
-      loader: cssLoaders
-    },
-    {
-      test: /\.scss$/,
-      loader: scssLoaders
-    },
-    {
-      test: /(\.png$)/,
-      loader: 'url-loader?limit=100000',
-      query: {
-        name: 'static/media/[name].[hash:8].[ext]'
-      },
-      exclude: [paths.assetSymbols, paths.assetImages]
-    },
-    {
-      test: /\.svg$/,
-      loader: 'file',
-      query: {
-        name: 'static/media/[name].[hash:8].[ext]'
-      }
-    },
-    {
-      test: /\.(jpe?g|png|gif)$/i,
-      loaders: [
-        'file?hash=sha512&digest=hex&name=[hash].[ext]',
-        {
-          loader: 'image-webpack',
-          options: {
-            bypassOnDebug: true,
-            optipng: {
-              optimizationLevel: true
-            },
-            gifsicle: {
-              interlaced: true
-            }
-          }
-        }
-      ],
-      exclude: [paths.assetImages]
-    },
-    {
-      test: /\.woff$/,
-      loader: 'url-loader?limit=100000&mimetype=application/font-woff'
-    },
-    {
-      test: /.*\.svg$/,
-      loaders: ['svg-inline-loader', 'svgo-loader'],
-      exclude: [paths.rps]
-    },
-    {
-      test: /\.md/,
-      loader: 'html?removeAttributeQuotes=false!remarkable'
-    }
-    ],
-    postcss: function() {
-      return [
-        autoprefixer({
-          browsers: [
-            '>1%',
-            'last 4 versions',
-            'Firefox ESR',
-            'not ie < 9' // React doesn't support IE8 anyway
-          ]
-        })
-      ];
-    }
-  },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.coffee', '.json'],
-    fallback: paths.nodePaths
+    extensions: ['*', '.js', '.jsx', '.coffee', '.json']
   },
-  plugins: plugins,
-  remarkable: {
-    preset: 'full',
-    typographer: true
-  }
+  plugins: plugins
 };
