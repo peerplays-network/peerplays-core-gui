@@ -1,8 +1,9 @@
 .tab {
   &__list {
     @include clearfix;
-    overflow: hidden;
+
     padding-top: 10px;
+    overflow: hidden;
 
     &.pt40 {
       padding-top: 40px;
@@ -10,23 +11,24 @@
   }
 
   &__item {
-    min-width: 13%;
     float: left;
+    min-width: 13%;
     margin-right: 17px;
   }
 
   &__link {
+    display: block;
     //width: 250px;
     height: 52px;
-    display: block;
-    background: $tab-bg;
-    color: $tab-color;
-    font-size: 18px;
-    text-align: center;
-    font-weight: 500;
-    line-height: 52px;
     padding: 0 10px;
     border-radius: 5px 5px 0 0;
+    line-height: 52px;
+    font-weight: 500;
+    font-size: 18px;
+    color: $tab-color;
+    text-align: center;
+    background: $tab-bg;
+
     @include transition();
 
     &:hover {
@@ -34,44 +36,45 @@
     }
 
     &.active {
+      color: $tab-color-active;
+      background: $tab-bg-active;
+      box-shadow: $table-shadow;
       opacity: 1;
       cursor: default;
-      background: $tab-bg-active;
-      color: $tab-color-active;
-      box-shadow: $table-shadow;
     }
   }
 
   &__deploy {
     display: none;
-    background: $tab-deploy-bg;
-    border-radius: 0 0 5px 5px;
-    padding: 55px 30px 50px;
-    box-shadow: $table-shadow;
     margin-bottom: 40px;
+    padding: 55px 30px 50px;
+    border-radius: 0 0 5px 5px;
+    background: $tab-deploy-bg;
+    box-shadow: $table-shadow;
 
     .title {
       display: inline-block;
-      font-size: 30px;
-      line-height: 30px;
-      color: $heading-color;
-      font-weight: 500;
       margin-bottom: 21px;
+      line-height: 30px;
+      font-weight: 500;
+      font-size: 30px;
+      color: $heading-color;
     }
 
     &.block {
-      display: block
+      display: block;
     }
 
     & p {
-      font-size: 16px;
-      font-weight: 300;
       line-height: 1.5;
+      font-weight: 300;
+      font-size: 16px;
     }
 
     &Head {
-      padding: 0 17px;
       margin-bottom: 30px;
+      padding: 0 17px;
+
       @include clearfix;
 
       .desc {
@@ -85,33 +88,33 @@
       }
     }
 
-    & .row+.h2,
-    & .table+.h2,
-    & .box+.h2 {
+    & .row + .h2,
+    & .table + .h2,
+    & .box + .h2 {
       margin-top: 42px;
     }
   }
 
   &__qty {
     display: block;
-    font-size: 18px;
     font-weight: 700;
+    font-size: 18px;
 
     &Desc {
-      font-size: 14px;
       font-weight: 500;
+      font-size: 14px;
     }
   }
 
   &__stats {
     padding-top: 40px;
   }
-
 }
 
 .tab-underline {
   &__list {
     @include clearfix;
+
     padding: 0 20px;
   }
 
@@ -121,24 +124,24 @@
   }
 
   &__link {
-    height: 80px;
     display: block;
+    position: relative;
+    height: 80px;
     padding: 0 30px;
     line-height: 80px;
-    font-size: 18px;
     font-weight: 500;
+    font-size: 18px;
     color: $faded-color;
-    position: relative;
 
-    &:before {
+    &::before {
       content: '';
       display: block;
       position: absolute;
+      right: -100%;
       bottom: 0;
+      left: -100%;
       width: 0;
       height: 3px;
-      left: -100%;
-      right: -100%;
       margin: auto;
       border-radius: 3px 3px 0 0;
       background: #eab207;
@@ -150,7 +153,7 @@
     &.active {
       color: $text-color;
 
-      &:before {
+      &::before {
         width: 100%;
       }
     }
@@ -158,34 +161,34 @@
 
   &__deploy {
     display: none;
-    background: #efefef;
     padding: 65px 46px 75px 60px;
     border-radius: 0 0 5px 5px;
+    background: #efefef;
     box-shadow: inset 0 3px 4px rgba(0, 0, 0, 0.07);
 
     & p {
-      font-size: 16px;
-      font-weight: 300;
-      color: $text-color;
       margin-bottom: 24px;
       line-height: 1.5;
+      font-weight: 300;
+      font-size: 16px;
+      color: $text-color;
     }
   }
 
   &__title {
-    font-size: 30px;
     display: block;
-    font-weight: 500;
-    color: rgba(0, 0, 0, 0.8);
     margin-bottom: 40px;
+    font-weight: 500;
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.8);
   }
 
   &__video {
     &Link {
-      width: 49%;
-      float: left;
-      margin-bottom: 2%;
       position: relative;
+      float: left;
+      width: 49%;
+      margin-bottom: 2%;
 
       &:nth-child(2n+1) {
         margin-right: 2%;
@@ -196,47 +199,50 @@
         height: auto;
       }
 
-      &:before {
+      &::before {
         content: '';
         position: absolute;
         top: 0;
         right: 0;
-        left: 0;
         bottom: 0;
+        left: 0;
         background: rgba(0, 0, 0, 0.57);
       }
 
       & .time {
-        font-size: 12px;
-        background: $clear-color;
-        color: $clear-color2;
         position: absolute;
-        bottom: 6px;
         right: 6px;
+        bottom: 6px;
         padding: 1px 7px;
+        font-size: 12px;
+        color: $clear-color2;
+        background: $clear-color;
+
         @include transition();
       }
 
       & .play {
-        visibility: hidden;
-        opacity: 0;
         width: 72px;
         height: 72px;
         border-radius: 100%;
-        @include pos-center();
         background: rgba(255, 255, 255, 0.5);
+        opacity: 0;
+        visibility: hidden;
+
+        @include pos-center();
         @include transition();
 
-        &:before {
+        &::before {
           content: '';
+          position: absolute;
+          top: 50%;
+          left: 54%;
           width: 0;
           height: 0;
           border-style: solid;
           border-width: 12.5px 0 12.5px 20px;
           border-color: transparent transparent transparent $clear-color;
-          position: absolute;
-          top: 50%;
-          left: 54%;
+
           @include translate(-50% -50%);
         }
       }
@@ -248,8 +254,8 @@
         }
 
         & .time {
-          visibility: hidden;
           opacity: 0;
+          visibility: hidden;
         }
       }
     }

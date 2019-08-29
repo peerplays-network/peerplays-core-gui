@@ -4,10 +4,10 @@
   }
 
   .bottom {
-    border-top: 1px solid transparent;
     padding: 0.5rem;
+    border-top: 1px solid transparent;
 
-    >.center {
+    > .center {
       width: auto;
       margin: 0 auto;
     }
@@ -25,45 +25,43 @@
 .account-left-menu {
   margin-left: 1.25rem !important;
 
-  >li {
+  > li {
     &.menu-subheader {
-      text-transform: uppercase;
-      font-size: 0.9rem;
-      padding: 1.5rem 0.5rem 0.25rem 0.5rem;
-      text-align: center;
+      padding: 1.5rem 0.5rem 0.25rem;
       border-bottom: none !important;
+      font-size: 0.9rem;
+      text-align: center;
+      text-transform: uppercase;
 
-      >span {
+      > span {
         display: inline-block;
         color: inherit;
         cursor: pointer;
       }
     }
 
-    >a {
+    > a {
       padding-left: 1.75rem !important;
       border-left: 2px solid transparent;
 
       &.active {
-        border-left-color: #f00;
+        border-left-color: #ff0000;
       }
     }
-
-
   }
 }
 
 .no-amount {
   padding-right: 1rem;
   padding-left: 0.7rem;
-  font-size: 0.9rem;
   font-weight: bold;
+  font-size: 0.9rem;
 }
 
 .weight-input {
   display: table-cell;
-  margin: 0 1rem !important;
   width: 30% !important;
+  margin: 0 1rem !important;
 }
 
 .threshold input {
@@ -78,6 +76,6 @@
   height: 180px;
 }
 
-a.action-button>span {
+a.action-button > span {
   text-transform: lowercase;
 }
