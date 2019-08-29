@@ -1,5 +1,5 @@
 label.horizontal {
-  >input {
+  > input {
     display: inline;
     width: auto;
   }
@@ -11,12 +11,11 @@ label.horizontal {
 
   select {
     margin: 0;
-    border: none;
     padding-top: 0.2rem;
     padding-bottom: 0.2rem;
+    border: none;
     font-size: 0.9rem;
   }
-
 }
 
 .has-error input,
@@ -25,16 +24,16 @@ label.horizontal {
   border-color: #a94442;
 }
 
-.autocomplete>.action-sheet-container {
+.autocomplete > .action-sheet-container {
   display: flex;
 
-  >.action-sheet {
+  > .action-sheet {
     left: 6em;
   }
 }
 
-td>input,
-td>.autocomplete input {
+td > input,
+td > .autocomplete input {
   margin: 0 !important;
 }
 
@@ -55,24 +54,24 @@ td>.autocomplete input {
     flex: auto;
   }
 
-  >.account-image {
+  > .account-image {
     float: left;
     width: 80px;
 
-    >.icon>svg path {
+    > .icon > svg path {
       fill: rgba(255, 255, 255, 0.2);
     }
   }
 
-  >.content-area {
+  > .content-area {
     //width: 100%;
     margin-left: 80px;
     padding-left: 1rem;
   }
 
   .error-area {
-    padding-top: 0.5rem;
     height: 1.5rem;
+    padding-top: 0.5rem;
     font-size: 1rem;
   }
 

@@ -1,120 +1,120 @@
 #chatbox {
-    color: #818479;
+  z-index: 30;
+  font-size: 12px;
+  color: #818479;
+
+  &.chat-floating {
+    display: block;
+    position: fixed;
+    right: 10px;
+    bottom: 0;
+    width: auto;
+    direction: ltr;
+  }
+
+  &.chat-docked {}
+
+  select,
+  input {
+    height: 2rem;
     font-size: 12px;
-    z-index: 30;
+  }
 
-    &.chat-floating {
-        position: fixed;
-        right: 10px;
-        direction: ltr;
-        display: block;
-        width: auto;
-        bottom: 0;
+  a {
+    color: #2a9d8f;
+    text-decoration: none;
+    text-shadow: none;
+  }
+
+  .toggle-controlbox {
+    float: right;
+    height: 100%;
+    margin: 0 .5em;
+    padding: 10px 16px 0;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    background-color: #2196f3;
+    letter-spacing: 2px;
+  }
+
+  .chatbox {
+    float: right;
+    width: 350px;
+  }
+
+  .flyout {
+    position: absolute;
+    right: 5px;
+    bottom: 6px;
+    z-index: 1;
+    width: 350px;
+    min-width: 200px;
+    height: 350px;
+    min-height: 225px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    box-shadow: 1px 3px 5px 3px rgba(0, 0, 0, .4);
+  }
+
+  .docked {
+    z-index: 1;
+    min-width: 200px;
+    background-color: #ffffff;
+    box-shadow: 1px 3px 5px 3px rgba(0, 0, 0, .4);
+  }
+
+  .chatbox-title {
+    padding: 8px 5px;
+    border-bottom: 1px solid grey;
+    font-weight: bold;
+    font-size: 12px;
+    color: white;
+    text-transform: uppercase;
+  }
+
+  .chatbox-close {
+    position: absolute;
+    /* top: 1rem; */
+    top: 4px;
+    right: 10px;
+    line-height: 1;
+    font-size: 1.25em;
+    color: white;
+    cursor: pointer;
+  }
+
+  .chatbox-content {
+    > .grid-content {
+      padding: 3px 13px 3px 10px;
     }
+  }
 
-    &.chat-docked {}
+  .chatbox-settings {
+    position: absolute;
+    top: 4px;
+    right: 35px;
+    cursor: pointer;
+  }
 
-    select,
-    input {
-        height: 2rem;
-        font-size: 12px;
+  .chatbox-pin {
+    position: absolute;
+    top: 4px;
+    right: 60px;
+    cursor: pointer;
+
+    > span.rotate > svg {
+      transform: rotate3d(0, 0, 1, 90deg);
     }
+  }
 
-    a {
-        text-decoration: none;
-        color: #2A9D8F;
-        text-shadow: none;
-    }
+  .settings-title {
+    padding-bottom: 8px;
+  }
 
-    .toggle-controlbox {
-        background-color: #2196F3;
-        border-top-left-radius: 4px;
-        border-top-right-radius: 4px;
-        color: white;
-        float: right;
-        height: 100%;
-        margin: 0 .5em;
-        padding: 10px 16px 0;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-weight: bold;
-    }
-
-    .chatbox {
-        width: 350px;
-        float: right;
-    }
-
-    .flyout {
-        height: 350px;
-        background-color: #fff;
-        box-shadow: 1px 3px 5px 3px rgba(0, 0, 0, .4);
-        min-height: 225px;
-        min-width: 200px;
-        width: 350px;
-        z-index: 1;
-        border-radius: 4px;
-        bottom: 6px;
-        right: 5px;
-        position: absolute;
-    }
-
-    .docked {
-        background-color: #fff;
-        box-shadow: 1px 3px 5px 3px rgba(0, 0, 0, .4);
-        min-width: 200px;
-        z-index: 1;
-    }
-
-    .chatbox-title {
-        padding: 8px 5px;
-        font-size: 12px;
-        font-weight: bold;
-        border-bottom: 1px solid grey;
-        color: white;
-        text-transform: uppercase;
-    }
-
-    .chatbox-close {
-        position: absolute;
-        color: white;
-        /* top: 1rem; */
-        top: 4px;
-        right: 10px;
-        font-size: 1.25em;
-        line-height: 1;
-        cursor: pointer;
-    }
-
-    .chatbox-content {
-        >.grid-content {
-            padding: 3px 13px 3px 10px;
-        }
-    }
-
-    .chatbox-settings {
-        cursor: pointer;
-        position: absolute;
-        right: 35px;
-        top: 4px;
-    }
-
-    .chatbox-pin {
-        cursor: pointer;
-        position: absolute;
-        right: 60px;
-        top: 4px;
-
-        >span.rotate>svg {
-            transform: rotate3d(0, 0, 1, 90deg);
-        }
-    }
-
-    .settings-title {
-        padding-bottom: 8px;
-    }
-
-    .chat-text {
-        overflow-wrap: break-word;
-    }
+  .chat-text {
+    overflow-wrap: break-word;
+  }
 }

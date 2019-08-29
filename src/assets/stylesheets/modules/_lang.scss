@@ -12,6 +12,7 @@
     vertical-align: top;
     margin-left: 15px;
     opacity: .4;
+
     @include transition();
 
     &:hover {
@@ -39,8 +40,8 @@
     height: 20px;
 
     img {
-      vertical-align: middle;
       display: block;
+      vertical-align: middle;
     }
   }
 }

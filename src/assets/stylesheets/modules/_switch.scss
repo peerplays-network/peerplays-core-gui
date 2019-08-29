@@ -1,8 +1,8 @@
 .switcher {
-  cursor: pointer;
-  position: relative;
   display: inline-block;
+  position: relative;
   vertical-align: top;
+  cursor: pointer;
 
   * {
     @include transition;
@@ -12,17 +12,17 @@
     display: none;
 
     &:checked {
-      &~.switcher__barBox .switcher__bar {
+      & ~ .switcher__barBox .switcher__bar {
         background: rgba($color-add, .32);
         border-color: rgba($color-add, .52);
       }
 
-      &~.switcher__barBox .switcher__pipe {
+      & ~ .switcher__barBox .switcher__pipe {
         left: 21px;
         background: $color-add;
       }
 
-      &~.switcher__labelList li:first-child:last-child {
+      & ~ .switcher__labelList li:first-child:last-child {
         color: $text-color;
       }
 
@@ -33,58 +33,59 @@
 
   &__btn {
     display: block;
-    cursor: pointer;
-    z-index: 1;
     position: absolute;
     top: 0;
-    left: 0;
     right: 0;
     bottom: 0;
+    left: 0;
+    z-index: 1;
     margin: 0;
+    cursor: pointer;
   }
 
   &__bar {
     &Box {
       position: absolute;
-      height: 9px;
       top: 50%;
       left: 0;
+      height: 9px;
       margin-top: -4px;
     }
 
     width: 36px;
     height: 100%;
-    background: #c9c9c9;
     border: 1px solid #c9c9c9;
     border-radius: 10px;
+    background: #c9c9c9;
   }
 
   &__pipe {
     position: absolute;
-    width: 18px;
-    height: 18px;
-    background: #818b95;
-    @include box-shadow(0 1px 0 rgba(0, 0, 0, 0.17));
-    border-radius: 50%;
     top: 50%;
     left: -2px;
+    width: 18px;
+    height: 18px;
+    margin-top: -10px;
+    border-radius: 50%;
+    background: #818b95;
     -webkit-transition: all .3s;
     transition: all .3s;
-    margin-top: -10px;
+
+    @include box-shadow(0 1px 0 rgba(0, 0, 0, 0.17));
   }
 }
 
 .switcher-modalConfirm {
   .switcher__labelList li:last-child {
-    padding-left: 0;
     padding-right: 45px !important;
-    font-size: 16px;
+    padding-left: 0;
     font-weight: 500;
+    font-size: 16px;
   }
 
   .switcher__barBox {
-    left: auto;
     right: 0;
+    left: auto;
   }
 }
 
@@ -100,8 +101,8 @@
     font-weight: 500;
 
     &:first-child:last-child {
-      color: $text-color;
       padding-right: 0;
+      color: $text-color;
     }
 
     &:first-child {
@@ -113,7 +114,6 @@
       //color: #9d9d9d;
       padding-left: 45px;
     }
-
   }
 }
 
@@ -131,39 +131,39 @@
   }
 
   &__slider {
-    position: relative;
     display: inline-block;
-    height: 10px;
+    position: relative;
     width: 37px;
-    background: #dfdfdf;
+    height: 10px;
     border: 1px solid #dfdfdf;
     border-radius: 8px;
-    cursor: pointer;
+    background: #dfdfdf;
     -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
+    cursor: pointer;
 
-    &:after {
-      position: absolute;
-      left: -1px;
-      top: -5px;
+    &::after {
+      content: '';
       display: block;
+      position: absolute;
+      top: -5px;
+      left: -1px;
       width: 18px;
       height: 18px;
       border-radius: 50%;
       background: #c9c9c9;
       box-shadow: 0 1px 0 rgba(0, 0, 0, 0.17);
-      content: '';
       -webkit-transition: all 0.2s ease;
       transition: all 0.2s ease;
     }
   }
 
   &:checked {
-    &~.switch__slider {
+    & ~ .switch__slider {
       background: rgba($color-add, .32);
       border-color: rgba($color-add, .52);
 
-      &:after {
+      &::after {
         left: 19px;
         background: $color-add;
       }
@@ -171,9 +171,9 @@
   }
 
   &__label {
-    font-size: 16px;
-    font-weight: 500;
     margin-left: 8px;
+    font-weight: 500;
+    font-size: 16px;
     color: $text-color-bg;
     cursor: pointer;
   }
@@ -183,21 +183,21 @@
 
     & .switch {
       &__slider {
-        height: 24px;
-        width: 60px;
-        border-radius: 50px;
         float: right;
+        width: 60px;
+        height: 24px;
+        border-radius: 50px;
 
-        &:after {
+        &::after {
+          top: -4px;
           width: 30px;
           height: 30px;
-          top: -4px;
         }
       }
 
       &:checked {
-        &~.switch__slider {
-          &:after {
+        & ~ .switch__slider {
+          &::after {
             left: 30px;
           }
         }
@@ -212,8 +212,8 @@
 
   &__big-inline {
     .switch__slider {
-      float: none;
       vertical-align: middle;
+      float: none;
     }
 
     .switch__label {
@@ -221,5 +221,4 @@
       padding-right: 70px;
     }
   }
-
 }
