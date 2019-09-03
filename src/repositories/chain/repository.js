@@ -9,7 +9,7 @@ class Repository {
       let fullAccount = ChainStore.getAccount(accountIdOrName);
 
       if (numRecursion > MAX_RECURSION_ATTEMPTS) {
-        console.warn('[APP] MAX_RECURSION_ATTEMPTS Repository.getAccount()');
+        // console.warn('[APP] MAX_RECURSION_ATTEMPTS Repository.getAccount()');
         return reject();
       }
 
@@ -117,7 +117,7 @@ class Repository {
   static fetchFullAccount(accountIdOrName, numRecursion = 0) {
     return new Promise((resolve, reject) => {
       if (numRecursion > MAX_RECURSION_ATTEMPTS) {
-        console.warn('[APP] MAX_RECURSION_ATTEMPTS Repository.fetchFullAccount()');
+        // console.warn(`[APP] MAX_RECURSION_ATTEMPTS Repository.fetchFullAccount(${accountIdOrName})`);
         return resolve(null);
       }
 
