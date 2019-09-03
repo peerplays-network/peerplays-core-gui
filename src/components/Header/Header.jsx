@@ -7,6 +7,7 @@ import Notices from './Notices';
 import {AppActions, HelpActions} from '../../actions';
 import Translate from 'react-translate-component';
 import {bindActionCreators} from 'redux';
+import Config from '../../../config/Config';
 
 class Header extends React.Component {
   onLogoutClick(e) {
@@ -25,6 +26,7 @@ class Header extends React.Component {
 
     return (
       <div className='header'>
+        <span className='app__version'>{Config.APP_VERSION}</span>
         <div className='box'>
           {}
           <Link to='/dashboard' className = 'logo' >
