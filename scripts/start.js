@@ -105,7 +105,6 @@ function runDevServer(host, port, protocol) {
     contentBase: paths.appPublic,
     publicPath: config.output.publicPath,
     hot: true,
-    contentBase: paths.appBuild,
     historyApiFallback: true,
     quiet: true,
     // Enable HTTPS if the HTTPS environment variable is set to 'true'
