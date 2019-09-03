@@ -1,10 +1,16 @@
 /*pixel-ratio: 2*/
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  /*.illustration_box span[class^="icon-"]{display: inline;}*/
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (-o-min-device-pixel-ratio: 2/1),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
 }
 
 /*pixel-ratio: 3*/
-@media only screen and (-webkit-min-device-pixel-ratio: 3), only screen and (min--moz-device-pixel-ratio: 3), only screen and (-o-min-device-pixel-ratio: 3/1), only screen and (min-device-pixel-ratio: 3), only screen and (min-resolution: 288dpi), only screen and (min-resolution: 3dppx) {}
+@media only screen and (-webkit-min-device-pixel-ratio: 3),
+  only screen and (-o-min-device-pixel-ratio: 3/1),
+  only screen and (min-resolution: 288dpi),
+  only screen and (min-resolution: 3dppx) {
+}
 
 @media (min-width: 1900px) {
   .content-aside {
@@ -90,7 +96,7 @@
 
   .table__title {
     font-size: 12px;
-    color: rgba(255, 255, 255, .5);
+    color: rgba(255, 255, 255, 0.5);
   }
 
   .table__wrap,
@@ -229,8 +235,6 @@
   }
 }
 
-
-
 /*------------------------------------------------------------------------1280 ... ---------------*/
 @media (min-width: 1280px) {
   /*body                                        {background: orange;}*/
@@ -242,7 +246,6 @@
   /*body                                        {background: beige;}*/
 }
 
-
 /*------------------------------------------------------------------------768_to_1023-------------*/
 @media (min-width: 768px) and (max-width: 1023px) {
   html {
@@ -251,7 +254,6 @@
 
   /*body                                        {background: black;}*/
 }
-
 
 /*------------------------------------------------------------------------..._to_767--------------*/
 @media (max-width: 767px) {
@@ -262,12 +264,10 @@
   /*body                                        {background: green;}*/
 }
 
-
 /*------------------------------------------------------------------------480_to_767--------------*/
 @media (min-width: 480px) and (max-width: 767px) {
   /*body                                        {background: brown;}*/
 }
-
 
 /*------------------------------------------------------------------------320_to_479--------------*/
 @media (min-width: 320px) and (max-width: 479px) {
