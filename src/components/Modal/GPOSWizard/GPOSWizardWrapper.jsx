@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import Translate from 'react-translate-component';
 import {Modal, ModalBody} from 'react-modal-bootstrap';
 import {bindActionCreators} from 'redux';
 import {GPOSActions} from '../../../actions';

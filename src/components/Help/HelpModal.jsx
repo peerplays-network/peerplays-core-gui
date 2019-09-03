@@ -1,5 +1,4 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
 import Translate from 'react-translate-component';
 import {connect} from 'react-redux';
 import {Modal, ModalHeader, ModalTitle} from 'react-modal-bootstrap';
@@ -83,7 +82,6 @@ class HelpModal extends React.Component {
                       component='a'
                       className='help__link'
                       content='help.anchors.my_funds'
-                      // onClick={ () => this.scrollToHeaderByRefName(this, 'fundsAnchor') }/>
                       onClick={ () => AppUtils.scrollToRef(this.fundsAnchor, this.modal) }/>
                   </li>
                   <li className='help__linkLi'>

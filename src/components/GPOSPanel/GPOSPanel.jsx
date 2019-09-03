@@ -19,7 +19,7 @@ class GPOSPanel extends Component {
   }
 
   renderGposStats = () => {
-    let {asset, totalGpos, gposAward, gposPerformance} = this.props, symbol;
+    let {asset, totalGpos, gposReward, gposPerformance} = this.props, symbol;
 
     if (asset) {
       symbol = asset_utils.getSymbol(asset.get('symbol'));
@@ -61,11 +61,11 @@ class GPOSPanel extends Component {
         <div className='gpos-panel__stats-potential'>
           <Translate content='gpos.side.info.potential'/>
           <div className='gpos-panel__stats--right'>
-            {gposAward && asset
+            {gposReward && asset
               ? <FormattedNumber
-                value={ gposAward && asset
-                  ? gposAward / Math.pow(10, asset.get('precision'))
-                  : gposAward
+                value={ gposReward && asset
+                  ? gposReward / Math.pow(10, asset.get('precision'))
+                  : gposReward
                 }
                 minimumFractionDigits={ 0 }
                 maximumFractionDigits={ asset.get('precision') }
@@ -120,13 +120,13 @@ class GPOSPanel extends Component {
 const mapStateToProps = (state) => {
   let data = getTotalGposBalance(state);
   let gposInfo = state.dashboardPage.gposInfo;
-  let gposAward = gposInfo && gposInfo.award && gposInfo.award.amount;
+  let gposReward = gposInfo && gposInfo.award && gposInfo.award.amount;
   let vestingFactor = gposInfo && gposInfo.vesting_factor;
   let gposPerformance = (vestingFactor * 100 || 100).toFixed(2);
 
   return {
     totalGpos: data.totalAmount,
-    gposAward,
+    gposReward,
     gposPerformance,
     asset: state.dashboardPage.vestingAsset
   };
