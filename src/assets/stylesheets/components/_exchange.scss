@@ -30,7 +30,8 @@
   position: relative;
   padding-bottom: 20px;
 
-  &::before, &::after {
+  &::before,
+  &::after {
     content: '';
     position: absolute;
     right: 0;
@@ -147,7 +148,6 @@
   padding-left: 10px;
 }
 
-.ex-market-history{}
 //aside tables
 .ex-markets {
   padding-bottom: 20px;
@@ -306,7 +306,7 @@
       @include transition();
 
       &:hover {
-        opacity: .6;
+        opacity: 0.6;
       }
     }
   }

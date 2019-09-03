@@ -1,7 +1,6 @@
 .table {
   width: 100%;
   background: $table-bg;
-
   @include box-shadow($table-shadow);
   @include border-radius(4px);
 
@@ -69,7 +68,6 @@
 
   &:last-child {
     padding-right: 40px;
-
     @include border-radius(0 4px 0 0);
   }
 
@@ -492,7 +490,6 @@
 
     &.down {
       @include transform(rotate(180deg));
-
       display: inline-block;
     }
 

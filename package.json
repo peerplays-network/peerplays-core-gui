@@ -79,6 +79,7 @@
     "object-assign": "^4.0.1",
     "peerjs": "^0.3.14",
     "perfect-scrollbar": "^0.6.11",
+    "postcss": "^7.0.17",
     "qr-image": "3.1.0",
     "randomstring": "^1.1.5",
     "react": "^15.2.0",

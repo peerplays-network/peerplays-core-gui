@@ -1,15 +1,9 @@
 /*pixel-ratio: 2*/
-@media only screen and (-webkit-min-device-pixel-ratio: 2),
-  only screen and (-o-min-device-pixel-ratio: 2/1),
-  only screen and (min-resolution: 192dpi),
-  only screen and (min-resolution: 2dppx) {
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
 }
 
 /*pixel-ratio: 3*/
-@media only screen and (-webkit-min-device-pixel-ratio: 3),
-  only screen and (-o-min-device-pixel-ratio: 3/1),
-  only screen and (min-resolution: 288dpi),
-  only screen and (min-resolution: 3dppx) {
+@media only screen and (-webkit-min-device-pixel-ratio: 3), only screen and (-o-min-device-pixel-ratio: 3/1), only screen and (min-resolution: 288dpi), only screen and (min-resolution: 3dppx) {
 }
 
 @media (min-width: 1900px) {

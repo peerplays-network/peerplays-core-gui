@@ -310,7 +310,6 @@ class Repository {
   static getLastTournamentId() {
     return ChainStore.getLastTournamentId();
   }
-
   static getTournaments(last_tournament_id, limit, start_tournament_id) {
     return ChainStore.getTournaments(last_tournament_id, limit, start_tournament_id);
   }

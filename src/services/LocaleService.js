@@ -10,10 +10,6 @@ import tr from 'react-intl/locale-data/tr';
 
 import counterpart from 'counterpart';
 import locale_en from '../assets/locales/locale-en';
-// var counterpart = require('../counterpart-instance');
-// var locale_en = require('../assets/locales/locale-en'); // eslint-disable-line
-// var ls = require('common/localStorage');
-// let ss = new ls('__peerplays__');
 
 counterpart.registerTranslations('en', locale_en);
 counterpart.setFallbackLocale('en');

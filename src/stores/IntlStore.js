@@ -12,7 +12,7 @@ import counterpart from 'counterpart';
 
 import alt from '../alt-instance';
 import IntlActions from '../actions/IntlActions';
-import  SettingsActions from '../actions/SettingsActions';
+import SettingsActions from '../actions/SettingsActions';
 import BaseStore from './BaseStore';
 import locale_en from '../assets/locales/locale-en';
 let ss = new ls('__peerplays__');

@@ -257,7 +257,6 @@ class DashboardBalancesService {
       openOrders,
       lastBlock
     } = cacheData;
-
     let baseAsset = assets.find((asset) => {
       return asset.id === '1.3.0';
     });

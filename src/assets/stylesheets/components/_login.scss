@@ -1,6 +1,5 @@
 .dialog-login {
   position: relative;
-  //min-height: 780px;
   margin: 30px auto;
   padding-bottom: 90px;
 
@@ -78,8 +77,9 @@
   color: $mark-color;
   text-align: right;
 
-  &:hover, &:focus {
-    opacity: .6;
+  &:hover,
+  &:focus {
+    opacity: 0.6;
   }
 }
 
@@ -152,7 +152,7 @@
     @include transition();
 
     &:hover {
-      opacity: .6;
+      opacity: 0.6;
     }
   }
 
@@ -275,8 +275,7 @@
       margin-top: 0;
     }
 
-    .recoveredText{
-
+    .recoveredText {
     }
   }
 
@@ -423,7 +422,7 @@
   @include transition();
 
   &:hover {
-    opacity: .6;
+    opacity: 0.6;
   }
 
   &Wrap {

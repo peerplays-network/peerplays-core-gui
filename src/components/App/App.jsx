@@ -19,7 +19,6 @@ import SplashScreen from '../SplashScreen/SplashScreen';
 
 class App extends PureComponent {
   _notificationSystem = null;
-
   constructor(props) {
     super(props);
 

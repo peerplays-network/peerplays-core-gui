@@ -1,14 +1,11 @@
 .nav {
   min-width: 450px;
-  //display: flex;
-  //justify-content: space-around;
   height: 100%;
   overflow: hidden;
 
   &__right {
     float: right;
     padding-left: 30px;
-    //overflow: hidden;
     white-space: nowrap;
 
     .nav__linkIcon {
@@ -226,7 +223,6 @@
 
     &:last-child {
       @include border-radius(0 0 3px 3px);
-
       border-bottom: none;
     }
 
@@ -265,7 +261,6 @@
       right: 10px;
       font-size: 10px;
       color: rgba($new-blue, .2);
-
       @include transition();
 
       &:hover {

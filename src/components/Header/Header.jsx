@@ -4,7 +4,7 @@ import counterpart from 'counterpart';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
 import Notices from './Notices';
-import {AppActions, HelpActions, GPOSActions} from '../../actions';
+import {AppActions, HelpActions} from '../../actions';
 import Translate from 'react-translate-component';
 import {bindActionCreators} from 'redux';
 
@@ -16,12 +16,6 @@ class Header extends React.Component {
 
   onClickHelpLink(e) {
     this.props.toggleHelpModal(true);
-    e.preventDefault();
-  }
-
-  // TEMP
-  onClickGPOS(e) {
-    this.props.toggleGPOSWizardModal(true);
     e.preventDefault();
   }
 
@@ -113,9 +107,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
     logout: AppActions.logout,
-    toggleHelpModal: HelpActions.toggleHelpModal,
-    // TEMP
-    toggleGposWizard: GPOSActions.toggleGPOSWizardModal
+    toggleHelpModal: HelpActions.toggleHelpModal
   },
   dispatch
 );
