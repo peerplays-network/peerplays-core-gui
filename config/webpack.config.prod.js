@@ -1,3 +1,4 @@
+process.traceDeprecation = false;
 const chalk = require('chalk');
 const path = require('path');
 const paths = require('./paths');
@@ -5,15 +6,11 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-
 const Config = require('./Config');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
 var publicPath = paths.servedPath;
-
-// // DIRECTORY CLEANER
-// var cleanDirectories = ['build', 'dist'];
 
 // GLOBAL VAR DEFINE
 var define = {
@@ -34,6 +31,7 @@ var plugins = [
   new HtmlWebpackPlugin({
     inject: true,
     template: paths.appHtml,
+    favicon: paths.appIco,
     minify: {
       removeComments: true,
       collapseWhitespace: true,
@@ -55,23 +53,6 @@ var plugins = [
       NODE_ENV: JSON.stringify('production')
     }
   }),
-  // new ExtractTextPlugin('app.css'),
-  // webpack.optimize.UglifyJsPlugin has been removed
-  // new webpack.optimize.UglifyJsPlugin({
-  //   minimize: true,
-  //   sourceMap: true,
-  //   compress: {
-  //     screw_ie8: true, // React doesn't support IE8
-  //     warnings: false
-  //   },
-  //   mangle: {
-  //     screw_ie8: true
-  //   },
-  //   output: {
-  //     comments: false,
-  //     screw_ie8: true
-  //   }
-  // }),
   new ManifestPlugin({fileName: 'asset-manifest.json'}),
   new webpack.ProgressPlugin((percentage, msg) => {
     process.stdout.write(chalk.green(
@@ -184,13 +165,6 @@ module.exports = {
         test: /\.woff$/,
         loader: 'url-loader?limit=100000&mimetype=application/font-woff'
       },
-      // {
-      //   test: /\.svg$/,
-      //   loader: 'file',
-      //   query: {
-      //     name: 'static/media/[name].[hash:8].[ext]'
-      //   }
-      // },
       {
         test: /.*\.svg$/,
         loaders: ['svg-inline-loader', 'svgo-loader'],
