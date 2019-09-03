@@ -166,7 +166,7 @@ $chat-text-color) {
     }
 
     .modal-header {
-      >h6 {
+      > h6 {
         color: $secondary-text-color;
       }
 
@@ -864,8 +864,8 @@ $chat-text-color) {
   }
 
   .stats .stat {
-    >span {
-      >span:first-of-type {
+    > span {
+      > span:first-of-type {
         color: $primary-text-color;
       }
 
@@ -921,7 +921,7 @@ $chat-text-color) {
     background-color: $header-color !important;
   }
 
-  .table>tbody>tr:nth-of-type(even) {
+  .table > tbody > tr:nth-of-type(even) {
     background-color: lighten($bg-color, 4%);
   }
 

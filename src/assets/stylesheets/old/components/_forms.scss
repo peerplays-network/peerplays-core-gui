@@ -1,5 +1,5 @@
 label.horizontal {
-  >input {
+  > input {
     display: inline;
     width: auto;
   }
@@ -24,7 +24,7 @@ label.horizontal {
   border-color: #a94442;
 }
 
-.autocomplete>.action-sheet-container {
+.autocomplete > .action-sheet-container {
   display: flex;
 
   > .action-sheet {

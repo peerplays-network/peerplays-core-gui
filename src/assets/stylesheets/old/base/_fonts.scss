@@ -90,11 +90,11 @@ button,
   text-transform: uppercase;
 }
 
-.content-block>h3 {
+.content-block > h3 {
   @include RobotoLight;
 }
 
-.page-header>h3 {
+.page-header > h3 {
   @include RobotoLight;
 }
 
@@ -123,7 +123,7 @@ span.time {
   @include RobotoCondensed;
 }
 
-.tabs>.tab-item {
+.tabs > .tab-item {
   @include RobotoCondensed;
 }
 
@@ -136,11 +136,11 @@ span.time {
   @include RobotoCondensed;
 }
 
-.table>thead>tr>th {
+.table > thead > tr > th {
   @include RobotoCondensed;
 }
 
-.key-value-table tr>td:first-child {
+.key-value-table tr > td:first-child {
   @include RobotoLight;
 }
 
@@ -168,11 +168,11 @@ span.time {
     @include RobotoCondensed;
   }
 
-  .content-block>h3 {
+  .content-block > h3 {
     @include SegoeUILight;
   }
 
-  .page-header>h3 {
+  .page-header > h3 {
     @include SegoeUILight;
   }
 
@@ -197,7 +197,7 @@ span.time {
     @include RobotoCondensed;
   }
 
-  .tabs>.tab-item {
+  .tabs > .tab-item {
     @include RobotoCondensed;
   }
 
@@ -210,11 +210,11 @@ span.time {
     @include RobotoCondensed;
   }
 
-  .table>thead>tr>th {
+  .table > thead > tr > th {
     @include RobotoCondensed;
   }
 
-  .key-value-table tr>td:first-child {
+  .key-value-table tr > td:first-child {
     @include SegoeUILight;
   }
 }

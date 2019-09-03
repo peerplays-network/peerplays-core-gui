@@ -1,6 +1,7 @@
 .section {
   box-shadow: $table-shadow;
   overflow: hidden;
+
   @include border-radius(5px);
 
   &__title {

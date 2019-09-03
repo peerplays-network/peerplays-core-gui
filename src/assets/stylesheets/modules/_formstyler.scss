@@ -11,6 +11,7 @@
     .jq-selectbox__dropdown {
       border-top: none;
       border-bottom: 1px solid $field2-bd-color;
+
       @include box-shadow(0 -6px 20px rgba(0, 0, 0, 0.05));
     }
   }
@@ -37,6 +38,7 @@
 
     .bd & {
       border: 1px solid #818b95 !important;
+
       @include box-shadow(none);
     }
   }

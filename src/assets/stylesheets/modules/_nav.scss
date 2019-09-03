@@ -223,6 +223,7 @@
 
     &:last-child {
       @include border-radius(0 0 3px 3px);
+
       border-bottom: none;
     }
 
@@ -261,6 +262,7 @@
       right: 10px;
       font-size: 10px;
       color: rgba($new-blue, .2);
+
       @include transition();
 
       &:hover {

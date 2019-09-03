@@ -399,6 +399,7 @@
 
   &-copy {
     @extend .btn-color9;
+
     position: absolute;
     top: 0;
     right: 0;
@@ -417,6 +418,7 @@
     bottom: 0;
     height: $field-height;
     padding: 0;
+
     @include border-radius(0 5px 5px 0);
   }
 
@@ -426,12 +428,14 @@
 
   &-add {
     @extend .btn-color1;
+
     min-width: 140px;
     height: 52px;
   }
 
   &-remove {
     @extend .btn-color1;
+
     min-width: 120px;
     height: 44px;
   }
@@ -458,6 +462,7 @@
 
   &-sbm {
     @extend .btn-color7;
+
     min-width: 210px;
     padding: 0;
 
@@ -468,6 +473,7 @@
 
   &-sign {
     @extend .btn-color8;
+
     min-width: 210px;
     padding: 0;
   }
@@ -492,12 +498,14 @@
 
   &-set {
     @extend .btn-color1;
+
     min-width: 120px;
     height: 40px;
   }
 
   &-proposal {
     @extend .btn-color1;
+
     min-width: 100px;
     height: 44px;
     padding: 0;
@@ -505,11 +513,13 @@
 
   &-seeMore {
     @extend .btn-color3;
+
     min-width: 225px;
   }
 
   &-explore {
     @extend .btn-color1;
+
     min-width: 100px;
     height: 42px;
     padding: 0;
@@ -522,6 +532,7 @@
 
   &-loginBack {
     @extend .btn-color9;
+
     width: 100%;
     min-width: 100px;
     padding: 0;
@@ -529,6 +540,7 @@
 
   &-loginPrint {
     @extend .btn-color1;
+
     width: 100%;
     min-width: 100px;
     padding: 0;
@@ -536,6 +548,7 @@
 
   &-loginOk {
     @extend .btn-color7;
+
     width: 100%;
     min-width: 100px;
     padding: 0;
@@ -640,12 +653,14 @@
 
   &-claim {
     @extend .btn-color1;
+
     width: 120px;
     min-width: 0;
   }
 
   &-reset {
     @extend .btn-color9;
+
     min-width: 100px;
   }
 }

@@ -26,6 +26,7 @@
     left: 0;
     z-index: 1055;
     background-color: $clear-color;
+
     @include transition();
 
     &.fade {
@@ -58,6 +59,7 @@
 
     &AlignOut {
       @include va_middle_out;
+
       position: relative;
       height: 100%;
       text-align: center;
@@ -140,6 +142,7 @@
 
       &-type02 {
         @include border-radius(10px);
+
         -webkit-box-shadow: 0 9px 30px rgba(0, 0, 0, 0.25);
         box-shadow: 0 9px 30px rgba(0, 0, 0, 0.25);
 
@@ -162,6 +165,7 @@
     padding: 20px;
     font-size: 13px;
     color: rgba(0, 0, 0, .3);
+
     @include transition();
 
     &:hover {
