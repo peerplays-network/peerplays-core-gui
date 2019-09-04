@@ -1,5 +1,6 @@
 /* eslint-disable */
 
+require('file-loader?name=images/[name].png!./thumb-up.png');
 require('file-loader?name=images/[name].png!./l.png');
 require('file-loader?name=images/[name].jpg!./logo.jpg');
 require('file-loader?name=images/[name].jpg!./logo@2x.jpg');

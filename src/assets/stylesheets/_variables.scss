@@ -22,113 +22,14 @@ $red2: #f179a3;
 $green3: #13d4b7;
 $clear-color: $black;
 $clear-color2: $white;
-//--------------------------
-//<---Colors
 
+// ---> green
+$gpos-green: $green3;
+$gpos-green-hover: lighten($gpos-green, 10%);
 
-// -------------------------
-// yellow--->
+// <--- green
 
-//$text-color: 			#464f58;
-//$text-color2: 			#a0a4a7;
-//$text-color3: 			#6e757d;
-//$dark-color: 			#17191a;
-//$faded-color:			#818b95;
-//$gray-color:			#d6d6d6;
-//$gray-color2: 			#e1e1e1;
-//$gray-color3: 			#aeaeae;
-//$orange:                #e6c42f;
-//$yellow:				#f9cc2f;
-//$yellow2:				#f8e7ad;
-//$gold:					#bdb59f;
-//$gold-hover:			#aca490;
-//$gold-active-bd-color:	#968f7d;
-//$blue:					#57afe1;
-//$green:					#12cd6e;
-//$green-hover:			#12BA62;
-//$green-active:			#12BA62;
-//$green-active-bd-color: #129E4F;
-//$green-light:			#12D679;
-//
-//$color-prime:			$orange;
-//$color-second:			$green;
-//$color-second-hover:	$green-hover;
-//$color-second-active:	$green-active;
-//$color-second-bd-color: $green-active-bd-color;
-//$color-add:				$yellow;
-//$color-add2: 			$gold;
-//$color-add2-text:		$clear-color2;
-//$color-add2-hover: 		$gold-hover;
-//$color-add2-bd-color:	$gold-active-bd-color;
-//$color-add3:			$color-add2;
-//$color-add3-text:		$color-add2-text;
-//$color-add4:			$gray-color3;
-//$text-color-bg:			$text-color;
-//$border-color: 			$gray-color2;
-//$label-color: 			$text-color;
-//
-//$body-bg:          		#fafafa;
-//$footer-bg:				$clear-color2;
-//$footer-bd-color:		$gray-color2;
-//$footer-color:			$faded-color;
-//$body-login-bg:         $color-prime;
-//$nav-active-bg:			$color-prime;
-//$nav-icon-color:		$color-prime;
-//$delimiter-bd-color:	#e4e4e4;
-//$delimiter-bd-shadow:	0 1px 0 $clear-color2;
-//$aside-bg:				$clear-color2;
-//$aside-val-sum-color:	$green;
-//$aside-val-unit-color:	$text-color2;
-//$aside-title-color:		$text-color;
-//$table-bg:				$clear-color2;
-//$table-hidden-bg:		#eae8e8;
-//$table-hidden-shadow:	none;
-//$table-hiddenLast-shadow:none;
-//$table-shadow:			0 6px 20px rgba(0, 0, 0, 0.05);
-//$table-shadow2:			0 6px 20px rgba(0, 0, 0, 0.05);
-//$shadow:				0 6px 20px rgba(0, 0, 0, 0.05);
-//$table-title-color:		$dark-color;
-//$th-color:				$clear-color;
-//$th-bg:					$yellow2;
-//$th-bd-color:			#e0d19c;
-//$heading-color:			$dark-color;
-//$h1-color:				$dark-color;
-//$btn-transp1-color:		$color-second;
-//$tab-bg:				$yellow2;
-//$tab-bg-active:			$clear-color2;
-//$tab-color:				$clear-color;
-//$tab-color-active:		$clear-color;
-//$tab-deploy-bg:			$clear-color2;
-//$asset-bg:				$clear-color2;
-//$asset-label-color:		$text-color2;
-//$assets-unit-color:		$text-color2;
-//$mark-color:			$color-second;
-//$box-inner-bg:			#efefef;
-//$box-inner-shadow:		inset 0 3px 4px rgba(0, 0, 0, 0.07);
-//$sort-arrow-color:		#8c8980;
-//$sort-arrow-active:		#c19500;
-//$desc-color:			$text-color;
-//$field-color:   		$text-color;
-//$field-bd-color: 		$faded-color;
-//$field-icon-color: 		$faded-color;
-//$field2-bd-color: 		$gray-color;
-//$rank-pos-color:		$color-second;
-//$section-head-color:		;
-//$table-tab-active:
-//$section-option-icon-color
-//$section-more-bg
-//$select-bd-color
-//$menu-limiter-color: 	$border-color;
-//$dd-bg: $clear-color2;
-//$calendarIcon-color:	$gray5;
-
-//--------------------------
-//<---yellow
-
-
-
-//--------------------------
-//<---blue
+//---> blue
 
 $light-blue: #33b7ef;
 $green: #00fe95;
@@ -160,7 +61,6 @@ $white-transp2: rgba($clear-color2, .15);
 $dark: #17191a;
 $dark2: #2c3370;
 $faded-color: #818b95;
-
 
 $color-prime: $new-blue;
 $color-second: $light-blue;

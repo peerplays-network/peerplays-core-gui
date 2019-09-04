@@ -82,7 +82,7 @@ class GPOSPanel extends Component {
     let {totalGpos} = this.props;
     let stats = totalGpos && totalGpos > 0 ?
       this.renderGposStats() : null;
-    let btnModifier = totalGpos && totalGpos > 0 ? '' : '--no-stats';
+    let classModifier = totalGpos && totalGpos > 0 ? '' : '--no-stats';
 
     return (
       <div className='gpos-panel'>
@@ -106,9 +106,10 @@ class GPOSPanel extends Component {
         </div>
         <button
           type='button'
-          className={ `btn btn-content__head gpos-panel__btn${btnModifier}` }
+          className={ `btn btn-content__head gpos-panel__btn${classModifier}` }
           // onClick={ /* open gpos wizard */ }
         >
+          <img className={ `gpos-panel__img-thumb${classModifier}` } src='images/thumb-up.png' alt='thumb'/>
           <Translate content='gpos.side.start'/>
         </button>
         {stats}

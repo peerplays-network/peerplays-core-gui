@@ -1,11 +1,31 @@
+@import '../../assets/stylesheets/mixins';
+@import '../../assets/stylesheets/variables';
+
 .gpos-panel {
   display: flex;
   flex-direction: column;
 
-  &__btn {
-    margin-bottom: 45px;
+  &__img-thumb {
+    display: none;
 
     &--no-stats {
+      height: 16px;
+      margin-right: 4px;
+    }
+  }
+
+  &__btn {
+    @include transition(background .2s ease);
+
+    margin-bottom: 45px;
+    background: $gpos-green;
+
+    &:hover {
+      background: $gpos-green-hover;
+    }
+
+    &--no-stats {
+      display: flex;
       margin-bottom: 10px;
     }
   }
@@ -39,7 +59,7 @@
 
     &--right {
       right: 0;
-      color: #13d4b7;
+      color: $green3;
     }
   }
 }
