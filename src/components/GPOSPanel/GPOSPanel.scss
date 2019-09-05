@@ -20,6 +20,11 @@
     display: flex;
     margin-bottom: 45px;
     padding-top: 2px;
+    background: $gpos-blue;
+
+    &:hover {
+      background: $gpos-blue-hover;
+    }
 
     &--no-stats {
       margin-bottom: 10px;
