@@ -15,9 +15,12 @@ export const getTotalGposBalance = createSelector(
 
     balanceIds.forEach((balanceId) => {
       if (balances.size > 0) {
-        let balance = balances.get(balanceId),
-          balanceAmount = balance.getIn(['balance', 'amount']);
-        totalAmount += balanceAmount;
+        let balance = balances.get(balanceId);
+
+        if (balance !== undefined) {
+          let balanceAmount = balance.getIn(['balance', 'amount']);
+          totalAmount += balanceAmount;
+        }
       }
     });
 
