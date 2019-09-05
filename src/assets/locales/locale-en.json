@@ -494,6 +494,7 @@
       "desc": "Gamified Proof of Stake (GPOS) enables you to earn rewards of multiple cryptocurrencies supported in Peerplays by helping secure the network. %(learn)s",
       "learn": "Learn More",
       "start": "GET STARTED",
+      "participate": "PARTICIPATE",
       "info": {
         "balance": "GPOS Balance",
         "performance": {

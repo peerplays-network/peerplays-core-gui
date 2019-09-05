@@ -83,6 +83,7 @@ class GPOSPanel extends Component {
     let stats = totalGpos && totalGpos > 0 ?
       this.renderGposStats() : null;
     let classModifier = totalGpos && totalGpos > 0 ? '' : '--no-stats';
+    let btnString = totalGpos && totalGpos > 0 ? 'gpos.side.participate' : 'gpos.side.start';
 
     return (
       <div className='gpos-panel'>
@@ -110,7 +111,7 @@ class GPOSPanel extends Component {
           // onClick={ /* open gpos wizard */ }
         >
           <img className={ `gpos-panel__img-thumb${classModifier}` } src='images/thumb-up.png' alt='thumb'/>
-          <Translate content='gpos.side.start'/>
+          <Translate content={ btnString }/>
         </button>
         {stats}
       </div>
