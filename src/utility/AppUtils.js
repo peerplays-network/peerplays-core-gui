@@ -38,6 +38,19 @@ const AppUtils = {
     };
 
     this.scrollToRef(getById(targetRefId), getById(parentElementId));
+  },
+  /**
+   * "Rounds down" a number to x number of digits specified by digits via string splicing.
+   *
+   * @param {*} num - original num to round down
+   * @param {*} digits - number of digits after the decimal to keep
+   * @returns
+   */
+  trimNum(num, digits) {
+    let numString = num.toString();
+    let decimalIndex = numString.indexOf('.');
+    let subString = decimalIndex > 0 ? numString.substring(0, decimalIndex + (digits+1)) : num;
+    return parseFloat(subString);
   }
 };
 

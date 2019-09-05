@@ -7,6 +7,7 @@ import {HelpActions, DashboardPageActions} from '../../actions';
 import {getTotalGposBalance} from '../../selectors/GPOSSelector';
 import {FormattedNumber} from 'react-intl';
 import {anchors} from '../Help/HelpModal';
+import AppUtils from '../../utility/AppUtils';
 
 class GPOSPanel extends Component {
   onClickHelpLearn = (e) => {
@@ -124,7 +125,7 @@ const mapStateToProps = (state) => {
   let gposInfo = state.dashboardPage.gposInfo;
   let gposReward = gposInfo && gposInfo.award && gposInfo.award.amount;
   let vestingFactor = gposInfo && gposInfo.vesting_factor;
-  let gposPerformance = (vestingFactor * 100 || 100).toFixed(2);
+  let gposPerformance = AppUtils.trimNum((vestingFactor * 100 || 100), 2);
 
   return {
     totalGpos: data.totalAmount,
