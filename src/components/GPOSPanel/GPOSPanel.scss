@@ -6,27 +6,28 @@
   flex-direction: column;
 
   &__img-thumb {
-    display: none;
+    height: 16px;
+    margin-right: 4px;
 
     &--no-stats {
-      height: 16px;
-      margin-right: 4px;
+      display: none;
     }
   }
 
   &__btn {
     @include transition(background .2s ease);
 
+    display: flex;
     margin-bottom: 45px;
-    background: $gpos-green;
-
-    &:hover {
-      background: $gpos-green-hover;
-    }
+    padding-top: 2px;
 
     &--no-stats {
-      display: flex;
       margin-bottom: 10px;
+      background: $gpos-green;
+
+      &:hover {
+        background: $gpos-green-hover;
+      }
     }
   }
 
