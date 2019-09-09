@@ -18,6 +18,7 @@ class VestingBalanceWithdraw extends React.Component {
     let amountValue = asset && operation.amount.amount
       ? operation.amount.amount / Math.pow(10, asset.precision)
       : 0;
+
     let amountFeeValue = asset && operation.fee.amount
       ? operation.fee.amount / Math.pow(10, asset.precision)
       : 0;
@@ -38,9 +39,9 @@ class VestingBalanceWithdraw extends React.Component {
             <div className='mConf__tableRight'>
               <span className='mark2'>
                 {
-                  amountValue
+                  !amountValue
                     ? amountValue
-                    : operation.buy_in.amount.amount
+                    : operation.buy_in && operation.buy_in.amount.amount
                 } / {
                   asset
                     ? asset_utils.getSymbol(asset.symbol)

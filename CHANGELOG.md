@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.6"></a>
+## [1.0.6](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.1...v1.0.6) (2019-09-03)
+
+### Changed
+
+- remove GPOS Vested Balance types from "Vesting Balances (Witness Pay)" section (WAL-246)
+- change text of "Vesting Balances (Witness Pay)" to "Pending Balances" (WAL-255)
+
+### Added
+
+- GPOS Panel (WAL-247)
+- help modal dummy extended FAQ content (WAL-253)
+- display project code version in top middle of application (WAL-256)
+
+### BREAKING CHANGES
+
+Upgraded webpack from version 1 to version 4.
+
+- re-write of scripts that compile the codebase
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.0...v1.0.1) (2019-06-04)
 
@@ -10,7 +30,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 * **idb:** fix retrieval of items from idb cursor ([#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40)) ([1d85d0c](https://github.com/peerplays-network/peerplays-core-gui/commit/1d85d0c))
 * better support for legacy accounts ([1410586](https://github.com/peerplays-network/peerplays-core-gui/commit/1410586))
-
 
 
 <a name="1.0.0"></a>

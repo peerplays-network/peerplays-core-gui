@@ -1,7 +1,8 @@
 .customRadio__label {
-  cursor: pointer;
   display: block;
   margin: 0;
+  cursor: pointer;
+
   @include user-sel-n;
 
   &.inline {
@@ -13,59 +14,61 @@
   &Relative {
     display: inline-block;
     position: relative;
-    font-size: 0;
-    line-height: 0;
     vertical-align: middle;
     float: left;
     margin-top: 2px;
+    line-height: 0;
+    font-size: 0;
   }
 
   &Pseudo {
     display: block;
-    overflow: hidden;
     padding: 10px 0 0 10px;
-    font-size: 20px;
-    font-weight: 500;
     padding-top: 3px;
+    font-weight: 500;
+    font-size: 20px;
     color: $text-color-bg;
+    overflow: hidden;
   }
 }
 
 .customRadio__check {
+  width: 30px;
+  height: 30px;
   opacity: 0;
   visibility: hidden;
-  height: 30px;
-  width: 30px;
 
-  &:checked+.customRadio__checkPseudo:before {
+  &:checked + .customRadio__checkPseudo::before {
     opacity: 1;
+
     @include border-radius(50%);
   }
 
   &Pseudo {
-    position: absolute;
     content: '';
+    position: absolute;
     top: 0;
     left: 0;
     width: 30px;
     height: 30px;
-    background: #fff;
     border: 2px solid $color-second;
+    background: #ffffff;
+
     @include border-radius(50%);
 
-    &:before {
-      opacity: 0;
+    &::before {
+      content: '';
       position: absolute;
-      content: "";
+      top: 50%;
+      left: 50%;
       width: 12px;
       height: 12px;
       margin: -6px 0 0 -6px;
-      @include border-radius(0);
-      top: 50%;
-      left: 50%;
       background: $color-second;
-      @include transition();
+      opacity: 0;
 
+      @include border-radius(0);
+      @include transition();
     }
   }
 }

@@ -7,6 +7,7 @@ import DashboardPageActions from './DashboardPageActions';
 import ExchangePageActions from './ExchangePageActions';
 import ExploreFeeScheduleActions from './ExploreFeeScheduleActions';
 import ExplorerBlockChainActions from './ExplorerBlockChainActions';
+import GPOSActions from './GPOSActions';
 import HelpActions from './HelpActions';
 import IntlActions from './IntlActions';
 import LoginActions from './LoginActions';
@@ -43,6 +44,7 @@ export {
   ExchangePageActions,
   ExploreFeeScheduleActions,
   ExplorerBlockChainActions,
+  GPOSActions,
   HelpActions,
   IntlActions,
   LoginActions,

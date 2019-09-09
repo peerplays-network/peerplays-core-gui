@@ -26,7 +26,7 @@ const Config = {
     numOfCommonMessageToDisplay: 1,
     sortingMethod: 'recent', // recent OR oldest
     timeout: 7500, // 7.5 seconds for auto-dismissal messages
-    disableActionsInRedux: true
+    disableActionsInRedux: false
   }
 };
 

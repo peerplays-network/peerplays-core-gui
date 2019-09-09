@@ -1,15 +1,15 @@
 .settings-menu {
-    >li {
-        list-style-type: none;
-        cursor: pointer;
-        padding: 5px 0;
+  > li {
+    padding: 5px 0;
+    list-style-type: none;
+    cursor: pointer;
 
-        &:hover {
-            background-color: red;
-        }
-
-        &.active {
-            color: blue;
-        }
+    &:hover {
+      background-color: red;
     }
+
+    &.active {
+      color: blue;
+    }
+  }
 }

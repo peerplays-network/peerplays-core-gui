@@ -1,76 +1,79 @@
 .customCheck__label {
-  cursor: pointer;
   display: block;
   margin: 0;
+  cursor: pointer;
+
   @include user-sel-n;
 
   &Relative {
     display: inline-block;
     position: relative;
-    font-size: 0;
-    line-height: 0;
     vertical-align: middle;
     float: left;
     margin-top: 2px;
+    line-height: 0;
+    font-size: 0;
   }
 
   &Pseudo {
     display: block;
     margin-left: 40px;
-    font-size: 20px;
-    font-weight: 500;
     padding-top: 3px;
+    font-weight: 500;
+    font-size: 20px;
     //color: $text-color-bg;
     color: rgba($text-color-bg, .6);
   }
 }
 
 .customCheck__check {
+  width: 27px;
+  height: 27px;
   opacity: 0;
   visibility: hidden;
-  height: 27px;
-  width: 27px;
 
-  &:checked+.customCheck__checkPseudo {
+  &:checked + .customCheck__checkPseudo {
     background: $color-second;
     border-color: $color-second;
   }
 
-  &:checked+.customCheck__checkPseudo:before {
-    font-family: icomoon, sans-serif;
-    content: "\e911";
+  &:checked + .customCheck__checkPseudo::before {
+    content: '\e911';
     line-height: 1;
+    font-family: icomoon, sans-serif;
   }
 
   &Pseudo {
-    position: absolute;
     content: '';
+    position: absolute;
     top: 0;
     left: 0;
     width: 27px;
     height: 27px;
-    background: #fff;
     border: 2px solid $color-second;
-    @include border-radius(2px);
+    background: #ffffff;
     -webkit-transition: background .2s ease, border-color .2s ease;
     transition: background .2s ease, border-color .2s ease;
 
-    &:before {
-      position: absolute;
+    @include border-radius(2px);
+
+    &::before {
       content: none;
-      font-size: 7px;
+      position: absolute;
       top: 50%;
       left: 0;
       width: 100%;
-      text-align: center;
-      margin: -4px 0 0 0;
+      margin: -4px 0 0;
+      font-size: 7px;
       color: $clear-color2;
+      text-align: center;
     }
   }
 }
 
 .customCheck__row {
   @include clearfix;
+
   margin-bottom: 15px;
 }
 

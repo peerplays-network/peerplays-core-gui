@@ -38,7 +38,7 @@
     },
     "side": {
       "available_balances": "Available Balances:",
-      "vesting_balances": "Vesting Balances (Witness Pay)",
+      "vesting_balances": "Pending Balances",
       "claim_balances": "Claim Balances",
       "total": "Total:",
       "claimable": "Claimable:",
@@ -467,6 +467,27 @@
     "remaining": "Days Remaining in Period",
     "claim": "Claim"
   },
+  "gpos": {
+    "side": {
+      "title": "GPOS Panel",
+      "desc": "Gamified Proof of Stake (GPOS) enables you to earn rewards of multiple cryptocurrencies supported in Peerplays by helping secure the network. %(learn)s",
+      "learn": "Learn More",
+      "start": "GET STARTED",
+      "participate": "PARTICIPATE",
+      "info": {
+        "balance": "GPOS Balance",
+        "performance": {
+          "title": "Voting Performance",
+          "txt1": "All up to date"
+        },
+        "percent": "Reward %",
+        "potential": "Potential Reward"
+      }
+    },
+    "faq": {
+      "title": "GAMIFIED PROOF OF STAKE"
+    }
+  },
   "about": {
     "title": "Peerplays TEST Network",
     "note1": "This public TEST network is for demonstrations purposes only. It will be modified and changed often as additional features are added and tested.",
@@ -625,10 +646,10 @@
     "important_title": "IMPORTANT:",
     "important_note": "PLEASE REMEMBER TO SECURELY STORE YOUR WALLET PASSWORD. IF YOU LOSE YOUR PASSWORD, YOU WILL LOSE ACCESS TO YOUR WALLET AND FUNDS PERMANENTLY.",
     "introduce_note": "You can log out of the Peerplays Core wallet by going to My Funds and clicking on your Account Name at the top right side of the screen.",
-    "introduce_note": "You can log out of the Peerplays Core wallet by going to My Funds and clicking on your Account Name at the top right side of the screen.",
     "anchors": {
       "my_funds": "MY FUNDS",
       "play": "PLAY",
+      "gpos": "GAMIFIED PROOF OF STAKE",
       "vote": "VOTE",
       "network": "NETWORK",
       "settings": "SETTINGS",
@@ -663,6 +684,11 @@
     "play": {
       "title": "PLAY",
       "text_1": "The Play page will link to the various Peerplays Dapps (Decentralized apps) as they become available."
+    },
+    "gpos": {
+      "title": "GAMIFIED PROOF OF STAKE",
+      "text_1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pellentesque aliquam elit, et consectetur est ultrices a. Maecenas egestas ultrices eros, at vestibulum sapien suscipit eget. Quisque tincidunt est a dolor molestie consectetur. Morbi ut lacus sed purus lacinia vehicula a et felis. Nam in nibh eget augue pharetra porta. Vivamus eget molestie leo. Mauris at elit ut purus porttitor bibendum in sit amet libero. Praesent fermentum nunc sed ex dignissim vestibulum. Nulla facilisi. Duis arcu ante, volutpat vitae felis eget, hendrerit fermentum leo. Ut dictum elit id nunc condimentum, semper tempus ipsum scelerisque. Integer varius tristique est, quis sodales velit. Cras et dui tellus. Suspendisse vestibulum at augue sit amet bibendum. Sed bibendum nulla non lorem dictum, eget commodo lectus faucibus.",
+      "text_2": "Phasellus facilisis rutrum neque posuere lacinia. Ut sollicitudin vulputate lectus quis congue. Vestibulum et erat turpis. Aenean sodales turpis sed tempor hendrerit. Ut luctus a turpis non molestie. Donec eu est facilisis, interdum nisi eu, iaculis purus. Ut convallis id est vel condimentum. Nullam euismod ex at urna tempus, a maximus nisi congue. Aenean fermentum, libero eu consectetur sodales, risus justo venenatis dui, id ornare metus orci in sem. Cras sed quam malesuada, malesuada nulla eget, sagittis justo. Quisque laoreet orci et ipsum rhoncus pretium."
     },
     "vote": {
       "title": "VOTE",

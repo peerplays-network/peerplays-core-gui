@@ -1,0 +1,71 @@
+@import '../../assets/stylesheets/mixins';
+@import '../../assets/stylesheets/variables';
+
+.gpos-panel {
+  display: flex;
+  flex-direction: column;
+
+  &__img-thumb {
+    height: 16px;
+    margin-right: 4px;
+
+    &--no-stats {
+      display: none;
+    }
+  }
+
+  &__btn {
+    @include transition(background .2s ease);
+
+    display: flex;
+    margin-bottom: 45px;
+    padding-top: 2px;
+    background: $gpos-blue;
+
+    &:hover {
+      background: $gpos-blue-hover;
+    }
+
+    &--no-stats {
+      margin-bottom: 10px;
+      background: $gpos-green;
+
+      &:hover {
+        background: $gpos-green-hover;
+      }
+    }
+  }
+
+  &__title {
+    font-weight: 600;
+  }
+
+  &__desc {
+    margin-bottom: 47px;
+
+    &-txt {
+      display: initial;
+    }
+
+    &-link {
+      color: #5eb5f2;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__stats {
+    &-balance, &-perf, &-percent, &-potential {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    &--right {
+      right: 0;
+      color: $green3;
+    }
+  }
+}

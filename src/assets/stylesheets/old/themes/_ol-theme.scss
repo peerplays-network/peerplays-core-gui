@@ -1,25 +1,25 @@
-@import "../utils/utils";
+@import '../utils/utils';
 
 // variables
 
-$light-text-color: #fff;
-$dark-text-color: #444;
+$light-text-color: #ffffff;
+$dark-text-color: #444444;
 $primary-text-color: #e0e0e0;
 $secondary-text-color: darken($primary-text-color, 20%);
-$link-text-color: #4A90E2;
-$error-text-color: #E3745B;
+$link-text-color: #4a90e2;
+$error-text-color: #e3745b;
 
-$bg-color: #191A1F;
-$panel-bg-color: #2C2E37;
+$bg-color: #191a1f;
+$panel-bg-color: #2c2e37;
 $light-panel-bg-color: #353742;
 $super-light-panel-bg-color: lighten($light-panel-bg-color, 8%);
-$button-bg-color: #4A90E2;
+$button-bg-color: #4a90e2;
 $secondary-button-bg-color: #546979;
 
 $alert-color: $error-text-color;
-$info-color: #4A90E2;
-$success-color: #18BC9C;
-$warning-color: #FCAB53;
+$info-color: #4a90e2;
+$success-color: #18bc9c;
+$warning-color: #fcab53;
 $fee-color: $secondary-text-color;
 
 // general
@@ -29,8 +29,8 @@ body {
 }
 
 hr {
-  border-color: $dark-text-color;
   background-color: $dark-text-color !important;
+  border-color: $dark-text-color;
 }
 
 a {
@@ -44,7 +44,7 @@ a {
 }
 
 label,
-label>span {
+label > span {
   color: $secondary-text-color;
 }
 
@@ -107,7 +107,7 @@ label>span {
     border-bottom-color: $super-light-panel-bg-color;
   }
 
-  >ul>li>a {
+  > ul > li > a {
     color: $light-text-color;
     border-top-color: $panel-bg-color;
 
@@ -120,19 +120,19 @@ label>span {
 .__react_component_tooltip.type-light {
   @include color($light-text-color, $super-light-panel-bg-color, true);
 
-  &.place-bottom:after {
+  &.place-bottom::after {
     border-bottom-color: $super-light-panel-bg-color !important;
   }
 
-  &.place-top:after {
+  &.place-top::after {
     border-top-color: $super-light-panel-bg-color !important;
   }
 
-  &.place-right:after {
+  &.place-right::after {
     border-right-color: $super-light-panel-bg-color !important;
   }
 
-  &.place-left:after {
+  &.place-left::after {
     border-left-color: $super-light-panel-bg-color !important;
   }
 }
@@ -162,25 +162,24 @@ h6 {
   }
 
   .modal-header {
-    >h6 {
+    > h6 {
       color: $secondary-text-color;
     }
 
-    &.has-error>h6 {
-      color: $error-text-color
+    &.has-error > h6 {
+      color: $error-text-color;
     }
   }
 
   .circle-wrapper {
-    .circle:before {
+    .circle::before {
       background-color: $primary-text-color;
     }
   }
 
   .table {
-
-    >thead>tr>th,
-    >tbody>tr>td {
+    > thead > tr > th,
+    > tbody > tr > td {
       border-bottom-color: darken($secondary-text-color, 10%);
     }
   }
@@ -189,7 +188,7 @@ h6 {
 .footer {
   @include color($secondary-text-color, lighten($panel-bg-color, 8%));
 
-  svg>path {
+  svg > path {
     fill: $secondary-text-color;
   }
 }
@@ -197,7 +196,7 @@ h6 {
 .panel-left {
   @include color($light-text-color, $light-panel-bg-color);
 
-  .block-list li>a {
+  .block-list li > a {
     color: $light-text-color;
 
     &:hover {
@@ -215,16 +214,15 @@ h6 {
   background-color: $bg-color;
 
   .left-column {
+    background-color: $panel-bg-color; //lighten($bg-color, 4%);
     border-top-color: $bg-color;
     border-bottom-color: $bg-color;
-    background-color: $panel-bg-color; //lighten($bg-color, 4%);
-
   }
 
   .left-column-2 {
+    background-color: darken($bg-color, 4%);
     border-top-color: $bg-color;
     border-bottom-color: $bg-color;
-    background-color: darken($bg-color, 4%);
   }
 
   .main-content {
@@ -232,18 +230,17 @@ h6 {
   }
 
   .right-column {
+    background-color: darken($bg-color, 4%);
     border-top-color: $bg-color;
     border-bottom-color: $bg-color;
-    background-color: darken($bg-color, 4%);
   }
-
 }
 
 .transfer-top {
   background-color: $light-panel-bg-color;
 
   label,
-  label>span {
+  label > span {
     color: $light-text-color;
   }
 }
@@ -251,8 +248,8 @@ h6 {
 // buttons
 
 .button.bucket-button {
-  text-transform: none !important;
   font-size: 0.75rem !important;
+  text-transform: none !important;
 }
 
 .button {
@@ -287,23 +284,22 @@ h6 {
 
 .header .button,
 .header .button:active {
-  background-color: #3E414D !important;
+  background-color: #3e414d !important;
 
   &:hover,
   &:focus,
   &:active {
-    background-color: #3E414D !important;
+    background-color: #3e414d !important;
   }
 }
 
 
 
 .grp-menu-item button {
-
   &:hover,
   &:focus,
   &:active {
-    background-color: #3E414D !important;
+    background-color: #3e414d !important;
   }
 }
 
@@ -313,26 +309,25 @@ h6 {
 
 .header .logo {
   color: $secondary-text-color;
-
 }
 
 .menu-group.primary .menu-bar {}
 
 
 .header-right-menu {
-  a>span {
+  a > span {
     color: $secondary-text-color;
   }
 
-  svg>path {
+  svg > path {
     fill: $secondary-text-color;
   }
 
-  a:hover>span {
+  a:hover > span {
     color: $primary-text-color;
   }
 
-  svg:hover>path {
+  svg:hover > path {
     fill: $primary-text-color;
   }
 }
@@ -343,25 +338,26 @@ h6 {
 .card-section {
   padding-left: 0.5rem;
 
-  >ul {
-    color: #FFF;
-    list-style: none;
-    font-size: 85%;
+  > ul {
     margin-left: 0;
+    font-size: 85%;
+    color: #ffffff;
+    list-style: none;
   }
 }
 
 
 .card {
   @include color($primary-text-color, $bg-color);
+
   background-color: $panel-bg-color;
 
   &:hover {
     background-color: lighten($panel-bg-color, 4%);
 
-    >h4 {
+    > h4 {
+      color: $link-text-color;
       background-color: lighten($light-panel-bg-color, 4%);
-      color: $link-text-color
     }
   }
 
@@ -373,7 +369,7 @@ h6 {
     @include color($primary-text-color, lighten($bg-color, 12%));
   }
 
-  >h4 {
+  > h4 {
     background-color: lighten($bg-color, 24%);
   }
 }
@@ -381,17 +377,17 @@ h6 {
 
 // tables
 .table {
-  >thead>tr>th {
-    border-bottom-color: $dark-text-color;
+  > thead > tr > th {
     color: $secondary-text-color;
-  }
-
-  >tbody>tr>td {
     border-bottom-color: $dark-text-color;
   }
 
-  &.table-hover>tbody>tr:hover>td,
-  .table-hover>tbody>tr:hover>th {
+  > tbody > tr > td {
+    border-bottom-color: $dark-text-color;
+  }
+
+  &.table-hover > tbody > tr:hover > td,
+  .table-hover > tbody > tr:hover > th {
     background-color: lighten($bg-color, 4%);
   }
 }
@@ -405,14 +401,14 @@ h6 {
     border-bottom: 1px solid $dark-text-color;
   }
 
-  li>a {
+  li > a {
     color: $secondary-text-color;
   }
 
-  li>a:hover,
-  li>label:hover,
+  li > a:hover,
+  li > label:hover,
   li select:hover,
-  li.active>a {
+  li.active > a {
     color: $light-text-color;
     background-color: lighten($bg-color, 4%);
   }
@@ -430,14 +426,14 @@ h6 {
 // forms
 
 .has-error,
-div.has-error>label,
-div.has-error>label>span {
+div.has-error > label,
+div.has-error > label > span {
   color: $error-text-color;
 }
 
-div.has-error>input,
-div.has-error>input:hover,
-div.has-error>input:focus {
+div.has-error > input,
+div.has-error > input:hover,
+div.has-error > input:focus {
   border-color: $error-text-color;
 }
 
@@ -447,28 +443,28 @@ div.has-error>input:focus {
   border-color: $error-text-color;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="number"],
-input[type="search"],
+input[type='text'],
+input[type='password'],
+input[type='email'],
+input[type='number'],
+input[type='search'],
 textarea,
 select {
+  border: none;
   color: $primary-text-color;
   background-color: $panel-bg-color;
-  border: none;
 
   &:hover,
   &:focus,
   &:active {
+    border: none;
     color: $primary-text-color;
     background-color: darken($panel-bg-color, 2%);
-    border: none;
   }
 
   &:focus {
-    color: $primary-text-color;
     border: none;
+    color: $primary-text-color;
   }
 }
 
@@ -478,7 +474,7 @@ select {
 .tabs {
   border-bottom-color: $dark-text-color;
 
-  >.tab-item {
+  > .tab-item {
     color: $secondary-text-color;
 
     &.is-active {
@@ -506,7 +502,7 @@ select {
   }
 
   &.area {
-    color: #FFF;
+    color: #ffffff;
   }
 }
 
@@ -515,10 +511,10 @@ select {
 }
 
 .active-bucket {
-  text-transform: none !important;
   font-size: 0.75rem !important;
-  background-color: lighten($light-panel-bg-color, 12%);
+  text-transform: none !important;
   text-transform: uppercase;
+  background-color: lighten($light-panel-bg-color, 12%);
 }
 
 
@@ -548,15 +544,14 @@ td.my-account {
 }
 
 .account-left-menu {
-
-  >li>a:hover,
-  >li>label:hover,
-  >li select:hover {
+  > li > a:hover,
+  > li > label:hover,
+  > li select:hover {
     color: $light-text-color;
     background-color: $panel-bg-color;
   }
 
-  >li>a.active {
+  > li > a.active {
     color: $light-text-color;
     background-color: lighten($panel-bg-color, 4%);
     border-left-color: darken($button-bg-color, 4%);
@@ -614,13 +609,13 @@ td.my-account {
 .icon.success {
   padding-right: 1rem;
 
-  >svg>path {
+  > svg > path {
     fill: $success-color;
   }
 }
 
 .circle-wrapper {
-  .circle:before {
+  .circle::before {
     background-color: $secondary-text-color;
   }
 }
@@ -631,23 +626,23 @@ td.my-account {
   width: 24px;
   height: 28px;
   padding: 4px;
-  opacity: 0.5;
-  overflow: hidden;
   -webkit-transition: all .5s ease;
   -moz-transition: all .5s ease;
   transition: all .5s ease;
+  opacity: 0.5;
+  overflow: hidden;
 
   &:hover,
   &:active,
   &:focus {
-    background-color: $bg-color;
-    padding: 4px;
-    opacity: 0.85;
-    border-radius: 2px;
-    color: $light-text-color;
-    font-size: 60%;
     width: 348px;
     height: 48px;
+    padding: 4px;
+    border-radius: 2px;
+    font-size: 60%;
+    color: $light-text-color;
+    background-color: $bg-color;
+    opacity: 0.85;
   }
 }
 
@@ -655,12 +650,12 @@ td.my-account {
 
 
 .remove {
-  color: $alert-color;
-  border: none;
   padding: 2px 4px;
-  font-size: 120%;
-  background-color: transparent;
+  border: none;
   border-radius: 0;
+  font-size: 120%;
+  color: $alert-color;
+  background-color: transparent;
   -webkit-transition: all .5s ease;
   -moz-transition: all .5s ease;
   transition: all .5s ease;
@@ -668,10 +663,10 @@ td.my-account {
   &:hover,
   &:active,
   &:focus {
+    border-radius: 2px;
+    font-size: 120%;
     color: $light-text-color;
     background-color: $alert-color;
-    font-size: 120%;
-    border-radius: 2px;
   }
 }
 
@@ -688,7 +683,7 @@ td.my-account {
 }
 
 // Block List (section)
-section input[type="text"] {
+section input[type='text'] {
   background-color: transparent;
 
   &:hover,
@@ -713,7 +708,7 @@ section input[type="text"] {
   border-bottom-color: $button-bg-color;
 
   &.inactive {
-    border-bottom-color: transparent;
     color: $secondary-text-color;
+    border-bottom-color: transparent;
   }
 }

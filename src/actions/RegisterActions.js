@@ -148,12 +148,12 @@ class RegisterActions {
         return fetchFaucetAddress(1, accountName, keys.owner, keys.active, keys.memo, referral)
           .then((result) => {
             if (result.error) {
-              console.warn('CREATE ACCOUNT RESPONSE', result);
-              console.warn('CREATE ACCOUNT ERROR', result.error);
+              // console.warn('CREATE ACCOUNT RESPONSE', result);
+              // console.warn('CREATE ACCOUNT ERROR', result.error);
               throw result.error;
             }
 
-            console.log('RESULT', result);
+            // console.log('RESULT', result);
             return result;
           }).then(() => {
             return AccountRepository.fetchFullAccount(accountName).then((result) => {

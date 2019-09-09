@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
 import {routerReducer} from 'react-router-redux';
 import AccountReducer from './AccountReducer';
+import GPOSReducer from './GPOSReducer';
 import SettingsReducer from './SettingsReducer';
 import PageSettingsReducer from './PageSettingsReducer';
 import WalletReducer from './WalletReducer';
@@ -34,32 +35,32 @@ import {
 const rootReducer = combineReducers({
   routing: routerReducer,
   account: AccountReducer,
-  voting: VotingReducer,
-  claimBtsReducer: ClaimBtsReducer,
-  settings: SettingsReducer,
-  pageSettings: PageSettingsReducer,
-  wallet: WalletReducer,
-  walletData: WalletDataReducer,
-  privateKey: PrivateKeyReducer,
+  accountVestingPageReducer: AccountVestingPageReducer,
   addressIndex: AddressIndexReducer,
   app: AppReducer,
-  loginPage: LoginPageReducer,
-  register: RegisterReducer,
+  claimBtsReducer: ClaimBtsReducer,
+  commonMessage: CommonMessageReducer,
   dashboardPage: DashboardPageReducer,
+  exchangePageReducer: ExchangePageReducer,
   explorerBlockchainPage: ExplorerBlockchainPageReducer,
   exploreFeeSchedule: ExploreFeeScheduleReducer,
-  sendPage: SendPageReducer,
-  exchangePageReducer: ExchangePageReducer,
-  transactionConfirm: TransactionConfirmReducer,
-  referralsPageReducer: ReferralsPageReducer,
-  accountVestingPageReducer: AccountVestingPageReducer,
-  softwareUpdateReducer: SoftwareUpdateReducer,
-  notificationsReducer: NotificationsReducer,
+  form: formReducer,
   helpReducer: HelpReducer,
+  loginPage: LoginPageReducer,
+  gposReducer: GPOSReducer,
   memoModal: MemoReducer,
-  commonMessage: CommonMessageReducer,
-  //Common form reducer: npm redux-form
-  form: formReducer
+  notificationsReducer: NotificationsReducer,
+  pageSettings: PageSettingsReducer,
+  privateKey: PrivateKeyReducer,
+  referralsPageReducer: ReferralsPageReducer,
+  register: RegisterReducer,
+  sendPage: SendPageReducer,
+  settings: SettingsReducer,
+  softwareUpdateReducer: SoftwareUpdateReducer,
+  transactionConfirm: TransactionConfirmReducer,
+  voting: VotingReducer,
+  wallet: WalletReducer,
+  walletData: WalletDataReducer
 });
 
 export default rootReducer;
