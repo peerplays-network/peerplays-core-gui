@@ -10,8 +10,8 @@ const getBalances = (state) => state.dashboardPage.gposBalances;
 export const getTotalGposBalance = createSelector(
   [ getBalancesIds, getBalances ],
   (balanceIds, balances) => {
-    let totalAmount = 0,
-      totalClaimable = 0;
+    let totalAmount = -1,
+      totalClaimable = -1;
 
     balanceIds.forEach((balanceId) => {
       if (balances.size > 0) {

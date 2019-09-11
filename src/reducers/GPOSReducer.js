@@ -17,7 +17,7 @@ export default (state = initialState, action) => {
     case ActionTypes.TOGGLE_GPOS_WIZARD:
       return {
         ...state,
-        showGPOSWizardModal: ActionTypes.payload.showGPOSWizardModal
+        showGPOSWizardModal: action.payload.showGPOSWizardModal
       };
     default:
       // We return the previous state in the default case

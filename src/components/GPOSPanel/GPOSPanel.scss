@@ -9,6 +9,10 @@
     height: 16px;
     margin-right: 4px;
 
+    &--hidden {
+      opacity: 0;
+    }
+
     &--no-stats {
       display: none;
     }
@@ -20,10 +24,21 @@
     display: flex;
     margin-bottom: 45px;
     padding-top: 2px;
+    border: 2px solid transparent;
     background: $gpos-blue;
 
     &:hover {
       background: $gpos-blue-hover;
+    }
+
+    &:active {
+      background: darken($gpos-blue, $amount: 10%);
+      border-color: $color-add2-bd-color;
+    }
+
+    &--hidden {
+      color: transparent;
+      background: transparent;
     }
 
     &--no-stats {
@@ -32,6 +47,10 @@
 
       &:hover {
         background: $gpos-green-hover;
+      }
+
+      &:active {
+        background: darken($gpos-green, $amount: 10%);
       }
     }
   }

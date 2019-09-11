@@ -1,0 +1,316 @@
+@import '../../../assets/stylesheets/mixins';
+@import '../../../assets/stylesheets/variables';
+
+$breakpoints: (
+  default: 1920px,
+  mac: 1531px,
+  sm: 1275px
+);
+
+//
+// RESPOND BELOW
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+// @include respond-to(mac) {}
+@mixin respond-to($breakpoint) {
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+    // Write the media query.
+    @media (max-width: ($breakpoint-value - 1)) {
+      @content;
+    }
+  }
+  // If the breakpoint doesn't exist in the map.
+  @else {
+
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+@mixin gpos-start-btn {
+  @include respond-to(mac) {
+    width: 133px;
+    height: 58px;
+  }
+
+  width: 160px;
+  height: 70px;
+  border-radius: 10px;
+}
+
+.gpos-modal {
+  @include respond-to(mac) {
+    max-width: 1255px;
+    max-height: 726px;
+  }
+
+  @include respond-to(sm) {
+    max-width: 80%;
+    border-radius: 10px 10px 0 0;
+  }
+
+  position: relative;
+  width: 100%;
+  max-width: 1505px;
+  height: 100%;
+  max-height: 869px;
+  margin: 0 auto;
+  border-radius: 15px 0 0 15px;
+  background: transparent radial-gradient(closest-side at 50% 52%, rgb(61, 93, 203) 0%, rgb(49, 53, 121) 100%);
+
+  &__bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+    resize: both;
+  }
+
+  &__btns {
+    @include respond-to(mac) {
+      width: 485px;
+      margin: 48px auto;
+    }
+
+    display: flex;
+    justify-content: space-between;
+    width: 583px;
+    margin: 62px auto;
+  }
+
+  &__btn {
+    @include gpos-start-btn();
+
+    &-cancel, &-up, &-down {
+      @extend .gpos-modal__btn;
+      @include transition(all .2s ease);
+
+      border: 2px solid transparent;
+
+      &:active {
+        border-color: rgb(51, 183, 239);
+      }
+    }
+
+    &-cancel {
+      background: rgb(41, 58, 143);
+
+      &:hover {
+        background: lighten(rgb(41, 58, 143), $amount: 10%);
+      }
+
+      &:active {
+        background: darken(rgb(41, 58, 143), $amount: 10%);
+        border-color: $color-add2-bd-color;
+      }
+    }
+
+    &-up {
+      background: rgb(51, 183, 239);
+
+      &:hover {
+        background: lighten(rgb(51, 183, 239), $amount: 10%);
+      }
+
+      &:active {
+        background: darken(rgb(51, 183, 239), $amount: 10%);
+      }
+    }
+
+    &-down {
+      @include respond-to(mac) {
+        width: 172px;
+      }
+
+      width: 207px;
+      margin-right: 0;
+      background: rgb(19, 212, 183);
+
+      &:hover {
+        background: lighten(rgb(19, 212, 183), $amount: 10%);
+      }
+
+      &:active {
+        background: darken(rgb(19, 212, 183), $amount: 10%);
+      }
+
+      &[disabled] {
+        border: 2px solid transparent;
+        background: rgb(41, 141, 161);
+        cursor: not-allowed;
+      }
+    }
+
+    &-txt {
+      @include respond-to(mac) {
+        font-size: 16px;
+      }
+
+      font-size: 21px;
+      color: white;
+    }
+  }
+
+  // GPOS Modal content positioning.
+  &__content {
+    @include respond-to(sm) {
+      flex-direction: column;
+    }
+
+    display: flex;
+    height: 100%;
+    overflow: auto;
+
+    &-left, &-right {
+      @include respond-to(mac) {
+        padding-top: 56px;
+      }
+
+      flex: 1;
+      padding-top: 68px;
+    }
+
+    &-right {
+      @include respond-to(mac) {
+        border-radius: 0;
+      }
+
+      flex-direction: column;
+      justify-self: center;
+      height: min-content;
+      background: rgba(255, 255, 255, 0.06);
+      box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  &__step {
+    @include respond-to(mac) {
+      width: 487px;
+      height: 150px;
+    }
+
+    position: relative;
+    width: 583px;
+    height: 180px;
+    margin: auto;
+    margin-bottom: 33px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
+
+    &:nth-child(3) {
+      margin-bottom: 0;
+    }
+
+    &-txt {
+      @include respond-to(mac) {
+        width: 200px;
+        margin-left: 202px;
+        font-size: 23px;
+      }
+
+      display: block;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      float: right;
+      width: 270px;
+      margin-left: 240px;
+      font-size: 31px;
+    }
+
+    // Images -1, -2, -3
+    &-1 {
+      @include respond-to(mac) {
+        height: 135px;
+      }
+
+      height: 161px;
+      margin-top: 9.75px;
+      margin-left: 5px;
+    }
+
+    &-2 {
+      @include respond-to(mac) {
+        height: 119px;
+        margin-top: 14px;
+      }
+
+      height: 143px;
+      margin-top: 7.04px;
+    }
+
+    &-3 {
+      @include respond-to(mac) {
+        height: 125px;
+        margin-top: 19px;
+        margin-left: 17px;
+      }
+
+      height: 149px;
+      margin-top: 23.28px;
+      margin-left: 23.86px;
+    }
+  }
+
+  &__wizard {
+    &-desc {
+      @include respond-to(mac) {
+        width: 486px;
+        padding-bottom: 56px;
+      }
+
+      @include respond-to(sm) {
+        width: 80%;
+      }
+
+      width: 582px;
+      margin: auto;
+
+      > .title {
+        margin-bottom: 33px;
+        font-size: 45px;
+      }
+
+      > .txt {
+        @include respond-to (mac) {
+          font-size: 18px;
+        }
+
+        margin-bottom: 22px;
+        font-size: 22px;
+
+        &--bold {
+          @extend .txt;
+
+          font-weight: 700;
+        }
+
+        &--indent {
+          @extend .txt;
+
+          margin-bottom: 0;
+          text-indent: 22px;
+        }
+
+        &--margin-top {
+          @extend .txt;
+
+          &.line {
+            margin-top: 24px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -9,7 +9,7 @@ import Config from '../../../config/Config';
 import {AppActions, NavigateActions} from '../../actions';
 import CantConnectModal from '../Modal/CantConnectModal/CantConnectModal';
 import CommonMessage from '../CommonMessage';
-// import GPOSWizard from '../Modal/GPOSWizard/GPOSWizardWrapper';
+import GPOSWizardWrapper from '../Modal/GPOSWizard';
 import HelpModal from '../Help/HelpModal';
 import TransactionConfirmModal from '../Modal/TransactionConfirmModal/TransactionConfirmModal';
 import WalletUnlockModal from '../Modal/WalletUnlockModal';
@@ -121,7 +121,7 @@ class App extends PureComponent {
           <CantConnectModal />
           <ViewMemoModal />
           <HelpModal />
-          {/* <GPOSWizard /> */}
+          <GPOSWizardWrapper />
         </div>
       </IntlProvider>
     );
