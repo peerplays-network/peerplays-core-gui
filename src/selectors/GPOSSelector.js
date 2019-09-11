@@ -13,6 +13,11 @@ export const getTotalGposBalance = createSelector(
     let totalAmount = -1,
       totalClaimable = -1;
 
+    if (balanceIds.size > 0) {
+      totalAmount = 0;
+      totalClaimable = 0;
+    }
+
     balanceIds.forEach((balanceId) => {
       if (balances.size > 0) {
         let balance = balances.get(balanceId);
