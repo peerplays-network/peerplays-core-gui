@@ -6,7 +6,7 @@ import {bindActionCreators} from 'redux';
 import {routerShape} from 'react-router/lib/PropTypes';
 import intlData from '../Utility/intlData';
 import Config from '../../../config/Config';
-import {AppActions, NavigateActions} from '../../actions';
+import {AppActions, NavigateActions, GPOSActions} from '../../actions';
 import CantConnectModal from '../Modal/CantConnectModal/CantConnectModal';
 import CommonMessage from '../CommonMessage';
 import GPOSWizardWrapper from '../Modal/GPOSWizard';
@@ -52,6 +52,10 @@ class App extends PureComponent {
 
     function isIdle() {
       console.warn('Logging out user due to inactivity.');
+
+      // Close modals
+      props.toggleGPOSWizard();
+
       props.timeout();
       props.setCurrentLocation('TIMEOUT');
     }
@@ -146,6 +150,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
     timeout: AppActions.timeout,
+    toggleGPOSWizard: GPOSActions.toggleGPOSWizardModal,
     navigateToTimeout: NavigateActions.navigateToTimeout,
     setCurrentLocation: AppActions.setCurrentLocation
   },
