@@ -507,6 +507,37 @@
     },
     "faq": {
       "title": "GAMIFIED PROOF OF STAKE"
+    },
+    "wizard": {
+      "up": "POWER UP",
+      "down": "POWER DOWN",
+      "cancel": "CANCEL",
+      "start": {
+        "desc": {
+          "title": "Peerplays GPOS Wizard",
+          "txt-1": "Join GPOS by transferring your PPY to your GPOS balance.",
+          "txt-2": "Consistently participate in voting for the best Witnesses, Advisors, Proposals, and SONs. Share the exciting news and DApps available on Peerplays with others.",
+          "txt-3": "The more value that comes into Peerplays blockchain through its operations, the more those that participate to help make it secure will earn!",
+          "txt-4": "If you want to increase your participation rewards you can do it two ways:",
+          "txt-5": "1. Transfer more PPY into your GPOS balance",
+          "txt-6": "2. Share Peerplays with others",
+          "txt-7": "Together as a Decentralized Autonomous Cooperative (DAC), we can ensure Peerplays remains the most secure provably fair blockchain globally."
+        },
+        "right": {
+          "1": "Power Up & Power Down",
+          "2": "Vote",
+          "3": "Finish"
+        }
+      },
+      "step-1": {
+        "title": "TBD"
+      },
+      "step-2": {
+        "title": "TBD"
+      },
+      "step-3": {
+        "title": "TBD"
+      }
     }
   },
   "about": {

@@ -14,6 +14,7 @@ const Config = {
   APP_PACKAGE_VERSION: version,
   BLOCKCHAIN_URLS: blockchainUrls,
   FAUCET_URLS: shuffledFaucetUrls,
+  IS_TESTNET: env.raw.IS_TESTNET,
 
   IDLE_TIMEOUT: 600000, // Time is in milliseconds.
   CORE_ASSET: env.raw.prefix,

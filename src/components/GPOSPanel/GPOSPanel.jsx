@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import Translate from 'react-translate-component';
 import asset_utils from '../../common/asset_utils';
-import {HelpActions, DashboardPageActions} from '../../actions';
+import {HelpActions, DashboardPageActions, GPOSActions} from '../../actions';
 import {getTotalGposBalance} from '../../selectors/GPOSSelector';
 import {FormattedNumber} from 'react-intl';
 import {anchors} from '../Help/HelpModal';
@@ -17,6 +17,10 @@ class GPOSPanel extends Component {
 
   componentDidMount() {
     this.props.fetchGposInfo();
+  }
+
+  openModal = () => {
+    this.props.toggleGposWizard(true);
   }
 
   renderGposStats = () => {
@@ -83,7 +87,18 @@ class GPOSPanel extends Component {
     let {totalGpos} = this.props;
     let stats = totalGpos && totalGpos > 0 ?
       this.renderGposStats() : null;
-    let classModifier = totalGpos && totalGpos > 0 ? '' : '--no-stats';
+
+    let classModifier = () => {
+      let mod = totalGpos && totalGpos > 0 ? '' : '--no-stats';
+
+      // No gpos balance processed yet
+      if (totalGpos === -1) {
+        mod = '--hidden';
+      }
+
+      return mod;
+    };
+
     let btnString = totalGpos && totalGpos > 0 ? 'gpos.side.participate' : 'gpos.side.start';
 
     return (
@@ -108,10 +123,10 @@ class GPOSPanel extends Component {
         </div>
         <button
           type='button'
-          className={ `btn btn-content__head gpos-panel__btn${classModifier}` }
-          // onClick={ /* open gpos wizard */ }
+          className={ `btn btn-content__head gpos-panel__btn${classModifier()}` }
+          onClick={ this.openModal }
         >
-          <img className={ `gpos-panel__img-thumb${classModifier}` } src='images/thumb-up.png' alt='thumb'/>
+          <img className={ `gpos-panel__img-thumb${classModifier()}` } src='images/thumb-up.png' alt='thumb'/>
           <Translate content={ btnString }/>
         </button>
         {stats}
@@ -138,6 +153,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
     toggleHelpModal: HelpActions.toggleHelpAndScroll,
+    toggleGposWizard: GPOSActions.toggleGPOSWizardModal,
     fetchGposInfo: DashboardPageActions.getGposInfo
   },
   dispatch
