@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Added
 
-- remote mainnet api endpoints conncetivity method (WAL-271)
+- remote mainnet api endpoints connectivity method (WAL-271)
 - GPOS Wizard start screen (WAL-249)
 
 <a name="1.0.6"></a>
