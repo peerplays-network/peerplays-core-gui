@@ -46,6 +46,15 @@ class ConnectManager {
       });
   }
 
+  /**
+   * If application configuration is for mainnet, retrieve them from a cloud-based source.
+   * Can be any gist or source provided it is the following format:
+   * - has .js extension (for readability)
+   * - structured as: const endpoints = ['wss://endpoint1', 'wss://endpoint2', etc];
+   *
+   * @returns {array} - mainnet API endpoints
+   * @memberof ConnectManager
+   */
   async getActiveWitnessEndpoints() {
     if (!Config.IS_TESTNET) {
       const endpointsGist = 'https://api.github.com/gists/024a306a5dc41fd56bd8656c96d73fd0';
