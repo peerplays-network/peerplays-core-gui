@@ -33,46 +33,89 @@ class ConnectManager {
     this.blockchainUrlIndex++;
     const connectionString = this.sortedUrls[this.blockchainUrlIndex];
 
-    return Apis.instance(connectionString, true).init_promise.then(() => {
-      console.log(`%cConnected to: ${connectionString}.`,
-        'background: #222 color: green; font-size: large');
-    }).catch(() => {
-      console.error(`%cConnection to: ${connectionString} failed.`,
-        'background: #222; color: red; font-size: large');
-
-      return Promise.reject();
-    });
-  }
-
-  connectToBlockchain(callback, store) {
-
-    let wsConnectionManager = new ConnectionManager({
-      urls: this.blockchainUrls
-    });
-
-    if (this.sortedUrls.length > 1) {
-      return this.reconnectToBlockchain();
-    } else {
-      this.callback = callback;
-      this.callback(store);
-
-      return wsConnectionManager.sortNodesByLatency().then((list) => {
-        return list;
-      }).then((list) => {
-        this.sortedUrls = list;
-        const connectionString = list[this.blockchainUrlIndex];
-
-        // Display the blockchain api node that we are conencting to.
-        console.log(`%cConnected to: ${connectionString}.`,
-          'background: #222 color: green; font-size: large');
-        return Apis.instance(connectionString, true).init_promise;
-      }).catch((err) => {
-        console.error('%cNo Available Nodes.',
-          'background: #222; color: red; font-size: large: ', err);
+    return Apis
+      .instance(connectionString, true)
+      .init_promise
+      .then(() => {
+        console.log(`%cConnected to: ${connectionString}.`, 'background: #222 color: green; font-size: large');
+      })
+      .catch(() => {
+        console.error(`%cConnection to: ${connectionString} failed.`, 'background: #222; color: red; font-size: large');
 
         return Promise.reject();
       });
+  }
+
+  async getActiveWitnessEndpoints() {
+    if (!Config.IS_TESTNET) {
+      const endpointsGist = 'https://api.github.com/gists/024a306a5dc41fd56bd8656c96d73fd0';
+      let eps;
+
+      const clean = (values) => {
+        let cleanedValues = values;
+
+        for (let i = 0; i < values.length; i++) {
+          cleanedValues[i] = cleanedValues[i].trim();
+        }
+
+        return cleanedValues;
+      };
+
+      try {
+        const res = await fetch(endpointsGist);
+        const data = await res.json();
+        let keys = Object.keys(data.files);
+
+        // Loop over the keys, extract the endpoints and convert to an array.
+        for (let i_1 = 0; i_1 < keys.length; i_1++) {
+          let key = keys[i_1];
+          let content = data.files[key].content;
+          eps = clean(content.replace('const endpoints = [', '').replace('];', '').replace(/'/g, '').split(','));
+        }
+
+        return eps;
+      } catch (err) {
+        return console.error(err);
+      }
+    } else {
+      return this.blockchainUrls;
     }
+  }
+
+  connectToBlockchain(callback, store) {
+    return this.getActiveWitnessEndpoints().then((e) => {
+      this.blockchainUrls = e;
+    }).then(() => {
+      let wsConnectionManager = new ConnectionManager({urls: this.blockchainUrls});
+
+      if (this.sortedUrls.length > 1) {
+        return this.reconnectToBlockchain();
+      } else {
+        this.callback = callback;
+        this.callback(store);
+
+        return wsConnectionManager
+          .sortNodesByLatency()
+          .then((list) => {
+            return list;
+          })
+          .then((list) => {
+            this.sortedUrls = list;
+            const connectionString = list[this.blockchainUrlIndex];
+
+            // Display the blockchain api node that we are conencting to.
+            console.log(`%cConnected to: ${connectionString}.`, 'background: #222 color: green; font-size: large');
+            return Apis
+              .instance(connectionString, true)
+              .init_promise;
+          })
+          .catch((err) => {
+            console.error('%cNo Available Nodes.', 'background: #222; color: red; font-size: large: ', err);
+
+            return Promise.reject();
+          });
+      }
+    });
   }
 
   /**
@@ -88,7 +131,9 @@ class ConnectManager {
    * @param {function} callback
    */
   setDefaultRpcConnectionStatusCallback(callback) {
-    return Apis.instance().setRpcConnectionStatusCallback(callback);
+    return Apis
+      .instance()
+      .setRpcConnectionStatusCallback(callback);
   }
 
   /**
