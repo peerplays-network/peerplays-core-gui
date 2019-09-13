@@ -7,28 +7,6 @@ $breakpoints: (
   sm: 1275px
 );
 
-//
-// RESPOND BELOW
-//––––––––––––––––––––––––––––––––––––––––––––––––––
-// @include respond-to(mac) {}
-@mixin respond-to($breakpoint) {
-  // If the breakpoint exists in the map.
-  @if map-has-key($breakpoints, $breakpoint) {
-    // Get the breakpoint value.
-    $breakpoint-value: map-get($breakpoints, $breakpoint);
-    // Write the media query.
-    @media (max-width: ($breakpoint-value - 1)) {
-      @content;
-    }
-  }
-  // If the breakpoint doesn't exist in the map.
-  @else {
-
-    // Log a warning.
-    @warn 'Invalid breakpoint: #{$breakpoint}.';
-  }
-}
-
 @mixin gpos-start-btn {
   @include respond-to(mac) {
     width: 133px;
@@ -58,7 +36,7 @@ $breakpoints: (
   max-height: 869px;
   margin: 0 auto;
   border-radius: 15px 0 0 15px;
-  background: transparent radial-gradient(closest-side at 50% 52%, rgb(61, 93, 203) 0%, rgb(49, 53, 121) 100%);
+  background: $gpos-wizard-bg;
 
   &__bg {
     display: flex;
@@ -71,7 +49,7 @@ $breakpoints: (
     left: 0;
     z-index: 2;
     margin: 0 auto;
-    background: rgba(0, 0, 0, 0.5);
+    background: $gpos-wizard-dialogue-fade;
     overflow: auto;
     resize: both;
   }
@@ -98,33 +76,20 @@ $breakpoints: (
       border: 2px solid transparent;
 
       &:active {
-        border-color: rgb(51, 183, 239);
+        border-color: $gpos-blue-2;
       }
     }
 
     &-cancel {
-      background: rgb(41, 58, 143);
+      @include gpos-btn-hover-active($gpos-blue-3, $color-add2-bd-color);
 
-      &:hover {
-        background: lighten(rgb(41, 58, 143), $amount: 10%);
-      }
-
-      &:active {
-        background: darken(rgb(41, 58, 143), $amount: 10%);
-        border-color: $color-add2-bd-color;
-      }
+      background: $gpos-blue-3;
     }
 
     &-up {
-      background: rgb(51, 183, 239);
+      @include gpos-btn-hover-active($gpos-blue-2);
 
-      &:hover {
-        background: lighten(rgb(51, 183, 239), $amount: 10%);
-      }
-
-      &:active {
-        background: darken(rgb(51, 183, 239), $amount: 10%);
-      }
+      background: $gpos-blue-2;
     }
 
     &-down {
@@ -134,19 +99,13 @@ $breakpoints: (
 
       width: 207px;
       margin-right: 0;
-      background: rgb(19, 212, 183);
+      background: $gpos-green;
 
-      &:hover {
-        background: lighten(rgb(19, 212, 183), $amount: 10%);
-      }
-
-      &:active {
-        background: darken(rgb(19, 212, 183), $amount: 10%);
-      }
+      @include gpos-btn-hover-active($gpos-green);
 
       &[disabled] {
         border: 2px solid transparent;
-        background: rgb(41, 141, 161);
+        background: $gpos-green-disabled;
         cursor: not-allowed;
       }
     }
@@ -157,7 +116,7 @@ $breakpoints: (
       }
 
       font-size: 21px;
-      color: white;
+      color: $white;
     }
   }
 
@@ -185,11 +144,12 @@ $breakpoints: (
         border-radius: 0;
       }
 
+      @include gpos-box-shadow();
+
       flex-direction: column;
       justify-self: center;
       height: min-content;
-      background: rgba(255, 255, 255, 0.06);
-      box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
+      background: $gpos-wizard-right-bg;
     }
   }
 
@@ -199,14 +159,15 @@ $breakpoints: (
       height: 150px;
     }
 
+    @include gpos-box-shadow();
+
     position: relative;
     width: 583px;
     height: 180px;
     margin: auto;
     margin-bottom: 33px;
     border-radius: 6px;
-    background: rgba(255, 255, 255, 0.06);
-    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
+    background: $gpos-wizard-right-bg;
 
     &:nth-child(3) {
       margin-bottom: 0;

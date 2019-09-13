@@ -18,6 +18,26 @@
   box-shadow: $arguments;
 }
 
+@mixin gpos-box-shadow() {
+  box-shadow: 0 3px 20px $gpos-wizard-box-shadow;
+}
+
+@mixin gpos-btn-hover-active($color, $active-border-color: null) {
+  &:hover {
+    background: lighten($color, $amount: 10%);
+  }
+
+  @if ($active-border-color == null) {
+    // If $active-border-color is not passed...
+    $active-border-color: $gpos-blue-2;
+  }
+
+  &:active {
+    background: darken($color, $amount: 10%);
+    border-color: $active-border-color;
+  }
+}
+
 @mixin box-sizing($type: border-box) {
   -webkit-box-sizing: $type;
   -moz-box-sizing: $type;
@@ -286,4 +306,28 @@
   -ms-animation: $arguments;
   -o-animation: $arguments;
   animation: $arguments;
+}
+
+// MEDIA QUERIES
+
+//
+// RESPOND BELOW
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+// @include respond-to(mac) {}
+@mixin respond-to($breakpoint) {
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+    // Write the media query.
+    @media (max-width: ($breakpoint-value - 1)) {
+      @content;
+    }
+  }
+  // If the breakpoint doesn't exist in the map.
+  @else {
+
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
 }

@@ -37,8 +37,7 @@
     }
 
     &--hidden {
-      color: transparent;
-      background: transparent;
+      display: none;
     }
 
     &--no-stats {

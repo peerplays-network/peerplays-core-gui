@@ -19,7 +19,10 @@ class GPOSWizardWrapper extends Component {
 
   render() {
     let {totalGpos} = this.props;
-    const disablePowerDown = totalGpos && totalGpos > 0 ? false : true;
+    let disablePowerDown = totalGpos && totalGpos > 0 ? false : true;
+
+    // Override as we do not have gpos withdrawal functionality
+    disablePowerDown = true;
 
     return (
       <div className='gposModal'>

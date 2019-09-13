@@ -23,16 +23,30 @@ $green3: #13d4b7;
 $clear-color: $black;
 $clear-color2: $white;
 
+// --> black
+$gpos-wizard-dialogue-fade: rgba(0, 0, 0, 0.5);
+$gpos-wizard-right-bg: rgba(255, 255, 255, 0.06);
+$gpos-wizard-box-shadow: rgba(0, 0, 0, 0.15);
+// <-- black
+
 // ---> green
 $gpos-green: $green3;
 $gpos-green-hover: lighten($gpos-green, 10%);
+$gpos-green-active: darken($gpos-green, 10%);
+$gpos-green-disabled: rgb(41, 141, 161);
 
 // <--- green
 
 //---> blue
 
 $gpos-blue: rgb(75, 118, 235);
+$gpos-blue-2: rgb(51, 183, 239);
 $gpos-blue-hover: lighten($gpos-blue, 10%);
+$gpos-blue-2-hover: lighten($gpos-blue-2, 10%);
+$gpos-blue-2-active: darken($gpos-blue-2, 10%);
+$gpos-blue-3: rgb(41, 58, 143);
+$gpos-blue-3-hover: lighten($gpos-blue-2, 10%);
+$gpos-blue-3-active: darken($gpos-blue-2, 10%);
 $light-blue: #33b7ef;
 $green: #00fe95;
 $green2: #12cd6e;
@@ -86,6 +100,7 @@ $label-color: $new-blue9;
 
 $body-bg: radial-gradient(circle, #2660ca, $dark2);
 $body-login-bg: radial-gradient(circle, #2660ca, $dark2);
+$gpos-wizard-bg: transparent radial-gradient(closest-side at 50% 52%, rgb(61, 93, 203) 0%, rgb(49, 53, 121) 100%);
 $footer-bg: $new-blue5;
 $footer-bd-color: $new-blue5;
 $footer-color: $gray3;
