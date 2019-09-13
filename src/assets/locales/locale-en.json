@@ -512,6 +512,10 @@
       "up": "POWER UP",
       "down": "POWER DOWN",
       "cancel": "CANCEL",
+      "submit": "SUBMIT",
+      "vote": "Vote",
+      "step1": "Step 1",
+      "step2": "Step-2",
       "start": {
         "desc": {
           "title": "Peerplays GPOS Wizard",
@@ -530,7 +534,16 @@
         }
       },
       "step-1": {
-        "title": "TBD"
+        "desc": {
+          "title": "Power Up",
+          "txt-1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper ipsum ac ex imperdiet suscipit. Aliquam erat volutpat. Morbi rhoncus vitae libero quis gravida. Nullam eros ante, dictum in purus vitae, volutpat volutpat ante. Morbi dignissim purus ac sodales efficitur. Integer molestie elit at massa lacinia luctus. Suspendisse nisl lorem, vulputate blandit euismod quis, bibendum in nisi."
+        },
+        "right": {
+          "card-1": "Opening GPOS Balance:",
+          "card-2": "New GPOS Balance:",
+          "deposit": "Deposit:",
+          "skip": "Skip"
+        }
       },
       "step-2": {
         "title": "TBD"

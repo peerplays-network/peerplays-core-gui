@@ -6,24 +6,43 @@ import {GPOSActions} from '../../../actions';
 import Modal from 'react-modal';
 import {getTotalGposBalance} from '../../../selectors/GPOSSelector';
 import Start from './Start';
+import Step1 from './Step1';
 
 Modal.setAppElement('#content');
 
 class GPOSWizardWrapper extends Component {
+  /*
+    0 - start
+    1.1 - power up
+    1.2 - power down
+    2 - vote
+    3 - done
+  */
   state = {
-    currentStep: 1 // default, start page
+    currentStep: 0
   }
 
   closeModal = () => {
     this.props.toggleGPOSWizard();
   }
 
+  proceedOrRegress = (step) => {
+    this.setState({currentStep: step});
+  }
+
+  renderStepContent = (totalGpos) => {
+    let current = this.state.currentStep;
+
+    switch (current) {
+      case 0: return <Start totalGpos={ totalGpos } closeModal={ this.closeModal } proceedOrRegress={ this.proceedOrRegress }/>;
+      case 1.1: return <Step1 totalGpos={ totalGpos } proceedOrRegress={ this.proceedOrRegress }/>;
+      //no default
+    }
+  }
+
   render() {
     let {totalGpos} = this.props;
-    // let disablePowerDown = totalGpos && totalGpos > 0 ? false : true;
-
-    // // Override as we do not have gpos withdrawal functionality
-    // disablePowerDown = true;
+    let content = this.renderStepContent(totalGpos);
 
     return (
       <div className='gposModal'>
@@ -35,7 +54,7 @@ class GPOSWizardWrapper extends Component {
           className='gpos-modal'
         >
           {
-            <Start totalGpos={ totalGpos } closeModal={ this.closeModal }/>
+            content
           }
         </Modal>
       </div>

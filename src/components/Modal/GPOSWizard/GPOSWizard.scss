@@ -148,12 +148,12 @@ $breakpoints: (
 
       flex-direction: column;
       justify-self: center;
-      height: min-content;
+      height: 100%;
       background: $gpos-wizard-right-bg;
     }
   }
 
-  &__step {
+  &__card {
     @include respond-to(mac) {
       width: 487px;
       height: 150px;
@@ -168,6 +168,16 @@ $breakpoints: (
     margin-bottom: 33px;
     border-radius: 6px;
     background: $gpos-wizard-right-bg;
+
+    &--power {
+      @extend .gpos-modal__card;
+
+      height: 114px;
+
+      > .txt {
+        padding: 20px 0 0 32px;
+      }
+    }
 
     &:nth-child(3) {
       margin-bottom: 0;
