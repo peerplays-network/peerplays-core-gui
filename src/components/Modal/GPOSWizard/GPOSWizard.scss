@@ -64,6 +64,12 @@ $breakpoints: (
     justify-content: space-between;
     width: 583px;
     margin: 62px auto;
+
+    &--power {
+      @extend .gpos-modal__btns;
+
+      justify-content: space-evenly;
+    }
   }
 
   &__btn {
@@ -108,6 +114,30 @@ $breakpoints: (
         background: $gpos-green-disabled;
         cursor: not-allowed;
       }
+    }
+
+    &-submit {
+      @extend .gpos-modal__btn-up;
+    }
+
+    &-skip {
+      background: transparent;
+    }
+
+    &-minus, &-add {
+      flex-grow: 1;
+      font-size: 29px;
+      color: #838b96;
+    }
+
+    &-minus {
+      border-right: 2px solid #838b96;
+      border-radius: 5px 0 0 5px;
+    }
+
+    &-add {
+      border-left: 2px solid #838b96;
+      border-radius: 0 5px 5px 0;
     }
 
     &-txt {
@@ -174,9 +204,23 @@ $breakpoints: (
 
       height: 114px;
 
-      > .txt {
+      > .txt, > .balance {
         padding: 20px 0 0 32px;
       }
+
+      > .balance {
+        font-size: 29px;
+        color: $gpos-blue-balance;
+      }
+    }
+
+    &--picker {
+      @extend .gpos-modal__card;
+
+      display: flex;
+      height: 78px;
+      border-radius: 5px;
+      background: $white;
     }
 
     &:nth-child(3) {
@@ -231,6 +275,22 @@ $breakpoints: (
       height: 149px;
       margin-top: 23.28px;
       margin-left: 23.86px;
+    }
+  }
+
+  &__form {
+    &-amt-picker, &-row {
+      flex-grow: 12;
+    }
+  }
+
+  &__input {
+    &-amt {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      margin-left: 24px;
+      font-size: 29px;
     }
   }
 

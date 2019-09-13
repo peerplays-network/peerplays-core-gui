@@ -514,6 +514,7 @@
       "cancel": "CANCEL",
       "submit": "SUBMIT",
       "vote": "Vote",
+      "skip": "Skip",
       "step1": "Step 1",
       "step2": "Step-2",
       "start": {
@@ -542,7 +543,7 @@
           "card-1": "Opening GPOS Balance:",
           "card-2": "New GPOS Balance:",
           "deposit": "Deposit:",
-          "skip": "Skip"
+          "placeholderAmt": "100"
         }
       },
       "step-2": {

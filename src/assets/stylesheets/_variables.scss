@@ -40,6 +40,7 @@ $gpos-green-disabled: rgb(41, 141, 161);
 //---> blue
 
 $gpos-blue: rgb(75, 118, 235);
+$gpos-blue-balance: rgb(94, 180, 241);
 $gpos-blue-2: rgb(51, 183, 239);
 $gpos-blue-hover: lighten($gpos-blue, 10%);
 $gpos-blue-2-hover: lighten($gpos-blue-2, 10%);
@@ -159,7 +160,6 @@ $select-bd-color: $faded-color;
 $menu-limiter-color: $gray4;
 $dd-bg: $new-blue14;
 $calendarIcon-color: $gray5;
-
 
 //--------------------------
 //<---blue
