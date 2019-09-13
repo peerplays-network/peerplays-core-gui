@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.9"></a>
+## [1.0.9](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.6...v1.0.9) (2019-09-13)
+
+### Added
+
+- remote mainnet api endpoints conncetivity method (WAL-271)
+- GPOS Wizard start screen (WAL-249)
+
 <a name="1.0.6"></a>
 ## [1.0.6](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.1...v1.0.6) (2019-09-03)
 
