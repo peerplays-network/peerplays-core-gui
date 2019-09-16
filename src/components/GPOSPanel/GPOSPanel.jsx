@@ -91,11 +91,6 @@ class GPOSPanel extends Component {
     let classModifier = () => {
       let mod = totalGpos && totalGpos > 0 ? '' : '--no-stats';
 
-      // No gpos balance processed yet
-      if (totalGpos === -1) {
-        mod = '--hidden';
-      }
-
       return mod;
     };
 
