@@ -65,7 +65,7 @@ $breakpoints: (
     width: 583px;
     margin: 62px auto;
 
-    &--power {
+    &-power {
       @extend .gpos-modal__btns;
 
       justify-content: space-evenly;
@@ -125,7 +125,6 @@ $breakpoints: (
     }
 
     &-minus, &-add {
-      flex-grow: 1;
       font-size: 29px;
       color: #838b96;
     }
@@ -133,11 +132,39 @@ $breakpoints: (
     &-minus {
       border-right: 2px solid #838b96;
       border-radius: 5px 0 0 5px;
+
+      & > .symbol__minus {
+        width:21px;
+        height: 3px;
+        margin: 0 20px;
+        background: rgb(131, 139, 150);
+      }
     }
 
     &-add {
       border-left: 2px solid #838b96;
       border-radius: 0 5px 5px 0;
+
+      & > .symbol__add {
+        background: rgb(131, 139, 150);
+
+        &-1 {
+          @extend .symbol__add;
+
+          position: absolute;
+          width: 21px;
+          height:3px;
+          margin: 9px 20px;
+        }
+
+        &-2 {
+          @extend .symbol__add;
+
+          width: 3px;
+          height:21px;
+          margin: 0 29px;
+        }
+      }
     }
 
     &-txt {
@@ -199,18 +226,34 @@ $breakpoints: (
     border-radius: 6px;
     background: $gpos-wizard-right-bg;
 
-    &--power {
+    &-power {
       @extend .gpos-modal__card;
 
       height: 114px;
 
-      > .txt, > .balance {
+      > .txt, > .balance, & > .balance--blue {
         padding: 20px 0 0 32px;
       }
 
       > .balance {
         font-size: 29px;
-        color: $gpos-blue-balance;
+
+        &--blue {
+          font-size: 29px;
+          color: $gpos-blue-balance;
+        }
+      }
+
+      &--transparent {
+        @extend .gpos-modal__card-power;
+
+        background: transparent;
+        box-shadow: none;
+
+        > .txt {
+          padding-bottom: 14px;
+          padding-left: 0;
+        }
       }
     }
 
@@ -286,11 +329,15 @@ $breakpoints: (
 
   &__input {
     &-amt {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      margin-left: 24px;
+      width: 100%;
+      padding-left: 24px;
+      line-height: 78px;
       font-size: 29px;
+
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
+        display: none;
+      }
     }
   }
 

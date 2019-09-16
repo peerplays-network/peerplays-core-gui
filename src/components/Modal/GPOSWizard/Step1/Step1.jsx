@@ -2,52 +2,16 @@ import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import Translate from 'react-translate-component';
 import {FormattedNumber} from 'react-intl';
-import {Field, reduxForm} from 'redux-form';
 import counterpart from 'counterpart';
 import asset_utils from '../../../../common/asset_utils';
 
-const renderField = ({
-  tabIndex,
-  className,
-  errors,
-  placeholder,
-  input,
-  label,
-  type,
-  meta: {
-    touched,
-    error,
-    dirty // eslint-disable-line
-  }
-}) => (
-  <label className='gpos-modal__form-row'>
-    <input
-      autoFocus={ tabIndex === '1' }
-      autoComplete='off'
-      // { ...input }
-      type={ type }
-      placeholder={ placeholder }
-      tabIndex={ tabIndex }
-      className={ (touched && error)
-        ? (className + ' error')
-        : className }
-    />
-    {(touched) && error && <span className='error__hint'>{error}</span>}
-    {!error && errors && errors.length
-      ? errors.map((err) => {
-        return (
-          <span className='error__hint' key={ err }>
-            {err}
-          </span>
-        );
-      })
-      : <span className='error__hint'>&nbsp;</span>}
-  </label>
-);
-
 class GposStep1 extends PureComponent {
   state = {
-    amount: 0
+    amount: 0,
+    totalGpos: this.props.totalGpos && this.props.asset ? this.props.totalGpos / Math.pow(10, this.props.asset.get('precision')) : 0,
+    precision: this.props.asset.get('precision'),
+    minAmount: asset_utils.getMinimumAmount(this.props.asset),
+    maxAmount: this.props.totalGpos / Math.pow(10, this.props.asset.get('precision'))
   }
 
   /**
@@ -56,8 +20,11 @@ class GposStep1 extends PureComponent {
    * @param {number} by - the amount to adjust by
    * @memberof GposStep1
    */
-  amountAdjust = (state, by) => {
-    this.setState({amount: state.amount + by});
+  amountAdjust = (by) => {
+    let newAmt = parseFloat((this.state.amount + by).toFixed(this.state.precision));
+    newAmt = newAmt > this.state.maxAmount ? this.state.maxAmount : newAmt;
+    newAmt = newAmt < 0 ? 0 : newAmt;
+    this.setState({amount: newAmt});
   }
 
   onSubmit = (e) => {
@@ -65,30 +32,56 @@ class GposStep1 extends PureComponent {
     console.log('submitting:');
   }
 
+  onEdit = (e) => {
+    let val = parseFloat(e.target.value);
+
+    if (val !== '' && !isNaN(val)) {
+      // Make sure we are working with a number (user can potentially edit the html input type).
+      val = isNaN(val) ? 0 : val;
+      // Only allow positive floats.
+      val = val < 0 ? 0 : val;
+
+      // Make sure the amount does not exceed the users balance.
+      val = val.toFixed(this.state.precision);
+      val = parseFloat(val);
+      val = val > this.state.maxAmount ? this.state.maxAmount : val;
+      e.target.value = val;
+      this.setState({amount: val});
+    }
+  }
+
   renderAmountPicker = () => {
-    let {errors} = this.props;
+    let min = this.state.minAmount;
+    let max = this.state.maxAmount;
     return(
       <div className='gpos-modal__card--picker'>
-        <button className='gpos-modal__btn-minus' onClick={ this.amountAdjust(-1) }>-</button>
+        <button className='gpos-modal__btn-minus' onClick={ () => this.amountAdjust(-min) }><div className='symbol__minus'/></button>
         <form className='gpos-modal__form-amt-picker' id='amountPicker' onSubmit={ this.onSubmit }>
-          <Field
+          <input
             name='gpos_amt'
-            errors={ errors }
+            id='gpos_amt'
             className='gpos-modal__input-amt'
-            component={ renderField }
             placeholder={ counterpart.translate('gpos.wizard.step-1.right.placeholderAmt') }
             type='number'
+            value={ this.state.amount }
+            onChange={ this.onEdit }
+            onBlur={ this.onEdit }
             tabIndex='1'
+            min='0'
+            max={ max }
+            step={ min }
           />
         </form>
-        <button className='gpos-modal__btn-add' onClick={ this.amountAdjust(1) }>+</button>
+        <button htmlFor='gpos_amt' className='gpos-modal__btn-add' onClick={ () => this.amountAdjust(min) }>
+          <div className='symbol__add-1'/><div className='symbol__add-2'/>
+        </button>
       </div>
     );
   }
 
   renderPowerUp = () => {
     return(
-      <div className=''>
+      <div className='gpos-modal__card-power--transparent'>
         <Translate
           component='p'
           className='txt'
@@ -104,7 +97,7 @@ class GposStep1 extends PureComponent {
   }
 
   render() {
-    let {totalGpos, proceedOrRegress, asset} = this.props, symbol;
+    let {proceedOrRegress, asset} = this.props, symbol;
 
     if (asset) {
       symbol = asset_utils.getSymbol(asset.get('symbol'));
@@ -127,24 +120,18 @@ class GposStep1 extends PureComponent {
           </div>
         </div>
         <div className='gpos-modal__content-right'>
-          <div className='gpos-modal__card--power'>
+          <div className='gpos-modal__card-power'>
             <Translate
               component='p'
               className='txt'
               content='gpos.wizard.step-1.right.card-1'
             />
-            <div className='balance'>
-              {totalGpos && asset
-                ? <FormattedNumber
-                  value={ totalGpos && asset
-                    ? totalGpos / Math.pow(10, asset.get('precision'))
-                    : totalGpos
-                  }
-                  minimumFractionDigits={ 0 }
-                  maximumFractionDigits={ asset.get('precision') }
-                />
-                : 0
-              } {symbol}
+            <div className='balance--blue'>
+              <FormattedNumber
+                value={ this.state.totalGpos }
+                minimumFractionDigits={ 0 }
+                maximumFractionDigits={ asset.get('precision') }
+              /> {symbol}
             </div>
           </div>
 
@@ -152,14 +139,15 @@ class GposStep1 extends PureComponent {
             this.renderPowerUp()
           }
 
-          <div className='gpos-modal__card--power'>
+          <div className='gpos-modal__card-power'>
             <Translate
               component='p'
               className='txt'
               content='gpos.wizard.step-1.right.card-2'
             />
+            <div className='balance'>{ this.state.totalGpos - this.state.amount} {symbol}</div>
           </div>
-          <div className='gpos-modal__btns--power'>
+          <div className='gpos-modal__btns-power'>
             <button className='gpos-modal__btn-skip' onClick={ () => proceedOrRegress(2) }>
               <Translate className='gpos-modal__btn-txt' content='gpos.wizard.skip'/>
             </button>
@@ -177,30 +165,11 @@ class GposStep1 extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
+  let asset = state.dashboardPage.vestingAsset;
+
   return {
-    asset: state.dashboardPage.vestingAsset
+    asset
   };
 };
-
-// Decorate the form component
-GposStep1 = reduxForm({
-  form: 'claimBtsLoginForm', // a unique name for this form,
-  validate: (values) => {
-    const errors = {};
-
-    if (!values.gpos_amt) {
-      // if no number, ...
-      // errors.gpos_amt = counterpart.translate('errors.paste_your_redemption_key_here');
-    } else {
-      try {
-        // validate
-      } catch (e) {
-        // error handle
-      }
-    }
-
-    return errors;
-  }
-})(GposStep1);
 
 export default connect(mapStateToProps, null)(GposStep1);

@@ -27,7 +27,6 @@ class GPOSWizardWrapper extends Component {
   }
 
   proceedOrRegress = (step) => {
-    // console.log(step);
     this.setState({currentStep: step});
   }
 
