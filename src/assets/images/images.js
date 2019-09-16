@@ -29,6 +29,7 @@ require('file-loader?name=images/[name].png!./thumb-up.png');
 require('file-loader?name=images/gpos/[name].png!./gpos/step1.png');
 require('file-loader?name=images/gpos/[name].png!./gpos/step2.png');
 require('file-loader?name=images/gpos/[name].png!./gpos/step3.png');
+require('file-loader?name=images/gpos/[name].png!./gpos/line.png');
 
 /**
  * RPS Game

@@ -81,7 +81,7 @@ class GposStep1 extends PureComponent {
 
   renderPowerUp = () => {
     return(
-      <div className='gpos-modal__card-power--transparent'>
+      <div className='gpos-modal__card-power--transparent tall'>
         <Translate
           component='p'
           className='txt'
@@ -157,6 +157,25 @@ class GposStep1 extends PureComponent {
             <button className='gpos-modal__btn-submit' type='submit' form='amountPicker'>
               <Translate className='gpos-modal__btn-txt' content='gpos.wizard.submit'/>
             </button>
+          </div>
+          <div className='gpos-modal__progress'>
+            <div className='gpos-modal__progress-wrapper'>
+              <div className='gpos-modal__progress-1'>
+                <div className='circle'>1</div>
+                <div className='txt'>
+                  <p>Power Up</p>
+                  <p>Step 1</p>
+                </div>
+              </div>
+              <img className='line' src='images/gpos/line.png' alt='------' />
+              <div className='gpos-modal__progress-2'>
+                <div className='circle'>2</div>
+                <div className='txt'>
+                  <p>Vote</p>
+                  <p>Step 2</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

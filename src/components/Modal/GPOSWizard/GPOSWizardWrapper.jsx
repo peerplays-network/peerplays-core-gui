@@ -43,15 +43,16 @@ class GPOSWizardWrapper extends Component {
   render() {
     let {totalGpos} = this.props;
     let content = this.renderStepContent(totalGpos);
+    let dialogueClass = `gpos-modal${'-' + this.state.currentStep.toString().replace('.', '-')}`;
 
     return (
-      <div className='gposModal'>
+      <div>
         <Modal
           isOpen={ this.props.showGPOSWizardModal }
           contentLabel='onRequestClose Example'
           onRequestClose={ this.handleCloseModal }
           overlayClassName='gpos-modal__bg'
-          className='gpos-modal'
+          className={ dialogueClass }
         >
           {
             content

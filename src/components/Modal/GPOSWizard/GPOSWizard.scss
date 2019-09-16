@@ -18,7 +18,7 @@ $breakpoints: (
   border-radius: 10px;
 }
 
-.gpos-modal {
+@mixin gpos-dialogue {
   @include respond-to(mac) {
     max-width: 1255px;
     max-height: 726px;
@@ -37,6 +37,25 @@ $breakpoints: (
   margin: 0 auto;
   border-radius: 15px 0 0 15px;
   background: $gpos-wizard-bg;
+}
+
+.gpos-modal {
+  &-0, &-1-1 {
+    @include gpos-dialogue();
+  }
+
+  &-1-1 {
+    max-height: 881px;
+    border-radius: 15px 0 15px 15px;
+
+    @include respond-to(mac) {
+      max-height: 735px;
+    }
+
+    .gpos-modal__content-right {
+      border-radius: 0 0 15px;
+    }
+  }
 
   &__bg {
     display: flex;
@@ -68,7 +87,17 @@ $breakpoints: (
     &-power {
       @extend .gpos-modal__btns;
 
+      @include respond-to(mac) {
+        margin-top: 86px;
+      }
+
+      @include respond-to(sm) {
+        padding-bottom: 160px;
+      }
+
       justify-content: space-evenly;
+      margin-top: 103px;
+      margin-bottom: 58px;
     }
   }
 
@@ -229,19 +258,43 @@ $breakpoints: (
     &-power {
       @extend .gpos-modal__card;
 
+      @include respond-to(mac) {
+        height: 95px;
+        margin-bottom: 43px;
+      }
+
       height: 114px;
+      margin-bottom: 52px;
 
       > .txt, > .balance, & > .balance--blue {
+        @include respond-to(mac) {
+          font-size: 19px;
+        }
+
         padding: 20px 0 0 32px;
+        font-size: 25px;
       }
 
       > .balance {
+        @include respond-to(mac) {
+          font-size: 23px;
+        }
+
         font-size: 29px;
 
         &--blue {
+          @include respond-to(mac) {
+            font-size: 23px;
+          }
+
+          padding-top: 5px;
           font-size: 29px;
           color: $gpos-blue-balance;
         }
+      }
+
+      > .balance, > .balance--blue {
+        padding-top: 5px;
       }
 
       &--transparent {
@@ -251,8 +304,24 @@ $breakpoints: (
         box-shadow: none;
 
         > .txt {
+          @include respond-to(mac) {
+            font-size: 18px;
+          }
+
+          padding-top: 0;
           padding-bottom: 14px;
           padding-left: 0;
+          font-size: 23px;
+        }
+
+        &.tall {
+          @include respond-to(mac) {
+            height: 95px;
+            margin-bottom: 23px;
+          }
+
+          height: 132px;
+          margin-bottom: 27px;
         }
       }
     }
@@ -260,8 +329,13 @@ $breakpoints: (
     &--picker {
       @extend .gpos-modal__card;
 
+      @include respond-to(mac) {
+        height: 65px;
+      }
+
       display: flex;
       height: 78px;
+      margin-bottom: 0;
       border-radius: 5px;
       background: $white;
     }
@@ -329,6 +403,10 @@ $breakpoints: (
 
   &__input {
     &-amt {
+      @include respond-to(mac) {
+        line-height: 65px;
+      }
+
       width: 100%;
       padding-left: 24px;
       line-height: 78px;
@@ -338,6 +416,63 @@ $breakpoints: (
       &::-webkit-outer-spin-button {
         display: none;
       }
+    }
+  }
+
+  &__progress {
+    @include respond-to(mac) {
+      height: 133px;
+    }
+
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 160px;
+    border-radius: 0 0 15px 15px;
+    background: #3b56bb;
+    box-shadow: 0 -5px 20px #00000034;
+
+    &-wrapper {
+      display: flex;
+      width: 400px;
+      margin: auto;
+    }
+
+    &-1, &-2 {
+      display: flex;
+      width: 176px;
+      margin: auto;
+
+      .circle {
+        width: 44px;
+        height: 44px;
+        padding: 10px;
+        border: 2px solid #13d4b7;
+        border-radius: 50%;
+        text-align: center;
+      }
+
+      .txt {
+        display: flex;
+        flex-flow: column;
+        margin-left: 10px;
+      }
+    }
+
+    &-2 {
+      color: rgb(157, 171, 221);
+
+      .circle {
+        color: rgb(157, 171, 221);
+        border-color: rgb(157, 171, 221);
+      }
+    }
+
+    .line {
+      height: 2px;
+      margin: auto 50px;
     }
   }
 
