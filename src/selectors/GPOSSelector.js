@@ -1,22 +1,22 @@
 import {createSelector} from 'reselect';
 
 const getBalancesIds = (state) => state.dashboardPage.vestingBalancesIds;
-const getBalances = (state) => state.dashboardPage.gposBalances;
+const getGposBalances = (state) => state.dashboardPage.gposBalances;
+
+export const getCoreBalance = (state) => {
+  let coreToken = state.dashboardPage.coreToken;
+  return coreToken.getIn([0, 'available']);
+};
 
 /**
  * Custom selector from multiple data sets from state.
  * Gathers all gpos balance transaction items for the user and totals them.
  */
 export const getTotalGposBalance = createSelector(
-  [ getBalancesIds, getBalances ],
+  [ getBalancesIds, getGposBalances ],
   (balanceIds, balances) => {
-    let totalAmount = -1,
-      totalClaimable = -1;
-
-    if (balanceIds.size > 0) {
-      totalAmount = 0;
+    let totalAmount = 0,
       totalClaimable = 0;
-    }
 
     balanceIds.forEach((balanceId) => {
       if (balances.size > 0) {

@@ -70,6 +70,7 @@
     "asset_claim_fees": "claimed asset fees of %(amount)s from %(from)s fee pool",
     "fill_order": "%(account)s bought %(received)s at %(price)s",
     "vesting_balance_withdraw": "%(account)s withdrew vesting balance of %(amount)s",
+    "vesting_balance_deposit": "%(account)s deposited vesting balance of %(amount)s",
     "balance_claim": "%(account)s claimed a balance of %(amount)s",
     "publish_feed": "%(account)s published feed price of %(price)s",
     "set_proxy": "%(account)s set %(proxy)s as their voting proxy",
