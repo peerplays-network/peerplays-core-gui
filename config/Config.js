@@ -27,6 +27,9 @@ const Config = {
     sortingMethod: 'recent', // recent OR oldest
     timeout: 7500, // 7.5 seconds for auto-dismissal messages
     disableActionsInRedux: false
+  },
+  gpos: {
+    conditionalStats: false // if `true`, only show gpos stats if the users' gpos balance is > 0.
   }
 };
 
