@@ -31,7 +31,7 @@ class GPOSActions {
    * @memberof GPOSActions
    */
   static getPowerUpTransaction(owner, amount, asset_symbol) {
-    return (dispatch, getState) => {
+    return (dispatch, getState) => { /* eslint-disable-line */
       return new Promise((resolve, reject) => {
         const is_gpos = true;
         let begin_timestamp = new Date();
@@ -49,7 +49,7 @@ class GPOSActions {
               begin_timestamp
             }
           ],
-          vesting_balance_type: is_gpos
+          balance_type: is_gpos
         });
 
         tr.add_operation(power_up_op);
