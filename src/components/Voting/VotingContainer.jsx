@@ -10,12 +10,9 @@ import SLoader from '../Loaders/SLoader';
 import {bindActionCreators} from 'redux';
 
 class VotingContainer extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      loaded: false
-    };
+  state = {
+    loaded: false,
+    selectedTab: 0
   }
 
   componentWillMount() {
@@ -25,7 +22,7 @@ class VotingContainer extends React.Component {
   }
 
   onChangeActiveMenuItem(e) {
-    let selectedTab;
+    let {selectedTab} = this.state;
 
     switch (e) {
       case 0:
@@ -41,17 +38,19 @@ class VotingContainer extends React.Component {
         selectedTab = 'proxy';
     }
 
-    this.props.router.push(`/explore/voting/${selectedTab}`);
+    return selectedTab;
+    // this.props.router.push(`/explore/voting/${selectedTab}`);
   }
 
-  getCurrentTabFromParams(props) {
-    return props.routes[props.routes.length - 1]['params']['tab'];
-  }
+  // getCurrentTabFromParams(props) {
+  //   return props.routes[props.routes.length - 1]['params']['tab'];
+  // }
 
   render() {
     let selectedIndex;
 
-    switch (this.getCurrentTabFromParams(this.props)) {
+    // switch (this.getCurrentTabFromParams(this.props)) {
+    switch (this.state.selectedTab) {
       case 'proxy':
         selectedIndex = 0;
         break;

@@ -7,15 +7,20 @@ import Modal from 'react-modal';
 import {getTotalGposBalance} from '../../../selectors/GPOSSelector';
 import Start from './Start';
 import Step1 from './Step1';
+import Vote from './Vote';
 
 Modal.setAppElement('#content');
+
+// TODO: refactor names of GPOSWizard to GPOSModal
+// TODO: renove references of "step(s)" as this is no longer a "steps" wizard.
+
 
 class GPOSWizardWrapper extends Component {
   /*
     0 - start
     1.1 - power up
     1.2 - power down
-    2 - vote
+    2 - vote // TODO: THIS SCREEN WAL-251
     3 - done
   */
   state = {
@@ -36,6 +41,7 @@ class GPOSWizardWrapper extends Component {
     switch (current) {
       case 0: return <Start totalGpos={ totalGpos } closeModal={ this.closeModal } proceedOrRegress={ this.proceedOrRegress }/>;
       case 1.1: return <Step1 totalGpos={ totalGpos } proceedOrRegress={ this.proceedOrRegress }/>;
+      case 2: return <Vote/>;
       //no default
     }
   }

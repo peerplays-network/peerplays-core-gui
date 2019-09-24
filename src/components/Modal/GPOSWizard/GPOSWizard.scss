@@ -1,6 +1,9 @@
 @import '../../../assets/stylesheets/mixins';
 @import '../../../assets/stylesheets/variables';
 
+$max-height: 869px;
+$max-width:1505px;
+
 $breakpoints: (
   default: 1920px,
   mac: 1531px,
@@ -31,16 +34,16 @@ $breakpoints: (
 
   position: relative;
   width: 100%;
-  max-width: 1505px;
+  max-width: $max-width;
   height: 100%;
-  max-height: 869px;
+  max-height: $max-height;
   margin: 0 auto;
   border-radius: 15px 0 0 15px;
   background: $gpos-wizard-bg;
 }
 
 .gpos-modal {
-  &-0, &-1-1 {
+  &-0, &-1-1, &-2 {
     @include gpos-dialogue();
   }
 
@@ -54,6 +57,20 @@ $breakpoints: (
 
     .gpos-modal__content-right {
       border-radius: 0 0 15px;
+    }
+  }
+
+  &-2 {
+    .main {
+      height: 670px;
+    }
+
+    .tab__deploy.block {
+      height: 100%;
+    }
+
+    .box-inner-2, .main {
+      overflow: auto;
     }
   }
 
