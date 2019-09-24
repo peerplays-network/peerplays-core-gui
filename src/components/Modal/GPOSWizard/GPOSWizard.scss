@@ -61,17 +61,46 @@ $breakpoints: (
   }
 
   &-2 {
+    min-width: 950px;
+
     .main {
-      height: 93.7%;
+      height: 100%;
+      margin-top: 0;
+      padding-top: 55px;
     }
 
     .box-inner-2, .main {
       overflow: auto;
     }
 
-    .tab-deploy {
+    .tab__deploy {
       margin-bottom: 0;
+      padding: 55px 40px 50px;
       border-radius: 0;
+    }
+
+    .box-inner {
+      margin-bottom: 0;
+      padding: 0 15px 30px;
+      background: none;
+      box-shadow: none;
+    }
+
+    .table2__btns {
+      padding: 0;
+    }
+
+    .tab__deployHead {
+      padding: 0 15px;
+    }
+
+    .table2,
+    .assets__list {
+      box-shadow: none;
+    }
+
+    .assets__list {
+      background: rgba(255, 255, 255, 0.06);
     }
   }
 
@@ -116,6 +145,27 @@ $breakpoints: (
       justify-content: space-evenly;
       margin-top: 103px;
       margin-bottom: 58px;
+    }
+
+    &-vote {
+      position: relative;
+      padding-top: 73px;
+      text-align: right;
+
+      .gpos-modal__btn {
+        &-submit, &-cancel {
+          height: 70px;
+        }
+
+        &-submit {
+          width: 278px;
+          margin-left: 40px;
+        }
+
+        &-cancel {
+          width: 175px;
+        }
+      }
     }
   }
 
