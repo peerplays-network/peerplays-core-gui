@@ -42,8 +42,13 @@ $breakpoints: (
   background: $gpos-wizard-bg;
 }
 
+@mixin title {
+  margin-bottom: 33px;
+  font-size: 45px;
+}
+
 .gpos-modal {
-  &-0, &-1-1, &-2 {
+  &-0, &-1-1, &-2, &-3 {
     @include gpos-dialogue();
   }
 
@@ -102,6 +107,14 @@ $breakpoints: (
     .assets__list {
       background: rgba(255, 255, 255, 0.06);
     }
+  }
+
+  &-3 {
+    width: 1267px;
+    height: 687px;
+    border-radius: 15px;
+    color: $black;
+    background: $white;
   }
 
   &__bg {
@@ -463,6 +476,55 @@ $breakpoints: (
     }
   }
 
+  &__done {
+    display: flex;
+    margin: 56px 71px 67px 80px;
+
+    &-left {
+      flex-grow: 1;
+    }
+
+    &-right {
+      width: 627px;
+
+      .title {
+        @include title();
+      }
+
+      .txt {
+        &--spaced {
+          line-height: 35px;
+          font-size: 22px;
+        }
+
+        &--li {
+          position: relative;
+          margin-bottom: 10px;
+          padding-left: 1.5em;
+          border-radius: 10px;
+          font-size: 22px;
+          background: rgba(131, 139, 150, 0.08);
+          list-style: none;
+
+          &::before {
+            content: '\2022';
+            display: inline-block;
+            position: absolute;
+            top: -5px;
+            left: 0.3em;
+            vertical-align: middle;
+            margin: 0 5px;
+            font-size: 30px;
+          }
+        }
+      }
+
+      &.list {
+        display: inline-block;
+      }
+    }
+  }
+
   &__form {
     &-amt-picker, &-row {
       flex-grow: 12;
@@ -559,8 +621,7 @@ $breakpoints: (
       margin: auto;
 
       > .title {
-        margin-bottom: 33px;
-        font-size: 45px;
+        @include title();
       }
 
       > .txt {

@@ -8,12 +8,12 @@ import {getTotalGposBalance} from '../../../selectors/GPOSSelector';
 import Start from './Start';
 import Step1 from './Step1';
 import Vote from './Vote';
+import Done from './Done';
 
 Modal.setAppElement('#content');
 
 // TODO: refactor names of GPOSWizard to GPOSModal
 // TODO: renove references of "step(s)" as this is no longer a "steps" wizard.
-
 
 class GPOSWizardWrapper extends Component {
   /*
@@ -42,6 +42,7 @@ class GPOSWizardWrapper extends Component {
       case 0: return <Start totalGpos={ totalGpos } closeModal={ this.closeModal } proceedOrRegress={ this.proceedOrRegress }/>;
       case 1.1: return <Step1 totalGpos={ totalGpos } proceedOrRegress={ this.proceedOrRegress }/>;
       case 2: return <Vote finishHandler={ this.proceedOrRegress } cancelHandler={ this.proceedOrRegress }/>;
+      case 3: return <Done/>;
       //no default
     }
   }
