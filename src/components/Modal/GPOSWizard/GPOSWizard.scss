@@ -62,11 +62,16 @@ $breakpoints: (
 
   &-2 {
     .main {
-      height: 90%;
+      height: 93.7%;
     }
 
     .box-inner-2, .main {
       overflow: auto;
+    }
+
+    .tab-deploy {
+      margin-bottom: 0;
+      border-radius: 0;
     }
   }
 
@@ -541,6 +546,22 @@ $breakpoints: (
   }
 
   &__voting {
+    display: flex;
     height: 100%;
+
+    &--left {
+      width: 387px;
+      margin-top: 111px;
+      padding-left: 85px;
+
+      > .txt {
+        font-size: 45px;
+      }
+    }
+
+    &--right {
+      flex-grow: 1;
+      height: 100%;
+    }
   }
 }
