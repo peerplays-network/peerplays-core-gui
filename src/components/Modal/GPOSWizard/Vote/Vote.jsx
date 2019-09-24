@@ -6,7 +6,7 @@ import Voting from '../../../Voting/VotingContainer';
 class Vote extends React.Component {
   render() {
     return(
-      <div>
+      <div className='gpos-modal__voting'>
         <Voting/>
       </div>
     );
