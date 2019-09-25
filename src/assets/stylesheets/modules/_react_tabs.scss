@@ -52,19 +52,14 @@
 
       &[aria-selected=true] {
         color: $tab-color-active;
-        background: $tab-bg-active;
+        background: rgb(68, 90, 182);
         box-shadow: $table-shadow;
         opacity: 1;
         cursor: default;
       }
     }
-
-
-    &Panel {}
   }
 }
-
-
 
 .tab__deploy {
   display: block;

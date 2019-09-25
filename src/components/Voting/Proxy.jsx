@@ -157,7 +157,7 @@ class Proxy extends React.Component {
     return (
       <div
         id='proxy'
-        className='tab__deploy block'>
+        className='tab__deploy block proxy'>
         <div className='tab__deployHead'>
           <div className='title'>
             <Translate content='votes.proxy_short'/>

@@ -4,11 +4,9 @@
 $max-height: 869px;
 $max-width:1505px;
 
-$breakpoints: (
-  default: 1920px,
-  mac: 1531px,
-  sm: 1275px
-);
+$breakpoints: (default: 1920px,
+mac: 1531px,
+sm: 1275px);
 
 @mixin gpos-start-btn {
   @include respond-to(mac) {
@@ -48,8 +46,16 @@ $breakpoints: (
   font-size: 45px;
 }
 
+[class^='title'],
+[class*='txt'] {
+  font-family: $lato;
+}
+
 .gpos-modal {
-  &-0, &-1-1, &-2, &-3 {
+  &-0,
+  &-1-1,
+  &-2,
+  &-3 {
     @include gpos-dialogue();
   }
 
@@ -75,34 +81,39 @@ $breakpoints: (
       padding-top: 55px;
     }
 
-    .box-inner-2, .main {
-      overflow: auto;
+    .box {
+      padding: 0;
+
+      &-inner {
+        margin-bottom: 0;
+        padding: 0 15px 30px;
+        background: none;
+        box-shadow: none;
+      }
     }
 
     .tab__deploy {
       margin-bottom: 0;
       padding: 55px 40px 50px;
       border-radius: 0;
-    }
-
-    .box-inner {
-      margin-bottom: 0;
-      padding: 0 15px 30px;
-      background: none;
       box-shadow: none;
-    }
 
-    .table2__btns {
-      padding: 0;
-    }
+      &.proxy {
+        height: 74.6vh;
+      }
 
-    .tab__deployHead {
-      padding: 0 15px;
+      &Head {
+        padding: 0 15px;
+      }
     }
 
     .table2,
     .assets__list {
       box-shadow: none;
+    }
+
+    .table2__btns {
+      padding: 0;
     }
 
     .assets__list {
@@ -167,7 +178,8 @@ $breakpoints: (
       text-align: right;
 
       .gpos-modal__btn {
-        &-submit, &-cancel {
+        &-submit,
+        &-cancel {
           height: 70px;
         }
 
@@ -196,7 +208,10 @@ $breakpoints: (
   &__btn {
     @include gpos-start-btn();
 
-    &-cancel, &-up, &-down, &-done {
+    &-cancel,
+    &-up,
+    &-down,
+    &-done {
       @extend .gpos-modal__btn;
       @include transition(all .2s ease);
 
@@ -207,7 +222,8 @@ $breakpoints: (
       }
     }
 
-    &-cancel, &-done {
+    &-cancel,
+    &-done {
       @include gpos-btn-hover-active($gpos-blue-3, $color-add2-bd-color);
 
       background: $gpos-blue-3;
@@ -249,7 +265,8 @@ $breakpoints: (
       background: transparent;
     }
 
-    &-minus, &-add {
+    &-minus,
+    &-add {
       font-size: 29px;
       color: #838b96;
     }
@@ -259,7 +276,7 @@ $breakpoints: (
       border-radius: 5px 0 0 5px;
 
       & > .symbol__minus {
-        width:21px;
+        width: 21px;
         height: 3px;
         margin: 0 20px;
         background: rgb(131, 139, 150);
@@ -278,7 +295,7 @@ $breakpoints: (
 
           position: absolute;
           width: 21px;
-          height:3px;
+          height: 3px;
           margin: 9px 20px;
         }
 
@@ -286,7 +303,7 @@ $breakpoints: (
           @extend .symbol__add;
 
           width: 3px;
-          height:21px;
+          height: 21px;
           margin: 0 29px;
         }
       }
@@ -312,7 +329,8 @@ $breakpoints: (
     height: 100%;
     overflow: auto;
 
-    &-left, &-right {
+    &-left,
+    &-right {
       @include respond-to(mac) {
         padding-top: 56px;
       }
@@ -362,7 +380,9 @@ $breakpoints: (
       height: 114px;
       margin-bottom: 52px;
 
-      > .txt, > .balance, & > .balance--blue {
+      > .txt,
+      > .balance,
+      & > .balance--blue {
         @include respond-to(mac) {
           font-size: 19px;
         }
@@ -389,7 +409,8 @@ $breakpoints: (
         }
       }
 
-      > .balance, > .balance--blue {
+      > .balance,
+      > .balance--blue {
         padding-top: 5px;
       }
 
@@ -527,7 +548,8 @@ $breakpoints: (
           position: relative;
           margin-bottom: 10px;
           padding: 18.5px;
-          padding-left: 1.5em; /* stylelint-disable-line */
+          /* stylelint-disable-next-line */
+          padding-left: 1.5em;
           border-radius: 10px;
           font-weight: 700;
           font-size: 22px;
@@ -554,7 +576,8 @@ $breakpoints: (
   }
 
   &__form {
-    &-amt-picker, &-row {
+    &-amt-picker,
+    &-row {
       flex-grow: 12;
     }
   }
@@ -598,7 +621,8 @@ $breakpoints: (
       margin: auto;
     }
 
-    &-1, &-2 {
+    &-1,
+    &-2 {
       display: flex;
       width: 176px;
       margin: auto;
