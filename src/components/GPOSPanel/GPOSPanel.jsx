@@ -8,6 +8,7 @@ import {getTotalGposBalance} from '../../selectors/GPOSSelector';
 import {FormattedNumber} from 'react-intl';
 import {anchors} from '../Help/HelpModal';
 import AppUtils from '../../utility/AppUtils';
+import config from '../../../config/Config';
 
 class GPOSPanel extends Component {
   onClickHelpLearn = (e) => {
@@ -85,14 +86,18 @@ class GPOSPanel extends Component {
 
   render() {
     let {totalGpos} = this.props;
-    let stats = totalGpos && totalGpos > 0 ?
-      this.renderGposStats() : null;
+    let stats, classModifier;
 
-    let classModifier = () => {
-      let mod = totalGpos && totalGpos > 0 ? '' : '--no-stats';
+    // Render stats regardless of gpos balance.
+    stats = this.renderGposStats();
+    classModifier = '';
 
-      return mod;
-    };
+    // If enabled in config, conditionally render the GPOS stats seciton.
+    if (config.gpos.conditionalStats) {
+      stats = totalGpos && totalGpos > 0 ?
+        this.renderGposStats() : null;
+      classModifier = totalGpos && totalGpos > 0 ? '' : '--no-stats';
+    }
 
     let btnString = totalGpos && totalGpos > 0 ? 'gpos.side.participate' : 'gpos.side.start';
 
@@ -135,7 +140,7 @@ const mapStateToProps = (state) => {
   let gposInfo = state.dashboardPage.gposInfo;
   let gposReward = gposInfo && gposInfo.award && gposInfo.award.amount;
   let vestingFactor = gposInfo && gposInfo.vesting_factor;
-  let gposPerformance = AppUtils.trimNum((vestingFactor * 100 || 100), 2);
+  let gposPerformance = AppUtils.trimNum((vestingFactor * 100 || 0), 2);
 
   return {
     totalGpos: data.totalAmount,
