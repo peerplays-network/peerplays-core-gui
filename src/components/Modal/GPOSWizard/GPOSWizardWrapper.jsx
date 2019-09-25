@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {GPOSActions} from '../../../actions';
-// import Translate from 'react-translate-component';
 import Modal from 'react-modal';
 import {getTotalGposBalance} from '../../../selectors/GPOSSelector';
 import Start from './Start';
@@ -42,7 +41,7 @@ class GPOSWizardWrapper extends Component {
       case 0: return <Start totalGpos={ totalGpos } closeModal={ this.closeModal } proceedOrRegress={ this.proceedOrRegress }/>;
       case 1.1: return <Step1 totalGpos={ totalGpos } proceedOrRegress={ this.proceedOrRegress }/>;
       case 2: return <Vote finishHandler={ this.proceedOrRegress } cancelHandler={ this.proceedOrRegress }/>;
-      case 3: return <Done/>;
+      case 3: return <Done okHandler={ this.proceedOrRegress }/>;
       //no default
     }
   }

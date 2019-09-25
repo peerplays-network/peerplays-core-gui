@@ -40,6 +40,7 @@ $breakpoints: (
   margin: 0 auto;
   border-radius: 15px 0 0 15px;
   background: $gpos-wizard-bg;
+  overflow: auto;
 }
 
 @mixin title {
@@ -180,12 +181,22 @@ $breakpoints: (
         }
       }
     }
+
+    &-done {
+      padding-top: 18px;
+    }
+
+    [disabled] {
+      border: 2px solid transparent;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
   }
 
   &__btn {
     @include gpos-start-btn();
 
-    &-cancel, &-up, &-down {
+    &-cancel, &-up, &-down, &-done {
       @extend .gpos-modal__btn;
       @include transition(all .2s ease);
 
@@ -196,7 +207,7 @@ $breakpoints: (
       }
     }
 
-    &-cancel {
+    &-cancel, &-done {
       @include gpos-btn-hover-active($gpos-blue-3, $color-add2-bd-color);
 
       background: $gpos-blue-3;
@@ -206,6 +217,10 @@ $breakpoints: (
       @include gpos-btn-hover-active($gpos-blue-2);
 
       background: $gpos-blue-2;
+    }
+
+    &-done {
+      width: 229px;
     }
 
     &-down {
@@ -480,6 +495,14 @@ $breakpoints: (
     display: flex;
     margin: 56px 71px 67px 80px;
 
+    &-img {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 328px;
+      margin-left: 24px;
+    }
+
     &-left {
       flex-grow: 1;
     }
@@ -489,10 +512,13 @@ $breakpoints: (
 
       .title {
         @include title();
+
+        margin-bottom: 24px;
       }
 
       .txt {
         &--spaced {
+          margin-bottom: 15px;
           line-height: 35px;
           font-size: 22px;
         }
@@ -500,8 +526,10 @@ $breakpoints: (
         &--li {
           position: relative;
           margin-bottom: 10px;
-          padding-left: 1.5em;
+          padding: 18.5px;
+          padding-left: 1.5em; /* stylelint-disable-line */
           border-radius: 10px;
+          font-weight: 700;
           font-size: 22px;
           background: rgba(131, 139, 150, 0.08);
           list-style: none;
@@ -510,11 +538,11 @@ $breakpoints: (
             content: '\2022';
             display: inline-block;
             position: absolute;
-            top: -5px;
+            top: 10px;
             left: 0.3em;
             vertical-align: middle;
             margin: 0 5px;
-            font-size: 30px;
+            font-size: 35px;
           }
         }
       }

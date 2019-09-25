@@ -115,7 +115,7 @@ class GposStep1 extends PureComponent {
             step={ min }
           />
         </form>
-        <button htmlFor='gpos_amt' className='gpos-modal__btn-add' onClick={ () => this.amountAdjust(min) }>
+        <button htmlFor='gpos_amt' className='gpos-modal__btn-add disabled' onClick={ () => this.amountAdjust(min) }>
           <div className='symbol__add-1'/><div className='symbol__add-2'/>
         </button>
       </div>
@@ -205,7 +205,7 @@ class GposStep1 extends PureComponent {
             <button className='gpos-modal__btn-cancel' onClick={ () => proceedOrRegress(0) }>
               <Translate className='gpos-modal__btn-txt' content='gpos.wizard.cancel'/>
             </button>
-            <button className='gpos-modal__btn-submit' type='submit' form='amountPicker'>
+            <button disabled className='gpos-modal__btn-submit' type='submit' form='amountPicker'>
               <Translate className='gpos-modal__btn-txt' content='gpos.wizard.submit'/>
             </button>
           </div>
