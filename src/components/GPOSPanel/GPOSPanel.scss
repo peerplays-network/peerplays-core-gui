@@ -1,6 +1,12 @@
 @import '../../assets/stylesheets/mixins';
 @import '../../assets/stylesheets/variables';
 
+@mixin gpos-panel-btn() {
+  width: 271px;
+  height: 63px;
+  font-size: 19px;
+}
+
 .gpos-panel {
   display: flex;
   flex-direction: column;
@@ -16,8 +22,10 @@
 
   &__btn {
     @include transition(background .2s ease);
+    @include gpos-panel-btn();
 
     display: flex;
+    justify-content: center;
     align-items: center;
     margin-bottom: $gpos-panel-button-b-margin;
     padding-top: 2px;
@@ -34,6 +42,8 @@
     }
 
     &--no-stats {
+      @include gpos-panel-btn();
+
       margin-bottom: 10px;
       background: $gpos-green;
 
