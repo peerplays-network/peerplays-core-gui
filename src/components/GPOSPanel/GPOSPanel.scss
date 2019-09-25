@@ -18,7 +18,8 @@
     @include transition(background .2s ease);
 
     display: flex;
-    margin-bottom: 45px;
+    align-items: center;
+    margin-bottom: $gpos-panel-button-b-margin;
     padding-top: 2px;
     border: 2px solid transparent;
     background: $gpos-blue;
@@ -42,6 +43,10 @@
 
       &:active {
         background: darken($gpos-green, $amount: 10%);
+      }
+
+      &.cond {
+        margin-bottom: $gpos-panel-button-b-margin;
       }
     }
   }

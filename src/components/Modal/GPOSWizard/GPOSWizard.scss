@@ -43,7 +43,7 @@ sm: 1275px);
 
 @mixin title {
   margin-bottom: 33px;
-  font-size: 45px;
+  font-size: $f-45;
 }
 
 [class^='title'],
@@ -86,7 +86,7 @@ sm: 1275px);
 
       &-inner {
         margin-bottom: 0;
-        padding: 0 15px 30px;
+        padding: $p-gpos-box-inner;
         background: none;
         box-shadow: none;
       }
@@ -94,7 +94,7 @@ sm: 1275px);
 
     .tab__deploy {
       margin-bottom: 0;
-      padding: 55px 40px 50px;
+      padding: $p-gpos-tab-deploy;
       border-radius: 0;
       box-shadow: none;
 
@@ -103,7 +103,7 @@ sm: 1275px);
       }
 
       &Head {
-        padding: 0 15px;
+        padding: $p-gpos-tab-deploy-head;
       }
     }
 
@@ -267,7 +267,7 @@ sm: 1275px);
 
     &-minus,
     &-add {
-      font-size: 29px;
+      font-size: $f-29;
       color: #838b96;
     }
 
@@ -311,10 +311,10 @@ sm: 1275px);
 
     &-txt {
       @include respond-to(mac) {
-        font-size: 16px;
+        font-size: $f-16;
       }
 
-      font-size: 21px;
+      font-size: $f-21;
       color: $white;
     }
   }
@@ -384,27 +384,27 @@ sm: 1275px);
       > .balance,
       & > .balance--blue {
         @include respond-to(mac) {
-          font-size: 19px;
+          font-size: $f-19;
         }
 
         padding: 20px 0 0 32px;
-        font-size: 25px;
+        font-size: $f-25;
       }
 
       > .balance {
         @include respond-to(mac) {
-          font-size: 23px;
+          font-size: $f-23;
         }
 
-        font-size: 29px;
+        font-size: $f-29;
 
         &--blue {
           @include respond-to(mac) {
-            font-size: 23px;
+            font-size: $f-23;
           }
 
           padding-top: 5px;
-          font-size: 29px;
+          font-size: $f-29;
           color: $gpos-blue-balance;
         }
       }
@@ -422,13 +422,13 @@ sm: 1275px);
 
         > .txt {
           @include respond-to(mac) {
-            font-size: 18px;
+            font-size: $f-18;
           }
 
           padding-top: 0;
           padding-bottom: 14px;
           padding-left: 0;
-          font-size: 23px;
+          font-size: $f-23;
         }
 
         &.tall {
@@ -465,7 +465,7 @@ sm: 1275px);
       @include respond-to(mac) {
         width: 200px;
         margin-left: 202px;
-        font-size: 23px;
+        font-size: $f-23;
       }
 
       display: block;
@@ -475,7 +475,7 @@ sm: 1275px);
       float: right;
       width: 270px;
       margin-left: 240px;
-      font-size: 31px;
+      font-size: $f-31;
     }
 
     // Images -1, -2, -3
@@ -541,7 +541,7 @@ sm: 1275px);
         &--spaced {
           margin-bottom: 15px;
           line-height: 35px;
-          font-size: 22px;
+          font-size: $f-22;
         }
 
         &--li {
@@ -552,7 +552,7 @@ sm: 1275px);
           padding-left: 1.5em;
           border-radius: 10px;
           font-weight: 700;
-          font-size: 22px;
+          font-size: $f-22;
           background: rgba(131, 139, 150, 0.08);
           list-style: none;
 
@@ -564,7 +564,7 @@ sm: 1275px);
             left: 0.3em;
             vertical-align: middle;
             margin: 0 5px;
-            font-size: 35px;
+            font-size: $f-35;
           }
         }
       }
@@ -591,7 +591,7 @@ sm: 1275px);
       width: 100%;
       padding-left: 24px;
       line-height: 78px;
-      font-size: 29px;
+      font-size: $f-29;
 
       &::-webkit-inner-spin-button,
       &::-webkit-outer-spin-button {
@@ -678,11 +678,11 @@ sm: 1275px);
 
       > .txt {
         @include respond-to (mac) {
-          font-size: 18px;
+          font-size: $f-18;
         }
 
         margin-bottom: 22px;
-        font-size: 22px;
+        font-size: $f-22;
 
         &--bold {
           @extend .txt;
@@ -718,7 +718,7 @@ sm: 1275px);
       padding-left: 85px;
 
       > .txt {
-        font-size: 45px;
+        font-size: $f-45;
       }
     }
 

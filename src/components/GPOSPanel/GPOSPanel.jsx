@@ -96,9 +96,10 @@ class GPOSPanel extends Component {
     if (config.gpos.conditionalStats) {
       stats = totalGpos && totalGpos > 0 ?
         this.renderGposStats() : null;
-      classModifier = totalGpos && totalGpos > 0 ? '' : '--no-stats';
     }
 
+    classModifier = totalGpos && totalGpos > 0 ? '' : '--no-stats';
+    classModifier = config.gpos.conditionalStats ? classModifier : `${classModifier} cond`;
     let btnString = totalGpos && totalGpos > 0 ? 'gpos.side.participate' : 'gpos.side.start';
 
     return (
@@ -123,10 +124,10 @@ class GPOSPanel extends Component {
         </div>
         <button
           type='button'
-          className={ `btn btn-content__head gpos-panel__btn${classModifier()}` }
+          className={ `btn btn-content__head gpos-panel__btn${classModifier}` }
           onClick={ this.openModal }
         >
-          <img className={ `gpos-panel__img-thumb${classModifier()}` } src='images/thumb-up.png' alt='thumb'/>
+          <img className={ `gpos-panel__img-thumb${classModifier}` } src='images/thumb-up.png' alt='thumb'/>
           <Translate content={ btnString }/>
         </button>
         {stats}

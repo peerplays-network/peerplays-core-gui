@@ -1,8 +1,25 @@
+// FONTS
 $ff: 'Roboto',
   sans-serif;
 $fw: 400;
 $ff-main: $ff;
 $lato: 'Lato', sans-serif;
+$f-45: 45px;
+$f-35: 35px;
+$f-31: 31px;
+$f-29: 29px;
+$f-25: 25px;
+$f-23: 23px;
+$f-22: 22px;
+$f-21: 21px;
+$f-19: 19px;
+$f-18: 18px;
+$f-16: 16px;
+
+// PADDING
+$p-gpos-box-inner: 0 15px 30px;
+$p-gpos-tab-deploy: 55px 40px 50px;
+$p-gpos-tab-deploy-head: 0 15px;
 
 $maxWidth: 1900px;
 $defXPad: 30px;
@@ -11,7 +28,7 @@ $insideXPad: 40px;
 $row-margin: 20px;
 $btn-height: 46px;
 $field-height: 52px;
-
+$gpos-panel-button-b-margin: 45px;
 $headerHeight: 55px;
 
 // -------------------------
@@ -39,7 +56,6 @@ $gpos-green-disabled: rgb(41, 141, 161);
 // <--- green
 
 //---> blue
-
 $gpos-blue: rgb(75, 118, 235);
 $gpos-blue-balance: rgb(94, 180, 241);
 $gpos-blue-2: rgb(51, 183, 239);
