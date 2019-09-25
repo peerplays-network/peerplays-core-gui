@@ -152,7 +152,8 @@ sm: 1275px);
     }
 
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
+    justify-content: flex-end;
     width: 583px;
     margin: 62px auto;
 
@@ -208,6 +209,8 @@ sm: 1275px);
   &__btn {
     @include gpos-start-btn();
 
+    -webkit-user-select: none;
+
     &-cancel,
     &-up,
     &-down,
@@ -227,6 +230,10 @@ sm: 1275px);
       @include gpos-btn-hover-active($gpos-blue-3, $color-add2-bd-color);
 
       background: $gpos-blue-3;
+    }
+
+    &-cancel {
+      width: 210px;
     }
 
     &-up {
@@ -344,8 +351,6 @@ sm: 1275px);
         border-radius: 0;
       }
 
-      @include gpos-box-shadow();
-
       flex-direction: column;
       justify-self: center;
       height: 100%;
@@ -368,6 +373,8 @@ sm: 1275px);
     margin-bottom: 33px;
     border-radius: 6px;
     background: $gpos-wizard-right-bg;
+    cursor: pointer;
+    -webkit-user-select: none;
 
     &-power {
       @extend .gpos-modal__card;
@@ -491,24 +498,34 @@ sm: 1275px);
 
     &-2 {
       @include respond-to(mac) {
-        height: 119px;
-        margin-top: 14px;
+        height: 130px;
+        margin-top: 12px;
       }
 
-      height: 143px;
-      margin-top: 7.04px;
+      height: 162px;
+      margin-top: 11.31px;
     }
 
     &-3 {
       @include respond-to(mac) {
         height: 125px;
-        margin-top: 19px;
-        margin-left: 17px;
+        margin-top: 12px;
+        margin-left: 12px;
       }
 
       height: 149px;
-      margin-top: 23.28px;
-      margin-left: 23.86px;
+      margin-top: 15px;
+      margin-left: 15px;
+    }
+
+    &[disabled] {
+      opacity: 0.3;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    &:hover {
+      background: $gpos-wizard-right-bg-hover;
     }
   }
 
@@ -634,6 +651,7 @@ sm: 1275px);
         border: 2px solid $green3;
         border-radius: 50%;
         text-align: center;
+        -webkit-user-select: none;
       }
 
       .txt {
@@ -674,6 +692,8 @@ sm: 1275px);
 
       > .title {
         @include title();
+
+        font-weight: 900;
       }
 
       > .txt {

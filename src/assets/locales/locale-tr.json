@@ -268,7 +268,7 @@
     "witnesses_tab": {
       "help_note_1": "Vote for Witnesses",
       "question_mark_note": "Witnesses are the accounts that run the blockchains and produce blocks"
-    },
+    },  
     "advisors_tab": {
       "help_note": "Vote for Advisors",
       "question_mark_note": "Advisors can vote on proposals to change blockchain parameters such as fees"
@@ -514,6 +514,7 @@
       "down": "POWER DOWN",
       "cancel": "CANCEL",
       "submit": "SUBMIT",
+      "ok": "OK",
       "finish": "FINISH",
       "vote": "Vote",
       "skip": "Skip",
@@ -521,7 +522,7 @@
       "step2": "Step-2",
       "start": {
         "desc": {
-          "title": "Peerplays GPOS Wizard",
+          "title": "Peerplays GPOS",
           "txt-1": "Join GPOS by transferring your PPY to your GPOS balance.",
           "txt-2": "Consistently participate in voting for the best Witnesses, Advisors, Proposals, and SONs. Share the exciting news and DApps available on Peerplays with others.",
           "txt-3": "The more value that comes into Peerplays blockchain through its operations, the more those that participate to help make it secure will earn!",
@@ -531,9 +532,9 @@
           "txt-7": "Together as a Decentralized Autonomous Cooperative (DAC), we can ensure Peerplays remains the most secure provably fair blockchain globally."
         },
         "right": {
-          "1": "Power Up & Power Down",
-          "2": "Vote",
-          "3": "Finish"
+          "1": "Power Up",
+          "2": "Power Down",
+          "3": "Vote"
         }
       },
       "step-1": {
@@ -552,7 +553,11 @@
         "title": "TBD"
       },
       "step-3": {
-        "title": "TBD"
+        "title": "Thank you for voting!",
+        "text-1": "This is now your blockchain as part of the decentralized autonomous cooperative. The value it brings is what you and others bring to it, so go out and:",
+        "text-2": "Share Peerplays with others",
+        "text-3": "Share your voting decisions with the community, including why you votes the way you did",
+        "text-4": "Visit Peerplays social media and like, share, or retweet our latest posts, and provide feedback"
       }
     }
   },
@@ -680,8 +685,8 @@
       "title": "Unlock Wallet",
       "password": "Password",
       "password_placeholder": "Enter password",
-      "unlock_btn": "Unlock Wallet"
-    },
+      "unlock_btn": "Unlock Wallet"      
+    },    
     "memo": {
       "title": "Memo"
     }
