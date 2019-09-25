@@ -268,7 +268,7 @@
     "witnesses_tab": {
       "help_note_1": "Vote for Witnesses",
       "question_mark_note": "Witnesses are the accounts that run the blockchains and produce blocks"
-    },
+    },  
     "advisors_tab": {
       "help_note": "Vote for Advisors",
       "question_mark_note": "Advisors can vote on proposals to change blockchain parameters such as fees"
@@ -502,8 +502,8 @@
           "title": "Voting Performance",
           "txt1": "All up to date"
         },
-        "percent": "Reward %",
-        "potential": "Potential Reward"
+        "percent": "Qualified reward %",
+        "potential": "Estimated rake reward %"
       }
     },
     "faq": {
@@ -514,6 +514,7 @@
       "down": "POWER DOWN",
       "cancel": "CANCEL",
       "submit": "SUBMIT",
+      "ok": "OK",
       "finish": "FINISH",
       "vote": "Vote",
       "skip": "Skip",
@@ -552,7 +553,11 @@
         "title": "TBD"
       },
       "step-3": {
-        "title": "TBD"
+        "title": "Thank you for voting!",
+        "text-1": "This is now your blockchain as part of the decentralized autonomous cooperative. The value it brings is what you and others bring to it, so go out and:",
+        "text-2": "Share Peerplays with others",
+        "text-3": "Share your voting decisions with the community, including why you votes the way you did",
+        "text-4": "Visit Peerplays social media and like, share, or retweet our latest posts, and provide feedback"
       }
     }
   },
@@ -680,8 +685,8 @@
       "title": "Unlock Wallet",
       "password": "Password",
       "password_placeholder": "Enter password",
-      "unlock_btn": "Unlock Wallet"
-    },
+      "unlock_btn": "Unlock Wallet"      
+    },    
     "memo": {
       "title": "Memo"
     }
