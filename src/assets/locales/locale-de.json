@@ -522,7 +522,7 @@
       "step2": "Step-2",
       "start": {
         "desc": {
-          "title": "Peerplays GPOS Wizard",
+          "title": "Peerplays GPOS",
           "txt-1": "Join GPOS by transferring your PPY to your GPOS balance.",
           "txt-2": "Consistently participate in voting for the best Witnesses, Advisors, Proposals, and SONs. Share the exciting news and DApps available on Peerplays with others.",
           "txt-3": "The more value that comes into Peerplays blockchain through its operations, the more those that participate to help make it secure will earn!",
@@ -532,9 +532,9 @@
           "txt-7": "Together as a Decentralized Autonomous Cooperative (DAC), we can ensure Peerplays remains the most secure provably fair blockchain globally."
         },
         "right": {
-          "1": "Power Up & Power Down",
-          "2": "Vote",
-          "3": "Finish"
+          "1": "Power Up",
+          "2": "Power Down",
+          "3": "Vote"
         }
       },
       "step-1": {
