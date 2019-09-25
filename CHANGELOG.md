@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.10"></a>
+## [1.0.10](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.9...v1.0.10) (2019-09-25)
+
+### Added
+
+- Done screen to the GPOS Modal (WAL-252)
+
+### Changed
+
+- Vote functionality has been moved to the GPOS moda (WAL-251, WAL-274)
+- GPOS Panel balance statistics conditionally displays based on configuration value setting. Default is to always show the balance statistics (WAL-275).
+
 <a name="1.0.9"></a>
 ## [1.0.9](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.6...v1.0.9) (2019-09-13)
 
