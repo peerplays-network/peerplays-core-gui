@@ -19,7 +19,7 @@ class GPOSWizardWrapper extends Component {
     0 - start
     1.1 - power up
     1.2 - power down
-    2 - vote // TODO: THIS SCREEN WAL-251
+    2 - vote
     3 - done
   */
   state = {
