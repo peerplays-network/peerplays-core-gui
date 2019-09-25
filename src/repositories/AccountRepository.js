@@ -313,7 +313,6 @@ class AccountRepository {
   }
 
   static process_transaction(tr, privateKey) {
-    debugger;
     let publicKey = privateKey.toPublicKey().toPublicKeyString();
 
     return new Promise(function (resolve, reject) {
