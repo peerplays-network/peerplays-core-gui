@@ -25,7 +25,7 @@ class GPOSPanel extends Component {
   }
 
   renderGposStats = () => {
-    let {asset, totalGpos, gposReward, gposPerformance} = this.props, symbol;
+    let {asset, totalGpos, estimatedRakeReward, gposPerformance} = this.props, symbol;
 
     if (asset) {
       symbol = asset_utils.getSymbol(asset.get('symbol'));
@@ -38,10 +38,7 @@ class GPOSPanel extends Component {
           <div className='gpos-panel__stats--right'>
             {totalGpos && asset
               ? <FormattedNumber
-                value={ totalGpos && asset
-                  ? totalGpos / Math.pow(10, asset.get('precision'))
-                  : totalGpos
-                }
+                value={ totalGpos }
                 minimumFractionDigits={ 0 }
                 maximumFractionDigits={ asset.get('precision') }
               />
@@ -67,17 +64,7 @@ class GPOSPanel extends Component {
         <div className='gpos-panel__stats-potential'>
           <Translate content='gpos.side.info.potential'/>
           <div className='gpos-panel__stats--right'>
-            {gposReward && asset
-              ? <FormattedNumber
-                value={ gposReward && asset
-                  ? gposReward / Math.pow(10, asset.get('precision'))
-                  : gposReward
-                }
-                minimumFractionDigits={ 0 }
-                maximumFractionDigits={ asset.get('precision') }
-              />
-              : 0
-            } {symbol}
+            {`${estimatedRakeReward}%`}
           </div>
         </div>
       </div>
@@ -137,17 +124,26 @@ class GPOSPanel extends Component {
 }
 
 const mapStateToProps = (state) => {
+  let totalBlockchainGpos, userGpos, vestingFactor, gposPerformance, estimatedRakeReward;
+  let asset = state.dashboardPage.vestingAsset;
   let data = getTotalGposBalance(state);
   let gposInfo = state.dashboardPage.gposInfo;
-  let gposReward = gposInfo && gposInfo.award && gposInfo.award.amount;
-  let vestingFactor = gposInfo && gposInfo.vesting_factor;
-  let gposPerformance = AppUtils.trimNum((vestingFactor * 100 || 0), 2);
+
+  if (asset) {
+    totalBlockchainGpos = gposInfo.total_amount / Math.pow(10, asset.get('precision'));
+    userGpos = data.totalAmount / Math.pow(10, asset.get('precision'));
+    vestingFactor = gposInfo && gposInfo.vesting_factor;
+    gposPerformance = AppUtils.trimNum((vestingFactor * 100 || 0), 2);
+    // For some reason we are not using the blockchain calculation here...
+    // let gposReward = gposInfo && gposInfo.award && gposInfo.award.amount;
+    estimatedRakeReward = AppUtils.trimNum( (userGpos / totalBlockchainGpos) * gposPerformance, 2 );
+  }
 
   return {
-    totalGpos: data.totalAmount,
-    gposReward,
+    totalGpos: userGpos,
+    estimatedRakeReward,
     gposPerformance,
-    asset: state.dashboardPage.vestingAsset
+    asset
   };
 };
 
