@@ -14,7 +14,9 @@ class Done extends React.PureComponent {
     return(
       <div className='gpos-modal__done'>
         <div className='gpos-modal__done-left'>
-          <img className='gpos-modal__done-img' src='images/gpos/done.png' alt=''/>
+          <div className='gpos-modal__done-img-wrapper'>
+            <img className='gpos-modal__done-img' src='images/gpos/done.png' alt=''/>
+          </div>
         </div>
         <div className='gpos-modal__done-right'>
           <Translate

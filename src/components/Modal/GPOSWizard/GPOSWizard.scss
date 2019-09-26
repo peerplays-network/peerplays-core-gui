@@ -514,7 +514,19 @@ sm: 1275px);
 
   &__done {
     display: flex;
+    flex-wrap: wrap;
     margin: 56px 71px 67px 80px;
+
+    &-img-wrapper {
+      @include respond-to(sm) {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        min-width: 330px;
+        min-height: 400px;
+        margin: auto;
+      }
+    }
 
     &-img {
       position: absolute;
@@ -530,6 +542,13 @@ sm: 1275px);
 
     &-right {
       width: 627px;
+
+      @include respond-to(sm) {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        margin: auto;
+      }
 
       .title {
         @include title();

@@ -47,8 +47,6 @@ class GposStep1 extends PureComponent {
 
     let {asset, symbol} = this.props;
 
-    console.log(this.state.amount);
-
     if (this.state.amount < this.state.maxAmount && asset) {
       let asset_id = asset.get('id');
 
@@ -88,9 +86,10 @@ class GposStep1 extends PureComponent {
       val = val.toFixed(this.state.precision);
       val = parseFloat(val);
       val = val > this.state.maxAmount ? this.state.maxAmount : val;
-      e.target.value = val;
-      this.setState({amount: val});
     }
+
+    e.target.value = val;
+    this.setState({amount: val});
   }
 
   renderAmountPicker = () => {
