@@ -2,6 +2,27 @@ import React from 'react';
 import Translate from 'react-translate-component';
 
 class GposWizardStart extends React.Component {
+  // TODO: on power up/down, use redux state to track successful transactions and reflect the changes here. Store as array of transactions completed.
+  // renderCompleted = (action) => {
+  renderCompleted = () => {
+    // TODO: actions array from state storing the compelted actions.
+    // const isComplete = (action) => {
+    //   let index = actions.indexOf(action);
+
+    //   if (index !== -1) {
+    //     console.log(`${action} is complete @ ${index}`);
+    //   }
+    // };
+
+    return(
+      <Translate
+        component='span'
+        className='gpos-modal__card-txt completed'
+        content='gpos.wizard.completed'
+      />
+    );
+  }
+
   render() {
     let {closeModal, proceedOrRegress} = this.props;
 
@@ -67,6 +88,7 @@ class GposWizardStart extends React.Component {
               className='gpos-modal__card-txt'
               content='gpos.wizard.start.right.2'
             />
+            {this.renderCompleted()}
           </div>
           <div className='gpos-modal__card' onClick={ () => proceedOrRegress(2) }>
             <img className='gpos-modal__card-3' src='images/gpos/vote.png' alt='step3'/>

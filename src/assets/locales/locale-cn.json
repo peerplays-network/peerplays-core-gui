@@ -513,6 +513,7 @@
       "up": "POWER UP",
       "down": "POWER DOWN",
       "cancel": "CANCEL",
+      "completed": "COMPLETED",
       "submit": "SUBMIT",
       "ok": "OK",
       "finish": "FINISH",

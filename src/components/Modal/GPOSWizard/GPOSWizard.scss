@@ -487,17 +487,26 @@ sm: 1275px);
       width: 270px;
       margin-left: 240px;
       font-size: $f-31;
+
+      &.completed {
+        transform: translateY(20px);
+        width: auto;
+        padding: 3px;
+        border-radius: 5px;
+        font-size: $f-15;
+        background: rgb(9, 9, 9);
+      }
     }
 
     // Images -1, -2, -3
     &-1 {
       @include respond-to(mac) {
-        height: 135px;
+        height: 137px;
       }
 
-      height: 161px;
-      margin-top: 9.75px;
-      margin-left: 5px;
+      height: 163px;
+      margin-top: 17px;
+      margin-left: 16px;
     }
 
     &-2 {
