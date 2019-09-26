@@ -153,7 +153,7 @@ class GposStep1 extends PureComponent {
   render() {
     let {proceedOrRegress, asset, symbol} = this.props;
     let amt = this.state.amount;
-    let newAmt = (this.state.totalGpos + isNaN(amt) ? 0 : amt).toFixed(asset.get('precision'));
+    let newAmt = (this.state.totalGpos + (isNaN(amt) ? 0 : amt)).toFixed(asset.get('precision'));
     return (
       <div className='gpos-modal__content'>
         <div className='gpos-modal__content-left'>
