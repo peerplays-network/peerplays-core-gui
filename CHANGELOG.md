@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.14"></a>
+## [1.0.14](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.13...v1.0.14) (2019-09-26)
+
+### Changed
+
+- Updates to GUI for GPOS start page.
+
 <a name="1.0.13"></a>
 ## [1.0.13](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.12...v1.0.13) (2019-09-26)
 
