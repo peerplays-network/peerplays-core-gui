@@ -29,6 +29,12 @@ All notable changes to this project will be documented in this file. See [standa
 ### Changed
 
 - Made the GPOS Panel statistics easier to understand (WAL-277).
+<a name="1.0.10.d"></a>
+## [1.0.10.d](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.10.c...v1.0.10d) (2019-09-26)
+
+### Bug Fixes
+
+- babel-polyfill issue causing application to hang when in production mode
 
 <a name="1.0.10.c"></a>
 ## [1.0.10.c](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.10.b...v1.0.10c) (2019-09-26)
