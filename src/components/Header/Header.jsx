@@ -71,14 +71,6 @@ class Header extends React.Component {
                   content='header.dashboard'/>
               </span>
             </Link>
-
-            <Link to='/explore/voting' className='nav__link' activeClassName='active'>
-              <span className='nav__linkAlign'>
-                <span className='nav__linkIcon nav__linkIcon-blank icon-check2'></span>
-                <span className='nav__linkIcon nav__linkIcon-filled icon-check2-filled'></span>
-                <Translate component='span' className='nav__linkText' content='header.vote'/>
-              </span>
-            </Link>
             <Link to='/explore/blockchain' className='nav__link ' activeClassName='active'>
               <span className='nav__linkAlign'>
                 <span className='nav__linkIcon nav__linkIcon-blank icon-arrows2'></span>

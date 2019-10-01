@@ -1,7 +1,25 @@
+// FONTS
 $ff: 'Roboto',
   sans-serif;
 $fw: 400;
 $ff-main: $ff;
+$lato: 'Lato', sans-serif;
+$f-45: 45px;
+$f-35: 35px;
+$f-31: 31px;
+$f-29: 29px;
+$f-25: 25px;
+$f-23: 23px;
+$f-22: 22px;
+$f-21: 21px;
+$f-19: 19px;
+$f-18: 18px;
+$f-16: 16px;
+
+// PADDING
+$p-gpos-box-inner: 0 15px 30px;
+$p-gpos-tab-deploy: 55px 40px 50px;
+$p-gpos-tab-deploy-head: 0 15px;
 
 $maxWidth: 1900px;
 $defXPad: 30px;
@@ -10,7 +28,7 @@ $insideXPad: 40px;
 $row-margin: 20px;
 $btn-height: 46px;
 $field-height: 52px;
-
+$gpos-panel-button-b-margin: 45px;
 $headerHeight: 55px;
 
 // -------------------------
@@ -23,16 +41,32 @@ $green3: #13d4b7;
 $clear-color: $black;
 $clear-color2: $white;
 
+// --> black
+$gpos-wizard-dialogue-fade: rgba(0, 0, 0, 0.5);
+$gpos-wizard-right-bg: rgba(255, 255, 255, 0.06);
+$gpos-wizard-box-shadow: rgba(0, 0, 0, 0.15);
+// <-- black
+
 // ---> green
 $gpos-green: $green3;
 $gpos-green-hover: lighten($gpos-green, 10%);
+$gpos-green-active: darken($gpos-green, 10%);
+$gpos-green-disabled: rgb(41, 141, 161);
 
 // <--- green
 
 //---> blue
-
 $gpos-blue: rgb(75, 118, 235);
+$gpos-blue-balance: rgb(94, 180, 241);
+$gpos-blue-2: rgb(51, 183, 239);
 $gpos-blue-hover: lighten($gpos-blue, 10%);
+$gpos-blue-2-hover: lighten($gpos-blue-2, 10%);
+$gpos-blue-2-active: darken($gpos-blue-2, 10%);
+$gpos-blue-3: rgb(41, 58, 143);
+$gpos-blue-3-hover: lighten($gpos-blue-2, 10%);
+$gpos-blue-3-active: darken($gpos-blue-2, 10%);
+$gpos-wiz-progress-faded: rgb(157, 171, 221);
+$gpos-wiz-progress-footer: rgb(59, 86, 187);
 $light-blue: #33b7ef;
 $green: #00fe95;
 $green2: #12cd6e;
@@ -86,6 +120,7 @@ $label-color: $new-blue9;
 
 $body-bg: radial-gradient(circle, #2660ca, $dark2);
 $body-login-bg: radial-gradient(circle, #2660ca, $dark2);
+$gpos-wizard-bg: transparent radial-gradient(closest-side at 50% 52%, rgb(61, 93, 203) 0%, rgb(49, 53, 121) 100%);
 $footer-bg: $new-blue5;
 $footer-bd-color: $new-blue5;
 $footer-color: $gray3;
@@ -144,7 +179,6 @@ $select-bd-color: $faded-color;
 $menu-limiter-color: $gray4;
 $dd-bg: $new-blue14;
 $calendarIcon-color: $gray5;
-
 
 //--------------------------
 //<---blue

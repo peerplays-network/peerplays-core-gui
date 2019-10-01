@@ -6,10 +6,10 @@ import {bindActionCreators} from 'redux';
 import {routerShape} from 'react-router/lib/PropTypes';
 import intlData from '../Utility/intlData';
 import Config from '../../../config/Config';
-import {AppActions, NavigateActions} from '../../actions';
+import {AppActions, NavigateActions, GPOSActions} from '../../actions';
 import CantConnectModal from '../Modal/CantConnectModal/CantConnectModal';
 import CommonMessage from '../CommonMessage';
-// import GPOSWizard from '../Modal/GPOSWizard/GPOSWizardWrapper';
+import GPOSWizardWrapper from '../Modal/GPOSWizard';
 import HelpModal from '../Help/HelpModal';
 import TransactionConfirmModal from '../Modal/TransactionConfirmModal/TransactionConfirmModal';
 import WalletUnlockModal from '../Modal/WalletUnlockModal';
@@ -52,6 +52,10 @@ class App extends PureComponent {
 
     function isIdle() {
       console.warn('Logging out user due to inactivity.');
+
+      // Close modals
+      props.toggleGPOSWizard();
+
       props.timeout();
       props.setCurrentLocation('TIMEOUT');
     }
@@ -121,7 +125,7 @@ class App extends PureComponent {
           <CantConnectModal />
           <ViewMemoModal />
           <HelpModal />
-          {/* <GPOSWizard /> */}
+          <GPOSWizardWrapper />
         </div>
       </IntlProvider>
     );
@@ -146,6 +150,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
     timeout: AppActions.timeout,
+    toggleGPOSWizard: GPOSActions.toggleGPOSWizardModal,
     navigateToTimeout: NavigateActions.navigateToTimeout,
     setCurrentLocation: AppActions.setCurrentLocation
   },

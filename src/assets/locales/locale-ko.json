@@ -2,19 +2,20 @@
   "languages": {
     "en": "English",
     "cn": "简体中文",
-    "fr": "Francais",
+    "fr": "Français",
     "ko": "한국어",
     "de": "Deutsch",
     "es": "Español",
     "tr": "Turkish"
   },
   "header": {
-    "settings": "설정",
-    "help": "도움말",
+    "settings": "Settings",
+    "help": "Help",
     "notices": "Notices",
-    "dashboard": "전체보기",
+    "dashboard": "My Funds",
     "vote": "Vote",
-    "network": "Network"
+    "network": "Network",
+    "no_notices_message": "You don't have messages."
   },
   "dashboard": {
     "show_hidden": "Show hidden assets",
@@ -30,7 +31,6 @@
     "core_tokens": "Peerplays Core Tokens",
     "digital_currencies": "Digital Currencies",
     "other_assets": "Other Assets",
-    "balances": "Balances",
     "balances_row_menu": {
       "send": "Send",
       "show_asset": "Show asset",
@@ -45,17 +45,18 @@
       "logout": "Logout"
     },
     "recent_activity": {
-      "title": "최근 활동",
+      "title": "Recent Activity",
       "operation": {
-        "title": "조작",
-        "show_all": "모두 보이기",
-        "tournament_actions": "토너먼트 액션",
-        "transfers": "전학"
+        "title": "Operation",
+        "show_all": "Show All",
+        "tournament_actions": "Tournament Actions",
+        "transfers": "Transfers"
       },
-      "sender": "보내는 사람",
-      "receiver": "리시버",
-      "description": "기술",
-      "date": "날짜"
+      "sender": "Sender",
+      "receiver": "Receiver",
+      "description": "Description",
+      "date": "Date",
+      "viewMemo": "View Memo"
     }
   },
   "activity": {
@@ -69,6 +70,7 @@
     "asset_claim_fees": "claimed asset fees of %(amount)s from %(from)s fee pool",
     "fill_order": "%(account)s bought %(received)s at %(price)s",
     "vesting_balance_withdraw": "%(account)s withdrew vesting balance of %(amount)s",
+    "vesting_balance_deposit": "%(account)s deposited vesting balance of %(amount)s",
     "balance_claim": "%(account)s claimed a balance of %(amount)s",
     "publish_feed": "%(account)s published feed price of %(price)s",
     "set_proxy": "%(account)s set %(proxy)s as their voting proxy",
@@ -106,18 +108,18 @@
     "asset_dividend_distribution": "Asset dividend distribution"
   },
   "transaction": {
-    "to": "를 전송함. 수신인:",
-    "from": "를 수신함. 전송인:",
+    "to": "To",
+    "from": "From",
     "claimed": "Claimed",
     "deposit_to": "Deposit to",
     "balance_id": "Balance ID",
     "balance_owner_key": "Balance Owner Key",
-    "broadcast_fail": "거래를 처리할 수 없음: %(message)s",
-    "broadcasting": "처리중..",
+    "broadcast_fail": "Failed to broadcast the transaction: %(message)s",
+    "broadcasting": "Broadcasting transaction..",
     "broadcast_success": "Transaction has been broadcast",
-    "broadcasting_short": "처리중..",
-    "transaction_confirmed": "거래가 승인되었습니다",
-    "confirm": "거래 확인",
+    "broadcasting_short": "Broadcasting..",
+    "transaction_confirmed": "Transaction confirmed",
+    "confirm": "Please confirm the transaction",
     "feeGroups": {
       "general": "General",
       "asset": "Asset-Specific",
@@ -141,48 +143,48 @@
     },
     "trxTypes": {
       "all": "Show all",
-      "transfer": "전송",
-      "limit_order_create": "주문",
-      "limit_order_cancel": "주문 취소",
+      "transfer": "Transfer",
+      "limit_order_create": "Place order",
+      "limit_order_cancel": "Cancel order",
       "short_order_cancel": "Short Cancel order",
-      "call_order_update": "Update call order",
+      "call_order_update": "Update margin",
       "key_create": "Create Key",
-      "account_create": "계정 생성",
-      "account_update": "계정 업데이트",
-      "account_whitelist": "계정 화이트리스트",
-      "account_upgrade": "계정 업그레이드",
-      "account_transfer": "계정 거래",
-      "asset_create": "자산 생성",
-      "asset_update": "자산 업데이트",
-      "asset_update_bitasset": "스마트코인 업데이트",
-      "asset_update_feed_producers": "자산 피드 생성자 업데이트",
+      "account_create": "Create account",
+      "account_update": "Update account",
+      "account_whitelist": "Account whitelist",
+      "account_upgrade": "Upgrade Account",
+      "account_transfer": "Transfer Account",
+      "asset_create": "Create asset",
+      "asset_update": "Update asset",
+      "asset_update_bitasset": "Update SmartCoin",
+      "asset_update_feed_producers": "Update asset feed producers",
       "asset_burn": "Burn Asset",
-      "asset_issue": "자산 발행",
-      "asset_reserve": "자산 소각",
-      "asset_fund_fee_pool": "자산 수수료 기금 충전",
-      "asset_settle": "자산 강제청산",
-      "asset_global_settle": "자산 전체 강제청산",
-      "asset_publish_feed": "자산 가격정보 발행",
-      "committee_member_create": "위원 생성",
+      "asset_issue": "Issue asset",
+      "asset_reserve": "Reserve asset",
+      "asset_fund_fee_pool": "Fund asset fee pool",
+      "asset_settle": "Asset settlement",
+      "asset_global_settle": "Global asset settlement",
+      "asset_publish_feed": "Publish feed",
+      "committee_member_create": "Create advisor",
       "committee_member_update": "Update advisor",
-      "witness_create": "증인 생성",
-      "witness_update": "증인 업데이트",
-      "witness_withdraw_pay": "증인 봉급 인출",
-      "proposal_create": "제안서 생성",
-      "proposal_update": "제안서 업데이트",
-      "proposal_delete": "제안서 삭제",
-      "withdraw_permission_create": "출금권한 생성",
-      "withdraw_permission_update": "출금권한 업데이트",
-      "withdraw_permission_claim": "출금권한 요청",
-      "withdraw_permission_delete": "출금권한 삭제",
-      "fill_order": "매매 체결",
-      "committee_member_update_global_parameters": "전체 매개변수 업데이트",
-      "vesting_balance_create": "확정 잔고 생성",
-      "vesting_balance_withdraw": "확정 잔고 출금",
-      "worker_create": "예산 항목 생성",
-      "custom": "사용자 정의",
+      "witness_create": "Create witness",
+      "witness_update": "Update witness",
+      "witness_withdraw_pay": "Witness pay withdrawal",
+      "proposal_create": "Create proposal",
+      "proposal_update": "Update proposal",
+      "proposal_delete": "Delete proposal",
+      "withdraw_permission_create": "Create withdrawal permission",
+      "withdraw_permission_update": "Update withdrawal permission",
+      "withdraw_permission_claim": "Claim withdrawal permission",
+      "withdraw_permission_delete": "Delete withdrawal permission",
+      "fill_order": "Fill order",
+      "committee_member_update_global_parameters": "Global parameters update",
+      "vesting_balance_create": "Create vesting balance",
+      "vesting_balance_withdraw": "Withdraw vesting balance",
+      "worker_create": "Create budget item",
+      "custom": "Custom",
       "assert": "Assert operation",
-      "balance_claim": "잔고 청구",
+      "balance_claim": "Claim balance",
       "override_transfer": "Override transfer",
       "transfer_to_blind": "Transfer to blinded account",
       "blind_transfer": "Blinded transfer",
@@ -196,26 +198,26 @@
     }
   },
   "settings": {
-    "locale": "언어 전환",
-    "general": "일반",
-    "general_text": "기본 설정을 조정합니다.",
-    "current_password": "현재 비밀번호",
+    "locale": "Switch language",
+    "general": "General",
+    "general_text": "Adjust the basic settings.",
+    "current_password": "Current Password",
     "new_password": "New password",
     "new_confirm": "Confirm new password",
     "accept": "Accept",
     "cancel": "Cancel",
-    "reset": "리셋 설정",
+    "reset": "Reset",
     "confirm": "Confirm",
-    "password": "암호",
-    "password_text": "비밀번호를 변경합니다.",
-    "access": "API 액세스",
-    "access_text": "변경 API 여기 수도꼭지 서버.",
-    "connection": "API 연결",
-    "faucet_address": "수도꼭지 주소",
-    "add_ws": "새로운 웹소켓 API 추가",
-    "remove_ws": "웹소켓 API 제거",
-    "add_api": "API 추가",
-    "remove_api": "API를 제거",
+    "password": "Password",
+    "password_text": "Change your password.",
+    "access": "API Access",
+    "access_text": "Change API and faucet servers here.",
+    "connection": "API Connection",
+    "faucet_address": "Faucet Address",
+    "add_ws": "Add new websocket API",
+    "remove_ws": "Remove websocket API",
+    "add_api": "Add API",
+    "remove_api": "Remove API",
     "claim": "Balance Claims",
     "claim_sharedrop": {
       "title": "Balance Claims",
@@ -230,8 +232,10 @@
     }
   },
   "errors": {
+    "login_error": "Please enter an account name starting with a letter and containing at least one dash, a number, or no vowels",
     "incorrect_username_or_password": "Incorrect username or password",
-    "password_must_be_X_characters_or_more": "Password must be %(cnt)s characters or more",
+    "incorrect_private_key": "Incorrect Private key",
+    "password_must_be_X_characters_or_more": "Password should be at least %(cnt)s symbols (alphanumeric)",
     "password_blank": "Password cannot be blank",
     "password_retype_blank": "Retype Password cannot be blank",
     "password_retype_match": "These passwords don’t match",
@@ -242,6 +246,7 @@
     "incorrect_password": "This password is incorrect",
     "divisible_by_two": "The number must be divisible by two",
     "unknown_account": "Unknown account",
+    "invalid_account": "Invalid account",
     "cant_proxy_yourself": "Cant proxy to yourself",
     "cant_send_yourself": "Cant send to yourself",
     "not_witness": "Not a witness",
@@ -250,9 +255,24 @@
     "account_not_found": "Account not found.",
     "bitshares_account_not_found": "BitShares Account not found.",
     "premium_name_faucet": "This is a premium name which is not supported by this faucet. Please enter a regular name containing least one dash, a number or no vowels.",
-    "premium_name_warning": "This is a premium name which is more expensive than a name containing a dash (-) or a number."
+    "premium_name_warning": "This is a premium name which is more expensive than a name containing a dash (-) or a number.",
+    "paste_your_redemption_key_here": "Paste your redemption key here",
+    "no_balance_objects": "No balance objects"
   },
   "votes": {
+    "proxy_tab": {
+      "help_note": "Proxy your vote to other accounts",
+      "help_note_disclaimer": "Note: Proxying your vote will disable your ability to vote directly for a witness",
+      "question_mark_note": "Proxying means you give other accounts the ability to vote on your behalf"
+    },
+    "witnesses_tab": {
+      "help_note_1": "Vote for Witnesses",
+      "question_mark_note": "Witnesses are the accounts that run the blockchains and produce blocks"
+    },  
+    "advisors_tab": {
+      "help_note": "Vote for Advisors",
+      "question_mark_note": "Advisors can vote on proposals to change blockchain parameters such as fees"
+    },
     "proxy_short": "Proxy",
     "workers_short": "Workers",
     "proxy": "Proxy Voting Account",
@@ -268,7 +288,8 @@
     "support": "Support",
     "workers": "Budget Items",
     "publish": "Publish Changes",
-    "select_witness": "Select a Witness",
+    "select_witness": "Select Witnesses",
+    "select_advisor": "Select Advisors",
     "witness_stats": "Witness Stats",
     "action": "Action",
     "add_witness": "Add",
@@ -315,16 +336,16 @@
     "none": "NONE"
   },
   "account": {
-    "name": "계정명",
+    "name": "Account name",
     "votes": {
-      "votes": "득표수",
-      "proxy": "대리투표 계정",
-      "no_proxy": "대리투표 사용안함"
+      "votes": "Votes",
+      "proxy": "Proxy Voting Account",
+      "no_proxy": "No Proxy"
     },
     "options": {
-      "num_witnesses": "선호 증인 수",
-      "num_committee": "선호 위원 수",
-      "memo_key": "메모 키",
+      "num_witnesses": "Desired Witnesses",
+      "num_committee": "Desired Committee Members",
+      "memo_key": "Memo Key",
       "common_options": "Common options"
     }
   },
@@ -352,34 +373,34 @@
         "witness": "Witness",
         "transaction_count": "Transaction Count"
       },
-      "title": "블록 체인",
+      "title": "The Blockchain",
       "block_times": "Block Times",
       "trx_block": "TRX / Block",
       "block_time": "Block time",
       "transactions": "# of transactions"
     },
     "accounts": {
-      "title": "계정",
-      "explore_bitshares_accounts": "Peerplays 계정 둘러보기",
-      "account_name": "계정 이름",
-      "core_token_balance": "코어 토큰 잔액",
-      "percent_of_total_supply": "총 공급 비율",
-      "id": "신분증",
-      "search_accounts": "검색 계정"
+      "title": "Accounts",
+      "explore_bitshares_accounts": "Explore Peerplays Accounts",
+      "account_name": "Account Name",
+      "core_token_balance": "Core Token Balance",
+      "percent_of_total_supply": "Percent of Total Supply",
+      "id": "ID",
+      "search_accounts": "Search Accounts"
     },
     "basicAssets": {
-      "title": "기본 자산"
+      "title": "Basic Assets"
     },
     "smartCoins": {
-      "title": "스마트 동전"
+      "title": "Smart Coins"
     },
     "feeSchedule": {
-      "title": "요금표",
+      "title": "Fee Schedule",
       "table": {
-        "operation": "조작",
-        "fee_type": "수수료 유형",
-        "standart_fee": "표준 수수료",
-        "lifetime_anual_member_fee": "평생 / 연회비"
+        "operation": "Operation",
+        "fee_type": "Fee Type",
+        "standart_fee": "Standard Fee",
+        "lifetime_anual_member_fee": "Lifetime / Annual Member Fee"
       }
     },
     "statistic": {
@@ -405,11 +426,11 @@
     }
   },
   "operation": {
-    "pending": "승인대기 중... %(blocks)s 블록",
-    "done": "끝난",
+    "pending": "pending %(blocks)s blocks",
+    "done": "done",
     "action": {
-      "send": "보내다",
-      "receive": "받다"
+      "send": "Send",
+      "receive": "Receive"
     },
     "no_recent": "No recent transactions",
     "reg_account": "{registrar} registered the account {new_account}",
@@ -457,6 +478,7 @@
     "game_move_commit": "Display selected gesture. Gesture - {gesture}. User - {from}. Game - {game_id}."
   },
   "cancel": "Cancel",
+  "done": "Done",
   "vesting_balances": {
     "title": "Vesting Balances",
     "balance_number": "Balance #%(id)s",
@@ -486,6 +508,57 @@
     },
     "faq": {
       "title": "GAMIFIED PROOF OF STAKE"
+    },
+    "wizard": {
+      "up": "POWER UP",
+      "down": "POWER DOWN",
+      "cancel": "CANCEL",
+      "submit": "SUBMIT",
+      "ok": "OK",
+      "finish": "FINISH",
+      "vote": "Vote",
+      "skip": "Skip",
+      "step1": "Step 1",
+      "step2": "Step-2",
+      "start": {
+        "desc": {
+          "title": "Peerplays GPOS Wizard",
+          "txt-1": "Join GPOS by transferring your PPY to your GPOS balance.",
+          "txt-2": "Consistently participate in voting for the best Witnesses, Advisors, Proposals, and SONs. Share the exciting news and DApps available on Peerplays with others.",
+          "txt-3": "The more value that comes into Peerplays blockchain through its operations, the more those that participate to help make it secure will earn!",
+          "txt-4": "If you want to increase your participation rewards you can do it two ways:",
+          "txt-5": "1. Transfer more PPY into your GPOS balance",
+          "txt-6": "2. Share Peerplays with others",
+          "txt-7": "Together as a Decentralized Autonomous Cooperative (DAC), we can ensure Peerplays remains the most secure provably fair blockchain globally."
+        },
+        "right": {
+          "1": "Power Up & Power Down",
+          "2": "Vote",
+          "3": "Finish"
+        }
+      },
+      "step-1": {
+        "desc": {
+          "title": "Power Up",
+          "txt-1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper ipsum ac ex imperdiet suscipit. Aliquam erat volutpat. Morbi rhoncus vitae libero quis gravida. Nullam eros ante, dictum in purus vitae, volutpat volutpat ante. Morbi dignissim purus ac sodales efficitur. Integer molestie elit at massa lacinia luctus. Suspendisse nisl lorem, vulputate blandit euismod quis, bibendum in nisi."
+        },
+        "right": {
+          "card-1": "Opening GPOS Balance:",
+          "card-2": "New GPOS Balance:",
+          "deposit": "Deposit:",
+          "placeholderAmt": "100"
+        }
+      },
+      "step-2": {
+        "title": "TBD"
+      },
+      "step-3": {
+        "title": "Thank you for voting!",
+        "text-1": "This is now your blockchain as part of the decentralized autonomous cooperative. The value it brings is what you and others bring to it, so go out and:",
+        "text-2": "Share Peerplays with others",
+        "text-3": "Share your voting decisions with the community, including why you voted the way you did",
+        "text-4": "Visit Peerplays social media and like, share, or retweet our latest posts, and provide feedback"
+      }
     }
   },
   "about": {
@@ -505,41 +578,41 @@
     "continue_btn": "Continue"
   },
   "transfer": {
-    "from": "보내는 사람",
-    "pay_from": "전송받음",
-    "amount": "금액",
-    "to": "받는 사람",
-    "memo": "메모",
+    "from": "From",
+    "pay_from": "Pay From",
+    "amount": "Amount",
+    "to": "To",
+    "memo": "Memo",
     "warn_name_unable_read_memo": "Warning: %(name)s will be unable to read this memo",
-    "fee": "수수료",
-    "send": "전송",
-    "select_coin_or_token": "보내실 동전이나 토큰을 선택하십시오.",
-    "amount_to_send": "전송할 금액",
-    "account_name": "계정 이름",
-    "account_type": "계정 유형",
-    "action": "동작",
-    "date": "날짜",
-    "status": "지위",
-    "coin": "동전",
-    "deposit": "예금",
-    "withdrawal": "철수",
-    "final": "전송 후 잔고",
-    "balances": "잔고",
-    "available": "사용가능액",
+    "fee": "Fee",
+    "send": "Send",
+    "select_coin_or_token": "Please select the coin or token you would like to send",
+    "amount_to_send": "Amount to Send",
+    "account_name": "Account Name",
+    "account_type": "Type of Account",
+    "action": "Action",
+    "date": "Date",
+    "status": "Status",
+    "coin": "Coin",
+    "deposit": "Deposit",
+    "withdrawal": "Withdrawal",
+    "final": "Final balance",
+    "balances": "Balances",
+    "available": "Available",
     "errors": {
-      "req": "필수 입력",
-      "pos": "금액은 양수를 입력해주세요",
-      "valid": "유효한 값을 입력해주세요",
-      "balance": "전송 후 잔고는 0보다 커야 합니다",
+      "req": "Required field",
+      "pos": "Amount must be positive",
+      "valid": "Please enter a valid, positive number",
+      "balance": "The final balance must be larger than 0",
       "insufficient": "Insufficient Balance"
     },
-    "back": "뒤로가기",
-    "confirm": "확인",
-    "broadcasting": "처리중...",
-    "broadcast": "거래가 네트워크에 전파되었습니다",
-    "again": "추가 거래",
-    "see": "내 전송내역 보기",
-    "close": "닫기",
+    "back": "BACK",
+    "confirm": "CONFIRM",
+    "broadcasting": "Broadcasting...",
+    "broadcast": "Your transfer has been broadcast to the network",
+    "again": "MAKE ANOTHER TRANSFER",
+    "see": "SEE MY TRANSFERS",
+    "close": "Close",
     "memo_unlock": "Unlock your wallet in order to see this memo",
     "optional": "Optional",
     "account_history_title": "History"
@@ -550,21 +623,21 @@
     "logout_btn": "Logout"
   },
   "login": {
-    "login_form_title": "Peerplays에 오신 것을 환영합니다.",
+    "login_form_title": "Welcome to Peerplays %(tm)s",
     "login_form_sign_up_label": "Don't have an account?",
     "login_form_forgot_btn_label": "Forgot your password?",
     "login_form_login_account_placeholder": "Account Name",
     "login_form_login_password_placeholder": "Password",
     "login_form_remember_me_label": "Remember me?",
     "login_btn": "Login",
-    "signup_form_title": "새 계정을 만드십시오:",
-    "create_now": "지금 만들기!",
-    "backup_recovery": "계정 백업 및 복구",
+    "signup_form_title": "Please  create your new account:",
+    "create_now": "Create now!",
+    "backup_recovery": "Account Backup & Recovery",
     "login_backup_text": {
-      "line1": "Peerplays는 분산 된 블록 체인을 기반으로하므로 아무도 귀하의 허락없이 귀하의 계정에 액세스 할 수 없습니다. 즉, 백업 복구 파일을 보관해야합니다.",
-      "line2": "암호를 잊어 버리거나 컴퓨터가 충돌 한 경우 계정에 다시 액세스 할 수있는 유일한 방법은 백업 파일을 사용하는 것입니다. 이 파일을 만들려면 3 가지 보안 질문을 적어서 대답하십시오.",
-      "line3": "보안 질문에 대한 제안이 필요한 경우 예제를 찾을 수 있습니다.",
-      "here": "이리"
+      "line1": "Peerplays is built on a decentralized blockchain, so nobody else can access your account without your permission. This means you must keep your own backup recovery file.",
+      "line2": "If you forget your password or if your computer crashes, the only way to regain access to your account is with your backup file. To create this file, please write down 3 security questions and then answer them.",
+      "line3": "If you need some suggestions for security questions, you will find examples ",
+      "here": "here"
     },
     "bts_sharedrop": "PEERPLAYS UIA & <br/> BTS Sharedrop <br/> Balance Claims",
     "note_1": "Copyright (c) 2017, Peerplays Blockchain Standards Association",
@@ -587,7 +660,7 @@
     "note_3": "For all other PPY token redemptions, please “sign up” below, and then go to settings/balance claims and enter your redemption key."
   },
   "sign_up": {
-    "welcome": "Welcome to Peerplays",
+    "welcome": "Welcome to Peerplays %(tm)s",
     "please_create": "Please create your new account:",
     "note1": "If you lose your password, you will lose all of your funds!",
     "note2": "Keep Your Password safe!",
@@ -596,9 +669,11 @@
     "pseudoText2": "I have securely saved my generated password",
     "create_btn": "Create account",
     "download_btn": "Download recovery file",
-    "reenter_password": "Re-Enter Generated Password",
+    "reenter_password": "Re-Enter Generated Password:",
     "copy_btn": "Copy",
-    "your_password_is": "Your account password is"
+    "your_password_is": "Your account password is:",
+    "already_have_account": "Already have an account? Go to %(login_link)s",
+    "login_link": "Login"
   },
   "buttons": {
     "done": "Done",
@@ -610,8 +685,19 @@
       "title": "Unlock Wallet",
       "password": "Password",
       "password_placeholder": "Enter password",
-      "unlock_btn": "Unlock Wallet"
+      "unlock_btn": "Unlock Wallet"      
+    },    
+    "memo": {
+      "title": "Memo"
     }
+  },
+  "timeout": {
+    "password": "Password",
+    "title": "Your session has expired",
+    "body_part_1": "If you want to continue as ",
+    "body_part_2": " you need to sign back in",
+    "exit": "EXIT APP",
+    "sign_in": "SIGN IN"
   },
   "deposit_with_draw": {
     "deposit": "Deposit",
@@ -639,6 +725,14 @@
   "cant_connect_modal_blockchain": {
     "title": "Can’t Connect to Blockchain",
     "try_again": "Try again"
+  },
+  "timeout_modal": {
+    "password": "Password",
+    "title": "Your session has expired",
+    "body_part_1": "If you want to continue as ",
+    "body_part_2": " you need to sign back in",
+    "exit": "EXIT APP",
+    "sign_in": "SIGN IN"
   },
   "help": {
     "title": "Help",

@@ -9,10 +9,10 @@
     "tr": "Turkish"
   },
   "header": {
-    "settings": "设置",
-    "help": "帮助",
+    "settings": "Settings",
+    "help": "Help",
     "notices": "Notices",
-    "dashboard": "概览",
+    "dashboard": "My Funds",
     "vote": "Vote",
     "network": "Network",
     "no_notices_message": "You don't have messages."
@@ -45,17 +45,18 @@
       "logout": "Logout"
     },
     "recent_activity": {
-      "title": "近期活動",
+      "title": "Recent Activity",
       "operation": {
-        "title": "操作",
-        "show_all": "顯示所有",
-        "tournament_actions": "比賽行動",
-        "transfers": "轉移"
+        "title": "Operation",
+        "show_all": "Show All",
+        "tournament_actions": "Tournament Actions",
+        "transfers": "Transfers"
       },
-      "sender": "發件人",
-      "receiver": "接收器",
-      "description": "描述",
-      "date": "日期"
+      "sender": "Sender",
+      "receiver": "Receiver",
+      "description": "Description",
+      "date": "Date",
+      "viewMemo": "View Memo"
     }
   },
   "activity": {
@@ -69,6 +70,7 @@
     "asset_claim_fees": "claimed asset fees of %(amount)s from %(from)s fee pool",
     "fill_order": "%(account)s bought %(received)s at %(price)s",
     "vesting_balance_withdraw": "%(account)s withdrew vesting balance of %(amount)s",
+    "vesting_balance_deposit": "%(account)s deposited vesting balance of %(amount)s",
     "balance_claim": "%(account)s claimed a balance of %(amount)s",
     "publish_feed": "%(account)s published feed price of %(price)s",
     "set_proxy": "%(account)s set %(proxy)s as their voting proxy",
@@ -106,18 +108,18 @@
     "asset_dividend_distribution": "Asset dividend distribution"
   },
   "transaction": {
-    "to": "发往",
-    "from": "来自",
+    "to": "To",
+    "from": "From",
     "claimed": "Claimed",
     "deposit_to": "Deposit to",
     "balance_id": "Balance ID",
     "balance_owner_key": "Balance Owner Key",
-    "broadcast_fail": "交易广播失败: %(message)s",
-    "broadcasting": "交易广播中..",
+    "broadcast_fail": "Failed to broadcast the transaction: %(message)s",
+    "broadcasting": "Broadcasting transaction..",
     "broadcast_success": "Transaction has been broadcast",
-    "broadcasting_short": "交易广播中..",
-    "transaction_confirmed": "交易已确认",
-    "confirm": "请确认交易",
+    "broadcasting_short": "Broadcasting..",
+    "transaction_confirmed": "Transaction confirmed",
+    "confirm": "Please confirm the transaction",
     "feeGroups": {
       "general": "General",
       "asset": "Asset-Specific",
@@ -141,53 +143,53 @@
     },
     "trxTypes": {
       "all": "Show all",
-      "transfer": "转账",
-      "limit_order_create": "限价单",
-      "limit_order_cancel": "取消限价单",
+      "transfer": "Transfer",
+      "limit_order_create": "Place order",
+      "limit_order_cancel": "Cancel order",
       "short_order_cancel": "Short Cancel order",
-      "call_order_update": "更新订单",
+      "call_order_update": "Update margin",
       "key_create": "Create Key",
-      "account_create": "创建账户",
-      "account_update": "更新账户",
-      "account_whitelist": "账户白名单",
-      "account_upgrade": "升级账户",
-      "account_transfer": "账户转移",
-      "asset_create": "创建资产",
-      "asset_update": "更新资产",
-      "asset_update_bitasset": "更新智能币",
-      "asset_update_feed_producers": "更新资产喂价者",
+      "account_create": "Create account",
+      "account_update": "Update account",
+      "account_whitelist": "Account whitelist",
+      "account_upgrade": "Upgrade Account",
+      "account_transfer": "Transfer Account",
+      "asset_create": "Create asset",
+      "asset_update": "Update asset",
+      "asset_update_bitasset": "Update SmartCoin",
+      "asset_update_feed_producers": "Update asset feed producers",
       "asset_burn": "Burn Asset",
-      "asset_issue": "资产发行",
-      "asset_reserve": "销毁资产",
-      "asset_fund_fee_pool": "积存资产费用池",
-      "asset_settle": "资产结算",
-      "asset_global_settle": "全局资产清算",
-      "asset_publish_feed": "发布资产喂价",
-      "committee_member_create": "创建理事会成员",
-      "committee_member_update": "更新理事会成员账户",
-      "witness_create": "创建见证人",
-      "witness_update": "更新见证人",
-      "witness_withdraw_pay": "见证人取回报酬",
-      "proposal_create": "创建提案",
-      "proposal_update": "更新提案",
-      "proposal_delete": "删除提案",
-      "withdraw_permission_create": "创建提取权限",
-      "withdraw_permission_update": "更新提取权限",
-      "withdraw_permission_claim": "主张提取权限",
-      "withdraw_permission_delete": "删除提取权限",
-      "fill_order": "订单撮合",
-      "committee_member_update_global_parameters": "全局参数更新",
-      "vesting_balance_create": "创建冻结账目余额",
-      "vesting_balance_withdraw": "提取解冻账户余额",
-      "worker_create": "创建雇员",
-      "custom": "自定义",
-      "assert": "断言操作",
-      "balance_claim": "领取余额",
-      "override_transfer": "优先覆盖转账",
-      "transfer_to_blind": "向隐私账户转账",
-      "blind_transfer": "隐私转账",
-      "transfer_from_blind": "从隐私账户转出",
-      "asset_claim_fees": "领取资产手续费",
+      "asset_issue": "Issue asset",
+      "asset_reserve": "Reserve asset",
+      "asset_fund_fee_pool": "Fund asset fee pool",
+      "asset_settle": "Asset settlement",
+      "asset_global_settle": "Global asset settlement",
+      "asset_publish_feed": "Publish feed",
+      "committee_member_create": "Create advisor",
+      "committee_member_update": "Update advisor",
+      "witness_create": "Create witness",
+      "witness_update": "Update witness",
+      "witness_withdraw_pay": "Witness pay withdrawal",
+      "proposal_create": "Create proposal",
+      "proposal_update": "Update proposal",
+      "proposal_delete": "Delete proposal",
+      "withdraw_permission_create": "Create withdrawal permission",
+      "withdraw_permission_update": "Update withdrawal permission",
+      "withdraw_permission_claim": "Claim withdrawal permission",
+      "withdraw_permission_delete": "Delete withdrawal permission",
+      "fill_order": "Fill order",
+      "committee_member_update_global_parameters": "Global parameters update",
+      "vesting_balance_create": "Create vesting balance",
+      "vesting_balance_withdraw": "Withdraw vesting balance",
+      "worker_create": "Create budget item",
+      "custom": "Custom",
+      "assert": "Assert operation",
+      "balance_claim": "Claim balance",
+      "override_transfer": "Override transfer",
+      "transfer_to_blind": "Transfer to blinded account",
+      "blind_transfer": "Blinded transfer",
+      "transfer_from_blind": "Transfer from blinded account",
+      "asset_claim_fees": "Claim asset fees",
       "tournament_create": "Create Tournament",
       "tournament_join": "Join Tournament",
       "game_move": "Game Move",
@@ -196,26 +198,26 @@
     }
   },
   "settings": {
-    "locale": "语言选择",
-    "general": "一般",
-    "general_text": "调整基本设置。",
-    "current_password": "當前密碼",
+    "locale": "Switch language",
+    "general": "General",
+    "general_text": "Adjust the basic settings.",
+    "current_password": "Current Password",
     "new_password": "New password",
     "new_confirm": "Confirm new password",
     "accept": "Accept",
     "cancel": "Cancel",
-    "reset": "恢复默认值",
+    "reset": "Reset",
     "confirm": "Confirm",
-    "password": "密码",
-    "password_text": "更改您的密码。",
-    "access": "API访问",
-    "access_text": "在这里更改API和水龙头服务器。",
-    "connection": "API 服务器设定",
-    "faucet_address": "水龙头地址",
-    "add_ws": "添加新的 websocket API",
-    "remove_ws": "删除 websocket API",
-    "add_api": "添加API",
-    "remove_api": "删除API",
+    "password": "Password",
+    "password_text": "Change your password.",
+    "access": "API Access",
+    "access_text": "Change API and faucet servers here.",
+    "connection": "API Connection",
+    "faucet_address": "Faucet Address",
+    "add_ws": "Add new websocket API",
+    "remove_ws": "Remove websocket API",
+    "add_api": "Add API",
+    "remove_api": "Remove API",
     "claim": "Balance Claims",
     "claim_sharedrop": {
       "title": "Balance Claims",
@@ -230,7 +232,7 @@
     }
   },
   "errors": {
-    "login_error": "Please enter an account name, starting with a letter and containing at least one dash or number",
+    "login_error": "Please enter an account name starting with a letter and containing at least one dash, a number, or no vowels",
     "incorrect_username_or_password": "Incorrect username or password",
     "incorrect_private_key": "Incorrect Private key",
     "password_must_be_X_characters_or_more": "Password should be at least %(cnt)s symbols (alphanumeric)",
@@ -244,6 +246,7 @@
     "incorrect_password": "This password is incorrect",
     "divisible_by_two": "The number must be divisible by two",
     "unknown_account": "Unknown account",
+    "invalid_account": "Invalid account",
     "cant_proxy_yourself": "Cant proxy to yourself",
     "cant_send_yourself": "Cant send to yourself",
     "not_witness": "Not a witness",
@@ -257,6 +260,19 @@
     "no_balance_objects": "No balance objects"
   },
   "votes": {
+    "proxy_tab": {
+      "help_note": "Proxy your vote to other accounts",
+      "help_note_disclaimer": "Note: Proxying your vote will disable your ability to vote directly for a witness",
+      "question_mark_note": "Proxying means you give other accounts the ability to vote on your behalf"
+    },
+    "witnesses_tab": {
+      "help_note_1": "Vote for Witnesses",
+      "question_mark_note": "Witnesses are the accounts that run the blockchains and produce blocks"
+    },  
+    "advisors_tab": {
+      "help_note": "Vote for Advisors",
+      "question_mark_note": "Advisors can vote on proposals to change blockchain parameters such as fees"
+    },
     "proxy_short": "Proxy",
     "workers_short": "Workers",
     "proxy": "Proxy Voting Account",
@@ -272,7 +288,8 @@
     "support": "Support",
     "workers": "Budget Items",
     "publish": "Publish Changes",
-    "select_witness": "Select a Witness",
+    "select_witness": "Select Witnesses",
+    "select_advisor": "Select Advisors",
     "witness_stats": "Witness Stats",
     "action": "Action",
     "add_witness": "Add",
@@ -319,16 +336,16 @@
     "none": "NONE"
   },
   "account": {
-    "name": "账户名",
+    "name": "Account name",
     "votes": {
-      "votes": "得票",
-      "proxy": "代理投票账户",
-      "no_proxy": "无代理"
+      "votes": "Votes",
+      "proxy": "Proxy Voting Account",
+      "no_proxy": "No Proxy"
     },
     "options": {
-      "num_witnesses": "信任见证人",
-      "num_committee": "信任理事会成员",
-      "memo_key": "备注公钥",
+      "num_witnesses": "Desired Witnesses",
+      "num_committee": "Desired Committee Members",
+      "memo_key": "Memo Key",
       "common_options": "Common options"
     }
   },
@@ -356,34 +373,34 @@
         "witness": "Witness",
         "transaction_count": "Transaction Count"
       },
-      "title": "區塊鏈",
+      "title": "The Blockchain",
       "block_times": "Block Times",
       "trx_block": "TRX / Block",
       "block_time": "Block time",
       "transactions": "# of transactions"
     },
     "accounts": {
-      "title": "帳戶",
-      "explore_bitshares_accounts": "瀏覽Peerplays帳戶",
-      "account_name": "用戶名",
-      "core_token_balance": "核心令牌平衡",
-      "percent_of_total_supply": "總供應百分比",
+      "title": "Accounts",
+      "explore_bitshares_accounts": "Explore Peerplays Accounts",
+      "account_name": "Account Name",
+      "core_token_balance": "Core Token Balance",
+      "percent_of_total_supply": "Percent of Total Supply",
       "id": "ID",
-      "search_accounts": "搜索帳戶"
+      "search_accounts": "Search Accounts"
     },
     "basicAssets": {
-      "title": "基本資產"
+      "title": "Basic Assets"
     },
     "smartCoins": {
-      "title": "智能硬幣"
+      "title": "Smart Coins"
     },
     "feeSchedule": {
-      "title": "費用表",
+      "title": "Fee Schedule",
       "table": {
-        "operation": "操作",
-        "fee_type": "費用類型",
-        "standart_fee": "標準免費",
-        "lifetime_anual_member_fee": "終身 / 年度會員費"
+        "operation": "Operation",
+        "fee_type": "Fee Type",
+        "standart_fee": "Standard Fee",
+        "lifetime_anual_member_fee": "Lifetime / Annual Member Fee"
       }
     },
     "statistic": {
@@ -409,58 +426,59 @@
     }
   },
   "operation": {
-    "pending": " %(blocks)s 个区块待定",
-    "done": "完成",
+    "pending": "pending %(blocks)s blocks",
+    "done": "done",
     "action": {
-      "send": "發送",
-      "receive": "接收"
+      "send": "Send",
+      "receive": "Receive"
     },
-    "no_recent": "近期无交易",
-    "reg_account": "{registrar} 注册了账户 {new_account}",
-    "transfer": "{from} 发送 {amount} 到 {to}",
-    "proposal_create": "{account} 创建了拟议交易",
-    "proposal_update": "{account} 更新了拟议交易",
-    "proposal_delete": "{account} 删除了拟议交易",
+    "no_recent": "No recent transactions",
+    "reg_account": "{registrar} registered the account {new_account}",
+    "transfer": "{from} sent {amount} to {to}",
+    "proposal_create": "{account} created a proposed transaction",
+    "proposal_update": "{account} updated a proposed transaction",
+    "proposal_delete": "{account} deleted a proposed transaction",
     "transfer_to_blind": "{account} sent {amount}",
     "transfer_from_blind": "{account} received {amount}",
     "asset_claim_fees": "claimed asset fees of {amount} from {from} fee pool",
-    "fill_order": "{account} 以 {price} 的价格购买了 {received}",
-    "vesting_balance_withdraw": "{account} 提取了解冻金额 {amount}",
-    "balance_claim": "{account} 领取了余额 {amount}",
-    "publish_feed": "{account} 发布了喂价 {price}",
-    "set_proxy": "{account} 设置 {proxy} 为他的投票代理",
-    "update_account": "{account} 更新了它的账户信息",
-    "limit_order_sell": "{account} 提交卖单，以 {price} 的价格卖出 {amount} ",
-    "limit_order_buy": "{account} 提交买单，以 {price} 的价格买入 {amount} ",
-    "limit_order_cancel": "{account} 取消了订单 #%(order)s",
-    "call_order_update": "{account} 调整了 {debtSymbol} 债务 {debt} ，以及抵押 {collateral}",
-    "asset_reserve": "{account} 保留了 {amount}",
-    "asset_issue": "{account} 发行了 {amount} 到 {to}",
-    "asset_fund_fee_pool": "{account} 向 {asset} 手续费池注入 {amount}",
-    "asset_create": "{account} 创建了资产 {asset}",
-    "asset_update": "{account} 更新了资产 {asset}",
-    "lifetime_upgrade_account": "{account} 升级到终身会员",
-    "annual_upgrade_account": "{account} 升级到年度会员",
-    "unlisted_by": "{lister} 将 {listee} 移出清单",
-    "whitelisted_by": "{lister} 将 {listee} 加入白名单",
-    "blacklisted_by": "{lister} 将 {listee} 加入黑名单",
-    "transfer_account": "{account} 所有权转移到 {to}",
-    "asset_update_feed_producers": "{account} 更新了资产 {asset} 的喂价者",
-    "asset_settle": "{account} 请求清算 {amount}",
-    "asset_global_settle": "{account} 请求以 {price} 的价格进行全局清算 {asset}",
-    "witness_create": "{account} 升级到见证人",
-    "witness_update": "{account} 更新了见证人信息",
-    "witness_pay": "提取见证人收入到账户",
+    "fill_order": "{account} bought {received} at {price}",
+    "vesting_balance_withdraw": "{account} withdrew vesting balance of {amount}",
+    "balance_claim": "{account} claimed a balance of {amount}",
+    "publish_feed": "{account} published feed price of {price}",
+    "set_proxy": "{account} set {proxy} as their voting proxy",
+    "update_account": "{account} updated their account data",
+    "limit_order_sell": "{account} placed an order to sell {amount} at {price}",
+    "limit_order_buy": "{account} placed an order to buy {amount} at {price}",
+    "limit_order_cancel": "{account} cancelled order #{order}s",
+    "call_order_update": "{account} changed {debtSymbol} debt by {debt} and collateral by {collateral}",
+    "asset_reserve": "{account} reserved {amount}",
+    "asset_issue": "{account} issued {amount} to {to}",
+    "asset_fund_fee_pool": "{account} funded {asset} fee pool with {amount}",
+    "asset_create": "{account} created the asset {asset}",
+    "asset_update": "{account} updated the asset {asset}",
+    "lifetime_upgrade_account": "{account} was upgraded to lifetime member",
+    "annual_upgrade_account": "{account} was upgraded to annual member",
+    "unlisted_by": "{lister} unlisted the account {listee}",
+    "whitelisted_by": "{lister} whitelisted the account {listee}",
+    "blacklisted_by": "{lister} blacklisted the account {listee}",
+    "transfer_account": "{account} ownership transferred to {to}",
+    "asset_update_feed_producers": "{account} updated the feed producers for the asset {asset}",
+    "asset_settle": "{account} requested settlement of {amount}",
+    "asset_global_settle": "{account} requested global settlement of {asset} at {price}",
+    "witness_create": "{account} was upgraded to become a witness",
+    "witness_update": "{account} update its witness info",
+    "witness_pay": "Withdrew witness pay to account",
     "witness_receive": "Received witness from witness",
-    "committee_member_update_global_parameters": "{account} 更新了全局理事会参数",
-    "worker_create": "{account} 创建了预算提案，请求每日支付 {pay}",
+    "committee_member_update_global_parameters": "{account} updated the global committee parameters",
+    "worker_create": "{account} created a worker proposal with daily pay of {pay}",
     "override_transfer": "{issuer} transferred {amount} from {from} to {to}",
     "tournament_create": "{from} created a tournament. Buy-in: {amount}",
     "tournament_join": "{from} joined to {tournament_id}.",
     "game_move": "Game move. User - {from}. Game - {game_id}.",
     "game_move_commit": "Display selected gesture. Gesture - {gesture}. User - {from}. Game - {game_id}."
   },
-  "cancel": "取消",
+  "cancel": "Cancel",
+  "done": "Done",
   "vesting_balances": {
     "title": "Vesting Balances",
     "balance_number": "Balance #%(id)s",
@@ -490,6 +508,57 @@
     },
     "faq": {
       "title": "GAMIFIED PROOF OF STAKE"
+    },
+    "wizard": {
+      "up": "POWER UP",
+      "down": "POWER DOWN",
+      "cancel": "CANCEL",
+      "submit": "SUBMIT",
+      "ok": "OK",
+      "finish": "FINISH",
+      "vote": "Vote",
+      "skip": "Skip",
+      "step1": "Step 1",
+      "step2": "Step-2",
+      "start": {
+        "desc": {
+          "title": "Peerplays GPOS Wizard",
+          "txt-1": "Join GPOS by transferring your PPY to your GPOS balance.",
+          "txt-2": "Consistently participate in voting for the best Witnesses, Advisors, Proposals, and SONs. Share the exciting news and DApps available on Peerplays with others.",
+          "txt-3": "The more value that comes into Peerplays blockchain through its operations, the more those that participate to help make it secure will earn!",
+          "txt-4": "If you want to increase your participation rewards you can do it two ways:",
+          "txt-5": "1. Transfer more PPY into your GPOS balance",
+          "txt-6": "2. Share Peerplays with others",
+          "txt-7": "Together as a Decentralized Autonomous Cooperative (DAC), we can ensure Peerplays remains the most secure provably fair blockchain globally."
+        },
+        "right": {
+          "1": "Power Up & Power Down",
+          "2": "Vote",
+          "3": "Finish"
+        }
+      },
+      "step-1": {
+        "desc": {
+          "title": "Power Up",
+          "txt-1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper ipsum ac ex imperdiet suscipit. Aliquam erat volutpat. Morbi rhoncus vitae libero quis gravida. Nullam eros ante, dictum in purus vitae, volutpat volutpat ante. Morbi dignissim purus ac sodales efficitur. Integer molestie elit at massa lacinia luctus. Suspendisse nisl lorem, vulputate blandit euismod quis, bibendum in nisi."
+        },
+        "right": {
+          "card-1": "Opening GPOS Balance:",
+          "card-2": "New GPOS Balance:",
+          "deposit": "Deposit:",
+          "placeholderAmt": "100"
+        }
+      },
+      "step-2": {
+        "title": "TBD"
+      },
+      "step-3": {
+        "title": "Thank you for voting!",
+        "text-1": "This is now your blockchain as part of the decentralized autonomous cooperative. The value it brings is what you and others bring to it, so go out and:",
+        "text-2": "Share Peerplays with others",
+        "text-3": "Share your voting decisions with the community, including why you voted the way you did",
+        "text-4": "Visit Peerplays social media and like, share, or retweet our latest posts, and provide feedback"
+      }
     }
   },
   "about": {
@@ -509,43 +578,43 @@
     "continue_btn": "Continue"
   },
   "transfer": {
-    "from": "来自",
-    "pay_from": "支付自",
-    "amount": "金额",
-    "to": "发往",
-    "memo": "备注消息",
-    "warn_name_unable_read_memo": "警告：%(name)s 无法阅读此备注消息",
-    "fee": "手续费",
-    "send": "发送",
-    "select_coin_or_token": "請選擇您要發送的硬幣或令牌",
-    "amount_to_send": "發送金額",
-    "account_name": "用戶名",
-    "account_type": "帳戶類型",
-    "action": "行動",
-    "date": "日期",
-    "status": "狀態",
-    "coin": "硬幣",
-    "deposit": "存款",
-    "withdrawal": "退出",
-    "final": "转账后余额",
-    "balances": "余额",
-    "available": "可用余额: ",
+    "from": "From",
+    "pay_from": "Pay From",
+    "amount": "Amount",
+    "to": "To",
+    "memo": "Memo",
+    "warn_name_unable_read_memo": "Warning: %(name)s will be unable to read this memo",
+    "fee": "Fee",
+    "send": "Send",
+    "select_coin_or_token": "Please select the coin or token you would like to send",
+    "amount_to_send": "Amount to Send",
+    "account_name": "Account Name",
+    "account_type": "Type of Account",
+    "action": "Action",
+    "date": "Date",
+    "status": "Status",
+    "coin": "Coin",
+    "deposit": "Deposit",
+    "withdrawal": "Withdrawal",
+    "final": "Final balance",
+    "balances": "Balances",
+    "available": "Available",
     "errors": {
-      "req": "必填信息",
-      "pos": "数量必须大于0",
-      "valid": "请输入一个合法的大于0的半角数字",
-      "balance": "最终余额必须大于0",
-      "insufficient": "余额不足"
+      "req": "Required field",
+      "pos": "Amount must be positive",
+      "valid": "Please enter a valid, positive number",
+      "balance": "The final balance must be larger than 0",
+      "insufficient": "Insufficient Balance"
     },
-    "back": "返回",
-    "confirm": "确认发送",
-    "broadcasting": "交易广播中...",
-    "broadcast": "你的转账已经向网络广播",
-    "again": "发起新的转账",
-    "see": "查看我的转账记录",
-    "close": "关闭",
-    "memo_unlock": "解锁钱包以查看交易备注",
-    "optional": "可选",
+    "back": "BACK",
+    "confirm": "CONFIRM",
+    "broadcasting": "Broadcasting...",
+    "broadcast": "Your transfer has been broadcast to the network",
+    "again": "MAKE ANOTHER TRANSFER",
+    "see": "SEE MY TRANSFERS",
+    "close": "Close",
+    "memo_unlock": "Unlock your wallet in order to see this memo",
+    "optional": "Optional",
     "account_history_title": "History"
   },
   "auth": {
@@ -554,21 +623,21 @@
     "logout_btn": "Logout"
   },
   "login": {
-    "login_form_title": "歡迎來到Peerplays %(tm)s",
+    "login_form_title": "Welcome to Peerplays %(tm)s",
     "login_form_sign_up_label": "Don't have an account?",
     "login_form_forgot_btn_label": "Forgot your password?",
     "login_form_login_account_placeholder": "Account Name",
     "login_form_login_password_placeholder": "Password",
     "login_form_remember_me_label": "Remember me?",
     "login_btn": "Login",
-    "signup_form_title": "請創建您的新帳戶:",
-    "create_now": "立即創建!",
-    "backup_recovery": "帐户备份和恢复",
+    "signup_form_title": "Please  create your new account:",
+    "create_now": "Create now!",
+    "backup_recovery": "Account Backup & Recovery",
     "login_backup_text": {
-      "line1": "Peerplays建立在一個分散的區塊鏈上，因此沒有其他人可以在未經您許可的情況下訪問您的帳戶。 這意味著您必須保留自己的備份恢復文件。",
-      "line2": "如果您忘記密碼或計算機崩潰，重新獲得帳戶訪問權限的唯一方法是使用備份文件。 要創建此文件，請記下3個安全問題，然後回答它們。",
-      "line3": "如果你需要一些安全問題的建議，你會發現例子",
-      "here": "這裡"
+      "line1": "Peerplays is built on a decentralized blockchain, so nobody else can access your account without your permission. This means you must keep your own backup recovery file.",
+      "line2": "If you forget your password or if your computer crashes, the only way to regain access to your account is with your backup file. To create this file, please write down 3 security questions and then answer them.",
+      "line3": "If you need some suggestions for security questions, you will find examples ",
+      "here": "here"
     },
     "bts_sharedrop": "PEERPLAYS UIA & <br/> BTS Sharedrop <br/> Balance Claims",
     "note_1": "Copyright (c) 2017, Peerplays Blockchain Standards Association",
@@ -591,7 +660,7 @@
     "note_3": "For all other PPY token redemptions, please “sign up” below, and then go to settings/balance claims and enter your redemption key."
   },
   "sign_up": {
-    "welcome": "歡迎來到Peerplays %(tm)s",
+    "welcome": "Welcome to Peerplays %(tm)s",
     "please_create": "Please create your new account:",
     "note1": "If you lose your password, you will lose all of your funds!",
     "note2": "Keep Your Password safe!",
@@ -616,8 +685,19 @@
       "title": "Unlock Wallet",
       "password": "Password",
       "password_placeholder": "Enter password",
-      "unlock_btn": "Unlock Wallet"
+      "unlock_btn": "Unlock Wallet"      
+    },    
+    "memo": {
+      "title": "Memo"
     }
+  },
+  "timeout": {
+    "password": "Password",
+    "title": "Your session has expired",
+    "body_part_1": "If you want to continue as ",
+    "body_part_2": " you need to sign back in",
+    "exit": "EXIT APP",
+    "sign_in": "SIGN IN"
   },
   "deposit_with_draw": {
     "deposit": "Deposit",
@@ -645,6 +725,14 @@
   "cant_connect_modal_blockchain": {
     "title": "Can’t Connect to Blockchain",
     "try_again": "Try again"
+  },
+  "timeout_modal": {
+    "password": "Password",
+    "title": "Your session has expired",
+    "body_part_1": "If you want to continue as ",
+    "body_part_2": " you need to sign back in",
+    "exit": "EXIT APP",
+    "sign_in": "SIGN IN"
   },
   "help": {
     "title": "Help",

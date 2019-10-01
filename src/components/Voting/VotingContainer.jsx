@@ -10,12 +10,9 @@ import SLoader from '../Loaders/SLoader';
 import {bindActionCreators} from 'redux';
 
 class VotingContainer extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      loaded: false
-    };
+  state = {
+    loaded: false,
+    selectedTab: 0
   }
 
   componentWillMount() {
@@ -25,7 +22,7 @@ class VotingContainer extends React.Component {
   }
 
   onChangeActiveMenuItem(e) {
-    let selectedTab;
+    let {selectedTab} = this.state;
 
     switch (e) {
       case 0:
@@ -41,29 +38,27 @@ class VotingContainer extends React.Component {
         selectedTab = 'proxy';
     }
 
-    this.props.router.push(`/explore/voting/${selectedTab}`);
+    this.setState({selectedTab: e});
+    return selectedTab;
   }
 
-  getCurrentTabFromParams(props) {
-    return props.routes[props.routes.length - 1]['params']['tab'];
+  renderHandlerButtons = () => {
+    let {handlers} = this.props;
+
+    return(
+      <div className='gpos-modal__btns-vote'>
+        <button className='gpos-modal__btn-cancel' onClick={ () => handlers.cancel(0) }>
+          <Translate className='gpos-modal__btn-txt' content='gpos.wizard.cancel' />
+        </button>
+        <button className='gpos-modal__btn-submit' onClick={ () => handlers.finish(3) }>
+          <Translate className='gpos-modal__btn-txt' content='gpos.wizard.finish' />
+        </button>
+      </div>
+    );
   }
 
   render() {
-    let selectedIndex;
-
-    switch (this.getCurrentTabFromParams(this.props)) {
-      case 'proxy':
-        selectedIndex = 0;
-        break;
-      case 'witness':
-        selectedIndex = 1;
-        break;
-      case 'committee':
-        selectedIndex = 2;
-        break;
-      default:
-        selectedIndex = 0;
-    }
+    let selectedIndex = this.state.selectedTab;
 
     return (
       <div className='main'>
@@ -75,13 +70,13 @@ class VotingContainer extends React.Component {
                 onSelect={ this.onChangeActiveMenuItem.bind(this) }
                 selectedIndex={ selectedIndex }>
                 <TabList>
-                  <Tab><Translate content='votes.proxy_short'/></Tab>
-                  <Tab><Translate content='votes.add_witness_label'/></Tab>
-                  <Tab><Translate content='votes.advisors'/></Tab>
+                  <Tab selected={ selectedIndex === 0 }><Translate content='votes.proxy_short'/></Tab>
+                  <Tab selected={ selectedIndex === 1 }><Translate content='votes.add_witness_label'/></Tab>
+                  <Tab selected={ selectedIndex === 2 }><Translate content='votes.advisors'/></Tab>
                 </TabList>
-                <TabPanel><Proxy/></TabPanel>
-                <TabPanel><Witnesses/></TabPanel>
-                <TabPanel><CommitteeMembers/></TabPanel>
+                <TabPanel><Proxy renderHandlers={ this.renderHandlerButtons }/></TabPanel>
+                <TabPanel><Witnesses renderHandlers={ this.renderHandlerButtons }/></TabPanel>
+                <TabPanel><CommitteeMembers renderHandlers={ this.renderHandlerButtons }/></TabPanel>
               </Tabs>
               : <SLoader/>
             }

@@ -1,6 +1,5 @@
 /* eslint-disable */
 
-require('file-loader?name=images/[name].png!./thumb-up.png');
 require('file-loader?name=images/[name].png!./l.png');
 require('file-loader?name=images/[name].jpg!./logo.jpg');
 require('file-loader?name=images/[name].jpg!./logo@2x.jpg');
@@ -22,6 +21,16 @@ require('file-loader?name=images/bitsahres/[name].png!./bitsahres/b_2.png');
 require('file-loader?name=images/img_cont/[name].png!./img_cont/qrcode.png');
 require('file-loader?name=images/flags/[name].png!./flags/cn.png');
 require('file-loader?name=images/flags/[name].png!./flags/us.png');
+
+/**
+ * GPOS
+ */
+require('file-loader?name=images/[name].png!./thumb-up.png');
+require('file-loader?name=images/gpos/[name].png!./gpos/step1.png');
+require('file-loader?name=images/gpos/[name].png!./gpos/step2.png');
+require('file-loader?name=images/gpos/[name].png!./gpos/step3.png');
+require('file-loader?name=images/gpos/[name].png!./gpos/line.png');
+require('file-loader?name=images/gpos/[name].png!./gpos/done.png');
 
 /**
  * RPS Game

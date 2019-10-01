@@ -2,6 +2,51 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.10.d"></a>
+## [1.0.10.d](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.10.c...v1.0.10d) (2019-09-26)
+
+### Bug Fixes
+
+- babel-polyfill issue causing application to hang when in production mode
+
+<a name="1.0.10.c"></a>
+## [1.0.10.c](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.10.b...v1.0.10c) (2019-09-26)
+
+### Bug Fixes
+
+- No longer display NaN when power up/down input is empty
+
+<a name="1.0.10.b"></a>
+## [1.0.10.b](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.10...v1.0.10b) (2019-09-26)
+
+### Added
+
+- Responsiveness support added to the Done screen
+
+### Bug Fixes
+
+- Power Up number input now allows empty values
+
+<a name="1.0.10"></a>
+## [1.0.10](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.9...v1.0.10) (2019-09-25)
+
+### Added
+
+- Done screen to the GPOS Modal (WAL-252)
+
+### Changed
+
+- Vote functionality has been moved to the GPOS moda (WAL-251, WAL-274)
+- GPOS Panel balance statistics conditionally displays based on configuration value setting. Default is to always show the balance statistics (WAL-275).
+
+<a name="1.0.9"></a>
+## [1.0.9](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.6...v1.0.9) (2019-09-13)
+
+### Added
+
+- remote mainnet api endpoints connectivity method (WAL-271)
+- GPOS Wizard start screen (WAL-249)
+
 <a name="1.0.6"></a>
 ## [1.0.6](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.1...v1.0.6) (2019-09-03)
 

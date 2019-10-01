@@ -1,6 +1,6 @@
 {
   "name": "peerplays-core-gui",
-  "version": "1.0.8",
+  "version": "1.0.10.d",
   "description": "Advanced wallet interface for graphene based blockchains (Bitshares, Muse..)",
   "homepage": "./",
   "author": "Cryptonomex, Inc.",
@@ -45,6 +45,7 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.6.0",
     "ReconnectingWebSocket": "git+https://github.com/svk31/reconnecting-websocket.git",
     "alt": "^0.17.8",
     "alt-container": "^1.0.0",
@@ -93,6 +94,7 @@
     "react-interpolate-component": "^0.9.0",
     "react-intl": "^2.0.1",
     "react-json-inspector": "^7.0.0",
+    "react-modal": "^3.10.1",
     "react-modal-bootstrap": "^1.1.0",
     "react-motion": "0.3.1",
     "react-notification-system": "^0.2.17",
@@ -133,7 +135,6 @@
     "babel-plugin-react-transform": "^3.0.0",
     "babel-plugin-transform-decorators-legacy": "^1.3.5",
     "babel-plugin-webpack-alias": "^2.1.2",
-    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
@@ -178,7 +179,7 @@
     "node-localstorage": "~0.3.4",
     "node-sass": "^4.12.0",
     "opn": "^5.4.0",
-    "peerplaysjs-lib": "^0.6.0",
+    "peerplaysjs-lib": "peerplays-network/peerplaysjs-lib#add-balance-type-to-vest-create",
     "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.7.0",

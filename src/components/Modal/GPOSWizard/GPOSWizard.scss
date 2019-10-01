@@ -1,0 +1,753 @@
+@import '../../../assets/stylesheets/mixins';
+@import '../../../assets/stylesheets/variables';
+
+$max-height: 869px;
+$max-width:1505px;
+
+$breakpoints: (default: 1920px,
+mac: 1531px,
+sm: 1275px);
+
+@mixin gpos-start-btn {
+  @include respond-to(mac) {
+    width: 133px;
+    height: 58px;
+  }
+
+  width: 160px;
+  height: 70px;
+  border-radius: 10px;
+}
+
+@mixin gpos-dialogue {
+  @include respond-to(mac) {
+    max-width: 1255px;
+    max-height: 726px;
+  }
+
+  @include respond-to(sm) {
+    max-width: 80%;
+    border-radius: 10px 10px 0 0;
+  }
+
+  position: relative;
+  width: 100%;
+  max-width: $max-width;
+  height: 100%;
+  max-height: $max-height;
+  margin: 0 auto;
+  border-radius: 15px 0 0 15px;
+  background: $gpos-wizard-bg;
+  overflow: auto;
+}
+
+@mixin title {
+  margin-bottom: 33px;
+  font-size: $f-45;
+}
+
+[class^='title'],
+[class*='txt'] {
+  font-family: $lato;
+}
+
+.gpos-modal {
+  &-0,
+  &-1-1,
+  &-2,
+  &-3 {
+    @include gpos-dialogue();
+  }
+
+  &-1-1 {
+    max-height: 881px;
+    border-radius: 15px 0 15px 15px;
+
+    @include respond-to(mac) {
+      max-height: 735px;
+    }
+
+    .gpos-modal__content-right {
+      border-radius: 0 0 15px;
+    }
+  }
+
+  &-2 {
+    min-width: 950px;
+
+    .main {
+      height: 100%;
+      margin-top: 0;
+      padding-top: 55px;
+    }
+
+    .box {
+      padding: 0;
+
+      &-inner {
+        margin-bottom: 0;
+        padding: $p-gpos-box-inner;
+        background: none;
+        box-shadow: none;
+      }
+    }
+
+    .tab__deploy {
+      margin-bottom: 0;
+      padding: $p-gpos-tab-deploy;
+      border-radius: 0;
+      box-shadow: none;
+
+      &.proxy {
+        height: 74.6vh;
+
+        @include respond-to(mac) {
+          height: 100%;
+        }
+      }
+
+      &Head {
+        padding: $p-gpos-tab-deploy-head;
+      }
+    }
+
+    .table2,
+    .assets__list {
+      box-shadow: none;
+    }
+
+    .table2__btns {
+      padding: 0;
+    }
+
+    .assets__list {
+      background: rgba(255, 255, 255, 0.06);
+    }
+  }
+
+  &-3 {
+    width: 1267px;
+    height: 687px;
+    border-radius: 15px;
+    color: $black;
+    background: $white;
+  }
+
+  &__bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    margin: 0 auto;
+    background: $gpos-wizard-dialogue-fade;
+    overflow: auto;
+    resize: both;
+  }
+
+  &__btns {
+    @include respond-to(mac) {
+      width: 485px;
+      margin: 48px auto;
+    }
+
+    display: flex;
+    justify-content: space-between;
+    width: 583px;
+    margin: 62px auto;
+
+    &-power {
+      @extend .gpos-modal__btns;
+
+      @include respond-to(mac) {
+        margin-top: 86px;
+      }
+
+      @include respond-to(sm) {
+        padding-bottom: 160px;
+      }
+
+      justify-content: space-evenly;
+      margin-top: 103px;
+      margin-bottom: 58px;
+    }
+
+    &-vote {
+      position: relative;
+      padding-top: 73px;
+      text-align: right;
+
+      .gpos-modal__btn {
+        &-submit,
+        &-cancel {
+          height: 70px;
+        }
+
+        &-submit {
+          width: 278px;
+          margin-left: 40px;
+        }
+
+        &-cancel {
+          width: 175px;
+        }
+      }
+    }
+
+    &-done {
+      padding-top: 18px;
+    }
+
+    [disabled] {
+      border: 2px solid transparent;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  &__btn {
+    @include gpos-start-btn();
+
+    &-cancel,
+    &-up,
+    &-down,
+    &-done {
+      @extend .gpos-modal__btn;
+      @include transition(all .2s ease);
+
+      border: 2px solid transparent;
+
+      &:active {
+        border-color: $gpos-blue-2;
+      }
+    }
+
+    &-cancel,
+    &-done {
+      @include gpos-btn-hover-active($gpos-blue-3, $color-add2-bd-color);
+
+      background: $gpos-blue-3;
+    }
+
+    &-up {
+      @include gpos-btn-hover-active($gpos-blue-2);
+
+      background: $gpos-blue-2;
+    }
+
+    &-done {
+      width: 229px;
+    }
+
+    &-down {
+      @include respond-to(mac) {
+        width: 172px;
+      }
+
+      width: 207px;
+      margin-right: 0;
+      background: $gpos-green;
+
+      @include gpos-btn-hover-active($gpos-green);
+
+      &[disabled] {
+        border: 2px solid transparent;
+        background: $gpos-green-disabled;
+        cursor: not-allowed;
+      }
+    }
+
+    &-submit {
+      @extend .gpos-modal__btn-up;
+    }
+
+    &-skip {
+      background: transparent;
+    }
+
+    &-minus,
+    &-add {
+      font-size: $f-29;
+      color: #838b96;
+    }
+
+    &-minus {
+      border-right: 2px solid #838b96;
+      border-radius: 5px 0 0 5px;
+
+      & > .symbol__minus {
+        width: 21px;
+        height: 3px;
+        margin: 0 20px;
+        background: rgb(131, 139, 150);
+      }
+    }
+
+    &-add {
+      border-left: 2px solid #838b96;
+      border-radius: 0 5px 5px 0;
+
+      & > .symbol__add {
+        background: rgb(131, 139, 150);
+
+        &-1 {
+          @extend .symbol__add;
+
+          position: absolute;
+          width: 21px;
+          height: 3px;
+          margin: 9px 20px;
+        }
+
+        &-2 {
+          @extend .symbol__add;
+
+          width: 3px;
+          height: 21px;
+          margin: 0 29px;
+        }
+      }
+    }
+
+    &-txt {
+      @include respond-to(mac) {
+        font-size: $f-16;
+      }
+
+      font-size: $f-21;
+      color: $white;
+    }
+  }
+
+  // GPOS Modal content positioning.
+  &__content {
+    @include respond-to(sm) {
+      flex-direction: column;
+    }
+
+    display: flex;
+    height: 100%;
+    overflow: auto;
+
+    &-left,
+    &-right {
+      @include respond-to(mac) {
+        padding-top: 56px;
+      }
+
+      flex: 1;
+      padding-top: 68px;
+    }
+
+    &-right {
+      @include respond-to(mac) {
+        border-radius: 0;
+      }
+
+      @include gpos-box-shadow();
+
+      flex-direction: column;
+      justify-self: center;
+      height: 100%;
+      background: $gpos-wizard-right-bg;
+    }
+  }
+
+  &__card {
+    @include respond-to(mac) {
+      width: 487px;
+      height: 150px;
+    }
+
+    @include gpos-box-shadow();
+
+    position: relative;
+    width: 583px;
+    height: 180px;
+    margin: auto;
+    margin-bottom: 33px;
+    border-radius: 6px;
+    background: $gpos-wizard-right-bg;
+
+    &-power {
+      @extend .gpos-modal__card;
+
+      @include respond-to(mac) {
+        height: 95px;
+        margin-bottom: 43px;
+      }
+
+      height: 114px;
+      margin-bottom: 52px;
+
+      > .txt,
+      > .balance,
+      & > .balance--blue {
+        @include respond-to(mac) {
+          font-size: $f-19;
+        }
+
+        padding: 20px 0 0 32px;
+        font-size: $f-25;
+      }
+
+      > .balance {
+        @include respond-to(mac) {
+          font-size: $f-23;
+        }
+
+        font-size: $f-29;
+
+        &--blue {
+          @include respond-to(mac) {
+            font-size: $f-23;
+          }
+
+          padding-top: 5px;
+          font-size: $f-29;
+          color: $gpos-blue-balance;
+        }
+      }
+
+      > .balance,
+      > .balance--blue {
+        padding-top: 5px;
+      }
+
+      &--transparent {
+        @extend .gpos-modal__card-power;
+
+        background: transparent;
+        box-shadow: none;
+
+        > .txt {
+          @include respond-to(mac) {
+            font-size: $f-18;
+          }
+
+          padding-top: 0;
+          padding-bottom: 14px;
+          padding-left: 0;
+          font-size: $f-23;
+        }
+
+        &.tall {
+          @include respond-to(mac) {
+            height: 95px;
+            margin-bottom: 23px;
+          }
+
+          height: 132px;
+          margin-bottom: 27px;
+        }
+      }
+    }
+
+    &--picker {
+      @extend .gpos-modal__card;
+
+      @include respond-to(mac) {
+        height: 65px;
+      }
+
+      display: flex;
+      height: 78px;
+      margin-bottom: 0;
+      border-radius: 5px;
+      background: $white;
+    }
+
+    &:nth-child(3) {
+      margin-bottom: 0;
+    }
+
+    &-txt {
+      @include respond-to(mac) {
+        width: 200px;
+        margin-left: 202px;
+        font-size: $f-23;
+      }
+
+      display: block;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      float: right;
+      width: 270px;
+      margin-left: 240px;
+      font-size: $f-31;
+    }
+
+    // Images -1, -2, -3
+    &-1 {
+      @include respond-to(mac) {
+        height: 135px;
+      }
+
+      height: 161px;
+      margin-top: 9.75px;
+      margin-left: 5px;
+    }
+
+    &-2 {
+      @include respond-to(mac) {
+        height: 119px;
+        margin-top: 14px;
+      }
+
+      height: 143px;
+      margin-top: 7.04px;
+    }
+
+    &-3 {
+      @include respond-to(mac) {
+        height: 125px;
+        margin-top: 19px;
+        margin-left: 17px;
+      }
+
+      height: 149px;
+      margin-top: 23.28px;
+      margin-left: 23.86px;
+    }
+  }
+
+  &__done {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 56px 71px 67px 80px;
+
+    &-img-wrapper {
+      @include respond-to(sm) {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        min-width: 330px;
+        min-height: 400px;
+        margin: auto;
+      }
+    }
+
+    &-img {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 328px;
+      margin-left: 24px;
+    }
+
+    &-left {
+      flex-grow: 1;
+    }
+
+    &-right {
+      width: 627px;
+
+      @include respond-to(sm) {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        margin: auto;
+      }
+
+      .title {
+        @include title();
+
+        margin-bottom: 24px;
+      }
+
+      .txt {
+        &--spaced {
+          margin-bottom: 15px;
+          line-height: 35px;
+          font-size: $f-22;
+        }
+
+        &--li {
+          position: relative;
+          margin-bottom: 10px;
+          padding: 18.5px;
+          /* stylelint-disable-next-line */
+          padding-left: 1.5em;
+          border-radius: 10px;
+          font-weight: 700;
+          font-size: $f-22;
+          background: rgba(131, 139, 150, 0.08);
+          list-style: none;
+
+          &::before {
+            content: '\2022';
+            display: inline-block;
+            position: absolute;
+            top: 10px;
+            left: 0.3em;
+            vertical-align: middle;
+            margin: 0 5px;
+            font-size: $f-35;
+          }
+        }
+      }
+
+      &.list {
+        display: inline-block;
+      }
+    }
+  }
+
+  &__form {
+    &-amt-picker,
+    &-row {
+      flex-grow: 12;
+    }
+  }
+
+  &__input {
+    &-amt {
+      @include respond-to(mac) {
+        line-height: 65px;
+      }
+
+      width: 100%;
+      padding-left: 24px;
+      line-height: 78px;
+      font-size: $f-29;
+
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
+        display: none;
+      }
+    }
+  }
+
+  &__progress {
+    @include respond-to(mac) {
+      height: 133px;
+    }
+
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 160px;
+    border-radius: 0 0 15px 15px;
+    background: $gpos-wiz-progress-footer;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.204);
+
+    &-wrapper {
+      display: flex;
+      width: 400px;
+      margin: auto;
+    }
+
+    &-1,
+    &-2 {
+      display: flex;
+      width: 176px;
+      margin: auto;
+
+      .circle {
+        width: 44px;
+        height: 44px;
+        padding: 10px;
+        border: 2px solid $green3;
+        border-radius: 50%;
+        text-align: center;
+      }
+
+      .txt {
+        display: flex;
+        flex-flow: column;
+        margin-left: 10px;
+      }
+    }
+
+    &-2 {
+      color: $gpos-wiz-progress-faded;
+
+      .circle {
+        color: $gpos-wiz-progress-faded;
+        border-color: $gpos-wiz-progress-faded;
+      }
+    }
+
+    .line {
+      height: 2px;
+      margin: auto 50px;
+    }
+  }
+
+  &__wizard {
+    &-desc {
+      @include respond-to(mac) {
+        width: 486px;
+        padding-bottom: 56px;
+      }
+
+      @include respond-to(sm) {
+        width: 80%;
+      }
+
+      width: 582px;
+      margin: auto;
+
+      > .title {
+        @include title();
+      }
+
+      > .txt {
+        @include respond-to (mac) {
+          font-size: $f-18;
+        }
+
+        margin-bottom: 22px;
+        font-size: $f-22;
+
+        &--bold {
+          @extend .txt;
+
+          font-weight: 700;
+        }
+
+        &--indent {
+          @extend .txt;
+
+          margin-bottom: 0;
+          text-indent: 22px;
+        }
+
+        &--margin-top {
+          @extend .txt;
+
+          &.line {
+            margin-top: 24px;
+          }
+        }
+      }
+    }
+  }
+
+  &__voting {
+    display: flex;
+    height: 100%;
+
+    &--left {
+      width: 387px;
+      margin-top: 111px;
+      padding-left: 85px;
+
+      > .txt {
+        font-size: $f-45;
+      }
+    }
+
+    &--right {
+      flex-grow: 1;
+      height: 100%;
+    }
+  }
+}

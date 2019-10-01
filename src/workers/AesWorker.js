@@ -1,4 +1,3 @@
-require('babel-polyfill');
 var {Aes} = require('peerplaysjs-lib');
 
 onmessage = function(event) {

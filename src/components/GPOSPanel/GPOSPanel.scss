@@ -18,12 +18,19 @@
     @include transition(background .2s ease);
 
     display: flex;
-    margin-bottom: 45px;
+    align-items: center;
+    margin-bottom: $gpos-panel-button-b-margin;
     padding-top: 2px;
+    border: 2px solid transparent;
     background: $gpos-blue;
 
     &:hover {
       background: $gpos-blue-hover;
+    }
+
+    &:active {
+      background: darken($gpos-blue, $amount: 10%);
+      border-color: $color-add2-bd-color;
     }
 
     &--no-stats {
@@ -32,6 +39,14 @@
 
       &:hover {
         background: $gpos-green-hover;
+      }
+
+      &:active {
+        background: darken($gpos-green, $amount: 10%);
+      }
+
+      &.cond {
+        margin-bottom: $gpos-panel-button-b-margin;
       }
     }
   }

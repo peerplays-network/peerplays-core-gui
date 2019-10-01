@@ -70,6 +70,7 @@
     "asset_claim_fees": "claimed asset fees of %(amount)s from %(from)s fee pool",
     "fill_order": "%(account)s bought %(received)s at %(price)s",
     "vesting_balance_withdraw": "%(account)s withdrew vesting balance of %(amount)s",
+    "vesting_balance_deposit": "%(account)s deposited vesting balance of %(amount)s",
     "balance_claim": "%(account)s claimed a balance of %(amount)s",
     "publish_feed": "%(account)s published feed price of %(price)s",
     "set_proxy": "%(account)s set %(proxy)s as their voting proxy",
@@ -507,6 +508,57 @@
     },
     "faq": {
       "title": "GAMIFIED PROOF OF STAKE"
+    },
+    "wizard": {
+      "up": "POWER UP",
+      "down": "POWER DOWN",
+      "cancel": "CANCEL",
+      "submit": "SUBMIT",
+      "ok": "OK",
+      "finish": "FINISH",
+      "vote": "Vote",
+      "skip": "Skip",
+      "step1": "Step 1",
+      "step2": "Step-2",
+      "start": {
+        "desc": {
+          "title": "Peerplays GPOS Wizard",
+          "txt-1": "Join GPOS by transferring your PPY to your GPOS balance.",
+          "txt-2": "Consistently participate in voting for the best Witnesses, Advisors, Proposals, and SONs. Share the exciting news and DApps available on Peerplays with others.",
+          "txt-3": "The more value that comes into Peerplays blockchain through its operations, the more those that participate to help make it secure will earn!",
+          "txt-4": "If you want to increase your participation rewards you can do it two ways:",
+          "txt-5": "1. Transfer more PPY into your GPOS balance",
+          "txt-6": "2. Share Peerplays with others",
+          "txt-7": "Together as a Decentralized Autonomous Cooperative (DAC), we can ensure Peerplays remains the most secure provably fair blockchain globally."
+        },
+        "right": {
+          "1": "Power Up & Power Down",
+          "2": "Vote",
+          "3": "Finish"
+        }
+      },
+      "step-1": {
+        "desc": {
+          "title": "Power Up",
+          "txt-1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper ipsum ac ex imperdiet suscipit. Aliquam erat volutpat. Morbi rhoncus vitae libero quis gravida. Nullam eros ante, dictum in purus vitae, volutpat volutpat ante. Morbi dignissim purus ac sodales efficitur. Integer molestie elit at massa lacinia luctus. Suspendisse nisl lorem, vulputate blandit euismod quis, bibendum in nisi."
+        },
+        "right": {
+          "card-1": "Opening GPOS Balance:",
+          "card-2": "New GPOS Balance:",
+          "deposit": "Deposit:",
+          "placeholderAmt": "100"
+        }
+      },
+      "step-2": {
+        "title": "TBD"
+      },
+      "step-3": {
+        "title": "Thank you for voting!",
+        "text-1": "This is now your blockchain as part of the decentralized autonomous cooperative. The value it brings is what you and others bring to it, so go out and:",
+        "text-2": "Share Peerplays with others",
+        "text-3": "Share your voting decisions with the community, including why you voted the way you did",
+        "text-4": "Visit Peerplays social media and like, share, or retweet our latest posts, and provide feedback"
+      }
     }
   },
   "about": {
