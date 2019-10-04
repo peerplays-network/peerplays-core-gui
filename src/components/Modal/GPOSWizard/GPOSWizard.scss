@@ -65,11 +65,12 @@ sm: 1275px);
     border-radius: 15px 0 15px 15px;
 
     @include respond-to(mac) {
-      max-height: 735px;
+      max-height: 615px;
     }
 
     .gpos-modal {
       &__content-right {
+        height: auto;
         border-radius: 0 0 15px;
       }
 
@@ -172,10 +173,6 @@ sm: 1275px);
 
       @include respond-to(mac) {
         margin-top: 86px;
-      }
-
-      @include respond-to(sm) {
-        padding-bottom: 160px;
       }
 
       justify-content: baseline;
