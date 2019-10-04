@@ -60,15 +60,22 @@ sm: 1275px);
   }
 
   &-1-1 {
-    max-height: 881px;
+    max-width: 1212px;
+    max-height: 697px;
     border-radius: 15px 0 15px 15px;
 
     @include respond-to(mac) {
       max-height: 735px;
     }
 
-    .gpos-modal__content-right {
-      border-radius: 0 0 15px;
+    .gpos-modal {
+      &__content-right {
+        border-radius: 0 0 15px;
+      }
+
+      &__wizard-desc {
+        width: 434px;
+      }
     }
   }
 
@@ -171,9 +178,10 @@ sm: 1275px);
         padding-bottom: 160px;
       }
 
-      justify-content: space-evenly;
-      margin-top: 103px;
-      margin-bottom: 58px;
+      justify-content: baseline;
+      width: 489px;
+      margin-top: 80px;
+      margin-bottom: 40px;
     }
 
     &-vote {
@@ -269,6 +277,8 @@ sm: 1275px);
 
     &-submit {
       @extend .gpos-modal__btn-up;
+
+      margin-left: 35px;
     }
 
     &-skip {
@@ -376,8 +386,17 @@ sm: 1275px);
     margin-bottom: 33px;
     border-radius: 6px;
     background: $gpos-wizard-right-bg;
-    cursor: pointer;
-    -webkit-user-select: none;
+
+    &-btn {
+      @extend .gpos-modal__card;
+
+      cursor: pointer;
+      -webkit-user-select: none;
+
+      &:hover {
+        background: $gpos-wizard-right-bg-hover;
+      }
+    }
 
     &-power {
       @extend .gpos-modal__card;
@@ -387,6 +406,7 @@ sm: 1275px);
         margin-bottom: 43px;
       }
 
+      width: 489px;
       height: 114px;
       margin-bottom: 52px;
 
@@ -454,7 +474,7 @@ sm: 1275px);
     }
 
     &--picker {
-      @extend .gpos-modal__card;
+      @extend .gpos-modal__card-power;
 
       @include respond-to(mac) {
         height: 65px;
@@ -534,10 +554,6 @@ sm: 1275px);
       opacity: 0.3;
       cursor: not-allowed;
       pointer-events: none;
-    }
-
-    &:hover {
-      background: $gpos-wizard-right-bg-hover;
     }
   }
 
@@ -724,6 +740,7 @@ sm: 1275px);
       > .title {
         @include title();
 
+        margin-top: 41px;
         font-weight: 900;
       }
 

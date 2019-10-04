@@ -73,7 +73,7 @@ class GposWizardStart extends React.Component {
           </div>
         </div>
         <div className='gpos-modal__content-right'>
-          <div className='gpos-modal__card' onClick={ () => proceedOrRegress(1.1) }>
+          <div className='gpos-modal__card-btn' onClick={ () => proceedOrRegress(1.1) }>
             <img className='gpos-modal__card-1' src='images/gpos/power-up.png' alt='step1'/>
             <Translate
               component='p'
@@ -81,7 +81,7 @@ class GposWizardStart extends React.Component {
               content='gpos.wizard.start.right.1'
             />
           </div>
-          <div disabled className='gpos-modal__card' onClick={ () => proceedOrRegress(1.2) }>
+          <div disabled className='gpos-modal__card-btn' onClick={ () => proceedOrRegress(1.2) }>
             <img className='gpos-modal__card-2' src='images/gpos/power-down.png' alt='step2'/>
             <Translate
               component='p'
@@ -90,7 +90,7 @@ class GposWizardStart extends React.Component {
             />
             {this.renderCompleted()}
           </div>
-          <div className='gpos-modal__card' onClick={ () => proceedOrRegress(2) }>
+          <div className='gpos-modal__card-btn' onClick={ () => proceedOrRegress(2) }>
             <img className='gpos-modal__card-3' src='images/gpos/vote.png' alt='step3'/>
             <Translate
               component='p'

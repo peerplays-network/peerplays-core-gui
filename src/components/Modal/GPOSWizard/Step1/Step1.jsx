@@ -10,7 +10,7 @@ import {getCoreBalance} from '../../../../selectors/GPOSSelector';
 
 class GposStep1 extends PureComponent {
   state = {
-    amount: 0,
+    amount: undefined,
     totalGpos: 0,
     precision: 0,
     minAmount: asset_utils.getMinimumAmount(this.props.asset),
@@ -32,7 +32,7 @@ class GposStep1 extends PureComponent {
    * @memberof GposStep1
    */
   amountAdjust = (by) => {
-    let newAmt = parseFloat((this.state.amount + by).toFixed(this.state.precision));
+    let newAmt = parseFloat(((isNaN(this.state.amount) ? 0 : this.state.amount) + by).toFixed(this.state.precision));
     newAmt = newAmt > this.state.maxAmount ? this.state.maxAmount : newAmt;
     newAmt = newAmt < 0 ? 0 : newAmt;
     this.setState({amount: newAmt});
@@ -86,9 +86,10 @@ class GposStep1 extends PureComponent {
       val = val.toFixed(this.state.precision);
       val = parseFloat(val);
       val = val > this.state.maxAmount ? this.state.maxAmount : val;
+    } else {
+      val = undefined;
     }
 
-    e.target.value = val;
     this.setState({amount: val});
   }
 
@@ -153,7 +154,9 @@ class GposStep1 extends PureComponent {
   render() {
     let {proceedOrRegress, asset, symbol} = this.props;
     let amt = this.state.amount;
-    let newAmt = (this.state.totalGpos + (isNaN(amt) ? 0 : amt)).toFixed(asset.get('precision'));
+    let newAmt = Number((this.state.totalGpos + (isNaN(amt) ? 0 : amt)).toFixed(asset.get('precision')));
+    // If the number is whole, return. Else, remove trailing zeros.
+    newAmt = Number.isInteger(newAmt) ? Number(newAmt.toFixed()) : newAmt;
     return (
       <div className='gpos-modal__content'>
         <div className='gpos-modal__content-left'>
@@ -199,34 +202,12 @@ class GposStep1 extends PureComponent {
             <div className='balance'>{newAmt } {symbol}</div>
           </div>
           <div className='gpos-modal__btns-power'>
-            <button className='gpos-modal__btn-skip' onClick={ () => proceedOrRegress(2) }>
-              <Translate className='gpos-modal__btn-txt' content='gpos.wizard.skip'/>
-            </button>
             <button className='gpos-modal__btn-cancel' onClick={ () => proceedOrRegress(0) }>
               <Translate className='gpos-modal__btn-txt' content='gpos.wizard.cancel'/>
             </button>
             <button disabled className='gpos-modal__btn-submit' type='submit' form='amountPicker'>
               <Translate className='gpos-modal__btn-txt' content='gpos.wizard.submit'/>
             </button>
-          </div>
-          <div className='gpos-modal__progress'>
-            <div className='gpos-modal__progress-wrapper'>
-              <div className='gpos-modal__progress-1'>
-                <div className='circle'>1</div>
-                <div className='txt'>
-                  <p>Power Up</p>
-                  <p>Step 1</p>
-                </div>
-              </div>
-              <img className='line' src='images/gpos/line.png' alt='------' />
-              <div className='gpos-modal__progress-2'>
-                <div className='circle'>2</div>
-                <div className='txt'>
-                  <p>Vote</p>
-                  <p>Step 2</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
