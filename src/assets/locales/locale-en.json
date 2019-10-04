@@ -540,13 +540,16 @@
       },
       "step-1": {
         "desc": {
-          "title": "Power Up",
-          "txt-1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper ipsum ac ex imperdiet suscipit. Aliquam erat volutpat. Morbi rhoncus vitae libero quis gravida. Nullam eros ante, dictum in purus vitae, volutpat volutpat ante. Morbi dignissim purus ac sodales efficitur. Integer molestie elit at massa lacinia luctus. Suspendisse nisl lorem, vulputate blandit euismod quis, bibendum in nisi."
+          "title-1": "Power Up",
+          "txt-1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper ipsum ac ex imperdiet suscipit. Aliquam erat volutpat. Morbi rhoncus vitae libero quis gravida. Nullam eros ante, dictum in purus vitae, volutpat volutpat ante. Morbi dignissim purus ac sodales efficitur. Integer molestie elit at massa lacinia luctus. Suspendisse nisl lorem, vulputate blandit euismod quis, bibendum in nisi.",
+          "title-2": "Power Down",
+          "txt-2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper ipsum ac ex imperdiet suscipit. Aliquam erat volutpat. Morbi rhoncus vitae libero quis gravida. Nullam eros ante, dictum in purus vitae, volutpat volutpat ante. Morbi dignissim purus ac sodales efficitur. Integer molestie elit at massa lacinia luctus. Suspendisse nisl lorem, vulputate blandit euismod quis, bibendum in nisi."
         },
         "right": {
           "card-1": "Opening GPOS Balance:",
           "card-2": "New GPOS Balance:",
           "deposit": "Deposit:",
+          "withdraw": "Withdraw",
           "placeholderAmt": "100"
         }
       },

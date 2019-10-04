@@ -167,11 +167,24 @@ class GposStep1 extends PureComponent {
   }
 
   render() {
-    let {proceedOrRegress, asset, symbol} = this.props;
-    let amt = this.state.amount;
-    let newAmt = Number((this.state.totalGpos + (isNaN(amt) ? 0 : amt)).toFixed(asset.get('precision')));
+    let {proceedOrRegress, asset, symbol, action} = this.props, content, title, desc;
+    let amt = isNaN(this.state.amount) ? 0 : this.state.amount;
+    // If action 1, power up is addition else it is action 2 which is subtraction.
+    let newAmt = action === 1 ? (this.state.totalGpos + amt) : (this.state.totalGpos - amt);
+    newAmt = Number((newAmt).toFixed(asset.get('precision')));
     // If the number is whole, return. Else, remove trailing zeros.
     newAmt = Number.isInteger(newAmt) ? Number(newAmt.toFixed()) : newAmt;
+
+    if (action === 1) {
+      content = this.renderPowerUp();
+      title = 'gpos.wizard.step-1.desc.title-1';
+      desc = 'gpos.wizard.step-1.desc.txt-1';
+    } else if (action === 2) {
+      content = this.renderPowerDown();
+      title = 'gpos.wizard.step-1.desc.title-2';
+      desc = 'gpos.wizard.step-1.desc.txt-2';
+    }
+
     return (
       <div className='gpos-modal__content'>
         <div className='gpos-modal__content-left'>
@@ -179,12 +192,12 @@ class GposStep1 extends PureComponent {
             <Translate
               component='div'
               className='title'
-              content='gpos.wizard.step-1.desc.title'
+              content={ title }
             />
             <Translate
               component='p'
               className='txt'
-              content='gpos.wizard.step-1.desc.txt-1'
+              content={ desc }
             />
           </div>
         </div>
@@ -205,7 +218,7 @@ class GposStep1 extends PureComponent {
           </div>
 
           {
-            this.renderPowerUp()
+            content
           }
 
           <div className='gpos-modal__card-power'>
