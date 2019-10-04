@@ -38,7 +38,6 @@ class GPOSWizardWrapper extends Component {
       let newCompletedStages = this.state.completedStages;
       newCompletedStages[stageCompleted] = true;
 
-      console.log(newCompletedStages);
       this.setState({completedStages: newCompletedStages});
     }
   }
