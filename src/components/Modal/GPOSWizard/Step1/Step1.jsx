@@ -27,6 +27,7 @@ class GposStep1 extends PureComponent {
 
   /**
    * Increment or decrements the state amount.
+   * Activated via the plus and minus buttons on the number input.
    *
    * @param {number} by - the amount to adjust by
    * @memberof GposStep1
@@ -40,7 +41,13 @@ class GposStep1 extends PureComponent {
     }
 
     newAmt = parseFloat(newAmt);
-    newAmt = newAmt > this.state.maxAmount ? this.state.maxAmount : newAmt;
+
+    if (this.props.action === 1) {
+      newAmt = newAmt > this.state.maxAmount ? this.state.maxAmount : newAmt;
+    } else if (this.props.action === 2) {
+      newAmt = newAmt > this.state.totalGpos ? this.state.totalGpos : newAmt;
+    }
+
     newAmt = newAmt < 0 ? 0 : newAmt;
 
     this.setState({amount: newAmt});
@@ -81,6 +88,7 @@ class GposStep1 extends PureComponent {
     }
   }
 
+  // Handle manually entered values here
   onEdit = (e) => {
     let val;
 
@@ -100,7 +108,12 @@ class GposStep1 extends PureComponent {
       // Make sure the amount does not exceed the users balance.
       val = val.toFixed(this.state.precision);
       val = parseFloat(val);
-      val = val > this.state.maxAmount ? this.state.maxAmount : val;
+
+      if (this.props.action === 1) {
+        val = val > this.state.maxAmount ? this.state.maxAmount : val;
+      } else if (this.props.action === 2) {
+        val = val > this.state.totalGpos ? this.state.totalGpos : val;
+      }
     } else {
       val = undefined;
     }
@@ -108,50 +121,40 @@ class GposStep1 extends PureComponent {
     this.setState({amount: val});
   }
 
-  renderAmountPicker = () => {
+  renderAmountPicker = (actionTxt) => {
     let min = this.state.minAmount;
     let max = this.state.maxAmount;
-    return(
-      <div className='gpos-modal__card--picker'>
-        <button className='gpos-modal__btn-minus' onClick={ () => this.amountAdjust(-min) }><div className='symbol__minus'/></button>
-        <form className='gpos-modal__form-amt-picker' id='amountPicker' onSubmit={ (e) => this.onSubmit(this.props.walletLocked, e) }>
-          <input
-            name='gpos_amt'
-            id='gpos_amt'
-            className='gpos-modal__input-amt'
-            placeholder={ counterpart.translate('gpos.wizard.step-1.right.placeholderAmt') }
-            type='number'
-            value={ this.state.amount }
-            onChange={ this.onEdit }
-            onBlur={ this.onEdit }
-            tabIndex='1'
-            min='0'
-            max={ max }
-            step={ min }
-          />
-        </form>
-        <button htmlFor='gpos_amt' className='gpos-modal__btn-add disabled' onClick={ () => this.amountAdjust(min) }>
-          <div className='symbol__add-1'/><div className='symbol__add-2'/>
-        </button>
-      </div>
-    );
-  }
-
-  renderPowerUp = () => {
     return(
       <div className='gpos-modal__card-power--transparent tall'>
         <Translate
           component='p'
           className='txt'
-          content='gpos.wizard.step-1.right.deposit'
+          content={ actionTxt }
         />
-        {this.renderAmountPicker()}
+        <div className='gpos-modal__card--picker'>
+          <button className='gpos-modal__btn-minus' onClick={ () => this.amountAdjust(-min) }><div className='symbol__minus'/></button>
+          <form className='gpos-modal__form-amt-picker' id='amountPicker' onSubmit={ (e) => this.onSubmit(this.props.walletLocked, e) }>
+            <input
+              name='gpos_amt'
+              id='gpos_amt'
+              className='gpos-modal__input-amt'
+              placeholder={ counterpart.translate('gpos.wizard.step-1.right.placeholderAmt') }
+              type='number'
+              value={ this.state.amount }
+              onChange={ this.onEdit }
+              onBlur={ this.onEdit }
+              tabIndex='1'
+              min='0'
+              max={ max }
+              step={ min }
+            />
+          </form>
+          <button htmlFor='gpos_amt' className='gpos-modal__btn-add disabled' onClick={ () => this.amountAdjust(min) }>
+            <div className='symbol__add-1'/><div className='symbol__add-2'/>
+          </button>
+        </div>
       </div>
     );
-  }
-
-  renderPowerDown = () => {
-
   }
 
   componentWillUpdate(nextProps) {
@@ -176,11 +179,11 @@ class GposStep1 extends PureComponent {
     newAmt = Number.isInteger(newAmt) ? Number(newAmt.toFixed()) : newAmt;
 
     if (action === 1) {
-      content = this.renderPowerUp();
+      content = this.renderAmountPicker('gpos.wizard.step-1.right.deposit');
       title = 'gpos.wizard.step-1.desc.title-1';
       desc = 'gpos.wizard.step-1.desc.txt-1';
     } else if (action === 2) {
-      content = this.renderPowerDown();
+      content = this.renderAmountPicker('gpos.wizard.step-1.right.withdraw');
       title = 'gpos.wizard.step-1.desc.title-2';
       desc = 'gpos.wizard.step-1.desc.txt-2';
     }
@@ -217,9 +220,7 @@ class GposStep1 extends PureComponent {
             </div>
           </div>
 
-          {
-            content
-          }
+          {content}
 
           <div className='gpos-modal__card-power'>
             <Translate

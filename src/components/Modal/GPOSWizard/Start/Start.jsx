@@ -81,7 +81,7 @@ class GposWizardStart extends React.Component {
               content='gpos.wizard.start.right.1'
             />
           </div>
-          <div disabled className='gpos-modal__card-btn' onClick={ () => proceedOrRegress(1.2) }>
+          <div className='gpos-modal__card-btn' onClick={ () => proceedOrRegress(1.2) }>
             <img className='gpos-modal__card-2' src='images/gpos/power-down.png' alt='step2'/>
             <Translate
               component='p'

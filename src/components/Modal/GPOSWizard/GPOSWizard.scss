@@ -54,12 +54,13 @@ sm: 1275px);
 .gpos-modal {
   &-0,
   &-1-1,
+  &-1-2,
   &-2,
   &-3 {
     @include gpos-dialogue();
   }
 
-  &-1-1 {
+  &-1-1, &-1-2 {
     max-width: 1212px;
     max-height: 697px;
     border-radius: 15px 0 15px 15px;
