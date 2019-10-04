@@ -23,24 +23,33 @@ class GPOSWizardWrapper extends Component {
     3 - done
   */
   state = {
-    currentStep: 0
+    currentStep: 0,
+    completedStages: {1.1: false, 1.2: false, 2: false}
   }
 
   closeModal = () => {
     this.props.toggleGPOSWizard();
   }
 
-  proceedOrRegress = (step) => {
+  proceedOrRegress = (step, stageCompleted = undefined) => {
     this.setState({currentStep: step});
+
+    if (stageCompleted !== undefined) {
+      let newCompletedStages = this.state.completedStages;
+      newCompletedStages[stageCompleted] = true;
+
+      console.log(newCompletedStages);
+      this.setState({completedStages: newCompletedStages});
+    }
   }
 
   renderStepContent = (totalGpos) => {
     let current = this.state.currentStep;
 
     switch (current) {
-      case 0: return <Start totalGpos={ totalGpos } closeModal={ this.closeModal } proceedOrRegress={ this.proceedOrRegress }/>;
-      case 1.1: return <Step1 totalGpos={ totalGpos } proceedOrRegress={ this.proceedOrRegress } action={ 1 }/>;
-      case 1.2: return <Step1 totalGpos={ totalGpos } proceedOrRegress={ this.proceedOrRegress } action={ 2 }/>;
+      case 0: return <Start totalGpos={ totalGpos } closeModal={ this.closeModal } proceedOrRegress={ this.proceedOrRegress } completedStages={ this.state.completedStages }/>;
+      case 1.1: return <Step1 totalGpos={ totalGpos } proceedOrRegress={ this.proceedOrRegress } action={ 1.1 }/>;
+      case 1.2: return <Step1 totalGpos={ totalGpos } proceedOrRegress={ this.proceedOrRegress } action={ 1.2 }/>;
       case 2: return <Vote finishHandler={ this.proceedOrRegress } cancelHandler={ this.proceedOrRegress }/>;
       case 3: return <Done okHandler={ this.proceedOrRegress }/>;
       //no default
