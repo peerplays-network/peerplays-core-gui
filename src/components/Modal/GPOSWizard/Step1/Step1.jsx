@@ -32,9 +32,17 @@ class GposStep1 extends PureComponent {
    * @memberof GposStep1
    */
   amountAdjust = (by) => {
-    let newAmt = parseFloat(((isNaN(this.state.amount) ? 0 : this.state.amount) + by).toFixed(this.state.precision));
+    let newAmt = ((isNaN(this.state.amount) ? 0 : this.state.amount) + by).toFixed(this.state.precision);
+
+    // Check if the amount exceeds the maximum of 32 digits.
+    if (newAmt.length > 32) {
+      newAmt = 9.9e31;
+    }
+
+    newAmt = parseFloat(newAmt);
     newAmt = newAmt > this.state.maxAmount ? this.state.maxAmount : newAmt;
     newAmt = newAmt < 0 ? 0 : newAmt;
+
     this.setState({amount: newAmt});
   }
 
@@ -74,7 +82,14 @@ class GposStep1 extends PureComponent {
   }
 
   onEdit = (e) => {
-    let val = parseFloat(e.target.value);
+    let val;
+
+    // Check if the amount exceeds the maximum of 32 digits.
+    if (e.target.value.length > 32) {
+      val = 9.9e31;
+    } else {
+      val = parseFloat(e.target.value);
+    }
 
     if (val !== '' && !isNaN(val)) {
       // Make sure we are working with a number (user can potentially edit the html input type).
