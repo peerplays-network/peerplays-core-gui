@@ -65,15 +65,9 @@ class GposStep1 extends PureComponent {
   onSubmit = (walletLocked, e) => {
     e.preventDefault();
 
-    //=================== TEMP DISABLE ===================//
-    // if (walletLocked && !this.props.walletIsOpen) {
-    //   this.props.setWalletPosition(true);
-    // }
-
-    let {asset, symbol} = this.props; // eslint-disable-line
+    let {asset, symbol} = this.props;
 
     if (this.state.amount < this.state.maxAmount && asset) {
-      //=================== TEMP DISABLE ===================//
       let asset_id = asset.get('id');
 
       function transactionFunctionCallback() {
@@ -87,21 +81,6 @@ class GposStep1 extends PureComponent {
         {amount: this.state.amount, asset_id},
         symbol
       ).then((tr) => {
-        // Store the transaction in redux for use in TransactionConfirmModal.jsx
-        // this.props.setTransaction('create_vesting_balance', {
-        //   fee: {amount: tr.operations[0][1].fee.amount, asset},
-        //   asset,
-        //   proposedOperation: `Power Up GPOS for ${this.state.amount} ${symbol} from ${this.props.accountName}`,
-        //   transactionFunction: GPOSActions.powerUpTransaction,
-        //   transactionFunctionCallback: () => {
-        //     this.setState({
-        //       amount: 0
-        //     });
-        //   },
-        //   transactionObject: tr,
-        //   functionArguments: tr
-        // });
-
         this.props.confirmTransaction(GPOSActions.powerUpTransaction, tr, transactionFunctionCallback);
       });
     }
