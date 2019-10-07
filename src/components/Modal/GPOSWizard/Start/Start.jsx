@@ -16,7 +16,19 @@ class GposWizardStart extends React.Component {
     let {closeModal, proceedOrRegress, completedStages, totalGpos} = this.props, hasProgress, btnTxt, canVote;
     hasProgress = Object.values(completedStages).indexOf(true) > -1;
     btnTxt = !hasProgress ? 'gpos.wizard.cancel' : 'gpos.wizard.done';
-    canVote = hasProgress && totalGpos > 0;
+
+    // Progress must have been made and the user must have a gpos balance
+    if (hasProgress && totalGpos > 0) {
+      canVote = true;
+
+      // If vote has been completed already, disable...
+      if (completedStages['2'] === true) {
+        canVote = false;
+      }
+    } else {
+      canVote = false;
+    }
+
     return (
       <div className='gpos-modal__content'>
         <div className='gpos-modal__content-left'>

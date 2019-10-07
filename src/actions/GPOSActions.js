@@ -70,8 +70,8 @@ class GPOSActions {
   static powerUpTransaction(tr) {
     return (dispatch, getState) => {
       return new Promise((resolve, reject) => {
-        let encrypted_key = getState().walletData.wallet.encrypted_brainkey;
-        const activePrivateKeyBuffer = getState().walletData.aesPrivate.decryptHexToBuffer(encrypted_key);
+        const encrypted_key = getState().walletData.wallet.encrypted_brainkey;
+        const activePrivateKeyBuffer = getState().walletData.wallet.aesPrivate.decryptHexToBuffer(encrypted_key);
         const activePrivateKey = PrivateKey.fromBuffer(activePrivateKeyBuffer);
         AccountRepository.process_transaction(tr, activePrivateKey).then(() => resolve()).catch((err) => reject(err));
       });

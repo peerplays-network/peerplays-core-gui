@@ -564,6 +564,18 @@
         "text-3": "Share your voting decisions with the community, including why you voted the way you did",
         "text-4": "Visit Peerplays social media and like, share, or retweet our latest posts, and provide feedback"
       }
+    },
+    "transaction": {
+      "down": {
+        "succeed": "You have successfully Powered Down!",
+        "fail": "You have failed to Power Down!"
+      },
+      "up": {
+        "succeed": "You have successfully Powered Up!",
+        "fail": "You have failed to Power Up!"
+      },
+      "next": "NEXT",
+      "retry": "RETRY"
     }
   },
   "about": {

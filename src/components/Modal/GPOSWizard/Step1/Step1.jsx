@@ -7,6 +7,7 @@ import {bindActionCreators} from 'redux';
 import asset_utils from '../../../../common/asset_utils';
 import {GPOSActions, RTransactionConfirmActions, RWalletUnlockActions} from '../../../../actions';
 import {getCoreBalance} from '../../../../selectors/GPOSSelector';
+import SLoader from '../../../Loaders/SLoader';
 
 class GposStep1 extends PureComponent {
   state = {
@@ -73,30 +74,36 @@ class GposStep1 extends PureComponent {
 
     if (this.state.amount < this.state.maxAmount && asset) {
       //=================== TEMP DISABLE ===================//
-      // let asset_id = asset.get('id');
+      let asset_id = asset.get('id');
 
-      // this.props.getPowerUpTransaction(
-      //   this.props.accountId,
-      //   {amount: this.state.amount, asset_id},
-      //   symbol
-      // ).then((tr) => {
-      //   // Store the transaction in redux for use in TransactionConfirmModal.jsx
-      //   this.props.setTransaction('create_vesting_balance', {
-      //     fee: {amount: tr.operations[0][1].fee.amount, asset},
-      //     asset,
-      //     proposedOperation: `Power Up GPOS for ${this.state.amount} ${symbol} from ${this.props.accountName}`,
-      //     transactionFunction: GPOSActions.powerUpTransaction,
-      //     transactionFunctionCallback: () => {
-      //       this.setState({
-      //         amount: 0
-      //       });
-      //     },
-      //     transactionObject: tr,
-      //     functionArguments: tr
-      //   });
-      // });
+      function transactionFunctionCallback() {
+        this.setState({
+          amount: 0
+        });
+      }
 
-      this.props.proceedOrRegress(0, this.props.action);
+      this.props.getPowerUpTransaction(
+        this.props.accountId,
+        {amount: this.state.amount, asset_id},
+        symbol
+      ).then((tr) => {
+        // Store the transaction in redux for use in TransactionConfirmModal.jsx
+        // this.props.setTransaction('create_vesting_balance', {
+        //   fee: {amount: tr.operations[0][1].fee.amount, asset},
+        //   asset,
+        //   proposedOperation: `Power Up GPOS for ${this.state.amount} ${symbol} from ${this.props.accountName}`,
+        //   transactionFunction: GPOSActions.powerUpTransaction,
+        //   transactionFunctionCallback: () => {
+        //     this.setState({
+        //       amount: 0
+        //     });
+        //   },
+        //   transactionObject: tr,
+        //   functionArguments: tr
+        // });
+
+        this.props.confirmTransaction(GPOSActions.powerUpTransaction, tr, transactionFunctionCallback);
+      });
     }
   }
 
@@ -169,20 +176,93 @@ class GposStep1 extends PureComponent {
     );
   }
 
-  componentWillUpdate(nextProps) {
-    const {walletLocked} = this.props;
+  renderRContent = (canSubmit, content, newAmt) => {
+    let {asset, action, proceedOrRegress, symbol, isBroadcasting, broadcastError, broadcastSuccess} =
+      this.props, transactionStatus, transactionMsg, clickAction, btnTxt;
 
-    if (
-      !nextProps.walletLocked
-      && nextProps.walletLocked !== walletLocked
-      && nextProps.aesPrivate
-    ) {
-      this.onSubmit(nextProps.walletLocked);
+    // Default right content:
+    let rContent =
+      <div>
+        <div className='gpos-modal__card-power'>
+          <Translate
+            component='p'
+            className='txt'
+            content='gpos.wizard.step-1.right.card-1'
+          />
+          <div className='balance--blue'>
+            <FormattedNumber
+              value={ this.state.totalGpos }
+              minimumFractionDigits={ 0 }
+              maximumFractionDigits={ asset.get('precision') }
+            /> {symbol}
+          </div>
+        </div>
+
+        {content}
+
+        <div className='gpos-modal__card-power'>
+          <Translate
+            component='p'
+            className='txt'
+            content='gpos.wizard.step-1.right.card-2'
+          />
+          <div className='balance'>{newAmt } {symbol}</div>
+        </div>
+        <div className='gpos-modal__btns-power'>
+          <button className='gpos-modal__btn-cancel' onClick={ () => proceedOrRegress(0) }>
+            <Translate className='gpos-modal__btn-txt' content='gpos.wizard.cancel'/>
+          </button>
+          <button disabled={ canSubmit } className='gpos-modal__btn-submit' type='submit' form='amountPicker'>
+            <Translate className='gpos-modal__btn-txt' content='gpos.wizard.submit'/>
+          </button>
+        </div>
+      </div>;
+
+    // If transaction is currently being broadcasted, display loading animation.
+    if (isBroadcasting) {
+      rContent = <SLoader/>;
+    } else if (broadcastError) {
+      transactionStatus = '--fail';
+      transactionMsg = action === 1.1 ? 'gpos.transaction.up.fail' : 'gpos.transaction.down.fail';
+      btnTxt = 'gpos.transaction.retry';
+
+      clickAction = null;
+    } else if (broadcastSuccess) {
+      transactionStatus = '--succeed';
+      transactionMsg = action === 1.1 ? 'gpos.transaction.up.succeed' : 'gpos.transaction.down.succeed';
+      btnTxt = 'gpos.transaction.next';
+      clickAction = proceedOrRegress(2, action);
     }
+
+    if (transactionStatus !== undefined) {
+      clickAction = () => {
+        // Clear the transaction so the error and other information is reset.
+        this.props.clearTransaction();
+        return clickAction;
+      };
+
+      // The transaction broadcast either succeeded or failed...
+      rContent =
+      <div className='transaction-status'>
+        <img className={ `transaction-status__img${transactionStatus}` } src={ `images/gpos/transaction${transactionStatus}.png` } alt={ transactionStatus } />
+        <Translate
+          component='p'
+          className='transaction-status__txt'
+          content={ transactionMsg }
+        />
+        <div className='gpos-modal__btns'>
+          <button className='gpos-modal__btn-retry' onClick={ () => clickAction() }>
+            <Translate className='gpos-modal__btn-txt' content={ btnTxt }/>
+          </button>
+        </div>
+      </div>;
+    }
+
+    return rContent;
   }
 
   render() {
-    let {proceedOrRegress, asset, symbol, action} = this.props, content, title, desc, canSubmit;
+    let {asset, action} = this.props, content, title, desc, canSubmit;
     let amt = isNaN(this.state.amount) ? 0 : this.state.amount;
     // If action 1, power up is addition else it is action 2 which is subtraction.
     let newAmt = action === 1.1 ? (this.state.totalGpos + amt) : (this.state.totalGpos - amt);
@@ -219,39 +299,7 @@ class GposStep1 extends PureComponent {
           </div>
         </div>
         <div className='gpos-modal__content-right'>
-          <div className='gpos-modal__card-power'>
-            <Translate
-              component='p'
-              className='txt'
-              content='gpos.wizard.step-1.right.card-1'
-            />
-            <div className='balance--blue'>
-              <FormattedNumber
-                value={ this.state.totalGpos }
-                minimumFractionDigits={ 0 }
-                maximumFractionDigits={ asset.get('precision') }
-              /> {symbol}
-            </div>
-          </div>
-
-          {content}
-
-          <div className='gpos-modal__card-power'>
-            <Translate
-              component='p'
-              className='txt'
-              content='gpos.wizard.step-1.right.card-2'
-            />
-            <div className='balance'>{newAmt } {symbol}</div>
-          </div>
-          <div className='gpos-modal__btns-power'>
-            <button className='gpos-modal__btn-cancel' onClick={ () => proceedOrRegress(0) }>
-              <Translate className='gpos-modal__btn-txt' content='gpos.wizard.cancel'/>
-            </button>
-            <button disabled={ canSubmit } className='gpos-modal__btn-submit' type='submit' form='amountPicker'>
-              <Translate className='gpos-modal__btn-txt' content='gpos.wizard.submit'/>
-            </button>
-          </div>
+          {this.renderRContent(canSubmit, content, newAmt)}
         </div>
       </div>
     );
@@ -262,6 +310,10 @@ const mapStateToProps = (state) => {
   let asset = state.dashboardPage.vestingAsset;
   let symbol = asset ? asset_utils.getSymbol(asset.get('symbol')) : '';
   let coreBalance = getCoreBalance(state);
+  let transactionStatus = state.transactionConfirm;
+  let isBroadcasting = transactionStatus.broadcasting;
+  let broadcastSuccess = transactionStatus.broadcastSuccess;
+  let broadcastError = transactionStatus.broadcastError;
   return {
     walletLocked : state.wallet.locked,
     walletIsOpen : state.wallet.isOpen,
@@ -269,14 +321,19 @@ const mapStateToProps = (state) => {
     asset,
     coreBalance,
     accountId: state.app.accountId,
+    isBroadcasting,
+    broadcastSuccess,
+    broadcastError,
     symbol
   };
 };
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
+    clearTransaction: RTransactionConfirmActions.clearTransaction,
     getPowerUpTransaction: GPOSActions.getPowerUpTransaction,
     setTransaction: RTransactionConfirmActions.setTransaction,
+    confirmTransaction: RTransactionConfirmActions.confirmTransaction,
     setWalletPosition: RWalletUnlockActions.setWalletPosition
   },
   dispatch

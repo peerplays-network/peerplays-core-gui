@@ -335,6 +335,25 @@ sm: 1275px);
       font-size: $f-21;
       color: $white;
     }
+
+    &-retry, &-next {
+      [class*='txt'] {
+        font-size: $f-25;
+      }
+
+      width: 278px;
+      height: 70px;
+      margin: auto;
+      border-radius: 10px;
+    }
+
+    &-retry {
+      background: $red;
+    }
+
+    &-next {
+      background: $green3;
+    }
   }
 
   // GPOS Modal content positioning.
@@ -366,6 +385,34 @@ sm: 1275px);
       justify-self: center;
       height: 100%;
       background: $gpos-wizard-right-bg;
+
+      .loader-splash {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .transaction-status {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 46px;
+
+        &__img {
+          &--fail {
+            width: 152px;
+          }
+
+          &--succeed {
+            height: 221px;
+          }
+        }
+
+        &__txt {
+          width: 454px;
+          font-size: $f-40;
+          text-align: center;
+        }
+      }
     }
   }
 

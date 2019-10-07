@@ -2,6 +2,7 @@ import KeyGeneratorService from '../services/KeyGeneratorService';
 import idb_helper from '../idb-helper';
 import iDB from '../idb-instance';
 import {PrivateKey, key, Aes, Apis} from 'peerplaysjs-lib';
+import CryptoService from './CryptoService';
 
 /**
  * Service for work with a wallet
@@ -145,7 +146,10 @@ class WalletService {
 
     let date = new Date();
 
+    let aesPrivate = CryptoService.getAesPrivate(password, encryptionKey);
+
     let wallet = {
+      aesPrivate,
       is_legacy: isLegacy,
       public_name: walletName,
       password_pubkey: publicPassword,

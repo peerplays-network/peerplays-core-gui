@@ -31,6 +31,8 @@ require('file-loader?name=images/gpos/[name].png!./gpos/power-down.png');
 require('file-loader?name=images/gpos/[name].png!./gpos/vote.png');
 require('file-loader?name=images/gpos/[name].png!./gpos/line.png');
 require('file-loader?name=images/gpos/[name].png!./gpos/done.png');
+require('file-loader?name=images/gpos/[name].png!./gpos/transaction--fail.png');
+require('file-loader?name=images/gpos/[name].png!./gpos/transaction--succeed.png');
 
 /**
  * RPS Game
