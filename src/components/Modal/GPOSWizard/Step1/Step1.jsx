@@ -190,7 +190,7 @@ class GposStep1 extends PureComponent {
     // If the number is whole, return. Else, remove trailing zeros.
     newAmt = Number.isInteger(newAmt) ? Number(newAmt.toFixed()) : newAmt;
 
-    canSubmit = newAmt > 0 ? false : true;
+    canSubmit = newAmt !== this.state.totalGpos && newAmt > 0 ? false : true;
 
     if (action === 1.1) {
       content = this.renderAmountPicker('gpos.wizard.step-1.right.deposit');
