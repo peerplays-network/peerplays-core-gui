@@ -13,9 +13,10 @@ class GposWizardStart extends React.Component {
   }
 
   render() {
-    let {closeModal, proceedOrRegress, completedStages} = this.props, hasProgress, btnTxt;
+    let {closeModal, proceedOrRegress, completedStages, totalGpos} = this.props, hasProgress, btnTxt, canVote;
     hasProgress = Object.values(completedStages).indexOf(true) > -1;
     btnTxt = !hasProgress ? 'gpos.wizard.cancel' : 'gpos.wizard.done';
+    canVote = hasProgress && totalGpos > 0;
     return (
       <div className='gpos-modal__content'>
         <div className='gpos-modal__content-left'>
@@ -81,7 +82,7 @@ class GposWizardStart extends React.Component {
             />
             {completedStages[1.2] ? this.renderCompleted(): null}
           </div>
-          <div disabled={ !hasProgress } className='gpos-modal__card-btn' onClick={ () => proceedOrRegress(2) }>
+          <div disabled={ !canVote } className='gpos-modal__card-btn' onClick={ () => proceedOrRegress(2) }>
             <img className='gpos-modal__card-3' src='images/gpos/vote.png' alt='step3'/>
             <Translate
               component='p'
