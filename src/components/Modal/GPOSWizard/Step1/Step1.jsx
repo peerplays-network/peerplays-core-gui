@@ -8,6 +8,7 @@ import asset_utils from '../../../../common/asset_utils';
 import {GPOSActions, RTransactionConfirmActions, RWalletUnlockActions} from '../../../../actions';
 import {getCoreBalance} from '../../../../selectors/GPOSSelector';
 import SLoader from '../../../Loaders/SLoader';
+import ObjectService from '../../../../services/ObjectService';
 
 class GposStep1 extends PureComponent {
   state = {
@@ -15,14 +16,34 @@ class GposStep1 extends PureComponent {
     totalGpos: 0,
     precision: 0,
     minAmount: asset_utils.getMinimumAmount(this.props.asset),
-    maxAmount: 0
+    maxAmount: 0,
+    fees: {
+      up: 0,
+      down: 0
+    },
+    loading: true
   }
 
   componentDidMount() {
-    this.setState({
-      totalGpos: this.props.totalGpos && this.props.asset ? this.props.totalGpos / Math.pow(10, this.props.asset.get('precision')) : 0,
-      precision: this.props.asset.get('precision'),
-      maxAmount: this.props.coreBalance / Math.pow(10, this.props.asset.get('precision'))
+    // Get the associated fees for power up and power down.
+    const formatAmt = (amt) => {
+      return this.props.asset ? amt / Math.pow(10, this.props.asset.get('precision')) : 0;
+    };
+
+    const feePromises = [ObjectService.getFee('vesting_balance_create'), ObjectService.getFee('vesting_balance_withdraw')];
+    let newFees = {};
+
+    Promise.all(feePromises).then((fees) => {
+      newFees.up = formatAmt(fees[0].fee);
+      newFees.down = formatAmt(fees[1].fee);
+
+      this.setState({
+        totalGpos: this.props.totalGpos && formatAmt(this.props.totalGpos),
+        precision: this.props.asset.get('precision'),
+        maxAmount: formatAmt(this.props.coreBalance),
+        fees: newFees,
+        loading: false
+      });
     });
   }
 
@@ -241,47 +262,51 @@ class GposStep1 extends PureComponent {
   }
 
   render() {
-    let {asset, action} = this.props, content, title, desc, canSubmit;
-    let amt = isNaN(this.state.amount) ? 0 : this.state.amount;
-    // If action 1, power up is addition else it is action 2 which is subtraction.
-    let newAmt = action === 1.1 ? (this.state.totalGpos + amt) : (this.state.totalGpos - amt);
-    newAmt = Number((newAmt).toFixed(asset.get('precision')));
-    // If the number is whole, return. Else, remove trailing zeros.
-    newAmt = Number.isInteger(newAmt) ? Number(newAmt.toFixed()) : newAmt;
+    if (this.state.loading) {
+      return <SLoader/>;
+    } else {
+      let {asset, action} = this.props, content, title, desc, canSubmit;
+      let amt = isNaN(this.state.amount) ? 0 : this.state.amount;
+      // If action 1, power up is addition else it is action 2 which is subtraction.
+      let newAmt = action === 1.1 ? (this.state.totalGpos + amt) : (this.state.totalGpos - amt);
+      newAmt = Number((newAmt).toFixed(asset.get('precision')));
+      // If the number is whole, return. Else, remove trailing zeros.
+      newAmt = Number.isInteger(newAmt) ? Number(newAmt.toFixed()) : newAmt;
 
-    canSubmit = newAmt !== this.state.totalGpos && newAmt > 0 ? false : true;
+      canSubmit = newAmt !== this.state.totalGpos && newAmt > 0 ? false : true;
 
-    if (action === 1.1) {
-      content = this.renderAmountPicker('gpos.wizard.step-1.right.deposit');
-      title = 'gpos.wizard.step-1.desc.title-1';
-      desc = 'gpos.wizard.step-1.desc.txt-1';
-    } else if (action === 1.2) {
-      content = this.renderAmountPicker('gpos.wizard.step-1.right.withdraw');
-      title = 'gpos.wizard.step-1.desc.title-2';
-      desc = 'gpos.wizard.step-1.desc.txt-2';
-    }
+      if (action === 1.1) {
+        content = this.renderAmountPicker('gpos.wizard.step-1.right.deposit');
+        title = 'gpos.wizard.step-1.desc.title-1';
+        desc = 'gpos.wizard.step-1.desc.txt-1';
+      } else if (action === 1.2) {
+        content = this.renderAmountPicker('gpos.wizard.step-1.right.withdraw');
+        title = 'gpos.wizard.step-1.desc.title-2';
+        desc = 'gpos.wizard.step-1.desc.txt-2';
+      }
 
-    return (
-      <div className='gpos-modal__content'>
-        <div className='gpos-modal__content-left'>
-          <div className='gpos-modal__wizard-desc'>
-            <Translate
-              component='div'
-              className='title'
-              content={ title }
-            />
-            <Translate
-              component='p'
-              className='txt'
-              content={ desc }
-            />
+      return (
+        <div className='gpos-modal__content'>
+          <div className='gpos-modal__content-left'>
+            <div className='gpos-modal__wizard-desc'>
+              <Translate
+                component='div'
+                className='title'
+                content={ title }
+              />
+              <Translate
+                component='p'
+                className='txt'
+                content={ desc }
+              />
+            </div>
+          </div>
+          <div className='gpos-modal__content-right'>
+            {this.renderRContent(canSubmit, content, newAmt)}
           </div>
         </div>
-        <div className='gpos-modal__content-right'>
-          {this.renderRContent(canSubmit, content, newAmt)}
-        </div>
-      </div>
-    );
+      );
+    }
   }
 }
 
