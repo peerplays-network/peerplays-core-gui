@@ -2,8 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.16"></a>
+## [1.0.16](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.15...v1.0.16) (2019-10-08)
+
+### Added
+
+- configurable fake succeed on power down action
+
+### Fixed
+
+- issue with succeed screen skipping the form input stage
+
 <a name="1.0.15"></a>
-## [1.0.15](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.14...v1.0.14) (2019-10-08)
+## [1.0.15](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.14...v1.0.15) (2019-10-08)
 
 ### Added
 
