@@ -575,7 +575,8 @@
         "fail": "You have failed to Power Up!"
       },
       "next": "NEXT",
-      "retry": "RETRY"
+      "retry": "RETRY",
+      "lack-funds": "You don’t have enough funds"
     }
   },
   "about": {

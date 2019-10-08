@@ -94,7 +94,7 @@ class GposWizardStart extends React.Component {
             />
             {completedStages[1.2] ? this.renderCompleted(): null}
           </div>
-          <div disabled={ !canVote } className='gpos-modal__card-btn' onClick={ () => proceedOrRegress(2) }>
+          <div disabled={ !canVote } className='gpos-modal__card-btn--no-marg' onClick={ () => proceedOrRegress(2) }>
             <img className='gpos-modal__card-3' src='images/gpos/vote.png' alt='step3'/>
             <Translate
               component='p'

@@ -15,7 +15,7 @@ class GposStep1 extends PureComponent {
     amount: undefined,
     totalGpos: 0,
     precision: 0,
-    minAmount: asset_utils.getMinimumAmount(this.props.asset),
+    minAmount: 0,
     maxAmount: 0,
     fees: {
       up: 0,
@@ -40,6 +40,7 @@ class GposStep1 extends PureComponent {
       this.setState({
         totalGpos: this.props.totalGpos && formatAmt(this.props.totalGpos),
         precision: this.props.asset.get('precision'),
+        minAmount: asset_utils.getMinimumAmount(this.props.asset),
         maxAmount: formatAmt(this.props.coreBalance),
         fees: newFees,
         loading: false
@@ -140,9 +141,55 @@ class GposStep1 extends PureComponent {
     this.setState({amount: val});
   }
 
+  checkErrors() {
+    let {fees, maxAmount} = this.state;
+    let errors = false;
+
+    // Check for errors outside of the regular validation
+    // Power Up
+    if (this.props.action === 1.1) {
+      if (this.state.amount > (maxAmount - fees.up)) {
+        errors = true;
+      }
+    }
+
+    // Power Down
+    if (this.props.action === 1.2) {
+      if (this.state.amount > (maxAmount - fees.down)) {
+        errors = true;
+      }
+    }
+
+    if (errors) {
+      errors = 'gpos.transaction.lack-funds';
+    } else {
+      errors = '';
+    }
+
+    return errors;
+  }
+
+  renderErrors = () => {
+    let errors = this.checkErrors();
+
+    if (errors !== '') {
+      return (
+        <div className='gpos-modal__form-error'>
+          <img className='gpos-modal__icon--error' src='images/gpos/icon-error.png' alt='err' />
+          <Translate
+            component='p'
+            className='txt'
+            content={ errors }
+          />
+        </div>
+      );
+    }
+  }
+
   renderAmountPicker = (actionTxt) => {
     let min = this.state.minAmount;
     let max = this.state.maxAmount;
+
     return(
       <div className='gpos-modal__card-power--transparent tall'>
         <Translate
@@ -162,7 +209,7 @@ class GposStep1 extends PureComponent {
               value={ this.state.amount }
               onChange={ this.onEdit }
               onBlur={ this.onEdit }
-              tabIndex='1'
+              tabIndex='0'
               min='0'
               max={ max }
               step={ min }
@@ -199,6 +246,7 @@ class GposStep1 extends PureComponent {
         </div>
 
         {content}
+        {this.renderErrors()}
 
         <div className='gpos-modal__card-power'>
           <Translate
@@ -212,7 +260,7 @@ class GposStep1 extends PureComponent {
           <button className='gpos-modal__btn-cancel' onClick={ () => proceedOrRegress(0) }>
             <Translate className='gpos-modal__btn-txt' content='gpos.wizard.cancel'/>
           </button>
-          <button disabled={ canSubmit } className='gpos-modal__btn-submit' type='submit' form='amountPicker'>
+          <button disabled={ !canSubmit } className='gpos-modal__btn-submit' type='submit' form='amountPicker'>
             <Translate className='gpos-modal__btn-txt' content='gpos.wizard.submit'/>
           </button>
         </div>
@@ -267,13 +315,14 @@ class GposStep1 extends PureComponent {
     } else {
       let {asset, action} = this.props, content, title, desc, canSubmit;
       let amt = isNaN(this.state.amount) ? 0 : this.state.amount;
+      let errors = this.checkErrors();
       // If action 1, power up is addition else it is action 2 which is subtraction.
       let newAmt = action === 1.1 ? (this.state.totalGpos + amt) : (this.state.totalGpos - amt);
       newAmt = Number((newAmt).toFixed(asset.get('precision')));
       // If the number is whole, return. Else, remove trailing zeros.
       newAmt = Number.isInteger(newAmt) ? Number(newAmt.toFixed()) : newAmt;
 
-      canSubmit = newAmt !== this.state.totalGpos && newAmt > 0 ? false : true;
+      canSubmit = newAmt !== this.state.totalGpos && newAmt > 0 && !errors;
 
       if (action === 1.1) {
         content = this.renderAmountPicker('gpos.wizard.step-1.right.deposit');

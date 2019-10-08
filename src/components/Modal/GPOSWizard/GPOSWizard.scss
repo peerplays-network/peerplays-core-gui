@@ -38,7 +38,7 @@ sm: 1275px);
   margin: 0 auto;
   border-radius: 15px 0 0 15px;
   background: $gpos-wizard-bg;
-  overflow: auto;
+  overflow: overlay;
 }
 
 @mixin title {
@@ -58,11 +58,17 @@ sm: 1275px);
   &-2,
   &-3 {
     @include gpos-dialogue();
+
+    .loader-splash {
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
 
   &-1-1, &-1-2 {
     max-width: 1212px;
-    max-height: 697px;
+    height: 697px;
+    max-height: 817px;
     border-radius: 15px 0 15px 15px;
 
     @include respond-to(mac) {
@@ -70,9 +76,14 @@ sm: 1275px);
     }
 
     .gpos-modal {
-      &__content-right {
-        height: auto;
-        border-radius: 0 0 15px;
+      &__content {
+        height: 100%;
+
+        &-right {
+          height: auto;
+          border-radius: 0 0 15px;
+          overflow: overlay;
+        }
       }
 
       &__wizard-desc {
@@ -287,6 +298,10 @@ sm: 1275px);
     &-add {
       font-size: $f-29;
       color: #838b96;
+
+      &:hover, &:focus, &:active {
+        background: rgb(226, 226, 226);
+      }
     }
 
     &-minus {
@@ -386,11 +401,6 @@ sm: 1275px);
       height: 100%;
       background: $gpos-wizard-right-bg;
 
-      .loader-splash {
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
       .transaction-status {
         display: flex;
         flex-direction: column;
@@ -437,6 +447,12 @@ sm: 1275px);
 
       cursor: pointer;
       -webkit-user-select: none;
+
+      &--no-marg {
+        @extend .gpos-modal__card-btn;
+
+        margin-bottom: 0;
+      }
 
       &:hover {
         background: $gpos-wizard-right-bg-hover;
@@ -530,10 +546,6 @@ sm: 1275px);
       margin-bottom: 0;
       border-radius: 5px;
       background: $white;
-    }
-
-    &:nth-child(3) {
-      margin-bottom: 0;
     }
 
     &-txt {
@@ -689,6 +701,30 @@ sm: 1275px);
     &-row {
       flex-grow: 12;
     }
+
+    &-error {
+      @extend .gpos-modal__card--picker;
+
+      margin-bottom: 24px;
+      border-radius: 5px;
+      background: rgb(191, 38, 44);
+
+      .txt {
+        align-self: center;
+        padding-top: 0;
+        padding-left: 14px;
+        font-size: $f-22;
+      }
+    }
+  }
+
+  &__icon {
+    &--error {
+      align-self: center;
+      width: 25px;
+      height: 25px;
+      margin-left: 19px;
+    }
   }
 
   &__input {
@@ -698,7 +734,7 @@ sm: 1275px);
       }
 
       width: 100%;
-      padding-left: 24px;
+      margin-left: 24px;
       line-height: 78px;
       font-size: $f-29;
 
