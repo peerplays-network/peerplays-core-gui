@@ -298,6 +298,7 @@ sm: 1275px);
     &-add {
       font-size: $f-29;
       color: #838b96;
+      background: $white;
 
       &:hover, &:focus, &:active {
         background: rgb(226, 226, 226);

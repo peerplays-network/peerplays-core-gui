@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file. See [standa
 <a name="1.0.17"></a>
 ## [1.0.17](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.16...v1.0.17) (2019-10-08)
 
+### Fixed
+
+- incorrect default color on number picker buttons on gpos power up/down screens in electron builds
+
+<a name="1.0.17"></a>
+## [1.0.17](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.16...v1.0.17) (2019-10-08)
+
 ### QA Release
 
 - configured to fake a successful power down in lieu of transaction validation issues for frontend gpos related actions
