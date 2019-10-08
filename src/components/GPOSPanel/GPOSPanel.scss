@@ -15,6 +15,10 @@
     height: 16px;
     margin-right: 4px;
 
+    &--hidden {
+      opacity: 0;
+    }
+
     &--no-stats {
       display: none;
     }

@@ -1,12 +1,11 @@
 @import '../../../assets/stylesheets/mixins';
 @import '../../../assets/stylesheets/variables';
 
-$max-height: 869px;
-$max-width:1505px;
-
-$breakpoints: (default: 1920px,
-mac: 1531px,
-sm: 1275px);
+$breakpoints: (
+  default: 1920px,
+  mac: 1531px,
+  sm: 1275px
+);
 
 @mixin gpos-start-btn {
   @include respond-to(mac) {
@@ -19,7 +18,7 @@ sm: 1275px);
   border-radius: 10px;
 }
 
-@mixin gpos-dialogue {
+.gpos-modal {
   @include respond-to(mac) {
     max-width: 1255px;
     max-height: 726px;
