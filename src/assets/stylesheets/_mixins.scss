@@ -23,7 +23,7 @@
 }
 
 @mixin gpos-btn-hover-active($color, $active-border-color: null) {
-  &:hover {
+  &:hover, &:focus {
     background: lighten($color, $amount: 10%);
   }
 

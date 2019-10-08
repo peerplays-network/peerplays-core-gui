@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import Translate from 'react-translate-component';
 import Voting from '../../../Voting/VotingContainer';
 
@@ -23,11 +22,4 @@ class Vote extends React.Component {
   }
 }
 
-/* eslint-disable-next-line */
-const mapStateToProps = (state) => {
-  return {
-
-  };
-};
-
-export default connect(mapStateToProps, null)(Vote);
+export default Vote;

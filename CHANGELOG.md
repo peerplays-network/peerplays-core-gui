@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.16"></a>
+## [1.0.16](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.15...v1.0.16) (2019-10-08)
+
+### Added
+
+- configurable fake succeed on power down action
+
+### Fixed
+
+- issue with succeed screen skipping the form input stage
+
+<a name="1.0.15"></a>
+## [1.0.15](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.14...v1.0.15) (2019-10-08)
+
+### Added
+
+- Dynamic transaction signing for GPOS Modal Power Up/Down
+  - added custom error/success screens for this
+
+### Changed
+
+- Dynamic form validation for Power Up/Down
+- Some style tweaks
+
+<a name="1.0.14"></a>
+## [1.0.14](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.13...v1.0.14) (2019-09-26)
+
+### Changed
+
+- Updates to GUI for GPOS start page.
+
 <a name="1.0.13"></a>
 ## [1.0.13](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.12...v1.0.13) (2019-09-26)
 
@@ -22,6 +53,30 @@ All notable changes to this project will be documented in this file. See [standa
 ### Changed
 
 - Made the GPOS Panel statistics easier to understand (WAL-277).
+<a name="1.0.10.d"></a>
+## [1.0.10.d](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.10.c...v1.0.10d) (2019-09-26)
+
+### Bug Fixes
+
+- babel-polyfill issue causing application to hang when in production mode
+
+<a name="1.0.10.c"></a>
+## [1.0.10.c](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.10.b...v1.0.10c) (2019-09-26)
+
+### Bug Fixes
+
+- No longer display NaN when power up/down input is empty
+
+<a name="1.0.10.b"></a>
+## [1.0.10.b](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.10...v1.0.10b) (2019-09-26)
+
+### Added
+
+- Responsiveness support added to the Done screen
+
+### Bug Fixes
+
+- Power Up number input now allows empty values
 
 <a name="1.0.10"></a>
 ## [1.0.10](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.9...v1.0.10) (2019-09-25)

@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 
 class VestingBalanceDeposit extends React.Component {
   render() {
-    console.log(this.props);
     let {transaction, asset} = this.props;
     let trx = transaction.serialize();
     let operation;

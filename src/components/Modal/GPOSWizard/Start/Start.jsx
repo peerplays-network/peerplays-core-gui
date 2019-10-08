@@ -2,12 +2,32 @@ import React from 'react';
 import Translate from 'react-translate-component';
 
 class GposWizardStart extends React.Component {
-  render() {
-    let {totalGpos, closeModal, proceedOrRegress} = this.props;
-    let disablePowerDown = totalGpos && totalGpos > 0 ? false : true;
+  renderCompleted = () => {
+    return(
+      <Translate
+        component='span'
+        className='gpos-modal__card-txt completed'
+        content='gpos.wizard.completed'
+      />
+    );
+  }
 
-    // Override as we do not have gpos withdrawal functionality
-    disablePowerDown = true;
+  render() {
+    let {closeModal, proceedOrRegress, completedStages, totalGpos} = this.props, hasProgress, btnTxt, canVote;
+    hasProgress = Object.values(completedStages).indexOf(true) > -1;
+    btnTxt = !hasProgress ? 'gpos.wizard.cancel' : 'gpos.wizard.done';
+
+    // Progress must have been made and the user must have a gpos balance
+    if (hasProgress && totalGpos > 0) {
+      canVote = true;
+
+      // If vote has been completed already, disable...
+      if (completedStages['2'] === true) {
+        canVote = false;
+      }
+    } else {
+      canVote = false;
+    }
 
     return (
       <div className='gpos-modal__content'>
@@ -56,39 +76,36 @@ class GposWizardStart extends React.Component {
           </div>
         </div>
         <div className='gpos-modal__content-right'>
-          <div className='gpos-modal__card'>
-            <img className='gpos-modal__card-1' src='images/gpos/step1.png' alt='step1'/>
+          <div disabled={ completedStages[1.1] } className='gpos-modal__card-btn' onClick={ () => proceedOrRegress(1.1) }>
+            <img className='gpos-modal__card-1' src='images/gpos/power-up.png' alt='step1'/>
             <Translate
               component='p'
               className='gpos-modal__card-txt'
               content='gpos.wizard.start.right.1'
             />
+            {completedStages[1.1] ? this.renderCompleted(): null}
           </div>
-          <div className='gpos-modal__card'>
-            <img className='gpos-modal__card-2' src='images/gpos/step2.png' alt='step2'/>
+          <div disabled={ completedStages[1.2] } className='gpos-modal__card-btn' onClick={ () => proceedOrRegress(1.2) }>
+            <img className='gpos-modal__card-2' src='images/gpos/power-down.png' alt='step2'/>
             <Translate
               component='p'
               className='gpos-modal__card-txt'
               content='gpos.wizard.start.right.2'
             />
+            {completedStages[1.2] ? this.renderCompleted(): null}
           </div>
-          <div className='gpos-modal__card'>
-            <img className='gpos-modal__card-3' src='images/gpos/step3.png' alt='step3'/>
+          <div disabled={ !canVote } className='gpos-modal__card-btn--no-marg' onClick={ () => proceedOrRegress(2) }>
+            <img className='gpos-modal__card-3' src='images/gpos/vote.png' alt='step3'/>
             <Translate
               component='p'
               className='gpos-modal__card-txt'
               content='gpos.wizard.start.right.3'
             />
+            {completedStages[2] ? this.renderCompleted(): null}
           </div>
           <div className='gpos-modal__btns'>
             <button className='gpos-modal__btn-cancel' onClick={ closeModal }>
-              <Translate className='gpos-modal__btn-txt' content='gpos.wizard.cancel'/>
-            </button>
-            <button className='gpos-modal__btn-up' onClick={ () => proceedOrRegress(1.1) }>
-              <Translate className='gpos-modal__btn-txt' content='gpos.wizard.up'/>
-            </button>
-            <button className='gpos-modal__btn-down' onClick={ () => proceedOrRegress(1.2) } disabled={ disablePowerDown }>
-              <Translate className='gpos-modal__btn-txt' content='gpos.wizard.down'/>
+              <Translate className='gpos-modal__btn-txt' content={ btnTxt }/>
             </button>
           </div>
         </div>
