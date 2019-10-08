@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.15"></a>
+## [1.0.15](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.14...v1.0.14) (2019-10-08)
+
+### Added
+
+- Dynamic transaction signing for GPOS Modal Power Up/Down
+  - added custom error/success screens for this
+
+### Changed
+
+- Dynamic form validation for Power Up/Down
+- Some style tweaks
+
 <a name="1.0.14"></a>
 ## [1.0.14](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.13...v1.0.14) (2019-09-26)
 
