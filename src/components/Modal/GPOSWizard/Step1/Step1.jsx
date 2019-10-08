@@ -9,6 +9,7 @@ import {GPOSActions, RTransactionConfirmActions, RWalletUnlockActions} from '../
 import {getCoreBalance} from '../../../../selectors/GPOSSelector';
 import SLoader from '../../../Loaders/SLoader';
 import ObjectService from '../../../../services/ObjectService';
+import Config from '../../../../../config/Config';
 
 class GposStep1 extends PureComponent {
   state = {
@@ -224,8 +225,8 @@ class GposStep1 extends PureComponent {
   }
 
   renderRContent = (canSubmit, content, newAmt) => {
-    let {asset, action, proceedOrRegress, symbol, isBroadcasting, broadcastError, broadcastSuccess} =
-      this.props, transactionStatus, transactionMsg, clickAction, btnTxt;
+    let {asset, action, proceedOrRegress, symbol, isBroadcasting, broadcastError, broadcastSuccess, clearTransaction} =
+      this.props, transactionStatus, transactionMsg, clickAction, btnTxt, btnClass;
 
     // Default right content:
     let rContent =
@@ -273,20 +274,31 @@ class GposStep1 extends PureComponent {
       transactionStatus = '--fail';
       transactionMsg = action === 1.1 ? 'gpos.transaction.up.fail' : 'gpos.transaction.down.fail';
       btnTxt = 'gpos.transaction.retry';
-
-      clickAction = null;
+      btnClass = '-retry';
+      clickAction = () => null;
     } else if (broadcastSuccess) {
       transactionStatus = '--succeed';
       transactionMsg = action === 1.1 ? 'gpos.transaction.up.succeed' : 'gpos.transaction.down.succeed';
       btnTxt = 'gpos.transaction.next';
-      clickAction = proceedOrRegress(2, action);
+      btnClass = '-next';
+      clickAction = () => proceedOrRegress(2, action);
+    }
+
+    // If `true`, power down action will always appear to succeed. Dummy data
+    if (Config.gpos.fakeSucceed && action === 1.2 && broadcastError) {
+      transactionStatus = '--succeed';
+      transactionMsg = 'gpos.transaction.down.succeed';
+      btnTxt = 'gpos.transaction.next';
+      btnClass = '-next';
+      clickAction = () => proceedOrRegress(2, action);
     }
 
     if (transactionStatus !== undefined) {
-      clickAction = () => {
+      const clickHandler = (e) => {
+        e.preventDefault();
         // Clear the transaction so the error and other information is reset.
-        this.props.clearTransaction();
-        return clickAction;
+        clickAction();
+        clearTransaction();
       };
 
       // The transaction broadcast either succeeded or failed...
@@ -299,7 +311,7 @@ class GposStep1 extends PureComponent {
           content={ transactionMsg }
         />
         <div className='gpos-modal__btns'>
-          <button className='gpos-modal__btn-retry' onClick={ () => clickAction() }>
+          <button className={ `gpos-modal__btn${btnClass}` } onClick={ clickHandler }>
             <Translate className='gpos-modal__btn-txt' content={ btnTxt }/>
           </button>
         </div>
