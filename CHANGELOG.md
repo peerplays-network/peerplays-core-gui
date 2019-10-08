@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.17"></a>
+## [1.0.17](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.16...v1.0.17) (2019-10-08)
+
+### QA Release
+
+- configured to fake a successful power down in lieu of transaction validation issues for frontend gpos related actions
+- WAL-279
+  - UI/UX related items for Power Up/Down transaction broadcast results
+  - configured to "fake" a success response for Power Down action
+- WAL-249
+  - new design for the getting started screen
+- WAL-250
+  - new design for the power up/down screens
+  - pairs with WAL-279 for in lieu of transaction validation issues on chain
+- WAL-277
+  - new GPOS panel design
+- PJL-23
+  - security issues in the peerplaysjs-lib addressed as well as some serialization tweaks required for GPOS on chain
+  - un-published release of the peerplaysjs-lib in use until testing passes
+
 <a name="1.0.16"></a>
 ## [1.0.16](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.15...v1.0.16) (2019-10-08)
 
