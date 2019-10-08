@@ -15,13 +15,8 @@ export const getCoreBalance = (state) => {
 export const getTotalGposBalance = createSelector(
   [ getBalancesIds, getGposBalances ],
   (balanceIds, balances) => {
-    let totalAmount = -1,
-      totalClaimable = -1;
-
-    if (balanceIds.size > 0) {
-      totalAmount = 0;
+    let totalAmount = 0,
       totalClaimable = 0;
-    }
 
     balanceIds.forEach((balanceId) => {
       if (balances.size > 0) {
