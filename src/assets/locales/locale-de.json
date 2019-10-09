@@ -502,8 +502,8 @@
           "title": "Voting Performance",
           "txt1": "All up to date"
         },
-        "percent": "Qualified reward %",
-        "potential": "Estimated rake reward %"
+        "percent": "Qualified Reward %",
+        "potential": "Estimated Rake Reward %"
       }
     },
     "faq": {
