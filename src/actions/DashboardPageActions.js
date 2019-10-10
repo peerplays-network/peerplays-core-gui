@@ -2,6 +2,7 @@ import ActionTypes from '../constants/ActionTypes';
 import DashboardBalancesService from '../services/DashboardBalancesService';
 import Repository from '../repositories/chain/repository';
 import GposService from '../services/GposService';
+import AccountVestingPageActions from './AccountVestingPageActions';
 
 class DashboardPagePrivateActions {
   /**
@@ -204,6 +205,8 @@ class DashboardPageActions {
         }));
       });
 
+      dispatch(AccountVestingPageActions.fetchData());
+
       // Vesting
       let vestingBalances = currentState.dashboardPage.vestingBalances,
         vestingAsset = currentState.dashboardPage.vestingAsset,
@@ -211,7 +214,7 @@ class DashboardPageActions {
 
       // GPOS
       let gposBalances = currentState.dashboardPage.gposBalances;
-      this.getGposInfo();
+      dispatch(DashboardPageActions.getGposInfo());
 
       // Get regular vesting balances
       DashboardBalancesService

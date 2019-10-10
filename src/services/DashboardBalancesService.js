@@ -188,7 +188,7 @@ class DashboardBalancesService {
 
       return Promise.all(
         [Promise.all(vestingPromises),
-          Repository.getAsset(Config.CORE_ASSET)]) // TODO: declare via import form above
+          Repository.getAsset(Config.CORE_ASSET)])
         .then(([balances, asset]) => {
           if (balances && balances.length) {
             balances.forEach((balance) => {

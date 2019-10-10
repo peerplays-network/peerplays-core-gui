@@ -1,7 +1,7 @@
 import {createSelector} from 'reselect';
 
 const getBalancesIds = (state) => state.dashboardPage.vestingBalancesIds;
-const getGposBalances = (state) => state.dashboardPage.gposBalances;
+const getGposBalances = (state) => state.accountVestingPageReducer.balances;
 
 export const getCoreBalance = (state) => {
   let coreToken = state.dashboardPage.coreToken;
@@ -15,23 +15,15 @@ export const getCoreBalance = (state) => {
 export const getTotalGposBalance = createSelector(
   [ getBalancesIds, getGposBalances ],
   (balanceIds, balances) => {
-    let totalAmount = 0,
-      totalClaimable = 0;
+    let totalAmount = 0;
 
-    balanceIds.forEach((balanceId) => {
-      if (balances.size > 0) {
-        let balance = balances.get(balanceId);
-
-        if (balance !== undefined) {
-          let balanceAmount = balance.getIn(['balance', 'amount']);
-          totalAmount += balanceAmount;
-        }
-      }
+    balances.forEach((item) => {
+      let balance = item.balance.amount;
+      totalAmount += balance;
     });
 
     return {
-      totalAmount: totalAmount,
-      totalClaimable: totalClaimable
+      totalAmount: totalAmount
     };
   }
 );
