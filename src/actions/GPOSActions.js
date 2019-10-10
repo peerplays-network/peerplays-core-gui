@@ -33,7 +33,6 @@ class GPOSActions {
   static getPowerUpTransaction(owner, amount, asset_symbol) {
     return (dispatch, getState) => { /* eslint-disable-line */
       return new Promise((resolve, reject) => {
-        const is_gpos = true;
         let begin_timestamp = new Date();
         begin_timestamp = begin_timestamp.toISOString();
         let wallet_api = new WalletApi();
@@ -49,7 +48,7 @@ class GPOSActions {
               begin_timestamp
             }
           ],
-          balance_type: is_gpos
+          balance_type: 'gpos'
         });
 
         tr.add_operation(power_up_op);
