@@ -8,7 +8,8 @@ import ActionTypes from '../constants/ActionTypes';
  * showGPOSWizardModal - Show|hide GPOS Wizard modal.
  */
 const initialState = {
-  showGPOSWizardModal: false
+  showGPOSWizardModal: false,
+  completedStages: {1.1: false, 1.2: false, 2: false}
 };
 
 export default (state = initialState, action) => {
@@ -18,6 +19,16 @@ export default (state = initialState, action) => {
       return {
         ...state,
         showGPOSWizardModal: action.payload.showGPOSWizardModal
+      };
+    case ActionTypes.SET_GPOS_STAGES:
+      return {
+        ...state,
+        completedStages: action.payload.completedStages
+      };
+    case ActionTypes.RESET_GPOS:
+      return {
+        showGPOSWizardModal: action.payload.showGPOSWizardModal,
+        completedStages: action.payload.completedStages
       };
     default:
       // We return the previous state in the default case

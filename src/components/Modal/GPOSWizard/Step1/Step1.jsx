@@ -49,6 +49,22 @@ class GposStep1 extends PureComponent {
     });
   }
 
+  componentWillUnmount() {
+    // Reset the form state and other variables.
+    this.setState({
+      amount: undefined,
+      totalGpos: 0,
+      precision: 0,
+      minAmount: 0,
+      maxAmount: 0,
+      fees: {
+        up: 0,
+        down: 0
+      },
+      loading: true
+    });
+  }
+
   /**
    * Increment or decrements the state amount.
    * Activated via the plus and minus buttons on the number input.
@@ -275,13 +291,15 @@ class GposStep1 extends PureComponent {
       transactionMsg = action === 1.1 ? 'gpos.transaction.up.fail' : 'gpos.transaction.down.fail';
       btnTxt = 'gpos.transaction.retry';
       btnClass = '-retry';
+      // No redirect due to error(s)
       clickAction = () => null;
     } else if (broadcastSuccess) {
       transactionStatus = '--succeed';
       transactionMsg = action === 1.1 ? 'gpos.transaction.up.succeed' : 'gpos.transaction.down.succeed';
       btnTxt = 'gpos.transaction.next';
       btnClass = '-next';
-      clickAction = () => proceedOrRegress(2, action);
+      // Redirect to start
+      clickAction = () => proceedOrRegress(0, action);
     }
 
     // If `true`, power down action will always appear to succeed. Dummy data
@@ -290,14 +308,15 @@ class GposStep1 extends PureComponent {
       transactionMsg = 'gpos.transaction.down.succeed';
       btnTxt = 'gpos.transaction.next';
       btnClass = '-next';
-      clickAction = () => proceedOrRegress(2, action);
+      // Redirect to start
+      clickAction = () => proceedOrRegress(0, action);
     }
 
     if (transactionStatus !== undefined) {
       const clickHandler = (e) => {
         e.preventDefault();
-        // Clear the transaction so the error and other information is reset.
         clickAction();
+        // Clear the transaction so the error and other information is reset.
         clearTransaction();
       };
 

@@ -3,6 +3,11 @@ import {PrivateKey} from 'peerplaysjs-lib';
 import WalletApi from '../rpc_api/WalletApi';
 import AccountRepository from '../repositories/AccountRepository';
 
+/**
+ * Private actions that are only to be called within the public class GPOSActions.
+ * @private
+ * @class GPOSPrivateActions
+ */
 class GPOSPrivateActions {
   static toggleGPOSModal(isShow) {
     return {
@@ -12,9 +17,36 @@ class GPOSPrivateActions {
       }
     };
   }
+
+  static setCompletedStages(stages) {
+    return {
+      type: ActionTypes.SET_GPOS_STAGES,
+      payload: {
+        completedStages: stages
+      }
+    };
+  }
+
+  static reset() {
+    return {
+      type: ActionTypes.RESET_GPOS,
+      payload: {
+        showGPOSWizardModal: false,
+        completedStages: {1.1: false, 1.2: false, 2: false}
+      }
+    };
+  }
 }
 
 class GPOSActions {
+  /**
+   * Toggle the GPOS Modal.
+   *
+   * @static
+   * @param {Boolean} showGPOSWizardModal
+   * @returns
+   * @memberof GPOSActions
+   */
   static toggleGPOSWizardModal(showGPOSWizardModal) {
     return (dispatch) => {
       dispatch(GPOSPrivateActions.toggleGPOSModal(showGPOSWizardModal));
@@ -22,12 +54,44 @@ class GPOSActions {
   }
 
   /**
-   *
+   * Reset the state of the GPOS Modal.
    *
    * @static
-   * @param {*} owner
-   * @param {*} amount
-   * @param {*} asset_symbol
+   * @returns
+   * @memberof GPOSActions
+   */
+  static resetGPOS() {
+    return (dispatch) => {
+      dispatch(GPOSPrivateActions.reset());
+    };
+  }
+
+  /**
+   * Track completed stages of the GPOS modal through this action.
+   *
+   * @static
+   * @param {Boolean} stageCompleted
+   * @returns
+   * @memberof GPOSActions
+   */
+  static setGposStages(stageCompleted) {
+    return (dispatch, getState) => {
+      let currentStages = getState().gpos.completedStages;
+      let newCompletedStages = currentStages;
+      newCompletedStages[stageCompleted] = true;
+
+      dispatch(GPOSPrivateActions.setCompletedStages(newCompletedStages));
+    };
+  }
+
+  /**
+   * Build the transaction object required for a Power Up action.
+   *
+   * @static
+   * @param {string} owner
+   * @param {string} amount
+   * @param {string} asset_symbol
+   * @returns {WalletApi.new_transaction} - A transaction object that has been built for the specified blockchain method.
    * @memberof GPOSActions
    */
   static getPowerUpTransaction(owner, amount, asset_symbol) {
@@ -59,7 +123,7 @@ class GPOSActions {
   };
 
   /**
-   * Broadcast a power up (create new gpos type vesting balance).
+   * Sign and broadcast a power up (create new gpos type vesting balance).
    *
    * @static
    * @param {TransactionBuild} tr

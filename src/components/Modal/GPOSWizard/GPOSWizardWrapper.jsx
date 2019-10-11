@@ -23,8 +23,7 @@ class GPOSWizardWrapper extends Component {
     3 - done
   */
   state = {
-    currentStep: 0,
-    completedStages: {1.1: false, 1.2: false, 2: false}
+    currentStep: 0
   }
 
   closeModal = () => {
@@ -35,18 +34,20 @@ class GPOSWizardWrapper extends Component {
     this.setState({currentStep: step});
 
     if (stageCompleted !== undefined) {
-      let newCompletedStages = this.state.completedStages;
-      newCompletedStages[stageCompleted] = true;
+      // let newCompletedStages = this.state.completedStages;
+      // newCompletedStages[stageCompleted] = true;
 
-      this.setState({completedStages: newCompletedStages});
+      // this.setState({completedStages: newCompletedStages});
+      this.props.setCompletedStages(stageCompleted);
     }
   }
 
   renderStepContent = (totalGpos) => {
     let current = this.state.currentStep;
+    let completedStages = this.props.completedStages;
 
     switch (current) {
-      case 0: return <Start totalGpos={ totalGpos } closeModal={ this.closeModal } proceedOrRegress={ this.proceedOrRegress } completedStages={ this.state.completedStages }/>;
+      case 0: return <Start totalGpos={ totalGpos } closeModal={ this.closeModal } proceedOrRegress={ this.proceedOrRegress } completedStages={ completedStages }/>;
       case 1.1: return <Step1 totalGpos={ totalGpos } proceedOrRegress={ this.proceedOrRegress } action={ 1.1 }/>;
       case 1.2: return <Step1 totalGpos={ totalGpos } proceedOrRegress={ this.proceedOrRegress } action={ 1.2 }/>;
       case 2: return <Vote finishHandler={ this.proceedOrRegress } cancelHandler={ this.proceedOrRegress }/>;
@@ -82,14 +83,16 @@ const mapStateToProps = (state) => {
   let data = getTotalGposBalance(state);
 
   return {
-    showGPOSWizardModal: state.gposReducer.showGPOSWizardModal,
-    totalGpos: data.totalAmount
+    showGPOSWizardModal: state.gpos.showGPOSWizardModal,
+    totalGpos: data.totalAmount,
+    completedStages: state.gpos.completedStages
   };
 };
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
-    toggleGPOSWizard: GPOSActions.toggleGPOSWizardModal
+    toggleGPOSWizard: GPOSActions.toggleGPOSWizardModal,
+    setCompletedStages: GPOSActions.setGposStages
   },
   dispatch
 );

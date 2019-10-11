@@ -27,6 +27,11 @@ class GposWizardStart extends React.Component {
       }
     } else {
       canVote = false;
+
+      // If the users' GPOS Balance is greater than 0 and they have not already voted, allow.
+      if (totalGpos > 0) {
+        canVote = true;
+      }
     }
 
     return (
