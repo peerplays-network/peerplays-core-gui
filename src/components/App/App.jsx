@@ -9,7 +9,7 @@ import Config from '../../../config/Config';
 import {AppActions, NavigateActions, GPOSActions} from '../../actions';
 import CantConnectModal from '../Modal/CantConnectModal/CantConnectModal';
 import CommonMessage from '../CommonMessage';
-import GPOSWizardWrapper from '../Modal/GPOSWizard';
+import GPOSModalWrapper from '../Modal/GPOSModal';
 import HelpModal from '../Help/HelpModal';
 import TransactionConfirmModal from '../Modal/TransactionConfirmModal/TransactionConfirmModal';
 import WalletUnlockModal from '../Modal/WalletUnlockModal';
@@ -54,7 +54,7 @@ class App extends PureComponent {
       console.warn('Logging out user due to inactivity.');
 
       // Close modals
-      props.toggleGPOSWizard();
+      props.toggleGPOSModal();
 
       props.timeout();
       props.setCurrentLocation('TIMEOUT');
@@ -125,7 +125,7 @@ class App extends PureComponent {
           <CantConnectModal />
           <ViewMemoModal />
           <HelpModal />
-          <GPOSWizardWrapper />
+          <GPOSModalWrapper />
         </div>
       </IntlProvider>
     );
@@ -150,7 +150,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
     timeout: AppActions.timeout,
-    toggleGPOSWizard: GPOSActions.toggleGPOSWizardModal,
+    toggleGPOSModal: GPOSActions.toggleGPOSModal,
     navigateToTimeout: NavigateActions.navigateToTimeout,
     setCurrentLocation: AppActions.setCurrentLocation
   },

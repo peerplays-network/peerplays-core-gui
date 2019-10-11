@@ -11,7 +11,7 @@ import SLoader from '../../../Loaders/SLoader';
 import ObjectService from '../../../../services/ObjectService';
 import Config from '../../../../../config/Config';
 
-class GposStep1 extends PureComponent {
+class DepositWithdraw extends PureComponent {
   state = {
     amount: undefined,
     totalGpos: 0,
@@ -70,7 +70,7 @@ class GposStep1 extends PureComponent {
    * Activated via the plus and minus buttons on the number input.
    *
    * @param {number} by - the amount to adjust by
-   * @memberof GposStep1
+   * @memberof DepositWithdraw
    */
   amountAdjust = (by) => {
     let newAmt = ((isNaN(this.state.amount) ? 0 : this.state.amount) + by).toFixed(this.state.precision);
@@ -99,7 +99,7 @@ class GposStep1 extends PureComponent {
    *
    * @param {boolean} walletLocked - wallet locked status, TODO: sign transaction behind the scenes to not require this check
    *
-   * @memberof GposStep1
+   * @memberof DepositWithdraw
    */
   onSubmit = (walletLocked, e) => {
     e.preventDefault();
@@ -221,7 +221,7 @@ class GposStep1 extends PureComponent {
               name='gpos_amt'
               id='gpos_amt'
               className='gpos-modal__input-amt'
-              placeholder={ counterpart.translate('gpos.wizard.step-1.right.placeholderAmt') }
+              placeholder={ counterpart.translate('gpos.deposit-withdraw.right.placeholderAmt') }
               type='number'
               value={ this.state.amount }
               onChange={ this.onEdit }
@@ -251,7 +251,7 @@ class GposStep1 extends PureComponent {
           <Translate
             component='p'
             className='txt'
-            content='gpos.wizard.step-1.right.card-1'
+            content='gpos.deposit-withdraw.right.card-1'
           />
           <div className='balance--blue'>
             <FormattedNumber
@@ -269,16 +269,16 @@ class GposStep1 extends PureComponent {
           <Translate
             component='p'
             className='txt'
-            content='gpos.wizard.step-1.right.card-2'
+            content='gpos.deposit-withdraw.right.card-2'
           />
           <div className='balance'>{newAmt } {symbol}</div>
         </div>
         <div className='gpos-modal__btns-power'>
           <button className='gpos-modal__btn-cancel' onClick={ () => proceedOrRegress(0) }>
-            <Translate className='gpos-modal__btn-txt' content='gpos.wizard.cancel'/>
+            <Translate className='gpos-modal__btn-txt' content='gpos.modal.cancel'/>
           </button>
           <button disabled={ !canSubmit } className='gpos-modal__btn-submit' type='submit' form='amountPicker'>
-            <Translate className='gpos-modal__btn-txt' content='gpos.wizard.submit'/>
+            <Translate className='gpos-modal__btn-txt' content='gpos.modal.submit'/>
           </button>
         </div>
       </div>;
@@ -356,19 +356,19 @@ class GposStep1 extends PureComponent {
       canSubmit = newAmt !== this.state.totalGpos && newAmt > 0 && !errors;
 
       if (action === 1.1) {
-        content = this.renderAmountPicker('gpos.wizard.step-1.right.deposit');
-        title = 'gpos.wizard.step-1.desc.title-1';
-        desc = 'gpos.wizard.step-1.desc.txt-1';
+        content = this.renderAmountPicker('gpos.deposit-withdraw.right.deposit');
+        title = 'gpos.deposit-withdraw.desc.title-1';
+        desc = 'gpos.deposit-withdraw.desc.txt-1';
       } else if (action === 1.2) {
-        content = this.renderAmountPicker('gpos.wizard.step-1.right.withdraw');
-        title = 'gpos.wizard.step-1.desc.title-2';
-        desc = 'gpos.wizard.step-1.desc.txt-2';
+        content = this.renderAmountPicker('gpos.deposit-withdraw.right.withdraw');
+        title = 'gpos.deposit-withdraw.desc.title-2';
+        desc = 'gpos.deposit-withdraw.desc.txt-2';
       }
 
       return (
         <div className='gpos-modal__content'>
           <div className='gpos-modal__content-left'>
-            <div className='gpos-modal__wizard-desc'>
+            <div className='gpos-modal__modal-desc'>
               <Translate
                 component='div'
                 className='title'
@@ -423,4 +423,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(
   dispatch
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(GposStep1);
+export default connect(mapStateToProps, mapDispatchToProps)(DepositWithdraw);

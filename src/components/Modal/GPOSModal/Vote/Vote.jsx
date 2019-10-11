@@ -11,7 +11,7 @@ class Vote extends React.Component {
           <Translate
             component='p'
             className='txt'
-            content='gpos.wizard.vote'
+            content='gpos.modal.vote'
           />
         </div>
         <div className='gpos-modal__voting--right'>

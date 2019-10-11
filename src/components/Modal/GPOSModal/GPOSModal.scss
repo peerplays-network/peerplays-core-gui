@@ -37,7 +37,7 @@ sm: 1275px);
   max-height: $max-height;
   margin: 0 auto;
   border-radius: 15px 0 0 15px;
-  background: $gpos-wizard-bg;
+  background: $gpos-modal-bg;
   overflow: overlay;
 }
 
@@ -86,7 +86,7 @@ sm: 1275px);
         }
       }
 
-      &__wizard-desc {
+      &__modal-desc {
         width: 434px;
       }
     }
@@ -164,7 +164,7 @@ sm: 1275px);
     left: 0;
     z-index: 2;
     margin: 0 auto;
-    background: $gpos-wizard-dialogue-fade;
+    background: $gpos-modal-dialogue-fade;
     overflow: auto;
     resize: both;
   }
@@ -400,7 +400,7 @@ sm: 1275px);
       flex-direction: column;
       justify-self: center;
       height: 100%;
-      background: $gpos-wizard-right-bg;
+      background: $gpos-modal-right-bg;
 
       .transaction-status {
         display: flex;
@@ -441,7 +441,7 @@ sm: 1275px);
     margin: auto;
     margin-bottom: 33px;
     border-radius: 6px;
-    background: $gpos-wizard-right-bg;
+    background: $gpos-modal-right-bg;
 
     &-btn {
       @extend .gpos-modal__card;
@@ -456,7 +456,7 @@ sm: 1275px);
       }
 
       &:hover {
-        background: $gpos-wizard-right-bg-hover;
+        background: $gpos-modal-right-bg-hover;
       }
     }
 
@@ -805,7 +805,7 @@ sm: 1275px);
     }
   }
 
-  &__wizard {
+  &__modal {
     &-desc {
       @include respond-to(mac) {
         width: 486px;

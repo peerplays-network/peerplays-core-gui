@@ -11,9 +11,9 @@ import AccountRepository from '../repositories/AccountRepository';
 class GPOSPrivateActions {
   static toggleGPOSModal(isShow) {
     return {
-      type: ActionTypes.TOGGLE_GPOS_WIZARD,
+      type: ActionTypes.TOGGLE_GPOS_MODAL,
       payload: {
-        showGPOSWizardModal: isShow
+        showGPOSModal: isShow
       }
     };
   }
@@ -31,7 +31,7 @@ class GPOSPrivateActions {
     return {
       type: ActionTypes.RESET_GPOS,
       payload: {
-        showGPOSWizardModal: false,
+        showGPOSModal: false,
         completedStages: {1.1: false, 1.2: false, 2: false}
       }
     };
@@ -43,13 +43,13 @@ class GPOSActions {
    * Toggle the GPOS Modal.
    *
    * @static
-   * @param {Boolean} showGPOSWizardModal
+   * @param {Boolean} showGPOSModal
    * @returns
    * @memberof GPOSActions
    */
-  static toggleGPOSWizardModal(showGPOSWizardModal) {
+  static toggleGPOSModal(showGPOSModal) {
     return (dispatch) => {
-      dispatch(GPOSPrivateActions.toggleGPOSModal(showGPOSWizardModal));
+      dispatch(GPOSPrivateActions.toggleGPOSModal(showGPOSModal));
     };
   }
 

@@ -5,16 +5,13 @@ import {GPOSActions} from '../../../actions';
 import Modal from 'react-modal';
 import {getTotalGposBalance} from '../../../selectors/GPOSSelector';
 import Start from './Start';
-import Step1 from './Step1';
+import DepositWithdraw from './DepositWithdraw';
 import Vote from './Vote';
 import Done from './Done';
 
 Modal.setAppElement('#content');
 
-// TODO: refactor names of GPOSWizard to GPOSModal
-// TODO: renove references of "step(s)" as this is no longer a "steps" wizard.
-
-class GPOSWizardWrapper extends Component {
+class GPOSModalWrapper extends Component {
   /*
     0 - start
     1.1 - power up
@@ -23,29 +20,29 @@ class GPOSWizardWrapper extends Component {
     3 - done
   */
   state = {
-    currentStep: 0
+    currentStage: 0
   }
 
   closeModal = () => {
-    this.props.toggleGPOSWizard();
+    this.props.toggleGPOSModal();
   }
 
-  proceedOrRegress = (step, stageCompleted = undefined) => {
-    this.setState({currentStep: step});
+  proceedOrRegress = (stage, stageCompleted = undefined) => {
+    this.setState({currentStage: stage});
 
     if (stageCompleted !== undefined) {
       this.props.setCompletedStages(stageCompleted);
     }
   }
 
-  renderStepContent = (totalGpos) => {
-    let current = this.state.currentStep;
+  renderStageContent = (totalGpos) => {
+    let current = this.state.currentStage;
     let completedStages = this.props.completedStages;
 
     switch (current) {
       case 0: return <Start totalGpos={ totalGpos } closeModal={ this.closeModal } proceedOrRegress={ this.proceedOrRegress } completedStages={ completedStages }/>;
-      case 1.1: return <Step1 totalGpos={ totalGpos } proceedOrRegress={ this.proceedOrRegress } action={ 1.1 }/>;
-      case 1.2: return <Step1 totalGpos={ totalGpos } proceedOrRegress={ this.proceedOrRegress } action={ 1.2 }/>;
+      case 1.1: return <DepositWithdraw totalGpos={ totalGpos } proceedOrRegress={ this.proceedOrRegress } action={ 1.1 }/>;
+      case 1.2: return <DepositWithdraw totalGpos={ totalGpos } proceedOrRegress={ this.proceedOrRegress } action={ 1.2 }/>;
       case 2: return <Vote finishHandler={ this.proceedOrRegress } cancelHandler={ this.proceedOrRegress }/>;
       case 3: return <Done okHandler={ this.proceedOrRegress }/>;
       //no default
@@ -54,13 +51,13 @@ class GPOSWizardWrapper extends Component {
 
   render() {
     let {totalGpos} = this.props;
-    let content = this.renderStepContent(totalGpos);
-    let dialogueClass = `gpos-modal${'-' + this.state.currentStep.toString().replace('.', '-')}`;
+    let content = this.renderStageContent(totalGpos);
+    let dialogueClass = `gpos-modal${'-' + this.state.currentStage.toString().replace('.', '-')}`;
 
     return (
       <div>
         <Modal
-          isOpen={ this.props.showGPOSWizardModal }
+          isOpen={ this.props.showGPOSModal }
           contentLabel='onRequestClose Example'
           onRequestClose={ this.handleCloseModal }
           overlayClassName='gpos-modal__bg'
@@ -79,7 +76,7 @@ const mapStateToProps = (state) => {
   let data = getTotalGposBalance(state);
 
   return {
-    showGPOSWizardModal: state.gpos.showGPOSWizardModal,
+    showGPOSModal: state.gpos.showGPOSModal,
     totalGpos: data.totalAmount,
     completedStages: state.gpos.completedStages
   };
@@ -87,10 +84,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
-    toggleGPOSWizard: GPOSActions.toggleGPOSWizardModal,
+    toggleGPOSModal: GPOSActions.toggleGPOSModal,
     setCompletedStages: GPOSActions.setGposStages
   },
   dispatch
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(GPOSWizardWrapper);
+export default connect(mapStateToProps, mapDispatchToProps)(GPOSModalWrapper);

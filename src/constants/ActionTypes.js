@@ -299,11 +299,11 @@ export default {
    TOGGLE_HELP_POPUP : 'TOGGLE_HELP_POPUP',
 
    /**
-     * GPOS Wizard Modal
+     * GPOS Modal
      *
-     * const TOGGLE_GPOS_WIZARD - Show|hide GPOS Wizard modal.
+     * const TOGGLE_GPOS_MODAL - Show|hide GPOS modal.
      */
-   TOGGLE_GPOS_WIZARD : 'TOGGLE_GPOS_WIZARD',
+   TOGGLE_GPOS_MODAL : 'TOGGLE_GPOS_MODAL',
    SET_GPOS_STAGES: 'SET_GPOS_STAGES',
    RESET_GPOS: 'RESET_GPOS',
 

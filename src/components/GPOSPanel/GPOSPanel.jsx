@@ -21,7 +21,7 @@ class GPOSPanel extends Component {
   }
 
   openModal = () => {
-    this.props.toggleGposWizard(true);
+    this.props.toggleGposModal(true);
   }
 
   renderGposStats = () => {
@@ -150,7 +150,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
     toggleHelpModal: HelpActions.toggleHelpAndScroll,
-    toggleGposWizard: GPOSActions.toggleGPOSWizardModal,
+    toggleGposModal: GPOSActions.toggleGPOSModal,
     fetchGposInfo: DashboardPageActions.getGposInfo
   },
   dispatch
