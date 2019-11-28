@@ -1,5 +1,5 @@
 # node docker image on which this would be run
-image: node:8.9.4
+image: node:12.2.0
 
 stages:
   - build
@@ -13,7 +13,7 @@ build:
   tags:
     - docker
 
-# deploys app to QA 
+# deploys app to QA
 deployToQA:
   stage: deploy
   script:

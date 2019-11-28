@@ -1,14 +1,14 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width" />
   <meta name="format-detection" content="telephone=no">
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>-->
   <title>Peerplays</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto: 400" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,500,700,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400&display=swap" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.ico">
   <!--
     Notice the use of %PUBLIC_URL% in the tag above.
@@ -21,26 +21,26 @@
   -->
   <style>
     *,
-    *:before,
-    *:after {
+    *::before,
+    *::after {
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box;
-      font-family: "Roboto", sans-serif;
+      font-family: 'Roboto', sans-serif;
     }
 
     html {
       height: 100%;
-      font-size: 100%;
+      font-size: 100%; /* stylelint-disable-line */
     }
 
     body {
-      height: 100%;
       min-width: 1300px;
-      color: #fff;
-      font-size: 16px;
+      height: 100%;
       line-height: 1.25;
       font-weight: 400;
+      font-size: 16px;
+      color: #ffffff;
       background: radial-gradient(circle, #2660ca, #2c3370);
     }
 
@@ -53,11 +53,11 @@
     }
 
     body.loginBg .footer {
-      background: #fff;
+      background: #ffffff;
     }
 
-    body.loginBg .footer:before {
-      background: #fff;
+    body.loginBg .footer::before {
+      background: #ffffff;
     }
 
     body.loginBg .footer__copy {
@@ -65,12 +65,12 @@
     }
 
     .wrapper {
-      background: radial-gradient(circle, #2660ca, #2c3370);
       position: relative;
-      overflow: hidden;
       z-index: 2;
+      height: auto !important; /* stylelint-disable-line declaration-no-important */
       min-height: 100%;
-      height: auto !important;
+      background: radial-gradient(circle, #2660ca, #2c3370);
+      overflow: hidden;
     }
 
     .wrapper-with-footer {
@@ -86,37 +86,32 @@
     }
 
     .yHelper.active {
-      position: relative;
-      content: "";
-      height: 100vh;
-      width: 0;
+      content: '';
       display: inline-block;
+      position: relative;
       vertical-align: middle;
+      width: 0;
+      height: 100vh;
       margin-bottom: -50px;
     }
 
-    .yHelper.active~.content {
+    .yHelper.active ~ .content {
       display: inline-block;
       vertical-align: middle;
+      width: 99%;
       max-width: 100%;
       text-decoration: none;
-      width: 99%;
-    }
-
-    .box {
-      padding: 0 30px;
-      margin: 0 auto;
     }
 
     .dialog {
-      background: #fff;
       width: 800px;
       margin: 0 auto;
-      font-size: 16px;
-      line-height: 1.25;
       -webkit-border-radius: 10px;
       -moz-border-radius: 10px;
       border-radius: 10px;
+      line-height: 1.25;
+      font-size: 16px;
+      background: #ffffff;
     }
 
     .dialog-lg {
@@ -124,16 +119,16 @@
     }
 
     .dialog-loading {
-      min-height: 360px !important;
+      min-height: 360px !important; /* stylelint-disable-line declaration-no-important */
     }
 
     .logo {
       float: left;
       width: 182px;
       height: 72px;
+      margin: 0;
       line-height: 105px;
       text-align: center;
-      margin: 0;
       -webkit-transition: all 0.2s ease;
       -moz-transition: all 0.2s ease;
       -o-transition: all 0.2s ease;
@@ -142,17 +137,17 @@
 
     .logo img {
       display: block;
+      vertical-align: middle;
       width: 100%;
       height: 100%;
-      vertical-align: middle;
     }
 
     .logo-lg {
       display: block;
-      margin: 60px auto 6px;
       float: none;
       width: 117px;
       height: 150px;
+      margin: 60px auto 6px;
     }
 
     .logo:hover {
@@ -164,9 +159,9 @@
     }
 
     .header .logo {
-      margin: 0;
-      height: 100%;
       width: auto;
+      height: 100%;
+      margin: 0;
       padding-right: 30px;
       border-right: 1px solid #ebebeb;
     }
@@ -180,14 +175,14 @@
     .loader {
       position: absolute;
       top: 0;
+      right: 0;
       bottom: 0;
       left: 0;
-      right: 0;
-      margin: auto;
       z-index: 9;
-      overflow: hidden;
       width: 100%;
+      margin: auto;
       text-align: center;
+      overflow: hidden;
     }
 
     .loader-splash {
@@ -197,31 +192,31 @@
       margin: 0 auto;
     }
 
-    .loader:after {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      margin: auto;
+    .loader::after {
       content: '';
       display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
       width: 49px;
       height: 49px;
+      margin: auto;
+      border: 3px solid #33b7ef;
       -webkit-border-radius: 50%;
       -moz-border-radius: 50%;
       border-radius: 50%;
-      border: 3px solid #33b7ef;
-      border-left-color: transparent;
-      border-right-color: transparent;
       -webkit-animation: cssload-spin 1000ms infinite linear;
       -moz-animation: cssload-spin 1000ms infinite linear;
       -ms-animation: cssload-spin 1000ms infinite linear;
       -o-animation: cssload-spin 1000ms infinite linear;
       animation: cssload-spin 1000ms infinite linear;
+      border-left-color: transparent;
+      border-right-color: transparent;
     }
 
-    .loader-s:after {
+    .loader-s::after {
       width: 39px;
       height: 39px;
     }
@@ -263,37 +258,37 @@
     .footer {
       position: relative;
       z-index: 3;
-      background: #232c6c;
       height: 50px;
       margin-top: -50px;
-    }
-
-    .footer:before {
-      position: absolute;
-      content: '';
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      display: block !important;
       background: #232c6c;
     }
 
-    .footer:before,
-    .footer:after {
-      content: " ";
+    .footer::before {
+      content: '';
+      display: block !important; /* stylelint-disable-line declaration-no-important */
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 1px;
+      background: #232c6c;
+    }
+
+    .footer::before,
+    .footer::after {
+      content: ' ';
       display: table;
     }
 
-    .footer:after {
+    .footer::after {
       clear: both;
     }
 
     .footer__copy {
       float: right;
       line-height: 50px;
-      color: #cacaca;
       font-size: 14px;
+      color: #cacaca;
     }
 
     body {
@@ -302,8 +297,8 @@
     }
 
     .dialog-login {
-      padding-bottom: 90px;
       margin: 30px auto;
+      padding-bottom: 90px;
     }
   </style>
   <script>

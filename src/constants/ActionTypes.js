@@ -14,19 +14,19 @@ export default {
     ACCOUNT_SEARCH_REQUESTED : 'ACCOUNT_SEARCH_REQUESTED',
     ACCOUNT_RESET : 'ACCOUNT_RESET',
     SET_CURRENT_ACCOUNT : 'SET_CURRENT_ACCOUNT',
-    
+
     /*
      * Voting Page
      *
      * const VOTING_SET_DATA - Set Voting page data(Pages: proxy, witnesses, committeeMembers, proposals)
      * const VOTING_CHANGE_PROXY - Change account proxy
      * */
-    
+
     VOTING_SET_DATA : 'VOTING_SET_DATA',
     VOTING_CHANGE_PROXY : 'VOTING_CHANGE_PROXY',
     VOTING_SET_NEW_WITNESSES : 'VOTING_SET_NEW_WITNESSES',
     VOTING_UPDATE_WITNESS_TAB : 'VOTING_UPDATE_WITNESS_TAB',
-    
+
     /**
      * Settings Claim
      *
@@ -71,7 +71,6 @@ export default {
     CHANGE_FAUCET_ADDRESS : 'CHANGE_FAUCET_ADDRESS',
     CHANGE_UNIT : 'CHANGE_UNIT', //TODO::rm
     CHANGE_HIDDEN_ASSETS : 'CHANGE_HIDDEN_ASSETS',
-
 
     /**
      * Account Vesting
@@ -132,7 +131,6 @@ export default {
     SET_ADDRESS_INDEXES_PUBKEYS : 'SET_ADDRESS_INDEXES_PUBKEYS',
     SET_ADDRESS_INDEXES_SAVING_STATUS : 'SET_ADDRESS_INDEXES_SAVING_STATUS',
 
-
     /**
      * App Reducer
      *
@@ -161,8 +159,8 @@ export default {
     /*
     * Common Message Reducer
     */
-   COMMON_MSG_REMOVE_MSG: 'COMMON_MSG_REMOVE_MSG',
-   COMMON_MSG_ADD_MSG: 'COMMON_MSG_ADD_MSG',
+    COMMON_MSG_REMOVE_MSG : 'COMMON_MSG_REMOVE_MSG',
+    COMMON_MSG_ADD_MSG : 'COMMON_MSG_ADD_MSG',
 
     /**
      * Dashboard Reducer
@@ -182,9 +180,10 @@ export default {
     DASHBOARD_SET_RECENT_ACTIVITY : 'DASHBOARD_SET_RECENT_ACTIVITY',
     DASHBOARD_SET_OPEN_ORDERS : 'DASHBOARD_SET_OPEN_ORDERS',
     DASHBOARD_SET_SIDE_VESTING_BALANCES : 'DASHBOARD_SET_SIDE_VESTING_BALANCES',
+    DASHBOARD_SET_GPOS_BALANCES : 'DASHBOARD_SET_GPOS_BALANCES',
+    DAHSBOARD_SET_GPOS_INFO : 'DAHSBOARD_SET_GPOS_INFO',
     DASHBOARD_SET_SIDE_MEMBER : 'DASHBOARD_SET_SIDE_MEMBER',
-    DASHBOARD_RESET: 'DASHBOARD_RESET',
-
+    DASHBOARD_RESET : 'DASHBOARD_RESET',
 
     /**
      * Explorer BlockChain (ExplorerBlockchainPageReducer),
@@ -203,7 +202,6 @@ export default {
     EXPLORER_BLOCK_CHAIN_SET_DATA_IS_FETCHED : 'EXPLORER_BLOCK_CHAIN_SET_DATA_IS_FETCHED',
     EXPLORER_FEE_SCHEDULE_SET : 'EXPLORER_FEE_SCHEDULE_SET',
 
-
     /**
      * Send page reducer
      *
@@ -214,7 +212,7 @@ export default {
 
     SEND_PAGE_UPDATE : 'SEND_PAGE_UPDATE',
     SEND_PAGE_SET_SYMBOL : 'SEND_PAGE_SET_SYMBOL',
-    SEND_PAGE_RESET: 'SEND_PAGE_RESET',
+    SEND_PAGE_RESET : 'SEND_PAGE_RESET',
 
     /**
      * Exchange
@@ -259,7 +257,6 @@ export default {
     TRCONFIRM_BROADCAST_SUCCESS : 'TRCONFIRM_BROADCAST_SUCCESS',
     TRCONFIRM_BROADCAST_ERROR : 'TRCONFIRM_BROADCAST_ERROR',
 
-
     /**
      * Referrals
      *
@@ -294,13 +291,19 @@ export default {
     CLAIM_BTS_SET_STATUS : 'CLAIM_BTS_SET_STATUS',
     CLAIM_BTS_SET_ERRORS : 'CLAIM_BTS_SET_ERRORS',
 
-
     /**
      * Help Popup
      *
      * const TOGGLE_HELP_POPUP - Show|hide Help popup
      */
     TOGGLE_HELP_POPUP : 'TOGGLE_HELP_POPUP',
+
+    /**
+     * GPOS Wizard Modal
+     *
+     * const TOGGLE_GPOS_WIZARD - Show|hide GPOS Wizard modal.
+     */
+    TOGGLE_GPOS_WIZARD : 'TOGGLE_GPOS_WIZARD',
 
     /*
     * Memo Modal

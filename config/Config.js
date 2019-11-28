@@ -14,6 +14,7 @@ const Config = {
   APP_PACKAGE_VERSION: version,
   BLOCKCHAIN_URLS: blockchainUrls,
   FAUCET_URLS: shuffledFaucetUrls,
+  IS_TESTNET: env.raw.IS_TESTNET,
 
   IDLE_TIMEOUT: 600000, // Time is in milliseconds.
   CORE_ASSET: env.raw.prefix,
@@ -26,7 +27,10 @@ const Config = {
     numOfCommonMessageToDisplay: 1,
     sortingMethod: 'recent', // recent OR oldest
     timeout: 7500, // 7.5 seconds for auto-dismissal messages
-    disableActionsInRedux: true
+    disableActionsInRedux: false
+  },
+  gpos: {
+    conditionalStats: false // if `true`, only show gpos stats if the users' gpos balance is > 0.
   }
 };
 
