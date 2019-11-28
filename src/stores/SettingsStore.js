@@ -145,6 +145,7 @@ class SettingsStore {
   }
 
   onChangeViewSetting(payload) {
+    // eslint-disable-next-line no-unused-vars
     for (let key in payload) {
       this.viewSettings = this.viewSettings.set(key, payload[key]);
     }
@@ -153,6 +154,7 @@ class SettingsStore {
   }
 
   onChangeMarketDirection(payload) {
+    // eslint-disable-next-line no-unused-vars
     for (let key in payload) {
       this.marketDirections = this.marketDirections.set(key, payload[key]);
     }
@@ -236,4 +238,4 @@ class SettingsStore {
   }
 }
 
-module.exports = alt.createStore(SettingsStore, 'SettingsStore');
+export default alt.createStore(SettingsStore, 'SettingsStore');

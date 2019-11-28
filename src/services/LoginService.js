@@ -6,8 +6,10 @@ import RememberMeService from './RememberMeService';
 import CryptoService from './CryptoService';
 import CryptoElectronService from './CryptoElectronService';
 import CONFIG from '../config/main';
-import {setWalletStatus} from '../actions/RWalletUnlockActions';
-import {setAesPrivate} from '../actions/RWalletDataActions';
+import RWalleDataActions from '../actions/RWalletDataActions';
+import RWalletUnlockActions from '../actions/RWalletUnlockActions';
+const setWalletStatus = RWalletUnlockActions.setWalletStatus;
+const setAesPrivate = RWalleDataActions.setAesPrivate;
 
 class LoginService {
   /**

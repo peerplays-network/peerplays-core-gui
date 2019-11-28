@@ -41,6 +41,7 @@ class AddressIndex extends BaseStore {
       // Gather all 5 legacy address formats (see key.addresses)
       var address_strings = key.addresses(pubkey);
 
+      // eslint-disable-next-line no-unused-vars
       for (let address of address_strings) {
         this.state.addresses = this.state.addresses.set(address, pubkey);
         dirty = true;
@@ -62,7 +63,7 @@ class AddressIndex extends BaseStore {
     return new Promise( (resolve, reject) => {
       this.saving();
       this.loadAddyMap().then( () => {
-        var AddressIndexWorker = require('worker!../workers/AddressIndexWorker'); /* eslint-disable-line */
+        var AddressIndexWorker = require('worker-loader!../workers/AddressIndexWorker'); /* eslint-disable-line */
         var worker = new AddressIndexWorker();
         worker.postMessage({pubkeys, address_prefix: ChainConfig.address_prefix});
         var _this = this;
@@ -83,6 +84,7 @@ class AddressIndex extends BaseStore {
                 // Gather all 5 legacy address formats (see key.addresses)
                 var address_strings = key_addresses[i];
 
+                // eslint-disable-next-line no-unused-vars
                 for (let address of address_strings) {
                   addresses.set(address, pubkey);
                   dirty = true;

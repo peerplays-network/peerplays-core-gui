@@ -2,10 +2,10 @@
 import ls, {ls_key_exists} from './localStorageImpl';
 
 if (null === ls) {
-  throw 'localStorage is required but isn\'t available on this platform';
+  throw new Error('localStorage is required but isn\'t available on this platform');
 }
 
-module.exports = (key) => {
+export default (key) => {
   var STORAGE_KEY = key;
 
   return {

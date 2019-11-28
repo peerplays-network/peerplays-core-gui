@@ -12,7 +12,7 @@ let ss = new ls(STORAGE_KEY);
 let storageSettings = ss.get(SETTINGS_KEY);
 let locales = {};
 ['cn', 'de', 'es', 'fr', 'ko', 'tr'].forEach((locale) => {
-  locales[locale] = require('json!../assets/locales/locale-' + locale + '.json');
+  locales[locale] = require(`../assets/locales/locale-${locale}.json`);
 });
 
 // export function
@@ -33,12 +33,13 @@ class RSettingsAcions {
    */
   static initSettings() {
     return function (dispatch, getState) {
-      let state = getState();
+      const state = getState();
 
       if (storageSettings) {
-        let newSettings = {};
+        const newSettings = {};
         let needUpdate = false;
 
+        // eslint-disable-next-line no-unused-vars
         for (let key in storageSettings) {
           if (storageSettings[key] !== state.settings[key]) {
             if (key === 'hiddenAssets') {
@@ -52,7 +53,7 @@ class RSettingsAcions {
         }
 
         if (needUpdate) {
-          let locale = newSettings['locale'];
+          const locale = newSettings['locale'];
           switchLibraryLocale({
             locale,
             localeData: locales[locale]
@@ -95,7 +96,7 @@ class RSettingsAcions {
    * @returns {function(*, *)}
    */
   static changeSettleStatus() {
-    let status = storageSettings.showSettles ? false : true;
+    const status = storageSettings.showSettles ? false : true;
 
     return (dispatch) => {
       changeStorageValue('showSettles', status);
@@ -113,7 +114,7 @@ class RSettingsAcions {
    * @returns {function(*, *)}
    */
   static changeChatStatus() {
-    let status = storageSettings.disableChat ? false : true;
+    const status = storageSettings.disableChat ? false : true;
 
     return (dispatch) => {
       changeStorageValue('disableChat', status);
