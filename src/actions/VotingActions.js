@@ -509,8 +509,6 @@ class VotingActions {
             .getIn(['record', 'worker_budget']), workerBudget);
         }
 
-        const remainingBudget = globalObject ? globalObject.parameters.worker_budget_per_day : 0; // eslint-disable-line
-
         const dataPromises = workers.map((worker, index) => { // eslint-disable-line
           let dailyPay = parseInt(worker.daily_pay, 10);
           workerBudget = workerBudget - dailyPay;
