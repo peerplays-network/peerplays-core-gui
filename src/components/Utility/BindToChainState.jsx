@@ -324,7 +324,7 @@ function BindToChainState(options) {
           const prop = props[key] || this.dynamic_props[key] || this.default_props[key];
 
           if (prop) {
-            const propPrevState = this.state[key];
+            let propPrevState = this.state[key];
             const propNewState = [];
             let changes = false;
 
