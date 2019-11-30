@@ -22,7 +22,8 @@ class DepositWithdraw extends PureComponent {
       up: 0,
       down: 0
     },
-    loading: true
+    loading: true,
+    transactionStatus: null
   }
 
   componentDidMount() {
@@ -65,6 +66,14 @@ class DepositWithdraw extends PureComponent {
     });
   }
 
+  componentWillUpdate(prevProps) {
+    if (this.props.broadcastSuccess !== prevProps.broadcastSuccess && this.state.transactionStatus !== 'done') {
+      // This is needed because transactionConfirm.broadcastSuccess will change to false shortly after being set to true on a successful transaction.
+      if (this.props.broadcastSuccess) {
+        this.setState({transactionStatus: 'done'});
+      }
+    }
+  }
   /**
    * Increment or decrements the state amount.
    * Activated via the plus and minus buttons on the number input.
@@ -110,18 +119,29 @@ class DepositWithdraw extends PureComponent {
       let asset_id = asset.get('id');
 
       function transactionFunctionCallback() {
-        this.setState({
-          amount: 0
-        });
+        // console.info('Transaction Success');
       }
 
-      this.props.getPowerUpTransaction(
-        this.props.accountId,
-        {amount: this.state.amount, asset_id},
-        symbol
-      ).then((tr) => {
-        this.props.confirmTransaction(GPOSActions.powerUpTransaction, tr, transactionFunctionCallback);
-      });
+      let amount = this.state.amount * Math.pow(10, asset.get('precision'));
+
+      if (this.props.action === 1.1) {
+        this.props.getPowerUpTransaction(
+          this.props.accountId,
+          {amount, asset_id},
+          symbol
+        ).then((tr) => {
+          this.props.confirmTransaction(GPOSActions.powerTransaction, tr, transactionFunctionCallback);
+        });
+      } else {
+        this.props.getPowerDownTransaction(
+          this.props.accountId,
+          {amount, asset_id}
+        ).then((transactions) => {
+          transactions.forEach((tr) => {
+            this.props.confirmTransaction(GPOSActions.powerTransaction, tr, transactionFunctionCallback);
+          });
+        });
+      }
     }
   }
 
@@ -152,7 +172,7 @@ class DepositWithdraw extends PureComponent {
         val = val > this.state.totalGpos ? this.state.totalGpos : val;
       }
     } else {
-      val = undefined;
+      val = null;
     }
 
     this.setState({amount: val});
@@ -241,7 +261,7 @@ class DepositWithdraw extends PureComponent {
   }
 
   renderRContent = (canSubmit, content, newAmt) => {
-    let {asset, action, proceedOrRegress, symbol, isBroadcasting, broadcastError, broadcastSuccess, clearTransaction} =
+    let {asset, action, proceedOrRegress, symbol, isBroadcasting, broadcastError, clearTransaction} =
       this.props, transactionStatus, transactionMsg, clickAction, btnTxt, btnClass;
 
     // Default right content:
@@ -293,7 +313,7 @@ class DepositWithdraw extends PureComponent {
       btnClass = '-retry';
       // No redirect due to error(s)
       clickAction = () => null;
-    } else if (broadcastSuccess) {
+    } else if (this.state.transactionStatus === 'done') {
       transactionStatus = '--succeed';
       transactionMsg = action === 1.1 ? 'gpos.transaction.up.succeed' : 'gpos.transaction.down.succeed';
       btnTxt = 'gpos.transaction.next';
@@ -416,7 +436,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
     clearTransaction: RTransactionConfirmActions.clearTransaction,
     getPowerUpTransaction: GPOSActions.getPowerUpTransaction,
-    setTransaction: RTransactionConfirmActions.setTransaction,
+    getPowerDownTransaction: GPOSActions.getPowerDownTransaction,
     confirmTransaction: RTransactionConfirmActions.confirmTransaction,
     setWalletPosition: RWalletUnlockActions.setWalletPosition
   },

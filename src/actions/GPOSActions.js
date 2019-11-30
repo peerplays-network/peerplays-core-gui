@@ -1,4 +1,5 @@
 import ActionTypes from '../constants/ActionTypes';
+import BalanceTypes from '../constants/BalanceTypes';
 import {PrivateKey} from 'peerplaysjs-lib';
 import WalletApi from '../rpc_api/WalletApi';
 import AccountRepository from '../repositories/AccountRepository';
@@ -97,46 +98,118 @@ class GPOSActions {
   static getPowerUpTransaction(owner, amount, asset_symbol) {
     return (dispatch, getState) => { /* eslint-disable-line */
       return new Promise((resolve, reject) => {
-        let begin_timestamp = new Date();
-        begin_timestamp = begin_timestamp.toISOString();
+        const begin_timestamp = new Date().toISOString().replace('Z','');
         let wallet_api = new WalletApi();
         let tr = wallet_api.new_transaction();
 
-        let power_up_op = tr.get_type_operation('vesting_balance_create', {
+        let powerUpOp = tr.get_type_operation('vesting_balance_create', {
+          fee: {
+            amount: 0,
+            asset_id: '1.3.0'
+          },
           creator: owner,
           owner,
           amount,
           asset_symbol,
           policy: [
             0, {
-              begin_timestamp
+              begin_timestamp,
+              vesting_cliff_seconds: 0,
+              vesting_duration_seconds: 0
             }
           ],
-          balance_type: 'gpos'
+          balance_type: BalanceTypes.gpos
         });
 
-        tr.add_operation(power_up_op);
+        tr.add_operation(powerUpOp);
 
         return tr.set_required_fees().then(() => resolve(tr)).catch((err)=> reject(err));
-      });
+      }).catch((err) => console.error(err));
     };
   };
+
+  static getPowerDownTransaction(owner, amount) { // id, owner, amount
+    return (dispatch, getState) => {
+      return new Promise((resolve, reject) => {
+        const wallet_api = new WalletApi();
+        // get balances available
+        const gposBalances = getState().accountVestingPageReducer.balances.filter((balance) => balance.balance_type === BalanceTypes.gpos);
+
+        // Discern which vesting balances to withdraw to meet the requested amount
+        const requestedAmt = amount.amount;
+        let gposBalToWithdraw = [];
+        let runningAmt = 0;
+
+        for (let i = 0; i < gposBalances.length; i++) {
+          let amt = gposBalances[i].balance.amount;
+          runningAmt += amt;
+
+          if (runningAmt <= requestedAmt) {
+            gposBalToWithdraw.push(gposBalances[i].id);
+          } else {
+            break;
+          }
+        }
+
+        // Build array of operations including all valid withdrawals
+        let powerDownOperations = [];
+        gposBalToWithdraw.forEach((id) => {
+          let bal = gposBalances.find((bal) => bal.id === id);
+
+          if (bal) {
+            let powerDownOp = {
+              fee: {
+                amount: '0',
+                asset_id: '1.3.0'
+              },
+              owner,
+              vesting_balance: id,
+              amount: {
+                amount: Math.floor(bal.balance.amount),
+                asset_id: bal.balance.asset_id
+              }
+            };
+
+            powerDownOperations.push(powerDownOp);
+          }
+        });
+
+        const buildTransactions = async() => {
+          let transactions = [];
+
+          for (let i = 0; i < powerDownOperations.length; i++) {
+            let tr = wallet_api.new_transaction();
+            tr.add_type_operation('vesting_balance_withdraw', powerDownOperations[i]);
+            await tr.set_required_fees().then(() => {
+              transactions.push(tr);
+            }).catch((err) => reject(err));
+          }
+
+          return transactions;
+        };
+
+        buildTransactions().then((e) => resolve(e));
+      });
+    };
+  }
 
   /**
    * Sign and broadcast a power up (create new gpos type vesting balance).
    *
    * @static
-   * @param {TransactionBuild} tr
+   * @param {Transaction} tr
    * @returns
    * @memberof GPOSActions
    */
-  static powerUpTransaction(tr) {
+  static powerTransaction(tr) {
     return (dispatch, getState) => {
       return new Promise((resolve, reject) => {
-        const encrypted_key = getState().walletData.wallet.encrypted_brainkey;
+        let encrypted_key = getState().walletData.wallet.encrypted_brainkey;
         const activePrivateKeyBuffer = getState().walletData.wallet.aesPrivate.decryptHexToBuffer(encrypted_key);
         const activePrivateKey = PrivateKey.fromBuffer(activePrivateKeyBuffer);
-        AccountRepository.process_transaction(tr, activePrivateKey).then(() => resolve()).catch((err) => reject(err));
+
+        AccountRepository.process_transaction(tr, activePrivateKey)
+          .then(() => resolve()).catch((err) => reject(err));
       });
     };
   }
