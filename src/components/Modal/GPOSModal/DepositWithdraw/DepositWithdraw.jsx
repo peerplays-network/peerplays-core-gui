@@ -141,6 +141,10 @@ class DepositWithdraw extends PureComponent {
           transactions.forEach((tr) => {
             this.props.confirmTransaction(GPOSActions.powerTransaction, tr, transactionFunctionCallback);
           });
+        }).catch(() => {
+          this.setState({
+            transactionStatus: 'not available'
+          });
         });
       }
     }
@@ -265,8 +269,8 @@ class DepositWithdraw extends PureComponent {
 
   renderRContent = (canSubmit, content, newAmt) => {
     let {asset, action, proceedOrRegress, symbol, isBroadcasting, broadcastError, clearTransaction} =
-      this.props, transactionStatus, transactionMsg, clickAction, btnTxt, btnClass;
-
+      this.props, transactionStatus, transactionMsg, transactionMsgClass, clickAction, btnTxt, btnClass;
+    transactionMsgClass = 'transaction-status__txt';
     // Default right content:
     let rContent =
       <div>
@@ -323,6 +327,14 @@ class DepositWithdraw extends PureComponent {
       btnClass = '-next';
       // Redirect to start
       clickAction = () => proceedOrRegress(0, action);
+    } else if (this.state.transactionStatus === 'not available') {
+      transactionStatus = '--fail';
+      transactionMsg = 'gpos.transaction.down.none_available';
+      transactionMsgClass = `${transactionMsgClass}-sm`;
+      btnTxt = 'gpos.transaction.retry';
+      btnClass = '-retry';
+      // Clear state error
+      clickAction = () => this.setState({transactionStatus: ''});
     }
 
     // If `true`, power down action will always appear to succeed. Dummy data
@@ -349,7 +361,7 @@ class DepositWithdraw extends PureComponent {
         <img className={ `transaction-status__img${transactionStatus}` } src={ `images/gpos/transaction${transactionStatus}.png` } alt={ transactionStatus } />
         <Translate
           component='p'
-          className='transaction-status__txt'
+          className={ transactionMsgClass }
           content={ transactionMsg }
         />
         <div className='gpos-modal__btns'>

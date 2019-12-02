@@ -1,3 +1,4 @@
+import counterpart from 'counterpart';
 import ActionTypes from '../constants/ActionTypes';
 import BalanceTypes from '../constants/BalanceTypes';
 import {PrivateKey} from 'peerplaysjs-lib';
@@ -220,7 +221,13 @@ class GPOSActions {
           return transactions.concat(powerUpTransactions);
         };
 
-        buildTransactions().then((transactions) => resolve(transactions));
+        buildTransactions().then((transactions) => {
+          if (transactions.length === 0) {
+            reject(counterpart.translate('gpos.transaction.down.none_available'));
+          } else {
+            resolve(transactions);
+          }
+        });
       });
     };
   }

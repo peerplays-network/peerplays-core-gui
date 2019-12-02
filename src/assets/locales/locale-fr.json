@@ -563,7 +563,8 @@
     "transaction": {
       "down": {
         "succeed": "You have successfully Powered Down!",
-        "fail": "You have failed to Power Down!"
+        "fail": "You have failed to Power Down!",
+        "none_available": "No GPOS balances are available for withdrawal yet."
       },
       "up": {
         "succeed": "You have successfully Powered Up!",

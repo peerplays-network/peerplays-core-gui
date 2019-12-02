@@ -422,6 +422,12 @@ sm: 1275px);
           width: 454px;
           font-size: $f-40;
           text-align: center;
+
+          &-sm {
+            @extend .transaction-status__txt;
+
+            font-size: $f-35;
+          }
         }
       }
     }
