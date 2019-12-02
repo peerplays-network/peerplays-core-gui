@@ -112,10 +112,11 @@ class DepositWithdraw extends PureComponent {
    */
   onSubmit = (walletLocked, e) => {
     e.preventDefault();
+    let max = this.props.action === 1.2 ? this.state.totalGpos : this.state.maxAmount;
 
     let {asset, symbol} = this.props;
 
-    if (this.state.amount < this.state.maxAmount && asset) {
+    if (this.state.amount < max && asset) {
       let asset_id = asset.get('id');
 
       function transactionFunctionCallback() {
@@ -179,7 +180,7 @@ class DepositWithdraw extends PureComponent {
   }
 
   checkErrors() {
-    let {fees, maxAmount} = this.state;
+    let {fees, maxAmount, totalGpos} = this.state;
     let errors = false;
 
     // Check for errors outside of the regular validation
@@ -192,7 +193,9 @@ class DepositWithdraw extends PureComponent {
 
     // Power Down
     if (this.props.action === 1.2) {
-      if (this.state.amount > (maxAmount - fees.down)) {
+      // TODO: checking for instances of multi-step deposit required to fulfill user request. Fee would be a combination of power down and power up, potentially multiple.
+
+      if (this.state.amount > (totalGpos - fees.down)) {
         errors = true;
       }
     }
@@ -225,7 +228,7 @@ class DepositWithdraw extends PureComponent {
 
   renderAmountPicker = (actionTxt) => {
     let min = this.state.minAmount;
-    let max = this.state.maxAmount;
+    let max = this.props.action === 1.2 ? this.state.totalGpos : this.state.maxAmount;
 
     return(
       <div className='gpos-modal__card-power--transparent tall'>
