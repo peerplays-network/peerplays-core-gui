@@ -172,7 +172,7 @@ class DepositWithdraw extends PureComponent {
         val = val > this.state.totalGpos ? this.state.totalGpos : val;
       }
     } else {
-      val = null;
+      val = undefined;
     }
 
     this.setState({amount: val});
