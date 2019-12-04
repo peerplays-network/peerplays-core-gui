@@ -15,6 +15,7 @@ class DepositWithdraw extends PureComponent {
   state = {
     amount: undefined,
     totalGpos: 0,
+    availableGpos: 0,
     precision: 0,
     minAmount: 0,
     maxAmount: 0,
@@ -41,6 +42,7 @@ class DepositWithdraw extends PureComponent {
 
       this.setState({
         totalGpos: this.props.totalGpos && formatAmt(this.props.totalGpos),
+        availableGPOS: this.props.availableGpos && formatAmt(this.props.availableGpos),
         precision: this.props.asset.get('precision'),
         minAmount: asset_utils.getMinimumAmount(this.props.asset),
         maxAmount: formatAmt(this.props.coreBalance),
@@ -271,14 +273,47 @@ class DepositWithdraw extends PureComponent {
     let {asset, action, proceedOrRegress, symbol, isBroadcasting, broadcastError, clearTransaction} =
       this.props, transactionStatus, transactionMsg, transactionMsgClass, clickAction, btnTxt, btnClass;
     transactionMsgClass = 'transaction-status__txt';
-    // Default right content:
-    let rContent =
-      <div>
-        <div className='gpos-modal__card-power'>
+
+    let rContentCardTop = (
+      action === 1.2
+        ? <div className='gpos-modal__card-power--flex'>
+          <div className='gpos-modal__card-power-opening'>
+            <Translate
+              component='p'
+              className='txt'
+              content='gpos.deposit-withdraw.right.card-1-open'
+            />
+            <div className='balance--blue'>
+              <FormattedNumber
+                value={ this.state.totalGpos }
+                minimumFractionDigits={ 0 }
+                maximumFractionDigits={ asset.get('precision') }
+              /> {symbol}
+            </div>
+          </div>
+
+          <div className='gpos-modal__spacer--vertical'></div>
+
+          <div className='gpos-modal__card-power-available'>
+            <Translate
+              component='p'
+              className='txt'
+              content='gpos.deposit-withdraw.right.card-1-available'
+            />
+            <div className='balance--blue'>
+              <FormattedNumber
+                value={ this.state.availableGpos }
+                minimumFractionDigits={ 0 }
+                maximumFractionDigits={ asset.get('precision') }
+              /> {symbol}
+            </div>
+          </div>
+        </div>
+        : <div className='gpos-modal__card-power'>
           <Translate
             component='p'
             className='txt'
-            content='gpos.deposit-withdraw.right.card-1'
+            content='gpos.deposit-withdraw.right.card-1-open'
           />
           <div className='balance--blue'>
             <FormattedNumber
@@ -288,7 +323,12 @@ class DepositWithdraw extends PureComponent {
             /> {symbol}
           </div>
         </div>
+    );
 
+    // Default right content:
+    let rContent =
+      <div>
+        {rContentCardTop}
         {content}
         {this.renderErrors()}
 

@@ -46,6 +46,42 @@ sm: 1275px);
   font-size: $f-45;
 }
 
+@mixin card-power {
+  > .txt,
+  > .balance,
+  & > .balance--blue {
+    @include respond-to(mac) {
+      font-size: $f-19;
+    }
+
+    padding: 20px 0 0 32px;
+    font-size: $f-25;
+  }
+
+  > .balance {
+    @include respond-to(mac) {
+      font-size: $f-23;
+    }
+
+    font-size: $f-29;
+
+    &--blue {
+      @include respond-to(mac) {
+        font-size: $f-23;
+      }
+
+      padding-top: 5px;
+      font-size: $f-29;
+      color: $gpos-blue-balance;
+    }
+  }
+
+  > .balance,
+  > .balance--blue {
+    padding-top: 5px;
+  }
+}
+
 [class^='title'],
 [class*='txt'] {
   font-family: $lato;
@@ -474,42 +510,26 @@ sm: 1275px);
         margin-bottom: 43px;
       }
 
+      @include card-power();
+
+      &--flex {
+        @extend .gpos-modal__card-power;
+
+        display: flex;
+      }
+
       width: 489px;
       height: 114px;
       margin-bottom: 52px;
 
-      > .txt,
-      > .balance,
-      & > .balance--blue {
-        @include respond-to(mac) {
-          font-size: $f-19;
+      &-opening, &-available {
+        @include card-power();
+
+        > .txt {
+          font-size: 17px;
         }
 
-        padding: 20px 0 0 32px;
-        font-size: $f-25;
-      }
-
-      > .balance {
-        @include respond-to(mac) {
-          font-size: $f-23;
-        }
-
-        font-size: $f-29;
-
-        &--blue {
-          @include respond-to(mac) {
-            font-size: $f-23;
-          }
-
-          padding-top: 5px;
-          font-size: $f-29;
-          color: $gpos-blue-balance;
-        }
-      }
-
-      > .balance,
-      > .balance--blue {
-        padding-top: 5px;
+        flex-grow: 4;
       }
 
       &--transparent {
@@ -861,6 +881,17 @@ sm: 1275px);
           }
         }
       }
+    }
+  }
+
+  &__spacer {
+    &--vertical {
+      flex-grow: 0.1;
+      width: 5px;
+      max-width: 5px;
+      margin: 12px 10px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.2);
     }
   }
 

@@ -35,14 +35,14 @@ class GPOSModalWrapper extends Component {
     }
   }
 
-  renderStageContent = (totalGpos) => {
+  renderStageContent = (totalGpos, availableGPOS) => {
     let current = this.state.currentStage;
     let completedStages = this.props.completedStages;
 
     switch (current) {
       case 0: return <Start totalGpos={ totalGpos } closeModal={ this.closeModal } proceedOrRegress={ this.proceedOrRegress } completedStages={ completedStages }/>;
-      case 1.1: return <DepositWithdraw totalGpos={ totalGpos } proceedOrRegress={ this.proceedOrRegress } action={ 1.1 }/>;
-      case 1.2: return <DepositWithdraw totalGpos={ totalGpos } proceedOrRegress={ this.proceedOrRegress } action={ 1.2 }/>;
+      case 1.1: return <DepositWithdraw totalGpos={ totalGpos } availableGpos={ availableGPOS } proceedOrRegress={ this.proceedOrRegress } action={ 1.1 }/>;
+      case 1.2: return <DepositWithdraw totalGpos={ totalGpos } availableGpos={ availableGPOS } proceedOrRegress={ this.proceedOrRegress } action={ 1.2 }/>;
       case 2: return <Vote proceedOrRegress={ this.proceedOrRegress }/>;
       case 3: return <Done okHandler={ this.proceedOrRegress }/>;
       //no default
@@ -50,8 +50,8 @@ class GPOSModalWrapper extends Component {
   }
 
   render() {
-    let {totalGpos} = this.props;
-    let content = this.renderStageContent(totalGpos);
+    let {totalGpos, availableGpos} = this.props;
+    let content = this.renderStageContent(totalGpos, availableGpos);
     let dialogueClass = `gpos-modal${'-' + this.state.currentStage.toString().replace('.', '-')}`;
 
     return (
@@ -78,6 +78,7 @@ const mapStateToProps = (state) => {
   return {
     showGPOSModal: state.gpos.showGPOSModal,
     totalGpos: data.totalAmount,
+    availableGpos: data.availableAmount,
     completedStages: state.gpos.completedStages
   };
 };

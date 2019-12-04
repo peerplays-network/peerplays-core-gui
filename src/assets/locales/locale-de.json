@@ -534,7 +534,8 @@
         "txt-2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper ipsum ac ex imperdiet suscipit. Aliquam erat volutpat. Morbi rhoncus vitae libero quis gravida. Nullam eros ante, dictum in purus vitae, volutpat volutpat ante. Morbi dignissim purus ac sodales efficitur. Integer molestie elit at massa lacinia luctus. Suspendisse nisl lorem, vulputate blandit euismod quis, bibendum in nisi."
       },
       "right": {
-        "card-1": "Opening GPOS Balance:",
+        "card-1-open": "Opening GPOS Balance:",
+        "card-1-available": "Available GPOS Balance:",
         "card-2": "New GPOS Balance:",
         "deposit": "Deposit:",
         "withdraw": "Withdraw",
