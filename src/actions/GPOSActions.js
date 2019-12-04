@@ -132,19 +132,12 @@ class GPOSActions {
   static getPowerDownTransaction(owner, amount) { // id, owner, amount
     return (dispatch, getState) => {
       return new Promise((resolve, reject) => {
-        const {gposVestingLockinPeriod} = getState().dashboardPage;
+        // const {gposVestingLockinPeriod} = getState().dashboardPage;
 
         // Helper func
-        const canWithdraw = (bal) => {
-          function addDays(date, days) {
-            date.setDate(date.getDate() + days);
-            return date;
-          }
-
-          let lockinPeriodDays = ((gposVestingLockinPeriod / 60) / 60) / 24;
-          let withdrawDate = addDays(new Date(bal.policy[1].begin_timestamp), lockinPeriodDays);
-
-          return new Date() > withdrawDate;
+        const canWithdraw = (bal) => { // eslint-disable-line
+          // return now > gposVestingLockinPeriod
+          return false;
         };
 
         const wallet_api = new WalletApi();

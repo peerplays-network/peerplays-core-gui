@@ -148,6 +148,7 @@ class VotingActions {
           amount: 0,
           asset_id: accountUtils.getFinalFeeAsset(account.id, 'account_update')
         };
+        account.extensions = {value: {update_last_voting_time: true}};
 
         let tr = wallet_api.new_transaction();
         tr.add_type_operation('account_update', account);
@@ -310,6 +311,7 @@ class VotingActions {
           amount: 0,
           asset_id: accountUtils.getFinalFeeAsset(account.id, 'account_update')
         };
+        account.extensions = {value: {update_last_voting_time: true}};
 
         let voteIds = getState().voting.witnesses.activeWitnesseObjects
           .filter((obj) => witnesses.has(obj.witness_account)).map((obj) => obj.vote_id).toArray();
@@ -412,6 +414,7 @@ class VotingActions {
           amount: 0,
           asset_id: accountUtils.getFinalFeeAsset(account.id, 'account_update')
         };
+        account.extensions = {value: {update_last_voting_time: true}};
 
         let voteIds = getState().voting.committeeMembers.activeCMObjects
           .filter((obj) => committeeMembers.has(obj.committee_member_account))

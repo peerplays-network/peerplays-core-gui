@@ -18,7 +18,7 @@ class BalanceRepository {
     return Apis.instance().db_api().exec('get_vesting_balances', [
       accountId
     ]).catch((err) => {
-      console.log('error:', err);
+      console.error('error:', err);
     });
   }
 }

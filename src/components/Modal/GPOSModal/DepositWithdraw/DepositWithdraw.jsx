@@ -334,7 +334,7 @@ class DepositWithdraw extends PureComponent {
       btnTxt = 'gpos.transaction.retry';
       btnClass = '-retry';
       // Clear state error
-      clickAction = () => this.setState({transactionStatus: ''});
+      clickAction = () => this.setState({transactionStatus: '', amount: undefined});
     }
 
     // If `true`, power down action will always appear to succeed. Dummy data

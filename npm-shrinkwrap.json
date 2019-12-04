@@ -16907,8 +16907,8 @@
       }
     },
     "peerplaysjs-lib": {
-      "version": "github:peerplays-network/peerplaysjs-lib#481f9b3c1f6f21b3f90c7b4ae060035167017400",
-      "from": "github:peerplays-network/peerplaysjs-lib#add-balance-type-to-vest-create",
+      "version": "github:peerplays-network/peerplaysjs-lib#00dbac4a9ac1f1ac78c752378a4293650bda1db5",
+      "from": "github:peerplays-network/peerplaysjs-lib#WAL-281-add-update-last-voting-time",
       "dev": true,
       "requires": {
         "assert": "^2.0.0",
