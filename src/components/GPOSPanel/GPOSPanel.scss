@@ -95,6 +95,40 @@
     &--right {
       right: 0;
       color: $green3;
+
+      &.txt {
+        &--white {
+          color: $white;
+        }
+
+        &--green {
+          color: $green;
+        }
+
+        &--green-drk {
+          color: $green2;
+        }
+
+        &--blue {
+          color: $light-blue;
+        }
+
+        &--yellow {
+          color: rgb(255, 210, 1);
+        }
+
+        &--orange {
+          color: rgb(255, 126, 25);
+        }
+
+        &--red {
+          color: $red;
+        }
+
+        &--red-drk {
+          color: rgb(233, 17, 28);
+        }
+      }
     }
   }
 }

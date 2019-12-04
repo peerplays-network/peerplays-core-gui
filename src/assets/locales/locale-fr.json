@@ -500,7 +500,14 @@
         "balance": "GPOS Balance",
         "performance": {
           "title": "Voting Performance",
-          "txt1": "All up to date"
+          "max": "Max Rewards",
+          "great": "Great Rewards",
+          "good": "Good Rewards",
+          "ok": "OK Rewards",
+          "low": "Low Rewards",
+          "lowest": "Lowest Reward",
+          "crit": "Critical Low",
+          "none": "No Rewards"
         },
         "percent": "Qualified Reward %",
         "potential": "Estimated Rake Reward %"

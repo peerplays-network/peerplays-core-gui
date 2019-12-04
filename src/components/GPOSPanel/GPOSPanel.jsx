@@ -25,10 +25,47 @@ class GPOSPanel extends Component {
   }
 
   renderGposStats = () => {
-    let {asset, totalGpos, estimatedRakeReward, gposPerformance} = this.props, symbol;
+    let {asset, totalGpos, estimatedRakeReward, gposPerformance} = this.props, symbol, gposPerfString, gposPerfColor;
 
     if (asset) {
       symbol = asset_utils.getSymbol(asset.get('symbol'));
+    }
+
+    gposPerfString = 'gpos.side.info.performance';
+
+    switch (true) {
+      case gposPerformance === 100:
+        gposPerfString += '.max';
+        gposPerfColor = '';
+        break;
+      case gposPerformance > 83.33 && gposPerformance < 100:
+        gposPerfString += '.great';
+        gposPerfColor = 'txt--green';
+        break;
+      case gposPerformance > 66.66 && gposPerformance <= 83.33:
+        gposPerfString += '.good';
+        gposPerfColor = 'txt--green-drk';
+        break;
+      case gposPerformance > 50 && gposPerformance <= 66.66:
+        gposPerfString += '.ok';
+        gposPerfColor = 'txt--blue';
+        break;
+      case gposPerformance > 33.33 && gposPerformance <= 50:
+        gposPerfString += '.low';
+        gposPerfColor = 'txt--yellow';
+        break;
+      case gposPerformance > 16.68 && gposPerformance <= 33.33:
+        gposPerfString += '.lowest';
+        gposPerfColor = 'txt--orange';
+        break;
+      case gposPerformance >= 1 && gposPerformance <= 16.68:
+        gposPerfString += '.crit';
+        gposPerfColor = 'txt--red';
+        break;
+      default: // 0
+        gposPerfString += '.none';
+        gposPerfColor = 'txt--red-drk';
+        break;
     }
 
     return (
@@ -49,8 +86,8 @@ class GPOSPanel extends Component {
 
         <div className='gpos-panel__stats-perf'>
           <Translate content='gpos.side.info.performance.title'/>
-          <div className='gpos-panel__stats--right'>
-            <Translate content='gpos.side.info.performance.txt1'/>
+          <div className={ `gpos-panel__stats--right ${gposPerfColor}` }>
+            <Translate content={ gposPerfString }/>
           </div>
         </div>
 
