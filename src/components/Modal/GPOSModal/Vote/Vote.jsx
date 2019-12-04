@@ -15,7 +15,7 @@ class Vote extends React.Component {
           />
         </div>
         <div className='gpos-modal__voting--right'>
-          <Voting handlers={ {cancel: this.props.cancelHandler, finish: this.props.finishHandler} }/>
+          <Voting handlers={ {cancel: this.props.proceedOrRegress, finish: this.props.proceedOrRegress} }/>
         </div>
       </div>
     );

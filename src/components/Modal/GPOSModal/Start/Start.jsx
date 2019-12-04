@@ -17,21 +17,18 @@ class GposModalStart extends React.Component {
     hasProgress = Object.values(completedStages).indexOf(true) > -1;
     btnTxt = !hasProgress ? 'gpos.modal.cancel' : 'gpos.modal.done';
 
-    // Progress must have been made and the user must have a gpos balance
-    if (hasProgress && totalGpos > 0) {
+    // If the users' GPOS Balance is greater than 0 and they have not already voted, allow.
+    if (totalGpos > 0) {
       canVote = true;
 
-      // If vote has been completed already, disable...
-      if (completedStages['2'] === true) {
+      if (!hasProgress) {
         canVote = false;
       }
-    } else {
-      canVote = false;
+    }
 
-      // If the users' GPOS Balance is greater than 0 and they have not already voted, allow.
-      if (totalGpos > 0) {
-        canVote = true;
-      }
+    // If vote has been completed already, disable...
+    if (completedStages['2'] === true) {
+      canVote = false;
     }
 
     return (

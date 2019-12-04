@@ -672,7 +672,11 @@ class DashboardBalancesService {
       obj210
     } = cacheData;
 
+    let ext = obj200 ? obj200.getIn(['parameters', 'extensions']) : null;
     let blockInterval = obj200 ? obj200.get('parameters').get('block_interval') : null;
+    let gposPeriod = ext ? ext.get('gpos_period') : null;
+    let gposSubPeriod = ext ? ext.get('gpos_subperiod') : null;
+    let gposVestingLockinPeriod = ext ? ext.get('gpos_vesting_lockin_period') : null;
     let headBlockNumber = obj210 ? obj210.get('head_block_number') : null;
 
     let orderOperations = history ? history.filter((obj) => {
@@ -759,6 +763,9 @@ class DashboardBalancesService {
       recentActivity,
       openOrders,
       blockInterval,
+      gposPeriod,
+      gposSubPeriod,
+      gposVestingLockinPeriod,
       headBlockNumber
     };
   }

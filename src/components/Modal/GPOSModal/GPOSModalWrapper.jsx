@@ -43,7 +43,7 @@ class GPOSModalWrapper extends Component {
       case 0: return <Start totalGpos={ totalGpos } closeModal={ this.closeModal } proceedOrRegress={ this.proceedOrRegress } completedStages={ completedStages }/>;
       case 1.1: return <DepositWithdraw totalGpos={ totalGpos } proceedOrRegress={ this.proceedOrRegress } action={ 1.1 }/>;
       case 1.2: return <DepositWithdraw totalGpos={ totalGpos } proceedOrRegress={ this.proceedOrRegress } action={ 1.2 }/>;
-      case 2: return <Vote finishHandler={ this.proceedOrRegress } cancelHandler={ this.proceedOrRegress }/>;
+      case 2: return <Vote proceedOrRegress={ this.proceedOrRegress }/>;
       case 3: return <Done okHandler={ this.proceedOrRegress }/>;
       //no default
     }

@@ -174,7 +174,10 @@ class DashboardPageActions {
       dispatch(DashboardPageActions.setRecentActivity({
         recentActivity: activityData.recentActivity,
         headBlockNumber: activityData.headBlockNumber,
-        blockInterval: activityData.blockInterval
+        blockInterval: activityData.blockInterval,
+        gposPeriod: activityData.gposPeriod,
+        gposSubPeriod: activityData.gposSubPeriod,
+        gposVestingLockinPeriod: activityData.gposVestingLockinPeriod
       }));
       dispatch(DashboardPageActions.setOpenOrders({
         openOrders: activityData.openOrders

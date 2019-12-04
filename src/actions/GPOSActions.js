@@ -132,11 +132,19 @@ class GPOSActions {
   static getPowerDownTransaction(owner, amount) { // id, owner, amount
     return (dispatch, getState) => {
       return new Promise((resolve, reject) => {
+        const {gposVestingLockinPeriod} = getState().dashboardPage;
+
         // Helper func
         const canWithdraw = (bal) => {
-          // No amount may be withdraw before the vesting_cliff_seconds value has pass since the vesting balance was created (begin_timestamp).
-          // now >= begin_timestamp + vesting_cliff_seconds
-          return new Date().getTime() >= ((new Date(bal.policy[1].begin_timestamp).getTime() + new Date(bal.policy[1].vesting_cliff_seconds).getTime()));
+          function addDays(date, days) {
+            date.setDate(date.getDate() + days);
+            return date;
+          }
+
+          let lockinPeriodDays = ((gposVestingLockinPeriod / 60) / 60) / 24;
+          let withdrawDate = addDays(new Date(bal.policy[1].begin_timestamp), lockinPeriodDays);
+
+          return new Date() > withdrawDate;
         };
 
         const wallet_api = new WalletApi();
@@ -156,6 +164,7 @@ class GPOSActions {
           let amt = availableBalances[i].balance.amount;
           runningAmt += amt;
 
+          // TODO: blockchain changes will allow us to send a single transaction request for an amount and the blockchain will perform the logic within the else statement here so it should be removed.
           if (runningAmt <= requestedAmt) {
             gposBalToWithdraw.push(availableBalances[i].id);
           } else {
@@ -193,7 +202,7 @@ class GPOSActions {
                 asset_id: '1.3.0'
               },
               owner,
-              vesting_balance: id,
+              vesting_balance: id, // will be ignored for gpos vesting balances
               amount: {
                 amount: Math.floor(bal.balance.amount),
                 asset_id: bal.balance.asset_id
@@ -214,8 +223,6 @@ class GPOSActions {
               transactions.push(tr);
             }).catch((err) => reject(err));
           }
-
-          // TODO: transaction fee checking to ensure these transactions can be done...
 
           // Combine any pendtoing transaction. We may have a powerUp transaction required in th event of having to break up a larger vested balance to meet the request withdrawal amount.
           return transactions.concat(powerUpTransactions);
