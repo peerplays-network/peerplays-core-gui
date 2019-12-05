@@ -1,4 +1,3 @@
-import counterpart from 'counterpart';
 import ActionTypes from '../constants/ActionTypes';
 import BalanceTypes from '../constants/BalanceTypes';
 import {PrivateKey} from 'peerplaysjs-lib';
@@ -130,111 +129,33 @@ class GPOSActions {
   };
 
   static getPowerDownTransaction(owner, amount) { // id, owner, amount
-    return (dispatch, getState) => {
+    return (dispatch, getState) => { /* eslint-disable-line */
       return new Promise((resolve, reject) => {
-        const {gposVestingLockinPeriod} = getState().dashboardPage;
-
-        // Helper func
-        const canWithdraw = (bal) => { // TODO: replace once parameter for allowed_withdraw_time is available
-          function addDays(date, days) {
-            date.setDate(date.getDate() + days);
-            return date;
-          }
-
-          let lockinPeriodDays = ((gposVestingLockinPeriod / 60) / 60) / 24;
-          let withdrawDate = addDays(new Date(bal.policy[1].begin_timestamp), lockinPeriodDays);
-
-          return new Date() > withdrawDate;
-        };
-
         const wallet_api = new WalletApi();
-        // get balances available
-        const gposBalances = getState().accountVestingPageReducer.balances.filter((balance) => balance.balance_type === BalanceTypes.gpos);
-        // Filter for only balances that can be withdrawn.
-        const availableBalances = gposBalances.filter((balance) => canWithdraw(balance));
 
         // Discern which vesting balances to withdraw to meet the requested amount
         const requestedAmt = amount.amount;
-        let gposBalToWithdraw = [],
-          powerDownOperations = [],
-          powerUpTransactions = [];
-        let runningAmt = 0;
+        const requestedAsset = amount.asset_id;
+        const dummyVestingBalanceId = '1.13.2';
 
-        for (let i = 0; i < availableBalances.length; i++) {
-          let amt = availableBalances[i].balance.amount;
-          runningAmt += amt;
-
-          // TODO: blockchain changes will allow us to send a single transaction request for an amount and the blockchain will perform the logic within the else statement here so it should be removed.
-          if (runningAmt <= requestedAmt) {
-            gposBalToWithdraw.push(availableBalances[i].id);
-          } else {
-            /**
-             * The requested amount may not be fulfilled with an entire transaction so, we must break up an existing vesting balance type into multiple.
-             * To do this, we will withdraw a larger than necessary transaction and create a new vesting balance of GPOS type with the remainder.
-             * Unfortunately, this will incur multiple transaction charges.
-             */
-            gposBalToWithdraw.push(availableBalances[i].id); // Include this balance despite it exceeding the requested amount.
-
-            // Check transaction amount, calculate the diff, perform above actions.
-            let diff = runningAmt - requestedAmt; // This is the remainder we need to create a new vesting balance of gpos type for.
-            console.info('DIFF DETETCTED, multi-part deposit/withdrawal required.\nRequested amount: ', requestedAmt, ' Diff: ', diff);
-
-            // Craft a new transaction to create a vesting balance type of gpos with the remainder.
-            const assetSymbol = getState().dashboardPage.vestingAsset.get('symbol');
-            const asset_id = availableBalances[i].balance.asset_id;
-            const amount = diff;
-
-            dispatch(GPOSActions.getPowerUpTransaction(owner, {amount, asset_id}, assetSymbol)).then((tr) => {
-              powerUpTransactions.push(tr);
-            });
-            break;
-          }
-        }
-
-        // Build array of operations including all valid withdrawals
-        gposBalToWithdraw.forEach((id) => {
-          let bal = availableBalances.find((bal) => bal.id === id);
-
-          if (bal) {
-            let powerDownOp = {
-              fee: {
-                amount: '0',
-                asset_id: '1.3.0'
-              },
-              owner,
-              vesting_balance: id, // will be ignored for gpos vesting balances
-              amount: {
-                amount: Math.floor(bal.balance.amount),
-                asset_id: bal.balance.asset_id
-              }
-            };
-
-            powerDownOperations.push(powerDownOp);
-          }
-        });
-
-        const buildTransactions = async() => {
-          let transactions = [];
-
-          for (let i = 0; i < powerDownOperations.length; i++) {
-            let tr = wallet_api.new_transaction();
-            tr.add_type_operation('vesting_balance_withdraw', powerDownOperations[i]);
-            await tr.set_required_fees().then(() => {
-              transactions.push(tr);
-            }).catch((err) => reject(err));
-          }
-
-          // Combine any pendtoing transaction. We may have a powerUp transaction required in th event of having to break up a larger vested balance to meet the request withdrawal amount.
-          return transactions.concat(powerUpTransactions);
+        let powerDownOp = {
+          fee: {
+            amount: '0',
+            asset_id: '1.3.0'
+          },
+          owner,
+          vesting_balance: dummyVestingBalanceId, // will be ignored for gpos vesting balances
+          amount: {
+            amount: Math.floor(requestedAmt),
+            asset_id: requestedAsset
+          },
+          balance_type: BalanceTypes.gpos
         };
 
-        buildTransactions().then((transactions) => {
-          if (transactions.length === 0) {
-            reject(counterpart.translate('gpos.transaction.down.none_available'));
-          } else {
-            resolve(transactions);
-          }
-        });
+        // Build transaction
+        let tr = wallet_api.new_transaction();
+        tr.add_type_operation('vesting_balance_withdraw', powerDownOp);
+        tr.set_required_fees().then(() => resolve(tr)).catch((err) => reject(err));
       });
     };
   }

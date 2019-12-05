@@ -42,7 +42,7 @@ class DepositWithdraw extends PureComponent {
 
       this.setState({
         totalGpos: this.props.totalGpos && formatAmt(this.props.totalGpos),
-        availableGPOS: this.props.availableGpos && formatAmt(this.props.availableGpos),
+        availableGpos: this.props.availableGpos && formatAmt(this.props.availableGpos),
         precision: this.props.asset.get('precision'),
         minAmount: asset_utils.getMinimumAmount(this.props.asset),
         maxAmount: formatAmt(this.props.coreBalance),
@@ -57,6 +57,7 @@ class DepositWithdraw extends PureComponent {
     this.setState({
       amount: undefined,
       totalGpos: 0,
+      availableGpos: 0,
       precision: 0,
       minAmount: 0,
       maxAmount: 0,
@@ -71,7 +72,7 @@ class DepositWithdraw extends PureComponent {
   componentWillUpdate(prevProps) {
     if (this.props.broadcastSuccess !== prevProps.broadcastSuccess && this.state.transactionStatus !== 'done') {
       // This is needed because transactionConfirm.broadcastSuccess will change to false shortly after being set to true on a successful transaction.
-      if (this.props.broadcastSuccess) {
+      if (this.props.broadcastSuccess || Config.gpos.fakeSucceed) {
         this.setState({transactionStatus: 'done'});
       }
     }
@@ -96,7 +97,7 @@ class DepositWithdraw extends PureComponent {
     if (this.props.action === 1.1) {
       newAmt = newAmt > this.state.maxAmount ? this.state.maxAmount : newAmt;
     } else if (this.props.action === 1.2) {
-      newAmt = newAmt > this.state.totalGpos ? this.state.totalGpos : newAmt;
+      newAmt = newAmt > this.state.availableGpos ? this.state.availableGpos : newAmt;
     }
 
     newAmt = newAmt < 0 ? 0 : newAmt;
@@ -136,18 +137,16 @@ class DepositWithdraw extends PureComponent {
           this.props.confirmTransaction(GPOSActions.powerTransaction, tr, transactionFunctionCallback);
         });
       } else {
-        this.props.getPowerDownTransaction(
-          this.props.accountId,
-          {amount, asset_id}
-        ).then((transactions) => {
-          transactions.forEach((tr) => {
+        if (Config.gpos.fakeSucceed) {
+          this.setState({transactionStatus: 'done'});
+        } else {
+          this.props.getPowerDownTransaction(
+            this.props.accountId,
+            {amount, asset_id}
+          ).then((tr) => {
             this.props.confirmTransaction(GPOSActions.powerTransaction, tr, transactionFunctionCallback);
           });
-        }).catch(() => {
-          this.setState({
-            transactionStatus: 'not available'
-          });
-        });
+        }
       }
     }
   }
@@ -176,7 +175,7 @@ class DepositWithdraw extends PureComponent {
       if (this.props.action === 1.1) {
         val = val > this.state.maxAmount ? this.state.maxAmount : val;
       } else if (this.props.action === 1.2) {
-        val = val > this.state.totalGpos ? this.state.totalGpos : val;
+        val = val > this.state.availableGpos ? this.state.availableGpos : val;
       }
     } else {
       val = undefined;

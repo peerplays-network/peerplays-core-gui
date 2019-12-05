@@ -13,22 +13,24 @@ class GposModalStart extends React.Component {
   }
 
   render() {
-    let {closeModal, proceedOrRegress, completedStages, totalGpos} = this.props, hasProgress, btnTxt, canVote;
+    let {closeModal, proceedOrRegress, completedStages, totalGpos} = this.props, hasProgress, btnTxt, canVote, canPowerDown;
     hasProgress = Object.values(completedStages).indexOf(true) > -1;
     btnTxt = !hasProgress ? 'gpos.modal.cancel' : 'gpos.modal.done';
+    canPowerDown = false;
 
     // If the users' GPOS Balance is greater than 0 and they have not already voted, allow.
     if (totalGpos > 0) {
       canVote = true;
-
-      if (!hasProgress) {
-        canVote = false;
-      }
+      canPowerDown = true;
     }
 
     // If vote has been completed already, disable...
     if (completedStages['2'] === true) {
       canVote = false;
+    }
+
+    if (completedStages['1.2'] === true) {
+      canPowerDown = false;
     }
 
     return (
@@ -87,7 +89,7 @@ class GposModalStart extends React.Component {
             />
             {completedStages[1.1] ? this.renderCompleted(): null}
           </div>
-          <div disabled={ completedStages[1.2] } className='gpos-modal__card-btn' onClick={ () => proceedOrRegress(1.2) }>
+          <div disabled={ !canPowerDown } className='gpos-modal__card-btn' onClick={ () => proceedOrRegress(1.2) }>
             <img className='gpos-modal__card-2' src='images/gpos/power-down.png' alt='stage2'/>
             <Translate
               component='p'

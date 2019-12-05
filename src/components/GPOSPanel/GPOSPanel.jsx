@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import Translate from 'react-translate-component';
 import asset_utils from '../../common/asset_utils';
 import {HelpActions, DashboardPageActions, GPOSActions} from '../../actions';
-import {getTotalGposBalance} from '../../selectors/GPOSSelector';
+import {getGposTotal} from '../../selectors/GPOSSelector';
 import {FormattedNumber} from 'react-intl';
 import {anchors} from '../Help/HelpModal';
 import AppUtils from '../../utility/AppUtils';
@@ -32,7 +32,6 @@ class GPOSPanel extends Component {
     }
 
     gposPerfString = 'gpos.side.info.performance';
-    gposPerformance = 99;
 
     switch (true) {
       case gposPerformance === 100:
@@ -164,16 +163,14 @@ class GPOSPanel extends Component {
 const mapStateToProps = (state) => {
   let totalBlockchainGpos, userGpos, vestingFactor, gposPerformance, estimatedRakeReward;
   let asset = state.dashboardPage.vestingAsset;
-  let data = getTotalGposBalance(state);
+  let unformattedTotalGpos = getGposTotal(state);
   let gposInfo = state.dashboardPage.gposInfo;
 
   if (asset) {
     totalBlockchainGpos = gposInfo.total_amount / Math.pow(10, asset.get('precision'));
-    userGpos = data.totalAmount / Math.pow(10, asset.get('precision'));
+    userGpos = unformattedTotalGpos / Math.pow(10, asset.get('precision'));
     vestingFactor = gposInfo && gposInfo.vesting_factor;
     gposPerformance = AppUtils.trimNum((vestingFactor * 100 || 0), 2);
-    // For some reason we are not using the blockchain calculation here...
-    // let gposReward = gposInfo && gposInfo.award && gposInfo.award.amount;
     estimatedRakeReward = AppUtils.trimNum( (userGpos / totalBlockchainGpos) * gposPerformance, 2 );
   }
 

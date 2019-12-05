@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {GPOSActions} from '../../../actions';
 import Modal from 'react-modal';
-import {getTotalGposBalance} from '../../../selectors/GPOSSelector';
+import {getGposTotal, getAvailableGpos} from '../../../selectors/GPOSSelector';
 import Start from './Start';
 import DepositWithdraw from './DepositWithdraw';
 import Vote from './Vote';
@@ -73,12 +73,13 @@ class GPOSModalWrapper extends Component {
 }
 
 const mapStateToProps = (state) => {
-  let data = getTotalGposBalance(state);
+  let totalGpos = getGposTotal(state);
+  let availableGpos = getAvailableGpos(state);
 
   return {
     showGPOSModal: state.gpos.showGPOSModal,
-    totalGpos: data.totalAmount,
-    availableGpos: data.availableAmount,
+    totalGpos,
+    availableGpos,
     completedStages: state.gpos.completedStages
   };
 };
