@@ -168,6 +168,11 @@ class DepositWithdraw extends PureComponent {
       // Only allow positive floats.
       val = val < 0 ? 0 : val;
 
+      // Disallow chaining of zeros
+      if (parseFloat(e.target.value) === 0 && e.target.value.length > 1) {
+        e.target.value = 0;
+      }
+
       // Make sure the amount does not exceed the users balance.
       val = val.toFixed(this.state.precision);
       val = parseFloat(val);
