@@ -32,6 +32,7 @@ class GPOSPanel extends Component {
     }
 
     gposPerfString = 'gpos.side.info.performance';
+    gposPerformance = 99;
 
     switch (true) {
       case gposPerformance === 100:
@@ -55,7 +56,7 @@ class GPOSPanel extends Component {
         gposPerfColor = 'txt--yellow';
         break;
       case gposPerformance > 16.68 && gposPerformance <= 33.33:
-        gposPerfString += '.lowest';
+        gposPerfString += '.lower';
         gposPerfColor = 'txt--orange';
         break;
       case gposPerformance >= 1 && gposPerformance <= 16.68:
