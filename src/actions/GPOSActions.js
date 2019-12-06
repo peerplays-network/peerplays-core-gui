@@ -96,7 +96,7 @@ class GPOSActions {
    * @memberof GPOSActions
    */
   static getPowerUpTransaction(owner, amount, asset_symbol) {
-    return (dispatch, getState) => { /* eslint-disable-line */
+    return () => {
       return new Promise((resolve, reject) => {
         const begin_timestamp = new Date().toISOString().replace('Z','');
         let wallet_api = new WalletApi();
@@ -138,7 +138,7 @@ class GPOSActions {
    * @memberof GPOSActions
    */
   static getPowerDownTransaction(owner, amount) { // id, owner, amount
-    return (dispatch, getState) => { /* eslint-disable-line */
+    return () => {
       return new Promise((resolve, reject) => {
         const wallet_api = new WalletApi();
 
