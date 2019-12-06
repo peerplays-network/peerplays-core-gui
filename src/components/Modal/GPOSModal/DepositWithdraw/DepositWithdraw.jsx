@@ -119,7 +119,7 @@ class DepositWithdraw extends PureComponent {
 
     let {asset, symbol} = this.props;
 
-    if (this.state.amount < max && asset) {
+    if (this.state.amount <= max && asset) {
       let asset_id = asset.get('id');
 
       function transactionFunctionCallback() {
@@ -190,7 +190,7 @@ class DepositWithdraw extends PureComponent {
   }
 
   checkErrors() {
-    let {fees, maxAmount, totalGpos} = this.state;
+    let {fees, maxAmount} = this.state;
     let errors = false;
 
     // Check for errors outside of the regular validation
@@ -203,9 +203,7 @@ class DepositWithdraw extends PureComponent {
 
     // Power Down
     if (this.props.action === 1.2) {
-      // TODO: checking for instances of multi-step deposit required to fulfill user request. Fee would be a combination of power down and power up, potentially multiple.
-
-      if (this.state.amount > (totalGpos - fees.down)) {
+      if (this.state.amount > (maxAmount - fees.down)) {
         errors = true;
       }
     }
@@ -426,13 +424,14 @@ class DepositWithdraw extends PureComponent {
       let {asset, action} = this.props, content, title, desc, canSubmit;
       let amt = isNaN(this.state.amount) ? 0 : this.state.amount;
       let errors = this.checkErrors();
+
       // If action 1, power up is addition else it is action 2 which is subtraction.
       let newAmt = action === 1.1 ? (this.state.totalGpos + amt) : (this.state.totalGpos - amt);
       newAmt = Number((newAmt).toFixed(asset.get('precision')));
       // If the number is whole, return. Else, remove trailing zeros.
       newAmt = Number.isInteger(newAmt) ? Number(newAmt.toFixed()) : newAmt;
 
-      canSubmit = newAmt !== this.state.totalGpos && newAmt > 0 && !errors;
+      canSubmit = newAmt !== this.state.maxAmount && newAmt >= 0 && !errors;
 
       if (action === 1.1) {
         content = this.renderAmountPicker('gpos.deposit-withdraw.right.deposit');
