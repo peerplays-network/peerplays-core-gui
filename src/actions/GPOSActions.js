@@ -92,7 +92,7 @@ class GPOSActions {
    * @param {string} owner
    * @param {string} amount
    * @param {string} asset_symbol
-   * @returns {WalletApi.new_transaction} - A transaction object that has been built for the specified blockchain method.
+   * @returns {Transaction} - A transaction object that has been built for the specified blockchain method.
    * @memberof GPOSActions
    */
   static getPowerUpTransaction(owner, amount, asset_symbol) {
@@ -128,6 +128,15 @@ class GPOSActions {
     };
   };
 
+  /**
+   * Builds the required Power Down transaction (vesting_balance_withdraw)
+   *
+   * @static
+   * @param {string} owner
+   * @param {object} amount - {amount, asset_id}
+   * @returns {Transaction}
+   * @memberof GPOSActions
+   */
   static getPowerDownTransaction(owner, amount) { // id, owner, amount
     return (dispatch, getState) => { /* eslint-disable-line */
       return new Promise((resolve, reject) => {
