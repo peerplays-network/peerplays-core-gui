@@ -285,7 +285,7 @@ class DepositWithdraw extends PureComponent {
               className='txt'
               content='gpos.deposit-withdraw.right.card-1-open'
             />
-            <div className='balance--blue'>
+            <div className='balance--blue-dual'>
               <FormattedNumber
                 value={ this.state.totalGpos }
                 minimumFractionDigits={ 0 }
@@ -302,7 +302,7 @@ class DepositWithdraw extends PureComponent {
               className='txt'
               content='gpos.deposit-withdraw.right.card-1-available'
             />
-            <div className='balance--blue'>
+            <div className='balance--blue-dual'>
               <FormattedNumber
                 value={ this.state.availableGpos }
                 minimumFractionDigits={ 0 }
@@ -424,6 +424,12 @@ class DepositWithdraw extends PureComponent {
       let {asset, action} = this.props, content, title, desc, canSubmit;
       let amt = isNaN(this.state.amount) ? 0 : this.state.amount;
       let errors = this.checkErrors();
+      let actionPrefix = action === 1.1 ? 'up' : 'down';
+      let bullets = [];
+
+      for (let i=1; i <= 5; i++) {
+        bullets.push(`gpos.deposit-withdraw.desc.${actionPrefix}-bullet-${i}`);
+      }
 
       // If action 1, power up is addition else it is action 2 which is subtraction.
       let newAmt = action === 1.1 ? (this.state.totalGpos + amt) : (this.state.totalGpos - amt);
@@ -457,6 +463,15 @@ class DepositWithdraw extends PureComponent {
                 className='txt'
                 content={ desc }
               />
+              <ul className='gpos-modal__modal-blts'>
+                {bullets.map((bul) => {
+                  return <Translate
+                    component='li'
+                    className='gpos-modal__modal-items'
+                    content={ bul }
+                  />;
+                })}
+              </ul>
             </div>
           </div>
           <div className='gpos-modal__content-right'>

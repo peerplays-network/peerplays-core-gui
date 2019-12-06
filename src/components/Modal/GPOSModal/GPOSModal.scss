@@ -71,8 +71,18 @@ sm: 1275px);
       }
 
       padding-top: 5px;
-      font-size: $f-29;
+      font-size: 28px;
       color: $gpos-blue-balance;
+
+      &-dual {
+        @extend .balance--blue;
+
+        @include respond-to(mac) {
+          font-size: $f-23;
+        }
+
+        font-size: 25px;
+      }
     }
   }
 
@@ -530,6 +540,7 @@ sm: 1275px);
         }
 
         flex-grow: 4;
+        padding-top: 10px;
       }
 
       &--transparent {
@@ -881,6 +892,15 @@ sm: 1275px);
           }
         }
       }
+    }
+
+    &-blts {
+      margin-left: 20px;
+    }
+
+    &-items {
+      font-size: $f-22;
+      list-style-type: disc;
     }
   }
 

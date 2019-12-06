@@ -536,9 +536,19 @@
     "deposit-withdraw": {
       "desc": {
         "title-1": "Power Up",
-        "txt-1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper ipsum ac ex imperdiet suscipit. Aliquam erat volutpat. Morbi rhoncus vitae libero quis gravida. Nullam eros ante, dictum in purus vitae, volutpat volutpat ante. Morbi dignissim purus ac sodales efficitur. Integer molestie elit at massa lacinia luctus. Suspendisse nisl lorem, vulputate blandit euismod quis, bibendum in nisi.",
+        "txt-1": "When you Power Up your PPY on the Peerplays blockchain you are taking your first steps into participating in the Decentralized Autonomous Cooperative (DAC) that is the magic in blockchain tech. This means you will:",
+        "up-bullet-1": "Become a big part of something special on a global scale",
+        "up-bullet-2": "Earn participation rewards for your efforts",
+        "up-bullet-3": "Bragging rights to family and friends",
+        "up-bullet-4": "Stake your PPY while you participate",
+        "up-bullet-5": "Help secure the Peerplays blockchain",
         "title-2": "Power Down",
-        "txt-2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper ipsum ac ex imperdiet suscipit. Aliquam erat volutpat. Morbi rhoncus vitae libero quis gravida. Nullam eros ante, dictum in purus vitae, volutpat volutpat ante. Morbi dignissim purus ac sodales efficitur. Integer molestie elit at massa lacinia luctus. Suspendisse nisl lorem, vulputate blandit euismod quis, bibendum in nisi."
+        "txt-2": "When you Power Down it will take 30 days for you to withdraw your PPY balance in full. You will continue to receive participation rewards during that time so long as you have been participating. After Power Down you can then use your PPY like any other cryptocurrency. This means you will:",
+        "down-bullet-1": "Still a part of something special, just not as much",
+        "down-bullet-2": "No longer helping secure the Peerplays blockchain",
+        "down-bullet-3": "No longer earn participation rewards",
+        "down-bullet-4": "Lose bragging rights",
+        "down-bullet-5": "Stop staking your PPY"
       },
       "right": {
         "card-1-open": "Opening GPOS Balance:",
