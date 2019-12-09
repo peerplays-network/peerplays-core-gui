@@ -190,21 +190,27 @@ class DepositWithdraw extends PureComponent {
   }
 
   checkErrors() {
-    let {fees, maxAmount} = this.state;
+    let {fees, maxAmount, amount, totalGpos} = this.state;
     let errors = false;
 
     // Check for errors outside of the regular validation
     // Power Up
-    if (this.props.action === 1.1) {
-      if (this.state.amount > (maxAmount - fees.up)) {
-        errors = true;
+    if (amount !== 0) {
+      if (this.props.action === 1.1) {
+        if (amount > (maxAmount - fees.up)) {
+          errors = true;
+        }
       }
-    }
 
-    // Power Down
-    if (this.props.action === 1.2) {
-      if (this.state.amount > (maxAmount - fees.down)) {
-        errors = true;
+      // Power Down
+      if (this.props.action === 1.2) {
+        // Check if current vested balance can cover the fee
+        if (totalGpos < (amount + fees.down)) {
+          // Check if current regular balance can cover the fee
+          if (maxAmount < (amount + fees.down)){
+            errors = true;
+          }
+        }
       }
     }
 

@@ -899,6 +899,10 @@ sm: 1275px);
     }
 
     &-items {
+      @include respond-to (mac) {
+        font-size: $f-18;
+      }
+
       font-size: $f-22;
       list-style-type: disc;
     }
