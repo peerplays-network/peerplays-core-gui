@@ -919,6 +919,17 @@ sm: 1275px);
     }
   }
 
+  &__spacer {
+    &--vertical {
+      flex-grow: 0.1;
+      width: 5px;
+      max-width: 5px;
+      margin: 12px 10px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.2);
+    }
+  }
+
   &__voting {
     display: flex;
     height: 100%;
