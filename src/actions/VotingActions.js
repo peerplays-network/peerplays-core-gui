@@ -22,7 +22,7 @@ const [
 ];
 
 let witness_object_type  = parseInt(ChainTypes.object_type.witness, 10);
-let witness_prefix = '1.' + witness_object_type + '.';
+let witnessPrefix = '1.' + witness_object_type + '.';
 let lastBudgetObject = null;
 
 const DEFAULT_PROXY_ID = '1.2.5';
