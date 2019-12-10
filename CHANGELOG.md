@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.24](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.23...v1.0.24) (2019-12-10)
+
+
+### Bug Fixes
+
+* **power down:** resolve issue causeing power down to fail ([5659447](https://github.com/peerplays-network/peerplays-core-gui/commit/5659447345f7b442a7322ba88bd0e51389df0b7a))
+
 ### [1.0.23](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.22...v1.0.23) (2019-12-10)
 
 
