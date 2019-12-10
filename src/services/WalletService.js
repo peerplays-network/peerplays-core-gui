@@ -147,8 +147,6 @@ class WalletService {
 
     let date = new Date();
 
-    let aesPrivate = CryptoService.getAesPrivate(password, encryptionKey);
-
     let wallet = {
       aesPrivate,
       is_legacy: isLegacy,
