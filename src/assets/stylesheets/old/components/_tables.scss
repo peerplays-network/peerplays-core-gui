@@ -13,12 +13,12 @@
   text-transform: uppercase;
 }
 
-.table > tbody > tr > td {
+.table>tbody>tr>td {
   // border-bottom: 1px solid #ddd;
   padding: 5px;
 }
 
-.table > tbody > tr:last-of-type > td {
+.table>tbody>tr:last-of-type>td {
   border-bottom: none;
 }
 
@@ -29,7 +29,7 @@
 }
 
 .key-value-table {
-  tr > td:first-child {
+  tr>td:first-child {
     padding-left: 0 !important;
   }
 

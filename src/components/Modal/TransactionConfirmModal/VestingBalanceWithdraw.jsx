@@ -18,7 +18,6 @@ class VestingBalanceWithdraw extends React.Component {
     let amountValue = asset && operation.amount.amount
       ? operation.amount.amount / Math.pow(10, asset.precision)
       : 0;
-
     let amountFeeValue = asset && operation.fee.amount
       ? operation.fee.amount / Math.pow(10, asset.precision)
       : 0;

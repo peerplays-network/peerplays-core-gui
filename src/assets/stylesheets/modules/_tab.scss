@@ -114,7 +114,6 @@
 .tab-underline {
   &__list {
     @include clearfix;
-
     padding: 0 20px;
   }
 
@@ -242,7 +241,6 @@
           border-style: solid;
           border-width: 12.5px 0 12.5px 20px;
           border-color: transparent transparent transparent $clear-color;
-
           @include translate(-50% -50%);
         }
       }

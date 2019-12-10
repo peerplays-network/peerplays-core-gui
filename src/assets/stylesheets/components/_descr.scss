@@ -1,51 +1,42 @@
-.dialog-descr {
-  margin: 100px auto;
-  padding: 0 120px 60px;
-
-  .h1 {
-    padding-bottom: 31px;
-    font-weight: 900;
-    font-size: 36px;
-    text-transform: none;
-  }
-
-  .text {
-    margin-bottom: 10px;
-    line-height: 1.5;
-    font-weight: 600;
-    font-size: 13px;
-    color: #000000;
-  }
-
-  .btn-sbm {
-    min-width: 175px;
-  }
+.dialog-descr{
+	padding: 0 120px 60px;
+	margin: 100px auto;
+	.h1 {
+		font-weight: 900;
+		font-size: 36px;
+		text-transform: none;
+		padding-bottom: 31px;
+	}
+	.text{
+		font-weight: 600;
+		font-size: 13px;
+		line-height: 1.5;
+		color: #000;
+		margin-bottom: 10px;
+	}
+	.btn-sbm{
+		min-width: 175px;
+	}
 }
+.descr{
+	&__list{
+		float: left;
+		width: 50%;
+		&Wrap{
+			overflow: hidden;
+			margin: 42px 0 35px;
+		}
+	}
+	&__li{
+		display: block;
+		margin-bottom: 14px;
+	}
+	&__item{
+		display: inline-block;
+		color: #1819d2;
+		font-size: 16px;
+		font-weight: 600;
 
-.descr {
-  &__list {
-    float: left;
-    width: 50%;
-
-    &Wrap {
-      margin: 42px 0 35px;
-      overflow: hidden;
-    }
-  }
-
-  &__li {
-    display: block;
-    margin-bottom: 14px;
-  }
-
-  &__item {
-    display: inline-block;
-    font-weight: 600;
-    font-size: 16px;
-    color: #1819d2;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
+		&:hover{text-decoration: underline;}
+	}
 }

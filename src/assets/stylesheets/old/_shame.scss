@@ -90,7 +90,7 @@ hr {
   cursor: pointer;
 }
 
-a > .label {
+a>.label {
   cursor: pointer;
 }
 
@@ -216,15 +216,15 @@ div.modal {
   overflow: visible;
 }
 
-.full-width-content > * {
+.full-width-content>* {
   width: 100%;
 }
 
-.op-table > tbody > tr > td:first-child {
+.op-table>tbody>tr>td:first-child {
   min-width: 12rem;
 }
 
-.button-group > .button {
+.button-group>.button {
   margin: 0 1rem 1rem 0;
 }
 
@@ -278,7 +278,7 @@ span.time {
   white-space: nowrap;
 }
 
-section > ul > li.key-value {
+section>ul>li.key-value {
   padding: 0.5rem 1rem;
 }
 
@@ -287,7 +287,7 @@ label.inline {
 }
 
 .blocks-row {
-  > div.grid-block {
+  >div.grid-block {
     padding-bottom: 0 !important;
   }
 }

@@ -1,13 +1,13 @@
 textarea#console_input {
-  width: 100%;
-  height: 35px;
-  min-height: 35px;
-  color: white;
-  background-color: black;
-  border-color: black;
+    width: 100%;
+    color: white;
+    background-color: black;
+    border-color: black;
+    min-height: 35px;
+    height: 35px
 }
 
 .console_div,
 code {
-  margin-right: 10px;
+    margin-right: 10px;
 }

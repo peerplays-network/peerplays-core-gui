@@ -156,7 +156,6 @@ body {
 
 .delimiter {
   border-bottom: 1px solid $delimiter-bd-color;
-
   @include box-shadow($delimiter-bd-shadow);
 
   &.full {
@@ -297,7 +296,6 @@ a {
 .content {
   &__head {
     @include clearfix;
-
     min-height: 80px;
     margin: 0 (-$defXPad);
     padding: 16px $defXPad 17px;
@@ -310,7 +308,6 @@ a {
     //@include box-shadow($delimiter-bd-shadow);
     &.noBd {
       border-bottom: none;
-
       @include box-shadow(none);
     }
 
@@ -340,7 +337,6 @@ a {
 
   &-aside {
     margin-right: 25%;
-
     @include table_clearfix();
   }
 }
