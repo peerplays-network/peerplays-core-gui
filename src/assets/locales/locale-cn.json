@@ -471,6 +471,110 @@
     "remaining": "Days Remaining in Period",
     "claim": "Claim"
   },
+  "gpos": {
+    "side": {
+      "title": "GPOS Panel",
+      "desc": "Gamified Proof of Stake (GPOS) enables you to earn rewards of multiple cryptocurrencies supported in Peerplays by helping secure the network. %(learn)s",
+      "learn": "Learn More",
+      "start": "GET STARTED",
+      "participate": "PARTICIPATE",
+      "info": {
+        "balance": "GPOS Balance",
+        "performance": {
+          "title": "Voting Performance",
+          "max": "Max Rewards",
+          "great": "Great Rewards",
+          "good": "Good Rewards",
+          "ok": "OK Rewards",
+          "low": "Low Rewards",
+          "lower": "Lower Rewards",
+          "crit": "Critical Low",
+          "none": "No Rewards"
+        },
+        "percent": "Qualified Reward %",
+        "potential": "Estimated Rake Reward %"
+      }
+    },
+    "faq": {
+      "title": "GAMIFIED PROOF OF STAKE"
+    },
+    "start": {
+      "desc": {
+        "title": "Peerplays GPOS",
+        "txt-1": "Join GPOS by transferring your PPY to your GPOS balance.",
+        "txt-2": "Consistently participate in voting for the best Witnesses, Advisors, Proposals, and SONs. Share the exciting news and DApps available on Peerplays with others.",
+        "txt-3": "The more value that comes into Peerplays blockchain through its operations, the more those that participate to help make it secure will earn!",
+        "txt-4": "If you want to increase your participation rewards you can do it two ways:",
+        "txt-5": "1. Transfer more PPY into your GPOS balance",
+        "txt-6": "2. Share Peerplays with others",
+        "txt-7": "Together as a Decentralized Autonomous Cooperative (DAC), we can ensure Peerplays remains the most secure provably fair blockchain globally."
+      },
+      "right": {
+        "1": "Power Up",
+        "2": "Power Down",
+        "3": "Vote"
+      }
+    },
+    "deposit-withdraw": {
+      "desc": {
+        "title-1": "Power Up",
+        "txt-1": "When you Power Up your PPY on the Peerplays blockchain you are taking your first steps into participating in the Decentralized Autonomous Cooperative (DAC) that is the magic in blockchain tech. This means you will:",
+        "up-bullet-1": "Become a big part of something special on a global scale",
+        "up-bullet-2": "Earn participation rewards for your efforts",
+        "up-bullet-3": "Bragging rights to family and friends",
+        "up-bullet-4": "Stake your PPY while you participate",
+        "up-bullet-5": "Help secure the Peerplays blockchain",
+        "title-2": "Power Down",
+        "txt-2": "When you Power Down it will take 30 days for you to withdraw your PPY balance in full. You will continue to receive participation rewards during that time so long as you have been participating. After Power Down you can then use your PPY like any other cryptocurrency. This means you will:",
+        "down-bullet-1": "Still be a part of something special, just not as much",
+        "down-bullet-2": "No longer helping secure the Peerplays blockchain",
+        "down-bullet-3": "No longer earn participation rewards",
+        "down-bullet-4": "Lose bragging rights",
+        "down-bullet-5": "Stop staking your PPY"
+      },
+      "right": {
+        "card-1-open": "Opening GPOS Balance:",
+        "card-1-available": "Available GPOS Balance:",
+        "card-2": "New GPOS Balance:",
+        "deposit": "Deposit:",
+        "withdraw": "Withdraw",
+        "placeholderAmt": "100"
+      }
+    },
+    "complete": {
+      "title": "Thank you for voting!",
+      "text-1": "This is now your blockchain as part of the decentralized autonomous cooperative. The value it brings is what you and others bring to it, so go out and:",
+      "text-2": "Share Peerplays with others",
+      "text-3": "Share your voting decisions with the community, including why you voted the way you did",
+      "text-4": "Visit Peerplays social media and like, share, or retweet our latest posts, and provide feedback"
+    },
+    "modal": {
+      "up": "POWER UP",
+      "down": "POWER DOWN",
+      "cancel": "CANCEL",
+      "done": "DONE",
+      "completed": "COMPLETED",
+      "submit": "SUBMIT",
+      "ok": "OK",
+      "finish": "FINISH",
+      "vote": "Vote",
+      "skip": "Skip"
+    },
+    "transaction": {
+      "down": {
+        "succeed": "You have successfully Powered Down!",
+        "fail": "You have failed to Power Down!",
+        "none_available": "No GPOS balances are available for withdrawal yet."
+      },
+      "up": {
+        "succeed": "You have successfully Powered Up!",
+        "fail": "You have failed to Power Up!"
+      },
+      "next": "NEXT",
+      "retry": "RETRY",
+      "lack-funds": "You don’t have enough funds"
+    }
+  },
   "about": {
     "title": "Peerplays TEST Network",
     "note1": "This public TEST network is for demonstrations purposes only. It will be modified and changed often as additional features are added and tested.",

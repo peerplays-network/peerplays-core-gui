@@ -2,6 +2,263 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.21](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.20...v1.0.21) (2019-12-10)
+
+
+WAL-250
+
+* fix(tgpos transaction): correct parameter name
+
+name for parameter was incorrect within gpos transaction operation object.
+
+WAL-250
+
+* feat: display gpos stats regardless of user gpos balance
+
+add config for quick swap config of this functionality
+
+WAL-275
+
+* feat: remove vote header nav button
+
+functionality has been moved to the gpos modal
+
+WAL-274
+
+* feat(vote tab): added vote tab functionality to gpos modal
+
+voting functionality exists inside the modal. still pending other gui elements on this section
+
+WAL-251
+
+* style(gpos vote): style modifications
+
+* style(gpos voting): styles
+
+* feat(vote tab): navigation buttons and styling
+
+modified styles to match mockup and added navigation
+
+* feat(locales): update all locale files
+
+* style: done screen temp wip styles
+
+* feat(done): complete done page
+
+WAL-252
+
+* style(gpos modal): gpos modal styles and fonts
+
+* style: gpos font constants
+
+also fixed bug with spacing below gpos panel button when conditional stat display is disabled
+
+* chore(package security): update a few packages to resolve npm audit flag
+
+* chore: resolve TODO
+
+* chore: remove debugger
+
+can't reach this debugger but bad practice to have it there in general
+
+* feat: alterations to gpos panel
+
+statistics now display a percentage of total rake reward
+
+WAL-277
+
+* docs: version bump
+
+* feat: alterations to gpos panel
+
+statistics now display a percentage of total rake reward
+
+WAL-277
+
+* docs: version bump + changelog
+
+* feat: alterations to gpos panel
+
+statistics now display a percentage of total rake reward
+
+WAL-277
+
+* docs: version bump + changelog
+
+* style: increase size of gpos panel button
+
+* docs: version bump + changelog
+
+* fix(pr changes): made changes as a result of PR comments
+
+* style: vote page styling on smaller screens
+
+more repsonsive support
+
+* chore: version bump + changelog
+
+* refactor: alter capitalization of gpos panel stats
+
+* docs: version bump + changelog
+
+* fix(step1): fix NaN amount when input is empty
+
+* docs: version bump + changelog
+
+* fix: bedmas
+
+* style: style changes due to recent spec changes
+
+* feat: alterations to gpos panel
+
+statistics now display a percentage of total rake reward
+
+WAL-277
+
+* docs: version bump + changelog
+
+* feat(gpos start): updated the gpos start page
+
+made changes according to recent GUI spec changes
+
+WAL-249
+
+* docs(gpos start): changes to gpos start screen
+
+WAL-249
+
+* feat: start screen images changed
+
+* style: style changes due to recent spec changes
+
+* style: reskin gpos modal power up screen
+
+tweaked number mechanics a bit in this screen
+
+WAL-250
+
+* feat: number input max character limit added
+
+cannot enter number that exceeds 32 digits on power up/down screen
+
+* style: power up/down screen more responsive friendly & img update
+
+power up image on start screen was wrong
+
+* feat(power down route): added power down screen access
+
+screen is still disabled due to button access but the routing to render the power down and its
+contents are there now
+
+* feat(power down): power down screen now renders properly
+
+minimized some code that renders the power up/down
+
+WAL-250
+
+* feat: dynamic completed tags on stages
+
+start screen will now dynamically track if a stage(power up, power down, and/or vote) has been
+completed
+* actual submission to the blockchain for a power up and power down has been disabled
+until they are fully implemented.
+
+WAL-250
+
+* feat: dynamic disable of vote "button"
+
+* feat: dynamic button text on start screen of gpos
+
+if there is any progress, the button will say DONE else it says CANCEL
+
+* feat: vote disabled based on conditions
+
+gpos balance must be greater than zero and the user must have completed one of the two enabled
+actions.
+
+WAL-250
+
+* fix: bug with enable/disable of submit button resolved
+
+* feat(transaction): auto-signing and error/success
+
+sign power up/down transactions automatically and display custom success/error screens for the
+result of the transaction broadcast
+
+WAL-250
+
+* refactor: remove deprecated code
+
+* feat: get fees into power up/down state
+
+* feat: error states, custom transaction signing,styling
+
+modified styles a bit to be more friendly for error state disaply
+
+WAL-250
+
+* chore(version): version bump + changelog
+
+* fix: succeed skipping input stage
+
+added a configurable fake success toggle for power down action.resolved issue where the input form
+was being skipped during a fake success power up/down action
+
+WAL-250
+
+* docs: version bump + changelog
+
+* chore: merge conflict resolutions
+
+* docs: version bump + changelog
+
+qa release
+
+WAL-279, WAL-249, WAL-250, WAL-277, PJL-23
+
+* fix: number picker color
+
+wrong color was being used in electron builds
+
+* fix: capitlization error on GPOS Panel
+
+* fix: live update of gpos data
+
+gpos data in the gpos panel was not updating live, no longer require re-logging into a user account
+to get fresh data
+
+WAL-277
+
+* fix: change balance type to string
+
+* fix(gpos modal): state cleanup on logout
+
+reset all gpos modal data on logout as it was persisting across different logins prior. Involved
+moving some data to global redux as the modal never unmounts on a logout
+
+WAL-249
+
+* refactor: remove commented out code
+
+* refactor: refactor wizard and step1 to modal and DepositWithdraw
+
+impact is on nearly all files related to GPOS
+
+WAL-276
+
+* WAL-279, WAL-249, WAL-250, WAL-277, WAL-292, WAL-293, WAL-281, PJL-23 (#81) ([ac2853a](https://github.com/peerplays-network/peerplays-core-gui/commit/ac2853a)), closes [#81](https://github.com/peerplays-network/peerplays-core-gui/issues/81) [#79](https://github.com/peerplays-network/peerplays-core-gui/issues/79)
+
+
+### Bug Fixes
+
+* **power down:** changed some logic related to "errors" ([ab8447f](https://github.com/peerplays-network/peerplays-core-gui/commit/ab8447f))
+* **power down:** spelling/grammar fix ([949fb02](https://github.com/peerplays-network/peerplays-core-gui/commit/949fb02))
+
+
+### Features
+
+* **power up/down description:** added the text for power up/down desc ([c637c36](https://github.com/peerplays-network/peerplays-core-gui/commit/c637c36))
+
 ### [1.0.20](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.19...v1.0.20) (2019-12-06)
 
 ### [1.0.19](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.18...v1.0.19) (2019-12-06)

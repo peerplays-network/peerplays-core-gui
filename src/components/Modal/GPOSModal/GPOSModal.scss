@@ -512,23 +512,6 @@ sm: 1275px);
       }
     }
 
-    &-btn {
-      @extend .gpos-modal__card;
-
-      cursor: pointer;
-      -webkit-user-select: none;
-
-      &--no-marg {
-        @extend .gpos-modal__card-btn;
-
-        margin-bottom: 0;
-      }
-
-      &:hover {
-        background: $gpos-wizard-right-bg-hover;
-      }
-    }
-
     &-power {
       @extend .gpos-modal__card;
 
