@@ -37,13 +37,59 @@ sm: 1275px);
   max-height: $max-height;
   margin: 0 auto;
   border-radius: 15px 0 0 15px;
-  background: $gpos-wizard-bg;
+  background: $gpos-modal-bg;
   overflow: overlay;
 }
 
 @mixin title {
   margin-bottom: 33px;
   font-size: $f-45;
+}
+
+@mixin card-power {
+  > .txt,
+  > .balance,
+  & > .balance--blue {
+    @include respond-to(mac) {
+      font-size: $f-19;
+    }
+
+    padding: 20px 0 0 32px;
+    font-size: $f-25;
+  }
+
+  > .balance {
+    @include respond-to(mac) {
+      font-size: $f-23;
+    }
+
+    font-size: $f-29;
+
+    &--blue {
+      @include respond-to(mac) {
+        font-size: $f-23;
+      }
+
+      padding-top: 5px;
+      font-size: 28px;
+      color: $gpos-blue-balance;
+
+      &-dual {
+        @extend .balance--blue;
+
+        @include respond-to(mac) {
+          font-size: $f-23;
+        }
+
+        font-size: 25px;
+      }
+    }
+  }
+
+  > .balance,
+  > .balance--blue {
+    padding-top: 5px;
+  }
 }
 
 [class^='title'],
@@ -86,7 +132,7 @@ sm: 1275px);
         }
       }
 
-      &__wizard-desc {
+      &__modal-desc {
         width: 434px;
       }
     }
@@ -164,7 +210,7 @@ sm: 1275px);
     left: 0;
     z-index: 2;
     margin: 0 auto;
-    background: $gpos-wizard-dialogue-fade;
+    background: $gpos-modal-dialogue-fade;
     overflow: auto;
     resize: both;
   }
@@ -298,6 +344,7 @@ sm: 1275px);
     &-add {
       font-size: $f-29;
       color: #838b96;
+      background: $white;
 
       &:hover, &:focus, &:active {
         background: rgb(226, 226, 226);
@@ -399,7 +446,7 @@ sm: 1275px);
       flex-direction: column;
       justify-self: center;
       height: 100%;
-      background: $gpos-wizard-right-bg;
+      background: $gpos-modal-right-bg;
 
       .transaction-status {
         display: flex;
@@ -421,6 +468,12 @@ sm: 1275px);
           width: 454px;
           font-size: $f-40;
           text-align: center;
+
+          &-sm {
+            @extend .transaction-status__txt;
+
+            font-size: $f-35;
+          }
         }
       }
     }
@@ -440,7 +493,24 @@ sm: 1275px);
     margin: auto;
     margin-bottom: 33px;
     border-radius: 6px;
-    background: $gpos-wizard-right-bg;
+    background: $gpos-modal-right-bg;
+
+    &-btn {
+      @extend .gpos-modal__card;
+
+      cursor: pointer;
+      -webkit-user-select: none;
+
+      &--no-marg {
+        @extend .gpos-modal__card-btn;
+
+        margin-bottom: 0;
+      }
+
+      &:hover {
+        background: $gpos-modal-right-bg-hover;
+      }
+    }
 
     &-btn {
       @extend .gpos-modal__card;
@@ -467,42 +537,27 @@ sm: 1275px);
         margin-bottom: 43px;
       }
 
+      @include card-power();
+
+      &--flex {
+        @extend .gpos-modal__card-power;
+
+        display: flex;
+      }
+
       width: 489px;
       height: 114px;
       margin-bottom: 52px;
 
-      > .txt,
-      > .balance,
-      & > .balance--blue {
-        @include respond-to(mac) {
-          font-size: $f-19;
+      &-opening, &-available {
+        @include card-power();
+
+        > .txt {
+          font-size: 17px;
         }
 
-        padding: 20px 0 0 32px;
-        font-size: $f-25;
-      }
-
-      > .balance {
-        @include respond-to(mac) {
-          font-size: $f-23;
-        }
-
-        font-size: $f-29;
-
-        &--blue {
-          @include respond-to(mac) {
-            font-size: $f-23;
-          }
-
-          padding-top: 5px;
-          font-size: $f-29;
-          color: $gpos-blue-balance;
-        }
-      }
-
-      > .balance,
-      > .balance--blue {
-        padding-top: 5px;
+        flex-grow: 4;
+        padding-top: 10px;
       }
 
       &--transparent {
@@ -804,7 +859,7 @@ sm: 1275px);
     }
   }
 
-  &__wizard {
+  &__modal {
     &-desc {
       @include respond-to(mac) {
         width: 486px;
@@ -854,6 +909,41 @@ sm: 1275px);
           }
         }
       }
+    }
+
+    &-blts {
+      margin-left: 20px;
+    }
+
+    &-items {
+      @include respond-to (mac) {
+        font-size: $f-18;
+      }
+
+      font-size: $f-22;
+      list-style-type: disc;
+    }
+  }
+
+  &__spacer {
+    &--vertical {
+      flex-grow: 0.1;
+      width: 5px;
+      max-width: 5px;
+      margin: 12px 10px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  &__spacer {
+    &--vertical {
+      flex-grow: 0.1;
+      width: 5px;
+      max-width: 5px;
+      margin: 12px 10px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.2);
     }
   }
 

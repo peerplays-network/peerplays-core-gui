@@ -1,6 +1,6 @@
 {
   "name": "peerplays-core-gui",
-  "version": "1.0.16",
+  "version": "1.0.20",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -11649,9 +11649,9 @@
       "dev": true
     },
     "handlebars": {
-      "version": "4.4.2",
-      "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.4.2.tgz",
-      "integrity": "sha512-cIv17+GhL8pHHnRJzGu2wwcthL5sb8uDKBHvZ2Dtu5s1YNt0ljbzKbamnc+gr69y7bzwQiBdr5+hOpRd5pnOdg==",
+      "version": "4.5.3",
+      "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.5.3.tgz",
+      "integrity": "sha512-3yPecJoJHK/4c6aZhSvxOyG4vJKDshV36VHp0iVCDVh7o9w2vwi3NSnL2MMPj3YdduqaBcu7cGbggJQM0br9xA==",
       "requires": {
         "neo-async": "^2.6.0",
         "optimist": "^0.6.1",
@@ -16907,8 +16907,8 @@
       }
     },
     "peerplaysjs-lib": {
-      "version": "github:peerplays-network/peerplaysjs-lib#481f9b3c1f6f21b3f90c7b4ae060035167017400",
-      "from": "github:peerplays-network/peerplaysjs-lib#add-balance-type-to-vest-create",
+      "version": "github:peerplays-network/peerplaysjs-lib#00dbac4a9ac1f1ac78c752378a4293650bda1db5",
+      "from": "github:peerplays-network/peerplaysjs-lib#WAL-281-add-update-last-voting-time",
       "dev": true,
       "requires": {
         "assert": "^2.0.0",

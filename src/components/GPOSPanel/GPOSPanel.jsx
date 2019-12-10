@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import Translate from 'react-translate-component';
 import asset_utils from '../../common/asset_utils';
 import {HelpActions, DashboardPageActions, GPOSActions} from '../../actions';
-import {getTotalGposBalance} from '../../selectors/GPOSSelector';
+import {getGposTotal} from '../../selectors/GPOSSelector';
 import {FormattedNumber} from 'react-intl';
 import {anchors} from '../Help/HelpModal';
 import AppUtils from '../../utility/AppUtils';
@@ -21,14 +21,51 @@ class GPOSPanel extends Component {
   }
 
   openModal = () => {
-    this.props.toggleGposWizard(true);
+    this.props.toggleGposModal(true);
   }
 
   renderGposStats = () => {
-    let {asset, totalGpos, estimatedRakeReward, gposPerformance} = this.props, symbol;
+    let {asset, totalGpos, estimatedRakeReward, gposPerformance} = this.props, symbol, gposPerfString, gposPerfColor;
 
     if (asset) {
       symbol = asset_utils.getSymbol(asset.get('symbol'));
+    }
+
+    gposPerfString = 'gpos.side.info.performance';
+
+    switch (true) {
+      case gposPerformance === 100:
+        gposPerfString += '.max';
+        gposPerfColor = '';
+        break;
+      case gposPerformance > 83.33 && gposPerformance < 100:
+        gposPerfString += '.great';
+        gposPerfColor = 'txt--green';
+        break;
+      case gposPerformance > 66.66 && gposPerformance <= 83.33:
+        gposPerfString += '.good';
+        gposPerfColor = 'txt--green-drk';
+        break;
+      case gposPerformance > 50 && gposPerformance <= 66.66:
+        gposPerfString += '.ok';
+        gposPerfColor = 'txt--blue';
+        break;
+      case gposPerformance > 33.33 && gposPerformance <= 50:
+        gposPerfString += '.low';
+        gposPerfColor = 'txt--yellow';
+        break;
+      case gposPerformance > 16.68 && gposPerformance <= 33.33:
+        gposPerfString += '.lower';
+        gposPerfColor = 'txt--orange';
+        break;
+      case gposPerformance >= 1 && gposPerformance <= 16.68:
+        gposPerfString += '.crit';
+        gposPerfColor = 'txt--red';
+        break;
+      default: // 0
+        gposPerfString += '.none';
+        gposPerfColor = 'txt--red-drk';
+        break;
     }
 
     return (
@@ -49,8 +86,8 @@ class GPOSPanel extends Component {
 
         <div className='gpos-panel__stats-perf'>
           <Translate content='gpos.side.info.performance.title'/>
-          <div className='gpos-panel__stats--right'>
-            <Translate content='gpos.side.info.performance.txt1'/>
+          <div className={ `gpos-panel__stats--right ${gposPerfColor}` }>
+            <Translate content={ gposPerfString }/>
           </div>
         </div>
 
@@ -126,16 +163,14 @@ class GPOSPanel extends Component {
 const mapStateToProps = (state) => {
   let totalBlockchainGpos, userGpos, vestingFactor, gposPerformance, estimatedRakeReward;
   let asset = state.dashboardPage.vestingAsset;
-  let data = getTotalGposBalance(state);
+  let unformattedTotalGpos = getGposTotal(state);
   let gposInfo = state.dashboardPage.gposInfo;
 
   if (asset) {
     totalBlockchainGpos = gposInfo.total_amount / Math.pow(10, asset.get('precision'));
-    userGpos = data.totalAmount / Math.pow(10, asset.get('precision'));
+    userGpos = unformattedTotalGpos / Math.pow(10, asset.get('precision'));
     vestingFactor = gposInfo && gposInfo.vesting_factor;
     gposPerformance = AppUtils.trimNum((vestingFactor * 100 || 0), 2);
-    // For some reason we are not using the blockchain calculation here...
-    // let gposReward = gposInfo && gposInfo.award && gposInfo.award.amount;
     estimatedRakeReward = AppUtils.trimNum( (userGpos / totalBlockchainGpos) * gposPerformance, 2 );
   }
 
@@ -150,7 +185,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
     toggleHelpModal: HelpActions.toggleHelpAndScroll,
-    toggleGposWizard: GPOSActions.toggleGPOSWizardModal,
+    toggleGposModal: GPOSActions.toggleGPOSModal,
     fetchGposInfo: DashboardPageActions.getGposInfo
   },
   dispatch

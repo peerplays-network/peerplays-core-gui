@@ -6,6 +6,7 @@ import utils from '../common/utils';
 import market_utils from '../common/market_utils';
 import asset_utils from '../common/asset_utils';
 import Config from '../../config/Config';
+import BalanceTypes from '../constants/BalanceTypes';
 
 let dataIsFetched = false;
 let marketStatsByName = {},
@@ -102,7 +103,7 @@ class DashboardBalancesService {
       let amounts = []; //???CHECK
       let balancePromises = [];
 
-      for (let assetId in account.balances) {
+      for (let assetId in account.balances) { // eslint-disable-line
         assetsIds.push(assetId);
         balancePromises.push(Repository.getObject(account.balances[assetId]));
       }
@@ -188,12 +189,12 @@ class DashboardBalancesService {
 
       return Promise.all(
         [Promise.all(vestingPromises),
-          Repository.getAsset(Config.CORE_ASSET)]) // TODO: declare via import form above
+          Repository.getAsset(Config.CORE_ASSET)])
         .then(([balances, asset]) => {
           if (balances && balances.length) {
             balances.forEach((balance) => {
               // Only work with non-gpos vested balances.
-              if (balance && balance.get('balance_type').toLowerCase() !== 'gpos') {
+              if (balance && balance.get('balance_type').toLowerCase() !== BalanceTypes.gpos) {
                 let currBalance = vestingBalances.get(balance.get('id'));
 
                 if (!currBalance || currBalance !== balance) {
@@ -289,7 +290,7 @@ class DashboardBalancesService {
       smartCoins = Immutable.List(),
       otherAssets = Immutable.List();
 
-    for (let asset in dataBalances) {
+    for (let asset in dataBalances) { // eslint-disable-line
       if (dataBalances.hasOwnProperty(asset)) {
         let precision = utils.get_asset_precision(dataBalances[asset]['asset']['precision']),
           decimals = dataBalances[asset]['asset']['precision'];
@@ -556,7 +557,7 @@ class DashboardBalancesService {
     });
 
     // Open orders value
-    for (let asset in openOrders) {
+    for (let asset in openOrders) { // eslint-disable-line
       if (openOrders.hasOwnProperty(asset) && assetData.hasOwnProperty(asset)) {
         assetData[asset]['orders'] += openOrders[asset];
         assetData[asset]['totalBalance'] += openOrders[asset];
@@ -600,7 +601,7 @@ class DashboardBalancesService {
     //     }
     // }
 
-    for (let asset in collateral) {
+    for (let asset in collateral) { // eslint-disable-line
       if (collateral.hasOwnProperty(asset) && assetData.hasOwnProperty(asset)) {
         assetData[asset]['collateral'] += collateral[asset];
         assetData[asset]['totalBalance'] += collateral[asset];
@@ -671,7 +672,11 @@ class DashboardBalancesService {
       obj210
     } = cacheData;
 
+    let ext = obj200 ? obj200.getIn(['parameters', 'extensions']) : null;
     let blockInterval = obj200 ? obj200.get('parameters').get('block_interval') : null;
+    let gposPeriod = ext ? ext.get('gpos_period') : null;
+    let gposSubPeriod = ext ? ext.get('gpos_subperiod') : null;
+    let gposVestingLockinPeriod = ext ? ext.get('gpos_vesting_lockin_period') : null;
     let headBlockNumber = obj210 ? obj210.get('head_block_number') : null;
 
     let orderOperations = history ? history.filter((obj) => {
@@ -758,6 +763,9 @@ class DashboardBalancesService {
       recentActivity,
       openOrders,
       blockInterval,
+      gposPeriod,
+      gposSubPeriod,
+      gposVestingLockinPeriod,
       headBlockNumber
     };
   }

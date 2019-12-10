@@ -23,6 +23,9 @@ let defaultState = {
   openOrders: [],
   headBlockNumber: null,
   blockInterval: null,
+  gposPeriod: null,
+  gposSubPeriod: null,
+  gposVestingLockinPeriod: null,
   availableBalances: {},
 
   // Vesting balance Side
@@ -101,7 +104,10 @@ export default function (state = defaultState, action) {
       return Object.assign({}, state, {
         recentActivity: action.payload.recentActivity,
         headBlockNumber: action.payload.headBlockNumber,
-        blockInterval: action.payload.blockInterval
+        blockInterval: action.payload.blockInterval,
+        gposPeriod: action.payload.gposPeriod,
+        gposSubPeriod: action.payload.gposSubPeriod,
+        gposVestingLockinPeriod: action.payload.gposVestingLockinPeriod
       });
       // Set open orders list
     case ActionTypes.DASHBOARD_SET_OPEN_ORDERS:

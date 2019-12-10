@@ -11,10 +11,11 @@ import SLoader from '../../../Loaders/SLoader';
 import ObjectService from '../../../../services/ObjectService';
 import Config from '../../../../../config/Config';
 
-class GposStep1 extends PureComponent {
+class DepositWithdraw extends PureComponent {
   state = {
     amount: undefined,
     totalGpos: 0,
+    availableGpos: 0,
     precision: 0,
     minAmount: 0,
     maxAmount: 0,
@@ -22,7 +23,8 @@ class GposStep1 extends PureComponent {
       up: 0,
       down: 0
     },
-    loading: true
+    loading: true,
+    transactionStatus: null
   }
 
   componentDidMount() {
@@ -40,6 +42,7 @@ class GposStep1 extends PureComponent {
 
       this.setState({
         totalGpos: this.props.totalGpos && formatAmt(this.props.totalGpos),
+        availableGpos: this.props.availableGpos && formatAmt(this.props.availableGpos),
         precision: this.props.asset.get('precision'),
         minAmount: asset_utils.getMinimumAmount(this.props.asset),
         maxAmount: formatAmt(this.props.coreBalance),
@@ -49,12 +52,37 @@ class GposStep1 extends PureComponent {
     });
   }
 
+  componentWillUnmount() {
+    // Reset the form state and other variables.
+    this.setState({
+      amount: undefined,
+      totalGpos: 0,
+      availableGpos: 0,
+      precision: 0,
+      minAmount: 0,
+      maxAmount: 0,
+      fees: {
+        up: 0,
+        down: 0
+      },
+      loading: true
+    });
+  }
+
+  componentWillUpdate(prevProps) {
+    if (this.props.broadcastSuccess !== prevProps.broadcastSuccess && this.state.transactionStatus !== 'done') {
+      // This is needed because transactionConfirm.broadcastSuccess will change to false shortly after being set to true on a successful transaction.
+      if (this.props.broadcastSuccess || Config.gpos.fakeSucceed) {
+        this.setState({transactionStatus: 'done'});
+      }
+    }
+  }
   /**
    * Increment or decrements the state amount.
    * Activated via the plus and minus buttons on the number input.
    *
    * @param {number} by - the amount to adjust by
-   * @memberof GposStep1
+   * @memberof DepositWithdraw
    */
   amountAdjust = (by) => {
     let newAmt = ((isNaN(this.state.amount) ? 0 : this.state.amount) + by).toFixed(this.state.precision);
@@ -69,7 +97,7 @@ class GposStep1 extends PureComponent {
     if (this.props.action === 1.1) {
       newAmt = newAmt > this.state.maxAmount ? this.state.maxAmount : newAmt;
     } else if (this.props.action === 1.2) {
-      newAmt = newAmt > this.state.totalGpos ? this.state.totalGpos : newAmt;
+      newAmt = newAmt > this.state.availableGpos ? this.state.availableGpos : newAmt;
     }
 
     newAmt = newAmt < 0 ? 0 : newAmt;
@@ -83,29 +111,43 @@ class GposStep1 extends PureComponent {
    *
    * @param {boolean} walletLocked - wallet locked status, TODO: sign transaction behind the scenes to not require this check
    *
-   * @memberof GposStep1
+   * @memberof DepositWithdraw
    */
   onSubmit = (walletLocked, e) => {
     e.preventDefault();
+    let max = this.props.action === 1.2 ? this.state.totalGpos : this.state.maxAmount;
 
     let {asset, symbol} = this.props;
 
-    if (this.state.amount < this.state.maxAmount && asset) {
+    if (this.state.amount <= max && asset) {
       let asset_id = asset.get('id');
 
       function transactionFunctionCallback() {
-        this.setState({
-          amount: 0
-        });
+        // console.info('Transaction Success');
       }
 
-      this.props.getPowerUpTransaction(
-        this.props.accountId,
-        {amount: this.state.amount, asset_id},
-        symbol
-      ).then((tr) => {
-        this.props.confirmTransaction(GPOSActions.powerUpTransaction, tr, transactionFunctionCallback);
-      });
+      let amount = this.state.amount * Math.pow(10, asset.get('precision'));
+
+      if (this.props.action === 1.1) {
+        this.props.getPowerUpTransaction(
+          this.props.accountId,
+          {amount, asset_id},
+          symbol
+        ).then((tr) => {
+          this.props.confirmTransaction(GPOSActions.powerTransaction, tr, transactionFunctionCallback);
+        });
+      } else {
+        if (Config.gpos.fakeSucceed) {
+          this.setState({transactionStatus: 'done'});
+        } else {
+          this.props.getPowerDownTransaction(
+            this.props.accountId,
+            {amount, asset_id}
+          ).then((tr) => {
+            this.props.confirmTransaction(GPOSActions.powerTransaction, tr, transactionFunctionCallback);
+          });
+        }
+      }
     }
   }
 
@@ -126,6 +168,11 @@ class GposStep1 extends PureComponent {
       // Only allow positive floats.
       val = val < 0 ? 0 : val;
 
+      // Disallow chaining of zeros
+      if (parseFloat(e.target.value) === 0 && e.target.value.length > 1) {
+        e.target.value = 0;
+      }
+
       // Make sure the amount does not exceed the users balance.
       val = val.toFixed(this.state.precision);
       val = parseFloat(val);
@@ -133,7 +180,7 @@ class GposStep1 extends PureComponent {
       if (this.props.action === 1.1) {
         val = val > this.state.maxAmount ? this.state.maxAmount : val;
       } else if (this.props.action === 1.2) {
-        val = val > this.state.totalGpos ? this.state.totalGpos : val;
+        val = val > this.state.availableGpos ? this.state.availableGpos : val;
       }
     } else {
       val = undefined;
@@ -143,21 +190,27 @@ class GposStep1 extends PureComponent {
   }
 
   checkErrors() {
-    let {fees, maxAmount} = this.state;
+    let {fees, maxAmount, amount, totalGpos} = this.state;
     let errors = false;
 
     // Check for errors outside of the regular validation
     // Power Up
-    if (this.props.action === 1.1) {
-      if (this.state.amount > (maxAmount - fees.up)) {
-        errors = true;
+    if (amount !== 0) {
+      if (this.props.action === 1.1) {
+        if (amount > (maxAmount - fees.up)) {
+          errors = true;
+        }
       }
-    }
 
-    // Power Down
-    if (this.props.action === 1.2) {
-      if (this.state.amount > (maxAmount - fees.down)) {
-        errors = true;
+      // Power Down
+      if (this.props.action === 1.2) {
+        // Check if current vested balance can cover the fee
+        if (totalGpos < (amount + fees.down)) {
+          // Check if current regular balance can cover the fee
+          if (maxAmount < (amount + fees.down)){
+            errors = true;
+          }
+        }
       }
     }
 
@@ -189,7 +242,7 @@ class GposStep1 extends PureComponent {
 
   renderAmountPicker = (actionTxt) => {
     let min = this.state.minAmount;
-    let max = this.state.maxAmount;
+    let max = this.props.action === 1.2 ? this.state.totalGpos : this.state.maxAmount;
 
     return(
       <div className='gpos-modal__card-power--transparent tall'>
@@ -205,7 +258,7 @@ class GposStep1 extends PureComponent {
               name='gpos_amt'
               id='gpos_amt'
               className='gpos-modal__input-amt'
-              placeholder={ counterpart.translate('gpos.wizard.step-1.right.placeholderAmt') }
+              placeholder={ counterpart.translate('gpos.deposit-withdraw.right.placeholderAmt') }
               type='number'
               value={ this.state.amount }
               onChange={ this.onEdit }
@@ -225,17 +278,50 @@ class GposStep1 extends PureComponent {
   }
 
   renderRContent = (canSubmit, content, newAmt) => {
-    let {asset, action, proceedOrRegress, symbol, isBroadcasting, broadcastError, broadcastSuccess, clearTransaction} =
-      this.props, transactionStatus, transactionMsg, clickAction, btnTxt, btnClass;
+    let {asset, action, proceedOrRegress, symbol, isBroadcasting, broadcastError, clearTransaction} =
+      this.props, transactionStatus, transactionMsg, transactionMsgClass, clickAction, btnTxt, btnClass;
+    transactionMsgClass = 'transaction-status__txt';
 
-    // Default right content:
-    let rContent =
-      <div>
-        <div className='gpos-modal__card-power'>
+    let rContentCardTop = (
+      action === 1.2
+        ? <div className='gpos-modal__card-power--flex'>
+          <div className='gpos-modal__card-power-opening'>
+            <Translate
+              component='p'
+              className='txt'
+              content='gpos.deposit-withdraw.right.card-1-open'
+            />
+            <div className='balance--blue-dual'>
+              <FormattedNumber
+                value={ this.state.totalGpos }
+                minimumFractionDigits={ 0 }
+                maximumFractionDigits={ asset.get('precision') }
+              /> {symbol}
+            </div>
+          </div>
+
+          <div className='gpos-modal__spacer--vertical'></div>
+
+          <div className='gpos-modal__card-power-available'>
+            <Translate
+              component='p'
+              className='txt'
+              content='gpos.deposit-withdraw.right.card-1-available'
+            />
+            <div className='balance--blue-dual'>
+              <FormattedNumber
+                value={ this.state.availableGpos }
+                minimumFractionDigits={ 0 }
+                maximumFractionDigits={ asset.get('precision') }
+              /> {symbol}
+            </div>
+          </div>
+        </div>
+        : <div className='gpos-modal__card-power'>
           <Translate
             component='p'
             className='txt'
-            content='gpos.wizard.step-1.right.card-1'
+            content='gpos.deposit-withdraw.right.card-1-open'
           />
           <div className='balance--blue'>
             <FormattedNumber
@@ -245,7 +331,12 @@ class GposStep1 extends PureComponent {
             /> {symbol}
           </div>
         </div>
+    );
 
+    // Default right content:
+    let rContent =
+      <div>
+        {rContentCardTop}
         {content}
         {this.renderErrors()}
 
@@ -253,16 +344,16 @@ class GposStep1 extends PureComponent {
           <Translate
             component='p'
             className='txt'
-            content='gpos.wizard.step-1.right.card-2'
+            content='gpos.deposit-withdraw.right.card-2'
           />
           <div className='balance'>{newAmt } {symbol}</div>
         </div>
         <div className='gpos-modal__btns-power'>
           <button className='gpos-modal__btn-cancel' onClick={ () => proceedOrRegress(0) }>
-            <Translate className='gpos-modal__btn-txt' content='gpos.wizard.cancel'/>
+            <Translate className='gpos-modal__btn-txt' content='gpos.modal.cancel'/>
           </button>
           <button disabled={ !canSubmit } className='gpos-modal__btn-submit' type='submit' form='amountPicker'>
-            <Translate className='gpos-modal__btn-txt' content='gpos.wizard.submit'/>
+            <Translate className='gpos-modal__btn-txt' content='gpos.modal.submit'/>
           </button>
         </div>
       </div>;
@@ -275,13 +366,23 @@ class GposStep1 extends PureComponent {
       transactionMsg = action === 1.1 ? 'gpos.transaction.up.fail' : 'gpos.transaction.down.fail';
       btnTxt = 'gpos.transaction.retry';
       btnClass = '-retry';
+      // No redirect due to error(s)
       clickAction = () => null;
-    } else if (broadcastSuccess) {
+    } else if (this.state.transactionStatus === 'done') {
       transactionStatus = '--succeed';
       transactionMsg = action === 1.1 ? 'gpos.transaction.up.succeed' : 'gpos.transaction.down.succeed';
       btnTxt = 'gpos.transaction.next';
       btnClass = '-next';
-      clickAction = () => proceedOrRegress(2, action);
+      // Redirect to start
+      clickAction = () => proceedOrRegress(0, action);
+    } else if (this.state.transactionStatus === 'not available') {
+      transactionStatus = '--fail';
+      transactionMsg = 'gpos.transaction.down.none_available';
+      transactionMsgClass = `${transactionMsgClass}-sm`;
+      btnTxt = 'gpos.transaction.retry';
+      btnClass = '-retry';
+      // Clear state error
+      clickAction = () => this.setState({transactionStatus: '', amount: undefined});
     }
 
     // If `true`, power down action will always appear to succeed. Dummy data
@@ -290,14 +391,15 @@ class GposStep1 extends PureComponent {
       transactionMsg = 'gpos.transaction.down.succeed';
       btnTxt = 'gpos.transaction.next';
       btnClass = '-next';
-      clickAction = () => proceedOrRegress(2, action);
+      // Redirect to start
+      clickAction = () => proceedOrRegress(0, action);
     }
 
     if (transactionStatus !== undefined) {
       const clickHandler = (e) => {
         e.preventDefault();
-        // Clear the transaction so the error and other information is reset.
         clickAction();
+        // Clear the transaction so the error and other information is reset.
         clearTransaction();
       };
 
@@ -307,7 +409,7 @@ class GposStep1 extends PureComponent {
         <img className={ `transaction-status__img${transactionStatus}` } src={ `images/gpos/transaction${transactionStatus}.png` } alt={ transactionStatus } />
         <Translate
           component='p'
-          className='transaction-status__txt'
+          className={ transactionMsgClass }
           content={ transactionMsg }
         />
         <div className='gpos-modal__btns'>
@@ -328,28 +430,35 @@ class GposStep1 extends PureComponent {
       let {asset, action} = this.props, content, title, desc, canSubmit;
       let amt = isNaN(this.state.amount) ? 0 : this.state.amount;
       let errors = this.checkErrors();
+      let actionPrefix = action === 1.1 ? 'up' : 'down';
+      let bullets = [];
+
+      for (let i=1; i <= 5; i++) {
+        bullets.push(`gpos.deposit-withdraw.desc.${actionPrefix}-bullet-${i}`);
+      }
+
       // If action 1, power up is addition else it is action 2 which is subtraction.
       let newAmt = action === 1.1 ? (this.state.totalGpos + amt) : (this.state.totalGpos - amt);
       newAmt = Number((newAmt).toFixed(asset.get('precision')));
       // If the number is whole, return. Else, remove trailing zeros.
       newAmt = Number.isInteger(newAmt) ? Number(newAmt.toFixed()) : newAmt;
 
-      canSubmit = newAmt !== this.state.totalGpos && newAmt > 0 && !errors;
+      canSubmit = newAmt !== this.state.maxAmount && newAmt >= 0 && !errors;
 
       if (action === 1.1) {
-        content = this.renderAmountPicker('gpos.wizard.step-1.right.deposit');
-        title = 'gpos.wizard.step-1.desc.title-1';
-        desc = 'gpos.wizard.step-1.desc.txt-1';
+        content = this.renderAmountPicker('gpos.deposit-withdraw.right.deposit');
+        title = 'gpos.deposit-withdraw.desc.title-1';
+        desc = 'gpos.deposit-withdraw.desc.txt-1';
       } else if (action === 1.2) {
-        content = this.renderAmountPicker('gpos.wizard.step-1.right.withdraw');
-        title = 'gpos.wizard.step-1.desc.title-2';
-        desc = 'gpos.wizard.step-1.desc.txt-2';
+        content = this.renderAmountPicker('gpos.deposit-withdraw.right.withdraw');
+        title = 'gpos.deposit-withdraw.desc.title-2';
+        desc = 'gpos.deposit-withdraw.desc.txt-2';
       }
 
       return (
         <div className='gpos-modal__content'>
           <div className='gpos-modal__content-left'>
-            <div className='gpos-modal__wizard-desc'>
+            <div className='gpos-modal__modal-desc'>
               <Translate
                 component='div'
                 className='title'
@@ -360,6 +469,15 @@ class GposStep1 extends PureComponent {
                 className='txt'
                 content={ desc }
               />
+              <ul className='gpos-modal__modal-blts'>
+                {bullets.map((bul) => {
+                  return <Translate
+                    component='li'
+                    className='gpos-modal__modal-items'
+                    content={ bul }
+                  />;
+                })}
+              </ul>
             </div>
           </div>
           <div className='gpos-modal__content-right'>
@@ -397,11 +515,11 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
     clearTransaction: RTransactionConfirmActions.clearTransaction,
     getPowerUpTransaction: GPOSActions.getPowerUpTransaction,
-    setTransaction: RTransactionConfirmActions.setTransaction,
+    getPowerDownTransaction: GPOSActions.getPowerDownTransaction,
     confirmTransaction: RTransactionConfirmActions.confirmTransaction,
     setWalletPosition: RWalletUnlockActions.setWalletPosition
   },
   dispatch
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(GposStep1);
+export default connect(mapStateToProps, mapDispatchToProps)(DepositWithdraw);

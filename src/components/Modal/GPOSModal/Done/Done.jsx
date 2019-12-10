@@ -22,33 +22,33 @@ class Done extends React.PureComponent {
           <Translate
             component='p'
             className='title'
-            content='gpos.wizard.step-3.title'
+            content='gpos.complete.title'
           />
           <Translate
             component='p'
             className='txt--spaced'
-            content='gpos.wizard.step-3.text-1'
+            content='gpos.complete.text-1'
           />
           <ul className='gpos-modal__done-right list'>
             <Translate
               component='li'
               className='txt--li'
-              content='gpos.wizard.step-3.text-2'
+              content='gpos.complete.text-2'
             />
             <Translate
               component='li'
               className='txt--li'
-              content='gpos.wizard.step-3.text-3'
+              content='gpos.complete.text-3'
             />
             <Translate
               component='li'
               className='txt--li'
-              content='gpos.wizard.step-3.text-4'
+              content='gpos.complete.text-4'
             />
           </ul>
           <div className='gpos-modal__btns-done'>
             <button className='gpos-modal__btn-done' onClick={ this.doneHandler }>
-              <Translate className='gpos-modal__btn-txt' content='gpos.wizard.ok' />
+              <Translate className='gpos-modal__btn-txt' content='gpos.modal.ok' />
             </button>
           </div>
         </div>
@@ -59,7 +59,7 @@ class Done extends React.PureComponent {
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
-    toggleGPOSModal: GPOSActions.toggleGPOSWizardModal
+    toggleGPOSModal: GPOSActions.toggleGPOSModal
   },
   dispatch
 );
