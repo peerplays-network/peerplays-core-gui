@@ -5,10 +5,6 @@ All notable changes to this project will be documented in this file. See [standa
 ### [1.0.21](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.20...v1.0.21) (2019-12-10)
 
 
-### ⚠ BREAKING CHANGES
-
-* "power up" is not functional
-
 WAL-250
 
 * fix(tgpos transaction): correct parameter name
