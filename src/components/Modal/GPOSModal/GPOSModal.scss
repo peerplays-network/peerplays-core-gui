@@ -71,8 +71,18 @@ sm: 1275px);
       }
 
       padding-top: 5px;
-      font-size: $f-29;
+      font-size: 28px;
       color: $gpos-blue-balance;
+
+      &-dual {
+        @extend .balance--blue;
+
+        @include respond-to(mac) {
+          font-size: $f-23;
+        }
+
+        font-size: 25px;
+      }
     }
   }
 
@@ -530,6 +540,7 @@ sm: 1275px);
         }
 
         flex-grow: 4;
+        padding-top: 10px;
       }
 
       &--transparent {
@@ -881,6 +892,30 @@ sm: 1275px);
           }
         }
       }
+    }
+
+    &-blts {
+      margin-left: 20px;
+    }
+
+    &-items {
+      @include respond-to (mac) {
+        font-size: $f-18;
+      }
+
+      font-size: $f-22;
+      list-style-type: disc;
+    }
+  }
+
+  &__spacer {
+    &--vertical {
+      flex-grow: 0.1;
+      width: 5px;
+      max-width: 5px;
+      margin: 12px 10px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.2);
     }
   }
 

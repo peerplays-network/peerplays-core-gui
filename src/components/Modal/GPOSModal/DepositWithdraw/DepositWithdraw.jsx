@@ -190,21 +190,27 @@ class DepositWithdraw extends PureComponent {
   }
 
   checkErrors() {
-    let {fees, maxAmount} = this.state;
+    let {fees, maxAmount, amount, totalGpos} = this.state;
     let errors = false;
 
     // Check for errors outside of the regular validation
     // Power Up
-    if (this.props.action === 1.1) {
-      if (this.state.amount > (maxAmount - fees.up)) {
-        errors = true;
+    if (amount !== 0) {
+      if (this.props.action === 1.1) {
+        if (amount > (maxAmount - fees.up)) {
+          errors = true;
+        }
       }
-    }
 
-    // Power Down
-    if (this.props.action === 1.2) {
-      if (this.state.amount > (maxAmount - fees.down)) {
-        errors = true;
+      // Power Down
+      if (this.props.action === 1.2) {
+        // Check if current vested balance can cover the fee
+        if (totalGpos < (amount + fees.down)) {
+          // Check if current regular balance can cover the fee
+          if (maxAmount < (amount + fees.down)){
+            errors = true;
+          }
+        }
       }
     }
 
@@ -285,7 +291,7 @@ class DepositWithdraw extends PureComponent {
               className='txt'
               content='gpos.deposit-withdraw.right.card-1-open'
             />
-            <div className='balance--blue'>
+            <div className='balance--blue-dual'>
               <FormattedNumber
                 value={ this.state.totalGpos }
                 minimumFractionDigits={ 0 }
@@ -302,7 +308,7 @@ class DepositWithdraw extends PureComponent {
               className='txt'
               content='gpos.deposit-withdraw.right.card-1-available'
             />
-            <div className='balance--blue'>
+            <div className='balance--blue-dual'>
               <FormattedNumber
                 value={ this.state.availableGpos }
                 minimumFractionDigits={ 0 }
@@ -424,6 +430,12 @@ class DepositWithdraw extends PureComponent {
       let {asset, action} = this.props, content, title, desc, canSubmit;
       let amt = isNaN(this.state.amount) ? 0 : this.state.amount;
       let errors = this.checkErrors();
+      let actionPrefix = action === 1.1 ? 'up' : 'down';
+      let bullets = [];
+
+      for (let i=1; i <= 5; i++) {
+        bullets.push(`gpos.deposit-withdraw.desc.${actionPrefix}-bullet-${i}`);
+      }
 
       // If action 1, power up is addition else it is action 2 which is subtraction.
       let newAmt = action === 1.1 ? (this.state.totalGpos + amt) : (this.state.totalGpos - amt);
@@ -457,6 +469,15 @@ class DepositWithdraw extends PureComponent {
                 className='txt'
                 content={ desc }
               />
+              <ul className='gpos-modal__modal-blts'>
+                {bullets.map((bul) => {
+                  return <Translate
+                    component='li'
+                    className='gpos-modal__modal-items'
+                    content={ bul }
+                  />;
+                })}
+              </ul>
             </div>
           </div>
           <div className='gpos-modal__content-right'>
