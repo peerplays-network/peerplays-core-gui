@@ -11,6 +11,7 @@ import Repository from '../repositories/chain/repository';
 import CONFIG from '../config/main';
 import SendPageActions from './SendPageActions';
 import DashboardPageActions from './DashboardPageActions';
+import GPOSActions from './GPOSActions';
 
 class AppPrivateActions {
   /**
@@ -314,6 +315,7 @@ class AppActions {
 
       dispatch(PrivateKeyActions.setKeys());
       dispatch(SendPageActions.resetSendPage());
+      dispatch(GPOSActions.resetGPOS());
       dispatch(DashboardPageActions.resetDasbhoard());
 
       return WalletService.resetDBTables().then(() => {

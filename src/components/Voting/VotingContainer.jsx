@@ -48,10 +48,10 @@ class VotingContainer extends React.Component {
     return(
       <div className='gpos-modal__btns-vote'>
         <button className='gpos-modal__btn-cancel' onClick={ () => handlers.cancel(0) }>
-          <Translate className='gpos-modal__btn-txt' content='gpos.wizard.cancel' />
+          <Translate className='gpos-modal__btn-txt' content='gpos.modal.cancel' />
         </button>
-        <button className='gpos-modal__btn-submit' onClick={ () => handlers.finish(3) }>
-          <Translate className='gpos-modal__btn-txt' content='gpos.wizard.finish' />
+        <button className='gpos-modal__btn-submit' onClick={ () => handlers.finish(3, 2) }>
+          <Translate className='gpos-modal__btn-txt' content='gpos.modal.finish' />
         </button>
       </div>
     );

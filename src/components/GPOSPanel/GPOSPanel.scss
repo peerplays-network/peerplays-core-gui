@@ -1,6 +1,12 @@
 @import '../../assets/stylesheets/mixins';
 @import '../../assets/stylesheets/variables';
 
+@mixin gpos-panel-btn() {
+  width: 271px;
+  height: 63px;
+  font-size: 19px;
+}
+
 .gpos-panel {
   display: flex;
   flex-direction: column;
@@ -9,6 +15,10 @@
     height: 16px;
     margin-right: 4px;
 
+    &--hidden {
+      opacity: 0;
+    }
+
     &--no-stats {
       display: none;
     }
@@ -16,8 +26,10 @@
 
   &__btn {
     @include transition(background .2s ease);
+    @include gpos-panel-btn();
 
     display: flex;
+    justify-content: center;
     align-items: center;
     margin-bottom: $gpos-panel-button-b-margin;
     padding-top: 2px;
@@ -34,6 +46,8 @@
     }
 
     &--no-stats {
+      @include gpos-panel-btn();
+
       margin-bottom: 10px;
       background: $gpos-green;
 
@@ -81,6 +95,40 @@
     &--right {
       right: 0;
       color: $green3;
+
+      &.txt {
+        &--white {
+          color: $white;
+        }
+
+        &--green {
+          color: $green;
+        }
+
+        &--green-drk {
+          color: $green2;
+        }
+
+        &--blue {
+          color: $light-blue;
+        }
+
+        &--yellow {
+          color: rgb(255, 210, 1);
+        }
+
+        &--orange {
+          color: rgb(255, 126, 25);
+        }
+
+        &--red {
+          color: $red;
+        }
+
+        &--red-drk {
+          color: rgb(233, 17, 28);
+        }
+      }
     }
   }
 }

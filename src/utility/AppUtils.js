@@ -47,6 +47,11 @@ const AppUtils = {
    * @returns
    */
   trimNum(num, digits) {
+    // Early return if NaN
+    if (isNaN(num)) {
+      return 0;
+    }
+
     let numString = num.toString();
     let decimalIndex = numString.indexOf('.');
     let subString = decimalIndex > 0 ? numString.substring(0, decimalIndex + (digits+1)) : num;

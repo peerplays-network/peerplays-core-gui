@@ -2,6 +2,7 @@ import ActionTypes from '../constants/ActionTypes';
 import DashboardBalancesService from '../services/DashboardBalancesService';
 import Repository from '../repositories/chain/repository';
 import GposService from '../services/GposService';
+import AccountVestingPageActions from './AccountVestingPageActions';
 
 class DashboardPagePrivateActions {
   /**
@@ -173,7 +174,10 @@ class DashboardPageActions {
       dispatch(DashboardPageActions.setRecentActivity({
         recentActivity: activityData.recentActivity,
         headBlockNumber: activityData.headBlockNumber,
-        blockInterval: activityData.blockInterval
+        blockInterval: activityData.blockInterval,
+        gposPeriod: activityData.gposPeriod,
+        gposSubPeriod: activityData.gposSubPeriod,
+        gposVestingLockinPeriod: activityData.gposVestingLockinPeriod
       }));
       dispatch(DashboardPageActions.setOpenOrders({
         openOrders: activityData.openOrders
@@ -204,6 +208,8 @@ class DashboardPageActions {
         }));
       });
 
+      dispatch(AccountVestingPageActions.fetchData());
+
       // Vesting
       let vestingBalances = currentState.dashboardPage.vestingBalances,
         vestingAsset = currentState.dashboardPage.vestingAsset,
@@ -211,7 +217,7 @@ class DashboardPageActions {
 
       // GPOS
       let gposBalances = currentState.dashboardPage.gposBalances;
-      this.getGposInfo();
+      dispatch(DashboardPageActions.getGposInfo());
 
       // Get regular vesting balances
       DashboardBalancesService

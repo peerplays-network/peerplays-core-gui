@@ -1,7 +1,115 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.20](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.19...v1.0.20) (2019-12-06)
+
+### [1.0.19](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.18...v1.0.19) (2019-12-06)
+
+
+### Bug Fixes
+
+* **gpos modal:** state cleanup on logout ([5e65bfa](https://github.com/peerplays-network/peerplays-core-gui/commit/5e65bfa))
+* **package.json:** re-add windows to dist script ([190e8eb](https://github.com/peerplays-network/peerplays-core-gui/commit/190e8eb))
+* **power down:** incorrect max min check on power down action resolved ([9d5fbc3](https://github.com/peerplays-network/peerplays-core-gui/commit/9d5fbc3))
+* **powerdown:** correct the withdrawal date check ([12395bd](https://github.com/peerplays-network/peerplays-core-gui/commit/12395bd))
+* capitlization error on GPOS Panel ([5ecf477](https://github.com/peerplays-network/peerplays-core-gui/commit/5ecf477))
+* change balance type to string ([63837fc](https://github.com/peerplays-network/peerplays-core-gui/commit/63837fc))
+* live update of gpos data ([6f7bd1d](https://github.com/peerplays-network/peerplays-core-gui/commit/6f7bd1d))
+
+
+### Features
+
+* **power down:** change max amount allowed withing power down ([5b54d2c](https://github.com/peerplays-network/peerplays-core-gui/commit/5b54d2c))
+* **power down:** implement single transaction withdrawal ([6046541](https://github.com/peerplays-network/peerplays-core-gui/commit/6046541))
+* modification due to chain changes ([d5118e4](https://github.com/peerplays-network/peerplays-core-gui/commit/d5118e4))
+* **gpos panel:** change "lowest reward" to "lower reward" ([e824808](https://github.com/peerplays-network/peerplays-core-gui/commit/e824808))
+* **gpos panel:** implement strings for voting performance ([197712b](https://github.com/peerplays-network/peerplays-core-gui/commit/197712b))
+* **last_vote_time:** add param to all vote actions for account_update ([579794f](https://github.com/peerplays-network/peerplays-core-gui/commit/579794f))
+* **power down:** modify such that available gpos is shown ([1356fbe](https://github.com/peerplays-network/peerplays-core-gui/commit/1356fbe))
+* **power down:** support for when no available gpos balances ([31aa596](https://github.com/peerplays-network/peerplays-core-gui/commit/31aa596))
+* **power up/down:** check if a v.balance can be withdrawn ([5208562](https://github.com/peerplays-network/peerplays-core-gui/commit/5208562))
+* **power up/down:** power up down transactions now succeed ([13bf661](https://github.com/peerplays-network/peerplays-core-gui/commit/13bf661))
+* **recent activity:** add support for vesting_balance_create ([a672bc7](https://github.com/peerplays-network/peerplays-core-gui/commit/a672bc7))
+
+<a name="1.0.17"></a>
+## [1.0.17](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.16...v1.0.17) (2019-10-08)
+
+### Fixed
+
+- incorrect default color on number picker buttons on gpos power up/down screens in electron builds
+
+<a name="1.0.17"></a>
+## [1.0.17](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.16...v1.0.17) (2019-10-08)
+
+### QA Release
+
+- configured to fake a successful power down in lieu of transaction validation issues for frontend gpos related actions
+- WAL-279
+  - UI/UX related items for Power Up/Down transaction broadcast results
+  - configured to "fake" a success response for Power Down action
+- WAL-249
+  - new design for the getting started screen
+- WAL-250
+  - new design for the power up/down screens
+  - pairs with WAL-279 for in lieu of transaction validation issues on chain
+- WAL-277
+  - new GPOS panel design
+- PJL-23
+  - security issues in the peerplaysjs-lib addressed as well as some serialization tweaks required for GPOS on chain
+  - un-published release of the peerplaysjs-lib in use until testing passes
+
+<a name="1.0.16"></a>
+## [1.0.16](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.15...v1.0.16) (2019-10-08)
+
+### Added
+
+- configurable fake succeed on power down action
+
+### Fixed
+
+- issue with succeed screen skipping the form input stage
+
+<a name="1.0.15"></a>
+## [1.0.15](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.14...v1.0.15) (2019-10-08)
+
+### Added
+
+- Dynamic transaction signing for GPOS Modal Power Up/Down
+  - added custom error/success screens for this
+
+### Changed
+
+- Dynamic form validation for Power Up/Down
+- Some style tweaks
+
+<a name="1.0.14"></a>
+## [1.0.14](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.13...v1.0.14) (2019-09-26)
+
+### Changed
+
+- Updates to GUI for GPOS start page.
+
+<a name="1.0.13"></a>
+## [1.0.13](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.12...v1.0.13) (2019-09-26)
+
+### Changed
+
+- Capitalization of working in the GPOS panel balance specification section.
+
+<a name="1.0.12"></a>
+## [1.0.12](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.11...v1.0.12) (2019-09-25)
+
+### Changed
+
+- Increase the size of the GPOS panel participate/get started button.
+
+<a name="1.0.11"></a>
+## [1.0.11](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.10...v1.0.11) (2019-09-25)
+
+### Changed
+
+- Made the GPOS Panel statistics easier to understand (WAL-277).
 <a name="1.0.10.d"></a>
 ## [1.0.10.d](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.10.c...v1.0.10d) (2019-09-26)
 

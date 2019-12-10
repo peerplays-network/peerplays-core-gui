@@ -500,65 +500,87 @@
         "balance": "GPOS Balance",
         "performance": {
           "title": "Voting Performance",
-          "txt1": "All up to date"
+          "max": "Max Rewards",
+          "great": "Great Rewards",
+          "good": "Good Rewards",
+          "ok": "OK Rewards",
+          "low": "Low Rewards",
+          "lower": "Lower Rewards",
+          "crit": "Critical Low",
+          "none": "No Rewards"
         },
-        "percent": "Reward %",
-        "potential": "Potential Reward"
+        "percent": "Qualified Reward %",
+        "potential": "Estimated Rake Reward %"
       }
     },
     "faq": {
       "title": "GAMIFIED PROOF OF STAKE"
     },
-    "wizard": {
+    "start": {
+      "desc": {
+        "title": "Peerplays GPOS",
+        "txt-1": "Join GPOS by transferring your PPY to your GPOS balance.",
+        "txt-2": "Consistently participate in voting for the best Witnesses, Advisors, Proposals, and SONs. Share the exciting news and DApps available on Peerplays with others.",
+        "txt-3": "The more value that comes into Peerplays blockchain through its operations, the more those that participate to help make it secure will earn!",
+        "txt-4": "If you want to increase your participation rewards you can do it two ways:",
+        "txt-5": "1. Transfer more PPY into your GPOS balance",
+        "txt-6": "2. Share Peerplays with others",
+        "txt-7": "Together as a Decentralized Autonomous Cooperative (DAC), we can ensure Peerplays remains the most secure provably fair blockchain globally."
+      },
+      "right": {
+        "1": "Power Up",
+        "2": "Power Down",
+        "3": "Vote"
+      }
+    },
+    "deposit-withdraw": {
+      "desc": {
+        "title-1": "Power Up",
+        "txt-1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper ipsum ac ex imperdiet suscipit. Aliquam erat volutpat. Morbi rhoncus vitae libero quis gravida. Nullam eros ante, dictum in purus vitae, volutpat volutpat ante. Morbi dignissim purus ac sodales efficitur. Integer molestie elit at massa lacinia luctus. Suspendisse nisl lorem, vulputate blandit euismod quis, bibendum in nisi.",
+        "title-2": "Power Down",
+        "txt-2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper ipsum ac ex imperdiet suscipit. Aliquam erat volutpat. Morbi rhoncus vitae libero quis gravida. Nullam eros ante, dictum in purus vitae, volutpat volutpat ante. Morbi dignissim purus ac sodales efficitur. Integer molestie elit at massa lacinia luctus. Suspendisse nisl lorem, vulputate blandit euismod quis, bibendum in nisi."
+      },
+      "right": {
+        "card-1-open": "Opening GPOS Balance:",
+        "card-1-available": "Available GPOS Balance:",
+        "card-2": "New GPOS Balance:",
+        "deposit": "Deposit:",
+        "withdraw": "Withdraw",
+        "placeholderAmt": "100"
+      }
+    },
+    "complete": {
+      "title": "Thank you for voting!",
+      "text-1": "This is now your blockchain as part of the decentralized autonomous cooperative. The value it brings is what you and others bring to it, so go out and:",
+      "text-2": "Share Peerplays with others",
+      "text-3": "Share your voting decisions with the community, including why you voted the way you did",
+      "text-4": "Visit Peerplays social media and like, share, or retweet our latest posts, and provide feedback"
+    },
+    "modal": {
       "up": "POWER UP",
       "down": "POWER DOWN",
       "cancel": "CANCEL",
+      "done": "DONE",
+      "completed": "COMPLETED",
       "submit": "SUBMIT",
       "ok": "OK",
       "finish": "FINISH",
       "vote": "Vote",
-      "skip": "Skip",
-      "step1": "Step 1",
-      "step2": "Step-2",
-      "start": {
-        "desc": {
-          "title": "Peerplays GPOS Wizard",
-          "txt-1": "Join GPOS by transferring your PPY to your GPOS balance.",
-          "txt-2": "Consistently participate in voting for the best Witnesses, Advisors, Proposals, and SONs. Share the exciting news and DApps available on Peerplays with others.",
-          "txt-3": "The more value that comes into Peerplays blockchain through its operations, the more those that participate to help make it secure will earn!",
-          "txt-4": "If you want to increase your participation rewards you can do it two ways:",
-          "txt-5": "1. Transfer more PPY into your GPOS balance",
-          "txt-6": "2. Share Peerplays with others",
-          "txt-7": "Together as a Decentralized Autonomous Cooperative (DAC), we can ensure Peerplays remains the most secure provably fair blockchain globally."
-        },
-        "right": {
-          "1": "Power Up & Power Down",
-          "2": "Vote",
-          "3": "Finish"
-        }
+      "skip": "Skip"
+    },
+    "transaction": {
+      "down": {
+        "succeed": "You have successfully Powered Down!",
+        "fail": "You have failed to Power Down!",
+        "none_available": "No GPOS balances are available for withdrawal yet."
       },
-      "step-1": {
-        "desc": {
-          "title": "Power Up",
-          "txt-1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper ipsum ac ex imperdiet suscipit. Aliquam erat volutpat. Morbi rhoncus vitae libero quis gravida. Nullam eros ante, dictum in purus vitae, volutpat volutpat ante. Morbi dignissim purus ac sodales efficitur. Integer molestie elit at massa lacinia luctus. Suspendisse nisl lorem, vulputate blandit euismod quis, bibendum in nisi."
-        },
-        "right": {
-          "card-1": "Opening GPOS Balance:",
-          "card-2": "New GPOS Balance:",
-          "deposit": "Deposit:",
-          "placeholderAmt": "100"
-        }
+      "up": {
+        "succeed": "You have successfully Powered Up!",
+        "fail": "You have failed to Power Up!"
       },
-      "step-2": {
-        "title": "TBD"
-      },
-      "step-3": {
-        "title": "Thank you for voting!",
-        "text-1": "This is now your blockchain as part of the decentralized autonomous cooperative. The value it brings is what you and others bring to it, so go out and:",
-        "text-2": "Share Peerplays with others",
-        "text-3": "Share your voting decisions with the community, including why you voted the way you did",
-        "text-4": "Visit Peerplays social media and like, share, or retweet our latest posts, and provide feedback"
-      }
+      "next": "NEXT",
+      "retry": "RETRY",
+      "lack-funds": "You don’t have enough funds"
     }
   },
   "about": {

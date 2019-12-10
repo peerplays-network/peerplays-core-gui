@@ -19,11 +19,11 @@
 }
 
 @mixin gpos-box-shadow() {
-  box-shadow: 0 3px 20px $gpos-wizard-box-shadow;
+  box-shadow: 0 3px 20px $gpos-modal-box-shadow;
 }
 
 @mixin gpos-btn-hover-active($color, $active-border-color: null) {
-  &:hover {
+  &:hover, &:focus {
     background: lighten($color, $amount: 10%);
   }
 
@@ -101,7 +101,7 @@
     display: block;
     height: 0;
     line-height: 0;
-    font-size: 0.13em;
+    font-size: 0.13em; /* stylelint-disable-line */
     overflow: hidden;
     word-spacing: 99in;
   }
@@ -189,7 +189,7 @@
   }
 
   &:-ms-input-placeholder {
-    color: $color !important;
+    color: $color !important; /* stylelint-disable-line */
   }
 }
 

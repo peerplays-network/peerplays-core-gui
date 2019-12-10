@@ -396,12 +396,18 @@ export function formatOperation(obj) {
         description: null
       };
     case 32:
+      sender = ChainStore.getAccount(op[1].owner);
+      amount = convertAmount(op[1].amount);
+
       return {
         operation: ops[op[0]],
-        type: null,
-        sender: null,
-        receiver: null,
-        description: null
+        type: counterpart.translate('transaction.trxTypes.vesting_balance_create'),
+        sender: sender ? sender.get('name') : null,
+        receiver: sender ? sender.get('name') : null,
+        description: sender && amount ? counterpart.translate('activity.vesting_balance_deposit', {
+          account: sender.get('name'),
+          amount: `${amount.amount} ${amount.asset.symbol}`
+        }) : ''
       };
     case 33:
       sender = ChainStore.getAccount(op[1].owner);

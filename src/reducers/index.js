@@ -47,7 +47,7 @@ const rootReducer = combineReducers({
   form: formReducer,
   helpReducer: HelpReducer,
   loginPage: LoginPageReducer,
-  gposReducer: GPOSReducer,
+  gpos: GPOSReducer,
   memoModal: MemoReducer,
   notificationsReducer: NotificationsReducer,
   pageSettings: PageSettingsReducer,

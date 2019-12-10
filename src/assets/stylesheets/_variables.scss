@@ -5,6 +5,7 @@ $fw: 400;
 $ff-main: $ff;
 $lato: 'Lato', sans-serif;
 $f-45: 45px;
+$f-40: 40px;
 $f-35: 35px;
 $f-31: 31px;
 $f-29: 29px;
@@ -15,6 +16,7 @@ $f-21: 21px;
 $f-19: 19px;
 $f-18: 18px;
 $f-16: 16px;
+$f-15: 15px;
 
 // PADDING
 $p-gpos-box-inner: 0 15px 30px;
@@ -42,9 +44,10 @@ $clear-color: $black;
 $clear-color2: $white;
 
 // --> black
-$gpos-wizard-dialogue-fade: rgba(0, 0, 0, 0.5);
-$gpos-wizard-right-bg: rgba(255, 255, 255, 0.06);
-$gpos-wizard-box-shadow: rgba(0, 0, 0, 0.15);
+$gpos-modal-dialogue-fade: rgba(0, 0, 0, 0.5);
+$gpos-modal-right-bg: rgba(255, 255, 255, 0.06);
+$gpos-modal-right-bg-hover: rgba(255, 255, 255, 0.12);
+$gpos-modal-box-shadow: rgba(0, 0, 0, 0.15);
 // <-- black
 
 // ---> green
@@ -120,7 +123,7 @@ $label-color: $new-blue9;
 
 $body-bg: radial-gradient(circle, #2660ca, $dark2);
 $body-login-bg: radial-gradient(circle, #2660ca, $dark2);
-$gpos-wizard-bg: transparent radial-gradient(closest-side at 50% 52%, rgb(61, 93, 203) 0%, rgb(49, 53, 121) 100%);
+$gpos-modal-bg: transparent radial-gradient(closest-side at 50% 52%, rgb(61, 93, 203) 0%, rgb(49, 53, 121) 100%);
 $footer-bg: $new-blue5;
 $footer-bd-color: $new-blue5;
 $footer-color: $gray3;
