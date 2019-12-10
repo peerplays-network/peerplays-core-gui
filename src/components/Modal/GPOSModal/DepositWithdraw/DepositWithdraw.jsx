@@ -443,7 +443,9 @@ class DepositWithdraw extends PureComponent {
       // If the number is whole, return. Else, remove trailing zeros.
       newAmt = Number.isInteger(newAmt) ? Number(newAmt.toFixed()) : newAmt;
 
-      canSubmit = newAmt !== this.state.maxAmount && newAmt >= 0 && !errors;
+      if (newAmt !== this.state.maxAmount && amt > 0 && !errors) {
+        canSubmit = true;
+      }
 
       if (action === 1.1) {
         content = this.renderAmountPicker('gpos.deposit-withdraw.right.deposit');
