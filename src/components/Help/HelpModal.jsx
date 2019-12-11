@@ -36,6 +36,13 @@ class HelpModal extends React.Component {
   }
 
   render() {
+    let gposPoints = [];
+    const gposLink = 'https://www.peerplays.com/ppy-tokens/#peerplays-core-wallet';
+
+    for (let i=1; i <=3; i++) {
+      gposPoints.push(`help.gpos.text_${i}`);
+    }
+
     return (
       <Modal
         className='backdrop-help'
@@ -217,9 +224,13 @@ class HelpModal extends React.Component {
                 <div ref={ (gposAnchor) => this.gposAnchor = gposAnchor } id={ anchors.GPOS }>
                   <Translate component='div' className='help__h3' content='help.gpos.title'/>
                   <div className='help__section'>
-                    <Translate component='div' className='help__text' content='help.gpos.text_1'/>
-                    <p></p>
-                    <Translate component='div' className='help__text' content='help.gpos.text_2'/>
+                    {
+                      gposPoints.map((point) => {
+                        return <Translate component='p' className='help__text' content={ point } />;
+                      })
+                    }
+                    <Translate component='span' className='help__text' content='help.gpos.text_4'/><br/>
+                    <Translate component='span' className='help__text' content='help.gpos.text_5'/><a href={ gposLink } className='help__link--lower'>{gposLink}</a>
                   </div>
                 </div>
 

@@ -813,8 +813,11 @@
     },
     "gpos": {
       "title": "GAMIFIED PROOF OF STAKE",
-      "text_1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pellentesque aliquam elit, et consectetur est ultrices a. Maecenas egestas ultrices eros, at vestibulum sapien suscipit eget. Quisque tincidunt est a dolor molestie consectetur. Morbi ut lacus sed purus lacinia vehicula a et felis. Nam in nibh eget augue pharetra porta. Vivamus eget molestie leo. Mauris at elit ut purus porttitor bibendum in sit amet libero. Praesent fermentum nunc sed ex dignissim vestibulum. Nulla facilisi. Duis arcu ante, volutpat vitae felis eget, hendrerit fermentum leo. Ut dictum elit id nunc condimentum, semper tempus ipsum scelerisque. Integer varius tristique est, quis sodales velit. Cras et dui tellus. Suspendisse vestibulum at augue sit amet bibendum. Sed bibendum nulla non lorem dictum, eget commodo lectus faucibus.",
-      "text_2": "Phasellus facilisis rutrum neque posuere lacinia. Ut sollicitudin vulputate lectus quis congue. Vestibulum et erat turpis. Aenean sodales turpis sed tempor hendrerit. Ut luctus a turpis non molestie. Donec eu est facilisis, interdum nisi eu, iaculis purus. Ut convallis id est vel condimentum. Nullam euismod ex at urna tempus, a maximus nisi congue. Aenean fermentum, libero eu consectetur sodales, risus justo venenatis dui, id ornare metus orci in sem. Cras sed quam malesuada, malesuada nulla eget, sagittis justo. Quisque laoreet orci et ipsum rhoncus pretium."
+      "text_1": "The Peerplays blockchain uses Gamified Proof of Stake (GPOS) as the means to maintaining blockchain security while incorporating the human design element necessary for effective voting mechanics.",
+      "text_2": "By participating in GPOS you are staking your PPY for a period of 30 days. After the 30 day time period, you may request to withdraw the staked PPY.",
+      "text_3": "During the staking period, you will be capable of participating in the voting of node operators and other important functions within the Peerplays ecosystem. Advisors, Witnesses, new Proposals, SONs, and other types of nodes and providers that make up the Peerplays ecosystem will benefit from your votes.",
+      "text_4": "For your contribution in helping secure the blockchain, you will receive Participation Rewards. These rewards are based on the amount of PPY you have staked relative to the rest of the network distribution. Participation Rewards are given out each month and are based on the collective activity (i.e.: blockchain fees) on the Peerplays blockchain. As more value comes into the network, this is sent to you as a reward for helping make it happen.",
+      "text_5": "For more detailed help please visit "
     },
     "vote": {
       "title": "VOTE",

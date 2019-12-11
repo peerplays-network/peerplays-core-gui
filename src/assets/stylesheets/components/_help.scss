@@ -1,113 +1,125 @@
-//$margin1: 20px;
-//$margin2: 36px;
-//$margin3: 45px;
-
 $margin1: 9px;
 $margin2: 25px;
 $margin3: 33px;
 
+.backdrop-help {
+  height: 100vh;
 
-.backdrop-help{
-	height: 100vh;
-	.modal-dialog {
-		width: 900px !important;
-		margin: 20px auto;
-		right: 0;
-		overflow: hidden;
-		bottom: auto;
-	}
+  .modal-dialog {
+    right: 0;
+    bottom: auto;
+    width: 900px !important; // stylelint-disable-line
+    margin: 20px auto;
+    overflow: hidden;
+  }
 }
 
+.help {
+  &__h3, &__h4, &__h5 {
+    margin-bottom: $margin1;
+    color: $text-color;
+  }
 
-.help__content{
+  &__h3, &__h5 {
+    font-weight: 600;
+  }
 
-}
-.help__h3{
-	font-size: 20px;
-	font-weight: 600;
-	color: $text-color;
-	margin-bottom: $margin1;
-	text-transform: uppercase;
-}
-.help__h4{
-	font-size: 18px;
-	font-weight: 400;
-	font-style: italic;
-	color: $text-color;
-	margin-bottom: $margin1;
-}
-.help__h5{
-	font-size: 16px;
-	font-weight: 600;
-	color: $text-color;
-	margin-bottom: $margin1;
-}
-.help__section{
-	font-size: 16px;
-	line-height: 24px;
-	color: $text-color;
-	margin-bottom: $margin3;
-	max-width: 93%;
-}
-.help__important{
-	margin-bottom: $margin3;
-	&Title{
-		color: #ff3030;
-		font-size: 16px;
-		line-height: 24px;
-		text-transform: uppercase;
-		margin-top: $margin2;
-		margin-bottom: $margin1;
-	}
-	&Text{
-		font-size: 16px;
-		line-height: 24px;
-		color: $text-color;
-	}
-}
-.help__text{
-	margin-bottom: $margin2;
-}
-.help__link{
-	&List{
-		margin-bottom: $margin2;
-		margin-bottom: 31px;
-	}
-	&Li{
-		display: block;
-		margin-bottom: 16px;
-	}
-	font-size: 16px;
-	color: $new-blue15;
-	font-weight: 500;
-	text-transform: uppercase;
-	text-decoration: underline;
+  &__h3 {
+    font-size: 20px;
+    text-transform: uppercase;
+  }
 
-	&:hover{
-		text-decoration: none;
-		cursor: pointer;
-	}
-}
-.help__sectionSub{
-	font-size: 14px;
-	line-height: 20px;
-	color: $text-color;
-	margin-bottom: $margin3;
-	.text{
-		margin-bottom: 12px;
-	}
-	ul{
+  &__h4 {
+    font-weight: 400;
+    font-style: italic;
+    font-size: 18px;
+  }
 
-	}
-}
-.help__list{
-	list-style: disc;
-	list-style-position: outside;
-	padding-left: 20px;
-	margin-top: 25px;
-	color: $new-blue15;
-	li{
-		color: $text-color;
-		margin-bottom: 17px;
-	}
+  &__h5 {
+    font-size: 16px;
+  }
+
+  &__important {
+    margin-bottom: $margin3;
+
+    &Title {
+      margin-top: $margin2;
+      margin-bottom: $margin1;
+      line-height: 24px;
+      font-size: 16px;
+      color: #ff3030;
+      text-transform: uppercase;
+    }
+
+    &Text {
+      line-height: 24px;
+      font-size: 16px;
+      color: $text-color;
+    }
+  }
+
+  &__link {
+    &List {
+      margin-bottom: $margin2;
+      margin-bottom: 31px;
+    }
+
+    &Li {
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    font-weight: 500;
+    font-size: 16px;
+    color: $new-blue15;
+    text-transform: uppercase;
+    text-decoration: underline;
+
+    &--lower {
+      @extend .help__link;
+
+      text-transform: lowercase;
+    }
+
+    &:hover {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+
+  &__list {
+    margin-top: 25px;
+    padding-left: 20px;
+    color: $new-blue15;
+    list-style: disc;
+    list-style-position: outside;
+
+    li {
+      margin-bottom: 17px;
+      color: $text-color;
+    }
+  }
+
+  &__section {
+    max-width: 93%;
+    margin-bottom: $margin3;
+    line-height: 24px;
+    font-size: 16px;
+    color: $text-color;
+  }
+
+  &__sectionSub {
+    margin-bottom: $margin3;
+    line-height: 20px;
+    font-size: 14px;
+    color: $text-color;
+
+    .text {
+      margin-bottom: 12px;
+    }
+  }
+
+  &__text {
+    margin-bottom: $margin2;
+  }
 }
