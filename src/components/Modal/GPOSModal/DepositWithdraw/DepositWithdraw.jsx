@@ -207,7 +207,7 @@ class DepositWithdraw extends PureComponent {
         // Check if current vested balance can cover the fee
         if (totalGpos < (amount + fees.down)) {
           // Check if current regular balance can cover the fee
-          if (maxAmount < (amount + fees.down)){
+          if (maxAmount < fees.down){
             errors = true;
           }
         }
