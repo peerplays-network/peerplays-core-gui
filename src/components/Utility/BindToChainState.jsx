@@ -63,7 +63,7 @@ function BindToChainState(options) {
     return class Wrapper extends React.Component {
       constructor(props) {
         super(props);
-        let prop_types_array = toPairs(Component.propTypes); // TODO: deprecate proptypes from another component
+        let propTypesArray = toPairs(Component.propTypes); // TODO: deprecate proptypes from another component
 
         if (options && options.all_props) {
           this.chain_objects = reject(
