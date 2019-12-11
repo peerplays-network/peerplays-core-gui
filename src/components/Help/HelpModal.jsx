@@ -37,7 +37,7 @@ class HelpModal extends React.Component {
 
   render() {
     let gposPoints = [];
-    const gposLink = 'https://www.peerplays.com/wallet-help';
+    const gposLink = 'https://www.peerplays.com/ppy-tokens/#peerplays-core-wallet';
 
     for (let i=1; i <=3; i++) {
       gposPoints.push(`help.gpos.text_${i}`);
