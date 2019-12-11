@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.28](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.27...v1.0.28) (2019-12-11)
+
+
+### Bug Fixes
+
+* **power down:** can not withdraw when regular balance is low ([9ba12f7](https://github.com/peerplays-network/peerplays-core-gui/commit/9ba12f73c4f984db7f11a83ac092babe79c15c0d))
+
 ### [1.0.27](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.26...v1.0.27) (2019-12-11)
 
 
