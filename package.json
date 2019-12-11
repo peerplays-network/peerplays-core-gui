@@ -1,6 +1,6 @@
 {
   "name": "peerplays-core-gui",
-  "version": "1.0.26",
+  "version": "1.0.27",
   "description": "Advanced wallet interface for graphene based blockchains (Bitshares, Muse..)",
   "homepage": "./",
   "author": "Cryptonomex, Inc.",
@@ -86,7 +86,6 @@
     "react": "^15.2.0",
     "react-addons-css-transition-group": "^15.1.0",
     "react-custom-scroll": "^1.8.0",
-    "react-date-picker": "^5.3.28",
     "react-dom": "^15.2.0",
     "react-foundation-apps": "git+https://github.com/valzav/react-foundation-apps.git",
     "react-highcharts": "^16.0.2",

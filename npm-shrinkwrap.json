@@ -1,6 +1,6 @@
 {
   "name": "peerplays-core-gui",
-  "version": "1.0.26",
+  "version": "1.0.27",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -14451,11 +14451,6 @@
         "lodash._reinterpolate": "^3.0.0"
       }
     },
-    "lodash.throttle": {
-      "version": "4.1.1",
-      "resolved": "https://registry.npmjs.org/lodash.throttle/-/lodash.throttle-4.1.1.tgz",
-      "integrity": "sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ="
-    },
     "log-symbols": {
       "version": "2.2.0",
       "resolved": "https://registry.npmjs.org/log-symbols/-/log-symbols-2.2.0.tgz",
@@ -27944,41 +27939,10 @@
         "pure-color": "^1.2.0"
       }
     },
-    "react-class": {
-      "version": "2.0.0",
-      "resolved": "https://registry.npmjs.org/react-class/-/react-class-2.0.0.tgz",
-      "integrity": "sha1-WlL9wV1NmXOOvyv2nbN0zoJzd5c=",
-      "requires": {
-        "object-assign": "^4.0.1"
-      }
-    },
     "react-custom-scroll": {
       "version": "1.10.1",
       "resolved": "https://registry.npmjs.org/react-custom-scroll/-/react-custom-scroll-1.10.1.tgz",
       "integrity": "sha1-fgVyrcAz/eh88bOrczutwxXAMbE="
-    },
-    "react-date-picker": {
-      "version": "5.3.28",
-      "resolved": "https://registry.npmjs.org/react-date-picker/-/react-date-picker-5.3.28.tgz",
-      "integrity": "sha1-t7ru4mHFyNy5CZc/uXiJFO8H9Rg=",
-      "requires": {
-        "lodash.throttle": "^4.0.1",
-        "object-assign": "4.0.1",
-        "raf": "3.2.0",
-        "react-class": "2.0.0",
-        "react-field": "2.0.2",
-        "react-flex": "2.2.7",
-        "react-inline-block": "2.0.0",
-        "react-notify-resize": "1.0.3",
-        "react-style-normalizer": "1.2.8"
-      },
-      "dependencies": {
-        "object-assign": {
-          "version": "4.0.1",
-          "resolved": "https://registry.npmjs.org/object-assign/-/object-assign-4.0.1.tgz",
-          "integrity": "sha1-mVBEVsNZi1ytT8WcJuipuxB/4L0="
-        }
-      }
     },
     "react-deep-force-update": {
       "version": "1.1.2",
@@ -28260,23 +28224,6 @@
       "integrity": "sha1-D4V8D27MADavgX6fjvFdwo5kuqw=",
       "dev": true
     },
-    "react-field": {
-      "version": "2.0.2",
-      "resolved": "https://registry.npmjs.org/react-field/-/react-field-2.0.2.tgz",
-      "integrity": "sha1-dOZXlENy3sD4ycjjQHhue7dh0rU=",
-      "requires": {
-        "object-assign": "^4.1.0"
-      }
-    },
-    "react-flex": {
-      "version": "2.2.7",
-      "resolved": "https://registry.npmjs.org/react-flex/-/react-flex-2.2.7.tgz",
-      "integrity": "sha1-XITmw6/8vcNm7d5AiPjQcwMxj6g=",
-      "requires": {
-        "object-assign": "^4.0.1",
-        "react-class": "^2.0.0"
-      }
-    },
     "react-foundation-apps": {
       "version": "git+https://github.com/valzav/react-foundation-apps.git#2ab78c9f80a8dcc0ea8a8f8008c8341e92a2079b",
       "from": "git+https://github.com/valzav/react-foundation-apps.git",
@@ -28323,14 +28270,6 @@
           "resolved": "https://registry.npmjs.org/source-map/-/source-map-0.7.3.tgz",
           "integrity": "sha512-CkCj6giN3S+n9qrYiBTX5gystlENnRW5jZeNLHpe6aue+SrHcG5VYwujhW9s4dY31mEGsxBDrHR6oI69fTXsaQ=="
         }
-      }
-    },
-    "react-inline-block": {
-      "version": "2.0.0",
-      "resolved": "https://registry.npmjs.org/react-inline-block/-/react-inline-block-2.0.0.tgz",
-      "integrity": "sha1-fbes1hVwW1RZhwLxhiLehK+An/o=",
-      "requires": {
-        "object-assign": "^4.0.1"
       }
     },
     "react-input-autosize": {
@@ -28510,14 +28449,6 @@
         "react-notification-system": "^0.2.x"
       }
     },
-    "react-notify-resize": {
-      "version": "1.0.3",
-      "resolved": "https://registry.npmjs.org/react-notify-resize/-/react-notify-resize-1.0.3.tgz",
-      "integrity": "sha1-oddQOu79J+7LaztbNcdwe+lCL0g=",
-      "requires": {
-        "react-class": "^2.0.0"
-      }
-    },
     "react-popover": {
       "version": "0.4.10",
       "resolved": "https://registry.npmjs.org/react-popover/-/react-popover-0.4.10.tgz",
@@ -28643,11 +28574,6 @@
         "prop-types": "^15.5.8",
         "react-input-autosize": "^2.1.2"
       }
-    },
-    "react-style-normalizer": {
-      "version": "1.2.8",
-      "resolved": "https://registry.npmjs.org/react-style-normalizer/-/react-style-normalizer-1.2.8.tgz",
-      "integrity": "sha1-foSz0lzqYiVUXFr2iWOyJYhTRKI="
     },
     "react-tabs": {
       "version": "0.8.3",
