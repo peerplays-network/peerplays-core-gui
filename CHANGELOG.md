@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.26](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.25...v1.0.26) (2019-12-11)
+
+
+### Bug Fixes
+
+* fixed a merge conflict issue with deprecated variable naming ([fee2ae5](https://github.com/peerplays-network/peerplays-core-gui/commit/fee2ae57ff6645dba91e3f3f7593b1d79c9ebf5b))
+
 ### [1.0.25](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.24...v1.0.25) (2019-12-11)
 
 ### [1.0.24](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.23...v1.0.24) (2019-12-10)
