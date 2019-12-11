@@ -205,7 +205,7 @@ class DepositWithdraw extends PureComponent {
       // Power Down
       if (this.props.action === 1.2) {
         // Check if current vested balance can cover the fee
-        if (totalGpos < (amount + fees.down)) {
+        if (totalGpos < (fees.down)) {
           // Check if current regular balance can cover the fee
           if (maxAmount < fees.down){
             errors = true;
