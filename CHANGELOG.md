@@ -70,62 +70,8 @@ All notable changes to this project will be documented in this file. See [standa
 
 * **ws:** removed peerplaysjs-ws ([89aa3f3](https://github.com/peerplays-network/peerplays-core-gui/commit/89aa3f35a7c5d9edb6f6da7937ce7b03effc9846))
 
-### [0.5.1](https://github.com/peerplays-network/peerplays-core-gui/compare/v0.5.0...v0.5.1) (2019-04-10)
-
-
-### ⚠ BREAKING CHANGES
-
-* new library code in use and required for this branches new latency conenctivity
-code
-
-### build
-
-* peerplaysjs dependencies update ([caf68c9](https://github.com/peerplays-network/peerplays-core-gui/commit/caf68c9e675f68b74f504a4fedcfe280b38e5729))
-
-## [0.5.0](https://github.com/peerplays-network/peerplays-core-gui/compare/v0.4.3...v0.5.0) (2019-04-09)
-
-
-### ⚠ BREAKING CHANGES
-
-* build process has changed. building executables not working yet
-* electron upgrade and many file/script modifications
-
-### Bug Fixes
-
-* fixed merge conflicts ([cc63ce3](https://github.com/peerplays-network/peerplays-core-gui/commit/cc63ce3c82ad5709ea2233b201a222131d0659bf))
-
-
-* merge WAL-134 ([3cef1f6](https://github.com/peerplays-network/peerplays-core-gui/commit/3cef1f68869dec5e87653e004f2cb9f499f7646b))
-
-
-### build
-
-* move electron build in-repo ([61d2119](https://github.com/peerplays-network/peerplays-core-gui/commit/61d2119e64123c7195cff632d1f448345404cc5e))
-
-### [0.4.3](https://github.com/peerplays-network/peerplays-core-gui/compare/v0.4.0...v0.4.3) (2019-04-05)
-
-## [0.4.0](https://github.com/peerplays-network/peerplays-core-gui/compare/v0.3.2...v0.4.0) (2019-02-15)
-
-### [0.3.2](https://github.com/peerplays-network/peerplays-core-gui/compare/v0.3.1...v0.3.2) (2019-01-28)
-
-### [0.3.1](https://github.com/peerplays-network/peerplays-core-gui/compare/v0.3.0...v0.3.1) (2019-01-28)
-
-## [0.3.0](https://github.com/peerplays-network/peerplays-core-gui/compare/v0.2.0...v0.3.0) (2019-01-25)
-
-## [0.2.0](https://github.com/peerplays-network/peerplays-core-gui/compare/v0.1.7...v0.2.0) (2019-01-07)
-
-### 0.1.7 (2018-10-02)
-
-### 0.1.6 (2018-08-27)
-
-### 0.1.5 (2018-08-08)
-
-### 0.1.4 (2018-07-24)
-
-### 0.1.3 (2018-04-19)
 
 ### [1.0.21](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.20...v1.0.21) (2019-12-10)
-
 
 WAL-250
 
@@ -563,9 +509,16 @@ Upgraded webpack from version 1 to version 4.
 * **idb:** fix retrieval of items from idb cursor ([#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40)) ([1d85d0c](https://github.com/peerplays-network/peerplays-core-gui/commit/1d85d0c))
 * better support for legacy accounts ([1410586](https://github.com/peerplays-network/peerplays-core-gui/commit/1410586))
 
-
-<a name="1.0.0"></a>
 # [1.0.0](https://github.com/peerplays-network/peerplays-core-gui/compare/v0.5.1...v1.0.0) (2019-05-07)
+
+### ⚠ BREAKING CHANGES
+
+* new library code in use and required for this branches new latency conenctivity
+code
+
+### build
+
+* peerplaysjs dependencies update ([caf68c9](https://github.com/peerplays-network/peerplays-core-gui/commit/caf68c9e675f68b74f504a4fedcfe280b38e5729))
 
 <a name="0.5.2"></a>
 ## [0.5.2](https://github.com/peerplays-network/peerplays-core-gui/compare/v0.5.1...v0.5.2) (2019-05-09)
@@ -585,27 +538,24 @@ Upgraded webpack from version 1 to version 4.
 
 * **ws:** removal of peerplaysjs-ws and refactoring of its imports
 
-
-
-<a name="0.5.1"></a>
 ## [0.5.1](https://github.com/peerplays-network/peerplays-core-gui/compare/v0.5.0...v0.5.1) (2019-04-10)
-
 
 ### build
 
 * peerplaysjs dependencies update ([caf68c9](https://github.com/peerplays-network/peerplays-core-gui/commit/caf68c9))
-
 
 ### BREAKING CHANGES
 
 * new library code in use and required for this branches new latency conenctivity
 code
 
-
-
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/peerplays-network/peerplays-core-gui/compare/v0.4.3...v0.5.0) (2019-04-09)
 
+### ⚠ BREAKING CHANGES
+
+* build process has changed. building executables not working yet
+* electron upgrade and many file/script modifications
 
 ### Bug Fixes
 
@@ -627,9 +577,7 @@ code
 * build process has changed. building executables not working yet
 * electron upgrade and many file/script modifications
 
-
-<a name="0.4.3"></a>
-## [0.4.3](https://github.com/peerplays-network/peerplays-core-gui/compare/v0.4.0...v0.4.3) (2019-04-05)
+### [0.4.3](https://github.com/peerplays-network/peerplays-core-gui/compare/v0.4.0...v0.4.3) (2019-04-05)
 
 ## [0.4.2-rc.1] - 03-28-19
 
@@ -640,7 +588,7 @@ code
 - Cleaned up some residue files in the repository.
 - Login form allows full stops and dashes to ensure older bitshares generated accounts can login.
 
-## [0.4.0] - 02-15-19
+## [0.4.0](https://github.com/peerplays-network/peerplays-core-gui/compare/v0.3.2...v0.4.0) (2019-02-15)
 
 ### Changed
 
@@ -662,3 +610,21 @@ code
 - Witnesses list now displays all registered witnesses, not just the active ones.
 - Multiple Node Endpoint Support added.
 - Common Message Module has been implemented.
+
+### [0.3.2](https://github.com/peerplays-network/peerplays-core-gui/compare/v0.3.1...v0.3.2) (2019-01-28)
+
+### [0.3.1](https://github.com/peerplays-network/peerplays-core-gui/compare/v0.3.0...v0.3.1) (2019-01-28)
+
+## [0.3.0](https://github.com/peerplays-network/peerplays-core-gui/compare/v0.2.0...v0.3.0) (2019-01-25)
+
+## [0.2.0](https://github.com/peerplays-network/peerplays-core-gui/compare/v0.1.7...v0.2.0) (2019-01-07)
+
+### 0.1.7 (2018-10-02)
+
+### 0.1.6 (2018-08-27)
+
+### 0.1.5 (2018-08-08)
+
+### 0.1.4 (2018-07-24)
+
+### 0.1.3 (2018-04-19)
