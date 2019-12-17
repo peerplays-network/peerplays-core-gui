@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0-beta](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.28...v1.5.0-beta) (2019-12-17)
+
 ### [1.0.28](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.27...v1.0.28) (2019-12-11)
 
 
