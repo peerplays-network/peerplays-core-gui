@@ -7,6 +7,7 @@ import Notices from './Notices';
 import {AppActions, HelpActions} from '../../actions';
 import Translate from 'react-translate-component';
 import {bindActionCreators} from 'redux';
+import Config from '../../../config/Config';
 
 class Header extends React.Component {
   onLogoutClick(e) {
@@ -25,6 +26,7 @@ class Header extends React.Component {
 
     return (
       <div className='header'>
+        <span className='app__version'>{Config.APP_VERSION}</span>
         <div className='box'>
           {}
           <Link to='/dashboard' className = 'logo' >
@@ -67,14 +69,6 @@ class Header extends React.Component {
                   component='span'
                   className='nav__linkText'
                   content='header.dashboard'/>
-              </span>
-            </Link>
-
-            <Link to='/explore/voting' className='nav__link' activeClassName='active'>
-              <span className='nav__linkAlign'>
-                <span className='nav__linkIcon nav__linkIcon-blank icon-check2'></span>
-                <span className='nav__linkIcon nav__linkIcon-filled icon-check2-filled'></span>
-                <Translate component='span' className='nav__linkText' content='header.vote'/>
               </span>
             </Link>
             <Link to='/explore/blockchain' className='nav__link ' activeClassName='active'>

@@ -6,6 +6,7 @@ import utils from '../common/utils';
 import market_utils from '../common/market_utils';
 import asset_utils from '../common/asset_utils';
 import Config from '../../config/Config';
+import BalanceTypes from '../constants/BalanceTypes';
 
 let dataIsFetched = false;
 let marketStatsByName = {},
@@ -102,7 +103,7 @@ class DashboardBalancesService {
       let amounts = []; //???CHECK
       let balancePromises = [];
 
-      for (let assetId in account.balances) {
+      for (let assetId in account.balances) { // eslint-disable-line
         assetsIds.push(assetId);
         balancePromises.push(Repository.getObject(account.balances[assetId]));
       }
@@ -148,26 +149,6 @@ class DashboardBalancesService {
               }
             });
 
-            // let endDate = new Date();
-            // let startDateShort = new Date();
-            //
-            // let baseAsset = assets.find((asset) => {
-            // 	return asset.id === '1.3.0';
-            // });
-            //
-            // endDate.setDate(endDate.getDate() + 1);
-            // startDateShort = new Date(startDateShort.getTime() - 3600 * 50 * 1000);
-
-            // let promisesStats = [];
-
-            // assets.forEach((asset) => {
-            // 	promisesStats.push(
-            // self.calcStats(asset, baseAsset, startDateShort.toISOString().slice(0, -5),
-            // endDate.toISOString().slice(0, -5)));
-            // });
-            //
-            // return Promise.all(promisesStats).then(() => {
-
             cacheData.assets = assets;
             cacheData.amounts = amounts;
             cacheData.marketStatsByName = marketStatsByName;
@@ -183,11 +164,8 @@ class DashboardBalancesService {
             dataIsFetched = true;
 
             return true;
-
-            // });
           });
         });
-
       });
     });
   }
@@ -195,9 +173,10 @@ class DashboardBalancesService {
   /**
    *
    * @param {string} accountId
-   * @param {Immutable.Map} vestingBalances
+   * @param {Immutable.Map} vestingBalances,
+   * @param {string} type - regular or GPOS. Default to witness vest type.
    */
-  static calculateVesting(accountId, vestingBalances) {
+  static calculateVesting(accountId, vestingBalances, gposBalances) {
     return Repository.fetchFullAccount(accountId).then((account) => {
       if (!account) {
         return null;
@@ -210,22 +189,29 @@ class DashboardBalancesService {
 
       return Promise.all(
         [Promise.all(vestingPromises),
-          Repository.getAsset(Config.CORE_ASSET)]) // TODO: declare via import form above
+          Repository.getAsset(Config.CORE_ASSET)])
         .then(([balances, asset]) => {
           if (balances && balances.length) {
             balances.forEach((balance) => {
-
-              if (balance) {
+              // Only work with non-gpos vested balances.
+              if (balance && balance.get('balance_type').toLowerCase() !== BalanceTypes.gpos) {
                 let currBalance = vestingBalances.get(balance.get('id'));
 
                 if (!currBalance || currBalance !== balance) {
                   vestingBalances = vestingBalances.set(balance.get('id'), balance);
+                }
+              } else {
+                let currGposBalance = gposBalances.get(balance.get('id'));
+
+                if (!currGposBalance || currGposBalance !== balance) {
+                  gposBalances = gposBalances.set(balance.get('id'), balance);
                 }
               }
             });
           }
 
           return {
+            gposBalances,
             vestingBalancesIds: vesting_balances_ids ? vesting_balances_ids : [],
             vestingBalances: vestingBalances,
             vestingAsset: asset
@@ -304,7 +290,7 @@ class DashboardBalancesService {
       smartCoins = Immutable.List(),
       otherAssets = Immutable.List();
 
-    for (let asset in dataBalances) {
+    for (let asset in dataBalances) { // eslint-disable-line
       if (dataBalances.hasOwnProperty(asset)) {
         let precision = utils.get_asset_precision(dataBalances[asset]['asset']['precision']),
           decimals = dataBalances[asset]['asset']['precision'];
@@ -505,22 +491,6 @@ class DashboardBalancesService {
     };
   }
 
-  // static calcStats(asset, baseAsset, start, end) {
-  // 	return Promise.all([
-  // 		HistoryRepository.fetchMarketHistory(baseAsset.id, asset.id, 3600, start, end),
-  // 		HistoryRepository.fetchFillOrderHistory(baseAsset.id, asset.id, 1)
-  // 	]).then(result => {
-  //
-  // 		let history = result[0],
-  // 			last = result[1],
-  // 			stats = this._calcMarketStats(history, baseAsset, asset, last),
-  // 			marketName = asset.symbol + "_" + baseAsset.symbol;
-  //
-  // 		marketStatsByName[marketName] = stats;
-  //
-  // 	});
-  // }
-
   /**
    *
    * @param {object} coreAsset
@@ -587,7 +557,7 @@ class DashboardBalancesService {
     });
 
     // Open orders value
-    for (let asset in openOrders) {
+    for (let asset in openOrders) { // eslint-disable-line
       if (openOrders.hasOwnProperty(asset) && assetData.hasOwnProperty(asset)) {
         assetData[asset]['orders'] += openOrders[asset];
         assetData[asset]['totalBalance'] += openOrders[asset];
@@ -631,7 +601,7 @@ class DashboardBalancesService {
     //     }
     // }
 
-    for (let asset in collateral) {
+    for (let asset in collateral) { // eslint-disable-line
       if (collateral.hasOwnProperty(asset) && assetData.hasOwnProperty(asset)) {
         assetData[asset]['collateral'] += collateral[asset];
         assetData[asset]['totalBalance'] += collateral[asset];
@@ -702,7 +672,11 @@ class DashboardBalancesService {
       obj210
     } = cacheData;
 
+    let ext = obj200 ? obj200.getIn(['parameters', 'extensions']) : null;
     let blockInterval = obj200 ? obj200.get('parameters').get('block_interval') : null;
+    let gposPeriod = ext ? ext.get('gpos_period') : null;
+    let gposSubPeriod = ext ? ext.get('gpos_subperiod') : null;
+    let gposVestingLockinPeriod = ext ? ext.get('gpos_vesting_lockin_period') : null;
     let headBlockNumber = obj210 ? obj210.get('head_block_number') : null;
 
     let orderOperations = history ? history.filter((obj) => {
@@ -789,6 +763,9 @@ class DashboardBalancesService {
       recentActivity,
       openOrders,
       blockInterval,
+      gposPeriod,
+      gposSubPeriod,
+      gposVestingLockinPeriod,
       headBlockNumber
     };
   }

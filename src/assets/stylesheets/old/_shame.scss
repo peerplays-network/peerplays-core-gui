@@ -25,7 +25,7 @@
   }
 
   h6 {
-    font-size: 1.0rem;
+    font-size: 1rem;
   }
 }
 
@@ -35,14 +35,14 @@ a {
 
 // border is needed when centering
 // input[type="file"] did not work
-input[type="file"] {
+input[type='file'] {
   border: 'solid';
 }
 
 hr {
-  border: none;
   height: 1px;
-  background-color: #333;
+  border: none;
+  background-color: #333333;
 }
 
 .error {
@@ -76,9 +76,9 @@ hr {
 .center-content {
   text-align: center;
 
-  >* {
-    margin-left: auto;
+  > * {
     margin-right: auto;
+    margin-left: auto;
   }
 }
 
@@ -100,12 +100,11 @@ a>.label {
 
 button,
 .button {
-  transition: all 0.3s ease 0s !important;
   //margin: 2px 5px 2px 5px;
   vertical-align: middle;
+  transition: all 0.3s ease 0s !important;
 
   &.outline {
-
     &:hover,
     &:focus,
     &:active {
@@ -114,45 +113,45 @@ button,
 
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+    border: 1px solid #555555;
     background: none;
-    border: 1px solid #555;
   }
 }
 
-td>button:first-child,
-td>.button:first-child,
-div>button:first-child,
-div>.button:first-child {
+td > button:first-child,
+td > .button:first-child,
+div > button:first-child,
+div > .button:first-child {
   margin-left: 0;
 }
 
 .notification {
-  border-radius: 0 !important;
   top: 50px !important;
+  padding: 1rem !important;
   border-top: none !important;
   border-right: none !important;
   border-bottom: none !important;
+  border-radius: 0 !important;
+  font-size: 100% !important;
   border-left-width: 4px !important;
   border-left-style: solid !important;
-  padding: 1rem !important;
-  font-size: 100% !important;
 }
 
 
 .content-block {
   margin-bottom: 2rem;
 
-  >h3,
-  .recent-transactions>h3 {
-    font-size: 2rem;
-    border-bottom: 1px solid #444;
+  > h3,
+  .recent-transactions > h3 {
     margin-top: 0;
-    padding-bottom: 0.5rem;
     margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #444444;
+    font-size: 2rem;
   }
 
   .actions {
-    padding: 1rem 0 1rem 0;
+    padding: 1rem 0;
   }
 }
 
@@ -166,47 +165,47 @@ div>.button:first-child {
 
 .page-header {
   margin-bottom: 2rem;
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid #444444;
 
   h3,
   h1 {
     margin: 0;
-    padding: 1rem 0 1rem 0;
+    padding: 1rem 0;
   }
 
   h3 {
     font-size: 2rem;
   }
 
-  h1+h3 {
+  h1 + h3 {
     padding-top: 0;
   }
 }
 
-table>tbody>tr.control-row>td {
+table > tbody > tr.control-row > td {
+  vertical-align: middle;
   padding-top: 1rem;
   border-bottom: none;
-  vertical-align: middle;
 
   input {
     display: inline-block;
+    margin-right: 8px !important;
     padding-top: 0;
     padding-bottom: 0;
-    margin-right: 8px !important;
   }
 
-  >label {
+  > label {
     margin: 0;
   }
 
-  >input {
+  > input {
     margin-right: 2rem !important;
   }
 }
 
 .modal {
   max-width: 700px;
-  border-radius: 0px;
+  border-radius: 0;
 }
 
 div.modal {
@@ -230,7 +229,7 @@ div.modal {
 }
 
 .empty-identicon {
-  border: 1px solid #008CBA;
+  border: 1px solid #008cba;
 }
 
 div.disabled * {
@@ -240,13 +239,12 @@ div.disabled * {
 }
 
 div.disabled input {
-  background-color: #444;
+  background-color: #444444;
 }
 
 .modal-header {
-
-  >h3,
-  >h6 {
+  > h3,
+  > h6 {
     margin-bottom: 0;
   }
 
@@ -267,11 +265,11 @@ div.disabled input {
 
 .invoice {
   .item-name {
-    padding: 0.2rem 0 0.2rem 0;
+    padding: 0.2rem 0;
   }
 
   .item-description {
-    padding: 0.2rem 0 0.2rem 0;
+    padding: 0.2rem 0;
     font-size: 90%;
   }
 }
@@ -308,13 +306,13 @@ label.inline {
 
 
 .Popover-body {
-  max-width: 50rem;
   display: inline-flex;
   flex-direction: column;
-  padding: 1rem 2rem 1rem 2rem;
-  background: hsl(0, 0%, 32%);
-  color: white;
+  max-width: 50rem;
+  padding: 1rem 2rem;
   border-radius: 0.05rem;
+  color: white;
+  background: hsl(0, 0%, 32%);
 
   .help-content h3 {
     color: white;
@@ -322,17 +320,17 @@ label.inline {
 }
 
 .Popover-tipShape {
-  fill: hsl(0, 0%, 32%)
+  fill: hsl(0, 0%, 32%);
 }
 
 .click-for-help {
-  border-bottom: 1px dotted #777;
+  border-bottom: 1px dotted #777777;
   cursor: help;
 }
 
 .asset-flag .label {
-  margin-bottom: 0.4rem;
   margin-right: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .markets-view-toggle {
@@ -343,8 +341,8 @@ label.inline {
 }
 
 .small-caps {
-  font-variant: small-caps;
   font-size: 85%;
+  font-variant: small-caps;
 }
 
 .tooltip:hover {
@@ -366,11 +364,11 @@ select {
 }
 
 select.bts-select {
+  max-width: 500px;
   border: none;
+  border-bottom: 1px solid #444444;
   background: none;
   background-color: transparent;
-  max-width: 500px;
-  border-bottom: 1px solid #444;
   -webkit-appearance: menulist;
   -moz-appearance: menulist;
   appearance: menulist;

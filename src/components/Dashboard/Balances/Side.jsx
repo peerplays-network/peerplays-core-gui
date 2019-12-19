@@ -8,9 +8,10 @@ import asset_utils from '../../../common/asset_utils';
 import AppActions from '../../../actions/AppActions';
 import SideVesting from './SideVesting';
 import {bindActionCreators} from 'redux';
+import GPOSPanel from '../../GPOSPanel';
 class Side extends React.Component {
 
-  componentWillMount() {
+  componentWillMount() { // TODO: unsafe, fix.
     this.props.fetchCurrentBalance();
   }
 
@@ -101,6 +102,9 @@ class Side extends React.Component {
               </div>
             );
           })}
+        </div>
+        <div className='aside__item bb'>
+          <GPOSPanel/>
         </div>
         <SideVesting/>
       </aside>

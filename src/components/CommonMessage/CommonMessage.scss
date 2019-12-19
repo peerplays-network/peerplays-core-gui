@@ -1,12 +1,12 @@
 .cmn-msg {
   position: fixed;
   top: 55px;
+  z-index: 1;
   width: 100%;
   height: 35px;
-  z-index: 1;
   color: white;
 
-  &__bkg{
+  &__bkg {
     animation-name: slideDown;
     animation-duration: 0.2s;
     animation-timing-function: ease-in-out;
@@ -15,15 +15,19 @@
     &--info {
       background-color: fade-in(#204496, 1);
     }
+
     &--error {
-      background-color: fade-in(#D60D2E, 1);
+      background-color: fade-in(#d60d2e, 1);
     }
+
     &--warning {
-      background-color: fade-in(#FF9603, 1);
+      background-color: fade-in(#ff9603, 1);
     }
+
     &--success {
-      background-color: fade-in(#02A04A, 1);
+      background-color: fade-in(#02a04a, 1);
     }
+
     &--none {
       display: none;
     }
@@ -33,10 +37,11 @@
     display: grid;
     grid-template-columns: auto 30px;
     grid-template-areas: 'msg dismiss';
-    padding: 7.25px 1vw;
+    padding: 7.25px 1vw; /* stylelint-disable-line declaration-property-unit-whitelist */
 
     &-dismiss {
       justify-self: end;
+
       &:hover {
         cursor: pointer;
       }
@@ -49,9 +54,11 @@
     transform: translateY(-100%);
     opacity: 0;
   }
+
   30% {
     opacity: 1;
   }
+
   100% {
     transform: translateY(0%);
   }

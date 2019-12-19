@@ -6,20 +6,27 @@ import {ChainStore, PrivateKey, ChainTypes} from 'peerplaysjs-lib';
 import AccountRepository from '../repositories/AccountRepository';
 import accountUtils from '../common/account_utils';
 import WalletApi from '../rpc_api/WalletApi';
-import {
+import ActionTypes from '../constants/ActionTypes';
+import Config from '../../config/Config';
+
+const [
   VOTING_SET_DATA,
   VOTING_CHANGE_PROXY,
   VOTING_SET_NEW_WITNESSES,
   VOTING_UPDATE_WITNESS_TAB
-} from '../constants/ActionTypes';
-import Config from '../../config/Config';
+] = [
+  ActionTypes.VOTING_SET_DATA,
+  ActionTypes.VOTING_CHANGE_PROXY,
+  ActionTypes.VOTING_SET_NEW_WITNESSES,
+  ActionTypes.VOTING_UPDATE_WITNESS_TAB
+];
 
 let witness_object_type  = parseInt(ChainTypes.object_type.witness, 10);
-let witness_prefix = '1.' + witness_object_type + '.';
+let witnessPrefix = '1.' + witness_object_type + '.';
 let lastBudgetObject = null;
 
 const DEFAULT_PROXY_ID = '1.2.5';
-const wallet_api = new WalletApi();
+const walletApi = new WalletApi();
 
 class VotingPrivateActions {
   static fetchDataAction(data) {
@@ -57,10 +64,9 @@ class VotingActions {
  */
   static fetchData() {
     return (dispatch, getState) => {
-      let accountName = getState().app.account;
+      const accountName = getState().app.account;
       return VotingActions.getProxyData(accountName).then((proxy) => {
-
-        let newWitnesses = getState().voting.newWitnesses;
+        const newWitnesses = getState().voting.newWitnesses;
 
         return VotingActions.getWitnessData(accountName, newWitnesses).then((witnesses) => {
           return VotingActions.getCMData(accountName).then((committeeMembers) => {
@@ -84,7 +90,7 @@ class VotingActions {
  */
   static fetchWitnessData() {
     return (dispatch, getState) => {
-      let accountName = getState().app.account,
+      const accountName = getState().app.account,
         newWitnesses = getState().voting.newWitnesses;
 
       return VotingActions.getWitnessData(accountName, newWitnesses).then((witnesses) => {
@@ -102,11 +108,11 @@ class VotingActions {
   */
   static getProxyData(accountName) {
     return Repository.fetchFullAccount(accountName).then((result) => {
-      let account = result.toJS();
-      let proxyId = account.options.voting_account;
+      const account = result.toJS();
+      const proxyId = account.options.voting_account;
 
       return Repository.getAccount(proxyId).then((result) => {
-        let proxy = result.toJS();
+        const proxy = result.toJS();
         return {
           name: proxyId !== DEFAULT_PROXY_ID ? proxy.name : '',
           id: proxyId
@@ -133,7 +139,7 @@ class VotingActions {
   static publishProxy(proxyId) {
     return (dispatch, getState) => {
       return Repository.getAccount(getState().app.account).then((result) => {
-        let account = result.toJS();
+        const account = result.toJS();
         account.account = account.id;
         account.new_options = account.options;
         account.new_options.voting_account = proxyId ? proxyId : DEFAULT_PROXY_ID;
@@ -141,8 +147,9 @@ class VotingActions {
           amount: 0,
           asset_id: accountUtils.getFinalFeeAsset(account.id, 'account_update')
         };
+        account.extensions = {value: {update_last_voting_time: true}};
 
-        let tr = wallet_api.new_transaction();
+        const tr = walletApi.new_transaction();
         tr.add_type_operation('account_update', account);
         return tr;
       });
@@ -162,27 +169,27 @@ class VotingActions {
       Repository.getObject('1.3.0'),
       Repository.getWitnesses()
     ]).then((results) => {
-      let account = results[0].toJS();
+      const account = results[0].toJS();
       let votes = account.options.votes;
-      let proxyId = account.options.voting_account;
-      let object200 = results[1].toJS();
-      let object210 = results[2].toJS();
-      let coreAsset = results[3].toJS();
-      let witnesses = results[4].toJS();
+      const proxyId = account.options.voting_account;
+      const object200 = results[1].toJS();
+      const object210 = results[2].toJS();
+      const coreAsset = results[3].toJS();
+      const witnesses = results[4].toJS();
 
       return Promise.all([Repository.getObject(object210.current_witness), (votes && votes.length)
         ? Repository.getObjectsByVoteIds(votes)
         : []]).then((results) => {
 
-        let result = results[0];
-        let votesArray = results[1];
-        let currentWitness = result.toJS();
+        const result = results[0];
+        const votesArray = results[1];
+        const currentWitness = result.toJS();
 
         return Repository.getAccount(currentWitness.witness_account).then((result) => {
-          let currentWitnessAccount = result.toJS();
-          let list = [];
-          let approvedAccounts = {};
-          let objectAccounts = {};
+          const currentWitnessAccount = result.toJS();
+          const list = [];
+          const approvedAccounts = {};
+          const objectAccounts = {};
           let allWitnesses = [];
 
           allWitnesses = allWitnesses.concat(Config.ACTIVE_WITNESS_ONLY
@@ -202,16 +209,16 @@ class VotingActions {
           });
 
           allWitnesses = allWitnesses.filter((witnessId) => {
-            return (witnessId && witnessId.indexOf(witness_prefix) !== -1);
+            return (witnessId && witnessId.indexOf(witnessPrefix) !== -1);
           });
 
-          let promises = allWitnesses.map((witnessId) => {
+          const promises = allWitnesses.map((witnessId) => {
             return Repository.getObject(witnessId).then((result) => {
               if (!result) {
                 return false;
               }
 
-              let witness = result.toJS();
+              const witness = result.toJS();
 
               if (!witness.witness_account) {
                 return false;
@@ -224,7 +231,7 @@ class VotingActions {
                   return null;
                 }
 
-                let witnessAccount = result.toJS();
+                const witnessAccount = result.toJS();
                 objectAccounts[witness.witness_account] = witnessAccount;
                 votes = votes.filter((item) => {
                   if (item === witness.vote_id) {
@@ -272,8 +279,8 @@ class VotingActions {
  */
   static addNewWitnessData(id) {
     return (dispatch, getState) => {
-      let state = getState();
-      let newWitnesses = state.voting.newWitnesses;
+      const state = getState();
+      const newWitnesses = state.voting.newWitnesses;
 
       newWitnesses.push(id);
 
@@ -294,7 +301,7 @@ class VotingActions {
   static publishWitnesses(witnesses) {
     return (dispatch, getState) => {
       return Repository.getAccount(getState().app.account).then((result) => {
-        let account = result.toJS();
+        const account = result.toJS();
         account.account = account.id;
         account.new_options = account.options;
         account.new_options.num_witness = witnesses.size;
@@ -303,17 +310,18 @@ class VotingActions {
           amount: 0,
           asset_id: accountUtils.getFinalFeeAsset(account.id, 'account_update')
         };
+        account.extensions = {value: {update_last_voting_time: true}};
 
-        let voteIds = getState().voting.witnesses.activeWitnesseObjects
+        const voteIds = getState().voting.witnesses.activeWitnesseObjects
           .filter((obj) => witnesses.has(obj.witness_account)).map((obj) => obj.vote_id).toArray();
         account.new_options.votes = getState().voting.witnesses.cmVotes.concat(voteIds)
           .sort((a, b) => {
-            let a_split = a.split(':');
-            let b_split = b.split(':');
+            const aSplit = a.split(':');
+            const bSplit = b.split(':');
 
-            return parseInt(a_split[1], 10) - parseInt(b_split[1], 10);
+            return parseInt(aSplit[1], 10) - parseInt(bSplit[1], 10);
           });
-        let tr = wallet_api.new_transaction();
+        const tr = walletApi.new_transaction();
         tr.add_type_operation('account_update', account);
         return tr;
       });
@@ -333,21 +341,21 @@ class VotingActions {
       Repository.getObject('2.1.0'),
       Repository.getObject('1.3.0')
     ]).then((results) => {
-      let account = results[0].toJS();
+      const account = results[0].toJS();
       let votes = account.options.votes;
-      let proxyId = account.options.voting_account;
-      let object200 = results[1].toJS();
-      let coreAsset = results[3].toJS();
-      let list = [];
-      let approvedAccounts = {};
-      let objectAccounts = {};
-      let promises = object200.active_committee_members.map((cmId) => {
+      const proxyId = account.options.voting_account;
+      const object200 = results[1].toJS();
+      const coreAsset = results[3].toJS();
+      const list = [];
+      const approvedAccounts = {};
+      const objectAccounts = {};
+      const promises = object200.active_committee_members.map((cmId) => {
         return Repository.getObject(cmId).then((result) => {
           if (!result) {
             return false;
           }
 
-          let committeeMember = result.toJS();
+          const committeeMember = result.toJS();
           list.push(committeeMember);
 
           Repository.getObject(committeeMember.committee_member_account).then((result) => {
@@ -396,7 +404,7 @@ class VotingActions {
   static publishCM(committeeMembers) {
     return (dispatch, getState) => {
       return Repository.getAccount(getState().app.account).then((result) => {
-        let account = result.toJS();
+        const account = result.toJS();
         account.account = account.id;
         account.new_options = account.options;
         account.new_options.num_committee = committeeMembers.size;
@@ -405,18 +413,19 @@ class VotingActions {
           amount: 0,
           asset_id: accountUtils.getFinalFeeAsset(account.id, 'account_update')
         };
+        account.extensions = {value: {update_last_voting_time: true}};
 
-        let voteIds = getState().voting.committeeMembers.activeCMObjects
+        const voteIds = getState().voting.committeeMembers.activeCMObjects
           .filter((obj) => committeeMembers.has(obj.committee_member_account))
           .map((obj) => obj.vote_id).toArray();
         account.new_options.votes = getState().voting.committeeMembers.witnessesVotes
           .concat(voteIds).sort((a, b) => {
-            let a_split = a.split(':');
-            let b_split = b.split(':');
+            const aSplit = a.split(':');
+            const bSplit = b.split(':');
 
-            return parseInt(a_split[1], 10) - parseInt(b_split[1], 10);
+            return parseInt(aSplit[1], 10) - parseInt(bSplit[1], 10);
           });
-        let tr = wallet_api.new_transaction();
+        const tr = walletApi.new_transaction();
         tr.add_type_operation('account_update', account);
         return tr;
       });
@@ -432,10 +441,10 @@ class VotingActions {
    * @param {string} accountName
    */
   static getProposalsData(accountName) {
-    let workerPromises = [];
+    const workerPromises = [];
 
     for (let i = 0; i < 100; i++) {
-      let id = '1.14.' + i;
+      const id = `1.14.${i}`;
       workerPromises.push(Repository.getObject(id).then((w) => w).catch((e) => e));
     }
 
@@ -445,7 +454,7 @@ class VotingActions {
           return false;
         }
 
-        let now = new Date();
+        const now = new Date();
 
         return (
           new Date(w.get('work_end_date')) > now && new Date(w.get('work_begin_date')) <= now
@@ -462,29 +471,29 @@ class VotingActions {
         Repository.getObject('1.3.0'),
         Repository.getObject(lastBudgetObject ? lastBudgetObject : '2.13.1').catch((err) => err)
       ]).then((results) => {
-        let workers = results[0];
-        let globalObject = results[1].toJS();
-        let account = results[2].toJS();
-        let coreAsset = results[3].toJS();
-        let coreSymbol = asset_utils.getSymbol(coreAsset.symbol);
-        let precision = Math.pow(10, coreAsset.precision);
-        let votes = Immutable.Set(account.options.votes);
+        const workers = results[0];
+        const globalObject = results[1].toJS();
+        const account = results[2].toJS();
+        const coreAsset = results[3].toJS();
+        const coreSymbol = asset_utils.getSymbol(coreAsset.symbol);
+        const precision = Math.pow(10, coreAsset.precision);
+        const votes = Immutable.Set(account.options.votes);
         let budgetObject = results[4];
 
         if (budgetObject) {
-          let timestamp = budgetObject.get('time');
-          let now = new Date();
-          let idIndex = parseInt(budgetObject.get('id').split('.')[2], 10);
-          let currentID = idIndex + Math.floor((now - new Date(timestamp + '+00:00')
+          const timestamp = budgetObject.get('time');
+          const now = new Date();
+          const idIndex = parseInt(budgetObject.get('id').split('.')[2], 10);
+          const currentID = idIndex + Math.floor((now - new Date(timestamp + '+00:00')
             .getTime()) / 1000 / 60 / 60) - 1;
-          let newID = '2.13.' + Math.max(idIndex, currentID);
+          const newID = `2.13.${Math.max(idIndex, currentID)}`;
 
           ChainStore.getObject(newID);
           lastBudgetObject = newID;
         } else {
           if (lastBudgetObject && lastBudgetObject !== '2.13.1') {
-            let newBudgetObjectId = parseInt(lastBudgetObject.split('.')[2], 10) - 1;
-            lastBudgetObject = '2.13.' + (newBudgetObjectId - 1);
+            const newBudgetObjectId = parseInt(lastBudgetObject.split('.')[2], 10) - 1;
+            lastBudgetObject = `2.13.${(newBudgetObjectId - 1)}`;
           }
         }
 
@@ -503,14 +512,12 @@ class VotingActions {
             .getIn(['record', 'worker_budget']), workerBudget);
         }
 
-        let remainingBudget = globalObject ? globalObject.parameters.worker_budget_per_day : 0; // eslint-disable-line
-
-        let dataPromises = workers.map((worker, index) => { // eslint-disable-line
+        const dataPromises = workers.map((worker, index) => { // eslint-disable-line
           let dailyPay = parseInt(worker.daily_pay, 10);
           workerBudget = workerBudget - dailyPay;
-          let rest = workerBudget + dailyPay;
-          let totalVotes = (worker.total_votes_for - worker.total_votes_against) / precision;
-          let approvalState = votes.has(worker.vote_for)
+          const rest = workerBudget + dailyPay;
+          const totalVotes = (worker.total_votes_for - worker.total_votes_against) / precision;
+          const approvalState = votes.has(worker.vote_for)
             ? true
             : votes.has(worker.vote_against)
               ? false
@@ -526,7 +533,7 @@ class VotingActions {
           let displayURL = worker.url ? worker.url.replace(/http:\/\/|https:\/\//, '') : '';
 
           if (displayURL.length > 25) {
-            displayURL = displayURL.substr(0, 25) + '...';
+            displayURL = `${displayURL.substr(0, 25)}...`;
           }
 
           let fundedPercent = 0;
@@ -537,10 +544,10 @@ class VotingActions {
             fundedPercent = rest / worker.daily_pay * 100;
           }
 
-          let startDate = counterpart.localize(new Date(worker.work_begin_date), {type: 'date'});
-          let endDate = counterpart.localize(new Date(worker.work_end_date), {type: 'date'});
-          let now = new Date();
-          let isExpired = new Date(worker.work_end_date) <= now;
+          const startDate = counterpart.localize(new Date(worker.work_begin_date), {type: 'date'});
+          const endDate = counterpart.localize(new Date(worker.work_end_date), {type: 'date'});
+          const now = new Date();
+          const isExpired = new Date(worker.work_end_date) <= now;
 
           return Promise.all([
             Repository.getAccount(worker.worker_account),
@@ -551,10 +558,10 @@ class VotingActions {
               ? Promise.resolve(worker.worker[1].total_burned)
               : Promise.resolve(null)
           ]).then((arr) => {
-            let creator = arr[0].toJS();
+            const creator = arr[0].toJS();
 
-            let unclaimedPay = arr[1] ? arr[1].toJS().balance.amount / precision : null;
-            let recycled = arr[2] ? arr[2] / precision : null;
+            const unclaimedPay = arr[1] ? arr[1].toJS().balance.amount / precision : null;
+            const recycled = arr[2] ? arr[2] / precision : null;
             dailyPay = dailyPay / precision;
             return {
               id: worker.id,
@@ -602,12 +609,12 @@ class VotingActions {
   static publishProposals(votes) {
     return (dispatch, getState) => {
       return Repository.getAccount(getState().app.account).then((result) => {
-        let account = result.toJS();
+        const account = result.toJS();
         account.account = account.id;
         account.new_options = account.options;
-        let vote_ids = votes;
-        let workers = getState().voting.proposals.list;
-        let now = new Date();
+        let voteIds = votes;
+        const workers = getState().voting.proposals.list;
+        const now = new Date();
 
         function removeVote(list, vote) {
           if (list.includes(vote)) {
@@ -620,23 +627,23 @@ class VotingActions {
         workers.forEach((worker) => {
           if (worker) {
             if (new Date(worker.endDate) <= now) {
-              vote_ids = removeVote(vote_ids, worker.vote_for);
+              voteIds = removeVote(voteIds, worker.vote_for);
             }
 
             // TEMP Remove vote_against since they're no longer used
-            vote_ids = removeVote(vote_ids, worker.vote_against);
+            voteIds = removeVote(voteIds, worker.vote_against);
           }
         });
 
-        account.new_options.votes = vote_ids.toArray()
+        account.new_options.votes = voteIds.toArray()
           .sort((a, b) => {
-            let a_split = a.split(':');
-            let b_split = b.split(':');
+            const aSplit = a.split(':');
+            const bSplit = b.split(':');
 
-            return parseInt(a_split[1], 10) - parseInt(b_split[1], 10);
+            return parseInt(aSplit[1], 10) - parseInt(bSplit[1], 10);
           });
 
-        let tr = wallet_api.new_transaction();
+        const tr = walletApi.new_transaction();
         tr.add_type_operation('account_update', account);
         return tr;
       });
@@ -646,10 +653,10 @@ class VotingActions {
   static holdTransaction(tr) {
     return (dispatch, getState) => {
       return new Promise((resolve, reject) => {
-        let aes_private = getState().walletData.aesPrivate,
+        const aesPrivate = getState().walletData.aesPrivate,
           keys = getState().privateKey.keys,
           processKey = keys.get('owner') ? keys.get('owner') : keys.get('active');
-        const privateKeyBuffer = aes_private.decryptHexToBuffer(processKey.encrypted_key);
+        const privateKeyBuffer = aesPrivate.decryptHexToBuffer(processKey.encrypted_key);
         const key = PrivateKey.fromBuffer(privateKeyBuffer);
 
         AccountRepository.process_transaction(tr, key).then(() => resolve())

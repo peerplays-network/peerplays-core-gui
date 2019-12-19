@@ -320,16 +320,13 @@ class AccountRepository {
         return tr.get_potential_signatures().then(({pubkeys,addys}) => { // eslint-disable-line
           let myPubKeys = [publicKey];
 
-          // if (pubkeys.indexOf(publicKey) === -1) {
-          //     reject();
-          // }
-
           return tr.get_required_signatures(myPubKeys).then((requiredPubKeys) => { // eslint-disable-line
             //if (requiredPubKeys.length > 0) {
             tr.add_signer(privateKey, publicKey);
             tr.broadcast((data) => {
               resolve(data);
             }).catch((error) => {
+              // console.error(error);
               reject(error);
             });
             //}

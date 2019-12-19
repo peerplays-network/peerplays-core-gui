@@ -4,7 +4,8 @@ import {listenChainStore} from './ChainStoreService';
 import ConnectManager from './ConnectManager';
 import AppActions from '../actions/AppActions';
 import ChainStoreHeartbeater from '../app/ChainStoreHeartbeater';
-import {initSettings} from '../actions/RSettingsActions';
+import RSettingsActions from '../actions/RSettingsActions';
+const initSettings = RSettingsActions.initSettings;
 
 class AppService {
   /**

@@ -1,6 +1,6 @@
 @charset "utf-8";
-@import "variables";
-@import "mixins";
+@import 'variables';
+@import 'mixins';
 
 html {
   height: 100%;
@@ -8,12 +8,12 @@ html {
 }
 
 body {
-  height: 100%;
   min-width: 920px;
-  color: $text-color-bg;
-  font-size: 16px;
+  height: 100%;
   line-height: 1.25;
   font-weight: $fw;
+  font-size: 16px;
+  color: $text-color-bg;
   background: $body-bg;
 
   &.loginBg {
@@ -24,10 +24,10 @@ body {
     }
 
     .footer {
-      background: #fff;
+      background: #ffffff;
 
-      &:before {
-        background: #fff;
+      &::before {
+        background: #ffffff;
       }
 
       &__copy {
@@ -38,9 +38,9 @@ body {
 }
 
 .wrapper {
+  z-index: 2;
   background: $body-bg;
   overflow: hidden;
-  z-index: 2;
 
   &-with-footer {
     padding-bottom: 50px;
@@ -128,15 +128,16 @@ body {
   }
 
   &-pink {
-    background: #fbfcfe;
-    height: 30px;
-    line-height: 30px;
-    width: auto;
     display: inline-block;
-    font-size: 16px;
-    font-weight: 600;
-    color: #ff35bf;
+    width: auto;
+    height: 30px;
     padding: 0 15px;
+    line-height: 30px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #ff35bf;
+    background: #fbfcfe;
+
     @include border-radius(20px);
   }
 }
@@ -163,16 +164,17 @@ body {
 }
 
 a {
-  text-decoration: none;
   color: $text-color;
+  text-decoration: none;
+
   @include transition();
 }
 
 .img-responsive {
   display: inline-block;
-  height: 100%;
   vertical-align: middle;
   max-width: 100%;
+  height: 100%;
   max-height: 100%;
 }
 
@@ -180,55 +182,57 @@ a {
   display: none;
 
   &.active {
-    position: relative;
-    content: "";
-    height: 100vh;
-    width: 0;
+    content: '';
     display: inline-block;
+    position: relative;
     vertical-align: middle;
+    width: 0;
+    height: 100vh;
     margin-bottom: -50px;
 
-    &~.content {
+    & ~ .content {
       @include va_middle_in;
+
       width: 99%;
     }
   }
-
 }
 
 .box {
-  padding: 0 $defXPad;
   //max-width: $maxWidth;
   margin: 0 auto;
+  padding: 0 $defXPad;
 
   &-inPadding {
     //padding: 50px 0;
   }
 
   &-inner {
-    background: $box-inner-bg;
+    margin-bottom: 20px;
     padding: 35px $defXPad 30px;
     border-radius: 5px;
-    margin-bottom: 20px;
+    background: $box-inner-bg;
+
     @include box-shadow($box-inner-shadow);
 
     & .hr {
-      margin: 0;
       height: 80px;
+      margin: 0;
     }
 
     &-2 {
-      padding: 35px $insideXPad 50px;
       margin: 0;
+      padding: 35px $insideXPad 50px;
     }
   }
 
   &-white-inside {
-    background: $box-inner-bg;
+    margin-bottom: 40px;
     padding: 50px $insideXPad 60px;
+    background: $box-inner-bg;
+
     @include box-shadow($table-shadow2);
     @include border-radius(2px);
-    margin-bottom: 40px;
   }
 }
 
@@ -236,24 +240,25 @@ a {
   float: left;
   width: 182px;
   height: 72px;
+  margin: 0;
   line-height: $headerHeight;
   text-align: center;
-  margin: 0;
+
   @include transition();
 
   img {
     display: block;
+    vertical-align: middle;
     width: 100%;
     height: 100%;
-    vertical-align: middle;
   }
 
   &-lg {
     display: block;
-    margin: 60px auto 6px;
     float: none;
     width: 117px;
     height: 150px;
+    margin: 60px auto 6px;
   }
 
   &:hover {
@@ -265,11 +270,11 @@ a {
   }
 
   .header & {
-    margin: 0;
-    height: 100%;
     width: auto;
-    padding: 0 20px;
+    height: 100%;
+    margin: 0;
     margin-right: 30px;
+    padding: 0 20px;
 
     //border-right: 1px solid $menu-limiter-color;
     img {
@@ -277,13 +282,13 @@ a {
       width: auto;
       height: 36px;
     }
-
   }
 }
 
 .main {
   margin-top: 55px;
-  .header~& {
+
+  .header ~ & {
     margin-top: $headerHeight;
   }
 }
@@ -307,18 +312,18 @@ a {
     }
 
     &Title {
-      font-size: 20px;
-      font-weight: 500;
-      color: $text-color-bg;
       padding: 7px 45px 7px 0;
+      font-weight: 500;
+      font-size: 20px;
+      color: $text-color-bg;
     }
 
     &Btn {
       float: left;
-      height: 38px !important;
-      padding: 0 20px !important;
       min-width: 140px !important;
+      height: 38px !important;
       margin-top: 5px !important;
+      padding: 0 20px !important;
     }
 
     &BtnIcon {
@@ -337,12 +342,13 @@ a {
 }
 
 .dialog {
-  background: #fff;
   //width: 700px;
   width: 800px;
   margin: 0 auto;
-  font-size: 16px;
   line-height: 1.25;
+  font-size: 16px;
+  background: #ffffff;
+
   @include border-radius(10px);
 
   &-lg {
@@ -352,25 +358,24 @@ a {
   &-loading {
     min-height: 360px !important;
   }
-
 }
 
 .h1 {
-  text-align: center;
-  padding: 15px 10px;
   margin: 0 0 30px;
-  font-size: 22px;
-  text-transform: uppercase;
+  padding: 15px 10px;
   font-weight: 500;
+  font-size: 22px;
   color: $h1-color;
+  text-align: center;
+  text-transform: uppercase;
 
   &__main {
-    color: $heading-color;
+    margin: 0;
+    padding: 30px 0 20px;
     font-size: 24px;
+    color: $heading-color;
     text-align: left;
     text-transform: none;
-    padding: 30px 0 20px;
-    margin: 0;
 
     &.text_c {
       text-align: center;
@@ -379,30 +384,30 @@ a {
 }
 
 .h2 {
-  color: $heading-color;
-  font-size: 17px;
-  font-weight: 400;
   padding-bottom: 10px;
+  font-weight: 400;
+  font-size: 17px;
+  color: $heading-color;
 }
 
 .h3 {
-  color: $heading-color;
-  font-size: 17px;
-  font-weight: 400;
-  padding-bottom: 20px;
   padding-top: 10px;
+  padding-bottom: 20px;
+  font-weight: 400;
+  font-size: 17px;
+  color: $heading-color;
 
-  .table+& {
+  .table + & {
     margin-top: 30px;
   }
 }
 
 .page__title {
-  padding: 15px 0;
-  font-size: 25px;
-  font-weight: $fw;
-  color: #454e57;
   margin-bottom: 10px;
+  padding: 15px 0;
+  font-weight: $fw;
+  font-size: 25px;
+  color: #454e57;
 }
 
 .hint {
@@ -416,34 +421,34 @@ a {
 }
 
 .desc2 {
+  margin-bottom: 15px;
+  padding: 0 17px;
   font-size: 20px;
   color: $text-color-bg;
-  padding: 0 17px;
-  margin-bottom: 15px;
 }
 
 .picH32 {
   img {
-    height: 32px;
     display: inline-block;
     vertical-align: middle;
+    height: 32px;
   }
 }
 
 .table__thAction {
+  display: inline-block;
   width: 120px;
   text-align: left;
-  display: inline-block;
 }
 
 .memo {
   &KeyIcon {
-    margin-top: 26px;
-    width: 50px;
-    color: $color-second;
-    font-size: 27px;
     float: left;
+    width: 50px;
+    margin-top: 26px;
     line-height: 52px;
+    font-size: 27px;
+    color: $color-second;
   }
 
   &FieldRow {
@@ -452,35 +457,38 @@ a {
 }
 
 .limiter {
-  border-bottom: 1px solid $delimiter-bd-color;
-  @include box-shadow($delimiter-bd-shadow);
   margin: 50px (-$insideXPad) 35px;
+  border-bottom: 1px solid $delimiter-bd-color;
+
+  @include box-shadow($delimiter-bd-shadow);
 }
 
 .assets {
   &__list {
     @include clearfix;
-    background: $asset-bg;
+
     margin-bottom: 40px;
     padding: 45px 10px 33px $insideXPad;
+    background: $asset-bg;
+
     @include box-shadow($shadow);
 
     &-inside {
-
-      &:before,
-      &:after {
+      &::before,
+      &::after {
         content: none;
       }
 
       display: flex;
       justify-content: space-between;
-      overflow: hidden;
-      padding: 20px 0;
       clear: both;
-      @include box-shadow(none);
       margin-bottom: 18px;
+      padding: 20px 0;
+      overflow: hidden;
 
-      &+& {
+      @include box-shadow(none);
+
+      & + & {
         margin-bottom: 0;
         padding-bottom: 5px;
       }
@@ -495,23 +503,21 @@ a {
   }
 
   &__label {
-    color: $asset-label-color;
-    font-size: 16px;
     margin-bottom: 10px;
-
+    font-size: 16px;
+    color: $asset-label-color;
   }
 
   &__labeled {
-    font-size: 30px;
     font-weight: 600;
+    font-size: 30px;
     color: $text-color-bg;
-
   }
 
   &__unit {
-    color: $assets-unit-color;
-    font-size: 14px;
     font-weight: 400;
+    font-size: 14px;
+    color: $assets-unit-color;
   }
 }
 
@@ -529,6 +535,6 @@ a {
 .calendarIcon {
   font-size: 27px;
   color: $calendarIcon-color;
-  @include transition();
 
+  @include transition();
 }

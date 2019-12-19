@@ -52,4 +52,4 @@ function configureStore(preloadedState) {
 
 store = configureStore();
 
-module.exports = store;
+export default store;

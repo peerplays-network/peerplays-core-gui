@@ -7,18 +7,18 @@
 .footer {
   position: relative;
   z-index: 3;
-  background: $footer-bg;
   height: 50px;
   margin-top: -50px;
+  background: $footer-bg;
 
-  &:before {
-    position: absolute;
+  &::before {
     content: '';
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
     display: block !important;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 1px;
     background: $footer-bd-color;
   }
 
@@ -27,7 +27,7 @@
   &__copy {
     float: right;
     line-height: 50px;
-    color: $footer-color;
     font-size: 14px;
+    color: $footer-color;
   }
 }

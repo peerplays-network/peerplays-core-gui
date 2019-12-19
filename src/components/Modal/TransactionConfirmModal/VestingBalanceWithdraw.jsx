@@ -38,9 +38,9 @@ class VestingBalanceWithdraw extends React.Component {
             <div className='mConf__tableRight'>
               <span className='mark2'>
                 {
-                  amountValue
+                  !amountValue
                     ? amountValue
-                    : operation.buy_in.amount.amount
+                    : operation.buy_in && operation.buy_in.amount.amount
                 } / {
                   asset
                     ? asset_utils.getSymbol(asset.symbol)

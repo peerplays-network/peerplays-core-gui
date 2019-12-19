@@ -2,15 +2,15 @@
   width: 100%;
 }
 
-.table>thead>tr>th {
-  border-bottom: 1px solid #ddd;
+.table > thead > tr > th {
   padding: 12px 5px;
-  //padding-right: 8px;
-  text-transform: uppercase;
+  border-bottom: 1px solid #dddddd;
   font-weight: normal;
   font-size: 0.9rem;
-  color: #777;
+  color: #777777;
   text-align: left;
+  //padding-right: 8px;
+  text-transform: uppercase;
 }
 
 .table>tbody>tr>td {
@@ -22,8 +22,8 @@
   border-bottom: none;
 }
 
-.table-hover>tbody>tr:hover>td,
-.table-hover>tbody>tr:hover>th {
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
   background-color: #f5f5f5;
   cursor: pointer;
 }
@@ -33,13 +33,12 @@
     padding-left: 0 !important;
   }
 
-  tr>td:last-child {
+  tr > td:last-child {
     text-align: right;
   }
 }
 
 .table.compact {
-
   td,
   th {
     font-size: 94%;

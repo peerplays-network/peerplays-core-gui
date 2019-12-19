@@ -2,6 +2,12 @@ var endpoints = require('./endpoints');
 var REACT_APP = /^REACT_APP_/i;
 
 function getClientEnvironment(publicUrl) {
+  let isTestnet = true;
+
+  if (endpoints.name.toLowerCase() === 'alice') {
+    isTestnet = false;
+  }
+
   var raw = Object.keys(process.env).filter((key) => REACT_APP.test(key)).reduce((env, key) => {
     env[key] = process.env[key];
     return env;
@@ -13,7 +19,8 @@ function getClientEnvironment(publicUrl) {
     // For example, <img src={process.env.PUBLIC_URL + '/img/logo.png'} />.
     // This should only be used as an escape hatch. Normally you would put
     // images into the `src` and `import` them in code to get their paths.
-    'PUBLIC_URL': publicUrl
+    'PUBLIC_URL': publicUrl,
+    'IS_TESTNET': isTestnet
   });
 
   raw = Object.assign(raw, endpoints);

@@ -3,25 +3,25 @@
 }
 
 .chart__title {
-  color: $text-color2;
-  font-size: 16px;
-  text-align: center;
   margin: 0 0 10px;
+  font-size: 16px;
+  color: $text-color2;
+  text-align: center;
 }
 
 .highcharts-tooltip {
   z-index: 1;
 
   .text {
-    font-size: 10px;
     line-height: 12px;
+    font-size: 10px;
     color: $faded-color;
     text-transform: uppercase;
   }
 
   .num {
-    font-size: 10px;
     line-height: 12px;
+    font-size: 10px;
     color: $clear-color;
   }
 }

@@ -14,20 +14,21 @@
   &__item {
     display: block;
     height: 30px;
-    line-height: 30px;
     padding: 0 7px;
+    line-height: 30px;
     font-size: 14px;
     color: rgba(255, 255, 255, .5);
+
     @include border-radius(4px);
     @include transition();
 
     &.active {
-      color: #fff;
+      color: #ffffff;
       background: #1c2254;
     }
 
     &:hover {
-      color: #fff;
+      color: #ffffff;
       background: rgba(#1c2254, .4);
     }
   }
@@ -35,8 +36,8 @@
   &__dots {
     display: block;
     height: 30px;
-    line-height: 30px;
     padding: 0 7px;
+    line-height: 30px;
     font-size: 14px;
     color: rgba(255, 255, 255, .5);
   }

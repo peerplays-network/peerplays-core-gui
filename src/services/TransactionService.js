@@ -1,8 +1,10 @@
-import {setTransaction} from '../actions/RTransactionConfirmActions';
 import {PrivateKey} from 'peerplaysjs-lib';
 import WalletApi from '../rpc_api/WalletApi';
 import AccountRepository from '../repositories/AccountRepository';
 import Repository from '../repositories/chain/repository';
+import TransactionConfirmActions from '../actions/RTransactionConfirmActions';
+import BalanceTypes from '../constants/BalanceTypes';
+const setTransaction = TransactionConfirmActions.setTransaction;
 
 let wallet_api = new WalletApi();
 /**
@@ -33,6 +35,7 @@ class TransactionService {
     let assetsHashIds = {};
     let assetsPromises = [];
 
+    // eslint-disable-next-line no-unused-vars
     for (let balance_claim of balance_claims) {
       tr.add_type_operation('balance_claim', balance_claim);
 
@@ -137,7 +140,8 @@ class TransactionService {
       amount: {
         amount: Math.floor(balance * availablePercent),
         asset_id: cvb.balance.asset_id
-      }
+      },
+      balance_type: BalanceTypes.normal
     };
 
     let tr = wallet_api.new_transaction();

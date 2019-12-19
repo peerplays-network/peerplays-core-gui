@@ -9,16 +9,17 @@
   &-control {
     position: relative;
     z-index: 1;
-    height: 50px;
-    background: #fff !important;
-    font-size: 18px;
-    font-weight: 500;
-    @include border-radius(3px);
     width: 100%;
-    color: $text-color;
-    border: none !important;
+    height: 50px;
     padding: 0 18px;
+    border: none !important;
+    font-weight: 500;
+    font-size: 18px;
+    color: $text-color;
+    background: #ffffff !important;
     text-shadow: none;
+
+    @include border-radius(3px);
     @include transition(all .15s ease);
     @include box-shadow(0 5px 20px rgba(0, 0, 0, 0.05));
   }
@@ -42,20 +43,20 @@
 
   &-arrow-zone {
     position: absolute;
-    font-size: 6px;
-    line-height: 50px;
-    color: $text-color;
     top: 0;
     right: 0;
     width: 31px;
     height: 100%;
     border-left: none;
+    line-height: 50px;
+    font-size: 6px;
+    color: $text-color;
   }
 
   &-arrow {
-    &:before {
+    &::before {
+      content: '\e901';
       display: block;
-      content: "\e901";
       font-family: icomoon, sans-serif !important;
     }
   }
@@ -72,16 +73,16 @@
   &-menu-outer {
     position: absolute;
     top: 100% !important;
-    width: 100%;
     left: 0;
     z-index: 2;
-    border: none;
-    background: #FFF;
-    padding: 0;
+    width: 100%;
     margin: 0;
+    padding: 0;
+    border: none;
+    background: #ffffff;
+    -webkit-overflow-scrolling: touch;
     //max-height: 200px;
     @include box-shadow(0 6px 20px rgba(0, 0, 0, 0.05));
-    -webkit-overflow-scrolling: touch;
   }
 
   &-menu {
@@ -90,41 +91,42 @@
   }
 
   &-option {
-    cursor: pointer;
     display: block;
+    padding: 10px 18px;
     font-size: 16px;
     color: $text-color;
-    background: #fff;
-    padding: 10px 18px;
+    background: #ffffff;
+    cursor: pointer;
+
     @include transition();
 
     &:hover {
-      background: #ececec !important;
       color: $text-color;
+      background: #ececec !important;
     }
   }
 
   &-option.is-selected {
-    background: #fff;
     color: $text-color;
+    background: #ffffff;
   }
 
   &-option.is-focused {
-    background: #ececec !important;
     color: $text-color;
+    background: #ececec !important;
   }
 
   &-option.is-disabled {
     color: #cccccc;
-    cursor: default;
     background: transparent !important;
+    cursor: default;
   }
 
   &-noresults {
-    color: #999999;
-    cursor: default;
     display: block;
     padding: 8px 10px;
+    color: #999999;
+    cursor: default;
   }
 }
 
@@ -134,7 +136,7 @@
   }
 
   .Select-menu-outer {
-    border: 1px solid $select-bd-color !important;
     margin-top: -1px;
+    border: 1px solid $select-bd-color !important;
   }
 }

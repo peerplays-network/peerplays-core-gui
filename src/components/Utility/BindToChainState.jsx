@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
-import {curry, flow, reject, clone, pairs, omit, get, pick} from 'lodash';
+import {curry, flow, reject, clone, toPairs, omit, get, pick} from 'lodash';
 import {ChainStore} from 'peerplaysjs-lib';
 import ChainTypes from './ChainTypes';
 import utils from '../../common/utils';
@@ -31,10 +32,10 @@ import LoadingIndicator from '../LoadingIndicator';
  * <Balance balance="1.5.3"/>
  */
 
-const arrayElement = (element_number, array) => array[element_number];
+const arrayElement = (elementNumber, array) => array[elementNumber];
 const firstEl = curry(arrayElement)(0);
 const secondEl = curry(arrayElement)(1);
-const checkChainType = curry( (chain_type, t) => t === chain_type || t === chain_type.isRequired );
+const checkChainType = curry( (chainType, t) => t === chainType || t === chainType.isRequired );
 const isObjectType = checkChainType(ChainTypes.ChainObject);
 const isAccountType = checkChainType(ChainTypes.ChainAccount);
 const isKeyRefsType = checkChainType(ChainTypes.ChainKeyRefs);
@@ -45,8 +46,8 @@ const isAccountsListType = checkChainType(ChainTypes.ChainAccountsList);
 const isAssetsListType = checkChainType(ChainTypes.ChainAssetsList);
 
 function checkIfRequired(t) {
-  for(let k in ChainTypes) {
-    let v = ChainTypes[k];
+  for (const k in ChainTypes) {
+    const v = ChainTypes[k];
 
     if (t === v.isRequired) {
       return true;
@@ -62,7 +63,7 @@ function BindToChainState(options) {
     return class Wrapper extends React.Component {
       constructor(props) {
         super(props);
-        let prop_types_array = pairs(Component.propTypes); // TODO: deprecate
+        let propTypesArray = toPairs(Component.propTypes); // TODO: deprecate proptypes from another component
 
         if (options && options.all_props) {
           this.chain_objects = reject(
@@ -79,19 +80,19 @@ function BindToChainState(options) {
           this.required_props = [];
           this.all_chain_props = this.chain_objects;
         } else {
-          this.chain_objects = prop_types_array.filter(flow(secondEl, isObjectType)).map(firstEl);
-          this.chain_accounts = prop_types_array.filter(flow(secondEl, isAccountType)).map(firstEl);
-          this.chain_key_refs = prop_types_array.filter(flow(secondEl, isKeyRefsType)).map(firstEl);
-          this.chain_address_balances = prop_types_array
+          this.chain_objects = propTypesArray.filter(flow(secondEl, isObjectType)).map(firstEl);
+          this.chain_accounts = propTypesArray.filter(flow(secondEl, isAccountType)).map(firstEl);
+          this.chain_key_refs = propTypesArray.filter(flow(secondEl, isKeyRefsType)).map(firstEl);
+          this.chain_address_balances = propTypesArray
             .filter(flow(secondEl, isAddressBalancesType)).map(firstEl);
-          this.chain_assets = prop_types_array.filter(flow(secondEl, isAssetType)).map(firstEl);
-          this.chain_objects_list = prop_types_array
+          this.chain_assets = propTypesArray.filter(flow(secondEl, isAssetType)).map(firstEl);
+          this.chain_objects_list = propTypesArray
             .filter(flow(secondEl, isObjectsListType)).map(firstEl);
-          this.chain_accounts_list = prop_types_array
+          this.chain_accounts_list = propTypesArray
             .filter(flow(secondEl, isAccountsListType)).map(firstEl);
-          this.chain_assets_list = prop_types_array
+          this.chain_assets_list = propTypesArray
             .filter(flow(secondEl, isAssetsListType)).map(firstEl);
-          this.required_props = prop_types_array
+          this.required_props = propTypesArray
             .filter(flow(secondEl, checkIfRequired)).map(firstEl);
           this.all_chain_props = [...this.chain_objects,
             ...this.chain_accounts,
@@ -108,8 +109,8 @@ function BindToChainState(options) {
         this.dynamic_props = {};
         this.default_props = clone(Component.defaultProps) || {};
 
-        for (let key in this.default_props) {
-          let value = this.default_props[key];
+        for (const key in this.default_props) {
+          const value = this.default_props[key];
 
           if (typeof(value) === 'string' && value.indexOf('props.') === 0) {
             this.dynamic_props[key] = get(this, value);
@@ -138,71 +139,71 @@ function BindToChainState(options) {
         ChainStore.unsubscribe(this.update);
       }
 
-      componentWillReceiveProps(next_props) {
+      componentWillReceiveProps(nextProps) {
         if (options && options.all_props) {
           this.chain_objects = reject(
-            Object.keys(next_props),
+            Object.keys(nextProps),
             (e) => e === 'children' || e === 'keep_updating' || e === 'show_loader'
           );
           this.all_chain_props = this.chain_objects;
           this.setState = pick(this.state, this.chain_objects);
         }
 
-        let props_obj = null;
+        let propsObj = null;
 
-        for(let k in this.dynamic_props) {
-          let selector = this.default_props[k];
+        for(const k in this.dynamic_props) {
+          const selector = this.default_props[k];
 
-          if (!props_obj) {
-            props_obj = {props: next_props};
+          if (!propsObj) {
+            propsObj = {props: nextProps};
           }
 
-          let cur_value  = get(this, selector);
-          let next_value = get(props_obj, selector);
+          const curValue = get(this, selector);
+          const nextValue = get(propsObj, selector);
 
-          if (next_value && next_value !== cur_value) {
-            this.dynamic_props[k] = get(props_obj, selector);
+          if (nextValue && nextValue !== curValue) {
+            this.dynamic_props[k] = get(propsObj, selector);
           }
         }
 
-        this.update(next_props);
+        this.update(nextProps);
       }
 
-      update(next_props = null) {
-        let props = next_props || this.props;
-        let new_state = {};
-        let all_objects_counter = 0;
-        let resolved_objects_counter = 0;
+      update(nextProps = null) {
+        const props = nextProps || this.props;
+        const newState = {};
+        let allObjectsCounter = 0;
+        let resolvedObjectsCounter = 0;
 
-        for( let key of this.chain_objects ) {
-          let prop = props[key] || this.dynamic_props[key] || this.default_props[key];
+        for(const key of this.chain_objects ) {
+          const prop = props[key] || this.dynamic_props[key] || this.default_props[key];
 
           if (prop) {
-            let new_obj = ChainStore.getObject(prop);
+            const newObj = ChainStore.getObject(prop);
 
             if (
-              new_obj === undefined
+              newObj === undefined
               && this.required_props.indexOf(key) === -1
-              && new_obj !== this.state[key]
+              && newObj !== this.state[key]
             ) {
-              new_state[key] = new_obj;
-            } else if (new_obj && new_obj !== this.state[key]) {
-              new_state[key] = new_obj;
+              newState[key] = newObj;
+            } else if (newObj && newObj !== this.state[key]) {
+              newState[key] = newObj;
             }
 
-            ++all_objects_counter;
+            ++allObjectsCounter;
 
-            if (new_obj !== undefined) {
-              ++resolved_objects_counter;
+            if (newObj !== undefined) {
+              ++resolvedObjectsCounter;
             }
           } else {
             if (this.state[key]) {
-              new_state[key] = null;
+              newState[key] = null;
             }
           }
         }
 
-        for( let key of this.chain_accounts ) {
+        for (const key of this.chain_accounts ) {
           let prop = props[key] || this.dynamic_props[key] || this.default_props[key];
 
           if (prop) {
@@ -210,264 +211,264 @@ function BindToChainState(options) {
               prop = '1.2.' + prop.substring(1);
             }
 
-            let new_obj = ChainStore.getAccount(prop);
+            const newObj = ChainStore.getAccount(prop);
 
             if (
-              new_obj === undefined
+              newObj === undefined
               && this.required_props.indexOf(key) === -1
-              && new_obj !== this.state[key]
+              && newObj !== this.state[key]
             ) {
-              new_state[key] = new_obj;
-            } else if (new_obj && new_obj !== this.state[key]) {
-              new_state[key] = new_obj;
+              newState[key] = newObj;
+            } else if (newObj && newObj !== this.state[key]) {
+              newState[key] = newObj;
             }
 
-            ++all_objects_counter;
+            ++allObjectsCounter;
 
-            if (new_obj !== undefined) {
-              ++resolved_objects_counter;
+            if (newObj !== undefined) {
+              ++resolvedObjectsCounter;
             }
           } else {
             if (this.state[key]) {
-              new_state[key] = null;
+              newState[key] = null;
             }
           }
         }
 
-        for( let key of this.chain_key_refs ) {
-          let prop = props[key] || this.dynamic_prop[key] || this.default_props[key];
+        for (const key of this.chain_key_refs ) {
+          const prop = props[key] || this.dynamic_prop[key] || this.default_props[key];
 
           if (prop) {
-            let new_obj = ChainStore.getAccountRefsOfKey(prop);
+            const newObj = ChainStore.getAccountRefsOfKey(prop);
 
             if (
-              new_obj === undefined
+              newObj === undefined
               && this.required_props.indexOf(key) === -1
-              && new_obj !== this.state[key]
+              && newObj !== this.state[key]
             ) {
-              new_state[key] = new_obj;
-            } else if (new_obj && new_obj !== this.state[key]) {
-              new_state[key] = new_obj;
+              newState[key] = newObj;
+            } else if (newObj && newObj !== this.state[key]) {
+              newState[key] = newObj;
             }
 
-            ++all_objects_counter;
+            ++allObjectsCounter;
 
-            if (new_obj !== undefined) {
-              ++resolved_objects_counter;
+            if (newObj !== undefined) {
+              ++resolvedObjectsCounter;
             }
           } else {
             if (this.state[key]) {
-              new_state[key] = null;
+              newState[key] = null;
             }
           }
         }
 
-        for( let key of this.chain_address_balances ) {
-          let prop = props[key] || this.dynamic_props[key] || this.default_props[key];
+        for (const key of this.chain_address_balances ) {
+          const prop = props[key] || this.dynamic_props[key] || this.default_props[key];
 
           if (prop) {
-            let new_obj = ChainStore.getBalanceObjects(prop);
+            const newObj = ChainStore.getBalanceObjects(prop);
 
             if (
-              new_obj === undefined
+              newObj === undefined
               && this.required_props.indexOf(key) === -1
-              && new_obj !== this.state[key]
+              && newObj !== this.state[key]
             ) {
-              new_state[key] = new_obj;
-            } else if (new_obj && new_obj !== this.state[key]) {
-              new_state[key] = new_obj;
+              newState[key] = newObj;
+            } else if (newObj && newObj !== this.state[key]) {
+              newState[key] = newObj;
             }
 
-            ++all_objects_counter;
+            ++allObjectsCounter;
 
-            if (new_obj !== undefined) {
-              ++resolved_objects_counter;
+            if (newObj !== undefined) {
+              ++resolvedObjectsCounter;
             }
           } else {
             if (this.state[key]) {
-              new_state[key] = null;
+              newState[key] = null;
             }
           }
         }
 
-        for( let key of this.chain_assets ) {
-          let prop = props[key] || this.dynamic_props[key] || this.default_props[key];
+        for (const key of this.chain_assets ) {
+          const prop = props[key] || this.dynamic_props[key] || this.default_props[key];
 
           if (prop) {
-            let new_obj = ChainStore.getAsset(prop);
+            const newObj = ChainStore.getAsset(prop);
 
             if (
-              new_obj === undefined
+              newObj === undefined
               && this.required_props.indexOf(key) === -1
-              && new_obj !== this.state[key]
+              && newObj !== this.state[key]
             ) {
-              new_state[key] = new_obj;
-            } else if (new_obj && new_obj !== this.state[key]) {
-              new_state[key] = new_obj;
+              newState[key] = newObj;
+            } else if (newObj && newObj !== this.state[key]) {
+              newState[key] = newObj;
             }
 
-            ++all_objects_counter;
+            ++allObjectsCounter;
 
-            if (new_obj !== undefined) {
-              ++resolved_objects_counter;
+            if (newObj !== undefined) {
+              ++resolvedObjectsCounter;
             }
           } else {
             if (this.state[key]) {
-              new_state[key] = null;
+              newState[key] = null;
             }
           }
         }
 
-        for( let key of this.chain_objects_list ) {
-          let prop = props[key] || this.dynamic_props[key] || this.default_props[key];
+        for (const key of this.chain_objects_list ) {
+          const prop = props[key] || this.dynamic_props[key] || this.default_props[key];
 
           if (prop) {
-            let prop_prev_state = this.state[key];
-            let prop_new_state = [];
+            let propPrevState = this.state[key];
+            const propNewState = [];
             let changes = false;
 
-            if (!prop_prev_state || prop_prev_state.length !== prop.size) {
-              prop_prev_state = [];
+            if (!propPrevState || propPrevState.length !== prop.size) {
+              propPrevState = [];
               changes = true;
             }
 
             let index = 0;
-            prop.forEach( (obj_id) => {
+            prop.forEach( (objId) => {
               ++index;
 
-              if (obj_id) {
-                let new_obj = ChainStore.getObject(obj_id);
+              if (objId) {
+                const newObj = ChainStore.getObject(objId);
 
-                if (new_obj) {
-                  ++resolved_objects_counter;
+                if (newObj) {
+                  ++resolvedObjectsCounter;
                 }
 
-                if (prop_prev_state[index] !== new_obj) {
+                if (propPrevState[index] !== newObj) {
                   changes = true;
-                  prop_new_state[index] = new_obj;
+                  propNewState[index] = newObj;
                 } else {
-                  prop_new_state[index] = prop_prev_state[index];
+                  propNewState[index] = propPrevState[index];
                 }
               }
 
-              ++all_objects_counter;
+              ++allObjectsCounter;
             });
 
             if (changes) {
-              new_state[key] = prop_new_state;
+              newState[key] = propNewState;
             }
           } else {
             if (this.state[key]) {
-              new_state[key] = null;
+              newState[key] = null;
             }
           }
         }
 
-        for( let key of this.chain_accounts_list ) {
-          let prop = props[key] || this.dynamic_props[key] || this.default_props[key];
+        for (const key of this.chain_accounts_list ) {
+          const prop = props[key] || this.dynamic_props[key] || this.default_props[key];
 
           if (prop) {
-            let prop_prev_state = this.state[key];
-            let prop_new_state = [];
+            let propPrevState = this.state[key];
+            const propNewState = [];
             let changes = false;
 
-            if (!prop_prev_state || prop_prev_state.length !== prop.size) {
-              prop_prev_state = [];
+            if (!propPrevState || propPrevState.length !== prop.size) {
+              propPrevState = [];
               changes = true;
             }
 
             let index = 0;
-            prop.forEach( (obj_id) => {
-              if (obj_id) {
-                let new_obj = ChainStore.getAccount(obj_id);
+            prop.forEach( (objId) => {
+              if (objId) {
+                const newObj = ChainStore.getAccount(objId);
 
-                if (new_obj) {
-                  ++resolved_objects_counter;
+                if (newObj) {
+                  ++resolvedObjectsCounter;
                 }
 
-                if (prop_prev_state[index] !== new_obj) {
+                if (propPrevState[index] !== newObj) {
                   changes = true;
-                  prop_new_state[index] = new_obj;
+                  propNewState[index] = newObj;
                 } else {
-                  prop_new_state[index] = prop_prev_state[index];
+                  propNewState[index] = propPrevState[index];
                 }
               }
 
               ++index;
-              ++all_objects_counter;
+              ++allObjectsCounter;
             });
 
             if (changes) {
-              new_state[key] = prop_new_state;
+              newState[key] = propNewState;
             }
           } else {
             if (this.state[key]) {
-              new_state[key] = null;
+              newState[key] = null;
             }
           }
         }
 
-        for( let key of this.chain_assets_list ) {
-          let prop = props[key] || this.dynamic_props[key] || this.default_props[key];
+        for (const key of this.chain_assets_list ) {
+          const prop = props[key] || this.dynamic_props[key] || this.default_props[key];
 
           if (prop) {
-            let prop_prev_state = this.state[key];
-            let prop_new_state = [];
+            let propPrevState = this.state[key];
+            const propNewState = [];
             let changes = false;
 
-            if (!prop_prev_state || prop_prev_state.length !== prop.size) {
-              prop_prev_state = [];
+            if (!propPrevState || propPrevState.length !== prop.size) {
+              propPrevState = [];
               changes = true;
             }
 
             let index = 0;
-            prop.forEach( (obj_id) => {
+            prop.forEach( (objId) => {
               ++index;
 
-              if (obj_id) {
-                let new_obj = ChainStore.getAsset(obj_id);
+              if (objId) {
+                const newObj = ChainStore.getAsset(objId);
 
-                if (new_obj) {
-                  ++resolved_objects_counter;
+                if (newObj) {
+                  ++resolvedObjectsCounter;
                 }
 
-                if (prop_prev_state[index] !== new_obj) {
+                if (propPrevState[index] !== newObj) {
                   changes = true;
-                  prop_new_state[index] = new_obj;
+                  propNewState[index] = newObj;
                 } else {
-                  prop_new_state[index] = prop_prev_state[index];
+                  propNewState[index] = propPrevState[index];
                 }
               }
 
-              ++all_objects_counter;
+              ++allObjectsCounter;
             });
 
             if (changes) {
-              new_state[key] = prop_new_state;
+              newState[key] = propNewState;
             }
           } else {
             if (this.state[key]) {
-              new_state[key] = null;
+              newState[key] = null;
             }
           }
         }
 
-        if (all_objects_counter <= resolved_objects_counter) {
-          new_state.resolved = true;
+        if (allObjectsCounter <= resolvedObjectsCounter) {
+          newState.resolved = true;
         }
 
-        this.setState( new_state );
+        this.setState( newState );
       }
 
       componentName() {
-        let cf = Component.toString();
+        const cf = Component.toString();
         return cf.substr(9, cf.indexOf('(') - 9);
       }
 
       render() {
         const props = omit(this.props, this.all_chain_props);
 
-        for (let prop of this.required_props)  {
+        for (const prop of this.required_props)  {
           if (!this.state[prop]) {
             if (typeof options !== 'undefined' && options.show_loader) {
               return <LoadingIndicator />;
