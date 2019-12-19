@@ -12,7 +12,7 @@ if (userAgent.indexOf(' electron/') > -1) {
 }
 
 if (isInElectron) {
-  dictionary_set = new Set(require('json!common/dictionary_en.json').en.split(',')); // eslint-disable-line
+  dictionary_set = new Set(require('common/dictionary_en.json').en.split(',')); // eslint-disable-line
 }
 
 export default class BrainkeyInput extends Component {

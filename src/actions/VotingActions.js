@@ -21,8 +21,8 @@ const [
   ActionTypes.VOTING_UPDATE_WITNESS_TAB
 ];
 
-const witnessObjectType = parseInt(ChainTypes.object_type.witness, 10);
-const witnessPrefix = `1.${witnessObjectType}.`;
+let witness_object_type  = parseInt(ChainTypes.object_type.witness, 10);
+let witnessPrefix = '1.' + witness_object_type + '.';
 let lastBudgetObject = null;
 
 const DEFAULT_PROXY_ID = '1.2.5';
@@ -147,6 +147,7 @@ class VotingActions {
           amount: 0,
           asset_id: accountUtils.getFinalFeeAsset(account.id, 'account_update')
         };
+        account.extensions = {value: {update_last_voting_time: true}};
 
         const tr = walletApi.new_transaction();
         tr.add_type_operation('account_update', account);
@@ -309,6 +310,7 @@ class VotingActions {
           amount: 0,
           asset_id: accountUtils.getFinalFeeAsset(account.id, 'account_update')
         };
+        account.extensions = {value: {update_last_voting_time: true}};
 
         const voteIds = getState().voting.witnesses.activeWitnesseObjects
           .filter((obj) => witnesses.has(obj.witness_account)).map((obj) => obj.vote_id).toArray();
@@ -411,6 +413,7 @@ class VotingActions {
           amount: 0,
           asset_id: accountUtils.getFinalFeeAsset(account.id, 'account_update')
         };
+        account.extensions = {value: {update_last_voting_time: true}};
 
         const voteIds = getState().voting.committeeMembers.activeCMObjects
           .filter((obj) => committeeMembers.has(obj.committee_member_account))

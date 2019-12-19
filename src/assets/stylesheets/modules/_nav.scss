@@ -1,14 +1,11 @@
 .nav {
-  //display: flex;
-  //justify-content: space-around;
-  height: 100%;
   min-width: 450px;
+  height: 100%;
   overflow: hidden;
 
   &__right {
     float: right;
     padding-left: 30px;
-    //overflow: hidden;
     white-space: nowrap;
 
     .nav__linkIcon {
@@ -17,11 +14,11 @@
 
     .nav__link {
       margin-right: 0;
-      padding: 0 20px;
       margin-left: 5px;
+      padding: 0 20px;
     }
 
-    &>.nav__link {
+    & > .nav__link {
       &:first-child {
         padding-left: 0;
       }
@@ -33,26 +30,25 @@
   }
 
   &-bd {
-    border-left: 1px solid $menu-limiter-color;
+    padding: 0 2% !important; /* stylelint-disable-line */
     border-right: 1px solid $menu-limiter-color;
-    padding: 0 2% !important;
+    border-left: 1px solid $menu-limiter-color;
 
     .bb {
+      display: block;
       position: relative;
       height: 100%;
-      display: block;
-      //line-height: 104px;
       line-height: 54px;
     }
 
-    &+& {
+    & + & {
       border-left: none;
     }
   }
 
   &-bdl {
-    border-left: 1px solid $menu-limiter-color;
     padding: 0 25px;
+    border-left: 1px solid $menu-limiter-color;
   }
 
   &__item {
@@ -60,50 +56,45 @@
 
     .nav__link {
       display: inline-block;
-      height: 100%;
       vertical-align: middle;
+      height: 100%;
     }
 
-    .nav__link+.nav__link {
+    .nav__link + .nav__link {
       padding-left: 35px;
     }
   }
 
   &__link {
-    position: relative;
     display: inline-block;
-    padding: 0 1%;
+    position: relative;
+    margin-right: 25px;
+    padding: 0 1%; /* stylelint-disable-line */
+    line-height: 52px;
     font-weight: 500;
     color: $faded-color;
-    //line-height: 104px;
-    line-height: 52px;
-    //margin-right: 1%;
-    margin-right: 25px;
 
     &:last-child {
       margin-right: 0;
     }
 
     &Align {
-      font-size: 0.9375rem;
       line-height: 1.25;
+      font-size: 0.9375rem;
       white-space: nowrap;
     }
 
     &Icon,
     &Icon-filled {
-      font-size: 22px;
       vertical-align: middle;
-      padding-right: 4px;
-      //height: 105px;
-      //line-height: 105px;
       height: $headerHeight;
+      padding-right: 4px;
       line-height: $headerHeight;
+      font-size: 22px;
       color: $nav-icon-color;
 
       &.icon-funds,
       &.icon-funds-filled {
-        //font-size: 18px;
         font-size: 14px;
       }
     }
@@ -124,8 +115,8 @@
     &:hover {
       color: $text-color;
 
-      &.bb:before,
-      .bb:before {
+      &.bb::before,
+      .bb::before {
         width: 100%;
       }
 
@@ -142,8 +133,8 @@
     &.active {
       color: $text-color;
 
-      &.bb:before,
-      .bb:before {
+      &.bb::before,
+      .bb::before {
         width: 100%;
       }
 
@@ -157,18 +148,19 @@
     }
   }
 
-  .bb:before {
+  .bb::before {
     content: '';
     display: block;
     position: absolute;
+    right: 0;
     bottom: 0;
+    left: 0;
     width: 0;
     height: 3px;
-    left: 0;
-    right: 0;
     margin: auto;
     border-radius: 3px 3px 0 0;
     background: $nav-active-bg;
+
     @include transition(all 0.15s ease-out);
   }
 }
@@ -183,36 +175,37 @@
     position: absolute;
     top: 25px;
     left: 30px;
-
-    height: 17px;
     width: 17px;
-    font-size: 12px;
-    font-weight: 500;
+    height: 17px;
     line-height: 17px;
+    font-weight: 500;
+    font-size: 12px;
+    color: #ffffff;
     text-align: center;
-    color: #fff;
     background: #fe3740;
+
     @include border-radius(50%);
   }
 
   &__itemsBox {
-    margin-top: 10px;
     position: absolute;
     top: 100%;
     right: 0;
+    margin-top: 10px;
   }
 
   &__item {
     display: none;
     position: relative;
-    font-size: 13px;
-    background: #fff;
-    @include border-radius();
     width: 450px;
-    border-bottom: 1px solid #d5d6e3;
     padding: 10px 40px 7px 20px;
+    border-bottom: 1px solid #d5d6e3;
+    font-size: 13px;
     color: $new-blue;
+    background: #ffffff;
     white-space: normal;
+
+    @include border-radius();
 
     &.active {
       display: block;
@@ -233,20 +226,20 @@
 
     &Title,
     h1 {
-      color: $new-blue;
-      font-size: 13px;
-      font-weight: 500;
       margin-bottom: 2px;
+      font-weight: 500;
+      font-size: 13px;
+      color: $new-blue;
       letter-spacing: .05px;
     }
 
     &Link,
     a {
-      font-size: 13px;
-      font-weight: 500;
-      margin-bottom: 2px;
-      color: $color-second;
       max-width: 100%;
+      margin-bottom: 2px;
+      font-weight: 500;
+      font-size: 13px;
+      color: $color-second;
       //@include ellipsis;
       //display: inline-block;
       @include transition();

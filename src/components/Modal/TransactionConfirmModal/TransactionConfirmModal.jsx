@@ -14,6 +14,7 @@ import LimitOrderCancel from './LimitOrderCancel';
 import AccountUpgrade from './AccountUpgrade';
 import BalanceClaim from './BalanceClaim';
 import VestingBalanceWithdraw from './VestingBalanceWithdraw';
+import VestingBalanceDeposit from './VestingBalanceDeposit';
 import {bindActionCreators} from 'redux';
 
 require('./operations.scss');
@@ -125,7 +126,9 @@ class TransactionConfirmModal extends React.Component {
         transaction = <VestingBalanceWithdraw />;
         title=<Translate content='transaction.trxTypes.vesting_balance_withdraw' />;
         break;
-
+      case 'create_vesting_balance':
+        transaction = <VestingBalanceDeposit />;
+        title=<Translate content='transaction.trxTypes.vesting_balance_create' />;
       // no default
     }
 

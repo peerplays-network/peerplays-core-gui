@@ -305,7 +305,7 @@ class CommitteeMembers extends React.Component {
           <div className='row'>
             <label className='label'><Translate content='votes.select_advisor'/></label>
             <label className='label'>&nbsp;</label>
-            <div className='fieldWrap col-7'>
+            <div className='fieldWrap col-12'>
               <span className='fieldPic2'>
                 <AccountImage
                   size={ {height: 33, width: 33} }
@@ -396,10 +396,10 @@ class CommitteeMembers extends React.Component {
                   </div>
                   : null
               }
-              <div className='limiter'></div>
             </div>
             : null
         }
+        {this.props.renderHandlers()}
       </div>
     );
   }

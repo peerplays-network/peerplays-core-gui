@@ -1,18 +1,17 @@
 .card {
-  border-radius: 0;
+  margin-bottom: 1rem;
   border: none;
+  border-radius: 0;
 
-  >h4 {
+  > h4 {
     margin: 0;
     padding-top: 0.2rem;
     padding-bottom: 0.2rem;
   }
 
-  >.card-content {
+  > .card-content {
     margin: 1rem;
   }
-
-  margin-bottom: 1rem;
 }
 
 .card-section .text-group {
@@ -24,9 +23,9 @@
 
   .balances {
     margin: 0;
+    margin-left: 78px;
     padding: 0;
     list-style: none;
-    margin-left: 78px;
   }
 
   cursor: pointer;
@@ -40,18 +39,17 @@
   border: none;
 }
 
-.card a>div:first-child {
-  text-align: center;
+.card a > div:first-child {
   padding: 5px;
+  text-align: center;
 }
 
 
 .asset-card {
+  margin: 0 0 2rem;
   padding: 0 1rem 0 0 !important;
-  margin: 0 0 2rem 0;
 
   .card-divider {
     margin-bottom: 1rem;
   }
-
 }

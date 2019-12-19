@@ -105,6 +105,33 @@ class AssetUtils {
       ? name
       : shortNamesMap[AssetUtils.getSymbol(symbol)];
   }
+
+  /**
+   * Returns a float equal to the minimum amount allowed on the blockchain for the asset based on its precision.
+   * @example
+   * let min = getMinimumAmount(asset); // precision ie: 5 returns 0.00001
+   *
+   * @param {object} asset
+   */
+  static getMinimumAmount(asset) {
+    let precision = asset.get('precision');
+    let min = '';
+
+    if (precision) {
+      for (let i = 0; i < precision; i++) {
+        if (min.length === 1) {
+          min += '.';
+        }
+
+        min += '0';
+      }
+
+      min += '1';
+      min = parseFloat(min);
+    }
+
+    return min;
+  }
 }
 
 export default AssetUtils;

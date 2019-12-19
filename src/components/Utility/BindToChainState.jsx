@@ -63,8 +63,7 @@ function BindToChainState(options) {
     return class Wrapper extends React.Component {
       constructor(props) {
         super(props);
-        // eslint-disable-next-line react/forbid-foreign-prop-types
-        const propTypesArray = toPairs(Component.propTypes); // TODO: deprecate proptypes from another component
+        let propTypesArray = toPairs(Component.propTypes); // TODO: deprecate proptypes from another component
 
         if (options && options.all_props) {
           this.chain_objects = reject(

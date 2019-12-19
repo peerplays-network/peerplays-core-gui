@@ -1,12 +1,13 @@
 .custom-scroll {
 
   $scroll-margin-top: 6px;
-  min-height: 0;
+
   min-width: 0;
+  min-height: 0;
 
   .outer-container {
-    overflow: hidden;
     position: relative;
+    overflow: hidden;
 
     &:hover .custom-scrollbar {
       opacity: 1;
@@ -18,7 +19,7 @@
     overflow-x: hidden;
     overflow-y: scroll;
 
-    &:after {
+    &::after {
       content: '';
       position: absolute;
       top: 0;
@@ -26,12 +27,12 @@
       left: 0;
       height: 0;
       background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0) 100%);
-      pointer-events: none;
       transition: height 0.1s ease-in;
+      pointer-events: none;
       will-change: height;
     }
 
-    &.content-scrolled:after {
+    &.content-scrolled::after {
       height: 5px;
       transition: height 0.15s ease-out;
     }
@@ -43,16 +44,16 @@
 
   .custom-scrollbar {
     position: absolute;
-    height: 100%;
-    width: 6px;
     right: 3px;
-    opacity: 0;
     z-index: 1;
-    transition: opacity 0.4s ease-out;
-    padding: 6px 0;
     box-sizing: border-box;
-    will-change: opacity;
+    width: 6px;
+    height: 100%;
+    padding: 6px 0;
+    transition: opacity 0.4s ease-out;
+    opacity: 0;
     pointer-events: none;
+    will-change: opacity;
 
     &.custom-scrollbar-rtl {
       right: auto;
@@ -66,15 +67,15 @@
 
   .custom-scroll-handle {
     position: absolute;
-    width: 100%;
     top: 0;
+    width: 100%;
   }
 
   .inner-handle {
     height: calc(100% - #{2 * $scroll-margin-top});
     margin-top: $scroll-margin-top;
-    background-color: rgba(#4eb7f5, 0.7);
     border-radius: 3px;
+    background-color: rgba(#4eb7f5, 0.7);
   }
 }
 

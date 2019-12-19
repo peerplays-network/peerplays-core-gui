@@ -1,14 +1,25 @@
-
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Translate from 'react-translate-component';
 import {connect} from 'react-redux';
 import {Modal, ModalHeader, ModalTitle} from 'react-modal-bootstrap';
 import {HelpActions, NavigateActions} from '../../actions';
 import {bindActionCreators} from 'redux';
+import AppUtils from '../../utility/AppUtils';
+
+export const anchors = {
+  MODAL: 'FAQ_MODAL',
+  FUNDS: 'FAQ_FUNDS',
+  PLAY: 'FAQ_PLAY',
+  GPOS: 'FAQ_GPOS',
+  VOTE: 'FAQ_VOTE',
+  NETWORK: 'FAQ_NETWORK',
+  SETTINGS: 'FAQ_SETTINGS',
+  HELP: 'FAQ_HELP',
+  NOTIFICATIONS: 'FAQ_NOTIFICATION'
+};
+
 
 class HelpModal extends React.Component {
-
   onClickClose(e) {
     this.hideModal();
     e.preventDefault();
@@ -24,12 +35,14 @@ class HelpModal extends React.Component {
     e.preventDefault();
   }
 
-  scrollToHeaderByRefName(refName, e) {
-    ReactDOM.findDOMNode(this.refs.modal).scrollTop = this.refs[refName].offsetTop-70;
-    e.preventDefault();
-  }
-
   render() {
+    let gposPoints = [];
+    const gposLink = 'https://www.peerplays.com/ppy-tokens/#peerplays-core-wallet';
+
+    for (let i=1; i <=3; i++) {
+      gposPoints.push(`help.gpos.text_${i}`);
+    }
+
     return (
       <Modal
         className='backdrop-help'
@@ -46,7 +59,11 @@ class HelpModal extends React.Component {
               </a>
             </ModalTitle>
           </ModalHeader>
-          <div ref='modal' style={ {maxHeight: 'calc(100vh - 210px)', overflowY: 'auto'} }>
+          <div
+            ref={ (modal) => this.modal = modal }
+            style={ {maxHeight: 'calc(100vh - 210px)', overflowY: 'auto'} }
+            id={ anchors.MODAL }
+          >
             <div className='modalBody'>
               <div className='modalBody-text-body'>
                 <Translate component='div' className='help__h3' content='help.title_welcome'/>
@@ -72,53 +89,60 @@ class HelpModal extends React.Component {
                       component='a'
                       className='help__link'
                       content='help.anchors.my_funds'
-                      onClick={ this.scrollToHeaderByRefName.bind(this, 'fundsAnchor') }/>
+                      onClick={ () => AppUtils.scrollToRef(this.fundsAnchor, this.modal) }/>
                   </li>
                   <li className='help__linkLi'>
                     <Translate
                       component='a'
                       className='help__link'
                       content='help.anchors.play'
-                      onClick={ this.scrollToHeaderByRefName.bind(this, 'playAnchor') }/>
+                      onClick={ () => AppUtils.scrollToRef(this.playAnchor, this.modal) }/>
+                  </li>
+                  <li className='help__linkLi'>
+                    <Translate
+                      component='a'
+                      className='help__link'
+                      content='help.anchors.gpos'
+                      onClick={ () => AppUtils.scrollToRef(this.gposAnchor, this.modal) }/>
                   </li>
                   <li className='help__linkLi'>
                     <Translate
                       component='a'
                       className='help__link'
                       content='help.anchors.vote'
-                      onClick={ this.scrollToHeaderByRefName.bind(this, 'voteAnchor') }/>
+                      onClick={ () => AppUtils.scrollToRef(this.voteAnchor, this.modal) }/>
                   </li>
                   <li className='help__linkLi'>
                     <Translate
                       component='a'
                       className='help__link'
                       content='help.anchors.network'
-                      onClick={ this.scrollToHeaderByRefName.bind(this, 'networkAnchor') }/>
+                      onClick={ () => AppUtils.scrollToRef(this.networkAnchor, this.modal) }/>
                   </li>
                   <li className='help__linkLi'>
                     <Translate
                       component='a'
                       className='help__link'
                       content='help.anchors.settings'
-                      onClick={ this.scrollToHeaderByRefName.bind(this, 'settingsAnchor') }/>
+                      onClick={ () => AppUtils.scrollToRef(this.settingsAnchor, this.modal) }/>
                   </li>
                   <li className='help__linkLi'>
                     <Translate
                       component='a'
                       className='help__link'
                       content='help.anchors.help'
-                      onClick={ this.scrollToHeaderByRefName.bind(this, 'helpAnchor') }/>
+                      onClick={ () => AppUtils.scrollToRef(this.helpAnchor, this.modal) }/>
                   </li>
                   <li className='help__linkLi'>
                     <Translate
                       component='a'
                       className='help__link'
                       content='help.anchors.notifications'
-                      onClick={ this.scrollToHeaderByRefName.bind(this, 'notificationsAnchor') }/>
+                      onClick={ () => AppUtils.scrollToRef(this.notificationsAnchor, this.modal) }/>
                   </li>
                 </ul>
 
-                <div ref='fundsAnchor'>
+                <div ref={ (fundsAnchor) => this.fundsAnchor = fundsAnchor } id={ anchors.FUNDS }>
                   <Translate component='div' className='help__h3' content='help.my_funds.title'/>
                   <div className='help__section'>
                     <Translate
@@ -189,13 +213,28 @@ class HelpModal extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div ref='playAnchor'>
+
+                <div ref={ (playAnchor) => this.playAnchor = playAnchor } id={ anchors.PLAY }>
                   <Translate component='div' className='help__h3' content='help.play.title'/>
                   <div className='help__section'>
                     <Translate component='div' className='help__text' content='help.play.text_1'/>
                   </div>
                 </div>
-                <div ref='voteAnchor'>
+
+                <div ref={ (gposAnchor) => this.gposAnchor = gposAnchor } id={ anchors.GPOS }>
+                  <Translate component='div' className='help__h3' content='help.gpos.title'/>
+                  <div className='help__section'>
+                    {
+                      gposPoints.map((point) => {
+                        return <Translate component='p' className='help__text' content={ point } />;
+                      })
+                    }
+                    <Translate component='span' className='help__text' content='help.gpos.text_4'/><br/>
+                    <Translate component='span' className='help__text' content='help.gpos.text_5'/><a href={ gposLink } className='help__link--lower'>{gposLink}</a>
+                  </div>
+                </div>
+
+                <div ref={ (voteAnchor) => this.voteAnchor = voteAnchor } id={ anchors.VOTE }>
                   <Translate component='div' className='help__h3' content='help.vote.title'/>
                   <div className='help__section'>
                     <Translate component='div' className='help__text' content='help.vote.note_1'/>
@@ -255,7 +294,8 @@ class HelpModal extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div ref='networkAnchor'>
+
+                <div ref={ (networkAnchor) => this.networkAnchor = networkAnchor } id={ anchors.NETWORK }>
                   <Translate component='div' className='help__h3' content='help.network.title'/>
                   <div className='help__section'>
                     <Translate
@@ -293,7 +333,7 @@ class HelpModal extends React.Component {
                   </div>
                 </div>
 
-                <div ref='settingsAnchor'>
+                <div ref={ (settingsAnchor) => this.settingsAnchor = settingsAnchor } id={ anchors.SETTINGS }>
                   <Translate component='div' className='help__h3' content='help.settings.title'/>
                   <div className='help__section'>
                     <Translate
@@ -333,13 +373,17 @@ class HelpModal extends React.Component {
                     </a>
                   </div>
                 </div>
-                <div ref='helpAnchor'>
+
+                <div ref={ (helpAnchor) => this.helpAnchor = helpAnchor } id={ anchors.HELP }>
                   <Translate component='div' className='help__h3' content='help.help.title'/>
                   <div className='help__section'>
                     <Translate component='div' className='help__text' content='help.help.note'/>
                   </div>
                 </div>
-                <div ref='notificationsAnchor'>
+
+                <div
+                  ref={ (notificationsAnchor) => this.notificationsAnchor = notificationsAnchor } id={ anchors.NOTIFICATIONS }
+                >
                   <Translate
                     component='div'
                     className='help__h3'

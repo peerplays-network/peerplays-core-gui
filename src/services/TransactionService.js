@@ -3,6 +3,7 @@ import WalletApi from '../rpc_api/WalletApi';
 import AccountRepository from '../repositories/AccountRepository';
 import Repository from '../repositories/chain/repository';
 import TransactionConfirmActions from '../actions/RTransactionConfirmActions';
+import BalanceTypes from '../constants/BalanceTypes';
 const setTransaction = TransactionConfirmActions.setTransaction;
 
 let wallet_api = new WalletApi();
@@ -139,7 +140,8 @@ class TransactionService {
       amount: {
         amount: Math.floor(balance * availablePercent),
         asset_id: cvb.balance.asset_id
-      }
+      },
+      balance_type: BalanceTypes.normal
     };
 
     let tr = wallet_api.new_transaction();

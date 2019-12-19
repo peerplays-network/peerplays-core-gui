@@ -30,7 +30,8 @@ const Config = {
     disableActionsInRedux: false
   },
   gpos: {
-    conditionalStats: false // if `true`, only show gpos stats if the users' gpos balance is > 0.
+    conditionalStats: false, // if `true`, only show gpos stats if the users' gpos balance is > 0.
+    fakeSucceed: false // if `true`, power down action will always appear to succeed.
   }
 };
 

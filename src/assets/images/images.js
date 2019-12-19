@@ -23,6 +23,19 @@ require('file-loader?name=images/flags/[name].png!./flags/cn.png');
 require('file-loader?name=images/flags/[name].png!./flags/us.png');
 
 /**
+ * GPOS
+ */
+require('file-loader?name=images/[name].png!./thumb-up.png');
+require('file-loader?name=images/gpos/[name].png!./gpos/power-up.png');
+require('file-loader?name=images/gpos/[name].png!./gpos/power-down.png');
+require('file-loader?name=images/gpos/[name].png!./gpos/vote.png');
+require('file-loader?name=images/gpos/[name].png!./gpos/line.png');
+require('file-loader?name=images/gpos/[name].png!./gpos/done.png');
+require('file-loader?name=images/gpos/[name].png!./gpos/transaction--fail.png');
+require('file-loader?name=images/gpos/[name].png!./gpos/transaction--succeed.png');
+require('file-loader?name=images/gpos/[name].png!./gpos/icon-error.png');
+
+/**
  * RPS Game
  */
 require('file-loader?name=images/games/rps/[name].png!./games/rps/bkg.png');

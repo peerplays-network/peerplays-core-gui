@@ -12,7 +12,7 @@ let ss = new ls(STORAGE_KEY);
 let storageSettings = ss.get(SETTINGS_KEY);
 let locales = {};
 ['cn', 'de', 'es', 'fr', 'ko', 'tr'].forEach((locale) => {
-  locales[locale] = require(`../assets/locales/locale-${locale}.json`);
+  locales[locale] = require('../assets/locales/locale-' + locale + '.json');
 });
 
 // export function
