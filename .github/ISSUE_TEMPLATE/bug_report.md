@@ -1,8 +1,8 @@
 ---
-name: Bug report
-about: Create a report to help us improve
-title: "🐛"
-labels: bug
+name: 🐛 Bug Report
+about: If something isn't working as expected 🤔.
+title: ""
+labels: 'i: bug, i: triage'
 assignees: ''
 
 ---
