@@ -2,8 +2,9 @@
 name: 🚀 Feature Request
 about: I have a suggestion (and may want to implement it 🙂)!
 title: ""
-labels: 'i: feature request, i: triage'
+labels: feature request, triage
 assignees: ''
+
 ---
 
 ### **Instructions**
