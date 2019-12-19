@@ -5,51 +5,54 @@
 .ReactTags__suggestions {
   position: absolute;
   top: 100%;
-  left: 0;
   right: 0;
+  left: 0;
   z-index: 2;
+  margin: 7px 0 0;
   padding: 8px 8px 0;
+  background: #ffffff;
+
   @include border-radius(5px);
-  background: #fff;
-  margin: 7px 0 0 0;
 
   li {
     display: inline-block;
+    margin: 0 5px 8px 0;
     padding: 10px;
     font-size: 16px;
     color: rgb(255, 255, 255);
     background: rgba(28, 34, 84, 0.8);
+
     @include border-radius(5px);
-    margin: 0 5px 8px 0;
 
     &:hover {
-      cursor: pointer;
       background: rgba(28, 34, 84, 0.9);
+      cursor: pointer;
     }
 
     mark {
-      color: #fff;
-      background: transparent;
       font-weight: 600;
+      color: #ffffff;
       text-decoration: underline;
+      background: transparent;
     }
   }
 }
 
 .ReactTags__chosen {
   display: inline-block;
+  margin: 0 5px 5px 0;
   padding: 7px 0 7px 10px;
   font-size: 16px;
   color: rgb(255, 255, 255);
   background: rgba(255, 255, 255, 0.6);
-  margin: 0 5px 5px 0;
   @include border-radius(5px);
   @include user-sel-n;
 
   &Del {
-    color: #fff;
-    font-size: 14px;
     padding: 10px;
+    font-size: 14px;
+    color: #ffffff;
+
     @include transition();
 
     &:hover {
@@ -62,10 +65,10 @@
 .label__ReactTagsChosen {
   float: left;
   margin-right: 10px;
-  font-size: 14px;
-  font-weight: 100;
-  color: #fff;
   line-height: 34px;
+  font-weight: 100;
+  font-size: 14px;
+  color: #ffffff;
 }
 
 .wrap__ReactTagsChosenItem {

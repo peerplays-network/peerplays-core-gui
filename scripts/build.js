@@ -73,9 +73,6 @@ recursive(paths.appBuild, (err, fileNames) => {
 
   // Start the webpack build
   build(previousSizeMap);
-
-  // Merge with the public folder
-  copyPublicFolder();
 });
 
 // Print a detailed summary of build files.
@@ -127,7 +124,9 @@ function printErrors(summary, errors) {
 // Create the production build and print the deployment instructions.
 function build(previousSizeMap) {
   console.log('Creating an optimized production build...');
-  webpack(config).run((err, stats) => {
+  var compiler = webpack(config);
+
+  compiler.run((err, stats) => {
     if (err) {
       printErrors('Failed to compile.', [err]);
       process.exit(1);
@@ -229,9 +228,15 @@ function build(previousSizeMap) {
       console.log();
     }
   });
+
+  compiler.hooks.afterEmit.tap('After Emit Plugin', () => {
+    // Merge with the public folder
+    copyPublicFolder();
+  });
 }
 
 function copyPublicFolder() {
+  console.log(chalk.green('Copying public directory assets to build directory...'));
   fs.copySync(paths.appPublic, paths.appBuild, {
     dereference: true,
     filter: (file) => file !== paths.appHtml

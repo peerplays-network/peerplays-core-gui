@@ -12,8 +12,8 @@
 }
 
 .text-group {
-  width: 100%;
   display: table;
+  width: 100%;
   padding: 0.5em;
 
   div {
@@ -26,8 +26,8 @@
   }
 
   div:nth-child(2) {
-    text-align: right;
     padding-left: 0.5rem;
+    text-align: right;
   }
 }
 

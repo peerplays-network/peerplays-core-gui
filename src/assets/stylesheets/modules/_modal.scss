@@ -5,8 +5,9 @@
   bottom: 0;
   left: 0;
   z-index: 1056;
-  overflow: hidden;
   opacity: 0;
+  overflow: hidden;
+
   @include transition();
 
   &.fade {
@@ -36,7 +37,7 @@
     }
 
     &.white {
-      background-color: #fff;
+      background-color: #ffffff;
     }
   }
 
@@ -46,13 +47,13 @@
 
   &-dialog {
     position: absolute;
-    z-index: 1050;
-    margin: 0;
-    width: 100% !important;
-    height: 90%;
-    left: 0;
     top: 10%;
     bottom: 0;
+    left: 0;
+    z-index: 1050;
+    width: 100% !important;
+    height: 90%;
+    margin: 0;
     overflow: hidden;
 
     &AlignOut {
@@ -64,9 +65,10 @@
 
     &AlignIn {
       @include va_middle_in;
-      font-size: 13px;
-      line-height: 1.25;
+
       padding: 10px 0;
+      line-height: 1.25;
+      font-size: 13px;
     }
 
     .modalContent {
@@ -78,9 +80,9 @@
 
       .modalValue {
         display: inline-block;
+        margin-left: 25px;
         font-weight: bold;
         font-size: 15px;
-        margin-left: 25px;
       }
 
       .modalReceiver,
@@ -96,9 +98,9 @@
       }
 
       .modalMessage {
-        background-color: $gray4;
-        padding: 25px;
         max-height: 50vh;
+        padding: 25px;
+        background-color: $gray4;
         overflow-y: scroll;
       }
 
@@ -113,13 +115,14 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      text-align: left;
       width: 730px;
       max-width: 100%;
-      background: $clear-color2;
       padding: 30px 50px 40px;
+      text-align: left;
+      background: $clear-color2;
       -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
       box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+
       @include border-radius(2px);
 
       &-w400 {
@@ -128,10 +131,10 @@
       }
 
       &.w-900 {
-        padding: 0px;
         width: 900px;
         max-width: 100%;
         max-height: 90vh;
+        padding: 0;
         overflow: hidden;
       }
 
@@ -167,18 +170,18 @@
   }
 
   &Title {
-    border-bottom: 1px solid $color-prime;
-    color: $clear-color;
-    font-size: 24px;
-    font-weight: 400;
     margin-bottom: 30px;
     padding-bottom: 15px;
+    border-bottom: 1px solid $color-prime;
     font-family: $ff-main;
+    font-weight: 400;
+    font-size: 24px;
+    color: $clear-color;
 
     &.help {
-      padding-left: 50px;
-      padding-top: 20px;
       margin-bottom: 0;
+      padding-top: 20px;
+      padding-left: 50px;
     }
   }
 
@@ -189,9 +192,9 @@
   }
 
   &Footer {
-    overflow: hidden;
     margin: 20px 0 0;
     padding-top: 10px;
+    overflow: hidden;
   }
 }
 
@@ -202,20 +205,20 @@
   }
 
   &__title {
-    text-transform: uppercase;
-    color: $color-second;
-    font-size: 16px;
-    font-weight: 500;
     margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 16px;
+    color: $color-second;
+    text-transform: uppercase;
   }
 
   &__table {
     &Row {
-      overflow: hidden;
-      font-size: 16px;
+      padding: 0 30px 0 10px;
       line-height: 38px;
       font-weight: 600;
-      padding: 0 30px 0 10px;
+      font-size: 16px;
+      overflow: hidden;
 
       &:nth-child(odd) {
         background: rgba($color-second, .05);
@@ -231,8 +234,8 @@
     &Right {
       float: left;
       width: 50%;
-      text-align: right;
       color: $text-color;
+      text-align: right;
     }
   }
 }

@@ -157,7 +157,7 @@ class Proxy extends React.Component {
     return (
       <div
         id='proxy'
-        className='tab__deploy block'>
+        className='tab__deploy block proxy'>
         <div className='tab__deployHead'>
           <div className='title'>
             <Translate content='votes.proxy_short'/>
@@ -171,7 +171,8 @@ class Proxy extends React.Component {
 
           <div className='row clearfix'>
             <label className='label'><Translate content='votes.proxy'/></label>
-            <div className='fieldWrap col-7'>
+            <label className='label'>&nbsp;</label>
+            <div className='fieldWrap col-12'>
               <span className='fieldPic2'>
                 <AccountImage
                   size={ {
@@ -204,7 +205,7 @@ class Proxy extends React.Component {
               : null}
           </div>
         </div>
-        <div className='box-inner box-inner-2'>
+        <div className='box-inner'>
 
           <div className='table2__btns text_r'>
             <button
@@ -264,6 +265,7 @@ class Proxy extends React.Component {
             </div>
           </div>
         </div>
+        {this.props.renderHandlers()}
       </div>
     );
   }

@@ -1,3 +1,4 @@
 {
+    "editor.rulers": [200],
     "javascript.implicitProjectConfig.experimentalDecorators": true,
 }

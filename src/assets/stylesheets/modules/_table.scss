@@ -5,14 +5,14 @@
   @include border-radius(4px);
 
   &__title {
-    color: $table-title-color;
-    font-size: 16px;
     padding: 17px 0 8px;
+    font-size: 16px;
+    color: $table-title-color;
 
     &.type2 {
       margin: 0;
-      font-size: 20px;
       padding-top: 50px;
+      font-size: 20px;
     }
   }
 
@@ -41,27 +41,26 @@
       background: $table-hidden-bg;
     }
 
-    &+.tr-main {
+    & + .tr-main {
       @include box-shadow($table-hiddenLast-shadow);
     }
   }
 
   &.opened {
-    &+.tr-hidden {
+    & + .tr-hidden {
       @include box-shadow($table-hidden-shadow);
     }
   }
 }
 
 .th {
-  height: 53px;
   vertical-align: middle;
-  text-align: right;
+  height: 53px;
+  font-weight: 400;
   font-size: 14px;
   color: $th-color;
+  text-align: right;
   background: $th-bg;
-
-  font-weight: 400;
 
   &:first-child {
     @include border-radius(4px 0 0 0);
@@ -77,13 +76,13 @@
   }
 
   &__marker {
-    text-align: left;
     padding-left: 40px;
+    text-align: left;
   }
 
   &__assetsSym {
-    text-align: left;
     padding-left: 40px;
+    text-align: left;
   }
 
   &__assetsName {
@@ -94,12 +93,12 @@
 }
 
 .td {
+  vertical-align: middle;
+  width: 14%;
   height: 67px;
   font-size: 16px;
-  text-align: right;
-  vertical-align: middle;
   color: $text-color-bg;
-  width: 14%;
+  text-align: right;
 
   &:last-child {
     padding-right: 30px;
@@ -110,19 +109,19 @@
   }
 
   &__marker {
-    text-align: left;
     padding-left: 45px;
+    text-align: left;
   }
 
   &__assetsSym {
-    text-align: left;
-    padding-left: 45px;
     width: 17%;
+    padding-left: 45px;
+    text-align: left;
   }
 
   &__assetsName {
-    text-align: left;
     width: 11%;
+    text-align: left;
   }
 
   &__action {
@@ -139,22 +138,22 @@
   }
 
   &__trigger {
+    padding-right: 0;
     font-size: 13px;
     color: $th-color;
-    padding-right: 0;
 
-    &.ddTrigger:after {
+    &.ddTrigger::after {
       right: -15px;
+      margin-top: -3px;
       font-size: 6px;
       color: $th-color;
-      margin-top: -3px;
     }
   }
 
   &__ddMenu {
+    width: 220px;
     margin-top: 19px;
     text-align: left;
-    width: 220px;
 
     .ddMenu__link {
       padding-right: 20px;
@@ -170,29 +169,28 @@
   }
 
   &__trigger {
-    color: $th-color;
     padding-right: 30px;
+    color: $th-color;
 
-    &.ddTrigger:after {
-      content: "\e90c";
+    &.ddTrigger::after {
+      content: '\e90c';
       right: 0;
-      font-size: 20px;
-      line-height: 1;
-      color: $th-color;
       margin-top: -10px;
+      line-height: 1;
+      font-size: 20px;
+      color: $th-color;
     }
   }
 
   &__ddMenu {
-    text-align: left;
-    width: 180px;
-    left: 0;
     right: auto;
+    left: 0;
+    width: 180px;
     margin: 23px 0 0 -20px;
+    text-align: left;
 
     .ddMenu__link {}
   }
-
 }
 
 .tableAction {
@@ -204,18 +202,19 @@
   }
 
   &__text {
+    padding-right: 10px;
     font-size: 16px;
     color: $text-color-bg;
-    padding-right: 10px;
   }
 
   &__icon {
     position: absolute;
+    top: 50%;
+    right: -20px;
+    margin-top: -11px;
     font-size: 20px;
     color: #d5d5d5;
-    right: -20px;
-    top: 50%;
-    margin-top: -11px;
+
     @include transition(color .2s ease);
 
     &.icon-str_close {}
@@ -226,17 +225,17 @@
   }
 
   &__trigger {
-    &.ddTrigger:after {
+    &.ddTrigger::after {
       content: none;
     }
   }
 
   &__dd {
     &Menu {
-      max-width: 300px;
       width: auto;
-      text-align: left;
       min-width: 180px;
+      max-width: 300px;
+      text-align: left;
     }
 
     &.open {
@@ -252,7 +251,6 @@
     .ddMenu__link {
       padding: 12px 10px 12px 20px;
     }
-
   }
 
   &:hover {
@@ -264,19 +262,19 @@
 
 .table2 {
   display: table;
-  box-shadow: $table-shadow;
   border-radius: 5px;
+  box-shadow: $table-shadow;
 
   &__title {
-    font-size: 26px;
-    font-weight: 500;
-    color: $text-color-bg;
     margin: 0 0 20px;
+    font-weight: 500;
+    font-size: 26px;
+    color: $text-color-bg;
   }
 
   &__btns {
-    padding: 0 30px;
     margin: 20px 0;
+    padding: 0 30px;
 
     &.noXPad {
       padding-right: 0;
@@ -311,10 +309,10 @@
 .table-sm {
   .table__head {
     .tableCell {
-      font-size: 12px;
-      text-transform: uppercase;
       padding-top: 7px !important;
       padding-bottom: 7px;
+      font-size: 12px;
+      text-transform: uppercase;
 
       &:first-child,
       &:last-child {
@@ -324,10 +322,10 @@
   }
 
   .tableCell {
-    font-size: 14px;
     min-width: 50px;
     padding-top: 8px;
     padding-bottom: 8px;
+    font-size: 14px;
   }
 
   .tableRow:first-child .tableCell {
@@ -341,8 +339,8 @@
 
 .table3 {
   display: block;
-  box-shadow: none !important;
   border-radius: 0 !important;
+  box-shadow: none !important;
 
   .table__head,
   .table__body,
@@ -355,8 +353,8 @@
   }
 
   .table__head {
-    overflow: hidden;
     background: $section-head-color !important;
+    overflow: hidden;
 
     .tableCell {
       font-weight: 500;
@@ -390,10 +388,10 @@
 
 .tableCell {
   display: table-cell;
+  position: relative;
+  vertical-align: middle;
   min-width: 125px;
   padding: 11px 1%;
-  vertical-align: middle;
-  position: relative;
   color: $text-color-bg;
 
   &:last-of-type {
@@ -433,14 +431,13 @@
 
   &__pic {
     height: 33px;
-
   }
 }
 
 .table__head {
   font-size: 14px;
-  cursor: inherit !important;
   background: $th-bg;
+  cursor: inherit !important;
 
   & .tableCell {
     padding-top: 17px !important;
@@ -465,9 +462,9 @@
 
 .table__footer {
   &-btn {
-    margin: 0 auto;
     display: block;
     width: 224px;
+    margin: 0 auto;
   }
 }
 
@@ -478,17 +475,17 @@
 
   &Wrap {
     position: absolute;
-    right: 21px;
     top: 17px;
+    right: 21px;
   }
 
   &Icon {
-    color: $sort-arrow-color;
     font-size: 17px;
+    color: $sort-arrow-color;
 
-    &+& {
-      margin-left: 0;
+    & + & {
       vertical-align: top;
+      margin-left: 0;
     }
 
     &.down {
@@ -570,8 +567,8 @@
 }
 
 .tableScroll {
-  overflow: auto;
   height: 100px;
+  overflow: auto;
 
   .table {
     margin-top: -52px;
@@ -589,11 +586,11 @@
   &Link {
     display: block;
     height: 30px;
+    padding: 0 14px;
     line-height: 30px;
-    color: #fff;
     font-weight: 500;
     font-size: 13px;
-    padding: 0 14px;
+    color: #ffffff;
 
     &.active {
       background: $new-blue12;
@@ -607,8 +604,9 @@
 
   &In {
     @include va_middle_in;
-    font-size: 16px;
+
     line-height: 1.2;
+    font-size: 16px;
     color: $text-color-bg;
     text-align: center;
   }
@@ -616,9 +614,10 @@
 
 .tableRow__del {
   position: absolute;
-  padding: 5px;
-  right: 0;
   top: 0;
+  right: 0;
+  padding: 5px;
+
   @include transition();
 
   &:hover {
@@ -641,16 +640,16 @@
 
       .btn-mark {
         max-width: 100%;
-        text-overflow: ellipsis;
-        overflow: hidden;
         padding: 0 15px;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       .viewMemo {
-        font-size: 10px;
-        line-height: 36px;
         display: inline;
         padding: 10px;
+        line-height: 36px;
+        font-size: 10px;
 
         &:hover {
           color: $light-blue;
@@ -694,8 +693,8 @@
   }
 
   .tableCell {
-    padding: 20px 1%;
     max-width: 100px;
+    padding: 20px 1%;
 
     &:nth-child(1) {
       padding-left: 30px;
@@ -706,8 +705,8 @@
     }
 
     &:nth-child(3) {
-      padding-left: 10%;
       padding-right: 3%;
+      padding-left: 10%;
     }
 
     //&:nth-child(4);}

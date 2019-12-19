@@ -16,16 +16,17 @@
   }
 
   &__select {
-    height: 50px;
-    background: $clear-color2 !important;
-    font-size: 18px;
-    font-weight: 500;
-    @include border-radius(3px);
     width: 100%;
-    color: $text-color;
-    border: none !important;
+    height: 50px;
     padding: 0 18px;
+    border: none !important;
+    font-weight: 500;
+    font-size: 18px;
+    color: $text-color;
+    background: $clear-color2 !important;
     text-shadow: none;
+
+    @include border-radius(3px);
     @include transition(all .15s ease);
     @include box-shadow(0 5px 20px rgba(0, 0, 0, 0.05));
 
@@ -42,18 +43,18 @@
 
   &__trigger {
     position: absolute;
-    font-size: 6px;
-    line-height: 50px;
-    color: $text-color;
     top: 0;
     right: 0;
     width: 31px;
     height: 100%;
     border-left: none;
+    line-height: 50px;
+    font-size: 6px;
+    color: $text-color;
 
-    &:before {
+    &::before {
+      content: '\e901';
       display: block;
-      content: "\e901";
       font-family: icomoon, sans-serif !important;
     }
 
@@ -62,60 +63,62 @@
     }
 
     .two-arrow & {
-      &:before {
+      &::before {
+        content: '\e901';
+        display: block;
         position: absolute;
         top: 0;
         margin-top: 4px;
-        display: block;
-        content: "\e901";
         font-family: icomoon, sans-serif !important;
       }
 
-      &:after {
+      &::after {
+        content: '\e901';
+        display: block;
         position: absolute;
         top: 0;
         margin-top: -4px;
-        display: block;
-        content: "\e901";
-        font-family: icomoon, sans-serif !important;
-        @include transform(rotate(180deg));
-        text-align: right;
         padding: 0 1px;
+        font-family: icomoon, sans-serif !important;
+        text-align: right;
+
+        @include transform(rotate(180deg));
       }
     }
   }
 
   &__dropdown {
     @include box-shadow(0 6px 20px rgba(0, 0, 0, 0.2));
-    border-top: 1px solid $field2-bd-color;
+
     top: 100% !important;
+    border-top: 1px solid $field2-bd-color;
   }
 
   ul {
-
     max-height: 200px;
   }
 
   li {
+    padding: 10px 18px;
     font-size: 16px;
     color: $text-color;
     background: $clear-color2;
-    padding: 10px 18px;
+
     @include transition();
 
     &:hover {
-      background: $gray-color2 !important;
       color: $text-color;
+      background: $gray-color2 !important;
     }
 
     &.selected {
-      background: $clear-color2;
       color: $text-color;
+      background: $clear-color2;
     }
 
     &.disabled {
-      cursor: default;
       background: transparent !important;
+      cursor: default;
     }
   }
 }
@@ -126,7 +129,7 @@
   }
 
   .jq-selectbox__dropdown {
-    border: 1px solid $select-bd-color !important;
     margin-top: -1px;
+    border: 1px solid $select-bd-color !important;
   }
 }

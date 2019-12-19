@@ -2,41 +2,41 @@
   justify-content: flex-start;
 }
 
-.icon>svg {
-  >path {
-    fill: #fff;
+.icon > svg {
+  > path {
+    fill: #ffffff;
   }
 }
 
-.float-left>span.icon.user {
+.float-left > span.icon.user {
   top: 0;
 }
 
 .header {
-  padding-left: 0 !important;
-  padding-right: 1rem;
   min-height: 48px;
+  padding-right: 1rem;
+  padding-left: 0 !important;
 
-  .menu-bar>li {
+  .menu-bar > li {
     display: list-item;
     padding: 0;
 
-    >a {
-      padding-left: 0.5rem;
+    > a {
       padding-right: 0.5rem;
+      padding-left: 0.5rem;
       font-size: 0.9rem;
 
       @include breakpoint(large) {
-        padding-left: 1.75rem;
         padding-right: 1.75rem;
+        padding-left: 1.75rem;
       }
     }
   }
 }
 
 .grp-menu-items-group {
-  flex-flow: row nowrap;
   display: flex;
+  flex-flow: row nowrap;
   justify-content: flex-end;
 }
 
@@ -49,34 +49,33 @@
     background: #414141 !important;
   }
 
-  >a,
+  > a,
   .button {
-    color: #fff !important;
     padding: 0.5rem;
+    font-size: 1rem;
+    color: #ffffff !important;
 
     @include breakpoint(large) {
-      padding-left: 0.75rem;
       padding-right: 0.75rem;
+      padding-left: 0.75rem;
     }
 
-    font-size: 1rem;
-
     &:hover {
+      color: #ffffff;
       background: #414141;
-      color: #fff;
     }
   }
 }
 
-.user-icon>a {
-  padding-left: 0.3rem;
+.user-icon > a {
   padding-right: 0.3rem;
+  padding-left: 0.3rem;
 }
 
 .header .button.create-account {
   margin-left: 16px;
 
-  >span {
+  > span {
     font-size: 14px;
     text-transform: capitalize;
   }

@@ -333,7 +333,8 @@ class Witnesses extends React.Component {
 
           <div className='row'>
             <label className='label'><Translate content='votes.select_witness'/></label>
-            <div className='fieldWrap col-7'>
+            <label className='label'>&nbsp;</label>
+            <div className='fieldWrap col-12'>
               <span className='fieldPic2'>
                 <AccountImage
                   size={ {
@@ -479,6 +480,7 @@ class Witnesses extends React.Component {
           </div>
           <WitnessList/>
         </div>
+        {this.props.renderHandlers()}
       </div>
     );
   }

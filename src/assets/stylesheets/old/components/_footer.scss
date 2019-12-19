@@ -1,23 +1,23 @@
 .footer {
-  background-color: #777;
-  height: 36px;
-  line-height: 36px;
   vertical-align: middle;
-  color: #fff;
-  padding-left: 1.75rem;
+  height: 36px;
   padding-right: 1.75rem;
+  padding-left: 1.75rem;
+  line-height: 36px;
+  color: #ffffff;
+  background-color: #777777;
 
   a {
     text-decoration: underline;
   }
 
   .logo {
-    font-size: 1.1rem;
     line-height: 2rem;
+    font-size: 1.1rem;
 
     .version {
-      font-size: 75%;
       vertical-align: baseline;
+      font-size: 75%;
     }
   }
 }

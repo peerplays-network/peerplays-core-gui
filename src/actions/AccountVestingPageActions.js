@@ -3,6 +3,7 @@ import Repository from '../repositories/chain/repository';
 import BalanceRepository from '../repositories/BalanceRepository';
 import KeysService from '../services/KeysService';
 import TransactionService from '../services/TransactionService';
+import BalanceTypes from '../constants/BalanceTypes';
 
 class AccountVestingPagePrivateActions {
   /**
@@ -48,6 +49,9 @@ class AccountVestingPageActions {
           BalanceRepository.getVestingBalances(accountId).then((balances) => {
             let assetsHashIds = Object.create(null),
               assetsPromises = [];
+            balances = balances.filter((bal) => {
+              return bal.balance_type === BalanceTypes.gpos;
+            });
             balances.forEach((vb) => {
               if (!assetsHashIds[vb.balance.asset_id]) {
                 assetsPromises.push(Repository.getAsset(vb.balance.asset_id));

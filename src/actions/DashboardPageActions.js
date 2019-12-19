@@ -1,6 +1,8 @@
 import ActionTypes from '../constants/ActionTypes';
 import DashboardBalancesService from '../services/DashboardBalancesService';
 import Repository from '../repositories/chain/repository';
+import GposService from '../services/GposService';
+import AccountVestingPageActions from './AccountVestingPageActions';
 
 class DashboardPagePrivateActions {
   /**
@@ -92,6 +94,33 @@ class DashboardPagePrivateActions {
   }
 
   /**
+   * Private Redux Action Creator
+   * GPOS Balances
+   * @param {data} data
+   * @returns {{type, payload: Immutable.Map()}}
+   */
+  static setGposBalancesAction(data) {
+    return {
+      type: ActionTypes.DASHBOARD_SET_GPOS_BALANCES,
+      payload: data
+    };
+  }
+
+  /**
+   * Private Redux Action Creator
+   * GPOS Info
+   *
+   * @param {object} data
+   * @memberof DashboardPagePrivateActions
+   */
+  static setGposInfoAction(data) {
+    return {
+      type: ActionTypes.DAHSBOARD_SET_GPOS_INFO,
+      payload: data
+    };
+  }
+
+  /**
    * Private Redux Action Creator (DASHBOARD_SET_SIDE_MEMBER)
    *
    * @param data
@@ -145,7 +174,10 @@ class DashboardPageActions {
       dispatch(DashboardPageActions.setRecentActivity({
         recentActivity: activityData.recentActivity,
         headBlockNumber: activityData.headBlockNumber,
-        blockInterval: activityData.blockInterval
+        blockInterval: activityData.blockInterval,
+        gposPeriod: activityData.gposPeriod,
+        gposSubPeriod: activityData.gposSubPeriod,
+        gposVestingLockinPeriod: activityData.gposVestingLockinPeriod
       }));
       dispatch(DashboardPageActions.setOpenOrders({
         openOrders: activityData.openOrders
@@ -176,13 +208,20 @@ class DashboardPageActions {
         }));
       });
 
+      dispatch(AccountVestingPageActions.fetchData());
+
       // Vesting
       let vestingBalances = currentState.dashboardPage.vestingBalances,
         vestingAsset = currentState.dashboardPage.vestingAsset,
         vestingBalancesIds = currentState.dashboardPage.vestingBalancesIds;
 
+      // GPOS
+      let gposBalances = currentState.dashboardPage.gposBalances;
+      dispatch(DashboardPageActions.getGposInfo());
+
+      // Get regular vesting balances
       DashboardBalancesService
-        .calculateVesting(currentState.app.account, vestingBalances).then((data) => {
+        .calculateVesting(currentState.app.account, vestingBalances, gposBalances).then((data) => {
           if (!data) {
             return null;
           }
@@ -198,7 +237,43 @@ class DashboardPageActions {
               vestingAsset: data.vestingAsset
             }));
           }
+
+          if (gposBalances !== data.gposBalances) {
+            dispatch(DashboardPagePrivateActions.setGposBalancesAction({
+              gposBalances: data.gposBalances
+            }));
+          }
         });
+    };
+  }
+
+  /**
+   * Retrieve the GPOS information for the logged in user.
+   *
+   * @static
+   * @returns
+   * @memberof DashboardPageActions
+   */
+  static getGposInfo() {
+    return (dispatch, getState) => {
+      let currentState = getState();
+      GposService.fetchGposInfo(currentState.app.accountId).then((info) => {
+        dispatch(DashboardPageActions.setGposInfo(info));
+      });
+    };
+  }
+
+  /**
+   * Set the GPOS information to the redux state store.
+   *
+   * @static
+   * @param {object} info
+   * @returns
+   * @memberof DashboardPageActions
+   */
+  static setGposInfo(info) {
+    return (dispatch) => {
+      dispatch(DashboardPagePrivateActions.setGposInfoAction(info));
     };
   }
 

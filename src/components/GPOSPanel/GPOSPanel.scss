@@ -1,0 +1,134 @@
+@import '../../assets/stylesheets/mixins';
+@import '../../assets/stylesheets/variables';
+
+@mixin gpos-panel-btn() {
+  width: 271px;
+  height: 63px;
+  font-size: 19px;
+}
+
+.gpos-panel {
+  display: flex;
+  flex-direction: column;
+
+  &__img-thumb {
+    height: 16px;
+    margin-right: 4px;
+
+    &--hidden {
+      opacity: 0;
+    }
+
+    &--no-stats {
+      display: none;
+    }
+  }
+
+  &__btn {
+    @include transition(background .2s ease);
+    @include gpos-panel-btn();
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: $gpos-panel-button-b-margin;
+    padding-top: 2px;
+    border: 2px solid transparent;
+    background: $gpos-blue;
+
+    &:hover {
+      background: $gpos-blue-hover;
+    }
+
+    &:active {
+      background: darken($gpos-blue, $amount: 10%);
+      border-color: $color-add2-bd-color;
+    }
+
+    &--no-stats {
+      @include gpos-panel-btn();
+
+      margin-bottom: 10px;
+      background: $gpos-green;
+
+      &:hover {
+        background: $gpos-green-hover;
+      }
+
+      &:active {
+        background: darken($gpos-green, $amount: 10%);
+      }
+
+      &.cond {
+        margin-bottom: $gpos-panel-button-b-margin;
+      }
+    }
+  }
+
+  &__title {
+    font-weight: 600;
+  }
+
+  &__desc {
+    margin-bottom: 47px;
+
+    &-txt {
+      display: initial;
+    }
+
+    &-link {
+      color: #5eb5f2;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__stats {
+    &-balance, &-perf, &-percent, &-potential {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    &--right {
+      right: 0;
+      color: $green3;
+
+      &.txt {
+        &--white {
+          color: $white;
+        }
+
+        &--green {
+          color: $green;
+        }
+
+        &--green-drk {
+          color: $green2;
+        }
+
+        &--blue {
+          color: $light-blue;
+        }
+
+        &--yellow {
+          color: rgb(255, 210, 1);
+        }
+
+        &--orange {
+          color: rgb(255, 126, 25);
+        }
+
+        &--red {
+          color: $red;
+        }
+
+        &--red-drk {
+          color: rgb(233, 17, 28);
+        }
+      }
+    }
+  }
+}

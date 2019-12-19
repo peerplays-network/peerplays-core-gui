@@ -38,7 +38,7 @@
     },
     "side": {
       "available_balances": "Available Balances:",
-      "vesting_balances": "Vesting Balances (Witness Pay)",
+      "vesting_balances": "Pending Balances",
       "claim_balances": "Claim Balances",
       "total": "Total:",
       "claimable": "Claimable:",
@@ -70,6 +70,7 @@
     "asset_claim_fees": "claimed asset fees of %(amount)s from %(from)s fee pool",
     "fill_order": "%(account)s bought %(received)s at %(price)s",
     "vesting_balance_withdraw": "%(account)s withdrew vesting balance of %(amount)s",
+    "vesting_balance_deposit": "%(account)s deposited vesting balance of %(amount)s",
     "balance_claim": "%(account)s claimed a balance of %(amount)s",
     "publish_feed": "%(account)s published feed price of %(price)s",
     "set_proxy": "%(account)s set %(proxy)s as their voting proxy",
@@ -488,6 +489,110 @@
     "remaining": "Days Remaining in Period",
     "claim": "Claim"
   },
+  "gpos": {
+    "side": {
+      "title": "GPOS Panel",
+      "desc": "Gamified Proof of Stake (GPOS) enables you to earn rewards of multiple cryptocurrencies supported in Peerplays by helping secure the network. %(learn)s",
+      "learn": "Learn More",
+      "start": "GET STARTED",
+      "participate": "PARTICIPATE",
+      "info": {
+        "balance": "GPOS Balance",
+        "performance": {
+          "title": "Voting Performance",
+          "max": "Max Rewards",
+          "great": "Great Rewards",
+          "good": "Good Rewards",
+          "ok": "OK Rewards",
+          "low": "Low Rewards",
+          "lower": "Lower Rewards",
+          "crit": "Critical Low",
+          "none": "No Rewards"
+        },
+        "percent": "Qualified Reward %",
+        "potential": "Estimated Rake Reward %"
+      }
+    },
+    "faq": {
+      "title": "GAMIFIED PROOF OF STAKE"
+    },
+    "start": {
+      "desc": {
+        "title": "Peerplays GPOS",
+        "txt-1": "Join GPOS by transferring your PPY to your GPOS balance.",
+        "txt-2": "Consistently participate in voting for the best Witnesses, Advisors, Proposals, and SONs. Share the exciting news and DApps available on Peerplays with others.",
+        "txt-3": "The more value that comes into Peerplays blockchain through its operations, the more those that participate to help make it secure will earn!",
+        "txt-4": "If you want to increase your participation rewards you can do it two ways:",
+        "txt-5": "1. Transfer more PPY into your GPOS balance",
+        "txt-6": "2. Share Peerplays with others",
+        "txt-7": "Together as a Decentralized Autonomous Cooperative (DAC), we can ensure Peerplays remains the most secure provably fair blockchain globally."
+      },
+      "right": {
+        "1": "Power Up",
+        "2": "Power Down",
+        "3": "Vote"
+      }
+    },
+    "deposit-withdraw": {
+      "desc": {
+        "title-1": "Power Up",
+        "txt-1": "When you Power Up your PPY on the Peerplays blockchain you are taking your first steps into participating in the Decentralized Autonomous Cooperative (DAC) that is the magic in blockchain tech. This means you will:",
+        "up-bullet-1": "Become a big part of something special on a global scale",
+        "up-bullet-2": "Earn participation rewards for your efforts",
+        "up-bullet-3": "Bragging rights to family and friends",
+        "up-bullet-4": "Stake your PPY while you participate",
+        "up-bullet-5": "Help secure the Peerplays blockchain",
+        "title-2": "Power Down",
+        "txt-2": "When you Power Down it will take 30 days for you to withdraw your PPY balance in full. You will continue to receive participation rewards during that time so long as you have been participating. After Power Down you can then use your PPY like any other cryptocurrency. This means you will:",
+        "down-bullet-1": "Still be a part of something special, just not as much",
+        "down-bullet-2": "No longer helping secure the Peerplays blockchain",
+        "down-bullet-3": "No longer earn participation rewards",
+        "down-bullet-4": "Lose bragging rights",
+        "down-bullet-5": "Stop staking your PPY"
+      },
+      "right": {
+        "card-1-open": "Opening GPOS Balance:",
+        "card-1-available": "Available GPOS Balance:",
+        "card-2": "New GPOS Balance:",
+        "deposit": "Deposit:",
+        "withdraw": "Withdraw",
+        "placeholderAmt": "100"
+      }
+    },
+    "complete": {
+      "title": "Thank you for voting!",
+      "text-1": "This is now your blockchain as part of the decentralized autonomous cooperative. The value it brings is what you and others bring to it, so go out and:",
+      "text-2": "Share Peerplays with others",
+      "text-3": "Share your voting decisions with the community, including why you voted the way you did",
+      "text-4": "Visit Peerplays social media and like, share, or retweet our latest posts, and provide feedback"
+    },
+    "modal": {
+      "up": "POWER UP",
+      "down": "POWER DOWN",
+      "cancel": "CANCEL",
+      "done": "DONE",
+      "completed": "COMPLETED",
+      "submit": "SUBMIT",
+      "ok": "OK",
+      "finish": "FINISH",
+      "vote": "Vote",
+      "skip": "Skip"
+    },
+    "transaction": {
+      "down": {
+        "succeed": "You have successfully Powered Down!",
+        "fail": "You have failed to Power Down!",
+        "none_available": "No GPOS balances are available for withdrawal yet."
+      },
+      "up": {
+        "succeed": "You have successfully Powered Up!",
+        "fail": "You have failed to Power Up!"
+      },
+      "next": "NEXT",
+      "retry": "RETRY",
+      "lack-funds": "You don’t have enough funds"
+    }
+  },
   "about": {
     "title": "Peerplays TEST Network",
     "note1": "This public TEST network is for demonstrations purposes only. It will be modified and changed often as additional features are added and tested.",
@@ -667,10 +772,10 @@
     "important_title": "IMPORTANT:",
     "important_note": "PLEASE REMEMBER TO SECURELY STORE YOUR WALLET PASSWORD. IF YOU LOSE YOUR PASSWORD, YOU WILL LOSE ACCESS TO YOUR WALLET AND FUNDS PERMANENTLY.",
     "introduce_note": "You can log out of the Peerplays Core wallet by going to My Funds and clicking on your Account Name at the top right side of the screen.",
-    "introduce_note": "You can log out of the Peerplays Core wallet by going to My Funds and clicking on your Account Name at the top right side of the screen.",
     "anchors": {
       "my_funds": "MY FUNDS",
       "play": "PLAY",
+      "gpos": "GAMIFIED PROOF OF STAKE",
       "vote": "VOTE",
       "network": "NETWORK",
       "settings": "SETTINGS",
@@ -705,6 +810,14 @@
     "play": {
       "title": "PLAY",
       "text_1": "The Play page will link to the various Peerplays Dapps (Decentralized apps) as they become available."
+    },
+    "gpos": {
+      "title": "GAMIFIED PROOF OF STAKE",
+      "text_1": "The Peerplays blockchain uses Gamified Proof of Stake (GPOS) as the means to maintaining blockchain security while incorporating the human design element necessary for effective voting mechanics.",
+      "text_2": "By participating in GPOS you are staking your PPY for a period of 30 days. After the 30 day time period, you may request to withdraw the staked PPY.",
+      "text_3": "During the staking period, you will be capable of participating in the voting of node operators and other important functions within the Peerplays ecosystem. Advisors, Witnesses, new Proposals, SONs, and other types of nodes and providers that make up the Peerplays ecosystem will benefit from your votes.",
+      "text_4": "For your contribution in helping secure the blockchain, you will receive Participation Rewards. These rewards are based on the amount of PPY you have staked relative to the rest of the network distribution. Participation Rewards are given out each month and are based on the collective activity (i.e.: blockchain fees) on the Peerplays blockchain. As more value comes into the network, this is sent to you as a reward for helping make it happen.",
+      "text_5": "For more detailed help please visit "
     },
     "vote": {
       "title": "VOTE",

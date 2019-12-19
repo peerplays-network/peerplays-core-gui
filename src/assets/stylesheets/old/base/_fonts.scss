@@ -3,9 +3,9 @@
 @mixin font-face($font-family, $file-path, $font-weight, $font-style) {
   @font-face {
     font-family: $font-family;
-    src: url('#{$file-path}.woff') format('woff');
     font-weight: $font-weight;
     font-style: $font-style;
+    src: url('#{$file-path}.woff') format('woff');
   }
 }
 
@@ -35,18 +35,18 @@
 
 @mixin SegoeUILight {
   font-family: 'wf_SegoeUILight', 'Segoe UI Light', 'Segoe WP Light', 'wf_SegoeUI', 'Segoe UI', 'Segoe', 'Segoe WP', 'Tahoma', 'Verdana', arial, sans-serif;
-  font-size: 90%;
   font-weight: lighter;
+  font-size: 90%;
 }
 
 @mixin SegoeUIRegular {
   font-family: 'wf_SegoeUI', 'Segoe UI', 'Segoe', 'Segoe WP', 'Tahoma', 'Verdana', arial, sans-serif;
-  font-size: 90%;
   font-weight: normal;
+  font-size: 90%;
 }
 
 @mixin MonospaceFont {
-  font-family: "Lucida Console", Monaco, monospace !important;
+  font-family: 'Lucida Console', Monaco, monospace !important;
 }
 
 /* ***** styles ****** */
@@ -65,24 +65,28 @@ h6 {
 }
 
 label,
-label>span {
+label > span {
   @include RobotoCondensed;
+
   text-transform: uppercase;
 }
 
 .json-inspector__key {
   @include MonospaceFont;
+
   text-transform: none;
 }
 
 .json-inspector__value {
   @include MonospaceFont;
+
   text-transform: none;
 }
 
 button,
 .button {
   @include RobotoCondensed;
+
   text-transform: uppercase;
 }
 
@@ -97,11 +101,13 @@ button,
 a.currency,
 span.currency {
   @include RobotoLight;
+
   font-variant: small-caps;
 }
 
 .txtlabel {
   @include RobotoCondensed;
+
   text-transform: uppercase;
 }
 
@@ -143,7 +149,6 @@ span.time {
 }
 
 .win32 {
-
   h1,
   h2,
   h3,
@@ -154,7 +159,7 @@ span.time {
   }
 
   label,
-  label>span {
+  label > span {
     @include RobotoCondensed;
   }
 
@@ -212,5 +217,4 @@ span.time {
   .key-value-table tr>td:first-child {
     @include SegoeUILight;
   }
-
 }

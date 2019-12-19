@@ -161,6 +161,7 @@ class WalletDb extends BaseStore {
             throw new Error('Missing signing key');
           }
 
+          // eslint-disable-next-line no-unused-vars
           for (let pubkey_string of pubkeys) {
             var private_key = this.getPrivateKey(pubkey_string);
             tr.add_signer(private_key, pubkey_string);
@@ -175,6 +176,7 @@ class WalletDb extends BaseStore {
           var my_pubkeys = PrivateKeyStore.getPubkeys_having_PrivateKey(pubkeys, addys);
 
           return tr.get_required_signatures(my_pubkeys).then((required_pubkeys) => {
+            // eslint-disable-next-line no-unused-vars
             for (let pubkey_string of required_pubkeys) {
               if (signer_pubkeys_added[pubkey_string]) {
                 continue;
@@ -462,15 +464,17 @@ class WalletDb extends BaseStore {
       var addyIndexPromise = AddressIndex.addAll(pubkeys);
       var private_plainhex_array = [];
 
+      // eslint-disable-next-line no-unused-vars
       for (let private_key_obj of private_key_objs) {
         pubkeys.push(private_key_obj.public_key_string);
       }
 
+      // eslint-disable-next-line no-unused-vars
       for (let private_key_obj of private_key_objs) {
         private_plainhex_array.push(private_key_obj.private_plainhex);
       }
 
-      var AesWorker = require('worker!../workers/AesWorker'); /* eslint-disable-line */
+      var AesWorker = require('worker-loader!../workers/AesWorker'); /* eslint-disable-line */
       var worker = new AesWorker();
       worker.postMessage({
         private_plainhex_array,
@@ -549,6 +553,7 @@ class WalletDb extends BaseStore {
   saveKeys(private_keys, transaction, public_key_string) {
     var promises = [];
 
+    // eslint-disable-next-line no-unused-vars
     for (let private_key_record of private_keys) {
       promises.push(this.saveKey(
         private_key_record.private_key,

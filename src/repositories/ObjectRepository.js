@@ -8,6 +8,10 @@ class ObjectRepository {
       console.log('ObjectRepository', error);
     });
   }
+
+  static getTransactionFee(operations, assetId) {
+    return Apis.instance().db_api().exec('get_required_fees', [[operations], assetId]).then((res) => res).catch((err) => console.log(err));
+  }
 }
 
 export default ObjectRepository;

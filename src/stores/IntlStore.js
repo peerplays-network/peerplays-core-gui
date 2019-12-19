@@ -7,14 +7,14 @@ import ko from 'react-intl/locale-data/ko';
 import zh from 'react-intl/locale-data/zh';
 import de from 'react-intl/locale-data/de';
 import tr from 'react-intl/locale-data/tr';
+import ls from '../common/localStorage';
+import counterpart from 'counterpart';
 
-var alt = require('../alt-instance');
-var IntlActions = require('../actions/IntlActions');
-var SettingsActions = require('../actions/SettingsActions');
-var BaseStore = require('./BaseStore');
-var counterpart = require('../counterpart-instance');
-var locale_en = require('json!../assets/locales/locale-en'); /* eslint-disable-line */
-var ls = require('../common/localStorage');
+import alt from '../alt-instance';
+import IntlActions from '../actions/IntlActions';
+import SettingsActions from '../actions/SettingsActions';
+import BaseStore from './BaseStore';
+import locale_en from '../assets/locales/locale-en';
 let ss = new ls('__peerplays__');
 
 counterpart.registerTranslations('en', locale_en);
@@ -76,4 +76,4 @@ class IntlStore extends BaseStore {
   }
 }
 
-module.exports = alt.createStore(IntlStore, 'IntlStore');
+export default alt.createStore(IntlStore, 'IntlStore');
