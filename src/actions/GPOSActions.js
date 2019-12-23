@@ -3,6 +3,7 @@ import BalanceTypes from '../constants/BalanceTypes';
 import {PrivateKey} from 'peerplaysjs-lib';
 import WalletApi from '../rpc_api/WalletApi';
 import AccountRepository from '../repositories/AccountRepository';
+import {getGposBalances} from '../selectors/GPOSSelector';
 
 /**
  * Private actions that are only to be called within the public class GPOSActions.
@@ -138,14 +139,14 @@ class GPOSActions {
    * @memberof GPOSActions
    */
   static getPowerDownTransaction(owner, amount) { // id, owner, amount
-    return () => {
+    return (dispatch, getState) => {
+      const gposBalances = getGposBalances(getState());
       return new Promise((resolve, reject) => {
         const wallet_api = new WalletApi();
 
         // Discern which vesting balances to withdraw to meet the requested amount
         const requestedAmt = amount.amount;
         const requestedAsset = amount.asset_id;
-        const dummyVestingBalanceId = '1.13.2';
 
         let powerDownOp = {
           fee: {
@@ -153,7 +154,7 @@ class GPOSActions {
             asset_id: '1.3.0'
           },
           owner,
-          vesting_balance: dummyVestingBalanceId, // will be ignored for gpos vesting balances
+          vesting_balance: gposBalances[0].id, // provide first valid gpos vesting balance object type
           amount: {
             amount: Math.floor(requestedAmt),
             asset_id: requestedAsset
