@@ -2,6 +2,2221 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.1-alpha](https://github.com/peerplays-network/peerplays-core-gui/compare/v0.5.1...v1.5.1-alpha) (2019-12-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit c1a48a3a56f6e5df9ea7c1757a49c454dc8d3b10.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* "power up" is not functional
+
+WAL-250
+
+* fix(tgpos transaction): correct parameter name
+
+name for parameter was incorrect within gpos transaction operation object.
+
+WAL-250
+
+* feat: display gpos stats regardless of user gpos balance
+
+add config for quick swap config of this functionality
+
+WAL-275
+
+* feat: remove vote header nav button
+
+functionality has been moved to the gpos modal
+
+WAL-274
+
+* feat(vote tab): added vote tab functionality to gpos modal
+
+voting functionality exists inside the modal. still pending other gui elements on this section
+
+WAL-251
+
+* style(gpos vote): style modifications
+
+* style(gpos voting): styles
+
+* feat(vote tab): navigation buttons and styling
+
+modified styles to match mockup and added navigation
+
+* feat(locales): update all locale files
+
+* style: done screen temp wip styles
+
+* feat(done): complete done page
+
+WAL-252
+
+* style(gpos modal): gpos modal styles and fonts
+
+* style: gpos font constants
+
+also fixed bug with spacing below gpos panel button when conditional stat display is disabled
+
+* chore(package security): update a few packages to resolve npm audit flag
+
+* chore: resolve TODO
+
+* chore: remove debugger
+
+can't reach this debugger but bad practice to have it there in general
+
+* feat: alterations to gpos panel
+
+statistics now display a percentage of total rake reward
+
+WAL-277
+
+* docs: version bump
+
+* feat: alterations to gpos panel
+
+statistics now display a percentage of total rake reward
+
+WAL-277
+
+* docs: version bump + changelog
+
+* feat: alterations to gpos panel
+
+statistics now display a percentage of total rake reward
+
+WAL-277
+
+* docs: version bump + changelog
+
+* style: increase size of gpos panel button
+
+* docs: version bump + changelog
+
+* fix(pr changes): made changes as a result of PR comments
+
+* style: vote page styling on smaller screens
+
+more repsonsive support
+
+* chore: version bump + changelog
+
+* refactor: alter capitalization of gpos panel stats
+
+* docs: version bump + changelog
+
+* fix(step1): fix NaN amount when input is empty
+
+* docs: version bump + changelog
+
+* fix: bedmas
+
+* style: style changes due to recent spec changes
+
+* feat: alterations to gpos panel
+
+statistics now display a percentage of total rake reward
+
+WAL-277
+
+* docs: version bump + changelog
+
+* feat(gpos start): updated the gpos start page
+
+made changes according to recent GUI spec changes
+
+WAL-249
+
+* docs(gpos start): changes to gpos start screen
+
+WAL-249
+* actual submission to the blockchain for a power up and power down has been disabled
+until they are fully implemented.
+
+WAL-250
+
+* feat: dynamic disable of vote "button"
+
+* feat: dynamic button text on start screen of gpos
+
+if there is any progress, the button will say DONE else it says CANCEL
+
+* feat: vote disabled based on conditions
+
+gpos balance must be greater than zero and the user must have completed one of the two enabled
+actions.
+
+WAL-250
+
+* fix: bug with enable/disable of submit button resolved
+
+* feat(transaction): auto-signing and error/success
+
+sign power up/down transactions automatically and display custom success/error screens for the
+result of the transaction broadcast
+
+WAL-250
+
+* refactor: remove deprecated code
+
+* feat: get fees into power up/down state
+
+* feat: error states, custom transaction signing,styling
+
+modified styles a bit to be more friendly for error state disaply
+
+WAL-250
+
+* chore(version): version bump + changelog
+
+* fix: succeed skipping input stage
+
+added a configurable fake success toggle for power down action.resolved issue where the input form
+was being skipped during a fake success power up/down action
+
+WAL-250
+
+* docs: version bump + changelog
+
+* chore: merge conflict resolutions
+
+* docs: version bump + changelog
+
+qa release
+
+WAL-279, WAL-249, WAL-250, WAL-277, PJL-23
+
+* fix: number picker color
+
+wrong color was being used in electron builds
+
+* fix: capitlization error on GPOS Panel
+
+* fix: live update of gpos data
+
+gpos data in the gpos panel was not updating live, no longer require re-logging into a user account
+to get fresh data
+
+WAL-277
+
+* fix: change balance type to string
+
+* fix(gpos modal): state cleanup on logout
+
+reset all gpos modal data on logout as it was persisting across different logins prior. Involved
+moving some data to global redux as the modal never unmounts on a logout
+
+WAL-249
+
+* refactor: remove commented out code
+
+* refactor: refactor wizard and step1 to modal and DepositWithdraw
+
+impact is on nearly all files related to GPOS
+
+WAL-276
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+* build process has changed. building executables not working yet
+
+* GitLab CI/CD process added
+
+* refactor: update to absolute urls
+
+* refactor: update webpack.config.dev
+
+webpack.config file removed and now only have two webpack config files: prod and config
+
+* build: update webpack, scripts
+
+optimized webpack scripts, production executable still not functional
+
+* Update deploy.sh
+
+* refactor: simplify app.jsx
+
+index.js and app.jsx have moved and simplified
+
+* build: update build script(s)
+
+Modified scripts to account for electron executable generation scripts now being included within
+this repository.
+
+* chore: update package-lock
+
+* chore(release): 0.5.0
+
+* build: peerplaysjs dependencies update
+
+conencting to nodes by lowest latency has been added in the libs
+* new library code in use and required for this branches new latency conenctivity
+code
+
+* chore(release): 0.4.5
+
+* Revert "chore(release): 0.4.5"
+
+This reverts commit b3caa0d0262a0f730ca3411ee5ea8d56f964ff04.
+
+* chore(release): 0.4.4
+
+* docs(changelog.md): tweak entry for more context
+
+* chore(release): 0.5.1
+
+* refactor(app.jsx): update component import for splashscreen
+
+* build: eslint tweaking and run as preloader
+
+* refactor(eslint): eslint files with couple tweaks
+
+eslint runs on compile now
+
+* refactor(webpack.config.prod|dev): eslint on production preloader
+
+* build(hot-reloading): fix hot reloading
+
+can now dev and hot reload all content live (browser|electron)
+
+* fix: fix distributable crashing
+
+incorrect "homepage" in package.json was breaking the electron executables. removed index.html js
+script import, conflicts with executable build process (hot reloading still works, just do not
+refresh the page).
+
+* refactor(ws): removed peerplaysjs-ws
+
+peerplaysjs-ws is now a part of peerplaysjs-lib. refactoring was done to account for these changes
+* removal of peerplaysjs-ws and refactoring of its imports
+
+* chore(package.json): update branch for peerplaysjs-lib
+
+### Bug Fixes
+
+* **.github:** move config to correct path ([#95](https://github.com/peerplays-network/peerplays-core-gui/issues/95)) ([685dd65](https://github.com/peerplays-network/peerplays-core-gui/commit/685dd655a0d7e6e072d0839d587426e02b2cb6fe))
+* **powerdown:** provide first available gpos type vested balance ([8b056bd](https://github.com/peerplays-network/peerplays-core-gui/commit/8b056bd9581118067c8b6f593fc76ff02f8865a7))
+
+
+* WAL-248-GPOS (#83) ([1e58d45](https://github.com/peerplays-network/peerplays-core-gui/commit/1e58d4545aa9494ddf452dffd106136ebd77f4e2)), closes [#83](https://github.com/peerplays-network/peerplays-core-gui/issues/83) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#38](https://github.com/peerplays-network/peerplays-core-gui/issues/38) [#39](https://github.com/peerplays-network/peerplays-core-gui/issues/39) [#44](https://github.com/peerplays-network/peerplays-core-gui/issues/44) [#45](https://github.com/peerplays-network/peerplays-core-gui/issues/45) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#49](https://github.com/peerplays-network/peerplays-core-gui/issues/49) [#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40) [#43](https://github.com/peerplays-network/peerplays-core-gui/issues/43) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#50](https://github.com/peerplays-network/peerplays-core-gui/issues/50) [#48](https://github.com/peerplays-network/peerplays-core-gui/issues/48) [#74](https://github.com/peerplays-network/peerplays-core-gui/issues/74) [#79](https://github.com/peerplays-network/peerplays-core-gui/issues/79) [#81](https://github.com/peerplays-network/peerplays-core-gui/issues/81) [#82](https://github.com/peerplays-network/peerplays-core-gui/issues/82) [#84](https://github.com/peerplays-network/peerplays-core-gui/issues/84)
+* Pbsa develop (#62) ([64fd27a](https://github.com/peerplays-network/peerplays-core-gui/commit/64fd27a4a4255dd6aac4042eec34ee05213d29fd)), closes [#62](https://github.com/peerplays-network/peerplays-core-gui/issues/62) [#58](https://github.com/peerplays-network/peerplays-core-gui/issues/58) [#48](https://github.com/peerplays-network/peerplays-core-gui/issues/48) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#38](https://github.com/peerplays-network/peerplays-core-gui/issues/38) [#39](https://github.com/peerplays-network/peerplays-core-gui/issues/39) [#44](https://github.com/peerplays-network/peerplays-core-gui/issues/44) [#49](https://github.com/peerplays-network/peerplays-core-gui/issues/49) [#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40) [#43](https://github.com/peerplays-network/peerplays-core-gui/issues/43) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#50](https://github.com/peerplays-network/peerplays-core-gui/issues/50) [#51](https://github.com/peerplays-network/peerplays-core-gui/issues/51) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#38](https://github.com/peerplays-network/peerplays-core-gui/issues/38) [#39](https://github.com/peerplays-network/peerplays-core-gui/issues/39) [#44](https://github.com/peerplays-network/peerplays-core-gui/issues/44) [#49](https://github.com/peerplays-network/peerplays-core-gui/issues/49) [#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40) [#43](https://github.com/peerplays-network/peerplays-core-gui/issues/43) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#50](https://github.com/peerplays-network/peerplays-core-gui/issues/50) [#54](https://github.com/peerplays-network/peerplays-core-gui/issues/54) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#38](https://github.com/peerplays-network/peerplays-core-gui/issues/38) [#39](https://github.com/peerplays-network/peerplays-core-gui/issues/39) [#44](https://github.com/peerplays-network/peerplays-core-gui/issues/44) [#49](https://github.com/peerplays-network/peerplays-core-gui/issues/49) [#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40) [#43](https://github.com/peerplays-network/peerplays-core-gui/issues/43) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#50](https://github.com/peerplays-network/peerplays-core-gui/issues/50) [#53](https://github.com/peerplays-network/peerplays-core-gui/issues/53) [#56](https://github.com/peerplays-network/peerplays-core-gui/issues/56) [#48](https://github.com/peerplays-network/peerplays-core-gui/issues/48) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#38](https://github.com/peerplays-network/peerplays-core-gui/issues/38) [#39](https://github.com/peerplays-network/peerplays-core-gui/issues/39) [#44](https://github.com/peerplays-network/peerplays-core-gui/issues/44) [#49](https://github.com/peerplays-network/peerplays-core-gui/issues/49) [#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40) [#43](https://github.com/peerplays-network/peerplays-core-gui/issues/43) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#50](https://github.com/peerplays-network/peerplays-core-gui/issues/50) [#51](https://github.com/peerplays-network/peerplays-core-gui/issues/51) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#61](https://github.com/peerplays-network/peerplays-core-gui/issues/61) [#48](https://github.com/peerplays-network/peerplays-core-gui/issues/48) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#38](https://github.com/peerplays-network/peerplays-core-gui/issues/38) [#39](https://github.com/peerplays-network/peerplays-core-gui/issues/39) [#44](https://github.com/peerplays-network/peerplays-core-gui/issues/44) [#49](https://github.com/peerplays-network/peerplays-core-gui/issues/49) [#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40) [#43](https://github.com/peerplays-network/peerplays-core-gui/issues/43) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#50](https://github.com/peerplays-network/peerplays-core-gui/issues/50) [#51](https://github.com/peerplays-network/peerplays-core-gui/issues/51) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#38](https://github.com/peerplays-network/peerplays-core-gui/issues/38) [#39](https://github.com/peerplays-network/peerplays-core-gui/issues/39) [#44](https://github.com/peerplays-network/peerplays-core-gui/issues/44) [#49](https://github.com/peerplays-network/peerplays-core-gui/issues/49) [#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40) [#43](https://github.com/peerplays-network/peerplays-core-gui/issues/43) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#50](https://github.com/peerplays-network/peerplays-core-gui/issues/50) [#54](https://github.com/peerplays-network/peerplays-core-gui/issues/54) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#38](https://github.com/peerplays-network/peerplays-core-gui/issues/38) [#39](https://github.com/peerplays-network/peerplays-core-gui/issues/39) [#44](https://github.com/peerplays-network/peerplays-core-gui/issues/44) [#49](https://github.com/peerplays-network/peerplays-core-gui/issues/49) [#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40) [#43](https://github.com/peerplays-network/peerplays-core-gui/issues/43) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#50](https://github.com/peerplays-network/peerplays-core-gui/issues/50) [#53](https://github.com/peerplays-network/peerplays-core-gui/issues/53) [#56](https://github.com/peerplays-network/peerplays-core-gui/issues/56) [#48](https://github.com/peerplays-network/peerplays-core-gui/issues/48) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#38](https://github.com/peerplays-network/peerplays-core-gui/issues/38) [#39](https://github.com/peerplays-network/peerplays-core-gui/issues/39) [#44](https://github.com/peerplays-network/peerplays-core-gui/issues/44) [#49](https://github.com/peerplays-network/peerplays-core-gui/issues/49) [#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40) [#43](https://github.com/peerplays-network/peerplays-core-gui/issues/43) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#50](https://github.com/peerplays-network/peerplays-core-gui/issues/50) [#51](https://github.com/peerplays-network/peerplays-core-gui/issues/51) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36)
+* Master -> pbsa-develop (#58) (#59) ([5f2a101](https://github.com/peerplays-network/peerplays-core-gui/commit/5f2a1015ca7ccf1beebc0b4fbc45e4f01d417e29)), closes [#58](https://github.com/peerplays-network/peerplays-core-gui/issues/58) [#59](https://github.com/peerplays-network/peerplays-core-gui/issues/59) [#48](https://github.com/peerplays-network/peerplays-core-gui/issues/48) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#38](https://github.com/peerplays-network/peerplays-core-gui/issues/38) [#39](https://github.com/peerplays-network/peerplays-core-gui/issues/39) [#44](https://github.com/peerplays-network/peerplays-core-gui/issues/44) [#49](https://github.com/peerplays-network/peerplays-core-gui/issues/49) [#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40) [#43](https://github.com/peerplays-network/peerplays-core-gui/issues/43) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#50](https://github.com/peerplays-network/peerplays-core-gui/issues/50) [#51](https://github.com/peerplays-network/peerplays-core-gui/issues/51) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#38](https://github.com/peerplays-network/peerplays-core-gui/issues/38) [#39](https://github.com/peerplays-network/peerplays-core-gui/issues/39) [#44](https://github.com/peerplays-network/peerplays-core-gui/issues/44) [#49](https://github.com/peerplays-network/peerplays-core-gui/issues/49) [#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40) [#43](https://github.com/peerplays-network/peerplays-core-gui/issues/43) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#50](https://github.com/peerplays-network/peerplays-core-gui/issues/50) [#54](https://github.com/peerplays-network/peerplays-core-gui/issues/54) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#38](https://github.com/peerplays-network/peerplays-core-gui/issues/38) [#39](https://github.com/peerplays-network/peerplays-core-gui/issues/39) [#44](https://github.com/peerplays-network/peerplays-core-gui/issues/44) [#49](https://github.com/peerplays-network/peerplays-core-gui/issues/49) [#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40) [#43](https://github.com/peerplays-network/peerplays-core-gui/issues/43) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#50](https://github.com/peerplays-network/peerplays-core-gui/issues/50) [#53](https://github.com/peerplays-network/peerplays-core-gui/issues/53) [#56](https://github.com/peerplays-network/peerplays-core-gui/issues/56) [#48](https://github.com/peerplays-network/peerplays-core-gui/issues/48) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#38](https://github.com/peerplays-network/peerplays-core-gui/issues/38) [#39](https://github.com/peerplays-network/peerplays-core-gui/issues/39) [#44](https://github.com/peerplays-network/peerplays-core-gui/issues/44) [#49](https://github.com/peerplays-network/peerplays-core-gui/issues/49) [#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40) [#43](https://github.com/peerplays-network/peerplays-core-gui/issues/43) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#50](https://github.com/peerplays-network/peerplays-core-gui/issues/50) [#51](https://github.com/peerplays-network/peerplays-core-gui/issues/51) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36)
+* Pbsa develop (#55) ([337bfef](https://github.com/peerplays-network/peerplays-core-gui/commit/337bfef4c84238a3f7e880c30c0ae20e59f2f707)), closes [#55](https://github.com/peerplays-network/peerplays-core-gui/issues/55) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#38](https://github.com/peerplays-network/peerplays-core-gui/issues/38) [#39](https://github.com/peerplays-network/peerplays-core-gui/issues/39) [#44](https://github.com/peerplays-network/peerplays-core-gui/issues/44) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#49](https://github.com/peerplays-network/peerplays-core-gui/issues/49) [#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40) [#43](https://github.com/peerplays-network/peerplays-core-gui/issues/43) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#50](https://github.com/peerplays-network/peerplays-core-gui/issues/50) [#53](https://github.com/peerplays-network/peerplays-core-gui/issues/53) [#56](https://github.com/peerplays-network/peerplays-core-gui/issues/56) [#48](https://github.com/peerplays-network/peerplays-core-gui/issues/48) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#38](https://github.com/peerplays-network/peerplays-core-gui/issues/38) [#39](https://github.com/peerplays-network/peerplays-core-gui/issues/39) [#44](https://github.com/peerplays-network/peerplays-core-gui/issues/44) [#49](https://github.com/peerplays-network/peerplays-core-gui/issues/49) [#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40) [#43](https://github.com/peerplays-network/peerplays-core-gui/issues/43) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#50](https://github.com/peerplays-network/peerplays-core-gui/issues/50) [#51](https://github.com/peerplays-network/peerplays-core-gui/issues/51) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#38](https://github.com/peerplays-network/peerplays-core-gui/issues/38) [#39](https://github.com/peerplays-network/peerplays-core-gui/issues/39) [#44](https://github.com/peerplays-network/peerplays-core-gui/issues/44) [#49](https://github.com/peerplays-network/peerplays-core-gui/issues/49) [#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40) [#43](https://github.com/peerplays-network/peerplays-core-gui/issues/43) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#50](https://github.com/peerplays-network/peerplays-core-gui/issues/50)
+* (hotfix) - WAL-243 (#54) ([3304d2a](https://github.com/peerplays-network/peerplays-core-gui/commit/3304d2ae5b7a9453490d996b5daccffa8d474a08)), closes [#54](https://github.com/peerplays-network/peerplays-core-gui/issues/54) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#38](https://github.com/peerplays-network/peerplays-core-gui/issues/38) [#39](https://github.com/peerplays-network/peerplays-core-gui/issues/39) [#44](https://github.com/peerplays-network/peerplays-core-gui/issues/44) [#49](https://github.com/peerplays-network/peerplays-core-gui/issues/49) [#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40) [#43](https://github.com/peerplays-network/peerplays-core-gui/issues/43) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#50](https://github.com/peerplays-network/peerplays-core-gui/issues/50) [#53](https://github.com/peerplays-network/peerplays-core-gui/issues/53) [#56](https://github.com/peerplays-network/peerplays-core-gui/issues/56) [#48](https://github.com/peerplays-network/peerplays-core-gui/issues/48) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#38](https://github.com/peerplays-network/peerplays-core-gui/issues/38) [#39](https://github.com/peerplays-network/peerplays-core-gui/issues/39) [#44](https://github.com/peerplays-network/peerplays-core-gui/issues/44) [#49](https://github.com/peerplays-network/peerplays-core-gui/issues/49) [#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40) [#43](https://github.com/peerplays-network/peerplays-core-gui/issues/43) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#50](https://github.com/peerplays-network/peerplays-core-gui/issues/50) [#51](https://github.com/peerplays-network/peerplays-core-gui/issues/51) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#38](https://github.com/peerplays-network/peerplays-core-gui/issues/38) [#39](https://github.com/peerplays-network/peerplays-core-gui/issues/39) [#44](https://github.com/peerplays-network/peerplays-core-gui/issues/44) [#49](https://github.com/peerplays-network/peerplays-core-gui/issues/49) [#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40) [#43](https://github.com/peerplays-network/peerplays-core-gui/issues/43) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#50](https://github.com/peerplays-network/peerplays-core-gui/issues/50)
+* Master (#56) ([d72b1cb](https://github.com/peerplays-network/peerplays-core-gui/commit/d72b1cbf0eae186cbf391718d67fe768aa1dd9a0)), closes [#56](https://github.com/peerplays-network/peerplays-core-gui/issues/56) [#48](https://github.com/peerplays-network/peerplays-core-gui/issues/48) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#38](https://github.com/peerplays-network/peerplays-core-gui/issues/38) [#39](https://github.com/peerplays-network/peerplays-core-gui/issues/39) [#44](https://github.com/peerplays-network/peerplays-core-gui/issues/44) [#49](https://github.com/peerplays-network/peerplays-core-gui/issues/49) [#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40) [#43](https://github.com/peerplays-network/peerplays-core-gui/issues/43) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#50](https://github.com/peerplays-network/peerplays-core-gui/issues/50) [#51](https://github.com/peerplays-network/peerplays-core-gui/issues/51) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#38](https://github.com/peerplays-network/peerplays-core-gui/issues/38) [#39](https://github.com/peerplays-network/peerplays-core-gui/issues/39) [#44](https://github.com/peerplays-network/peerplays-core-gui/issues/44) [#49](https://github.com/peerplays-network/peerplays-core-gui/issues/49) [#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40) [#43](https://github.com/peerplays-network/peerplays-core-gui/issues/43) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#50](https://github.com/peerplays-network/peerplays-core-gui/issues/50)
+* Pbsa develop -> develop (#52) ([d9d7df9](https://github.com/peerplays-network/peerplays-core-gui/commit/d9d7df9274ceb00931e608955b670af5633c8255)), closes [#52](https://github.com/peerplays-network/peerplays-core-gui/issues/52) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#38](https://github.com/peerplays-network/peerplays-core-gui/issues/38) [#39](https://github.com/peerplays-network/peerplays-core-gui/issues/39) [#44](https://github.com/peerplays-network/peerplays-core-gui/issues/44) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#49](https://github.com/peerplays-network/peerplays-core-gui/issues/49) [#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40) [#43](https://github.com/peerplays-network/peerplays-core-gui/issues/43) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#50](https://github.com/peerplays-network/peerplays-core-gui/issues/50)
+* Pbsa develop (#51) ([7e20eff](https://github.com/peerplays-network/peerplays-core-gui/commit/7e20eff71c62046efecdec811dd9e938a4ae4938)), closes [#51](https://github.com/peerplays-network/peerplays-core-gui/issues/51) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#38](https://github.com/peerplays-network/peerplays-core-gui/issues/38) [#39](https://github.com/peerplays-network/peerplays-core-gui/issues/39) [#44](https://github.com/peerplays-network/peerplays-core-gui/issues/44) [#49](https://github.com/peerplays-network/peerplays-core-gui/issues/49) [#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40) [#43](https://github.com/peerplays-network/peerplays-core-gui/issues/43) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#50](https://github.com/peerplays-network/peerplays-core-gui/issues/50)
+* Pbsa develop (#48) ([26cb628](https://github.com/peerplays-network/peerplays-core-gui/commit/26cb628c2edc5cefcaaa827eede4d67d3ad71191)), closes [#48](https://github.com/peerplays-network/peerplays-core-gui/issues/48) [#35](https://github.com/peerplays-network/peerplays-core-gui/issues/35) [#30](https://github.com/peerplays-network/peerplays-core-gui/issues/30) [#36](https://github.com/peerplays-network/peerplays-core-gui/issues/36) [#38](https://github.com/peerplays-network/peerplays-core-gui/issues/38) [#39](https://github.com/peerplays-network/peerplays-core-gui/issues/39) [#44](https://github.com/peerplays-network/peerplays-core-gui/issues/44) [#49](https://github.com/peerplays-network/peerplays-core-gui/issues/49) [#40](https://github.com/peerplays-network/peerplays-core-gui/issues/40) [#43](https://github.com/peerplays-network/peerplays-core-gui/issues/43) [#46](https://github.com/peerplays-network/peerplays-core-gui/issues/46) [#50](https://github.com/peerplays-network/peerplays-core-gui/issues/50)
+
+### 1.0.1 (2019-06-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* **ws:** removal of peerplaysjs-ws and refactoring of its imports
+
+### Bug Fixes
+
+* fix distributable crashing ([bb07077](https://github.com/peerplays-network/peerplays-core-gui/commit/bb0707704a3fed78f1e6f854a1c52ceeda9eb6e2))
+
+
+* **ws:** removed peerplaysjs-ws ([89aa3f3](https://github.com/peerplays-network/peerplays-core-gui/commit/89aa3f35a7c5d9edb6f6da7937ce7b03effc9846))
+
 ## [1.5.0-beta](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.28...v1.5.0-beta) (2019-12-17)
 
 ### [1.0.28](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.27...v1.0.28) (2019-12-11)
