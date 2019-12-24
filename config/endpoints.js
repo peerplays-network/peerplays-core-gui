@@ -6,10 +6,17 @@ const endpoints = {
         'https://faucet.peerplays.download/faucet'
       ],
       prefix: 'PPY'
+    },
+    fred: {
+      apiEndpoints: ['wss://fred.peerplays.download/api'],
+      faucetUrls: [
+        'http://fred-faucet.peerplays.download/'
+      ],
+      prefix: 'TEST'
     }
   }
 };
-let current = 'alice'; // Set the current default environment.
+let current = 'fred'; // Set the current default environment.
 
 // Check to make sure a valid target is specified.
 if (process.env && process.env.TARGET && endpoints.environments[process.env.TARGET]) {
