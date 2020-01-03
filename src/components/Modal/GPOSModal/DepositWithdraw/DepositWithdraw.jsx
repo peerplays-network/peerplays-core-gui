@@ -151,8 +151,21 @@ class DepositWithdraw extends PureComponent {
     }
   }
 
+  // Block manual key entering of 'e', '-', & '+'
   onInvalidKey = (e) => {
     if (e.key === 'e' || e.key === '-' || e.key === '+') {
+      e.preventDefault();
+    }
+  }
+
+  // Block clipboard pasted entry of 'e', 'E', '-', & '+'
+  onPaste = (e) => {
+    // Define regex that matches 'e', 'E', '-', & '+'
+    const regex = RegExp(/[eE\-\+]/g);
+    const data = e.clipboardData.getData('Text');
+
+    if (regex.test(data)) {
+      e.stopPropagation();
       e.preventDefault();
     }
   }
@@ -270,6 +283,7 @@ class DepositWithdraw extends PureComponent {
               onChange={ this.onEdit }
               onBlur={ this.onEdit }
               onKeyDown={ this.onInvalidKey }
+              onPaste={ this.onPaste }
               tabIndex='0'
               min='0'
               max={ max }
