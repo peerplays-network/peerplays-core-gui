@@ -151,6 +151,12 @@ class DepositWithdraw extends PureComponent {
     }
   }
 
+  onInvalidKey = (e) => {
+    if (e.key === 'e' || e.key === '-' || e.key === '+') {
+      e.preventDefault();
+    }
+  }
+
   // Handle manually entered values here
   onEdit = (e) => {
     let val;
@@ -263,6 +269,7 @@ class DepositWithdraw extends PureComponent {
               value={ this.state.amount }
               onChange={ this.onEdit }
               onBlur={ this.onEdit }
+              onKeyDown={ this.onInvalidKey }
               tabIndex='0'
               min='0'
               max={ max }
