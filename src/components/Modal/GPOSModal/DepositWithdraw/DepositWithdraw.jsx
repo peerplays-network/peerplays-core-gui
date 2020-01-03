@@ -153,7 +153,7 @@ class DepositWithdraw extends PureComponent {
 
   // Block manual key entering of 'e', '-', & '+'
   onInvalidKey = (e) => {
-    if (e.key === 'e' || e.key === '-' || e.key === '+') {
+    if (e.key === 'e' || e.key === 'E' || e.key === '-' || e.key === '+') {
       e.preventDefault();
     }
   }
