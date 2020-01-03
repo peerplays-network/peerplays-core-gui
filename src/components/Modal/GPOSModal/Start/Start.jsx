@@ -3,9 +3,10 @@ import Translate from 'react-translate-component';
 
 class GposModalStart extends React.Component {
   render() {
-    let {closeModal, proceedOrRegress, completedStages, totalGpos} = this.props, hasProgress, btnTxt, canDo;
-    hasProgress = Object.values(completedStages).indexOf(true) > -1;
-    btnTxt = !hasProgress ? 'gpos.modal.cancel' : 'gpos.modal.done';
+    const {closeModal, proceedOrRegress, completedStages, totalGpos} = this.props;
+    let hasProgress = Object.values(completedStages).indexOf(true) > -1;
+    let btnTxt = !hasProgress ? 'gpos.modal.cancel' : 'gpos.modal.done';
+    let canDo = false;
 
     // If the users' GPOS Balance is greater than 0 and they have not already voted, allow.
     if (totalGpos > 0) {
