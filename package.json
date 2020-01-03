@@ -1,6 +1,6 @@
 {
   "name": "peerplays-core-gui",
-  "version": "1.5.0-beta",
+  "version": "1.5.1-alpha",
   "description": "Advanced wallet interface for graphene based blockchains (Bitshares, Muse..)",
   "homepage": "./",
   "author": "Cryptonomex, Inc.",
@@ -178,7 +178,7 @@
     "node-localstorage": "~0.3.4",
     "node-sass": "^4.12.0",
     "opn": "^5.4.0",
-    "peerplaysjs-lib": "peerplays-network/peerplaysjs-lib#WAL-281-add-update-last-voting-time",
+    "peerplaysjs-lib": "peerplays-network/peerplaysjs-lib#08e64d552a3887bec4ffa22260b666822987e357",
     "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.7.0",

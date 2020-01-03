@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.1-alpha](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.5.0=beta...v1.5.1-alpha) (2019-12-23)
+
+### Bug Fixes
+
+- **power down**: provide first available gpos type vested balance ([8b056bd](https://github.com/peerplays-network/peerplays-core-gui/pull/99/commits/8b056bd9581118067c8b6f593fc76ff02f8865a7))
+
 ## [1.5.0-beta](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.28...v1.5.0-beta) (2019-12-17)
 
 ### [1.0.28](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.0.27...v1.0.28) (2019-12-11)
