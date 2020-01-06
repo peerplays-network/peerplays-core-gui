@@ -154,7 +154,7 @@ class Proxy extends React.Component {
   }
 
   render() {
-    let {inputName, name, error, requestInProcess, disabled} = this.state;
+    const {inputName, name, error, requestInProcess, disabled} = this.state;
     let {account} = this.props;
 
     return (
