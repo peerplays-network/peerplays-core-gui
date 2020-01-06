@@ -36,19 +36,6 @@ class Witnesses extends React.Component {
     });
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.walletLocked !== this.props.walletLocked && !prevProps.walletLocked) {
-      this.onPublishChanges(prevProps.walletLocked);
-    }
-
-    if (JSON.stringify(prevProps.approvedWitnesseIds) !== JSON.stringify(this.props.approvedWitnesseIds)) {
-      this.setState({
-        witnesses: prevProps.approvedWitnesseIds,
-        prev_witnesses: prevProps.approvedWitnesseIds
-      });
-    }
-  }
-
   checkAccount() {
     if (this.state.item_name_input.trim().length) {
       this.verifyInputValue(this.state.item_name_input.trim(), this.uniqueRequestId);
