@@ -21,9 +21,9 @@ class CommitteeMembers extends React.Component {
       committeeMembers: props.approvedCMIds,
       prev_committeeMembers: props.approvedCMIds,
       inputName : '',
+      requestInProcess: false,
       disabled: true,
-      error: null,
-      requestInProcess: false
+      error: null
     };
     this.uniqueRequestId = null;
     this.debounceOnInputChange = _.debounce(this.checkAccount.bind(this), 500);
