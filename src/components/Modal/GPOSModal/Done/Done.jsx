@@ -1,10 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Translate from 'react-translate-component';
+import {bindActionCreators} from 'redux';
+import {GPOSActions} from '../../../../actions';
 
 class Done extends React.PureComponent {
   doneHandler = () => {
     this.props.okHandler(0);
+    this.props.toggleGPOSModal();
   }
 
   render() {
@@ -54,4 +57,11 @@ class Done extends React.PureComponent {
   }
 }
 
-export default connect(null, null)(Done);
+const mapDispatchToProps = (dispatch) => bindActionCreators(
+  {
+    toggleGPOSModal: GPOSActions.toggleGPOSModal
+  },
+  dispatch
+);
+
+export default connect(null, mapDispatchToProps)(Done);
