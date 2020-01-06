@@ -7,7 +7,6 @@ import {GPOSActions} from '../../../../actions';
 class Done extends React.PureComponent {
   doneHandler = () => {
     this.props.okHandler(0);
-    this.props.toggleGPOSModal();
   }
 
   render() {
