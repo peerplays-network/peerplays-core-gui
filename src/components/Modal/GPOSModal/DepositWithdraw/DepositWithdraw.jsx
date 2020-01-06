@@ -279,6 +279,7 @@ class DepositWithdraw extends PureComponent {
     let {asset, action, proceedOrRegress, symbol, isBroadcasting, broadcastError, clearTransaction} =
       this.props, transactionStatus, transactionMsg, transactionMsgClass, clickAction, btnTxt, btnClass;
     transactionMsgClass = 'transaction-status__txt';
+    newAmt = newAmt >= 0 ? newAmt : 0;
 
     let rContentCardTop = (
       action === 1.2
