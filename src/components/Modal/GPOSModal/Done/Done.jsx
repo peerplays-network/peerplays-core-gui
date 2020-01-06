@@ -1,8 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Translate from 'react-translate-component';
-import {bindActionCreators} from 'redux';
-import {GPOSActions} from '../../../../actions';
 
 class Done extends React.PureComponent {
   doneHandler = () => {
@@ -56,11 +54,4 @@ class Done extends React.PureComponent {
   }
 }
 
-const mapDispatchToProps = (dispatch) => bindActionCreators(
-  {
-    toggleGPOSModal: GPOSActions.toggleGPOSModal
-  },
-  dispatch
-);
-
-export default connect(null, mapDispatchToProps)(Done);
+export default connect(null, null)(Done);
