@@ -30,6 +30,12 @@ class Witnesses extends React.Component {
     this.debounceOnInputChange = _.debounce(this.checkAccount.bind(this), 500);
   }
 
+  componentWillMount() {
+    this.props.fetchData().then(() => {
+      this.setState({witnesses: this.props.approvedWitnesseIds});
+    });
+  }
+
   checkAccount() {
     if (this.state.item_name_input.trim().length) {
       this.verifyInputValue(this.state.item_name_input.trim(), this.uniqueRequestId);
@@ -513,6 +519,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(
     publishWitnesses: VotingActions.publishWitnesses,
     addNewWitnessData: VotingActions.addNewWitnessData,
     fetchWitnessData: VotingActions.fetchWitnessData,
+    fetchData: VotingActions.fetchData,
     setTransaction: RTransactionConfirmActions.setTransaction
   },
   dispatch

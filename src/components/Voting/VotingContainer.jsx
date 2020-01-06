@@ -64,27 +64,30 @@ class VotingContainer extends React.Component {
 
   render() {
     let selectedIndex = this.state.selectedTab;
+    let content = () => <Tabs
+      className='pt40'
+      onSelect={ this.onChangeActiveMenuItem.bind(this) }
+      selectedIndex={ selectedIndex }>
+      <TabList>
+        <Tab selected={ selectedIndex === 0 }><Translate content='votes.proxy_short'/></Tab>
+        <Tab selected={ selectedIndex === 1 }><Translate content='votes.add_witness_label'/></Tab>
+        <Tab selected={ selectedIndex === 2 }><Translate content='votes.advisors'/></Tab>
+      </TabList>
+
+      <TabPanel><Proxy renderHandlers={ this.renderHandlerButtons }/></TabPanel>
+      <TabPanel><Witnesses renderHandlers={ this.renderHandlerButtons }/></TabPanel>
+      <TabPanel><CommitteeMembers renderHandlers={ this.renderHandlerButtons }/></TabPanel>
+    </Tabs>;
+
+    if (!this.state.loaded) {
+      content = () => <SLoader/>;
+    }
 
     return (
       <div className='main'>
         <section className='content'>
           <div className='box'>
-            {this.state.loaded
-              ? <Tabs
-                className='pt40'
-                onSelect={ this.onChangeActiveMenuItem.bind(this) }
-                selectedIndex={ selectedIndex }>
-                <TabList>
-                  <Tab selected={ selectedIndex === 0 }><Translate content='votes.proxy_short'/></Tab>
-                  <Tab selected={ selectedIndex === 1 }><Translate content='votes.add_witness_label'/></Tab>
-                  <Tab selected={ selectedIndex === 2 }><Translate content='votes.advisors'/></Tab>
-                </TabList>
-                <TabPanel><Proxy renderHandlers={ this.renderHandlerButtons } handleVote={ this.voteHandler }/></TabPanel>
-                <TabPanel><Witnesses renderHandlers={ this.renderHandlerButtons } handleVote={ this.voteHandler }/></TabPanel>
-                <TabPanel><CommitteeMembers renderHandlers={ this.renderHandlerButtons } handleVote={ this.voteHandler }/></TabPanel>
-              </Tabs>
-              : <SLoader/>
-            }
+            {content()}
           </div>
         </section>
       </div>

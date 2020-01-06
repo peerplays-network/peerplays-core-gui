@@ -16,6 +16,7 @@ class Proxy extends React.Component {
     this.state = {
       inputName: '',
       name: props.name,
+      disabled: true,
       error: null,
       requestInProcess: false
     };
@@ -106,6 +107,7 @@ class Proxy extends React.Component {
                 functionArguments: tr,
                 transactionFunctionCallback: () => {
                   this.props.handleVote();
+                  this.setState({disabled: true});
                 },
                 proposedOperation: `Update account for ${this.props.account}`,
                 fee: {
@@ -141,21 +143,20 @@ class Proxy extends React.Component {
   }
 
   onResetChanges() {
-    this.setState({name: this.props.name});
+    this.setState({name: this.props.name, disabled: false});
   }
 
   onRemoveProxy() {
-    this.setState({name: ''});
+    this.setState({name: '', disabled: false});
   }
 
   addProxy() {
-    this.setState({name: this.state.inputName, inputName: ''});
+    this.setState({name: this.state.inputName, inputName: '', disabled: false});
   }
 
   render() {
-    let {inputName, name, error, requestInProcess} = this.state;
+    const {inputName, name, error, requestInProcess, disabled} = this.state;
     let {account} = this.props;
-    let disabled = this.props.name === this.state.name;
 
     return (
       <div
