@@ -83,7 +83,7 @@ class Proxy extends React.Component {
   }
 
   onMakeProxy(walletLocked) {
-    let name = this.state.name;
+    const {name} = this.state;
 
     if (walletLocked && !this.props.walletIsOpen) {
       this.props.setWalletPosition(true);
@@ -104,6 +104,9 @@ class Proxy extends React.Component {
                 voting_account: proxy.id,
                 transactionFunction: VotingActions.holdTransaction,
                 functionArguments: tr,
+                transactionFunctionCallback: () => {
+                  this.props.handleVote();
+                },
                 proposedOperation: `Update account for ${this.props.account}`,
                 fee: {
                   amount: tr.operations[0][1].fee.amount,
@@ -265,7 +268,7 @@ class Proxy extends React.Component {
             </div>
           </div>
         </div>
-        {this.props.renderHandlers()}
+        {this.props.renderHandlers(this.props.hasVoted)}
       </div>
     );
   }
@@ -278,7 +281,8 @@ const mapStateToProps = (state) => {
     name : state.voting.proxy.name,
     id : state.voting.proxy.id,
     walletLocked : state.wallet.locked,
-    walletIsOpen : state.wallet.isOpen
+    walletIsOpen : state.wallet.isOpen,
+    hasVoted: state.voting.hasVoted
   };
 };
 

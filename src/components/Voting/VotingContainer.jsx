@@ -42,15 +42,20 @@ class VotingContainer extends React.Component {
     return selectedTab;
   }
 
-  renderHandlerButtons = () => {
+  voteHandler = () => {
+    this.props.updateHasVoted();
+  }
+
+  renderHandlerButtons = (overRide = false) => {
     let {handlers} = this.props;
+    const canFinish = overRide ? !overRide : !this.props.hasVoted;
 
     return(
       <div className='gpos-modal__btns-vote'>
         <button className='gpos-modal__btn-cancel' onClick={ () => handlers.cancel(0) }>
           <Translate className='gpos-modal__btn-txt' content='gpos.modal.cancel' />
         </button>
-        <button className='gpos-modal__btn-submit' onClick={ () => handlers.finish(3, 2) }>
+        <button disabled={ canFinish } className='gpos-modal__btn-submit' onClick={ () => handlers.finish(3, 2) }>
           <Translate className='gpos-modal__btn-txt' content='gpos.modal.finish' />
         </button>
       </div>
@@ -74,9 +79,9 @@ class VotingContainer extends React.Component {
                   <Tab selected={ selectedIndex === 1 }><Translate content='votes.add_witness_label'/></Tab>
                   <Tab selected={ selectedIndex === 2 }><Translate content='votes.advisors'/></Tab>
                 </TabList>
-                <TabPanel><Proxy renderHandlers={ this.renderHandlerButtons }/></TabPanel>
-                <TabPanel><Witnesses renderHandlers={ this.renderHandlerButtons }/></TabPanel>
-                <TabPanel><CommitteeMembers renderHandlers={ this.renderHandlerButtons }/></TabPanel>
+                <TabPanel><Proxy renderHandlers={ this.renderHandlerButtons } handleVote={ this.voteHandler }/></TabPanel>
+                <TabPanel><Witnesses renderHandlers={ this.renderHandlerButtons } handleVote={ this.voteHandler }/></TabPanel>
+                <TabPanel><CommitteeMembers renderHandlers={ this.renderHandlerButtons } handleVote={ this.voteHandler }/></TabPanel>
               </Tabs>
               : <SLoader/>
             }
@@ -87,11 +92,18 @@ class VotingContainer extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    hasVoted: state.voting.hasVoted
+  };
+};
+
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
-    fetchData : VotingActions.fetchData
+    fetchData : VotingActions.fetchData,
+    updateHasVoted: VotingActions.toggleHasVoted
   },
   dispatch
 );
 
-export default connect(null, mapDispatchToProps)(VotingContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(VotingContainer);

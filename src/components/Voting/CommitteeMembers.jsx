@@ -181,6 +181,7 @@ class CommitteeMembers extends React.Component {
               functionArguments: tr,
               transactionFunctionCallback: () => {
                 this.setState({disabled: true});
+                this.props.handleVote();
               },
               proposedOperation: `Update account for ${this.props.account}`,
               fee: {
@@ -414,7 +415,8 @@ const mapStateToProps = (state) => {
     asset: state.voting.committeeMembers.asset,
     proxyIsEnabled: state.voting.committeeMembers.proxyIsEnabled,
     walletLocked: state.wallet.locked,
-    walletIsOpen: state.wallet.isOpen
+    walletIsOpen: state.wallet.isOpen,
+    hasVoted: state.voting.hasVoted
   };
 };
 

@@ -13,12 +13,14 @@ const [
   VOTING_SET_DATA,
   VOTING_CHANGE_PROXY,
   VOTING_SET_NEW_WITNESSES,
-  VOTING_UPDATE_WITNESS_TAB
+  VOTING_UPDATE_WITNESS_TAB,
+  VOTING_TOGGLE_HAS_VOTED
 ] = [
   ActionTypes.VOTING_SET_DATA,
   ActionTypes.VOTING_CHANGE_PROXY,
   ActionTypes.VOTING_SET_NEW_WITNESSES,
-  ActionTypes.VOTING_UPDATE_WITNESS_TAB
+  ActionTypes.VOTING_UPDATE_WITNESS_TAB,
+  ActionTypes.VOTING_TOGGLE_HAS_VOTED
 ];
 
 let witness_object_type  = parseInt(ChainTypes.object_type.witness, 10);
@@ -662,6 +664,12 @@ class VotingActions {
         AccountRepository.process_transaction(tr, key).then(() => resolve())
           .catch((err) => reject(err));
       });
+    };
+  }
+
+  static toggleHasVoted() {
+    return (dispatch) => {
+      dispatch({type: VOTING_TOGGLE_HAS_VOTED});
     };
   }
 }
