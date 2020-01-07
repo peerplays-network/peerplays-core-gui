@@ -7,7 +7,8 @@ import ActionTypes from '../constants/ActionTypes';
  * @type {{balances: Array}}
  */
 let defaultState = {
-  balances: []
+  balances: [],
+  otherBalances: []
 };
 
 export default function (state = defaultState, action) {
@@ -15,7 +16,8 @@ export default function (state = defaultState, action) {
     // Set account vesting list
     case ActionTypes.SET_ACCOUNT_VESTING_DATA:
       return Object.assign({}, state, {
-        balances: action.payload.balances
+        balances: action.payload.balances,
+        otherBalances: action.payload.otherBalances
       });
       // Reset page
     case ActionTypes.RESET_ACCOUNT_VESTING_DATA:
