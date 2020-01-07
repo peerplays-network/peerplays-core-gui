@@ -1,7 +1,7 @@
 import React from 'react';
 import Translate from 'react-translate-component';
 
-export default function voteRender(type, obj, voted, unvoted, account) {
+function voteRender(type, obj, voted, unvoted, account) {
   // Can be either `vote` or `unvote`
   const renderByType = type === 'vote' ? voted : unvoted;
 
@@ -27,3 +27,7 @@ export default function voteRender(type, obj, voted, unvoted, account) {
     </div>
     : null;
 }
+
+export {
+  voteRender
+};

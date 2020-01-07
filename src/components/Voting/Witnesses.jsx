@@ -14,7 +14,7 @@ import FormattedAsset from '../Utility/FormattedAsset';
 import {VotingActions, RWalletUnlockActions, RTransactionConfirmActions} from '../../actions';
 import AccountRepository from '../../repositories/AccountRepository';
 import Repository from '../../repositories/chain/repository';
-import VoteRender from './VotingUtil';
+import {voteRender} from './VotingUtil';
 
 class Witnesses extends React.Component {
   constructor(props) {
@@ -235,13 +235,17 @@ class Witnesses extends React.Component {
 
     let precision = Math.pow(10, asset.precision);
 
-    let votedActiveWitnesses = activeWitnesseAccounts.filter((a) => witnesses.has(a.id) && (a != null));
-    let voted = votedActiveWitnesses.toArray().map((a) => {
-      let {url, total_votes} = this.props.activeWitnesseObjects.filter((w) => w.witness_account === a.id).toArray()[0];
+    const votedActiveWitnesses = activeWitnesseAccounts.filter((a) => witnesses.has(a.id) && (a != null));
+    const unVotedActiveWitnesses = activeWitnesseAccounts.filter((a) => !witnesses.has(a.id) && (a != null));
 
-      let link = url && url.length > 0 && url.indexOf('http') === -1
-        ? 'http://' + url
-        : url;
+    const witnessRender = (type, a) => {
+      // EIther 'add` or `remove`
+      const clickHandler = type === 'add' ? this.onAddItem.bind(this, a.id) : this.onRemoveItem.bind(this, a.id);
+      const textDisplay = type === 'add' ? 'votes.add_witness' : 'votes.remove_witness';
+
+      const {url, total_votes} = this.props.activeWitnesseObjects.filter((w) => w.witness_account === a.id).toArray()[0];
+      const link = url && url.length > 0 && url.indexOf('http') === -1 ? 'http://' + url : url;
+
       return (
         <div key={ a.id } className='tableRow'>
           <div className='tableCell'>
@@ -269,55 +273,16 @@ class Witnesses extends React.Component {
             <button
               type='button'
               className='btn btn-remove'
-              onClick={ this.onRemoveItem.bind(this, a.id) }>
-              <Translate content={ 'votes.remove_witness' }/>
+              onClick={ clickHandler }>
+              <Translate content={ textDisplay }/>
             </button>
           </div>
         </div>
       );
-    });
+    };
 
-    let unVotedActiveWitnesses = activeWitnesseAccounts.filter((a) => !witnesses.has(a.id) && (a != null));
-    let unvoted = unVotedActiveWitnesses.toArray().map((a) => {
-      let {url, total_votes} = this.props.activeWitnesseObjects.filter((w) => w.witness_account === a.id).toArray()[0];
-
-      let link = url && url.length > 0 && url.indexOf('http') === -1
-        ? 'http://' + url
-        : url;
-      return (
-        <div key={ a.id } className='tableRow'>
-          <div className='tableCell'>
-            <span className='picH32'><AccountImage
-              size={ {
-                height: 32,
-                width: 32
-              } }
-              account={ a.name }
-              custom_image={ null }/></span>
-          </div>
-          <div className='tableCell'><LinkToAccountById account={ a.id }/></div>
-          <div className='tableCell'>
-            <a href={ link } target='_blank' rel='noopener noreferrer'>{url.length < 45
-              ? url
-              : url.substr(0, 45) + '...'}</a>
-          </div>
-          <div className='tableCell text_r'>
-            <FormattedAsset
-              amount={ total_votes }
-              asset={ asset.id }
-              decimalOffset={ asset.precision }/> {asset.symbol}
-          </div>
-          <div className='tableCell text_r'>
-            <button
-              type='button'
-              className='btn btn-remove'
-              onClick={ this.onAddItem.bind(this, a.id) }>
-              <Translate content={ 'votes.add_witness' }/>
-            </button>
-          </div>
-        </div>
-      );
-    });
+    const voted = votedActiveWitnesses.toArray().map((a) => witnessRender('remove', a));
+    const unvoted = unVotedActiveWitnesses.toArray().map((a) => witnessRender('add', a));
 
     return (
       <div
@@ -395,8 +360,8 @@ class Witnesses extends React.Component {
             : null
           }
 
-          {VoteRender('vote', votedActiveWitnesses, voted, unvoted)}
-          {VoteRender('unvote', unVotedActiveWitnesses, voted, unvoted)}
+          {voteRender('vote', votedActiveWitnesses, voted, unvoted)}
+          {voteRender('unvote', unVotedActiveWitnesses, voted, unvoted)}
 
           <div className='limiter'></div>
           <div className='title pdl-inside'><Translate content='votes.witness_stats'/></div>

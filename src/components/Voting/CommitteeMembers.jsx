@@ -13,7 +13,7 @@ import {
 } from '../../actions';
 import Repository from '../../repositories/chain/repository';
 import AccountRepository from '../../repositories/AccountRepository';
-import VoteRender from './VotingUtil';
+import {voteRender} from './VotingUtil';
 
 class CommitteeMembers extends React.Component {
   constructor(props) {
@@ -221,9 +221,9 @@ class CommitteeMembers extends React.Component {
       const clickHandler = type === 'add' ? this.onAddItem.bind(this, a.id) : this.onRemoveItem.bind(this, a.id);
       const textDisplay = type === 'add' ? 'votes.add_witness' : 'votes.remove_witness';
 
-      let {url, total_votes} = this.props.activeCMObjects
-        .filter((w) => w.committee_member_account === a.id).toArray()[0];
-      let link = url && url.length > 0 && url.indexOf('http') === -1 ? 'http://' + url : url;
+      const {url, total_votes} = this.props.activeCMObjects.filter((w) => w.committee_member_account === a.id).toArray()[0];
+      const link = url && url.length > 0 && url.indexOf('http') === -1 ? 'http://' + url : url;
+
       return (
         <div key={ a.id } className='tableRow'>
           <div className='tableCell'>
@@ -262,7 +262,6 @@ class CommitteeMembers extends React.Component {
 
     const unvoted = unVotedCommitteeMembers.toArray().map((a) => committeeRender('add', a));
     const voted = votedCommitteeMembers.toArray().map((a) => committeeRender('remove', a));
-
 
     return (
       <div id='committee' className='tab__deploy block'>
@@ -320,8 +319,8 @@ class CommitteeMembers extends React.Component {
                 </button>
               </div>
 
-              {VoteRender('vote', votedCommitteeMembers, voted, unvoted)}
-              {VoteRender('unvote', unVotedCommitteeMembers, voted, unvoted)}
+              {voteRender('vote', votedCommitteeMembers, voted, unvoted)}
+              {voteRender('unvote', unVotedCommitteeMembers, voted, unvoted)}
             </div>
             : null
         }
