@@ -232,9 +232,7 @@ class HelpModal extends React.Component {
                     <Translate component='span' className='help__text' content='help.gpos.text_4'/><br/>
                     <Translate component='span' className='help__text' content='help.gpos.text_5'/>
                     <a onClick={ (e) => {
-                      window.open(gposLink +
-                          'Peerplays Wallet',
-                      'newwindow', 'width=500, height=400');
+                      window.open(gposLink, 'newwindow', 'width=500, height=400');
                       e.preventDefault();
                     } } href={ gposLink } className='help__link--lower'>{gposLink}</a>
                   </div>

@@ -244,7 +244,7 @@ class Witnesses extends React.Component {
       const textDisplay = type === 'add' ? 'votes.add_witness' : 'votes.remove_witness';
 
       const {url, total_votes} = this.props.activeWitnesseObjects.filter((w) => w.witness_account === a.id).toArray()[0];
-      const link = url && url.length > 0 && url.indexOf('http') === -1 ? 'http://' + url : url;
+      const link = url && url.length > 0 && url.indexOf('http') === -1 ? `http://${url}` : url;
 
       return (
         <div key={ a.id } className='tableRow'>
