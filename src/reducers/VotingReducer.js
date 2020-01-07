@@ -81,9 +81,10 @@ export default (state = initialState, action) => {
         witnesses: action.payload.witnesses
       });
     case VOTING_TOGGLE_HAS_VOTED:
+      // Only needs to be toggled once to allow for multiple voting to occur and allow clicking the "Finish" button.
       return Object.assign({}, state, {
         ...state.hasVoted,
-        hasVoted: !state.hasVoted
+        hasVoted: true
       });
     default:
       // We return the previous state in the default case
