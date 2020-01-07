@@ -3,12 +3,14 @@ const [
   VOTING_SET_DATA,
   VOTING_CHANGE_PROXY,
   VOTING_SET_NEW_WITNESSES,
-  VOTING_UPDATE_WITNESS_TAB
+  VOTING_UPDATE_WITNESS_TAB,
+  VOTING_TOGGLE_HAS_VOTED
 ] = [
   ActionTypes.VOTING_SET_DATA,
   ActionTypes.VOTING_CHANGE_PROXY,
   ActionTypes.VOTING_SET_NEW_WITNESSES,
-  ActionTypes.VOTING_UPDATE_WITNESS_TAB
+  ActionTypes.VOTING_UPDATE_WITNESS_TAB,
+  ActionTypes.VOTING_TOGGLE_HAS_VOTED
 ];
 
 
@@ -37,7 +39,8 @@ const initialState = {
   // Voting/Committee Members page(Advisors)
   committeeMembers: {},
   // Proposal page TODO::rm
-  proposals: {}
+  proposals: {},
+  hasVoted: false
 };
 
 export default (state = initialState, action) => {
@@ -76,6 +79,12 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, {
         ...state,
         witnesses: action.payload.witnesses
+      });
+    case VOTING_TOGGLE_HAS_VOTED:
+      // Only needs to be toggled once to allow for multiple voting to occur and allow clicking the "Finish" button.
+      return Object.assign({}, state, {
+        ...state.hasVoted,
+        hasVoted: true
       });
     default:
       // We return the previous state in the default case
