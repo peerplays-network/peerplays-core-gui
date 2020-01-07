@@ -158,8 +158,7 @@ class GPOSActions {
           amount: {
             amount: Math.floor(requestedAmt),
             asset_id: requestedAsset
-          },
-          balance_type: BalanceTypes.gpos
+          }
         };
 
         // Build transaction
