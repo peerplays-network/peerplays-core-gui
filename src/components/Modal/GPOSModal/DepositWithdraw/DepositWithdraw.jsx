@@ -209,10 +209,10 @@ class DepositWithdraw extends PureComponent {
   }
 
   checkErrors() {
+    // Check for errors outside of the regular validation
     let {fees, maxAmount, amount, totalGpos} = this.state;
     let errors = false;
 
-    // Check for errors outside of the regular validation
     // Power Up
     if (amount !== 0) {
       if (this.props.action === 1.1) {
@@ -224,11 +224,9 @@ class DepositWithdraw extends PureComponent {
       // Power Down
       if (this.props.action === 1.2) {
         // Check if current vested balance can cover the fee
-        if (totalGpos < (fees.down)) {
+        if ((totalGpos + maxAmount) <= (fees.down)) {
           // Check if current regular balance can cover the fee
-          if (maxAmount < fees.down){
-            errors = true;
-          }
+          errors = true;
         }
       }
     }
@@ -302,6 +300,7 @@ class DepositWithdraw extends PureComponent {
     let {asset, action, proceedOrRegress, symbol, isBroadcasting, broadcastError, clearTransaction} =
       this.props, transactionStatus, transactionMsg, transactionMsgClass, clickAction, btnTxt, btnClass;
     transactionMsgClass = 'transaction-status__txt';
+    newAmt = newAmt >= 0 ? newAmt : 0;
 
     let rContentCardTop = (
       action === 1.2
@@ -448,7 +447,7 @@ class DepositWithdraw extends PureComponent {
     if (this.state.loading) {
       return <SLoader/>;
     } else {
-      let {asset, action} = this.props, content, title, desc, canSubmit;
+      let {asset, action} = this.props, content, title, desc, canSubmit, newAmt;
       let amt = isNaN(this.state.amount) ? 0 : this.state.amount;
       let errors = this.checkErrors();
       let actionPrefix = action === 1.1 ? 'up' : 'down';
@@ -459,12 +458,22 @@ class DepositWithdraw extends PureComponent {
       }
 
       // If action 1, power up is addition else it is action 2 which is subtraction.
-      let newAmt = action === 1.1 ? (this.state.totalGpos + amt) : (this.state.totalGpos - amt);
+      if (action === 1.1) {
+        newAmt = (this.state.totalGpos + amt);
+
+        if (this.state.maxAmount < this.state.fees.up) {
+          newAmt = newAmt - this.state.fees.up;
+        }
+      } else {
+        newAmt = this.state.totalGpos - amt;
+      }
+
+      // let newAmt = action === 1.1 ? ((this.state.totalGpos + amt) - this.state.fees.up) : (this.state.totalGpos - amt);
       newAmt = Number((newAmt).toFixed(asset.get('precision')));
       // If the number is whole, return. Else, remove trailing zeros.
       newAmt = Number.isInteger(newAmt) ? Number(newAmt.toFixed()) : newAmt;
 
-      if (newAmt !== this.state.maxAmount && amt > 0 && !errors) {
+      if (amt > 0 && !errors) {
         canSubmit = true;
       }
 
