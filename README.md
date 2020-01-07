@@ -102,10 +102,7 @@ When using standard version to cut a release, there is automated changelog modif
 ```csharp
 // If you typically use npm version to cut a new release, do this instead:
 npm run release
-// To cut a release and bump the version by major, minor, or patch, use the following respectively:
-npm run release-major // major bump
-npm run release-minor // minor bump
-npm run release-patch // patch bump
+
 // To cut a pre-release:
 npm run pre-release // v0.2.1 to v0.2.2-rc.0
 ```
@@ -166,16 +163,10 @@ cd build/; npm install
 
 >The exectuable will appear within the "releases" folder within the "electron" folder for windows users. Linux based systems will have the releases in the root of the project after running the below script(s).
 
-### Building the executable for Mac, Windows, and Linux
+### Building the executable for Mac, and Windows
 
 ```bash
-npm run release-mwl
-```
-
-### Building the executable for MacOS
-
-```bash
-npm run release-mac
+npm run dist
 ```
 
 ### Building the Executable for Linux
@@ -184,11 +175,6 @@ If building on a mac the following command are required in order to produce the 
 
 ```bash
 brew install dpkg fakeroot
-npm run release-lin
+npm run dist-linux
 ```
 
-### Building the Executable for Windows
-
-```bash
-npm run release-win
-```
