@@ -3,6 +3,7 @@ import _ from 'lodash';
 import Translate from 'react-translate-component';
 import counterpart from 'counterpart';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import Tooltip from './Tooltip';
 import AccountImage from '../Account/AccountImage';
 import LinkToAccountById from '../Blockchain/LinkToAccountById';
@@ -12,7 +13,7 @@ import {
 } from '../../actions';
 import Repository from '../../repositories/chain/repository';
 import AccountRepository from '../../repositories/AccountRepository';
-import {bindActionCreators} from 'redux';
+import VoteRender from './VotingUtil';
 
 class CommitteeMembers extends React.Component {
   constructor(props) {
@@ -212,8 +213,8 @@ class CommitteeMembers extends React.Component {
     let {account, activeCMAccounts, asset, proxyIsEnabled} = this.props;
     let {committeeMembers, disabled, inputName, error, requestInProcess} = this.state;
     let precision = Math.pow(10, asset.precision); // eslint-disable-line
-    let votedCommitteeMembers = activeCMAccounts.filter((a) => committeeMembers.has(a.id) && (a !== null));
-    let unVotedCommitteeMembers = activeCMAccounts.filter((a) => !committeeMembers.has(a.id) && (a !== null));
+    const votedCommitteeMembers = activeCMAccounts.filter((a) => committeeMembers.has(a.id) && (a !== null));
+    const unVotedCommitteeMembers = activeCMAccounts.filter((a) => !committeeMembers.has(a.id) && (a !== null));
 
     const committeeRender = (type, a) => {
       // Either `add` or `remove`
@@ -262,32 +263,6 @@ class CommitteeMembers extends React.Component {
     const unvoted = unVotedCommitteeMembers.toArray().map((a) => committeeRender('add', a));
     const voted = votedCommitteeMembers.toArray().map((a) => committeeRender('remove', a));
 
-    const voteRender = (type, obj) => {
-      // Can be either `vote` or `unvote`
-      const renderByType = type === 'vote' ? voted : unvoted;
-
-      return obj.size
-        ? <div className='table__section'>
-          <h2 className='h2'>
-            <Translate content='votes.cm_approved_by' account={ account } />
-          </h2>
-          <div className='table table2 table-voting-committee'>
-            <div className='table__head tableRow'>
-              <div className='tableCell'>&nbsp;</div>
-              <div className='tableCell'><Translate content='votes.name'/></div>
-              <div className='tableCell'><Translate content='votes.url'/></div>
-              <div className='tableCell text_r'><Translate content='votes.votes'/></div>
-              <div className='tableCell text_r'>
-                <div className='table__thAction'><Translate content='votes.action'/></div>
-              </div>
-            </div>
-            <div className='table__body'>
-              {renderByType}
-            </div>
-          </div>
-        </div>
-        : null;
-    };
 
     return (
       <div id='committee' className='tab__deploy block'>
@@ -345,12 +320,8 @@ class CommitteeMembers extends React.Component {
                 </button>
               </div>
 
-              {
-                voteRender('vote', votedCommitteeMembers)
-              }
-              {
-                voteRender('unvote', unVotedCommitteeMembers)
-              }
+              {VoteRender('vote', votedCommitteeMembers, voted, unvoted)}
+              {VoteRender('unvote', unVotedCommitteeMembers, voted, unvoted)}
             </div>
             : null
         }

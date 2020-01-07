@@ -2,18 +2,20 @@ import React from 'react';
 import Translate from 'react-translate-component';
 import counterpart from 'counterpart';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {FormattedRelative} from 'react-intl';
+import _ from 'lodash';
+import moment from 'moment-timezone';
+import Tooltip from './Tooltip';
 import AccountImage from '../Account/AccountImage';
 import LinkToAccountById from '../Blockchain/LinkToAccountById';
 import WitnessList from './WitnessList';
 import FormattedAsset from '../Utility/FormattedAsset';
-import Tooltip from './Tooltip';
 import {VotingActions, RWalletUnlockActions, RTransactionConfirmActions} from '../../actions';
 import AccountRepository from '../../repositories/AccountRepository';
 import Repository from '../../repositories/chain/repository';
-import moment from 'moment-timezone';
-import {FormattedRelative} from 'react-intl';
-import _ from 'lodash';
-import {bindActionCreators} from 'redux';
+import VoteRender from './VotingUtil';
+
 class Witnesses extends React.Component {
   constructor(props) {
     super(props);
@@ -233,11 +235,9 @@ class Witnesses extends React.Component {
 
     let precision = Math.pow(10, asset.precision);
 
-    let votedActiveWitnesses = activeWitnesseAccounts
-      .filter((a) => witnesses.has(a.id) && (a != null));
+    let votedActiveWitnesses = activeWitnesseAccounts.filter((a) => witnesses.has(a.id) && (a != null));
     let voted = votedActiveWitnesses.toArray().map((a) => {
-      let {url, total_votes} = this.props.activeWitnesseObjects
-        .filter((w) => w.witness_account === a.id).toArray()[0];
+      let {url, total_votes} = this.props.activeWitnesseObjects.filter((w) => w.witness_account === a.id).toArray()[0];
 
       let link = url && url.length > 0 && url.indexOf('http') === -1
         ? 'http://' + url
@@ -277,11 +277,9 @@ class Witnesses extends React.Component {
       );
     });
 
-    let unVotedActiveWitnesses = activeWitnesseAccounts
-      .filter((a) => !witnesses.has(a.id) && (a != null));
+    let unVotedActiveWitnesses = activeWitnesseAccounts.filter((a) => !witnesses.has(a.id) && (a != null));
     let unvoted = unVotedActiveWitnesses.toArray().map((a) => {
-      let {url, total_votes} = this.props.activeWitnesseObjects
-        .filter((w) => w.witness_account === a.id).toArray()[0];
+      let {url, total_votes} = this.props.activeWitnesseObjects.filter((w) => w.witness_account === a.id).toArray()[0];
 
       let link = url && url.length > 0 && url.indexOf('http') === -1
         ? 'http://' + url
@@ -397,49 +395,9 @@ class Witnesses extends React.Component {
             : null
           }
 
-          {votedActiveWitnesses.size
-            ? <div className='table__section'>
-              <h2 className='h2'><Translate content='votes.w_approved_by' account={ account }/></h2>
-              <div className='table table2 table-voting-witnesses'>
-                <div className='table__head tableRow'>
-                  <div className='tableCell'>&nbsp;</div>
-                  <div className='tableCell'><Translate content='votes.name'/></div>
-                  <div className='tableCell'><Translate content='votes.url'/></div>
-                  <div className='tableCell text_r'><Translate content='votes.votes'/></div>
-                  <div className='tableCell text_r'>
-                    <div className='table__thAction'><Translate content='votes.action'/></div>
-                  </div>
-                </div>
-                <div className='table__body'>
-                  {voted}
-                </div>
-              </div>
-            </div>
-            : null
-          }
+          {VoteRender('vote', votedActiveWitnesses, voted, unvoted)}
+          {VoteRender('unvote', unVotedActiveWitnesses, voted, unvoted)}
 
-          {unVotedActiveWitnesses.size
-            ? <div className='table__section'>
-              <h2 className='h2'>
-                <Translate content='votes.w_not_approved_by' account={ account }/>
-              </h2>
-              <div className='table table2 table-voting-witnesses'>
-                <div className='table__head tableRow'>
-                  <div className='tableCell'>&nbsp;</div>
-                  <div className='tableCell'><Translate content='votes.name'/></div>
-                  <div className='tableCell'><Translate content='votes.url'/></div>
-                  <div className='tableCell text_r'><Translate content='votes.votes'/></div>
-                  <div className='tableCell text_r'>
-                    <div className='table__thAction'><Translate content='votes.action'/></div>
-                  </div>
-                </div>
-                <div className='table__body'>
-                  {unvoted}
-                </div>
-              </div>
-            </div>
-            : null
-          }
           <div className='limiter'></div>
           <div className='title pdl-inside'><Translate content='votes.witness_stats'/></div>
           <div className='assets__list'>
