@@ -226,7 +226,7 @@ class HelpModal extends React.Component {
                   <div className='help__section'>
                     {
                       gposPoints.map((point) => {
-                        return <Translate component='p' className='help__text' content={ point } />;
+                        return <Translate key={ point } component='p' className='help__text' content={ point } />;
                       })
                     }
                     <Translate component='span' className='help__text' content='help.gpos.text_4'/><br/>

@@ -74,9 +74,9 @@ class VotingContainer extends React.Component {
         <Tab selected={ selectedIndex === 2 }><Translate content='votes.advisors'/></Tab>
       </TabList>
 
-      <TabPanel><Proxy renderHandlers={ this.renderHandlerButtons }/></TabPanel>
-      <TabPanel><Witnesses renderHandlers={ this.renderHandlerButtons }/></TabPanel>
-      <TabPanel><CommitteeMembers renderHandlers={ this.renderHandlerButtons }/></TabPanel>
+      <TabPanel><Proxy renderHandlers={ this.renderHandlerButtons } handleVote={ this.voteHandler }/></TabPanel>
+      <TabPanel><Witnesses renderHandlers={ this.renderHandlerButtons } handleVote={ this.voteHandler }/></TabPanel>
+      <TabPanel><CommitteeMembers renderHandlers={ this.renderHandlerButtons } handleVote={ this.voteHandler }/></TabPanel>
     </Tabs>;
 
     if (!this.state.loaded) {

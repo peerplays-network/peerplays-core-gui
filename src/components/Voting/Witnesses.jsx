@@ -177,6 +177,10 @@ class Witnesses extends React.Component {
         return tr.set_required_fees('1.3.0').then(() => {
           return Repository.getAsset(tr.operations[0][1].fee.asset_id).then((asset) => {
             this.props.setTransaction('account_update', {
+              fee: {
+                amount: tr.operations[0][1].fee.amount,
+                asset: asset.toJS()
+              },
               account: this.props.account,
               transactionObject: tr,
               num_witnesses: this.state.witnesses.size,
@@ -186,11 +190,7 @@ class Witnesses extends React.Component {
                 this.setState({disabled: true});
                 this.props.handleVote();
               },
-              proposedOperation: `Update account for ${this.props.account}`,
-              fee: {
-                amount: tr.operations[0][1].fee.amount,
-                asset: asset.toJS()
-              }
+              proposedOperation: `Update account for ${this.props.account}`
             });
           });
         });
