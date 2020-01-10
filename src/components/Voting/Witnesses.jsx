@@ -360,8 +360,8 @@ class Witnesses extends React.Component {
             : null
           }
 
-          {voteRender('vote', votedActiveWitnesses, voted, unvoted)}
-          {voteRender('unvote', unVotedActiveWitnesses, voted, unvoted)}
+          {voteRender('voteWitness', votedActiveWitnesses, voted, unvoted, account)}
+          {voteRender('unvoteWitness', unVotedActiveWitnesses, voted, unvoted, account)}
 
           <div className='limiter'></div>
           <div className='title pdl-inside'><Translate content='votes.witness_stats'/></div>

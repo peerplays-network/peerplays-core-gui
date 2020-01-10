@@ -319,8 +319,8 @@ class CommitteeMembers extends React.Component {
                 </button>
               </div>
 
-              {voteRender('vote', votedCommitteeMembers, voted, unvoted)}
-              {voteRender('unvote', unVotedCommitteeMembers, voted, unvoted)}
+              {voteRender('voteCommittee', votedCommitteeMembers, voted, unvoted, account)}
+              {voteRender('unvoteCommittee', unVotedCommitteeMembers, voted, unvoted, account)}
             </div>
             : null
         }
