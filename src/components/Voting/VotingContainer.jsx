@@ -12,7 +12,7 @@ import {bindActionCreators} from 'redux';
 class VotingContainer extends React.Component {
   state = {
     loaded: false,
-    selectedTab: 0
+    tabIndex: 0
   }
 
   componentWillMount() {
@@ -21,25 +21,8 @@ class VotingContainer extends React.Component {
     });
   }
 
-  onChangeActiveMenuItem(e) {
-    let {selectedTab} = this.state;
-
-    switch (e) {
-      case 0:
-        selectedTab = 'proxy';
-        break;
-      case 1:
-        selectedTab = 'witness';
-        break;
-      case 2:
-        selectedTab = 'committee';
-        break;
-      default:
-        selectedTab = 'proxy';
-    }
-
-    this.setState({selectedTab: e});
-    return selectedTab;
+  onChangeActiveMenuItem = (tabIndex) => {
+    this.setState({tabIndex});
   }
 
   voteHandler = () => {
@@ -63,15 +46,15 @@ class VotingContainer extends React.Component {
   }
 
   render() {
-    let selectedIndex = this.state.selectedTab;
-    let content = () => <Tabs
+    const {tabIndex} = this.state;
+    let content = <Tabs
       className='pt40'
-      onSelect={ this.onChangeActiveMenuItem.bind(this) }
-      selectedIndex={ selectedIndex }>
+      selectedIndex={ tabIndex }
+      onSelect={ (tabIndex) => this.onChangeActiveMenuItem(tabIndex) }>
       <TabList>
-        <Tab selected={ selectedIndex === 0 }><Translate content='votes.proxy_short'/></Tab>
-        <Tab selected={ selectedIndex === 1 }><Translate content='votes.add_witness_label'/></Tab>
-        <Tab selected={ selectedIndex === 2 }><Translate content='votes.advisors'/></Tab>
+        <Tab selected={ tabIndex === 0 }><Translate content='votes.proxy_short'/></Tab>
+        <Tab selected={ tabIndex === 1 }><Translate content='votes.add_witness_label'/></Tab>
+        <Tab selected={ tabIndex === 2 }><Translate content='votes.advisors'/></Tab>
       </TabList>
 
       <TabPanel><Proxy renderHandlers={ this.renderHandlerButtons } handleVote={ this.voteHandler }/></TabPanel>
@@ -80,14 +63,14 @@ class VotingContainer extends React.Component {
     </Tabs>;
 
     if (!this.state.loaded) {
-      content = () => <SLoader/>;
+      content = <SLoader/>;
     }
 
     return (
       <div className='main'>
         <section className='content'>
           <div className='box'>
-            {content()}
+            {content}
           </div>
         </section>
       </div>

@@ -1,12 +1,13 @@
-.ReactTabs {
+.react-tabs {
   padding-top: 10px;
 
   &.pt40 {
     padding-top: 40px;
   }
 
-  &__TabList {
+  &__tab-list {
     @include clearfix;
+
     overflow: hidden;
 
     &.pt40 {
@@ -20,7 +21,7 @@
     }
   }
 
-  &__Tab {
+  &__tab {
     &::first-letter {
       text-transform: uppercase;
     }
@@ -51,7 +52,7 @@
 
       &[aria-selected=true] {
         color: $tab-color-active;
-        background: rgb(68, 90, 182);
+        background: rgba(255, 255, 255, 0.06);
         box-shadow: $table-shadow;
         opacity: 1;
         cursor: default;
