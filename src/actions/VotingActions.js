@@ -14,13 +14,19 @@ const [
   VOTING_CHANGE_PROXY,
   VOTING_SET_NEW_WITNESSES,
   VOTING_UPDATE_WITNESS_TAB,
-  VOTING_TOGGLE_HAS_VOTED
+  VOTING_TOGGLE_HAS_VOTED,
+  VOTING_SET_WITNESS_COUNT,
+  VOTING_SET_COMMITTEE_COUNT,
+  VOTING_RESET_VOTED_COUNTS
 ] = [
   ActionTypes.VOTING_SET_DATA,
   ActionTypes.VOTING_CHANGE_PROXY,
   ActionTypes.VOTING_SET_NEW_WITNESSES,
   ActionTypes.VOTING_UPDATE_WITNESS_TAB,
-  ActionTypes.VOTING_TOGGLE_HAS_VOTED
+  ActionTypes.VOTING_TOGGLE_HAS_VOTED,
+  ActionTypes.VOTING_SET_WITNESS_COUNT,
+  ActionTypes.VOTING_SET_COMMITTEE_COUNT,
+  ActionTypes.VOTING_RESET_VOTED_COUNTS
 ];
 
 let witness_object_type  = parseInt(ChainTypes.object_type.witness, 10);
@@ -49,6 +55,60 @@ class VotingPrivateActions {
     return {
       type: VOTING_CHANGE_PROXY,
       payload: data
+    };
+  }
+
+  /**
+   *
+   * @param {boolean} val - enable/disable finish button on the voting container sub-components
+   */
+  static toggleHasVoted(val) {
+    return {
+      type: VOTING_TOGGLE_HAS_VOTED,
+      payload: {val}
+    };
+  }
+
+  /**
+   * Used between block generations for the very speedy users to ensure correct data exists between states and block generation.
+   *
+   * @static
+   * @param {number} num
+   * @returns
+   * @memberof VotingPrivateActions
+   */
+  static setVotedWitnessCount(num) {
+    return {
+      type: VOTING_SET_WITNESS_COUNT,
+      payload: {num}
+    };
+  };
+
+  /**
+   * Used between block generations for the very speedy users to ensure correct data exists between states and block generation.
+   *
+   * @static
+   * @param {number} num
+   * @returns
+   * @memberof VotingPrivateActions
+   */
+  static setVotedCommitteeCount(num) {
+    return {
+      type: VOTING_SET_COMMITTEE_COUNT,
+      payload: {num}
+    };
+  };
+
+  /**
+   * Return the counts to what they were before a failed broadcasted transaction occurred.
+   *
+   * @static
+   * @returns
+   * @memberof VotingPrivateActions
+   */
+  static resetVotedCounts() {
+    return {
+      type: VOTING_RESET_VOTED_COUNTS
     };
   }
 }
@@ -103,6 +163,7 @@ class VotingActions {
       });
     };
   }
+
   /**
   * fetchData/getProxyData
   *
@@ -307,7 +368,7 @@ class VotingActions {
         account.account = account.id;
         account.new_options = account.options;
         account.new_options.num_witness = witnesses.size;
-        account.new_options.num_committee = getState().voting.witnesses.cmVotes.length;
+        account.new_options.num_committee = getState().voting.numVotedCommitteeMembers;
         account.fee = {
           amount: 0,
           asset_id: accountUtils.getFinalFeeAsset(account.id, 'account_update')
@@ -410,7 +471,7 @@ class VotingActions {
         account.account = account.id;
         account.new_options = account.options;
         account.new_options.num_committee = committeeMembers.size;
-        account.new_options.num_witness = getState().voting.committeeMembers.witnessesVotes.length;
+        account.new_options.num_witness = getState().voting.numVotedWitnesses;
         account.fee = {
           amount: 0,
           asset_id: accountUtils.getFinalFeeAsset(account.id, 'account_update')
@@ -662,14 +723,46 @@ class VotingActions {
         const key = PrivateKey.fromBuffer(privateKeyBuffer);
 
         AccountRepository.process_transaction(tr, key).then(() => resolve())
-          .catch((err) => reject(err));
+          .catch((err) => {
+            // Reset the state.voting.numVotedWitnesses & state.voting.numVotedCommitteeMembers to what they were prior to the transaction publish attempt.
+            VotingActions.resetVotedCounts();
+            reject(err);
+          });
       });
     };
   }
 
-  static toggleHasVoted() {
+  static toggleHasVoted(val) {
     return (dispatch) => {
-      dispatch({type: VOTING_TOGGLE_HAS_VOTED});
+      dispatch(VotingPrivateActions.toggleHasVoted(val));
+    };
+  }
+
+  static setVotedCommitteeCount(num) {
+    return (dispatch, getState) => {
+      // Refer to old values to ensure the update is needed
+      const oldVotedCommitteeCount = getState().voting.numVotedCommitteeMembers;
+
+      if (num !== oldVotedCommitteeCount) {
+        dispatch(VotingPrivateActions.setVotedCommitteeCount(num));
+      }
+    };
+  }
+
+  static setVotedWitnessCount(num) {
+    return (dispatch, getState) => {
+      // Refer to old values to ensure the update is needed
+      const oldVotedWitnessCount = getState().voting.numVotedWitnesses;
+
+      if (num !== oldVotedWitnessCount) {
+        dispatch(VotingPrivateActions.setVotedWitnessCount(num));
+      }
+    };
+  }
+
+  static resetVotedCounts() {
+    return (dispatch) => {
+      dispatch(VotingPrivateActions.resetVotedCounts());
     };
   }
 }

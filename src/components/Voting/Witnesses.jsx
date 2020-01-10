@@ -191,6 +191,7 @@ class Witnesses extends React.Component {
               transactionFunctionCallback: () => {
                 this.setState({disabled: true});
                 this.props.handleVote();
+                this.props.setVotedWitnessCount(this.state.witnesses.size);
               },
               proposedOperation: `Update account for ${this.props.account}`
             });
@@ -443,6 +444,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(
     addNewWitnessData: VotingActions.addNewWitnessData,
     fetchWitnessData: VotingActions.fetchWitnessData,
     fetchData: VotingActions.fetchData,
+    setVotedWitnessCount: VotingActions.setVotedWitnessCount,
     setTransaction: RTransactionConfirmActions.setTransaction
   },
   dispatch

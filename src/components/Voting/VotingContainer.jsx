@@ -18,6 +18,7 @@ class VotingContainer extends React.Component {
   componentWillMount() {
     this.props.fetchData().then(() => {
       this.setState({loaded: true});
+      this.props.updateHasVoted(false);
     });
   }
 
@@ -26,7 +27,7 @@ class VotingContainer extends React.Component {
   }
 
   voteHandler = () => {
-    this.props.updateHasVoted();
+    this.props.updateHasVoted(true);
   }
 
   renderHandlerButtons = (overRide = false) => {
