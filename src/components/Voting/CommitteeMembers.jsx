@@ -244,8 +244,7 @@ class CommitteeMembers extends React.Component {
             <FormattedAsset
               amount={ total_votes }
               asset={ asset.id }
-              decimalOffset={ asset.precision } />
-            {asset.symbol}
+              decimalOffset={ asset.precision } /> {asset.symbol}
           </div>
           <div className='tableCell text_r'>
             <button
