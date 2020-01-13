@@ -82,7 +82,7 @@ class VotingPrivateActions {
       type: VOTING_SET_WITNESS_COUNT,
       payload: {num}
     };
-  };
+  }
 
   /**
    * Used between block generations for the very speedy users to ensure correct data exists between states and block generation.
@@ -97,7 +97,7 @@ class VotingPrivateActions {
       type: VOTING_SET_COMMITTEE_COUNT,
       payload: {num}
     };
-  };
+  }
 
   /**
    * Return the counts to what they were before a failed broadcasted transaction occurred.

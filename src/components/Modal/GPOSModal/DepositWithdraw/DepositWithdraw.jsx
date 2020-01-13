@@ -211,7 +211,7 @@ class DepositWithdraw extends PureComponent {
 
   checkErrors() {
     // Check for errors outside of the regular validation
-    let {fees, maxAmount, amount, availableGpos} = this.state;
+    const {fees, maxAmount, amount, availableGpos} = this.state;
     let errors = false;
 
     // Power Up
@@ -453,7 +453,8 @@ class DepositWithdraw extends PureComponent {
     if (this.state.loading) {
       return <SLoader/>;
     } else {
-      let {asset, action} = this.props, content, title, desc, canSubmit, newAmt;
+      const {asset, action} = this.props;
+      let content, title, desc, canSubmit, newAmt;
       let amt = isNaN(this.state.amount) ? 0 : this.state.amount;
       let errors = this.checkErrors();
       let actionPrefix = action === 1.1 ? 'up' : 'down';
@@ -474,7 +475,6 @@ class DepositWithdraw extends PureComponent {
         newAmt = this.state.totalGpos - amt;
       }
 
-      // let newAmt = action === 1.1 ? ((this.state.totalGpos + amt) - this.state.fees.up) : (this.state.totalGpos - amt);
       newAmt = Number((newAmt).toFixed(asset.get('precision')));
       // If the number is whole, return. Else, remove trailing zeros.
       newAmt = Number.isInteger(newAmt) ? Number(newAmt.toFixed()) : newAmt;
@@ -509,7 +509,7 @@ class DepositWithdraw extends PureComponent {
               />
               <ul className='gpos-modal__modal-blts'>
                 {bullets.map((bul) => {
-                  let k = Math.random().toString(36).substring(7);
+                  const k = Math.random().toString(36).substring(7);
 
                   return <Translate
                     component='li'

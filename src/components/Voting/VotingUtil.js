@@ -20,8 +20,6 @@ function voteRender(type, obj, voted, unvoted, account) {
     }
   }
 
-  // const renderByType = type.toLowerCase().includes('unvote') ? unvoted : voted;
-
   return obj.size
     ? <div className='table__section'>
       <h2 className='h2'>
