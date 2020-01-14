@@ -30,6 +30,12 @@ class CommitteeMembers extends React.Component {
     this.debounceOnInputChange = _.debounce(this.checkAccount.bind(this), 500);
   }
 
+  componentWillMount() {
+    this.props.fetchData().then(() => {
+      this.setState({witnesses: this.props.approvedCMIds});
+    });
+  }
+
   checkAccount() {
     if (this.state.inputName.trim().length) {
       this.verifyInputValue(this.state.inputName.trim(), this.uniqueRequestId);
@@ -183,6 +189,7 @@ class CommitteeMembers extends React.Component {
               transactionFunctionCallback: () => {
                 this.setState({disabled: true});
                 this.props.handleVote();
+                this.props.setVotedCommitteeCount(this.state.committeeMembers.size);
               },
               proposedOperation: `Update account for ${this.props.account}`,
               fee: {
@@ -244,8 +251,7 @@ class CommitteeMembers extends React.Component {
             <FormattedAsset
               amount={ total_votes }
               asset={ asset.id }
-              decimalOffset={ asset.precision } />
-            {asset.symbol}
+              decimalOffset={ asset.precision } /> {asset.symbol}
           </div>
           <div className='tableCell text_r'>
             <button
@@ -319,8 +325,8 @@ class CommitteeMembers extends React.Component {
                 </button>
               </div>
 
-              {voteRender('vote', votedCommitteeMembers, voted, unvoted)}
-              {voteRender('unvote', unVotedCommitteeMembers, voted, unvoted)}
+              {voteRender('voteCommittee', votedCommitteeMembers, voted, unvoted, account)}
+              {voteRender('unvoteCommittee', unVotedCommitteeMembers, voted, unvoted, account)}
             </div>
             : null
         }
@@ -348,6 +354,8 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
     setWalletPosition: RWalletUnlockActions.setWalletPosition,
     publishCM: VotingActions.publishCM,
+    fetchData: VotingActions.fetchData,
+    setVotedCommitteeCount: VotingActions.setVotedCommitteeCount,
     setTransaction: RTransactionConfirmActions.setTransaction
   },
   dispatch
