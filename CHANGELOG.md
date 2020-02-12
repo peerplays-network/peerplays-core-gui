@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.4](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.5.3-alpha...v1.5.4) (2020-02-12)
+
+### Bug fixes
+
+- withdraw vesting balance, remove balance_type ([99a89ac](https://github.com/peerplays-network/peerplays-core-gui/commit/99a89acda4042bd52e508261ca8666e3c042f023))
+- **done.jsx**: participation dialogue not displayed after completing voting ([1a44c77](https://github.com/peerplays-network/peerplays-core-gui/commit/1a44c77eba8ebaa8f84c2d98c99d67ab2ddfcf41))
+- **proxy.jsx**: publish button of proxy modal remains disabled ([f89cafd](https://github.com/peerplays-network/peerplays-core-gui/commit/f89cafda9ce6f242a54c1f32d6ac801b798a0be1))
+- **vote modal**: published change is not retained on switching tabs ([60052d4](https://github.com/peerplays-network/peerplays-core-gui/commit/60052d4c7175bdd9f923fab7dd7268e591362ba6))
+- **helpmodal**: link opening in wrong format ([9516a47](https://github.com/peerplays-network/peerplays-core-gui/commit/9516a47b1a017a180c97d24095aa36a322dd8775))
+- **gpos start/participate**: remove completed indicators ([b376d10](https://github.com/peerplays-network/peerplays-core-gui/commit/b376d10a925781a193e575f0ffd2f31324fef6a8))
+- **power up/down input**: block entry of 'e', 'E', '-', & '+' (scientific notation support removal) ([39d6bb1](https://github.com/peerplays-network/peerplays-core-gui/commit/39d6bb1c307ba7a4a020a35f4dc7bebe5abcac1a))
+- **withdrawal/deposits math**: fix math calculations for withdrawal/deposit on GPOS balances ([1b6615d](https://github.com/peerplays-network/peerplays-core-gui/commit/1b6615db7015339a4c1ddee7e6b09b3554b1df40))
+- **finish button in vote section**: "FINISH" button is no longer always clickable ([bf5793c](https://github.com/peerplays-network/peerplays-core-gui/commit/bf5793cfe8148be9bad181aa3c158327a9ab1b4d))
+- **claim vesting**: other vesting balance types will no longer appear within the claim balance screen ([604aaa4](https://github.com/peerplays-network/peerplays-core-gui/commit/604aaa4b178955572db244aaeb0c8dba1f81096d))
+
 ## [1.5.1-alpha](https://github.com/peerplays-network/peerplays-core-gui/compare/v1.5.0=beta...v1.5.1-alpha) (2019-12-23)
 
 ### Bug Fixes

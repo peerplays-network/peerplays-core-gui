@@ -253,6 +253,12 @@ sm: 1275px);
         &-submit {
           width: 278px;
           margin-left: 40px;
+
+          &[disabled] {
+            border: 2px solid transparent;
+            cursor: not-allowed;
+            pointer-events: none;
+          }
         }
 
         &-cancel {

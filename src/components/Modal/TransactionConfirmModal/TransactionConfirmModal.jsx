@@ -21,11 +21,16 @@ require('./operations.scss');
 require('./json-inspector.scss');
 
 class TransactionConfirmModal extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      proposeCheckedStatus: false
-    };
+  state = {
+    proposeCheckedStatus: false,
+    onCooldown: false
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.btnStatus !== this.props.btnStatus && this.props.btnStatus === 'done') {
+      this.setState({onCooldown: true});
+      setTimeout(() => this.setState({onCooldown: false}), 3000);
+    }
   }
 
   onKeyDown(e) {
@@ -133,6 +138,7 @@ class TransactionConfirmModal extends React.Component {
     }
 
     let buttons;
+    const {onCooldown} = this.state;
 
     switch(this.props.btnStatus) {
       case 'default':
@@ -171,7 +177,7 @@ class TransactionConfirmModal extends React.Component {
       case 'done':
         buttons = (
           <div className='ull-right'>
-            <button className='btn btn-sbm pull-right' onClick={ this.onClose.bind(this) }>
+            <button disabled={ onCooldown } className='btn btn-sbm pull-right' onClick={ this.onClose.bind(this) }>
               <span className='loaderIcon icon-verify'/>
               <span className='btnText'>{counterpart.translate('buttons.done')}</span>
             </button>

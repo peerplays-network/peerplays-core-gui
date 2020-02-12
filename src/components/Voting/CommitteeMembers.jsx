@@ -3,6 +3,7 @@ import _ from 'lodash';
 import Translate from 'react-translate-component';
 import counterpart from 'counterpart';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import Tooltip from './Tooltip';
 import AccountImage from '../Account/AccountImage';
 import LinkToAccountById from '../Blockchain/LinkToAccountById';
@@ -12,7 +13,7 @@ import {
 } from '../../actions';
 import Repository from '../../repositories/chain/repository';
 import AccountRepository from '../../repositories/AccountRepository';
-import {bindActionCreators} from 'redux';
+import {voteRender} from './VotingUtil';
 
 class CommitteeMembers extends React.Component {
   constructor(props) {
@@ -21,12 +22,18 @@ class CommitteeMembers extends React.Component {
       committeeMembers: props.approvedCMIds,
       prev_committeeMembers: props.approvedCMIds,
       inputName : '',
+      requestInProcess: false,
       disabled: true,
-      error: null,
-      requestInProcess: false
+      error: null
     };
     this.uniqueRequestId = null;
     this.debounceOnInputChange = _.debounce(this.checkAccount.bind(this), 500);
+  }
+
+  componentWillMount() {
+    this.props.fetchData().then(() => {
+      this.setState({witnesses: this.props.approvedCMIds});
+    });
   }
 
   checkAccount() {
@@ -181,6 +188,8 @@ class CommitteeMembers extends React.Component {
               functionArguments: tr,
               transactionFunctionCallback: () => {
                 this.setState({disabled: true});
+                this.props.handleVote();
+                this.props.setVotedCommitteeCount(this.state.committeeMembers.size);
               },
               proposedOperation: `Update account for ${this.props.account}`,
               fee: {
@@ -211,12 +220,17 @@ class CommitteeMembers extends React.Component {
     let {account, activeCMAccounts, asset, proxyIsEnabled} = this.props;
     let {committeeMembers, disabled, inputName, error, requestInProcess} = this.state;
     let precision = Math.pow(10, asset.precision); // eslint-disable-line
-    let votedCommitteeMembers = activeCMAccounts
-      .filter((a) => committeeMembers.has(a.id) && (a !== null));
-    let voted = votedCommitteeMembers.toArray().map((a) => {
-      let {url, total_votes} = this.props.activeCMObjects
-        .filter((w) => w.committee_member_account === a.id).toArray()[0];
-      let link = url && url.length > 0 && url.indexOf('http') === -1 ? 'http://' + url : url;
+    const votedCommitteeMembers = activeCMAccounts.filter((a) => committeeMembers.has(a.id) && (a !== null));
+    const unVotedCommitteeMembers = activeCMAccounts.filter((a) => !committeeMembers.has(a.id) && (a !== null));
+
+    const committeeRender = (type, a) => {
+      // Either `add` or `remove`
+      const clickHandler = type === 'add' ? this.onAddItem.bind(this, a.id) : this.onRemoveItem.bind(this, a.id);
+      const textDisplay = type === 'add' ? 'votes.add_witness' : 'votes.remove_witness';
+
+      const {url, total_votes} = this.props.activeCMObjects.filter((w) => w.committee_member_account === a.id).toArray()[0];
+      const link = url && url.length > 0 && url.indexOf('http') === -1 ? `http://${url}` : url;
+
       return (
         <div key={ a.id } className='tableRow'>
           <div className='tableCell'>
@@ -237,62 +251,23 @@ class CommitteeMembers extends React.Component {
             <FormattedAsset
               amount={ total_votes }
               asset={ asset.id }
-              decimalOffset={ asset.precision } />
-            {asset.symbol}
+              decimalOffset={ asset.precision } /> {asset.symbol}
           </div>
           <div className='tableCell text_r'>
             <button
               type='button'
               className='btn btn-remove'
-              onClick={ this.onRemoveItem.bind(this, a.id) }
+              onClick={ clickHandler }
             >
-              <Translate content={ 'votes.remove_witness' }/>
+              <Translate content={ textDisplay }/>
             </button>
           </div>
         </div>
       );
-    });
+    };
 
-    let unVotedCommitteeMembers = activeCMAccounts
-      .filter((a) => !committeeMembers.has(a.id) && (a !== null));
-    let unvoted = unVotedCommitteeMembers.toArray().map((a) => {
-      let {url, total_votes} = this.props.activeCMObjects
-        .filter((w) => w.committee_member_account === a.id).toArray()[0];
-      let link = url && url.length > 0 && url.indexOf('http') === -1 ? 'http://' + url : url;
-      return (
-        <div key={ a.id } className='tableRow'>
-          <div className='tableCell'>
-            <span className='picH32'>
-              <AccountImage
-                size={ {height: 32, width: 32} }
-                account={ a.name }
-                custom_image={ null } />
-            </span>
-          </div>
-          <div className='tableCell'><LinkToAccountById account={ a.id } /></div>
-          <div className='tableCell'>
-            <a href={ link } className='tableCell__link' target='_blank'> { /* eslint-disable-line */}
-              {url.length < 45 ? url : url.substr(0, 45) + '...'}
-            </a>
-          </div>
-          <div className='tableCell text_r'>
-            <FormattedAsset
-              amount={ total_votes }
-              asset={ asset.id }
-              decimalOffset={ asset.precision } />
-            {asset.symbol}
-          </div>
-          <div className='tableCell text_r'>
-            <button
-              type='button'
-              className='btn btn-remove'
-              onClick={ this.onAddItem.bind(this, a.id) }>
-              <Translate content={ 'votes.add_witness' }/>
-            </button>
-          </div>
-        </div>
-      );
-    });
+    const unvoted = unVotedCommitteeMembers.toArray().map((a) => committeeRender('add', a));
+    const voted = votedCommitteeMembers.toArray().map((a) => committeeRender('remove', a));
 
     return (
       <div id='committee' className='tab__deploy block'>
@@ -350,52 +325,8 @@ class CommitteeMembers extends React.Component {
                 </button>
               </div>
 
-              {
-                votedCommitteeMembers.size
-                  ? <div className='table__section'>
-                    <h2 className='h2'>
-                      <Translate content='votes.cm_approved_by' account={ account } />
-                    </h2>
-                    <div className='table table2 table-voting-committee'>
-                      <div className='table__head tableRow'>
-                        <div className='tableCell'>&nbsp;</div>
-                        <div className='tableCell'><Translate content='votes.name'/></div>
-                        <div className='tableCell'><Translate content='votes.url'/></div>
-                        <div className='tableCell text_r'><Translate content='votes.votes'/></div>
-                        <div className='tableCell text_r'>
-                          <div className='table__thAction'><Translate content='votes.action'/></div>
-                        </div>
-                      </div>
-                      <div className='table__body'>
-                        {voted}
-                      </div>
-                    </div>
-                  </div>
-                  : null
-              }
-              {
-                unVotedCommitteeMembers.size
-                  ? <div className='table__section'>
-                    <h2 className='h2'>
-                      <Translate content='votes.cm_not_approved_by' account={ account }/>
-                    </h2>
-                    <div className='table table2 table-voting-committee'>
-                      <div className='table__head tableRow'>
-                        <div className='tableCell'>&nbsp;</div>
-                        <div className='tableCell'><Translate content='votes.name'/></div>
-                        <div className='tableCell'><Translate content='votes.url'/></div>
-                        <div className='tableCell text_r'><Translate content='votes.votes'/></div>
-                        <div className='tableCell text_r'>
-                          <div className='table__thAction'><Translate content='votes.action'/></div>
-                        </div>
-                      </div>
-                      <div className='table__body'>
-                        {unvoted}
-                      </div>
-                    </div>
-                  </div>
-                  : null
-              }
+              {voteRender('voteCommittee', votedCommitteeMembers, voted, unvoted, account)}
+              {voteRender('unvoteCommittee', unVotedCommitteeMembers, voted, unvoted, account)}
             </div>
             : null
         }
@@ -414,7 +345,8 @@ const mapStateToProps = (state) => {
     asset: state.voting.committeeMembers.asset,
     proxyIsEnabled: state.voting.committeeMembers.proxyIsEnabled,
     walletLocked: state.wallet.locked,
-    walletIsOpen: state.wallet.isOpen
+    walletIsOpen: state.wallet.isOpen,
+    hasVoted: state.voting.hasVoted
   };
 };
 
@@ -422,6 +354,8 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
     setWalletPosition: RWalletUnlockActions.setWalletPosition,
     publishCM: VotingActions.publishCM,
+    fetchData: VotingActions.fetchData,
+    setVotedCommitteeCount: VotingActions.setVotedCommitteeCount,
     setTransaction: RTransactionConfirmActions.setTransaction
   },
   dispatch

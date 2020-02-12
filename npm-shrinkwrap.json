@@ -1,6 +1,6 @@
 {
   "name": "peerplays-core-gui",
-  "version": "1.5.1-alpha",
+  "version": "1.5.4",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -13761,11 +13761,6 @@
       "version": "0.2.3",
       "resolved": "https://registry.npmjs.org/js-sha256/-/js-sha256-0.2.3.tgz",
       "integrity": "sha1-baFbqj3ZML5VnUvmRz+07YWbSOY="
-    },
-    "js-stylesheet": {
-      "version": "0.0.1",
-      "resolved": "https://registry.npmjs.org/js-stylesheet/-/js-stylesheet-0.0.1.tgz",
-      "integrity": "sha1-EswUUSIORUGEtG3jsJjA0VR2LDg="
     },
     "js-tokens": {
       "version": "4.0.0",
@@ -29645,14 +29640,12 @@
       }
     },
     "react-tabs": {
-      "version": "0.8.3",
-      "resolved": "https://registry.npmjs.org/react-tabs/-/react-tabs-0.8.3.tgz",
-      "integrity": "sha1-QL3BTHJcTb9L79/d8RU6k6+SqJQ=",
+      "version": "3.1.0",
+      "resolved": "https://registry.npmjs.org/react-tabs/-/react-tabs-3.1.0.tgz",
+      "integrity": "sha512-9RKc77HCPsjQDVPyZEw37g3JPtg26oSQ9o4mtaVXjJuLedDX5+TQcE+MRNKR+4aO3GMAY4YslCePGG1//MQ3Jg==",
       "requires": {
         "classnames": "^2.2.0",
-        "create-react-class": "^15.5.2",
-        "js-stylesheet": "^0.0.1",
-        "prop-types": "^15.5.8"
+        "prop-types": "^15.5.0"
       }
     },
     "react-tag-input": {

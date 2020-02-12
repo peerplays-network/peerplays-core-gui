@@ -6,7 +6,7 @@ import Accounts from './Accounts/Accounts';
 import FeeSchedule from './FeeSchedule/FeeSchedule';
 
 class ExploreContainer extends React.Component {
-  onChangeActiveMenuItem(e) {
+  onChangeActiveMenuItem = (e) => {
     let selectedTab;
 
     switch (e) {
@@ -57,7 +57,7 @@ class ExploreContainer extends React.Component {
           <div className='box'>
             <Tabs
               className='pt40'
-              onSelect={ this.onChangeActiveMenuItem.bind(this) }
+              onSelect={ this.onChangeActiveMenuItem }
               selectedIndex={ selectedIndex }>
               <TabList>
                 <Tab key='blockchain'><Translate content='explore.blockchain.title'/></Tab>

@@ -77,7 +77,7 @@ class VestingAccountContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    balances: state.accountVestingPageReducer.balances
+    balances: state.accountVestingPageReducer.otherBalances
   };
 };
 

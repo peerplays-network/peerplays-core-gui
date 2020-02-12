@@ -2,18 +2,20 @@ import React from 'react';
 import Translate from 'react-translate-component';
 import counterpart from 'counterpart';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {FormattedRelative} from 'react-intl';
+import _ from 'lodash';
+import moment from 'moment-timezone';
+import Tooltip from './Tooltip';
 import AccountImage from '../Account/AccountImage';
 import LinkToAccountById from '../Blockchain/LinkToAccountById';
 import WitnessList from './WitnessList';
 import FormattedAsset from '../Utility/FormattedAsset';
-import Tooltip from './Tooltip';
 import {VotingActions, RWalletUnlockActions, RTransactionConfirmActions} from '../../actions';
 import AccountRepository from '../../repositories/AccountRepository';
 import Repository from '../../repositories/chain/repository';
-import moment from 'moment-timezone';
-import {FormattedRelative} from 'react-intl';
-import _ from 'lodash';
-import {bindActionCreators} from 'redux';
+import {voteRender} from './VotingUtil';
+
 class Witnesses extends React.Component {
   constructor(props) {
     super(props);
@@ -28,6 +30,12 @@ class Witnesses extends React.Component {
 
     this.uniqueRequestId = null;
     this.debounceOnInputChange = _.debounce(this.checkAccount.bind(this), 500);
+  }
+
+  componentWillMount() {
+    this.props.fetchData().then(() => {
+      this.setState({witnesses: this.props.approvedWitnesseIds});
+    });
   }
 
   checkAccount() {
@@ -171,6 +179,10 @@ class Witnesses extends React.Component {
         return tr.set_required_fees('1.3.0').then(() => {
           return Repository.getAsset(tr.operations[0][1].fee.asset_id).then((asset) => {
             this.props.setTransaction('account_update', {
+              fee: {
+                amount: tr.operations[0][1].fee.amount,
+                asset: asset.toJS()
+              },
               account: this.props.account,
               transactionObject: tr,
               num_witnesses: this.state.witnesses.size,
@@ -178,12 +190,10 @@ class Witnesses extends React.Component {
               functionArguments: tr,
               transactionFunctionCallback: () => {
                 this.setState({disabled: true});
+                this.props.handleVote();
+                this.props.setVotedWitnessCount(this.state.witnesses.size);
               },
-              proposedOperation: `Update account for ${this.props.account}`,
-              fee: {
-                amount: tr.operations[0][1].fee.amount,
-                asset: asset.toJS()
-              }
+              proposedOperation: `Update account for ${this.props.account}`
             });
           });
         });
@@ -226,15 +236,17 @@ class Witnesses extends React.Component {
 
     let precision = Math.pow(10, asset.precision);
 
-    let votedActiveWitnesses = activeWitnesseAccounts
-      .filter((a) => witnesses.has(a.id) && (a != null));
-    let voted = votedActiveWitnesses.toArray().map((a) => {
-      let {url, total_votes} = this.props.activeWitnesseObjects
-        .filter((w) => w.witness_account === a.id).toArray()[0];
+    const votedActiveWitnesses = activeWitnesseAccounts.filter((a) => witnesses.has(a.id) && (a != null));
+    const unVotedActiveWitnesses = activeWitnesseAccounts.filter((a) => !witnesses.has(a.id) && (a != null));
 
-      let link = url && url.length > 0 && url.indexOf('http') === -1
-        ? 'http://' + url
-        : url;
+    const witnessRender = (type, a) => {
+      // EIther 'add` or `remove`
+      const clickHandler = type === 'add' ? this.onAddItem.bind(this, a.id) : this.onRemoveItem.bind(this, a.id);
+      const textDisplay = type === 'add' ? 'votes.add_witness' : 'votes.remove_witness';
+
+      const {url, total_votes} = this.props.activeWitnesseObjects.filter((w) => w.witness_account === a.id).toArray()[0];
+      const link = url && url.length > 0 && url.indexOf('http') === -1 ? `http://${url}` : url;
+
       return (
         <div key={ a.id } className='tableRow'>
           <div className='tableCell'>
@@ -262,57 +274,16 @@ class Witnesses extends React.Component {
             <button
               type='button'
               className='btn btn-remove'
-              onClick={ this.onRemoveItem.bind(this, a.id) }>
-              <Translate content={ 'votes.remove_witness' }/>
+              onClick={ clickHandler }>
+              <Translate content={ textDisplay }/>
             </button>
           </div>
         </div>
       );
-    });
+    };
 
-    let unVotedActiveWitnesses = activeWitnesseAccounts
-      .filter((a) => !witnesses.has(a.id) && (a != null));
-    let unvoted = unVotedActiveWitnesses.toArray().map((a) => {
-      let {url, total_votes} = this.props.activeWitnesseObjects
-        .filter((w) => w.witness_account === a.id).toArray()[0];
-
-      let link = url && url.length > 0 && url.indexOf('http') === -1
-        ? 'http://' + url
-        : url;
-      return (
-        <div key={ a.id } className='tableRow'>
-          <div className='tableCell'>
-            <span className='picH32'><AccountImage
-              size={ {
-                height: 32,
-                width: 32
-              } }
-              account={ a.name }
-              custom_image={ null }/></span>
-          </div>
-          <div className='tableCell'><LinkToAccountById account={ a.id }/></div>
-          <div className='tableCell'>
-            <a href={ link } target='_blank' rel='noopener noreferrer'>{url.length < 45
-              ? url
-              : url.substr(0, 45) + '...'}</a>
-          </div>
-          <div className='tableCell text_r'>
-            <FormattedAsset
-              amount={ total_votes }
-              asset={ asset.id }
-              decimalOffset={ asset.precision }/> {asset.symbol}
-          </div>
-          <div className='tableCell text_r'>
-            <button
-              type='button'
-              className='btn btn-remove'
-              onClick={ this.onAddItem.bind(this, a.id) }>
-              <Translate content={ 'votes.add_witness' }/>
-            </button>
-          </div>
-        </div>
-      );
-    });
+    const voted = votedActiveWitnesses.toArray().map((a) => witnessRender('remove', a));
+    const unvoted = unVotedActiveWitnesses.toArray().map((a) => witnessRender('add', a));
 
     return (
       <div
@@ -390,49 +361,9 @@ class Witnesses extends React.Component {
             : null
           }
 
-          {votedActiveWitnesses.size
-            ? <div className='table__section'>
-              <h2 className='h2'><Translate content='votes.w_approved_by' account={ account }/></h2>
-              <div className='table table2 table-voting-witnesses'>
-                <div className='table__head tableRow'>
-                  <div className='tableCell'>&nbsp;</div>
-                  <div className='tableCell'><Translate content='votes.name'/></div>
-                  <div className='tableCell'><Translate content='votes.url'/></div>
-                  <div className='tableCell text_r'><Translate content='votes.votes'/></div>
-                  <div className='tableCell text_r'>
-                    <div className='table__thAction'><Translate content='votes.action'/></div>
-                  </div>
-                </div>
-                <div className='table__body'>
-                  {voted}
-                </div>
-              </div>
-            </div>
-            : null
-          }
+          {voteRender('voteWitness', votedActiveWitnesses, voted, unvoted, account)}
+          {voteRender('unvoteWitness', unVotedActiveWitnesses, voted, unvoted, account)}
 
-          {unVotedActiveWitnesses.size
-            ? <div className='table__section'>
-              <h2 className='h2'>
-                <Translate content='votes.w_not_approved_by' account={ account }/>
-              </h2>
-              <div className='table table2 table-voting-witnesses'>
-                <div className='table__head tableRow'>
-                  <div className='tableCell'>&nbsp;</div>
-                  <div className='tableCell'><Translate content='votes.name'/></div>
-                  <div className='tableCell'><Translate content='votes.url'/></div>
-                  <div className='tableCell text_r'><Translate content='votes.votes'/></div>
-                  <div className='tableCell text_r'>
-                    <div className='table__thAction'><Translate content='votes.action'/></div>
-                  </div>
-                </div>
-                <div className='table__body'>
-                  {unvoted}
-                </div>
-              </div>
-            </div>
-            : null
-          }
           <div className='limiter'></div>
           <div className='title pdl-inside'><Translate content='votes.witness_stats'/></div>
           <div className='assets__list'>
@@ -501,7 +432,8 @@ const mapStateToProps = (state) => {
     activeWitnesseObjects : state.voting.witnesses.activeWitnesseObjects,
     proxyIsEnabled : state.voting.witnesses.proxyIsEnabled,
     walletLocked : state.wallet.locked,
-    walletIsOpen : state.wallet.isOpen
+    walletIsOpen : state.wallet.isOpen,
+    hasVoted: state.voting.hasVoted
   };
 };
 
@@ -511,6 +443,8 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(
     publishWitnesses: VotingActions.publishWitnesses,
     addNewWitnessData: VotingActions.addNewWitnessData,
     fetchWitnessData: VotingActions.fetchWitnessData,
+    fetchData: VotingActions.fetchData,
+    setVotedWitnessCount: VotingActions.setVotedWitnessCount,
     setTransaction: RTransactionConfirmActions.setTransaction
   },
   dispatch
