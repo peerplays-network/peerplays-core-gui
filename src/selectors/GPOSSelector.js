@@ -5,8 +5,8 @@ const getGposTotal = (state) => state.dashboardPage.gposInfo.account_vested_bala
 const getAvailableGpos = (state) => state.dashboardPage.gposInfo.allowed_withdraw_amount;
 
 export const getCoreBalance = (state) => {
-  let coreToken = state.dashboardPage.coreToken;
-  return coreToken.getIn([0, 'available']);
+  let coreSymbol = state.dashboardPage.coreToken.getIn([0, 'symbol']);
+  return state.dashboardPage.availableBalances[coreSymbol].coreTokenTotal;
 };
 
 export {

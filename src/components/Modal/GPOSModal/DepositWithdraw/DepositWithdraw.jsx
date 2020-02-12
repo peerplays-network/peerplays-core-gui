@@ -13,18 +13,18 @@ import Config from '../../../../../config/Config';
 
 class DepositWithdraw extends PureComponent {
   state = {
-    amount: undefined,
-    totalGpos: 0,
-    availableGpos: 0,
-    precision: 0,
-    minAmount: 0,
-    maxAmount: 0,
-    fees: {
+    amount: undefined, // form amount
+    totalGpos: 0, // total gpos the user has vested
+    availableGpos: 0, // the amount of gpos that the user has vested that is currently able to be withdrawn
+    precision: 0, // the precision of the core token
+    minAmount: 0, // the minimum float amount equal to the minimum amount allowed on the blockchain for the asset based on its precision
+    maxAmount: 0, // the users core token balance (1.3.0)
+    fees: { // fees object representing the cost of the gpos power up (deposit) & power down (withdraw) transactions
       up: 0,
       down: 0
     },
-    loading: true,
-    transactionStatus: null
+    loading: true, // loading status
+    transactionStatus: null // the status of the current transaction
   }
 
   componentDidMount() {
@@ -77,6 +77,7 @@ class DepositWithdraw extends PureComponent {
       }
     }
   }
+
   /**
    * Increment or decrements the state amount.
    * Activated via the plus and minus buttons on the number input.
@@ -151,6 +152,25 @@ class DepositWithdraw extends PureComponent {
     }
   }
 
+  // Block manual key entering of 'e', '-', & '+'
+  onInvalidKey = (e) => {
+    if (e.key === 'e' || e.key === 'E' || e.key === '-' || e.key === '+') {
+      e.preventDefault();
+    }
+  }
+
+  // Block clipboard pasted entry of 'e', 'E', '-', & '+'
+  onPaste = (e) => {
+    // Define regex that matches 'e', 'E', '-', & '+'
+    const regex = RegExp(/[eE\-\+]/g);
+    const data = e.clipboardData.getData('Text');
+
+    if (regex.test(data)) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+  }
+
   // Handle manually entered values here
   onEdit = (e) => {
     let val;
@@ -190,10 +210,10 @@ class DepositWithdraw extends PureComponent {
   }
 
   checkErrors() {
-    let {fees, maxAmount, amount, totalGpos} = this.state;
+    // Check for errors outside of the regular validation
+    const {fees, maxAmount, amount, availableGpos} = this.state;
     let errors = false;
 
-    // Check for errors outside of the regular validation
     // Power Up
     if (amount !== 0) {
       if (this.props.action === 1.1) {
@@ -203,13 +223,16 @@ class DepositWithdraw extends PureComponent {
       }
 
       // Power Down
-      if (this.props.action === 1.2) {
-        // Check if current vested balance can cover the fee
-        if (totalGpos < (fees.down)) {
-          // Check if current regular balance can cover the fee
-          if (maxAmount < fees.down){
+      if (this.props.action === 1.2 && amount > 0) {
+        // First gets taken from the vested gpos amount being withdrawn
+        // if the vested gpos amount doesn’t cover the cost, then the regular balance is checked
+
+        if (amount <= availableGpos) { // requested amount <= availableGpos
+          if (fees.down > amount + maxAmount) { // withdraw fee > (requested amount + core token balance)
             errors = true;
           }
+        } else { // requested amount > availableGpos
+          errors = true;
         }
       }
     }
@@ -263,6 +286,8 @@ class DepositWithdraw extends PureComponent {
               value={ this.state.amount }
               onChange={ this.onEdit }
               onBlur={ this.onEdit }
+              onKeyDown={ this.onInvalidKey }
+              onPaste={ this.onPaste }
               tabIndex='0'
               min='0'
               max={ max }
@@ -281,6 +306,7 @@ class DepositWithdraw extends PureComponent {
     let {asset, action, proceedOrRegress, symbol, isBroadcasting, broadcastError, clearTransaction} =
       this.props, transactionStatus, transactionMsg, transactionMsgClass, clickAction, btnTxt, btnClass;
     transactionMsgClass = 'transaction-status__txt';
+    newAmt = newAmt >= 0 ? newAmt : 0;
 
     let rContentCardTop = (
       action === 1.2
@@ -427,7 +453,8 @@ class DepositWithdraw extends PureComponent {
     if (this.state.loading) {
       return <SLoader/>;
     } else {
-      let {asset, action} = this.props, content, title, desc, canSubmit;
+      const {asset, action} = this.props;
+      let content, title, desc, canSubmit, newAmt;
       let amt = isNaN(this.state.amount) ? 0 : this.state.amount;
       let errors = this.checkErrors();
       let actionPrefix = action === 1.1 ? 'up' : 'down';
@@ -438,12 +465,21 @@ class DepositWithdraw extends PureComponent {
       }
 
       // If action 1, power up is addition else it is action 2 which is subtraction.
-      let newAmt = action === 1.1 ? (this.state.totalGpos + amt) : (this.state.totalGpos - amt);
+      if (action === 1.1) {
+        newAmt = (this.state.totalGpos + amt);
+
+        if (this.state.maxAmount < this.state.fees.up) {
+          newAmt = newAmt - this.state.fees.up;
+        }
+      } else {
+        newAmt = this.state.totalGpos - amt;
+      }
+
       newAmt = Number((newAmt).toFixed(asset.get('precision')));
       // If the number is whole, return. Else, remove trailing zeros.
       newAmt = Number.isInteger(newAmt) ? Number(newAmt.toFixed()) : newAmt;
 
-      if (newAmt !== this.state.maxAmount && amt > 0 && !errors) {
+      if (amt > 0 && !errors) {
         canSubmit = true;
       }
 
@@ -473,9 +509,12 @@ class DepositWithdraw extends PureComponent {
               />
               <ul className='gpos-modal__modal-blts'>
                 {bullets.map((bul) => {
+                  const k = Math.random().toString(36).substring(7);
+
                   return <Translate
                     component='li'
                     className='gpos-modal__modal-items'
+                    key={ k }
                     content={ bul }
                   />;
                 })}

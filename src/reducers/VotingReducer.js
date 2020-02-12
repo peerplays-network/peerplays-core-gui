@@ -3,12 +3,20 @@ const [
   VOTING_SET_DATA,
   VOTING_CHANGE_PROXY,
   VOTING_SET_NEW_WITNESSES,
-  VOTING_UPDATE_WITNESS_TAB
+  VOTING_UPDATE_WITNESS_TAB,
+  VOTING_TOGGLE_HAS_VOTED,
+  VOTING_SET_WITNESS_COUNT,
+  VOTING_SET_COMMITTEE_COUNT,
+  VOTING_RESET_VOTED_COUNTS
 ] = [
   ActionTypes.VOTING_SET_DATA,
   ActionTypes.VOTING_CHANGE_PROXY,
   ActionTypes.VOTING_SET_NEW_WITNESSES,
-  ActionTypes.VOTING_UPDATE_WITNESS_TAB
+  ActionTypes.VOTING_UPDATE_WITNESS_TAB,
+  ActionTypes.VOTING_TOGGLE_HAS_VOTED,
+  ActionTypes.VOTING_SET_WITNESS_COUNT,
+  ActionTypes.VOTING_SET_COMMITTEE_COUNT,
+  ActionTypes.VOTING_RESET_VOTED_COUNTS
 ];
 
 
@@ -37,7 +45,10 @@ const initialState = {
   // Voting/Committee Members page(Advisors)
   committeeMembers: {},
   // Proposal page TODO::rm
-  proposals: {}
+  proposals: {},
+  hasVoted: false,
+  numVotedWitnesses: 0,
+  numVotedCommitteeMembers: 0
 };
 
 export default (state = initialState, action) => {
@@ -50,7 +61,9 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, {
         proxy: action.payload.proxy,
         witnesses: action.payload.witnesses,
+        numVotedWitnesses: action.payload.committeeMembers.witnessesVotes.length,
         committeeMembers: action.payload.committeeMembers,
+        numVotedCommitteeMembers: action.payload.witnesses.cmVotes.length,
         proposals: action.payload.proposals //TODO::rm
       });
       /**
@@ -75,7 +88,30 @@ export default (state = initialState, action) => {
     case VOTING_UPDATE_WITNESS_TAB:
       return Object.assign({}, state, {
         ...state,
-        witnesses: action.payload.witnesses
+        witnesses: action.payload.witnesses,
+        numVotedWitnesses: action.payload.witnesses.size
+      });
+    case VOTING_TOGGLE_HAS_VOTED:
+      // Only needs to be toggled once to allow for multiple voting to occur and allow clicking the "Finish" button.
+      return Object.assign({}, state, {
+        ...state.hasVoted,
+        hasVoted: action.payload.val
+      });
+    case VOTING_SET_WITNESS_COUNT:
+      return Object.assign({}, state, {
+        ...state.numWitnesses,
+        numVotedWitnesses: action.payload.num
+      });
+    case VOTING_SET_COMMITTEE_COUNT:
+      return Object.assign({}, state, {
+        ...state.numCommitteeMembers,
+        numVotedCommitteeMembers: action.payload.num
+      });
+    case VOTING_RESET_VOTED_COUNTS:
+      return Object.assign({}, state, {
+        ...state,
+        numVotedWitnesses: state.voting.committeeMembers.witnessesVotes.length,
+        numVotedCommitteeMembers: state.voting.witnesses.cmVotes.length
       });
     default:
       // We return the previous state in the default case

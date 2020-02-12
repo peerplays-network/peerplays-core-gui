@@ -47,31 +47,53 @@ class AccountVestingPageActions {
           account && account.get('vesting_balances') && account.get('vesting_balances').size > 0
         ) {
           BalanceRepository.getVestingBalances(accountId).then((balances) => {
+            // Process other balance types
+            let otherAssetHashIds = Object.create(null),
+              otherAssetsPromises = [];
+            let otherBalances = balances.filter((bal) => bal.balance_type !== BalanceTypes.gpos);
+
+            otherBalances.forEach((vb) => {
+              if (!otherAssetHashIds[vb.balance.asset_id]) {
+                otherAssetsPromises.push(Repository.getAsset(vb.balance.asset_id));
+              }
+            });
+
+            // Process the gpos balance types
             let assetsHashIds = Object.create(null),
               assetsPromises = [];
-            balances = balances.filter((bal) => {
-              return bal.balance_type === BalanceTypes.gpos;
-            });
+
+            balances = balances.filter((bal) => bal.balance_type === BalanceTypes.gpos);
             balances.forEach((vb) => {
               if (!assetsHashIds[vb.balance.asset_id]) {
                 assetsPromises.push(Repository.getAsset(vb.balance.asset_id));
               }
             });
 
-            Promise.all(assetsPromises).then((assets) => {
-              let assetsHash = Object.create(null);
-              assets.forEach((asset) => {
+            Promise.all(otherAssetsPromises).then((otherAssets) => {
+              let otherAssetsHash = Object.create(null);
+              otherAssets.forEach((asset) => {
                 if (asset) {
-                  assetsHash[asset.get('id')] = asset;
+                  otherAssetsHash[asset.get('id')] = asset;
                 }
               });
-              balances.forEach((vb) => {
-                vb.balance.asset = assetsHash[vb.balance.asset_id];
+              otherBalances.forEach((vb) => {
+                vb.balance.asset = otherAssetsHash[vb.balance.asset_id];
               });
 
-              dispatch(AccountVestingPagePrivateActions.setAccountVestingDataAction({
-                balances
-              }));
+              Promise.all(assetsPromises).then((assets) => {
+                let assetsHash = Object.create(null);
+                assets.forEach((asset) => {
+                  if (asset) {
+                    assetsHash[asset.get('id')] = asset;
+                  }
+                });
+                balances.forEach((vb) => {
+                  vb.balance.asset = assetsHash[vb.balance.asset_id];
+                });
+
+                // Update redux store
+                dispatch(AccountVestingPagePrivateActions.setAccountVestingDataAction({balances, otherBalances}));
+              });
             });
           });
         } else {

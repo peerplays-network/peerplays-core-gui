@@ -226,11 +226,15 @@ class HelpModal extends React.Component {
                   <div className='help__section'>
                     {
                       gposPoints.map((point) => {
-                        return <Translate component='p' className='help__text' content={ point } />;
+                        return <Translate key={ point } component='p' className='help__text' content={ point } />;
                       })
                     }
                     <Translate component='span' className='help__text' content='help.gpos.text_4'/><br/>
-                    <Translate component='span' className='help__text' content='help.gpos.text_5'/><a href={ gposLink } className='help__link--lower'>{gposLink}</a>
+                    <Translate component='span' className='help__text' content='help.gpos.text_5'/>
+                    <a onClick={ (e) => {
+                      window.open(gposLink, 'newwindow', 'width=500, height=400');
+                      e.preventDefault();
+                    } } href={ gposLink } className='help__link--lower'>{gposLink}</a>
                   </div>
                 </div>
 
