@@ -2,6 +2,7 @@ import React from 'react';
 import Translate from 'react-translate-component';
 import {connect} from 'react-redux';
 import WitnessRow from './WitnessRow';
+import Utils from '../../common/utils';
 
 class WitnessListNew extends React.Component {
   state = {
@@ -133,7 +134,7 @@ class WitnessListNew extends React.Component {
       const aValue = this.getAccessor(a, accessor);
       const bValue = this.getAccessor(b, accessor);
 
-      if (aValue && bValue) {
+      if (Utils.isEmptyObject(aValue) && Utils.isEmptyObject(bValue)) {
         if (newSortDir[col]) {
           return aValue > bValue ? 1 : -1;
         } else if (!newSortDir[col]) {
