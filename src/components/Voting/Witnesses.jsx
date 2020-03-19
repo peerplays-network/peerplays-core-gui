@@ -354,7 +354,7 @@ class Witnesses extends React.Component {
                 type='button'
                 className='btn btn-success'
                 onClick={ this.onPublishChanges.bind(this, this.props.walletLocked) }
-                disabled={ disabled || proxyIsEnabled }>
+                disabled={ proxyIsEnabled }>
                 <Translate content='votes.publish'/>
               </button>
             </div>
