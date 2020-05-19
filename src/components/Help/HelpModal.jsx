@@ -342,20 +342,6 @@ class HelpModal extends React.Component {
                   <div className='help__section'>
                     <Translate
                       component='div'
-                      className='help__text'
-                      content='help.settings.note_1'/>
-
-                    <Translate
-                      component='div'
-                      className='help__h4'
-                      content='help.settings.api_access.header'/>
-                    <div className='help__sectionSub'>
-                      <Translate
-                        component='p' className='' content='help.settings.api_access.note'/>
-                    </div>
-
-                    <Translate
-                      component='div'
                       className='help__h4'
                       content='help.settings.claim.header'/>
                     <div className='help__sectionSub'>

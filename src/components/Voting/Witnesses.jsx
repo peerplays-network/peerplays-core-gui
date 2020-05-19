@@ -283,7 +283,7 @@ class Witnesses extends React.Component {
     };
 
     const voted = votedActiveWitnesses.toArray().map((a) => witnessRender('remove', a));
-    const unvoted = unVotedActiveWitnesses.toArray().map((a) => witnessRender('add', a));
+    const unvoted = unVotedActiveWitnesses.toArray().sort((a,b) => a.total_votes > b.total_votes ? 1 : -1).map((a) => witnessRender('add', a));
 
     return (
       <div
