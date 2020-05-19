@@ -347,6 +347,9 @@
       "num_committee": "Desired Committee Members",
       "memo_key": "Memo Key",
       "common_options": "Common options"
+    },
+    "member": {
+      "lifetime": "Account Upgraded to Lifetime Member"
     }
   },
   "witnesses": {
