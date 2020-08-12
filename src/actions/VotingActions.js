@@ -724,6 +724,7 @@ class VotingActions {
 
         AccountRepository.process_transaction(tr, key).then(() => resolve())
           .catch((err) => {
+            console.log((new Date()).toDateString(), 'Error: ', err);
             // Reset the state.voting.numVotedWitnesses & state.voting.numVotedCommitteeMembers to what they were prior to the transaction publish attempt.
             VotingActions.resetVotedCounts();
             reject(err);

@@ -324,9 +324,10 @@ class AccountRepository {
             //if (requiredPubKeys.length > 0) {
             tr.add_signer(privateKey, publicKey);
             tr.broadcast((data) => {
+              console.log((new Date()).toDateString(), 'AccountRepository.process_transaction - Success', data);
               resolve(data);
             }).catch((error) => {
-              // console.error(error);
+              console.error((new Date()).toDateString(), 'AccountRepository.process_transaction - Error', error);
               reject(error);
             });
             //}

@@ -168,6 +168,8 @@ class Witnesses extends React.Component {
   }
 
   onPublishChanges(walletLocked) {
+    console.log((new Date()).toDateString(), 'Publishing changes');
+
     if (walletLocked && !this.props.walletIsOpen) {
       this.props.setWalletPosition(true);
     }
@@ -178,6 +180,7 @@ class Witnesses extends React.Component {
       this.props.publishWitnesses(this.state.witnesses).then((tr) => {
         return tr.set_required_fees('1.3.0').then(() => {
           return Repository.getAsset(tr.operations[0][1].fee.asset_id).then((asset) => {
+            console.log((new Date()).toDateString(), tr);
             this.props.setTransaction('account_update', {
               fee: {
                 amount: tr.operations[0][1].fee.amount,

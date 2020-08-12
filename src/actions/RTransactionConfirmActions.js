@@ -135,6 +135,7 @@ class RTransactionConfirmActions {
             dispatch(RTransactionConfirmPrivateActions.transactionConfirmedAction());
           });
         }).catch((error) => {
+          console.log((new Date()).toDateString(),'RTransactionConfirmActions - Error', error);
           let stringError = 'Transaction Error';
 
           if (error && error.message) {
