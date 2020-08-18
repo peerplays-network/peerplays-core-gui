@@ -19779,8 +19779,8 @@
       }
     },
     "peerplaysjs-lib": {
-      "version": "git+https://gitlab.com/PBSA/PeerplaysIO/tools-libs/peerplaysjs-lib.git#f506de0044eb173986d0c75284ef2d286d2e19fe",
-      "from": "git+https://gitlab.com/PBSA/PeerplaysIO/tools-libs/peerplaysjs-lib.git#f506de0044eb173986d0c75284ef2d286d2e19fe",
+      "version": "git+https://github.com/peerplays-network/peerplaysjs-lib.git#f506de0044eb173986d0c75284ef2d286d2e19fe",
+      "from": "git+https://github.com/peerplays-network/peerplaysjs-lib.git#f506de0044eb173986d0c75284ef2d286d2e19fe",
       "dev": true,
       "requires": {
         "assert": "^2.0.0",
