@@ -104,7 +104,7 @@ class Send extends React.Component {
 
   onChangeMemo(e) {
     this.setState({
-      memo: e.target.value.trim()
+      memo: e.target.value
     });
   }
 
@@ -198,7 +198,7 @@ class Send extends React.Component {
         this.props.accountId,
         this.state.recipient.id,
         amount,
-        this.state.memo,
+        this.state.memo.trim(),
         assetId,
         assetId
       ).then((tr) => {
