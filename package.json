@@ -178,7 +178,7 @@
     "node-localstorage": "~0.3.4",
     "node-sass": "^4.14.1",
     "opn": "^5.4.0",
-    "peerplaysjs-lib": "https://gitlab.com/PBSA/PeerplaysIO/tools-libs/peerplaysjs-lib.git#f506de0044eb173986d0c75284ef2d286d2e19fe",
+    "peerplaysjs-lib": "git+https://github.com/peerplays-network/peerplaysjs-lib.git#f506de0044eb173986d0c75284ef2d286d2e19fe",
     "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.7.0",
