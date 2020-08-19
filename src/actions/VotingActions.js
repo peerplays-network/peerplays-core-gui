@@ -367,8 +367,6 @@ class VotingActions {
         const account = result.toJS();
         account.account = account.id;
         account.new_options = account.options;
-        account.new_options.num_witness = witnesses.size;
-        account.new_options.num_committee = getState().voting.numVotedCommitteeMembers;
         account.fee = {
           amount: 0,
           asset_id: accountUtils.getFinalFeeAsset(account.id, 'account_update')
@@ -384,6 +382,10 @@ class VotingActions {
 
             return parseInt(aSplit[1], 10) - parseInt(bSplit[1], 10);
           });
+
+        account.new_options.num_witness = account.new_options.votes.filter((vote) => parseInt(vote.split(':')[0]) === 1).length;
+        account.new_options.num_committee = account.new_options.votes.filter((vote) => parseInt(vote.split(':')[0]) === 0).length;
+
         const tr = walletApi.new_transaction();
         tr.add_type_operation('account_update', account);
         return tr;
@@ -470,8 +472,6 @@ class VotingActions {
         const account = result.toJS();
         account.account = account.id;
         account.new_options = account.options;
-        account.new_options.num_committee = committeeMembers.size;
-        account.new_options.num_witness = getState().voting.numVotedWitnesses;
         account.fee = {
           amount: 0,
           asset_id: accountUtils.getFinalFeeAsset(account.id, 'account_update')
@@ -488,6 +488,10 @@ class VotingActions {
 
             return parseInt(aSplit[1], 10) - parseInt(bSplit[1], 10);
           });
+
+        account.new_options.num_witness = account.new_options.votes.filter((vote) => parseInt(vote.split(':')[0]) === 1).length;
+        account.new_options.num_committee = account.new_options.votes.filter((vote) => parseInt(vote.split(':')[0]) === 0).length;
+
         const tr = walletApi.new_transaction();
         tr.add_type_operation('account_update', account);
         return tr;
