@@ -6,7 +6,8 @@ $max-width:1505px;
 
 $breakpoints: (default: 1920px,
 mac: 1531px,
-sm: 1275px);
+// modifying sm from 1275px to 992px 
+sm: 992px);
 
 @mixin gpos-start-btn {
   @include respond-to(mac) {
@@ -128,7 +129,8 @@ sm: 1275px);
         &-right {
           height: auto;
           border-radius: 0 0 15px;
-          overflow: overlay;
+          // the issues for scrolling in the gpos-powerup and down
+          // overflow: overlay;
         }
       }
 
@@ -944,6 +946,8 @@ sm: 1275px);
       width: 387px;
       margin-top: 111px;
       padding-left: 85px;
+      // avoid wrapping of the vote text section
+      white-space: nowrap;
 
       > .txt {
         font-size: $f-45;
