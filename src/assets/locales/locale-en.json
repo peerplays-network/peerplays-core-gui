@@ -17,6 +17,11 @@
     "network": "Network",
     "no_notices_message": "You don't have messages."
   },
+  "footer": {
+    "copyrights": "2020 All Rights Reserved",
+    "Privacy": "Privacy",
+    "Info": "PBSA"
+  },
   "dashboard": {
     "show_hidden": "Show hidden assets",
     "hide_hidden": "Hide hidden assets",
@@ -347,6 +352,9 @@
       "num_committee": "Desired Committee Members",
       "memo_key": "Memo Key",
       "common_options": "Common options"
+    },
+    "member": {
+      "lifetime": "Account Upgraded to Lifetime Member"
     }
   },
   "witnesses": {

@@ -6,11 +6,15 @@ import AppService from '../../../services/AppService';
 import store from '../../../store/configureStore';
 import AppActions from '../../../actions/AppActions';
 import {bindActionCreators} from 'redux';
+import {NavigateActions} from '../../../actions';
 
 class CantConnectModal extends React.Component {
   tryAgainHandler() {
     AppService.init(store);
     this.props.setShowCantConnectStatus(false);
+    this.props.logout();
+    // on try again it needs to be redirected to login
+    this.props.navigateToSignIn(null, false);
   }
 
   render() {
@@ -65,7 +69,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
-    setShowCantConnectStatus: AppActions.setShowCantConnectStatus
+    setShowCantConnectStatus: AppActions.setShowCantConnectStatus,
+    navigateToSignIn : NavigateActions.navigateToSignIn,
+    logout: AppActions.logout
   },
   dispatch
 );
