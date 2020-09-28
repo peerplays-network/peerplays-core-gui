@@ -9,12 +9,10 @@ import {bindActionCreators} from 'redux';
 import {NavigateActions} from '../../../actions';
 
 class CantConnectModal extends React.Component {
-  tryAgainHandler() {
+
+  tryAgainHandler=()=> {
+    this.props.setDisable(true);
     AppService.init(store);
-    this.props.setShowCantConnectStatus(false);
-    this.props.logout();
-    // on try again it needs to be redirected to login
-    this.props.navigateToSignIn(null, false);
   }
 
   render() {
@@ -46,10 +44,12 @@ class CantConnectModal extends React.Component {
                     component='div'
                     className='modalTitle'
                     content='cant_connect_modal_blockchain.title'/>
-                  <div className='modalFooter text_c'>
-                    <button onClick={ this.tryAgainHandler.bind(this) } className='btn btn-sbm'>
-                      <Translate content='cant_connect_modal_blockchain.try_again'/>
+                  <div className='modalFooter text_c'>                   
+                    <button onClick={ this.tryAgainHandler.bind(this) } className='btn btn-sbm' disabled={ this.props.tryagain }>
+                      {!this.props.tryagain?<Translate content='cant_connect_modal_blockchain.try_again'/>:
+                        <span className='loader loader-white loader-xs' style={ {marginTop:'70px'} }/>}
                     </button>
+                      :
                   </div>
                 </div>
               </div>
@@ -63,13 +63,15 @@ class CantConnectModal extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    showCantConnectModal : state.app.showCantConnectModal
+    showCantConnectModal : state.app.showCantConnectModal,
+    tryagain : state.app.disableTryAgain
   };
 };
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
     setShowCantConnectStatus: AppActions.setShowCantConnectStatus,
+    setDisable: AppActions.setDisableTryAgain,
     navigateToSignIn : NavigateActions.navigateToSignIn,
     logout: AppActions.logout
   },

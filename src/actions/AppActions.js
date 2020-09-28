@@ -158,6 +158,22 @@ class AppPrivateActions {
       }
     };
   }
+  /**
+   * Private Redux Action Creator (APP_SET_DISABLE_TRY_AGAIN_HANDLER)
+   * enable or disable try again handler
+   *
+   * @param {boolean} tryagain
+   * @returns {{type: APP_SET_DISABLE_TRY_AGAIN_HANDLER, payload: {disableTryAgain: *}}}
+   */
+  static setDisableTryAgainAction(tryagain) {
+    console.log(tryagain);
+    return {
+      type: ActionTypes.APP_SET_DISABLE_TRY_AGAIN_HANDLER,
+      payload: {
+        disableTryAgain: tryagain
+      }
+    };
+  }
 }
 class AppActions {
   /**
@@ -168,6 +184,16 @@ class AppActions {
  */
   static setShowCantConnectStatus(show) {
     return AppPrivateActions.setShowCantConnectStatusAction(show);
+  }
+
+  /**
+ * Enable or disable try again hanler
+ *
+ * @param {boolean} disableTryAgain
+ * @returns {{type, payload: {disableTryAgain: *}}}
+ */
+  static setDisableTryAgain(tryagain) {
+    return AppPrivateActions.setDisableTryAgainAction(tryagain);
   }
 
   /**

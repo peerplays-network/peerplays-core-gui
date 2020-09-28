@@ -103,20 +103,20 @@ class App extends PureComponent {
       content = <div className='wrapper wrapper-with-footer'>{this.props.children}</div>;
     } else {
       content = (
-          <div className='wrapper wrapper-with-footer'>
-            <Header pathname={ pathname } />
-            <div>
-              <CommonMessage location='header' />
-              <div>{this.props.children}</div>
-            </div> 
+        <div className='wrapper wrapper-with-footer'>
+          <Header pathname={ pathname } />
+          <div>
+            <CommonMessage location='header' />
+            <div>{this.props.children}</div>
           </div>
+          <footer>
+            <Footer pathname={ pathname } />
+          </footer>
+        </div>
       );
-      contentfooter =(
-        <footer>
-          <Footer pathname={ pathname } />  
-        </footer>
-          
-      )
+      // contentfooter =(
+
+      // );
     }
 
     return (
@@ -134,7 +134,7 @@ class App extends PureComponent {
           <ViewMemoModal />
           <HelpModal />
           <GPOSModalWrapper />
-          {contentfooter}
+          {/* {contentfooter} */}
         </div>
       </IntlProvider>
     );

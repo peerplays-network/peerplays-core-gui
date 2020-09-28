@@ -16,6 +16,11 @@
     "vote": "Vote",
     "network": "Network",
     "no_notices_message": "You don't have messages."
+  },  
+  "footer": {
+    "copyrights": "2020 All Rights Reserved",
+    "Privacy": "Privacy",
+    "Info": "PBSA"
   },
   "dashboard": {
     "show_hidden": "Show hidden assets",

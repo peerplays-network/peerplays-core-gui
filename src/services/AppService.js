@@ -12,17 +12,21 @@ class AppService {
    * Init our app
    * @param store
    */
-  static init(store) {
+  static init(store) {      
     const ConnectionCallback = (store) => {
+      console.log(store.getState().app);
       ConnectManager.setDefaultRpcConnectionStatusCallback((value) => {
+        console.log(value);
+
         switch (value) {
           case 'error':
-            store.dispatch(AppActions.resetCache());
+            store.dispatch(AppActions.setDisableTryAgain(false));
             store.dispatch(AppActions.setShowCantConnectStatus(true));
+            store.dispatch(AppActions.resetCache());
             break;
+
           case 'open':
             store.dispatch(AppActions.setStatus(null));
-
           // no default
         }
       });
@@ -63,10 +67,13 @@ class AppService {
                 store.dispatch(AppActions.logout());
               }
 
+
               store.dispatch(AppActions.setAppChainIsInit(true));
+
             }).catch((error) => {
               console.error('----- ChainStore INIT ERROR ----->', error, (new Error()).stack);
               store.dispatch(AppActions.setAppSyncFail(true));
+              store.dispatch(AppActions.setDisableTryAgain(false));
               store.dispatch(AppActions.setShowCantConnectStatus(true));
             });
           });
@@ -74,6 +81,7 @@ class AppService {
       } catch (err) {
         console.error('DB init error:', err);
         store.dispatch(AppActions.setAppSyncFail(true));
+        store.dispatch(AppActions.setDisableTryAgain(false));
         store.dispatch(AppActions.setShowCantConnectStatus(true));
       }
     }).catch((error) => {

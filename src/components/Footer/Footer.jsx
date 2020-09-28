@@ -8,6 +8,9 @@ import {AppActions, HelpActions} from '../../actions';
 import Translate from 'react-translate-component';
 import {bindActionCreators} from 'redux';
 import Config from '../../../config/Config';
+import {DateTimeFormat} from 'intl';
+const getClientEnvironment = require('../../../config/env');
+const env = getClientEnvironment();
 
 class Footer extends React.Component {
   onLogoutClick(e) {
@@ -21,37 +24,36 @@ class Footer extends React.Component {
   }
 
   render() {
+    const dateCommit=__COMMIT_HASH__.split('Date:   ')[1].slice(8,10).split(' ')[0].length===1?'0'+__COMMIT_HASH__.split('Date:   ')[1].slice(8,10).split(' ')[0]:__COMMIT_HASH__.split('Date:   ')[1].slice(8,10).split(' ')[0];
     return (
       <div className='footer'>
         <div className='app__version'>
-        {}
-
+          {}
         </div>
-              
-              <div className='box footerRow'>
-                {/* <span className-="col-4"> */}
-                  {/* <Link to='/dashboard' className = 'logo' >
-                    <img src='images/logo_pp-2.png' alt=''/>
-                  </Link> */}
-                  <a className="footerList" target="_blank" href='https://www.peerplays.com/privacy/'>
-                      <span >
-                          <Translate component='span' content='footer.Privacy'/>
-                      </span>
-                  </a>
-                  <a className="footerList" target="_blank" href='https://pbsa.info/' >
-                      <span>
-                          <Translate component='span' content='footer.Info'/>
-                      </span>
-                  </a>   
-                {/* </span> */}
-                <div className='app__version'>Connected to: {Config.BLOCKCHAIN_URLS}</div>
-                <div className='app__version'>{Config.APP_VERSION}</div>
-                <a  className='footerList'>
-                  <span >
-                  &copy; <Translate component='span' content='footer.copyrights' className="footercopyright"/>
-                  </span>
-                </a>
-              </div>
+        <div className='box footerRow'>
+          <a className='footerList' target='_blank' href='https://www.peerplays.com/privacy/'>
+            <span >
+              <Translate component='span' content='footer.Privacy'/>
+            </span>
+          </a>
+          <a className='footerList' target='_blank' href='https://pbsa.info/' >
+            <span>
+              <Translate component='span' content='footer.Info'/>
+            </span>
+          </a>
+          <div className='app__version'>Connected to: {env.raw.name} blockchain</div>
+          <div className='app__version'>Version: {Config.APP_VERSION}-{__COMMIT_HASH__.split('commit ')[1].slice(0,8)}
+            {__COMMIT_HASH__.split('Date:   ')[1].slice(8,10).split(' ')[0].length!==1?
+              `(${new Date(`${dateCommit} ${__COMMIT_HASH__.split('Date:   ')[1].slice(3,7)} ${__COMMIT_HASH__.split('Date:   ')[1].slice(20,24)} ${__COMMIT_HASH__.split('Date:   ')[1].slice(12,19)}`).toISOString()})`:
+              `(${new Date(`${dateCommit} ${__COMMIT_HASH__.split('Date:   ')[1].slice(4,7)} ${__COMMIT_HASH__.split('Date:   ')[1].slice(19,23)} ${__COMMIT_HASH__.split('Date:   ')[1].slice(10,18)}`).toISOString()})`
+            }
+          </div>
+          <div  className='footerList'>
+            <span >
+            &copy; <Translate component='span' content='footer.copyrights' className='footercopyright'/>
+            </span>
+          </div>
+        </div>
       </div>
     );
   }
@@ -66,7 +68,7 @@ const mapStateToProps = (state) => {
     starredAccounts : state.account.starredAccounts,
     locked : state.wallet.locked,
     current_wallet : state.wallet.currentWallet,
-    updatedAt : state.explorerBlockchainPage.updatedAt,
+    updatedAt : state.explorerBlockchainPage.updatedAt
   };
 };
 
