@@ -12,7 +12,14 @@ const Config = require('./Config');
 // It requires a trailing slash, or the file assets will get an incorrect path.
 var publicPath = paths.servedPath;
 
+// GIT HASH DETAILS
+
+let commitHash = require('child_process')
+  .execSync('git log -1 origin/master..HEAD ')
+  .toString().trim()
+
 // GLOBAL VAR DEFINE
+
 var define = {
   APP_PACKAGE_VERSION: JSON.stringify(Config.APP_PACKAGE_VERSION),
   SOFTWARE_UPDATE_REFERENCE_ACCOUNT_NAME: JSON.stringify(
@@ -52,6 +59,9 @@ var plugins = [
     'process.env': {
       NODE_ENV: JSON.stringify('production')
     }
+  }),
+  new webpack.DefinePlugin({
+    __COMMIT_HASH__: JSON.stringify(commitHash),
   }),
   new ManifestPlugin({fileName: 'asset-manifest.json'}),
   new webpack.ProgressPlugin((percentage, msg) => {
