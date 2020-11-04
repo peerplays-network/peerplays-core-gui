@@ -6,10 +6,19 @@ const endpoints = {
         'https://faucet.peerplays.download/faucet'
       ],
       prefix: 'PPY'
+    },
+    elizabeth: {
+      apiEndpoints: ['wss://elizabeth.peerplays.download/api'],
+      faucetUrls: [
+        'https://elizabeth-faucet.peerplays.download/api/v1/accounts'
+      ],
+      prefix: 'TEST'
     }
   }
 };
-let current = 'alice'; // Set the current default environment.
+let current = 'elizabeth'; // Set the current default environment.
+
+
 
 // Check to make sure a valid target is specified.
 if (process.env && process.env.TARGET && endpoints.environments[process.env.TARGET]) {

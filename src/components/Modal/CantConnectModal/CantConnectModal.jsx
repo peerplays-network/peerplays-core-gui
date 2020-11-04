@@ -7,11 +7,26 @@ import store from '../../../store/configureStore';
 import AppActions from '../../../actions/AppActions';
 import {bindActionCreators} from 'redux';
 import {NavigateActions} from '../../../actions';
-
+import ChainStoreHeartbeater from '../../../app/ChainStoreHeartbeater';
+import ConnectManager from '../../../services/ConnectManager';
 class CantConnectModal extends React.Component {
 
   tryAgainHandler=()=> {
-    this.props.setDisable(true);
+    // let beater = new ChainStoreHeartbeater();
+
+    // beater.setHeartBeatChainStore(() => {
+    //   store.dispatch(AppActions.setShowCantConnectStatus(true));
+    // });
+    if(store.getState().app.dbIsInit || store.getState().app.dbDataIsLoad || store.getState().app.chainIsInit) {
+      ConnectManager.setDefaultRpcConnectionStatusCallback((value) => {
+        console.log(value)
+        if(value!=='open'){
+          store.dispatch(AppActions.setDisableTryAgain(false));
+        }
+      })
+      this.props.setDisable(true);
+    }
+    
     AppService.init(store);
   }
 

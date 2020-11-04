@@ -1,5 +1,6 @@
 import {ChainStore} from 'peerplaysjs-lib';
 import iDB from '../idb-instance';
+import {connect} from 'react-redux';
 import {listenChainStore} from './ChainStoreService';
 import ConnectManager from './ConnectManager';
 import AppActions from '../actions/AppActions';
@@ -12,30 +13,57 @@ class AppService {
    * Init our app
    * @param store
    */
-  static init(store) {      
+  static init(store) { 
     const ConnectionCallback = (store) => {
-      console.log(store.getState().app);
+      console.log('get app',store.getState().app);
       ConnectManager.setDefaultRpcConnectionStatusCallback((value) => {
-        console.log(value);
+        console.log('tryagain value connection',value);
 
         switch (value) {
           case 'error':
-            store.dispatch(AppActions.setDisableTryAgain(false));
             store.dispatch(AppActions.setShowCantConnectStatus(true));
-            store.dispatch(AppActions.resetCache());
+            (AppActions.resetCache());
             break;
+                     
+            // case 'closed':
+            // store.dispatch(AppActions.setDisableTryAgain(false));
+            // store.dispatch(AppActions.setShowCantConnectStatus(true));
+            // AppActions.resetCache();
+            // break;
 
           case 'open':
             store.dispatch(AppActions.setStatus(null));
+
           // no default
         }
       });
     };
 
-    let beater = new ChainStoreHeartbeater();
 
-    beater.setHeartBeatChainStore(() => {
-      store.dispatch(AppActions.setShowCantConnectStatus(true));
+    // let beater = new ChainStoreHeartbeater();
+    // console.log(beater,'emter')
+    // beater.setHeartBeatChainStore(() => {
+    //   console.log('emter');
+    //   store.dispatch(AppActions.setShowCantConnectStatus(true));
+    //   store.dispatch(AppActions.setDisableTryAgain(false));
+
+    // });
+    let beater = new ChainStoreHeartbeater();
+    console.log(beater,'emter')
+  
+    ConnectManager.setDefaultRpcConnectionStatusCallback((value) => {
+      console.log(value);
+
+      if(value!=='open'){
+        beater.setHeartBeatChainStore(() => {
+          store.dispatch(AppActions.setShowCantConnectStatus(true));
+          store.dispatch(AppActions.setDisableTryAgain(false));
+        });
+      } else {
+        beater.setHeartBeatChainStore(() => {
+          store.dispatch(AppActions.setShowCantConnectStatus(true));
+        });  
+      }
     });
 
     ChainStore.setDispatchFrequency(0);
@@ -91,4 +119,4 @@ class AppService {
   }
 }
 
-export default AppService;
+export default connect(AppActions)(AppService);
