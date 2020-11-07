@@ -92,9 +92,12 @@ class ConnectManager {
   }
 
   connectToBlockchain(callback, store) {
+    console.log(callback,store,'the returned list',this);
     return this.getActiveWitnessEndpoints().then((e) => {
+      console.log(e,'the returned list');
       this.blockchainUrls = e;
     }).then(() => {
+      console.log(this.blockchainUrls,'the returned list');
       let wsConnectionManager = new ConnectionManager({urls: this.blockchainUrls});
 
       if (this.sortedUrls.length > 1) {
@@ -106,11 +109,14 @@ class ConnectManager {
         return wsConnectionManager
           .sortNodesByLatency()
           .then((list) => {
+            console.log(list,'the returned list');
             return list;
           })
           .then((list) => {
+            console.log(list,'the returned list');
+
             this.sortedUrls = list;
-            const connectionString = Config.BLOCKCHAIN_URLS[this.blockchainUrlIndex];
+            const connectionString = list[this.blockchainUrlIndex]?list[this.blockchainUrlIndex]:Config.BLOCKCHAIN_URLS[this.blockchainUrlIndex];
 
             // Display the blockchain api node that we are conencting to.
             console.log(`%cConnected to: ${connectionString}.`, 'background: #222 color: green; font-size: large');
@@ -160,9 +166,12 @@ class ConnectManager {
    * @returns {*}
    */
   getConnection(cs) {
+    console.log('entered the instance',cs);
+
     if (!instances[cs]) {
       let instance = new ApisInstance();
       instance.connect(cs);
+      console.log('entered the instance',cs,instance);
       ConnectManager.setConnection(cs, instance);
     }
 

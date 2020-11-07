@@ -13,63 +13,40 @@ class AppService {
    * Init our app
    * @param store
    */
-  static init(store) { 
+  static init(store) {
     const ConnectionCallback = (store) => {
-      console.log('get app',store.getState().app);
+      console.log(store.getState().app);
       ConnectManager.setDefaultRpcConnectionStatusCallback((value) => {
-        console.log('tryagain value connection',value);
+        console.log(value);
 
         switch (value) {
           case 'error':
+            store.dispatch(AppActions.setDisableTryAgain(false));
             store.dispatch(AppActions.setShowCantConnectStatus(true));
-            (AppActions.resetCache());
+            AppActions.resetCache();
             break;
-                     
-            // case 'closed':
-            // store.dispatch(AppActions.setDisableTryAgain(false));
-            // store.dispatch(AppActions.setShowCantConnectStatus(true));
-            // AppActions.resetCache();
-            // break;
-
+          case 'closed':
+            store.dispatch(AppActions.setDisableTryAgain(false));
+            AppActions.resetCache();
+            break;
           case 'open':
             store.dispatch(AppActions.setStatus(null));
-
           // no default
         }
       });
     };
 
-
-    // let beater = new ChainStoreHeartbeater();
-    // console.log(beater,'emter')
-    // beater.setHeartBeatChainStore(() => {
-    //   console.log('emter');
-    //   store.dispatch(AppActions.setShowCantConnectStatus(true));
-    //   store.dispatch(AppActions.setDisableTryAgain(false));
-
-    // });
     let beater = new ChainStoreHeartbeater();
-    console.log(beater,'emter')
-  
-    ConnectManager.setDefaultRpcConnectionStatusCallback((value) => {
-      console.log(value);
 
-      if(value!=='open'){
-        beater.setHeartBeatChainStore(() => {
-          store.dispatch(AppActions.setShowCantConnectStatus(true));
-          store.dispatch(AppActions.setDisableTryAgain(false));
-        });
-      } else {
-        beater.setHeartBeatChainStore(() => {
-          store.dispatch(AppActions.setShowCantConnectStatus(true));
-        });  
-      }
+    beater.setHeartBeatChainStore(() => {
+      store.dispatch(AppActions.setShowCantConnectStatus(true));
     });
 
     ChainStore.setDispatchFrequency(0);
     store.dispatch(initSettings());
 
     ConnectManager.connectToBlockchain(ConnectionCallback, store).then(() => {
+      console.log('the returned list');
       let db;
 
       try {
@@ -107,12 +84,16 @@ class AppService {
           });
         });
       } catch (err) {
+        console.log('the returned list');
+
         console.error('DB init error:', err);
         store.dispatch(AppActions.setAppSyncFail(true));
         store.dispatch(AppActions.setDisableTryAgain(false));
         store.dispatch(AppActions.setShowCantConnectStatus(true));
       }
     }).catch((error) => {
+      console.log('the returned list');
+
       console.error('----- App INIT ERROR ----->', error, (new Error()).stack);
       ConnectManager.closeConnectionToBlockchain();
     });

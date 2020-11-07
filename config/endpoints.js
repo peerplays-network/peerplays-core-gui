@@ -18,8 +18,6 @@ const endpoints = {
 };
 let current = 'elizabeth'; // Set the current default environment.
 
-
-
 // Check to make sure a valid target is specified.
 if (process.env && process.env.TARGET && endpoints.environments[process.env.TARGET]) {
   current = process.env.TARGET;
