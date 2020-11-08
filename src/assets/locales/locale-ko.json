@@ -763,6 +763,7 @@
   },
   "cant_connect_modal_blockchain": {
     "title": "Can’t Connect to Blockchain",
+    "reconnection": "Reconnecting to Blockchain",
     "try_again": "Try again"
   },
   "timeout_modal": {

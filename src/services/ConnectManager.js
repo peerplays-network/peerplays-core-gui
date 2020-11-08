@@ -92,12 +92,9 @@ class ConnectManager {
   }
 
   connectToBlockchain(callback, store) {
-    console.log(callback,store,'the returned list',this);
     return this.getActiveWitnessEndpoints().then((e) => {
-      console.log(e,'the returned list');
       this.blockchainUrls = e;
     }).then(() => {
-      console.log(this.blockchainUrls,'the returned list');
       let wsConnectionManager = new ConnectionManager({urls: this.blockchainUrls});
 
       if (this.sortedUrls.length > 1) {
@@ -109,12 +106,9 @@ class ConnectManager {
         return wsConnectionManager
           .sortNodesByLatency()
           .then((list) => {
-            console.log(list,'the returned list');
             return list;
           })
           .then((list) => {
-            console.log(list,'the returned list');
-
             this.sortedUrls = list;
             const connectionString = list[this.blockchainUrlIndex]?list[this.blockchainUrlIndex]:Config.BLOCKCHAIN_URLS[this.blockchainUrlIndex];
 

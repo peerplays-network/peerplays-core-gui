@@ -15,10 +15,7 @@ class AppService {
    */
   static init(store) {
     const ConnectionCallback = (store) => {
-      console.log(store.getState().app);
       ConnectManager.setDefaultRpcConnectionStatusCallback((value) => {
-        console.log(value);
-
         switch (value) {
           case 'error':
             store.dispatch(AppActions.setDisableTryAgain(false));
@@ -46,7 +43,6 @@ class AppService {
     store.dispatch(initSettings());
 
     ConnectManager.connectToBlockchain(ConnectionCallback, store).then(() => {
-      console.log('the returned list');
       let db;
 
       try {
@@ -84,16 +80,12 @@ class AppService {
           });
         });
       } catch (err) {
-        console.log('the returned list');
-
         console.error('DB init error:', err);
         store.dispatch(AppActions.setAppSyncFail(true));
         store.dispatch(AppActions.setDisableTryAgain(false));
         store.dispatch(AppActions.setShowCantConnectStatus(true));
       }
     }).catch((error) => {
-      console.log('the returned list');
-
       console.error('----- App INIT ERROR ----->', error, (new Error()).stack);
       ConnectManager.closeConnectionToBlockchain();
     });

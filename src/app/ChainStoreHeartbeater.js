@@ -13,11 +13,12 @@ class ChainStoreHeartbeater {
     let emitter = EmitterInstance.emitter();
 
     if(!hasListeners(emitter, 'heartbeat')) {
+      console.log('entered the emmiter');
 
       emitter.on('heartbeat', () => {
 
         if (this.heartBeatTimer) {
-          console.log('Received  heartBeat',(new Date(Date.now())).toUTCString() ,this.heartBeatTimer);
+          console.log('Received  heartBeat',(new Date(Date.now())).toUTCString() );
           clearInterval(this.heartBeatTimer);
 
           if(store.getState().app.showCantConnectModal && store.getState().app.disableTryAgain) {
