@@ -166,7 +166,6 @@ class AppPrivateActions {
    * @returns {{type: APP_SET_DISABLE_TRY_AGAIN_HANDLER, payload: {disableTryAgain: *}}}
    */
   static setDisableTryAgainAction(tryagain) {
-    console.log(tryagain);
     return {
       type: ActionTypes.APP_SET_DISABLE_TRY_AGAIN_HANDLER,
       payload: {

@@ -40,13 +40,19 @@ class CantConnectModal extends React.Component {
               <div className='modal-dialogAlignIn'>
                 <div
                   className='modal-dialogContent modal-dialogContent-w400 modal-dialogContent-type02'> { /*eslint-disable-line */ }
-                  <Translate
-                    component='div'
-                    className='modalTitle'
-                    content='cant_connect_modal_blockchain.title'/>
-                  <div className='modalFooter text_c'>                   
+                  {!store.getState().app.disableTryAgain?
+                    <Translate
+                      component='div'
+                      className='modalTitle'
+                      content='cant_connect_modal_blockchain.title'/>:
+                    <Translate
+                      component='div'
+                      className='modalTitle'
+                      content='cant_connect_modal_blockchain.reconnection'/>}
+                  <div className='modalFooter text_c'>
                     <button onClick={ this.tryAgainHandler.bind(this) } className='btn btn-sbm' disabled={ this.props.tryagain }>
-                      {!this.props.tryagain?<Translate content='cant_connect_modal_blockchain.try_again'/>:
+                      {!this.props.tryagain?
+                        <Translate content='cant_connect_modal_blockchain.try_again'/>:
                         <span className='loader loader-white loader-xs' style={ {marginTop:'70px'} }/>}
                     </button>
                       :

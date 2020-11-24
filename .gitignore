@@ -6,7 +6,6 @@ node_modules
 *.map
 css
 *.log
-build/
 releases/
 dist/
 
