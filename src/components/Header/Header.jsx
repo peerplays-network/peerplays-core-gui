@@ -26,7 +26,8 @@ class Header extends React.Component {
 
     return (
       <div className='header'>
-        <span className='app__version'>{Config.APP_VERSION}</span>
+        {/* Removed to avoid duplication in foooetr */}
+        {/* <span className='app__version'>{Config.APP_VERSION}</span> */}
         <div className='box'>
           {}
           <Link to='/dashboard' className = 'logo' >

@@ -283,7 +283,12 @@ class Witnesses extends React.Component {
     };
 
     const voted = votedActiveWitnesses.toArray().map((a) => witnessRender('remove', a));
-    const unvoted = unVotedActiveWitnesses.toArray().map((a) => witnessRender('add', a));
+
+    const unvoted = unVotedActiveWitnesses.toArray().sort((a,b) => {
+      const avotes = this.props.activeWitnesseObjects.filter((w) => w.witness_account === a.id).toArray()[0].total_votes;
+      const bvotes = this.props.activeWitnesseObjects.filter((w) => w.witness_account === b.id).toArray()[0].total_votes;
+      return bvotes - avotes;
+    }).map((a) => witnessRender('add', a));
 
     return (
       <div
@@ -354,7 +359,7 @@ class Witnesses extends React.Component {
                 type='button'
                 className='btn btn-success'
                 onClick={ this.onPublishChanges.bind(this, this.props.walletLocked) }
-                disabled={ disabled || proxyIsEnabled }>
+                disabled={ proxyIsEnabled }>
                 <Translate content='votes.publish'/>
               </button>
             </div>

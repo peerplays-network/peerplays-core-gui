@@ -147,6 +147,7 @@ export default {
      * const APP_CURRENT_LOCATION - set current location from PageConstants.js file
      * const APP_SET_STATUS - global app status "reconnect"|null
      * const APP_SET_SHOW_CANT_CONNECT_MODAL - Show cant connect modal window or no
+     * const APP_SET_DISABLE_TRY_AGAIN_HANDLER - enable or disable try again handler
      */
 
    APP_LOCAL_DB_IS_INIT : 'APP_LOCAL_DB_IS_INIT',
@@ -159,6 +160,7 @@ export default {
    APP_CURRENT_LOCATION : 'APP_CURRENT_LOCATION',
    APP_SET_STATUS : 'APP_SET_STATUS',
    APP_SET_SHOW_CANT_CONNECT_MODAL : 'APP_SET_SHOW_CANT_CONNECT_MODAL',
+   APP_SET_DISABLE_TRY_AGAIN_HANDLER : 'APP_SET_DISABLE_TRY_AGAIN_HANDLER',
 
    /*
     * Common Message Reducer

@@ -48,6 +48,7 @@
 
       &:hover {
         opacity: .6;
+        cursor: pointer;
       }
 
       &[aria-selected=true] {

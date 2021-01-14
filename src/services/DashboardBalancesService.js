@@ -108,12 +108,30 @@ class DashboardBalancesService {
         balancePromises.push(Repository.getObject(account.balances[assetId]));
       }
 
+      account.vesting_balances.map((vestingId) => {
+        return balancePromises.push(Repository.getObject(vestingId));
+      });
+
       return Promise.all(balancePromises).then((results) => {
         let balances = results.map((b) => b.toJS());
-        balances.map((balance) => amounts.push({
-          asset_id: balance.asset_type,
-          amount: parseInt(balance.balance, 10)
-        }));
+        balances.map((balance) => {
+          if(balance.hasOwnProperty('asset_type')) {
+            return amounts.push({
+              asset_id: balance.asset_type,
+              amount: parseInt(balance.balance, 10)
+            });
+          }
+
+          if(balance.balance_type === 'gpos') {
+            return amounts.push({
+              asset_id: balance.balance.asset_id,
+              amount: parseInt(balance.balance.amount, 10),
+              balance_type: 'gpos'
+            });
+          }
+
+          return null;
+        });
 
         let assetPromises = assetsIds.map((id) => Repository.getAsset(id));
 
@@ -537,7 +555,7 @@ class DashboardBalancesService {
 
     // Balance value
     balances.forEach((balance) => {
-      if (assetData.hasOwnProperty(balance.asset_id)) {
+      if (assetData.hasOwnProperty(balance.asset_id) && !balance.hasOwnProperty('balance_type')) {
         assetData[balance.asset_id]['available'] = balance.amount;
         assetData[balance.asset_id]['totalBalance'] = balance.amount;
 
@@ -553,6 +571,8 @@ class DashboardBalancesService {
             assetData[balance.asset_id]['totalValue'] = eqValue ? eqValue : 0;
           }
         }
+      } else if(assetData.hasOwnProperty(balance.asset_id) && balance.balance_type === 'gpos') {
+        assetData[balance.asset_id]['totalBalance'] += balance.amount;
       }
     });
 

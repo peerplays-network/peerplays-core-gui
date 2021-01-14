@@ -295,10 +295,12 @@
   .table__head,
   .tableRow {
     overflow: hidden;
+    display: flex;
   }
 
   .table__head.no_ov {
     overflow: visible;
+    display: flex;
   }
 
   .tableCell {
@@ -445,6 +447,22 @@
     border-bottom: 1px solid $th-bd-color;
     color: $th-color;
 
+    &.sort {
+      cursor: pointer;
+
+      &--true, &--false, &--default {
+        @extend .tableCell.sort;
+      }
+
+      &--true::after { // ascend
+        content: ' ▲';
+      }
+
+      &--false::after { // descend
+        content: ' ▼';
+      }
+    }
+
     &:first-child {
       @include border-radius(4px 0 0 0);
     }
@@ -452,6 +470,12 @@
     &:last-child {
       @include border-radius(0 4px 0 0);
     }
+  }
+}
+
+.table-voting-witnesses2 .tableRow {
+  &.sortable {
+    cursor: pointer;
   }
 }
 
@@ -672,6 +696,13 @@
 
     &:nth-child(5) {
       width: 10%;
+    }
+  }
+  @media(max-width:1250px) {
+    .tableCell {
+      &:nth-child(1) {
+        width: 45%;
+      }
     }
   }
 }

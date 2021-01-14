@@ -1,5 +1,6 @@
 import {ChainStore} from 'peerplaysjs-lib';
 import iDB from '../idb-instance';
+import {connect} from 'react-redux';
 import {listenChainStore} from './ChainStoreService';
 import ConnectManager from './ConnectManager';
 import AppActions from '../actions/AppActions';
@@ -17,12 +18,16 @@ class AppService {
       ConnectManager.setDefaultRpcConnectionStatusCallback((value) => {
         switch (value) {
           case 'error':
-            store.dispatch(AppActions.resetCache());
+            store.dispatch(AppActions.setDisableTryAgain(false));
             store.dispatch(AppActions.setShowCantConnectStatus(true));
+            AppActions.resetCache();
+            break;
+          case 'closed':
+            store.dispatch(AppActions.setDisableTryAgain(false));
+            AppActions.resetCache();
             break;
           case 'open':
             store.dispatch(AppActions.setStatus(null));
-
           // no default
         }
       });
@@ -63,10 +68,13 @@ class AppService {
                 store.dispatch(AppActions.logout());
               }
 
+
               store.dispatch(AppActions.setAppChainIsInit(true));
+
             }).catch((error) => {
               console.error('----- ChainStore INIT ERROR ----->', error, (new Error()).stack);
               store.dispatch(AppActions.setAppSyncFail(true));
+              store.dispatch(AppActions.setDisableTryAgain(false));
               store.dispatch(AppActions.setShowCantConnectStatus(true));
             });
           });
@@ -74,6 +82,7 @@ class AppService {
       } catch (err) {
         console.error('DB init error:', err);
         store.dispatch(AppActions.setAppSyncFail(true));
+        store.dispatch(AppActions.setDisableTryAgain(false));
         store.dispatch(AppActions.setShowCantConnectStatus(true));
       }
     }).catch((error) => {
@@ -83,4 +92,4 @@ class AppService {
   }
 }
 
-export default AppService;
+export default connect(AppActions)(AppService);
