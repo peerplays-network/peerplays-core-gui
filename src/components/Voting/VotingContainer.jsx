@@ -6,6 +6,7 @@ import {VotingActions} from '../../actions';
 import Proxy from './Proxy';
 import Witnesses from './Witnesses';
 import CommitteeMembers from './CommitteeMembers';
+import SONs from './SONs';
 import SLoader from '../Loaders/SLoader';
 import {bindActionCreators} from 'redux';
 
@@ -56,11 +57,13 @@ class VotingContainer extends React.Component {
         <Tab selected={ tabIndex === 0 }><Translate content='votes.proxy_short'/></Tab>
         <Tab selected={ tabIndex === 1 }><Translate content='votes.add_witness_label'/></Tab>
         <Tab selected={ tabIndex === 2 }><Translate content='votes.advisors'/></Tab>
+        <Tab selected={ tabIndex === 3 }><Translate content='votes.sons'/></Tab>
       </TabList>
 
       <TabPanel><Proxy renderHandlers={ this.renderHandlerButtons } handleVote={ this.voteHandler }/></TabPanel>
       <TabPanel><Witnesses renderHandlers={ this.renderHandlerButtons } handleVote={ this.voteHandler }/></TabPanel>
       <TabPanel><CommitteeMembers renderHandlers={ this.renderHandlerButtons } handleVote={ this.voteHandler }/></TabPanel>
+      <TabPanel><SONs renderHandlers={ this.renderHandlerButtons } handleVote={ this.voteHandler }/></TabPanel>
     </Tabs>;
 
     if (!this.state.loaded) {

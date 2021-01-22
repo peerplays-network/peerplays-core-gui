@@ -8,6 +8,8 @@ function voteRender(type, obj, voted, unvoted, account) {
 
   if (type.toLowerCase().includes('witness')) {
     h2Msg = 'votes.w_approved_by';
+  } else if(type.toLowerCase().includes('son')) {
+    h2Msg = 'votes.son_approved_by';
   }
 
   if (type.toLowerCase().includes('unvote')) {
@@ -17,6 +19,8 @@ function voteRender(type, obj, voted, unvoted, account) {
       h2Msg = 'votes.w_not_approved_by';
     } else if (type.toLowerCase().includes('committee')) {
       h2Msg = 'votes.cm_not_approved_by';
+    } else if (type.toLowerCase().includes('son')) {
+      h2Msg = 'votes.son_not_approved_by';
     }
   }
 

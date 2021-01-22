@@ -273,6 +273,10 @@
       "help_note": "Vote for Advisors",
       "question_mark_note": "Advisors can vote on proposals to change blockchain parameters such as fees"
     },
+    "sons_tab": {
+      "help_note": "Vote for SONs",
+      "question_mark_note": "SONs are the accounts that enable sidechain transactions on Peerplays"
+    },
     "proxy_short": "Proxy",
     "workers_short": "Workers",
     "proxy": "Proxy Voting Account",
@@ -290,6 +294,7 @@
     "publish": "Publish Changes",
     "select_witness": "Select Witnesses",
     "select_advisor": "Select Advisors",
+    "select_son": "Select SONs",
     "witness_stats": "Witness Stats",
     "action": "Action",
     "add_witness": "Add",
@@ -329,6 +334,9 @@
     "w_not_approved_by": "Witnesses not approved by %(account)s",
     "cm_approved_by": "Advisors approved by %(account)s",
     "cm_not_approved_by": "Advisors not approved by %(account)s",
+    "sons": "SONs",
+    "son_approved_by": "SONs approved by %(account)s",
+    "son_not_approved_by": "SONs not approved by %(account)s",
     "already": "Account is already in the list",
     "proxy_known": "Known proxies",
     "expired": "Expired workers",
@@ -345,6 +353,7 @@
     "options": {
       "num_witnesses": "Desired Witnesses",
       "num_committee": "Desired Committee Members",
+      "num_son": "Desired SONs",
       "memo_key": "Memo Key",
       "common_options": "Common options"
     },
