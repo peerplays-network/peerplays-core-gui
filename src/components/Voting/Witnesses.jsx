@@ -236,8 +236,8 @@ class Witnesses extends React.Component {
 
     let precision = Math.pow(10, asset.precision);
 
-    const votedActiveWitnesses = activeWitnesseAccounts.filter((a) => witnesses.has(a.id) && (a != null));
-    const unVotedActiveWitnesses = activeWitnesseAccounts.filter((a) => !witnesses.has(a.id) && (a != null));
+    const votedActiveWitnesses = activeWitnesseAccounts.filter((a) => a != null && witnesses.has(a.id));
+    const unVotedActiveWitnesses = activeWitnesseAccounts.filter((a) => a != null && !witnesses.has(a.id));
 
     const witnessRender = (type, a) => {
       // EIther 'add` or `remove`
