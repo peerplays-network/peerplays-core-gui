@@ -6,11 +6,13 @@ import AppService from '../../../services/AppService';
 import store from '../../../store/configureStore';
 import AppActions from '../../../actions/AppActions';
 import {bindActionCreators} from 'redux';
+import {NavigateActions} from '../../../actions';
 
 class CantConnectModal extends React.Component {
-  tryAgainHandler() {
+
+  tryAgainHandler=()=> {
+    this.props.setDisable(true);
     AppService.init(store);
-    this.props.setShowCantConnectStatus(false);
   }
 
   render() {
@@ -38,14 +40,22 @@ class CantConnectModal extends React.Component {
               <div className='modal-dialogAlignIn'>
                 <div
                   className='modal-dialogContent modal-dialogContent-w400 modal-dialogContent-type02'> { /*eslint-disable-line */ }
-                  <Translate
-                    component='div'
-                    className='modalTitle'
-                    content='cant_connect_modal_blockchain.title'/>
+                  {!store.getState().app.disableTryAgain?
+                    <Translate
+                      component='div'
+                      className='modalTitle'
+                      content='cant_connect_modal_blockchain.title'/>:
+                    <Translate
+                      component='div'
+                      className='modalTitle'
+                      content='cant_connect_modal_blockchain.reconnection'/>}
                   <div className='modalFooter text_c'>
-                    <button onClick={ this.tryAgainHandler.bind(this) } className='btn btn-sbm'>
-                      <Translate content='cant_connect_modal_blockchain.try_again'/>
+                    <button onClick={ this.tryAgainHandler.bind(this) } className='btn btn-sbm' disabled={ this.props.tryagain }>
+                      {!this.props.tryagain?
+                        <Translate content='cant_connect_modal_blockchain.try_again'/>:
+                        <span className='loader loader-white loader-xs' style={ {marginTop:'70px'} }/>}
                     </button>
+                      :
                   </div>
                 </div>
               </div>
@@ -59,13 +69,17 @@ class CantConnectModal extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    showCantConnectModal : state.app.showCantConnectModal
+    showCantConnectModal : state.app.showCantConnectModal,
+    tryagain : state.app.disableTryAgain
   };
 };
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
-    setShowCantConnectStatus: AppActions.setShowCantConnectStatus
+    setShowCantConnectStatus: AppActions.setShowCantConnectStatus,
+    setDisable: AppActions.setDisableTryAgain,
+    navigateToSignIn : NavigateActions.navigateToSignIn,
+    logout: AppActions.logout
   },
   dispatch
 );

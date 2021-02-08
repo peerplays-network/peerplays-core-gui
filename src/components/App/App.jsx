@@ -15,6 +15,7 @@ import TransactionConfirmModal from '../Modal/TransactionConfirmModal/Transactio
 import WalletUnlockModal from '../Modal/WalletUnlockModal';
 import ViewMemoModal from '../Modal/ViewMemoModal';
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 import SplashScreen from '../SplashScreen/SplashScreen';
 
 class App extends PureComponent {
@@ -71,6 +72,7 @@ class App extends PureComponent {
 
   render() {
     let content = null;
+    let contentfooter = null;
     let urlsWithYellowBackground = [
       '/claims/bts',
       '/about',
@@ -107,8 +109,14 @@ class App extends PureComponent {
             <CommonMessage location='header' />
             <div>{this.props.children}</div>
           </div>
+          <footer>
+            <Footer pathname={ pathname } />
+          </footer>
         </div>
       );
+      // contentfooter =(
+
+      // );
     }
 
     return (
@@ -126,6 +134,7 @@ class App extends PureComponent {
           <ViewMemoModal />
           <HelpModal />
           <GPOSModalWrapper />
+          {/* {contentfooter} */}
         </div>
       </IntlProvider>
     );

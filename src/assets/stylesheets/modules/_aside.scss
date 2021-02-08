@@ -4,7 +4,7 @@
   position: fixed;
   top: $headerHeight;
   right: 0;
-  bottom: 0;
+  bottom: $footerHeight;
   z-index: 101;
   float: right;
   clear: both;
@@ -12,7 +12,8 @@
   min-width: 250px;
   padding-bottom: 50px;
   background: $aside-bg;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   &__item {
     margin-bottom: 10px;
@@ -89,7 +90,9 @@
     }
   }
 }
-
+.aside::-webkit-scrollbar {
+  margin-bottom:60px
+  }
 .logout {
   @include transition();
 

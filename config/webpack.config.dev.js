@@ -24,7 +24,14 @@ var env = getClientEnvironment(publicUrl);
 // DIRECTORY CLEANER
 var cleanDirectories = ['build'];
 
+// GIT HASH DETAILS
+
+let  commitHash = require('child_process')
+  .execSync('git log -1 origin/master..HEAD ')
+  .toString().trim()
+
 // GLOBAL VAR DEFINE
+
 var define = {
   APP_PACKAGE_VERSION: JSON.stringify(Config.APP_PACKAGE_VERSION),
   SOFTWARE_UPDATE_REFERENCE_ACCOUNT_NAME: JSON.stringify(
@@ -42,6 +49,9 @@ var define = {
 var plugins = [
   new webpack.optimize.OccurrenceOrderPlugin(),
   new webpack.DefinePlugin(define),
+  new webpack.DefinePlugin({
+    __COMMIT_HASH__: JSON.stringify(commitHash),
+  }),
   new webpack.DefinePlugin({
     'process.env': {
       NODE_ENV: JSON.stringify('development')

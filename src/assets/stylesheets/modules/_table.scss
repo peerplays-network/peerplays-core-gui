@@ -295,10 +295,12 @@
   .table__head,
   .tableRow {
     overflow: hidden;
+    display: flex;
   }
 
   .table__head.no_ov {
     overflow: visible;
+    display: flex;
   }
 
   .tableCell {
@@ -694,6 +696,13 @@
 
     &:nth-child(5) {
       width: 10%;
+    }
+  }
+  @media(max-width:1250px) {
+    .tableCell {
+      &:nth-child(1) {
+        width: 45%;
+      }
     }
   }
 }

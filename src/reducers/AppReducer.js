@@ -23,7 +23,9 @@ let defaultState = {
   // global app status "reconnect"|null
   status: null,
   // Show cant connect modal window or no
-  showCantConnectModal: false
+  showCantConnectModal: false,
+  // enable or disable try again handler
+  disableTryAgain: false
 };
 
 export default function (state = defaultState, action) {
@@ -32,6 +34,11 @@ export default function (state = defaultState, action) {
     case ActionTypes.APP_SET_SHOW_CANT_CONNECT_MODAL:
       return Object.assign({}, state, {
         showCantConnectModal: action.payload.showCantConnectModal
+      });
+    // enable or disable try again handler
+    case ActionTypes.APP_SET_DISABLE_TRY_AGAIN_HANDLER:
+      return Object.assign({}, state, {
+        disableTryAgain: action.payload.disableTryAgain
       });
       // global app status "reconnect"|null
     case ActionTypes.APP_SET_STATUS:
