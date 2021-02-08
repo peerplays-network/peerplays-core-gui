@@ -110,10 +110,10 @@ class ConnectManager {
           })
           .then((list) => {
             this.sortedUrls = list;
-            const connectionString = list[this.blockchainUrlIndex];
-
+            const connectionString = list[this.blockchainUrlIndex]?list[this.blockchainUrlIndex]:Config.BLOCKCHAIN_URLS[this.blockchainUrlIndex];
+            
             // Display the blockchain api node that we are conencting to.
-            console.log(`%cConnected to: ${connectionString}.`, 'background: #222 color: green; font-size: large');
+            console.log(`%cConnecting to: ${connectionString}.`, 'background: #222 color: green; font-size: large');
             return Apis
               .instance(connectionString, true)
               .init_promise;
@@ -160,9 +160,12 @@ class ConnectManager {
    * @returns {*}
    */
   getConnection(cs) {
+    console.log('entered the instance',cs);
+
     if (!instances[cs]) {
       let instance = new ApisInstance();
       instance.connect(cs);
+      console.log('entered the instance',cs,instance);
       ConnectManager.setConnection(cs, instance);
     }
 

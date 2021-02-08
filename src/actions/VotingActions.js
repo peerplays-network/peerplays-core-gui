@@ -290,11 +290,7 @@ class VotingActions {
               list.push(witness);
 
               return Repository.getObject(witness.witness_account).then((result) => {
-                if (!result) {
-                  return null;
-                }
-
-                const witnessAccount = result.toJS();
+                const witnessAccount = result ? result.toJS() : {id: witness.witness_account};
                 objectAccounts[witness.witness_account] = witnessAccount;
                 votes = votes.filter((item) => {
                   if (item === witness.vote_id) {
