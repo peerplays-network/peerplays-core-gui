@@ -4,6 +4,14 @@ include:
   - template: License-Scanning.gitlab-ci.yml
   - template: SAST.gitlab-ci.yml
   - template: Secret-Detection.gitlab-ci.yml
+  - template: DAST.gitlab-ci.yml
+
+variables:
+ DAST_WEBSITE: $WEBSITE
+
+dast:
+  before_script:
+    - echo "$WEBSITE" > environment_url.txt
 
 # node docker image on which this would be run
 image: node:12.2.0
@@ -11,6 +19,7 @@ image: node:12.2.0
 stages:
   - test
   - deploy
+  - dast
 
 # builds app
 build:
