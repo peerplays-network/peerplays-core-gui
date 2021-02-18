@@ -17,6 +17,7 @@ const [
   VOTING_TOGGLE_HAS_VOTED,
   VOTING_SET_WITNESS_COUNT,
   VOTING_SET_COMMITTEE_COUNT,
+  VOTING_SET_SON_COUNT,
   VOTING_RESET_VOTED_COUNTS
 ] = [
   ActionTypes.VOTING_SET_DATA,
@@ -26,6 +27,7 @@ const [
   ActionTypes.VOTING_TOGGLE_HAS_VOTED,
   ActionTypes.VOTING_SET_WITNESS_COUNT,
   ActionTypes.VOTING_SET_COMMITTEE_COUNT,
+  ActionTypes.VOTING_SET_SON_COUNT,
   ActionTypes.VOTING_RESET_VOTED_COUNTS
 ];
 
@@ -100,6 +102,21 @@ class VotingPrivateActions {
   }
 
   /**
+   * Used between block generations for the very speedy users to ensure correct data exists between states and block generation.
+   *
+   * @static
+   * @param {number} num
+   * @returns
+   * @memberof VotingPrivateActions
+   */
+  static setVotedSONCount(num) {
+    return {
+      type: VOTING_SET_SON_COUNT,
+      payload: {num}
+    };
+  }
+
+  /**
    * Return the counts to what they were before a failed broadcasted transaction occurred.
    *
    * @static
@@ -133,12 +150,15 @@ class VotingActions {
         return VotingActions.getWitnessData(accountName, newWitnesses).then((witnesses) => {
           return VotingActions.getCMData(accountName).then((committeeMembers) => {
             return VotingActions.getProposalsData(accountName).then((proposals) => {
-              dispatch(VotingPrivateActions.fetchDataAction({
-                proxy,
-                witnesses,
-                committeeMembers,
-                proposals
-              }));
+              return VotingActions.getSONData(accountName).then((sons) => {
+                dispatch(VotingPrivateActions.fetchDataAction({
+                  proxy,
+                  witnesses,
+                  committeeMembers,
+                  proposals,
+                  sons
+                }));
+              });
             });
           });
         });
@@ -310,7 +330,7 @@ class VotingActions {
               currentWitnessId: object210.current_witness,
               activeWitnesseIds: allWitnesses,
               allWitnesses: allWitnesses,
-              cmVotes: votes,
+              cmSONVotes: votes,
               activeWitnesseObjects: Immutable.List(list),
               approvedWitnesseIds: Immutable.Map(approvedAccounts),
               activeWitnesseAccounts: Immutable.Map(objectAccounts),
@@ -371,7 +391,7 @@ class VotingActions {
 
         const voteIds = getState().voting.witnesses.activeWitnesseObjects
           .filter((obj) => witnesses.has(obj.witness_account)).map((obj) => obj.vote_id).toArray();
-        account.new_options.votes = getState().voting.witnesses.cmVotes.concat(voteIds)
+        account.new_options.votes = getState().voting.witnesses.cmSONVotes.concat(voteIds)
           .sort((a, b) => {
             const aSplit = a.split(':');
             const bSplit = b.split(':');
@@ -381,6 +401,7 @@ class VotingActions {
 
         account.new_options.num_witness = account.new_options.votes.filter((vote) => parseInt(vote.split(':')[0]) === 1).length;
         account.new_options.num_committee = account.new_options.votes.filter((vote) => parseInt(vote.split(':')[0]) === 0).length;
+        account.new_options.num_son = account.new_options.votes.filter((vote) => parseInt(vote.split(':')[0]) === 3).length;
 
         const tr = walletApi.new_transaction();
         tr.add_type_operation('account_update', account);
@@ -445,7 +466,7 @@ class VotingActions {
         return {
           activeCM: object200.active_committee_members,
           activeCMObjects: Immutable.List(list),
-          witnessesVotes: votes,
+          witnessesSONVotes: votes,
           asset: coreAsset,
           approvedCMIds: Immutable.Map(approvedAccounts),
           activeCMAccounts: Immutable.Map(objectAccounts),
@@ -477,7 +498,7 @@ class VotingActions {
         const voteIds = getState().voting.committeeMembers.activeCMObjects
           .filter((obj) => committeeMembers.has(obj.committee_member_account))
           .map((obj) => obj.vote_id).toArray();
-        account.new_options.votes = getState().voting.committeeMembers.witnessesVotes
+        account.new_options.votes = getState().voting.committeeMembers.witnessesSONVotes
           .concat(voteIds).sort((a, b) => {
             const aSplit = a.split(':');
             const bSplit = b.split(':');
@@ -487,6 +508,7 @@ class VotingActions {
 
         account.new_options.num_witness = account.new_options.votes.filter((vote) => parseInt(vote.split(':')[0]) === 1).length;
         account.new_options.num_committee = account.new_options.votes.filter((vote) => parseInt(vote.split(':')[0]) === 0).length;
+        account.new_options.num_son = account.new_options.votes.filter((vote) => parseInt(vote.split(':')[0]) === 3).length;
 
         const tr = walletApi.new_transaction();
         tr.add_type_operation('account_update', account);
@@ -763,6 +785,123 @@ class VotingActions {
   static resetVotedCounts() {
     return (dispatch) => {
       dispatch(VotingPrivateActions.resetVotedCounts());
+    };
+  }
+
+  /**
+   * Get data of the SON page
+   * fetchData/getSONData
+   *
+   * @param {string} accountName
+   */
+  static getSONData(accountName) {
+    return Promise.all([
+      Repository.getAccount(accountName),
+      Repository.getObject('2.0.0'),
+      Repository.getObject('1.3.0')
+    ]).then((results) => {
+      const account = results[0].toJS();
+      let votes = account.options.votes;
+      const proxyId = account.options.voting_account;
+      const object200 = results[1].toJS();
+      const coreAsset = results[2].toJS();
+      const list = [];
+      const approvedAccounts = {};
+      const objectAccounts = {};
+      const promises = object200.active_sons.map((son) => {
+        return Repository.getObject(son.son_id).then((result) => {
+          if (!result) {
+            return false;
+          }
+
+          const son = result.toJS();
+          list.push(son);
+
+          Repository.getObject(son.son_account).then((result) => {
+            let sonAccount;
+
+            if (result) {
+              sonAccount = result.toJS();
+            }
+
+            objectAccounts[son.son_account] = sonAccount;
+
+            votes = votes.filter((item) => {
+              if (item === son.vote_id) {
+                approvedAccounts[son.son_account] = son
+                  .son_account;
+                return false;
+              } else {
+                return true;
+              }
+            });
+          });
+        });
+      });
+
+      return Promise.all(promises).then(() => {
+        return {
+          activeSON: object200.active_sons,
+          activeSONObjects: Immutable.List(list),
+          witnessesCMVotes: votes,
+          asset: coreAsset,
+          approvedSONIds: Immutable.Map(approvedAccounts),
+          activeSONAccounts: Immutable.Map(objectAccounts),
+          sonAmount: object200.active_sons.length,
+          proxyIsEnabled: proxyId !== DEFAULT_PROXY_ID
+        };
+      });
+    });
+  }
+
+  /**
+   * Publish changed data on the page of the SON
+   *
+   * @param {Immutable.Map} sons
+   * @returns {function(*, *)}
+   */
+  static publishSONs(sons) {
+    return (dispatch, getState) => {
+      return Repository.getAccount(getState().app.account).then((result) => {
+        const account = result.toJS();
+        account.account = account.id;
+        account.new_options = account.options;
+        account.fee = {
+          amount: 0,
+          asset_id: accountUtils.getFinalFeeAsset(account.id, 'account_update')
+        };
+        account.extensions = {value: {update_last_voting_time: true}};
+
+        const voteIds = getState().voting.sons.activeSONObjects
+          .filter((obj) => sons.has(obj.son_account))
+          .map((obj) => obj.vote_id).toArray();
+        account.new_options.votes = getState().voting.sons.witnessesCMVotes
+          .concat(voteIds).sort((a, b) => {
+            const aSplit = a.split(':');
+            const bSplit = b.split(':');
+
+            return parseInt(aSplit[1], 10) - parseInt(bSplit[1], 10);
+          });
+
+        account.new_options.num_witness = account.new_options.votes.filter((vote) => parseInt(vote.split(':')[0]) === 1).length;
+        account.new_options.num_committee = account.new_options.votes.filter((vote) => parseInt(vote.split(':')[0]) === 0).length;
+        account.new_options.num_son = account.new_options.votes.filter((vote) => parseInt(vote.split(':')[0]) === 3).length;
+
+        const tr = walletApi.new_transaction();
+        tr.add_type_operation('account_update', account);
+        return tr;
+      });
+    };
+  }
+
+  static setVotedSONCount(num) {
+    return (dispatch, getState) => {
+      // Refer to old values to ensure the update is needed
+      const oldVotedSONCount = getState().voting.numVotedSONs;
+
+      if (num !== oldVotedSONCount) {
+        dispatch(VotingPrivateActions.setVotedSONCount(num));
+      }
     };
   }
 }

@@ -30,7 +30,7 @@ class AccountUpdate extends React.Component {
                 {this.props.voting_account}
               </span>
             </div>
-          </div> : this.props.num_witnesses || this.props.num_committee ?
+          </div> : this.props.num_witnesses || this.props.num_committee || this.props.num_son?
             <div className='mConf__tableRow'>
               <div className='mConf__tableLeft'><Translate content='account.votes.proxy' /></div>
               <div className='mConf__tableRight'>
@@ -61,6 +61,19 @@ class AccountUpdate extends React.Component {
             <div className='mConf__tableRight'>
               <span className='mark2'>
                 {this.props.num_witnesses}
+              </span>
+            </div>
+          </div>
+          : null
+        }
+        { this.props.num_son
+          ? <div className='mConf__tableRow'>
+            <div className='mConf__tableLeft'>
+              <Translate content='account.options.num_son' />
+            </div>
+            <div className='mConf__tableRight'>
+              <span className='mark2'>
+                {this.props.num_son}
               </span>
             </div>
           </div>
@@ -114,6 +127,7 @@ const mapStateToProps = (state) => {
     voting_account : state.transactionConfirm.transaction.voting_account,
     num_committee : state.transactionConfirm.transaction.num_committee,
     num_witnesses : state.transactionConfirm.transaction.num_witnesses,
+    num_son: state.transactionConfirm.transaction.num_son,
     fee : state.transactionConfirm.transaction.fee
   };
 };

@@ -7,6 +7,7 @@ const [
   VOTING_TOGGLE_HAS_VOTED,
   VOTING_SET_WITNESS_COUNT,
   VOTING_SET_COMMITTEE_COUNT,
+  VOTING_SET_SON_COUNT,
   VOTING_RESET_VOTED_COUNTS
 ] = [
   ActionTypes.VOTING_SET_DATA,
@@ -16,6 +17,7 @@ const [
   ActionTypes.VOTING_TOGGLE_HAS_VOTED,
   ActionTypes.VOTING_SET_WITNESS_COUNT,
   ActionTypes.VOTING_SET_COMMITTEE_COUNT,
+  ActionTypes.VOTING_SET_SON_COUNT,
   ActionTypes.VOTING_RESET_VOTED_COUNTS
 ];
 
@@ -46,9 +48,11 @@ const initialState = {
   committeeMembers: {},
   // Proposal page TODO::rm
   proposals: {},
+  sons: {},
   hasVoted: false,
   numVotedWitnesses: 0,
-  numVotedCommitteeMembers: 0
+  numVotedCommitteeMembers: 0,
+  numVotedSONs: 0
 };
 
 export default (state = initialState, action) => {
@@ -58,13 +62,19 @@ export default (state = initialState, action) => {
      * Set Voting page data(Pages: proxy, witnesses, committeeMembers, proposals)
      */
     case VOTING_SET_DATA:
+      const {committeeMembers, witnesses, sons} = action.payload;
+      const numVotedWitnesses = (committeeMembers.witnessesSONVotes.length + sons.witnessesCMVotes.length - witnesses.cmSONVotes.length) / 2;
+      const numVotedCommitteeMembers = (sons.witnessesCMVotes.length + witnesses.cmSONVotes.length - committeeMembers.witnessesSONVotes.length) / 2;
+      const numVotedSONs = (witnesses.cmSONVotes.length + committeeMembers.witnessesSONVotes.length - sons.witnessesCMVotes.length) / 2;
       return Object.assign({}, state, {
         proxy: action.payload.proxy,
-        witnesses: action.payload.witnesses,
-        numVotedWitnesses: action.payload.committeeMembers.witnessesVotes.length,
-        committeeMembers: action.payload.committeeMembers,
-        numVotedCommitteeMembers: action.payload.witnesses.cmVotes.length,
-        proposals: action.payload.proposals //TODO::rm
+        witnesses,
+        numVotedWitnesses,
+        committeeMembers,
+        numVotedCommitteeMembers,
+        proposals: action.payload.proposals, //TODO::rm
+        sons,
+        numVotedSONs
       });
       /**
        * Proxy page
@@ -107,12 +117,25 @@ export default (state = initialState, action) => {
         ...state.numCommitteeMembers,
         numVotedCommitteeMembers: action.payload.num
       });
-    case VOTING_RESET_VOTED_COUNTS:
+    case VOTING_SET_SON_COUNT:
+      return Object.assign({}, state, {
+        ...state.numSONs,
+        numVotedSONs: action.payload.num
+      });
+
+    case VOTING_RESET_VOTED_COUNTS: {
+      const {committeeMembers, witnesses, sons} = state.voting;
+      const numVotedWitnesses = (committeeMembers.witnessesSONVotes.length + sons.witnessesCMVotes.length - witnesses.cmSONVotes.length) / 2;
+      const numVotedCommitteeMembers = (sons.witnessesCMVotes.length + witnesses.cmSONVotes.length - committeeMembers.witnessesSONVotes.length) / 2;
+      const numVotedSONs = (witnesses.cmSONVotes.length + committeeMembers.witnessesSONVotes.length - sons.witnessesCMVotes.length) / 2;
       return Object.assign({}, state, {
         ...state,
-        numVotedWitnesses: state.voting.committeeMembers.witnessesVotes.length,
-        numVotedCommitteeMembers: state.voting.witnesses.cmVotes.length
+        numVotedWitnesses,
+        numVotedCommitteeMembers,
+        numVotedSONs
       });
+    }
+
     default:
       // We return the previous state in the default case
       return state;
