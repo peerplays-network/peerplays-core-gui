@@ -7,16 +7,16 @@ const endpoints = {
       ],
       prefix: 'PPY'
     },
-    elizabeth: {
-      apiEndpoints: ['wss://elizabeth.peerplays.download/api'],
+    beatrice: {
+      apiEndpoints: ['wss://pta.blockveritas.co/ws', 'wss://node.testnet.peerblock.trade', 'wss://api-ppy-beatrice.blckchnd.com', 'wss://api-beatrice01.eifos.org', 'wss://peerplaysblockchain.net/testnet/api', 'wss://api-testnet.ppy.alex-pu.info'],
       faucetUrls: [
-        'https://elizabeth-faucet.peerplays.download/api/v1/accounts'
+        'https://beatrice-faucet.peerplays.download/faucet'
       ],
       prefix: 'TEST'
     }
   }
 };
-let current = 'elizabeth'; // Set the current default environment.
+let current = 'beatrice'; // Set the current default environment.
 
 // Check to make sure a valid target is specified.
 if (process.env && process.env.TARGET && endpoints.environments[process.env.TARGET]) {
