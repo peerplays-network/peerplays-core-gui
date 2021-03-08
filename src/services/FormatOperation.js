@@ -180,12 +180,18 @@ export function formatOperation(obj) {
           }) : ''
       };
     case 7:
+      sender = ChainStore.getAccount(op[1].authorizing_account);
+      receiver = ChainStore.getAccount(op[1].account_to_list);
+
       return {
         operation: ops[op[0]],
-        type: null,
-        sender: null,
-        receiver: null,
-        description: null
+        type: counterpart.translate('transaction.trxTypes.account_whitelist'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.whitelisted_by', {
+          lister: sender ? sender.get('name') : '',
+          listee: receiver ? receiver.get('name') : ''
+        })
       };
     case 8:
       sender = ChainStore.getAccount(op[1].account_to_upgrade);
@@ -200,44 +206,70 @@ export function formatOperation(obj) {
           : null
       };
     case 9:
+      sender = ChainStore.getAccount(op[1].account_id);
+      receiver = ChainStore.getAccount(op[1].new_owner);
+
       return {
         operation: ops[op[0]],
-        type: null,
-        sender: null,
-        receiver: null,
-        description: null
+        type: counterpart.translate('transaction.trxTypes.account_transfer'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.transfer_account', {
+          account: sender ? sender.get('name') : '',
+          to: receiver ? receiver.get('name') : ''
+        })
       };
     case 10:
+      sender = ChainStore.getAccount(op[1].issuer);
+
       return {
         operation: ops[op[0]],
-        type: null,
-        sender: null,
-        receiver: null,
-        description: null
+        type: counterpart.translate('transaction.trxTypes.asset_create'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.asset_create', {
+          account: sender ? sender.get('name') : '',
+          asset: op[1].symbol
+        })
       };
     case 11:
+      sender = ChainStore.getAccount(op[1].issuer);
+
       return {
         operation: ops[op[0]],
-        type: null,
-        sender: null,
-        receiver: null,
-        description: null
+        type: counterpart.translate('transaction.trxTypes.asset_update'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.asset_update', {
+          account: sender ? sender.get('name') : '',
+          asset: op[1].asset_to_update.symbol
+        })
       };
     case 12:
+      sender = ChainStore.getAccount(op[1].issuer);
+
       return {
         operation: ops[op[0]],
-        type: null,
-        sender: null,
-        receiver: null,
-        description: null
+        type: counterpart.translate('transaction.trxTypes.asset_update_bitasset'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.asset_update', {
+          account: sender ? sender.get('name') : '',
+          asset: op[1].asset_to_update.symbol
+        })
       };
     case 13:
+      sender = ChainStore.getAccount(op[1].issuer);
+
       return {
         operation: ops[op[0]],
-        type: null,
-        sender: null,
-        receiver: null,
-        description: null
+        type: counterpart.translate('transaction.trxTypes.asset_update_feed_producers'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.asset_update_feed_producers', {
+          account: sender ? sender.get('name') : '',
+          asset: op[1].asset_to_update.symbol
+        })
       };
     case 14:
       sender = ChainStore.getAccount(op[1].issuer);
@@ -406,7 +438,8 @@ export function formatOperation(obj) {
         receiver: sender ? sender.get('name') : null,
         description: sender && amount ? counterpart.translate('activity.vesting_balance_deposit', {
           account: sender.get('name'),
-          amount: `${amount.amount} ${amount.asset.symbol}`
+          amount: `${amount.amount} ${amount.asset.symbol}`,
+          balance_type: op[1].balance_type
         }) : ''
       };
     case 33:
@@ -602,6 +635,852 @@ export function formatOperation(obj) {
         description: counterpart.translate('activity.tournament_payout_operation', {
           tournament_id: op[1].tournament_id,
           amount: amount ? `${amount.amount} ${asset_utils.getSymbol(amount.asset.symbol)}` : ''
+        })
+      };
+    case 51:
+      sender = ChainStore.getAccount(op[1].canceling_account_id);
+      receiver = ChainStore.getAccount(op[1].player_account_id);
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.tournament_leave'),
+        sender: sender ? sender.get('name') : null,
+        receiver: receiver ? receiver.get('name') : null,
+        description: counterpart.translate('activity.tournament_leave', {
+          tournament_id: op[1].tournament_id,
+          account: receiver ? receiver.get('name') : ''
+        })
+      };
+    case 52:
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.sport_create'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.sport_create', {
+          name: op[1].name
+        })
+      };
+    case 53:
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.sport_update'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.sport_update', {
+          sport_id: op[1].sport_id,
+          name: op[1].new_name
+        })
+      };
+    case 54:
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.event_group_create'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.event_group_create', {
+          name: op[1].name
+        })
+      };
+    case 55:
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.event_group_update'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.event_group_update', {
+          group_id: op[1].event_group_id,
+          sport_id: op[1].new_sport_id,
+          name: op[1].new_name
+        })
+      };
+    case 56:
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.event_create'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.event_create', {
+          name: op[1].name,
+          season: op[1].season
+        })
+      };
+    case 57:
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.event_update'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.event_update', {
+          event_id: op[1].event_id,
+          name: op[1].new_name,
+          season: op[1].new_season
+        })
+      };
+    case 58:
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.betting_market_rules_create'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.betting_market_rules_create', {
+          name: op[1].name
+        })
+      };
+    case 59:
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.betting_market_rules_update'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.betting_market_rules_update', {
+          name: op[1].new_name
+        })
+      };
+    case 60:
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.betting_market_group_create'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.betting_market_group_create', {
+          description: op[1].description
+        })
+      };
+    case 61:
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.betting_market_create'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.betting_market_create', {
+          description: op[1].description
+        })
+      };
+    case 62:
+      sender = ChainStore.getAccount(op[1].bettor_id);
+      amount = convertAmount(op[1].amount_to_bet);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.bet_place'),
+        sender: sender ? sender.get('name') : null,
+        receiver: '-',
+        description: counterpart.translate('activity.bet_place', {
+          back_or_lay: op[1].back_or_lay,
+          amount: amount ? `${amount.amount} ${asset_utils.getSymbol(amount.asset.symbol)}` : ''
+        })
+      };
+    case 63:
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.betting_market_group_resolve'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.betting_market_group_resolve', {
+          group_id: op[1].betting_market_group_id
+        })
+      };
+    case 64:
+      receiver = ChainStore.getAccount(op[1].bettor_id);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.betting_market_group_resolved'),
+        sender: '-',
+        receiver: receiver ? receiver.get('name') : null,
+        description: counterpart.translate('activity.betting_market_group_resolved', {
+          group_id: op[1].betting_market_group_id,
+          winnings: op[1].winnings
+        })
+      };
+    case 65:
+      receiver = ChainStore.getAccount(op[1].bettor_id);
+      amount = convertAmount(op[1].stake_returned);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.bet_adjusted'),
+        sender: '-',
+        receiver: receiver ? receiver.get('name') : null,
+        description: counterpart.translate('activity.bet_adjusted', {
+          bet_id: op[1].bet_id,
+          amount: amount ? `${amount.amount} ${asset_utils.getSymbol(amount.asset.symbol)}` : ''
+        })
+      };
+    case 66:
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.betting_market_group_cancel'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.betting_market_group_cancel', {
+          group_id: op[1].betting_market_group_id
+        })
+      };
+    case 67:
+      receiver = ChainStore.getAccount(op[1].bettor_id);
+      amount = convertAmount(op[1].amount_bet);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.bet_matched'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.bet_matched', {
+          account: receiver ? receiver.get('name') : '',
+          amount: amount ? `${amount.amount} ${asset_utils.getSymbol(amount.asset.symbol)}` : ''
+        })
+      };
+    case 68:
+      receiver = ChainStore.getAccount(op[1].bettor_id);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.bet_cancel'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.bet_cancel', {
+          account: receiver ? receiver.get('name') : '',
+          bet_to_cancel: op[1].bet_to_cancel
+        })
+      };
+    case 69:
+      receiver = ChainStore.getAccount(op[1].bettor_id);
+      amount = convertAmount(op[1].stake_returned);
+      const fees_returned = convertAmount(op[1].unused_fees_returned);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.bet_canceled'),
+        sender: '-',
+        receiver: receiver ? receiver.get('name') : null,
+        description: counterpart.translate('activity.bet_canceled', {
+          account: receiver ? receiver.get('name') : '',
+          bet_id: op[1].bet_id,
+          amount: amount ? `${amount.amount} ${asset_utils.getSymbol(amount.asset.symbol)}` : '',
+          fees: fees_returned ? `${fees_returned.amount} ${asset_utils.getSymbol(fees_returned.asset.symbol)}` : ''
+        })
+      };
+    case 70:
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.betting_market_group_update'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.betting_market_group_update', {
+          description: op[1].new_description
+        })
+      };
+    case 71:
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.betting_market_update'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.betting_market_update', {
+          description: op[1].new_description
+        })
+      };
+    case 77:
+      amount = convertAmount(op[1].extensions.ticket_price);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.lottery_asset_create'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.lottery_asset_create', {
+          amount: amount ? `${amount.amount} ${asset_utils.getSymbol(amount.asset.symbol)}` : ''
+        })
+      };
+    case 78:
+      amount = convertAmount(op[1].amount);
+      sender = ChainStore.getAccount(op[1].buyer);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.ticket_purchase'),
+        sender: sender ? sender.get('name') : null,
+        receiver: '-',
+        description: counterpart.translate('activity.ticket_purchase', {
+          tickets_to_buy: op[1].tickets_to_buy,
+          amount: amount ? `${amount.amount} ${asset_utils.getSymbol(amount.asset.symbol)}` : ''
+        })
+      };
+    case 79:
+      amount = convertAmount(op[1].amount);
+      receiver = ChainStore.getAccount(op[1].winner);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.lottery_reward'),
+        sender: '-',
+        receiver: receiver ? receiver.get('name') : null,
+        description: op[1].is_benefactor_reward ? counterpart.translate('activity.lottery_reward', {
+          lottery_id: op[1].lottery,
+          amount: amount ? `${amount.amount} ${asset_utils.getSymbol(amount.asset.symbol)}` : ''
+        }) : counterpart.translate('activity.lottery_winner', {
+          lottery_id: op[1].lottery,
+          amount: amount ? `${amount.amount} ${asset_utils.getSymbol(amount.asset.symbol)}` : ''
+        })
+      };
+    case 80:
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.lottery_end'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.lottery_end', {
+          lottery: op[1].lottery
+        })
+      };
+    case 81:
+      receiver = ChainStore.getAccount(op[1].account);
+      amount = convertAmount(op[1].amount_to_claim);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.sweeps_vesting_claim'),
+        sender: '-',
+        receiver: receiver ? receiver.get('name') : null,
+        description: counterpart.translate('activity.sweeps_vesting_claim', {
+          amount: amount ? `${amount.amount} ${asset_utils.getSymbol(amount.asset.symbol)}` : ''
+        })
+      };
+    case 82:
+      sender = ChainStore.getAccount(op[1].owner_account);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.custom_permission_create'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.custom_permission_create', {
+          account: sender ? sender.get('name') : '',
+          permission_name: op[1].permission_name
+        })
+      };
+    case 83:
+      sender = ChainStore.getAccount(op[1].owner_account);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.custom_permission_update'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.custom_permission_update', {
+          account: sender ? sender.get('name') : '',
+          permission_id: op[1].permission_id
+        })
+      };
+    case 84:
+      sender = ChainStore.getAccount(op[1].owner_account);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.custom_permission_delete'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.custom_permission_delete', {
+          account: sender ? sender.get('name') : '',
+          permission_id: op[1].permission_id
+        })
+      };
+    case 85:
+      sender = ChainStore.getAccount(op[1].owner_account);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.custom_account_authority_create'),
+        sender: sender ? sender.get('name') : null,
+        receiver: '-',
+        description: counterpart.translate('activity.custom_account_authority_create', {
+          permission_id: op[1].permission_id,
+          operation: ops[op[1].operation_type]
+        })
+      };
+    case 86:
+      sender = ChainStore.getAccount(op[1].owner_account);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.custom_account_authority_update'),
+        sender: sender ? sender.get('name') : null,
+        receiver: '-',
+        description: counterpart.translate('activity.custom_account_authority_update', {
+          auth_id: op[1].auth_id
+        })
+      };
+    case 87:
+      sender = ChainStore.getAccount(op[1].owner_account);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.custom_account_authority_delete'),
+        sender: sender ? sender.get('name') : null,
+        receiver: '-',
+        description: counterpart.translate('activity.custom_account_authority_delete', {
+          auth_id: op[1].auth_id
+        })
+      };
+    case 88:
+      sender = ChainStore.getAccount(op[1].issuer);
+      const NFTs = op[1].item_ids.join();
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.offer'),
+        sender: sender ? sender.get('name') : null,
+        receiver: '-',
+        description: op[1].buying_item ? counterpart.translate('activity.buy_offer', {
+          NFTs: NFTs
+        }) : counterpart.translate('activity.sell_offer', {
+          NFTs: NFTs
+        })
+      };
+    case 89:
+      sender = ChainStore.getAccount(op[1].bidder);
+      amount = convertAmount(op[1].bid_price);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.bid'),
+        sender: sender ? sender.get('name') : null,
+        receiver: '-',
+        description: counterpart.translate('activity.bid', {
+          offer_id: op[1].offer_id,
+          amount: amount ? `${amount.amount} ${asset_utils.getSymbol(amount.asset.symbol)}` : ''
+        })
+      };
+    case 90:
+      sender = ChainStore.getAccount(op[1].issuer);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.cancel_offer'),
+        sender: sender ? sender.get('name') : null,
+        receiver: '-',
+        description: counterpart.translate('activity.cancel_offer', {
+          offer_id: op[1].offer_id
+        })
+      };
+    case 91:
+      sender = ChainStore.getAccount(op[1].fee_paying_account);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.finalize_offer'),
+        sender: sender ? sender.get('name') : null,
+        receiver: '-',
+        description: counterpart.translate('activity.finalize_offer', {
+          offer_id: op[1].offer_id,
+          result: op[1].result
+        })
+      };
+    case 92:
+      sender = ChainStore.getAccount(op[1].owner);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.nft_metadata_create'),
+        sender: sender ? sender.get('name') : null,
+        receiver: '-',
+        description: op[1].lottery_options ? counterpart.translate('activity.nft_lottery_created', {
+          name: op[1].name
+        }) : counterpart.translate('activity.nft_metadata_create', {
+          name: op[1].name
+        })
+      };
+    case 93:
+      sender = ChainStore.getAccount(op[1].owner);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.nft_metadata_update'),
+        sender: sender ? sender.get('name') : null,
+        receiver: '-',
+        description: counterpart.translate('activity.nft_metadata_update', {
+          nft_metadata_id: op[1].nft_metadata_id
+        })
+      };
+    case 94:
+      sender = ChainStore.getAccount(op[1].payer);
+      receiver = ChainStore.getAccount(op[1].owner);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.nft_mint'),
+        sender: sender ? sender.get('name') : null,
+        receiver: receiver ? receiver.get('name') : null,
+        description: counterpart.translate('activity.nft_mint', {
+          nft_metadata_id: op[1].nft_metadata_id
+        })
+      };
+    case 95:
+      sender = ChainStore.getAccount(op[1].from);
+      receiver = ChainStore.getAccount(op[1].to);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.nft_safe_transfer_from'),
+        sender: sender ? sender.get('name') : null,
+        receiver: receiver ? receiver.get('name') : null,
+        description: counterpart.translate('activity.nft_safe_transfer_from', {
+          token_id: op[1].token_id
+        })
+      };
+    case 96:
+      sender = ChainStore.getAccount(op[1].operator_);
+      receiver = ChainStore.getAccount(op[1].approved);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.nft_approve'),
+        sender: sender ? sender.get('name') : null,
+        receiver: receiver ? receiver.get('name') : null,
+        description: counterpart.translate('activity.nft_approve', {
+          token_id: op[1].token_id,
+          account: receiver ? receiver.get('name') : ''
+        })
+      };
+    case 97:
+      sender = ChainStore.getAccount(op[1].owner);
+      receiver = ChainStore.getAccount(op[1].operator_);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.nft_set_approval_for_all'),
+        sender: sender ? sender.get('name') : null,
+        receiver: receiver ? receiver.get('name') : null,
+        description: op[1].approved ? counterpart.translate('activity.nft_set_approval_for_all', {
+          account: receiver ? receiver.get('name') : ''
+        }) : counterpart.translate('activity.nft_set_disapproval_for_all', {
+          account: receiver ? receiver.get('name') : ''
+        })
+      };
+    case 98:
+      sender = ChainStore.getAccount(op[1].owner);
+      const allowed_ops = [];
+
+      for(let i = 0; i < op[1].allowed_operations.length; i++) {
+        allowed_ops.push(ops[op[1].allowed_operations[i]]);
+      }
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.account_role_create'),
+        sender: sender ? sender.get('name') : null,
+        receiver: '-',
+        description: counterpart.translate('activity.account_role_create', {
+          name: op[1].name,
+          allowed_ops: allowed_ops.join()
+        })
+      };
+    case 99:
+      sender = ChainStore.getAccount(op[1].owner);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.account_role_update'),
+        sender: sender ? sender.get('name') : null,
+        receiver: '-',
+        description: counterpart.translate('activity.account_role_update', {
+          account_role_id: op[1].account_role_id
+        })
+      };
+    case 100:
+      sender = ChainStore.getAccount(op[1].owner);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.account_role_delete'),
+        sender: sender ? sender.get('name') : null,
+        receiver: '-',
+        description: counterpart.translate('activity.account_role_delete', {
+          account_role_id: op[1].account_role_id
+        })
+      };
+    case 101:
+      sender = ChainStore.getAccount(op[1].owner_account);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.son_create'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.son_create', {
+          account: sender ? sender.get('name') : ''
+        })
+      };
+    case 102:
+      sender = ChainStore.getAccount(op[1].owner_account);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.son_update'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.son_update', {
+          account: sender ? sender.get('name') : ''
+        })
+      };
+    case 103:
+      sender = ChainStore.getAccount(op[1].payer);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.son_deregister'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.son_deregister', {
+          son_id: op[1].son_id,
+          account: sender ? sender.get('name') : ''
+        })
+      };
+    case 104:
+      sender = ChainStore.getAccount(op[1].owner_account);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.son_heartbeat'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.son_heartbeat', {
+          account: sender ? sender.get('name') : ''
+        })
+      };
+    case 105:
+      sender = ChainStore.getAccount(op[1].payer);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.son_report_down'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.son_report_down', {
+          account: sender ? sender.get('name') : ''
+        })
+      };
+    case 106:
+      sender = ChainStore.getAccount(op[1].owner_account);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.son_maintenance'),
+        sender: '-',
+        receiver: '-',
+        description: op[1].request_type == 'request_maintenance' ? counterpart.translate('activity.son_maintenance_requested', {
+          account: sender ? sender.get('name') : ''
+        }) : counterpart.translate('activity.son_maintenance_request_canceled', {
+          account: sender ? sender.get('name') : ''
+        })
+      };
+    case 107:
+      sender = ChainStore.getAccount(op[1].payer);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.son_wallet_recreate'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.son_wallet_recreate', {
+          account: sender ? sender.get('name') : ''
+        })
+      };
+    case 108:
+      sender = ChainStore.getAccount(op[1].payer);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.son_wallet_update'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.son_wallet_update', {
+          son_wallet_id: op[1].son_wallet_id,
+          account: sender ? sender.get('name') : ''
+        })
+      };
+    case 109:
+      sender = ChainStore.getAccount(op[1].peerplays_from);
+      receiver = ChainStore.getAccount(op[1].peerplays_to);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.son_wallet_deposit_create'),
+        sender: sender ? sender.get('name') : null,
+        receiver: receiver ? receiver.get('name') : null,
+        description: counterpart.translate('activity.son_wallet_deposit_create', {
+          sidechain_amount: op[1].sidechain_amount,
+          sidechain_currency: op[1].sidechain_currency
+        })
+      };
+    case 110:
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.son_wallet_deposit_process'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.son_wallet_deposit_process', {
+          son_wallet_deposit_id: op[1].son_wallet_deposit_id
+        })
+      };
+    case 111:
+      sender = ChainStore.getAccount(op[1].peerplays_from);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.son_wallet_withdraw_create'),
+        sender: sender ? sender.get('name') : null,
+        receiver: '-',
+        description: counterpart.translate('activity.son_wallet_withdraw_create', {
+          withdraw_sidechain: op[1].withdraw_sidechain,
+          withdraw_currency: op[1].withdraw_currency,
+          withdraw_amount: op[1].withdraw_amount
+        })
+      };
+    case 112:
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.son_wallet_withdraw_process'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.son_wallet_withdraw_process', {
+          son_wallet_withdraw_id: op[1].son_wallet_withdraw_id
+        })
+      };
+    case 113:
+      sender = ChainStore.getAccount(op[1].sidechain_address_account);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.sidechain_address_add'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.sidechain_address_add', {
+          sidechain: op[1].sidechain,
+          account: sender ? sender.get('name'): ''
+        })
+      };
+    case 114:
+      sender = ChainStore.getAccount(op[1].sidechain_address_account);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.sidechain_address_update'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.sidechain_address_update', {
+          sidechain: op[1].sidechain,
+          account: sender ? sender.get('name'): ''
+        })
+      };
+    case 115:
+      sender = ChainStore.getAccount(op[1].sidechain_address_account);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.sidechain_address_delete'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.sidechain_address_delete', {
+          sidechain: op[1].sidechain,
+          account: sender ? sender.get('name'): ''
+        })
+      };
+    case 116:
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.sidechain_transaction_create'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.sidechain_transaction_create', {
+          sidechain: op[1].sidechain,
+          transaction: op[1].transaction
+        })
+      };
+    case 117:
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.sidechain_transaction_sign'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.sidechain_transaction_sign', {
+          signer: op[1].signer,
+          sidechain_transaction_id: op[1].sidechain_transaction_id
+        })
+      };
+    case 118:
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.sidechain_transaction_send'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.sidechain_transaction_send', {
+          sidechain_transaction_id: op[1].sidechain_transaction_id
+        })
+      };
+    case 119:
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.sidechain_transaction_settle'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.sidechain_transaction_settle', {
+          sidechain_transaction_id: op[1].sidechain_transaction_id
+        })
+      };
+    case 120:
+      amount = convertAmount(op[1].amount);
+      sender = ChainStore.getAccount(op[1].buyer);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.nft_lottery_token_purchase'),
+        sender: sender ? sender.get('name') : null,
+        receiver: '-',
+        description: counterpart.translate('activity.nft_lottery_token_purchase', {
+          tickets_to_buy: op[1].tickets_to_buy,
+          amount: amount ? `${amount.amount} ${asset_utils.getSymbol(amount.asset.symbol)}` : ''
+        })
+      };
+    case 121:
+      amount = convertAmount(op[1].amount);
+      receiver = ChainStore.getAccount(op[1].winner);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.nft_lottery_reward'),
+        sender: '-',
+        receiver: receiver ? receiver.get('name') : null,
+        description: op[1].is_benefactor_reward ? counterpart.translate('activity.lottery_reward', {
+          lottery_id: op[1].lottery_id,
+          amount: amount ? `${amount.amount} ${asset_utils.getSymbol(amount.asset.symbol)}` : ''
+        }) : counterpart.translate('activity.lottery_winner', {
+          lottery_id: op[1].lottery_id,
+          amount: amount ? `${amount.amount} ${asset_utils.getSymbol(amount.asset.symbol)}` : ''
+        })
+      };
+    case 122:
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.nft_lottery_end'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.lottery_end', {
+          lottery: op[1].lottery_id
+        })
+      };
+    case 123:
+      sender = ChainStore.getAccount(op[1].account);
+
+      return {
+        operation: ops[op[0]],
+        type: counterpart.translate('transaction.trxTypes.random_number_store'),
+        sender: '-',
+        receiver: '-',
+        description: counterpart.translate('activity.random_number_store', {
+          account: sender ? sender.get('name') : '',
+          random_numbers: op[1].random_number.join()
         })
       };
     default:
