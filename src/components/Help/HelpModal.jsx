@@ -296,6 +296,30 @@ class HelpModal extends React.Component {
                           content='help.vote.advisors.li_2'/>
                       </ul>
                     </div>
+
+                    <Translate
+                      component='div'
+                      className='help__h4'
+                      content='help.vote.sons.header'/>
+
+                    <div className='help__sectionSub'>
+                      <Translate
+                        component='div' className='text' content='help.vote.sons.text_1'/>
+
+                      <ul className='help__list'>
+                        <Translate
+                          component='li'
+                          unsafe={ true }
+                          className=''
+                          content='help.vote.sons.li_1'/>
+                        <Translate
+                          component='li'
+                          unsafe={ true }
+                          className=''
+                          content='help.vote.sons.li_2'/>
+                      </ul>
+                    </div>
+
                   </div>
                 </div>
 
