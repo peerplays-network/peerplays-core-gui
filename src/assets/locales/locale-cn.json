@@ -1000,6 +1000,12 @@
         "text_1": "This is where you vote for Peerplays Advisors. Advisors govern parameters such as specific fee rates on the Peerplays network (all changes require consensus vote by the advisors) in order to keep Peerplays flexible and competitive in changing market conditions.",
         "li_1": "To vote for an Advisor, click the <b>ADD</b> button next to that Advisor (as many as you like), then click <b>PUBLISH CHANGES</b> button, and <b>CONFIRM</b>.",
         "li_2": "To <b><i>remove</i></b> your vote from an Advisor, click the <b>REMOVE</b> button next to that Advisor, then click <b>PUBLISH CHANGES</b> button (enter password first time only), and <b>CONFIRM</b>."
+      },
+      "sons": {
+        "header": "SONs",
+        "text_1": "This is where you vote for Peerplays SONs. SONs (Sidechain Operator Nodes) are the accounts that enable sidechain transactions on Peerplays.",
+        "li_1": "To vote for a SON, click the <b>ADD</b> button next to that SON (as many as you like), then click <b>PUBLISH CHANGES</b> button, and <b>CONFIRM</b>.",
+        "li_2": "To <b><i>remove</i></b> your vote from a SON, click the <b>REMOVE</b> button next to that SON, then click <b>PUBLISH CHANGES</b> button (enter password first time only), and <b>CONFIRM</b>."
       }
     },
     "network": {
