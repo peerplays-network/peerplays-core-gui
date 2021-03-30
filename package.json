@@ -68,7 +68,7 @@
     "indexeddbshim": "^2.0.4",
     "intl": "^1.1.0",
     "jdenticon": "git+https://github.com/cryptonomex/jdenticon.git",
-    "jest-cli": "^24.9.0",
+    "jest-cli": "^25.0.0",
     "js-sha256": "^0.2.3",
     "jsdom": "^11.11.0",
     "lodash": "^4.17.20",
