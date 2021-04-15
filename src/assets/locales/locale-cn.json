@@ -400,6 +400,7 @@
     "cant_send_yourself": "Cant send to yourself",
     "not_witness": "Not a witness",
     "not_advisor": "Not a Advisor",
+    "not_son": "Not a SON",
     "name_is_taken": "Account name is already taken.",
     "account_not_found": "Account not found.",
     "bitshares_account_not_found": "BitShares Account not found.",

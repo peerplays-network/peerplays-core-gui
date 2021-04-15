@@ -78,6 +78,11 @@ class ExplorerBlockChainActions {
           Repository.getObject('1.3.0')]
       ).then(([object210, object200, coreAsset]) => {
         let recentBlocks = Repository.getRecentBlocks();
+
+        if(recentBlocks) {
+          recentBlocks = recentBlocks.sort((a,b) => Number(a.id) < Number(b.id));
+        }
+
         let recentOperations = Repository.getRecentOperations();
 
         if (!object210 || !object200 || !coreAsset || recentBlocks.size < MAX_LATEST_BLOCKS) {

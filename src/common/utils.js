@@ -114,7 +114,7 @@ var Utils = {
       zeros += '0';
     }
 
-    let num = numeral(number).format('0,0' + zeros);
+    let num = numeral(Math.round(number, decimals)).format('0,0' + zeros);
 
     if (num.indexOf('.') > 0 && !trailing_zeros) {
       return num.replace(/0+$/,'').replace(/\.$/,'');
