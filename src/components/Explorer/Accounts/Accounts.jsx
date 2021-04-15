@@ -2,6 +2,7 @@ import React from 'react';
 import counterpart from 'counterpart';
 import Translate from 'react-translate-component';
 import Immutable from 'immutable';
+import _ from 'lodash';
 import {connect} from 'react-redux';
 import {FormattedNumber} from 'react-intl';
 import utils from '../../../common/utils';
@@ -15,6 +16,25 @@ class Accounts extends React.Component {
       searchValue: props.searchValue,
       accountsList: Immutable.List()
     };
+
+    this.debounceOnSearchChange = _.debounce(this.accountSearch.bind(this), 500);
+  }
+
+  componentDidMount() {
+    this.props.accountSearch(this.props.searchValue);
+  }
+
+  componentDidUpdate() {
+    //Update accounts list once its loaded
+    if(this.props.accountsList && this.state.accountsList !== this.props.accountsList) {
+      this.setState({
+        accountsList: this.props.accountsList
+      });
+    }
+  }
+
+  accountSearch() {
+    this.props.accountSearch(this.state.searchValue);
   }
 
   componentWillUnmount() {
@@ -23,26 +43,12 @@ class Accounts extends React.Component {
 
   onSearch(e) {
     let value = e.target.value.toLowerCase();
-    this.props.accountSearch(value);
     this.setState({searchValue: value});
+    this.debounceOnSearchChange();
   }
 
   render() {
-    let {searchValue, accountsList} = this.props;
-
-    if (accountsList.length > 0 && searchValue && searchValue.length > 0) {
-      accountsList = accountsList.filter((a) => {
-        return a[0].indexOf(searchValue) !== -1;
-      }).sort((a, b) => {
-        if (a[0] > b[0]) {
-          return 1;
-        } else if (a[0] < b[0]) {
-          return -1;
-        } else {
-          return 0;
-        }
-      });
-    }
+    let {searchValue, accountsList} = this.state;
 
     let list = accountsList.map((a) => {
       let amount = a[2] / Math.pow(10, this.props.coreAsset.precision);

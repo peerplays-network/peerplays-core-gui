@@ -161,7 +161,7 @@ class SONs extends React.Component {
 
     let result = this.props.activeSONObjects
       .filter((son) => son.son_account === account.id).toArray();
-    return result[0] ? null : counterpart.translate('errors.not_advisor');
+    return result[0] ? null : counterpart.translate('errors.not_son');
   }
 
   onResetChanges(){
