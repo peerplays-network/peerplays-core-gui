@@ -4,21 +4,39 @@ include:
   - template: License-Scanning.gitlab-ci.yml
   - template: SAST.gitlab-ci.yml
   - template: Secret-Detection.gitlab-ci.yml
+  - template: Container-Scanning.gitlab-ci.yml
 
-# node docker image on which this would be run
-image: node:12.2.0
+variables:
+ GIT_DEPTH: "3"  # Tells git to fetch all the branches of the project, required by the analysis task
+ DOCKER_DRIVER: overlay2
 
 stages:
+  - build
   - test
-  - deploy
 
 # builds app
 build:
-  stage: test
+  # node docker image on which this would be run
+  image: node:12-alpine3.12
+  stage: build
   script:
+    - apk update && apk add g++ make nasm git libtool autoconf automake libpng-dev pkgconfig
     - npm install
   tags:
     - docker
+
+docker_build:
+  image: docker:stable
+  stage: build
+  services:
+    - docker:19.03.12-dind
+  variables:
+    IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$CI_COMMIT_SHA
+  script:
+    - docker info
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker build -t $IMAGE .
+    - docker push $IMAGE
 
 # deploys app to Staging 
 deployToStaging:
