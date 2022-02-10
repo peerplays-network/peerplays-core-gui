@@ -175,7 +175,7 @@
     "node-fetch": "^2.6.1",
     "node-libs-browser": "~0.5.2",
     "node-localstorage": "~0.3.4",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "opn": "^5.4.0",
     "peerplaysjs-lib": "git+https://github.com/peerplays-network/peerplaysjs-lib.git#f506de0044eb173986d0c75284ef2d286d2e19fe",
     "postcss-import": "^12.0.1",
